@@ -4,7 +4,7 @@
   "description": "A collection of web timers for counting up and down.",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build entry.html --out-fil index.html",
+    "build": "parcel build entry.html --out-file index.html",
     "dev": "parcel entry.html --out-file index.html",
     "test": "elm-test"
   },
