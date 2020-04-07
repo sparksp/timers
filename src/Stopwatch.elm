@@ -2,9 +2,10 @@ module Stopwatch exposing (Model, Msg, init, subscriptions, update, view)
 
 import Browser.Events
 import Html exposing (Html)
-import Html.Attributes as Attr
+import Html.Attributes as A
 import Html.Events as Events
 import Period exposing (Period(..))
+import Tailwind as TW
 import Task
 import Time
 
@@ -103,15 +104,59 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    Html.div []
-        [ Html.h1 [] [ Html.text "Stopwatch" ]
-        , Html.p [] [ showTime model ]
-        , Html.div []
-            [ Html.button [ Events.onClick Start, Attr.disabled <| isRunning model ] [ Html.text "Start" ]
-            , Html.button [ Events.onClick Stop, Attr.disabled <| isStopped model ] [ Html.text "Stop" ]
-            , Html.button [ Events.onClick Reset, Attr.disabled <| disableReset model ] [ Html.text "Reset" ]
+    Html.div [ TW.text_center, TW.mt_3, TW.mb_3 ]
+        [ viewTitle
+        , Html.p [ TW.font_mono, TW.text_4xl, TW.mt_10, TW.mb_10 ] [ showTime model ]
+        , Html.div [ TW.inline_flex, TW.mt_2 ]
+            [ viewStartButton model
+            , viewStopButton model
+            , viewResetButton model
             ]
         ]
+
+
+viewTitle : Html Msg
+viewTitle =
+    Html.h1 [ TW.font_bold, TW.text_3xl, TW.mb_2 ] [ Html.text "Stopwatch" ]
+
+
+viewStartButton : Model -> Html Msg
+viewStartButton model =
+    let
+        button =
+            [ TW.bg_green_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.rounded_l ]
+    in
+    if isRunning model then
+        Html.button (button ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]) [ Html.text "Start" ]
+
+    else
+        Html.button (button ++ [ TW.hover__bg_green_600, Events.onClick Start ]) [ Html.text "Start" ]
+
+
+viewStopButton : Model -> Html Msg
+viewStopButton model =
+    let
+        button =
+            [ TW.bg_red_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4 ]
+    in
+    if isStopped model then
+        Html.button (button ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]) [ Html.text "Stop" ]
+
+    else
+        Html.button (button ++ [ TW.hover__bg_red_600, Events.onClick Stop ]) [ Html.text "Stop" ]
+
+
+viewResetButton : Model -> Html Msg
+viewResetButton model =
+    let
+        button =
+            [ TW.bg_blue_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.rounded_r ]
+    in
+    if disableReset model then
+        Html.button (button ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]) [ Html.text "Reset" ]
+
+    else
+        Html.button (button ++ [ TW.hover__bg_blue_600, Events.onClick Reset ]) [ Html.text "Reset" ]
 
 
 isRunning : Model -> Bool
@@ -170,4 +215,4 @@ showTimeDiff ( start, end ) =
         period =
             Millis (Time.posixToMillis end - Time.posixToMillis start)
     in
-    Html.time [ Attr.datetime (Period.toIso8601 period) ] [ Html.text (Period.toHuman period) ]
+    Html.time [ A.datetime (Period.toIso8601 period) ] [ Html.text (Period.toHuman period) ]
