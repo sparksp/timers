@@ -9,10 +9,7 @@ import Tailwind as TW
 import Task
 import Time
 import Time.Extra
-
-
-type alias Timer =
-    ( Time.Posix, Time.Posix )
+import Timer exposing (Timer)
 
 
 type Model
@@ -181,9 +178,15 @@ view : Model -> Html Msg
 view model =
     Html.div [ TW.text_center, TW.mt_3, TW.mb_3 ]
         [ viewTitle
-        , Html.p [ TW.font_mono, TW.text_4xl, TW.mt_10, TW.mb_10, fadeClimbingAttr model ] [ Html.text "Climb ", showClimbingTime model ]
-        , Html.p [ TW.font_mono, TW.text_4xl, TW.mt_10, TW.mb_10, fadeRestingAttr model ] [ Html.text "Rest  ", showRestingTime model ]
-        , Html.div [ TW.inline_flex, TW.mt_2 ]
+        , Html.div [ fadeClimbingAttr model, TW.mt_6 ]
+            [ Html.p [] [ Html.text "Climb " ]
+            , Html.p [ TW.text_4xl, TW.font_mono ] [ showClimbingTime model ]
+            ]
+        , Html.p [ fadeRestingAttr model, TW.mt_6 ]
+            [ Html.p [] [ Html.text "Rest " ]
+            , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
+            ]
+        , Html.div [ TW.inline_flex, TW.text_xl, TW.mt_10 ]
             [ viewClimbButton model
             , viewRestButton model
             , viewPauseResetButton model
@@ -193,14 +196,14 @@ view model =
 
 viewTitle : Html Msg
 viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.mb_2 ] [ Html.text "Climb-Rest (1:1)" ]
+    Html.h1 [ TW.font_bold, TW.text_3xl, TW.mb_10 ] [ Html.text "Climb-Rest (1:1)" ]
 
 
 viewClimbButton : Model -> Html Msg
 viewClimbButton model =
     let
         button =
-            [ TW.bg_green_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.rounded_l ]
+            [ TW.bg_green_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.m_2, TW.rounded ]
     in
     if canClimb model then
         Html.button (button ++ [ TW.hover__bg_green_600, Events.onClick Climb ]) [ Html.text "Climb" ]
@@ -213,7 +216,7 @@ viewRestButton : Model -> Html Msg
 viewRestButton model =
     let
         button =
-            [ TW.bg_red_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4 ]
+            [ TW.bg_red_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.m_2, TW.rounded ]
     in
     if canRest model then
         Html.button (button ++ [ TW.hover__bg_red_600, Events.onClick Rest ]) [ Html.text "Rest" ]
@@ -255,7 +258,7 @@ viewPauseResetButton model =
 
 resetButtonAttr : List (Html.Attribute Msg)
 resetButtonAttr =
-    [ TW.bg_blue_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.rounded_r ]
+    [ TW.bg_blue_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.m_2, TW.rounded ]
 
 
 viewDisabledResetButton : Html Msg
@@ -407,4 +410,4 @@ mapRestingTime { onClimbing, onResting } model =
 
 showPeriod : Period -> Html Msg
 showPeriod period =
-    Html.time [ A.datetime (Period.toIso8601 period) ] [ Html.text (Period.toHuman period) ]
+    Html.time [ A.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (Period.toHuman period) ]

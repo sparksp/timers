@@ -12,6 +12,7 @@ module Period exposing
 
 import Time
 import Time.Extra
+import Timer exposing (Timer)
 
 
 {-| Representation of a `Period` in milliseconds.
@@ -22,7 +23,7 @@ type Period
 
 {-| Convert from `( Time.Posix, Time.Posix )` to `Period`.
 -}
-fromTimer : ( Time.Posix, Time.Posix ) -> Period
+fromTimer : Timer -> Period
 fromTimer ( start, end ) =
     Millis <| Time.posixToMillis <| Time.Extra.sub end start
 
