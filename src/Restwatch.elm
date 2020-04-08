@@ -1,15 +1,19 @@
-module Restwatch exposing (Model, Msg, init, subscriptions, update, view)
+port module Restwatch exposing (Model, Msg, init, subscriptions, update, view)
 
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
 import Html.Events as Events
+import Json.Encode as E
 import Period exposing (Period(..))
 import Tailwind as TW
 import Task
 import Time
 import Time.Extra
 import Timer exposing (Timer)
+
+
+port play : E.Value -> Cmd msg
 
 
 type Model
@@ -126,7 +130,7 @@ update msg model =
 
         ( Tick now, Resting period ( _, target ) ) ->
             if Time.Extra.lt target now then
-                ( Finished period, Cmd.none )
+                ( Finished period, play (E.string "alarm") )
 
             else
                 ( Resting period ( now, target ), Cmd.none )
@@ -189,6 +193,7 @@ view model =
                     , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
                     ]
                 ]
+            , viewFinished model
             ]
         , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
             [ viewStartRestButton model
@@ -200,6 +205,22 @@ view model =
 viewTitle : Html Msg
 viewTitle =
     Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Restwatch (1:1)" ]
+
+
+viewFinished : Model -> Html Msg
+viewFinished model =
+    case model of
+        Finished _ ->
+            Html.audio
+                [ A.id "alarm"
+                , A.src "https://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3"
+                , A.controls False
+                , A.autoplay False
+                ]
+                []
+
+        _ ->
+            Html.text ""
 
 
 viewStartRestButton : Model -> Html Msg
