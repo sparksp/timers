@@ -1,7 +1,7 @@
 module Main exposing (main)
 
 import Browser
-import ClimbRest as P
+import Restwatch as P
 
 
 main : Program () P.Model P.Msg

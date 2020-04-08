@@ -1,4 +1,4 @@
-module ClimbRest exposing (Model, Msg, init, subscriptions, update, view)
+module Restwatch exposing (Model, Msg, init, subscriptions, update, view)
 
 import Browser.Events
 import Html exposing (Html)
@@ -15,17 +15,17 @@ import Timer exposing (Timer)
 type Model
     = Clear
     | Starting
-    | Climbing Timer
+    | Running Timer
     | Resting Period Timer
     | Finished Period
-    | PausedClimbing Timer
-    | ResumeClimbing Timer
+    | PausedRunning Timer
+    | ResumeRunning Timer
     | PausedResting Period Timer
     | ResumeResting Period Timer
 
 
 type Msg
-    = Climb
+    = Start
     | Rest
     | Pause
     | Reset
@@ -40,16 +40,16 @@ init _ =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( msg, model ) of
-        ( Climb, Clear ) ->
+        ( Start, Clear ) ->
             ( Starting, Cmd.none )
 
-        ( Climb, PausedClimbing timer ) ->
-            ( ResumeClimbing timer, Cmd.none )
+        ( Start, PausedRunning timer ) ->
+            ( ResumeRunning timer, Cmd.none )
 
-        ( Climb, Finished _ ) ->
+        ( Start, Finished _ ) ->
             ( Starting, Cmd.none )
 
-        ( Climb, _ ) ->
+        ( Start, _ ) ->
             ( model, Cmd.none )
 
         ( Rest, Clear ) ->
@@ -58,7 +58,7 @@ update msg model =
         ( Rest, Starting ) ->
             ( Clear, Cmd.none )
 
-        ( Rest, Climbing (( _, end ) as timer) ) ->
+        ( Rest, Running (( _, end ) as timer) ) ->
             let
                 period =
                     Period.fromTimer timer
@@ -68,7 +68,7 @@ update msg model =
             in
             ( Resting period target, Cmd.none )
 
-        ( Rest, PausedClimbing (( _, end ) as timer) ) ->
+        ( Rest, PausedRunning (( _, end ) as timer) ) ->
             let
                 period =
                     Period.fromTimer timer
@@ -78,7 +78,7 @@ update msg model =
             in
             ( ResumeResting period target, Cmd.none )
 
-        ( Rest, ResumeClimbing (( _, end ) as timer) ) ->
+        ( Rest, ResumeRunning (( _, end ) as timer) ) ->
             let
                 period =
                     Period.fromTimer timer
@@ -97,14 +97,14 @@ update msg model =
         ( Pause, Starting ) ->
             ( Clear, Cmd.none )
 
-        ( Pause, Climbing timer ) ->
-            ( PausedClimbing timer, Cmd.none )
+        ( Pause, Running timer ) ->
+            ( PausedRunning timer, Cmd.none )
 
         ( Pause, Resting period timer ) ->
             ( PausedResting period timer, Cmd.none )
 
-        ( Pause, ResumeClimbing timer ) ->
-            ( PausedClimbing timer, Cmd.none )
+        ( Pause, ResumeRunning timer ) ->
+            ( PausedRunning timer, Cmd.none )
 
         ( Pause, ResumeResting period timer ) ->
             ( PausedResting period timer, Cmd.none )
@@ -116,13 +116,13 @@ update msg model =
             ( Clear, Cmd.none )
 
         ( Tick now, Starting ) ->
-            ( Climbing ( now, now ), Cmd.none )
+            ( Running ( now, now ), Cmd.none )
 
-        ( Tick now, Climbing ( start, _ ) ) ->
-            ( Climbing ( start, now ), Cmd.none )
+        ( Tick now, Running ( start, _ ) ) ->
+            ( Running ( start, now ), Cmd.none )
 
-        ( Tick now, ResumeClimbing timer ) ->
-            ( Climbing <| timerShiftStart now timer, Cmd.none )
+        ( Tick now, ResumeRunning timer ) ->
+            ( Running <| timerShiftStart now timer, Cmd.none )
 
         ( Tick now, Resting period ( _, target ) ) ->
             if Time.Extra.lt target now then
@@ -154,13 +154,13 @@ subscriptions model =
         Starting ->
             Browser.Events.onAnimationFrame Tick
 
-        ResumeClimbing _ ->
+        ResumeRunning _ ->
             Browser.Events.onAnimationFrame Tick
 
         ResumeResting _ _ ->
             Browser.Events.onAnimationFrame Tick
 
-        Climbing _ ->
+        Running _ ->
             Browser.Events.onAnimationFrame Tick
 
         Resting _ _ ->
@@ -180,18 +180,18 @@ view model =
         [ Html.div []
             [ viewTitle
             , Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
-                [ Html.div [ fadeClimbingAttr model, TW.self_center ]
-                    [ Html.p [] [ Html.text "Climb " ]
-                    , Html.p [ TW.text_4xl, TW.font_mono ] [ showClimbingTime model ]
+                [ Html.div [ fadeRunningAttr model, TW.self_center ]
+                    [ Html.p [] [ Html.text "Activity" ]
+                    , Html.p [ TW.text_4xl, TW.font_mono ] [ showRunningTime model ]
                     ]
                 , Html.div [ fadeRestingAttr model, TW.self_center ]
-                    [ Html.p [] [ Html.text "Rest " ]
+                    [ Html.p [] [ Html.text "Rest" ]
                     , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
                     ]
                 ]
             ]
         , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
-            [ viewClimbRestButton model
+            [ viewStartRestButton model
             , viewPauseResetButton model
             ]
         ]
@@ -199,25 +199,25 @@ view model =
 
 viewTitle : Html Msg
 viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Climb-Rest (1:1)" ]
+    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Restwatch (1:1)" ]
 
 
-viewClimbRestButton : Model -> Html Msg
-viewClimbRestButton model =
+viewStartRestButton : Model -> Html Msg
+viewStartRestButton model =
     case model of
         Clear ->
-            viewClimbButton
+            viewStartButton
 
         Starting ->
             viewRestButton
 
-        Climbing _ ->
+        Running _ ->
             viewRestButton
 
-        PausedClimbing _ ->
+        PausedRunning _ ->
             viewRestButton
 
-        ResumeClimbing _ ->
+        ResumeRunning _ ->
             viewRestButton
 
         Resting _ _ ->
@@ -230,7 +230,7 @@ viewClimbRestButton model =
             viewDisabledRestButton
 
         Finished _ ->
-            viewClimbButton
+            viewStartButton
 
 
 viewPauseResetButton : Model -> Html Msg
@@ -242,7 +242,7 @@ viewPauseResetButton model =
         Starting ->
             viewDisabledResetButton
 
-        Climbing _ ->
+        Running _ ->
             viewPauseButton
 
         Resting _ _ ->
@@ -251,10 +251,10 @@ viewPauseResetButton model =
         Finished _ ->
             viewResetButton
 
-        PausedClimbing _ ->
+        PausedRunning _ ->
             viewResetButton
 
-        ResumeClimbing _ ->
+        ResumeRunning _ ->
             viewPauseButton
 
         PausedResting _ _ ->
@@ -274,9 +274,9 @@ disabledButtonAttr =
     buttonAttr ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]
 
 
-viewClimbButton : Html Msg
-viewClimbButton =
-    Html.button ([ TW.bg_green_500, TW.hover__bg_green_600, Events.onClick Climb ] ++ buttonAttr) [ Html.text "Climb" ]
+viewStartButton : Html Msg
+viewStartButton =
+    Html.button ([ TW.bg_green_500, TW.hover__bg_green_600, Events.onClick Start ] ++ buttonAttr) [ Html.text "Start" ]
 
 
 viewRestButton : Html Msg
@@ -304,10 +304,10 @@ viewDisabledResetButton =
     Html.button (TW.bg_blue_500 :: disabledButtonAttr) [ Html.text "Reset" ]
 
 
-showClimbingTime : Model -> Html Msg
-showClimbingTime =
-    mapClimbingTime
-        { onClimbing = showPeriod
+showRunningTime : Model -> Html Msg
+showRunningTime =
+    mapRunningTime
+        { onRunning = showPeriod
         , onResting = showPeriod
         }
 
@@ -315,15 +315,15 @@ showClimbingTime =
 showRestingTime : Model -> Html Msg
 showRestingTime =
     mapRestingTime
-        { onClimbing = showPeriod
+        { onRunning = showPeriod
         , onResting = showPeriod
         }
 
 
-fadeClimbingAttr : Model -> Html.Attribute Msg
-fadeClimbingAttr =
-    mapClimbingTime
-        { onClimbing = always (A.class "")
+fadeRunningAttr : Model -> Html.Attribute Msg
+fadeRunningAttr =
+    mapRunningTime
+        { onRunning = always (A.class "")
         , onResting = always TW.opacity_50
         }
 
@@ -331,28 +331,28 @@ fadeClimbingAttr =
 fadeRestingAttr : Model -> Html.Attribute Msg
 fadeRestingAttr =
     mapRestingTime
-        { onClimbing = always TW.opacity_50
+        { onRunning = always TW.opacity_50
         , onResting = always (A.class "")
         }
 
 
-mapClimbingTime : { onClimbing : Period -> value, onResting : Period -> value } -> Model -> value
-mapClimbingTime { onClimbing, onResting } model =
+mapRunningTime : { onRunning : Period -> value, onResting : Period -> value } -> Model -> value
+mapRunningTime { onRunning, onResting } model =
     case model of
         Clear ->
-            onClimbing <| Millis 0
+            onRunning <| Millis 0
 
         Starting ->
-            onClimbing <| Millis 0
+            onRunning <| Millis 0
 
-        Climbing timer ->
-            onClimbing <| Period.fromTimer timer
+        Running timer ->
+            onRunning <| Period.fromTimer timer
 
-        PausedClimbing timer ->
-            onClimbing <| Period.fromTimer timer
+        PausedRunning timer ->
+            onRunning <| Period.fromTimer timer
 
-        ResumeClimbing timer ->
-            onClimbing <| Period.fromTimer timer
+        ResumeRunning timer ->
+            onRunning <| Period.fromTimer timer
 
         Resting period _ ->
             onResting period
@@ -364,26 +364,26 @@ mapClimbingTime { onClimbing, onResting } model =
             onResting period
 
         Finished period ->
-            onClimbing period
+            onRunning period
 
 
-mapRestingTime : { onClimbing : Period -> value, onResting : Period -> value } -> Model -> value
-mapRestingTime { onClimbing, onResting } model =
+mapRestingTime : { onRunning : Period -> value, onResting : Period -> value } -> Model -> value
+mapRestingTime { onRunning, onResting } model =
     case model of
         Clear ->
-            onClimbing <| Millis 0
+            onRunning <| Millis 0
 
         Starting ->
-            onClimbing <| Millis 0
+            onRunning <| Millis 0
 
-        Climbing timer ->
-            onClimbing <| Period.fromTimer timer
+        Running timer ->
+            onRunning <| Period.fromTimer timer
 
-        PausedClimbing timer ->
-            onClimbing <| Period.fromTimer timer
+        PausedRunning timer ->
+            onRunning <| Period.fromTimer timer
 
-        ResumeClimbing timer ->
-            onClimbing <| Period.fromTimer timer
+        ResumeRunning timer ->
+            onRunning <| Period.fromTimer timer
 
         Resting _ timer ->
             onResting <| Period.fromTimer timer
