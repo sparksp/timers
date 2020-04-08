@@ -219,13 +219,10 @@ viewFinished : Model -> Html Msg
 viewFinished model =
     case model of
         Finished _ ->
-            Html.audio
-                [ A.id "alarm"
-                , A.src "https://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3"
-                , A.controls False
-                , A.autoplay False
+            Html.audio [ A.id "alarm", A.controls False ]
+                [ Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.mp3", A.type_ "audio/mpeg" ] []
+                , Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.wav", A.type_ "audio/wav" ] []
                 ]
-                []
 
         _ ->
             Html.text ""
