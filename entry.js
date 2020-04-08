@@ -17,9 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
         flags: null
     });
 
-    app.ports.play.subscribe(function (id) {
-        checkElement("audio#" + id).then(function (audio) {
-            audio.play();
+    app.ports.alarm.subscribe(function (cmd) {
+        checkElement("audio#alarm").then(function (audio) {
+            switch (cmd) {
+                case "load":
+                    audio.load();
+                case "stop":
+                    audio.stop();
+                    break;
+
+                case "play":
+                    audio.play();
+                    break;
+            }
         });
     });
 });

@@ -14,7 +14,7 @@ import Time.Extra
 import Timer exposing (Timer)
 
 
-port play : E.Value -> Cmd msg
+port alarm : E.Value -> Cmd msg
 
 
 type Model
@@ -42,17 +42,27 @@ init _ =
     ( Clear, Cmd.none )
 
 
+loadAlarm : Cmd Msg
+loadAlarm =
+    alarm (E.string "load")
+
+
+playAlarm : Cmd Msg
+playAlarm =
+    alarm (E.string "play")
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( msg, model ) of
         ( Start, Clear ) ->
-            ( Starting, Cmd.none )
+            ( Starting, loadAlarm )
 
         ( Start, PausedRunning timer ) ->
-            ( ResumeRunning timer, Cmd.none )
+            ( ResumeRunning timer, loadAlarm )
 
         ( Start, Finished _ ) ->
-            ( Starting, Cmd.none )
+            ( Starting, loadAlarm )
 
         ( Start, _ ) ->
             ( model, Cmd.none )
@@ -118,7 +128,7 @@ update msg model =
             ( model, Cmd.none )
 
         ( Reset, _ ) ->
-            ( Clear, Cmd.none )
+            ( Clear, loadAlarm )
 
         ( Tick now, Starting ) ->
             ( Running ( now, now ), Cmd.none )
@@ -131,7 +141,7 @@ update msg model =
 
         ( Tick now, Resting period ( _, target ) ) ->
             if Time.Extra.lt target now then
-                ( Finished period, play (E.string "alarm") )
+                ( Finished period, playAlarm )
 
             else
                 ( Resting period ( now, target ), Cmd.none )
@@ -182,7 +192,7 @@ subscriptions model =
 view : Model -> Document Msg
 view model =
     { title = "Restwatch"
-    , body = [ viewBody model ]
+    , body = [ viewAudio, viewBody model ]
     }
 
 
@@ -201,7 +211,6 @@ viewBody model =
                     , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
                     ]
                 ]
-            , viewFinished model
             ]
         , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
             [ viewStartRestButton model
@@ -215,17 +224,12 @@ viewTitle =
     Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Restwatch (1:1)" ]
 
 
-viewFinished : Model -> Html Msg
-viewFinished model =
-    case model of
-        Finished _ ->
-            Html.audio [ A.id "alarm", A.controls False ]
-                [ Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.mp3", A.type_ "audio/mpeg" ] []
-                , Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.wav", A.type_ "audio/wav" ] []
-                ]
-
-        _ ->
-            Html.text ""
+viewAudio : Html Msg
+viewAudio =
+    Html.audio [ A.id "alarm", A.controls False ]
+        [ Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.mp3" ] []
+        , Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.wav" ] []
+        ]
 
 
 viewStartRestButton : Model -> Html Msg
