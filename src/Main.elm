@@ -1,14 +1,14 @@
 module Main exposing (main)
 
 import Browser
-import Stopwatch
+import ClimbRest as P
 
 
-main : Program () Stopwatch.Model Stopwatch.Msg
+main : Program () P.Model P.Msg
 main =
     Browser.element
-        { init = Stopwatch.init
-        , subscriptions = Stopwatch.subscriptions
-        , update = Stopwatch.update
-        , view = Stopwatch.view
+        { init = P.init
+        , subscriptions = P.subscriptions
+        , update = P.update
+        , view = P.view
         }

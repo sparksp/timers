@@ -1,16 +1,30 @@
-module Period exposing (Period(..), toHuman, toIso8601)
+module Period exposing
+    ( Period(..), toHuman, toIso8601
+    , fromTimer
+    )
 
 {-| Tools to format a period of time.
 
 @docs Period, toHuman, toIso8601
+@docs fromTimer
 
 -}
 
+import Time
+import Time.Extra
 
-{-| Representation of a Period in milliseconds
+
+{-| Representation of a `Period` in milliseconds.
 -}
 type Period
     = Millis Int
+
+
+{-| Convert from `( Time.Posix, Time.Posix )` to `Period`.
+-}
+fromTimer : ( Time.Posix, Time.Posix ) -> Period
+fromTimer ( start, end ) =
+    Millis <| Time.posixToMillis <| Time.Extra.sub end start
 
 
 {-| A human readable (digital clock style) string.
