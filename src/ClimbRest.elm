@@ -176,19 +176,22 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    Html.div [ TW.text_center, TW.mt_3, TW.mb_3 ]
-        [ viewTitle
-        , Html.div [ fadeClimbingAttr model, TW.mt_6 ]
-            [ Html.p [] [ Html.text "Climb " ]
-            , Html.p [ TW.text_4xl, TW.font_mono ] [ showClimbingTime model ]
+    Html.div [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col, TW.justify_between ]
+        [ Html.div []
+            [ viewTitle
+            , Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
+                [ Html.div [ fadeClimbingAttr model, TW.self_center ]
+                    [ Html.p [] [ Html.text "Climb " ]
+                    , Html.p [ TW.text_4xl, TW.font_mono ] [ showClimbingTime model ]
+                    ]
+                , Html.div [ fadeRestingAttr model, TW.self_center ]
+                    [ Html.p [] [ Html.text "Rest " ]
+                    , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
+                    ]
+                ]
             ]
-        , Html.p [ fadeRestingAttr model, TW.mt_6 ]
-            [ Html.p [] [ Html.text "Rest " ]
-            , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
-            ]
-        , Html.div [ TW.inline_flex, TW.text_xl, TW.mt_10 ]
-            [ viewClimbButton model
-            , viewRestButton model
+        , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
+            [ viewClimbRestButton model
             , viewPauseResetButton model
             ]
         ]
@@ -196,33 +199,38 @@ view model =
 
 viewTitle : Html Msg
 viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.mb_10 ] [ Html.text "Climb-Rest (1:1)" ]
+    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Climb-Rest (1:1)" ]
 
 
-viewClimbButton : Model -> Html Msg
-viewClimbButton model =
-    let
-        button =
-            [ TW.bg_green_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.m_2, TW.rounded ]
-    in
-    if canClimb model then
-        Html.button (button ++ [ TW.hover__bg_green_600, Events.onClick Climb ]) [ Html.text "Climb" ]
+viewClimbRestButton : Model -> Html Msg
+viewClimbRestButton model =
+    case model of
+        Clear ->
+            viewClimbButton
 
-    else
-        Html.button (button ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]) [ Html.text "Climb" ]
+        Starting ->
+            viewRestButton
 
+        Climbing _ ->
+            viewRestButton
 
-viewRestButton : Model -> Html Msg
-viewRestButton model =
-    let
-        button =
-            [ TW.bg_red_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.m_2, TW.rounded ]
-    in
-    if canRest model then
-        Html.button (button ++ [ TW.hover__bg_red_600, Events.onClick Rest ]) [ Html.text "Rest" ]
+        PausedClimbing _ ->
+            viewRestButton
 
-    else
-        Html.button (button ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]) [ Html.text "Rest" ]
+        ResumeClimbing _ ->
+            viewRestButton
+
+        Resting _ _ ->
+            viewDisabledRestButton
+
+        PausedResting _ _ ->
+            viewDisabledRestButton
+
+        ResumeResting _ _ ->
+            viewDisabledRestButton
+
+        Finished _ ->
+            viewClimbButton
 
 
 viewPauseResetButton : Model -> Html Msg
@@ -256,62 +264,44 @@ viewPauseResetButton model =
             viewPauseButton
 
 
-resetButtonAttr : List (Html.Attribute Msg)
-resetButtonAttr =
-    [ TW.bg_blue_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.m_2, TW.rounded ]
+buttonAttr : List (Html.Attribute Msg)
+buttonAttr =
+    [ TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.m_2, TW.rounded ]
 
 
-viewDisabledResetButton : Html Msg
-viewDisabledResetButton =
-    Html.button (resetButtonAttr ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]) [ Html.text "Reset" ]
+disabledButtonAttr : List (Html.Attribute Msg)
+disabledButtonAttr =
+    buttonAttr ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]
+
+
+viewClimbButton : Html Msg
+viewClimbButton =
+    Html.button ([ TW.bg_green_500, TW.hover__bg_green_600, Events.onClick Climb ] ++ buttonAttr) [ Html.text "Climb" ]
+
+
+viewRestButton : Html Msg
+viewRestButton =
+    Html.button ([ TW.bg_red_500, TW.hover__bg_red_600, Events.onClick Rest ] ++ buttonAttr) [ Html.text "Rest" ]
+
+
+viewDisabledRestButton : Html Msg
+viewDisabledRestButton =
+    Html.button (TW.bg_gray_500 :: disabledButtonAttr) [ Html.text "Rest" ]
 
 
 viewPauseButton : Html Msg
 viewPauseButton =
-    Html.button (resetButtonAttr ++ [ TW.hover__bg_blue_600, Events.onClick Pause ]) [ Html.text "Pause" ]
+    Html.button ([ TW.bg_blue_500, TW.hover__bg_blue_600, Events.onClick Pause ] ++ buttonAttr) [ Html.text "Pause" ]
 
 
 viewResetButton : Html Msg
 viewResetButton =
-    Html.button (resetButtonAttr ++ [ TW.hover__bg_blue_600, Events.onClick Reset ]) [ Html.text "Reset" ]
+    Html.button ([ TW.bg_blue_500, TW.hover__bg_blue_600, Events.onClick Reset ] ++ buttonAttr) [ Html.text "Reset" ]
 
 
-canClimb : Model -> Bool
-canClimb model =
-    case model of
-        Starting ->
-            False
-
-        Climbing _ ->
-            False
-
-        Resting _ _ ->
-            False
-
-        PausedResting _ _ ->
-            False
-
-        _ ->
-            True
-
-
-canRest : Model -> Bool
-canRest model =
-    case model of
-        Starting ->
-            True
-
-        Climbing _ ->
-            True
-
-        PausedClimbing _ ->
-            True
-
-        PausedResting _ _ ->
-            True
-
-        _ ->
-            False
+viewDisabledResetButton : Html Msg
+viewDisabledResetButton =
+    Html.button (TW.bg_blue_500 :: disabledButtonAttr) [ Html.text "Reset" ]
 
 
 showClimbingTime : Model -> Html Msg
