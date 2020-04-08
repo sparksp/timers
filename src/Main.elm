@@ -6,7 +6,7 @@ import Restwatch as P
 
 main : Program () P.Model P.Msg
 main =
-    Browser.element
+    Browser.document
         { init = P.init
         , subscriptions = P.subscriptions
         , update = P.update

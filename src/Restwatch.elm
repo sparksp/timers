@@ -1,5 +1,6 @@
 port module Restwatch exposing (Model, Msg, init, subscriptions, update, view)
 
+import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
@@ -178,8 +179,15 @@ subscriptions model =
 --- VIEW
 
 
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
+    { title = "Restwatch"
+    , body = [ viewBody model ]
+    }
+
+
+viewBody : Model -> Html Msg
+viewBody model =
     Html.div [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col, TW.justify_between ]
         [ Html.div []
             [ viewTitle
