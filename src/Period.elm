@@ -43,7 +43,7 @@ toHuman period =
     case duration.hours of
         0 ->
             -- mm:ss.µ
-            pad00 duration.minutes ++ ":" ++ pad00 duration.seconds ++ "." ++ String.left 1 (pad000 duration.millis)
+            pad00 duration.minutes ++ ":" ++ pad00 duration.seconds ++ "." ++ String.left 1 (pad000 duration.millis) ++ "\u{00A0}"
 
         _ ->
             -- hh:mm:ss

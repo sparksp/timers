@@ -18,12 +18,12 @@ testToHuman =
             \ms ->
                 Millis ms
                     |> Period.toHuman
-                    |> Expect.equal ("00:00." ++ String.left 1 (pad000 ms))
+                    |> Expect.equal ("00:00." ++ String.left 1 (pad000 ms) ++ "\u{00A0}")
         , fuzz2 (Fuzz.intRange 1 59) (Fuzz.intRange 1 59) "converts to minutes and seconds with ms" <|
             \m s ->
                 Millis ((m * 60 + s) * 1000)
                     |> Period.toHuman
-                    |> Expect.equal (pad00 m ++ ":" ++ pad00 s ++ ".0")
+                    |> Expect.equal (pad00 m ++ ":" ++ pad00 s ++ ".0\u{00A0}")
         , test "converts hours, minutes and seconds with no ms" <|
             \_ ->
                 let
@@ -44,7 +44,7 @@ testToHuman =
                 in
                 Millis (d * 24 * 60 * 60 * 1000)
                     |> Period.toHuman
-                    |> Expect.equal "00:00.0"
+                    |> Expect.equal "00:00.0\u{00A0}"
         ]
 
 
