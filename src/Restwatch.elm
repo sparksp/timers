@@ -254,7 +254,7 @@ viewStartRestButton model =
             viewDisabledRestButton
 
         PausedResting _ _ ->
-            viewDisabledRestButton
+            viewRestButton
 
         ResumeResting _ _ ->
             viewDisabledRestButton
