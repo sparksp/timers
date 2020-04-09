@@ -8,7 +8,6 @@ import Html.Events as Events
 import Json.Encode as E
 import Period exposing (Period(..))
 import Tailwind as TW
-import Task
 import Time
 import Time.Extra
 import Timer exposing (Timer)
@@ -93,13 +92,10 @@ update msg model =
             in
             ( ResumeResting period target, Cmd.none )
 
-        ( Rest, ResumeRunning (( _, end ) as timer) ) ->
+        ( Rest, ResumeRunning timer ) ->
             let
                 period =
                     Period.fromTimer timer
-
-                target =
-                    timerShiftEnd end timer
             in
             ( ResumeResting period timer, Cmd.none )
 
