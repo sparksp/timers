@@ -1,5 +1,6 @@
 module Stopwatch exposing (Model, Msg, init, subscriptions, update, view)
 
+import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
@@ -102,8 +103,15 @@ subscriptions model =
 --- VIEW
 
 
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
+    { title = "Stopwatch"
+    , body = [ viewBody model ]
+    }
+
+
+viewBody : Model -> Html Msg
+viewBody model =
     Html.div [ TW.text_center, TW.mt_3, TW.mb_3 ]
         [ viewTitle
         , Html.p [ TW.font_mono, TW.text_4xl, TW.mt_10, TW.mb_10 ] [ showTime model ]
