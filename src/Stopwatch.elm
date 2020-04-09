@@ -4,19 +4,20 @@ import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
-import Html.Events as Events
 import Period exposing (Period(..))
 import Tailwind as TW
-import Task
+import Theme.Button as Button
 import Time
+import Time.Extra
+import Timer exposing (Timer)
 
 
 type Model
     = Clear
     | Starting
-    | Paused ( Time.Posix, Time.Posix )
-    | Resuming ( Time.Posix, Time.Posix )
-    | Running ( Time.Posix, Time.Posix )
+    | Paused Timer
+    | Resuming Timer
+    | Running Timer
 
 
 type Msg
@@ -35,10 +36,10 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( msg, model ) of
         ( Start, Clear ) ->
-            ( Starting, Task.perform Tick Time.now )
+            ( Starting, Cmd.none )
 
         ( Start, Paused timer ) ->
-            ( Resuming timer, Task.perform Tick Time.now )
+            ( Resuming timer, Cmd.none )
 
         ( Start, _ ) ->
             ( model, Cmd.none )
@@ -65,11 +66,7 @@ update msg model =
             ( Running ( now, now ), Cmd.none )
 
         ( Tick now, Resuming timer ) ->
-            let
-                newStart =
-                    adjustTime timer now
-            in
-            ( Running ( newStart, now ), Cmd.none )
+            ( Running <| timerShiftStart now timer, Cmd.none )
 
         ( Tick now, Running ( start, _ ) ) ->
             ( Running ( start, now ), Cmd.none )
@@ -78,9 +75,9 @@ update msg model =
             ( model, Cmd.none )
 
 
-adjustTime : ( Time.Posix, Time.Posix ) -> Time.Posix -> Time.Posix
-adjustTime ( start, end ) now =
-    Time.millisToPosix (Time.posixToMillis now - Time.posixToMillis end + Time.posixToMillis start)
+timerShiftStart : Time.Posix -> Timer -> Timer
+timerShiftStart now ( start, end ) =
+    ( Time.Extra.add start <| Time.Extra.sub now end, now )
 
 
 subscriptions : Model -> Sub Msg
@@ -93,7 +90,7 @@ subscriptions model =
             Browser.Events.onAnimationFrame Tick
 
         Running _ ->
-            Time.every 100 Tick
+            Browser.Events.onAnimationFrame Tick
 
         _ ->
             Sub.none
@@ -112,12 +109,15 @@ view model =
 
 viewBody : Model -> Html Msg
 viewBody model =
-    Html.div [ TW.text_center, TW.mt_3, TW.mb_3 ]
-        [ viewTitle
-        , Html.p [ TW.font_mono, TW.text_4xl, TW.mt_10, TW.mb_10 ] [ showTime model ]
-        , Html.div [ TW.inline_flex, TW.mt_2 ]
-            [ viewStartButton model
-            , viewStopButton model
+    Html.div [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col, TW.justify_between ]
+        [ Html.div []
+            [ viewTitle
+            , Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
+                [ Html.p [ TW.self_center, TW.text_4xl, TW.font_mono ] [ showTime model ]
+                ]
+            ]
+        , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
+            [ viewStartStopButton model
             , viewResetButton model
             ]
         ]
@@ -125,46 +125,36 @@ viewBody model =
 
 viewTitle : Html Msg
 viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.mb_2 ] [ Html.text "Stopwatch" ]
+    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Stopwatch" ]
 
 
-viewStartButton : Model -> Html Msg
-viewStartButton model =
-    let
-        button =
-            [ TW.bg_green_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.rounded_l ]
-    in
+viewStartStopButton : Model -> Html Msg
+viewStartStopButton model =
     if isRunning model then
-        Html.button (button ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]) [ Html.text "Start" ]
+        viewStopButton
 
     else
-        Html.button (button ++ [ TW.hover__bg_green_600, Events.onClick Start ]) [ Html.text "Start" ]
+        viewStartButton
 
 
-viewStopButton : Model -> Html Msg
-viewStopButton model =
-    let
-        button =
-            [ TW.bg_red_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4 ]
-    in
-    if isStopped model then
-        Html.button (button ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]) [ Html.text "Stop" ]
+viewStartButton : Html Msg
+viewStartButton =
+    Html.button (TW.hover__bg_green_600 :: Button.attr { color = TW.bg_green_500, onClick = Just Start }) [ Html.text "Start" ]
 
-    else
-        Html.button (button ++ [ TW.hover__bg_red_600, Events.onClick Stop ]) [ Html.text "Stop" ]
+
+viewStopButton : Html Msg
+viewStopButton =
+    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just Stop }) [ Html.text "Stop" ]
 
 
 viewResetButton : Model -> Html Msg
 viewResetButton model =
-    let
-        button =
-            [ TW.bg_blue_500, TW.text_white, TW.font_bold, TW.py_2, TW.px_4, TW.rounded_r ]
-    in
-    if disableReset model then
-        Html.button (button ++ [ TW.opacity_50, TW.cursor_not_allowed, A.disabled True ]) [ Html.text "Reset" ]
+    case model of
+        Paused _ ->
+            Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just Reset }) [ Html.text "Reset" ]
 
-    else
-        Html.button (button ++ [ TW.hover__bg_blue_600, Events.onClick Reset ]) [ Html.text "Reset" ]
+        _ ->
+            Html.button (Button.attr { color = TW.bg_blue_500, onClick = Nothing }) [ Html.text "Reset" ]
 
 
 isRunning : Model -> Bool
@@ -183,44 +173,30 @@ isRunning model =
             False
 
 
-isStopped : Model -> Bool
-isStopped =
-    not << isRunning
-
-
-disableReset : Model -> Bool
-disableReset model =
-    case model of
-        Paused _ ->
-            False
-
-        _ ->
-            True
-
-
 showTime : Model -> Html Msg
 showTime model =
+    mapRunningTime showPeriod model
+
+
+mapRunningTime : (Period -> value) -> Model -> value
+mapRunningTime fn model =
     case model of
         Clear ->
-            Html.text <| Period.toHuman <| Millis 0
+            fn <| Millis 0
 
         Starting ->
-            Html.text <| Period.toHuman <| Millis 0
+            fn <| Millis 0
 
         Running timer ->
-            showTimeDiff timer
+            fn <| Period.fromTimer timer
 
         Paused timer ->
-            showTimeDiff timer
+            fn <| Period.fromTimer timer
 
         Resuming timer ->
-            showTimeDiff timer
+            fn <| Period.fromTimer timer
 
 
-showTimeDiff : ( Time.Posix, Time.Posix ) -> Html Msg
-showTimeDiff ( start, end ) =
-    let
-        period =
-            Millis (Time.posixToMillis end - Time.posixToMillis start)
-    in
-    Html.time [ A.datetime (Period.toIso8601 period) ] [ Html.text (Period.toHuman period) ]
+showPeriod : Period -> Html Msg
+showPeriod period =
+    Html.time [ A.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (Period.toHuman period) ]

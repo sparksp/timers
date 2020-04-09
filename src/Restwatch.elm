@@ -4,10 +4,10 @@ import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
-import Html.Events as Events
 import Json.Encode as E
 import Period exposing (Period(..))
 import Tailwind as TW
+import Theme.Button as Button
 import Time
 import Time.Extra
 import Timer exposing (Timer)
@@ -339,48 +339,34 @@ viewPauseResetButton model =
             viewPauseButton
 
 
-buttonAttr : { color : Html.Attribute msg, onClick : Maybe msg } -> List (Html.Attribute msg)
-buttonAttr { color, onClick } =
-    let
-        onClickAttr =
-            case onClick of
-                Just m ->
-                    Events.onClick m
-
-                Nothing ->
-                    A.disabled True
-    in
-    [ color, TW.text_white, TW.font_bold, TW.p_2, TW.m_2, TW.rounded, TW.disabled__opacity_75, TW.disabled__cursor_not_allowed, onClickAttr ]
-
-
 viewStartButton : Html Msg
 viewStartButton =
-    Html.button (TW.hover__bg_green_600 :: buttonAttr { color = TW.bg_green_500, onClick = Just Start }) [ Html.text "Start" ]
+    Html.button (TW.hover__bg_green_600 :: Button.attr { color = TW.bg_green_500, onClick = Just Start }) [ Html.text "Start" ]
 
 
 viewRestButton : Html Msg
 viewRestButton =
-    Html.button (TW.hover__bg_orange_600 :: buttonAttr { color = TW.bg_orange_500, onClick = Just Rest }) [ Html.text "Rest" ]
+    Html.button (TW.hover__bg_orange_600 :: Button.attr { color = TW.bg_orange_500, onClick = Just Rest }) [ Html.text "Rest" ]
 
 
 viewDisabledRestButton : Html Msg
 viewDisabledRestButton =
-    Html.button (buttonAttr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Rest" ]
+    Html.button (Button.attr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Rest" ]
 
 
 viewPauseButton : Html Msg
 viewPauseButton =
-    Html.button (TW.hover__bg_blue_600 :: buttonAttr { color = TW.bg_blue_500, onClick = Just Pause }) [ Html.text "Pause" ]
+    Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just Pause }) [ Html.text "Pause" ]
 
 
 viewDisabledPauseButton : Html Msg
 viewDisabledPauseButton =
-    Html.button (buttonAttr { color = TW.bg_blue_500, onClick = Nothing }) [ Html.text "Pause" ]
+    Html.button (Button.attr { color = TW.bg_blue_500, onClick = Nothing }) [ Html.text "Pause" ]
 
 
 viewResetButton : Html Msg
 viewResetButton =
-    Html.button (TW.hover__bg_red_600 :: buttonAttr { color = TW.bg_red_500, onClick = Just Reset }) [ Html.text "Reset" ]
+    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just Reset }) [ Html.text "Reset" ]
 
 
 showRunningTime : Model -> Html Msg
