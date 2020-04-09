@@ -1,11 +1,11 @@
 module Period exposing
-    ( Period(..), toHuman, toIso8601
+    ( Period(..), toHuman, toIso8601, toMillis, toMillisFloat
     , fromTimer
     )
 
 {-| Tools to format a period of time.
 
-@docs Period, toHuman, toIso8601
+@docs Period, toHuman, toIso8601, toMillis, toMillisFloat
 @docs fromTimer
 
 -}
@@ -68,6 +68,20 @@ toIso8601 ((Millis ms) as period) =
 
     else
         durationToIso8601 (toDuration period)
+
+
+{-| Get the millis from a period.
+-}
+toMillis : Period -> Int
+toMillis (Millis ms) =
+    ms
+
+
+{-| Get the millis from a period as a float.
+-}
+toMillisFloat : Period -> Float
+toMillisFloat =
+    toFloat << toMillis
 
 
 

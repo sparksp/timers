@@ -211,6 +211,7 @@ viewBody model =
                     , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
                     ]
                 ]
+            , viewProgress model
             ]
         , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
             [ viewStartRestButton model
@@ -230,6 +231,54 @@ viewAudio =
         [ Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.mp3" ] []
         , Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.wav" ] []
         ]
+
+
+viewProgress : Model -> Html Msg
+viewProgress model =
+    let
+        percent =
+            mapRestingPeriods
+                { onWaiting = always 100
+                , onRunning = calculateProgress
+                , onResting = calculateProgress
+                , onFinished = always 100
+                }
+                model
+
+        label =
+            mapRestingTime
+                { onWaiting = always "Get Ready!"
+                , onRunning = always "Go!"
+                , onResting = always "Rest..."
+                , onFinished = always "Finished"
+                }
+                model
+
+        bg_color =
+            mapRestingTime
+                { onWaiting = always TW.bg_gray_500
+                , onRunning = always TW.bg_green_600
+                , onResting = always TW.bg_orange_600
+                , onFinished = always TW.bg_red_600
+                }
+                model
+    in
+    Html.div [ TW.w_full, TW.bg_gray_300, TW.my_2 ]
+        [ Html.div [ bg_color, TW.leading_none, TW.py_2, TW.text_center, TW.text_white, progress percent ] [ Html.text label ] ]
+
+
+progress : Float -> Html.Attribute Msg
+progress percent =
+    A.style "width" (String.fromFloat percent ++ "%")
+
+
+calculateProgress : ( Period, Period ) -> Float
+calculateProgress ( target, current ) =
+    if target == current then
+        100
+
+    else
+        Period.toMillisFloat current / Period.toMillisFloat target * 100
 
 
 viewStartRestButton : Model -> Html Msg
@@ -336,41 +385,55 @@ viewDisabledResetButton =
 
 showRunningTime : Model -> Html Msg
 showRunningTime =
-    mapRunningTime
-        { onRunning = showPeriod
-        , onResting = showPeriod
-        }
+    mapRunningTime (allStages showPeriod)
 
 
 showRestingTime : Model -> Html Msg
 showRestingTime =
-    mapRestingTime
-        { onRunning = showPeriod
-        , onResting = showPeriod
-        }
+    mapRestingTime (allStages showPeriod)
 
 
 fadeRunningAttr : Model -> Html.Attribute Msg
 fadeRunningAttr =
-    mapRunningTime
-        { onRunning = always (A.class "")
-        , onResting = always TW.opacity_50
-        }
+    let
+        stages =
+            allStages <| always (A.class "")
+    in
+    mapRunningTime { stages | onResting = always TW.opacity_50 }
 
 
 fadeRestingAttr : Model -> Html.Attribute Msg
 fadeRestingAttr =
     mapRestingTime
-        { onRunning = always TW.opacity_50
+        { onWaiting = always TW.opacity_50
+        , onRunning = always TW.opacity_50
         , onResting = always (A.class "")
+        , onFinished = always (A.class "")
         }
 
 
-mapRunningTime : { onRunning : Period -> value, onResting : Period -> value } -> Model -> value
-mapRunningTime { onRunning, onResting } model =
+type alias StageMaps value =
+    { onWaiting : value
+    , onRunning : value
+    , onResting : value
+    , onFinished : value
+    }
+
+
+allStages : value -> StageMaps value
+allStages value =
+    { onWaiting = value
+    , onRunning = value
+    , onResting = value
+    , onFinished = value
+    }
+
+
+mapRunningTime : StageMaps (Period -> value) -> Model -> value
+mapRunningTime { onWaiting, onRunning, onResting, onFinished } model =
     case model of
         Clear ->
-            onRunning <| Millis 0
+            onWaiting <| Millis 0
 
         Starting ->
             onRunning <| Millis 0
@@ -394,38 +457,58 @@ mapRunningTime { onRunning, onResting } model =
             onResting period
 
         Finished period ->
-            onRunning period
+            onFinished period
 
 
-mapRestingTime : { onRunning : Period -> value, onResting : Period -> value } -> Model -> value
-mapRestingTime { onRunning, onResting } model =
+mapRestingTime : StageMaps (Period -> value) -> Model -> value
+mapRestingTime { onWaiting, onRunning, onResting, onFinished } model =
+    mapRestingPeriods
+        { onWaiting = onWaiting << Tuple.second
+        , onRunning = onRunning << Tuple.second
+        , onResting = onResting << Tuple.second
+        , onFinished = onFinished << Tuple.second
+        }
+        model
+
+
+type alias Periods =
+    ( Period, Period )
+
+
+mapRestingPeriods : StageMaps (Periods -> value) -> Model -> value
+mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } model =
     case model of
         Clear ->
-            onRunning <| Millis 0
+            onWaiting ( Millis 0, Millis 0 )
 
         Starting ->
-            onRunning <| Millis 0
+            onRunning ( Millis 0, Millis 0 )
 
         Running timer ->
-            onRunning <| Period.fromTimer timer
+            onRunning <| double <| Period.fromTimer timer
 
         PausedRunning timer ->
-            onRunning <| Period.fromTimer timer
+            onRunning <| double <| Period.fromTimer timer
 
         ResumeRunning timer ->
-            onRunning <| Period.fromTimer timer
+            onRunning <| double <| Period.fromTimer timer
 
-        Resting _ timer ->
-            onResting <| Period.fromTimer timer
+        Resting period timer ->
+            onResting ( period, Period.fromTimer timer )
 
-        PausedResting _ timer ->
-            onResting <| Period.fromTimer timer
+        PausedResting period timer ->
+            onResting ( period, Period.fromTimer timer )
 
-        ResumeResting _ timer ->
-            onResting <| Period.fromTimer timer
+        ResumeResting period timer ->
+            onResting ( period, Period.fromTimer timer )
 
-        Finished _ ->
-            onResting <| Millis 0
+        Finished period ->
+            onFinished ( period, Millis 0 )
+
+
+double : a -> ( a, a )
+double a =
+    ( a, a )
 
 
 showPeriod : Period -> Html Msg
