@@ -334,6 +334,18 @@ module Tailwind exposing
     , cursor_pointer
     , cursor_text
     , cursor_wait
+    , disabled__cursor_auto
+    , disabled__cursor_default
+    , disabled__cursor_move
+    , disabled__cursor_not_allowed
+    , disabled__cursor_pointer
+    , disabled__cursor_text
+    , disabled__cursor_wait
+    , disabled__opacity_0
+    , disabled__opacity_100
+    , disabled__opacity_25
+    , disabled__opacity_50
+    , disabled__opacity_75
     , duration_100
     , duration_1000
     , duration_150
@@ -1791,6 +1803,18 @@ module Tailwind exposing
     , lg__cursor_pointer
     , lg__cursor_text
     , lg__cursor_wait
+    , lg__disabled__cursor_auto
+    , lg__disabled__cursor_default
+    , lg__disabled__cursor_move
+    , lg__disabled__cursor_not_allowed
+    , lg__disabled__cursor_pointer
+    , lg__disabled__cursor_text
+    , lg__disabled__cursor_wait
+    , lg__disabled__opacity_0
+    , lg__disabled__opacity_100
+    , lg__disabled__opacity_25
+    , lg__disabled__opacity_50
+    , lg__disabled__opacity_75
     , lg__duration_100
     , lg__duration_1000
     , lg__duration_150
@@ -4361,6 +4385,18 @@ module Tailwind exposing
     , md__cursor_pointer
     , md__cursor_text
     , md__cursor_wait
+    , md__disabled__cursor_auto
+    , md__disabled__cursor_default
+    , md__disabled__cursor_move
+    , md__disabled__cursor_not_allowed
+    , md__disabled__cursor_pointer
+    , md__disabled__cursor_text
+    , md__disabled__cursor_wait
+    , md__disabled__opacity_0
+    , md__disabled__opacity_100
+    , md__disabled__opacity_25
+    , md__disabled__opacity_50
+    , md__disabled__opacity_75
     , md__duration_100
     , md__duration_1000
     , md__duration_150
@@ -7600,6 +7636,18 @@ module Tailwind exposing
     , sm__cursor_pointer
     , sm__cursor_text
     , sm__cursor_wait
+    , sm__disabled__cursor_auto
+    , sm__disabled__cursor_default
+    , sm__disabled__cursor_move
+    , sm__disabled__cursor_not_allowed
+    , sm__disabled__cursor_pointer
+    , sm__disabled__cursor_text
+    , sm__disabled__cursor_wait
+    , sm__disabled__opacity_0
+    , sm__disabled__opacity_100
+    , sm__disabled__opacity_25
+    , sm__disabled__opacity_50
+    , sm__disabled__opacity_75
     , sm__duration_100
     , sm__duration_1000
     , sm__duration_150
@@ -10347,6 +10395,18 @@ module Tailwind exposing
     , xl__cursor_pointer
     , xl__cursor_text
     , xl__cursor_wait
+    , xl__disabled__cursor_auto
+    , xl__disabled__cursor_default
+    , xl__disabled__cursor_move
+    , xl__disabled__cursor_not_allowed
+    , xl__disabled__cursor_pointer
+    , xl__disabled__cursor_text
+    , xl__disabled__cursor_wait
+    , xl__disabled__opacity_0
+    , xl__disabled__opacity_100
+    , xl__disabled__opacity_25
+    , xl__disabled__opacity_50
+    , xl__disabled__opacity_75
     , xl__duration_100
     , xl__duration_1000
     , xl__duration_150
@@ -15937,6 +15997,41 @@ cursor_not_allowed =
     A.class "cursor-not-allowed"
 
 
+disabled__cursor_auto : Html.Attribute msg
+disabled__cursor_auto =
+    A.class "disabled:cursor-auto"
+
+
+disabled__cursor_default : Html.Attribute msg
+disabled__cursor_default =
+    A.class "disabled:cursor-default"
+
+
+disabled__cursor_pointer : Html.Attribute msg
+disabled__cursor_pointer =
+    A.class "disabled:cursor-pointer"
+
+
+disabled__cursor_wait : Html.Attribute msg
+disabled__cursor_wait =
+    A.class "disabled:cursor-wait"
+
+
+disabled__cursor_text : Html.Attribute msg
+disabled__cursor_text =
+    A.class "disabled:cursor-text"
+
+
+disabled__cursor_move : Html.Attribute msg
+disabled__cursor_move =
+    A.class "disabled:cursor-move"
+
+
+disabled__cursor_not_allowed : Html.Attribute msg
+disabled__cursor_not_allowed =
+    A.class "disabled:cursor-not-allowed"
+
+
 block : Html.Attribute msg
 block =
     A.class "block"
@@ -18202,54 +18297,29 @@ opacity_100 =
     A.class "opacity-100"
 
 
-hover__opacity_0 : Html.Attribute msg
-hover__opacity_0 =
-    A.class "hover:opacity-0"
+disabled__opacity_0 : Html.Attribute msg
+disabled__opacity_0 =
+    A.class "disabled:opacity-0"
 
 
-hover__opacity_25 : Html.Attribute msg
-hover__opacity_25 =
-    A.class "hover:opacity-25"
+disabled__opacity_25 : Html.Attribute msg
+disabled__opacity_25 =
+    A.class "disabled:opacity-25"
 
 
-hover__opacity_50 : Html.Attribute msg
-hover__opacity_50 =
-    A.class "hover:opacity-50"
+disabled__opacity_50 : Html.Attribute msg
+disabled__opacity_50 =
+    A.class "disabled:opacity-50"
 
 
-hover__opacity_75 : Html.Attribute msg
-hover__opacity_75 =
-    A.class "hover:opacity-75"
+disabled__opacity_75 : Html.Attribute msg
+disabled__opacity_75 =
+    A.class "disabled:opacity-75"
 
 
-hover__opacity_100 : Html.Attribute msg
-hover__opacity_100 =
-    A.class "hover:opacity-100"
-
-
-focus__opacity_0 : Html.Attribute msg
-focus__opacity_0 =
-    A.class "focus:opacity-0"
-
-
-focus__opacity_25 : Html.Attribute msg
-focus__opacity_25 =
-    A.class "focus:opacity-25"
-
-
-focus__opacity_50 : Html.Attribute msg
-focus__opacity_50 =
-    A.class "focus:opacity-50"
-
-
-focus__opacity_75 : Html.Attribute msg
-focus__opacity_75 =
-    A.class "focus:opacity-75"
-
-
-focus__opacity_100 : Html.Attribute msg
-focus__opacity_100 =
-    A.class "focus:opacity-100"
+disabled__opacity_100 : Html.Attribute msg
+disabled__opacity_100 =
+    A.class "disabled:opacity-100"
 
 
 outline_none : Html.Attribute msg
@@ -28427,41 +28497,6 @@ sm__box_content =
     A.class "sm:box-content"
 
 
-sm__cursor_auto : Html.Attribute msg
-sm__cursor_auto =
-    A.class "sm:cursor-auto"
-
-
-sm__cursor_default : Html.Attribute msg
-sm__cursor_default =
-    A.class "sm:cursor-default"
-
-
-sm__cursor_pointer : Html.Attribute msg
-sm__cursor_pointer =
-    A.class "sm:cursor-pointer"
-
-
-sm__cursor_wait : Html.Attribute msg
-sm__cursor_wait =
-    A.class "sm:cursor-wait"
-
-
-sm__cursor_text : Html.Attribute msg
-sm__cursor_text =
-    A.class "sm:cursor-text"
-
-
-sm__cursor_move : Html.Attribute msg
-sm__cursor_move =
-    A.class "sm:cursor-move"
-
-
-sm__cursor_not_allowed : Html.Attribute msg
-sm__cursor_not_allowed =
-    A.class "sm:cursor-not-allowed"
-
-
 sm__block : Html.Attribute msg
 sm__block =
     A.class "sm:block"
@@ -30727,54 +30762,29 @@ sm__opacity_100 =
     A.class "sm:opacity-100"
 
 
-sm__hover__opacity_0 : Html.Attribute msg
-sm__hover__opacity_0 =
-    A.class "sm:hover:opacity-0"
+sm__disabled__opacity_0 : Html.Attribute msg
+sm__disabled__opacity_0 =
+    A.class "sm:disabled:opacity-0"
 
 
-sm__hover__opacity_25 : Html.Attribute msg
-sm__hover__opacity_25 =
-    A.class "sm:hover:opacity-25"
+sm__disabled__opacity_25 : Html.Attribute msg
+sm__disabled__opacity_25 =
+    A.class "sm:disabled:opacity-25"
 
 
-sm__hover__opacity_50 : Html.Attribute msg
-sm__hover__opacity_50 =
-    A.class "sm:hover:opacity-50"
+sm__disabled__opacity_50 : Html.Attribute msg
+sm__disabled__opacity_50 =
+    A.class "sm:disabled:opacity-50"
 
 
-sm__hover__opacity_75 : Html.Attribute msg
-sm__hover__opacity_75 =
-    A.class "sm:hover:opacity-75"
+sm__disabled__opacity_75 : Html.Attribute msg
+sm__disabled__opacity_75 =
+    A.class "sm:disabled:opacity-75"
 
 
-sm__hover__opacity_100 : Html.Attribute msg
-sm__hover__opacity_100 =
-    A.class "sm:hover:opacity-100"
-
-
-sm__focus__opacity_0 : Html.Attribute msg
-sm__focus__opacity_0 =
-    A.class "sm:focus:opacity-0"
-
-
-sm__focus__opacity_25 : Html.Attribute msg
-sm__focus__opacity_25 =
-    A.class "sm:focus:opacity-25"
-
-
-sm__focus__opacity_50 : Html.Attribute msg
-sm__focus__opacity_50 =
-    A.class "sm:focus:opacity-50"
-
-
-sm__focus__opacity_75 : Html.Attribute msg
-sm__focus__opacity_75 =
-    A.class "sm:focus:opacity-75"
-
-
-sm__focus__opacity_100 : Html.Attribute msg
-sm__focus__opacity_100 =
-    A.class "sm:focus:opacity-100"
+sm__disabled__opacity_100 : Html.Attribute msg
+sm__disabled__opacity_100 =
+    A.class "sm:disabled:opacity-100"
 
 
 sm__outline_none : Html.Attribute msg
@@ -40952,41 +40962,6 @@ md__box_content =
     A.class "md:box-content"
 
 
-md__cursor_auto : Html.Attribute msg
-md__cursor_auto =
-    A.class "md:cursor-auto"
-
-
-md__cursor_default : Html.Attribute msg
-md__cursor_default =
-    A.class "md:cursor-default"
-
-
-md__cursor_pointer : Html.Attribute msg
-md__cursor_pointer =
-    A.class "md:cursor-pointer"
-
-
-md__cursor_wait : Html.Attribute msg
-md__cursor_wait =
-    A.class "md:cursor-wait"
-
-
-md__cursor_text : Html.Attribute msg
-md__cursor_text =
-    A.class "md:cursor-text"
-
-
-md__cursor_move : Html.Attribute msg
-md__cursor_move =
-    A.class "md:cursor-move"
-
-
-md__cursor_not_allowed : Html.Attribute msg
-md__cursor_not_allowed =
-    A.class "md:cursor-not-allowed"
-
-
 md__block : Html.Attribute msg
 md__block =
     A.class "md:block"
@@ -43252,54 +43227,29 @@ md__opacity_100 =
     A.class "md:opacity-100"
 
 
-md__hover__opacity_0 : Html.Attribute msg
-md__hover__opacity_0 =
-    A.class "md:hover:opacity-0"
+md__disabled__opacity_0 : Html.Attribute msg
+md__disabled__opacity_0 =
+    A.class "md:disabled:opacity-0"
 
 
-md__hover__opacity_25 : Html.Attribute msg
-md__hover__opacity_25 =
-    A.class "md:hover:opacity-25"
+md__disabled__opacity_25 : Html.Attribute msg
+md__disabled__opacity_25 =
+    A.class "md:disabled:opacity-25"
 
 
-md__hover__opacity_50 : Html.Attribute msg
-md__hover__opacity_50 =
-    A.class "md:hover:opacity-50"
+md__disabled__opacity_50 : Html.Attribute msg
+md__disabled__opacity_50 =
+    A.class "md:disabled:opacity-50"
 
 
-md__hover__opacity_75 : Html.Attribute msg
-md__hover__opacity_75 =
-    A.class "md:hover:opacity-75"
+md__disabled__opacity_75 : Html.Attribute msg
+md__disabled__opacity_75 =
+    A.class "md:disabled:opacity-75"
 
 
-md__hover__opacity_100 : Html.Attribute msg
-md__hover__opacity_100 =
-    A.class "md:hover:opacity-100"
-
-
-md__focus__opacity_0 : Html.Attribute msg
-md__focus__opacity_0 =
-    A.class "md:focus:opacity-0"
-
-
-md__focus__opacity_25 : Html.Attribute msg
-md__focus__opacity_25 =
-    A.class "md:focus:opacity-25"
-
-
-md__focus__opacity_50 : Html.Attribute msg
-md__focus__opacity_50 =
-    A.class "md:focus:opacity-50"
-
-
-md__focus__opacity_75 : Html.Attribute msg
-md__focus__opacity_75 =
-    A.class "md:focus:opacity-75"
-
-
-md__focus__opacity_100 : Html.Attribute msg
-md__focus__opacity_100 =
-    A.class "md:focus:opacity-100"
+md__disabled__opacity_100 : Html.Attribute msg
+md__disabled__opacity_100 =
+    A.class "md:disabled:opacity-100"
 
 
 md__outline_none : Html.Attribute msg
@@ -53477,41 +53427,6 @@ lg__box_content =
     A.class "lg:box-content"
 
 
-lg__cursor_auto : Html.Attribute msg
-lg__cursor_auto =
-    A.class "lg:cursor-auto"
-
-
-lg__cursor_default : Html.Attribute msg
-lg__cursor_default =
-    A.class "lg:cursor-default"
-
-
-lg__cursor_pointer : Html.Attribute msg
-lg__cursor_pointer =
-    A.class "lg:cursor-pointer"
-
-
-lg__cursor_wait : Html.Attribute msg
-lg__cursor_wait =
-    A.class "lg:cursor-wait"
-
-
-lg__cursor_text : Html.Attribute msg
-lg__cursor_text =
-    A.class "lg:cursor-text"
-
-
-lg__cursor_move : Html.Attribute msg
-lg__cursor_move =
-    A.class "lg:cursor-move"
-
-
-lg__cursor_not_allowed : Html.Attribute msg
-lg__cursor_not_allowed =
-    A.class "lg:cursor-not-allowed"
-
-
 lg__block : Html.Attribute msg
 lg__block =
     A.class "lg:block"
@@ -55777,54 +55692,29 @@ lg__opacity_100 =
     A.class "lg:opacity-100"
 
 
-lg__hover__opacity_0 : Html.Attribute msg
-lg__hover__opacity_0 =
-    A.class "lg:hover:opacity-0"
+lg__disabled__opacity_0 : Html.Attribute msg
+lg__disabled__opacity_0 =
+    A.class "lg:disabled:opacity-0"
 
 
-lg__hover__opacity_25 : Html.Attribute msg
-lg__hover__opacity_25 =
-    A.class "lg:hover:opacity-25"
+lg__disabled__opacity_25 : Html.Attribute msg
+lg__disabled__opacity_25 =
+    A.class "lg:disabled:opacity-25"
 
 
-lg__hover__opacity_50 : Html.Attribute msg
-lg__hover__opacity_50 =
-    A.class "lg:hover:opacity-50"
+lg__disabled__opacity_50 : Html.Attribute msg
+lg__disabled__opacity_50 =
+    A.class "lg:disabled:opacity-50"
 
 
-lg__hover__opacity_75 : Html.Attribute msg
-lg__hover__opacity_75 =
-    A.class "lg:hover:opacity-75"
+lg__disabled__opacity_75 : Html.Attribute msg
+lg__disabled__opacity_75 =
+    A.class "lg:disabled:opacity-75"
 
 
-lg__hover__opacity_100 : Html.Attribute msg
-lg__hover__opacity_100 =
-    A.class "lg:hover:opacity-100"
-
-
-lg__focus__opacity_0 : Html.Attribute msg
-lg__focus__opacity_0 =
-    A.class "lg:focus:opacity-0"
-
-
-lg__focus__opacity_25 : Html.Attribute msg
-lg__focus__opacity_25 =
-    A.class "lg:focus:opacity-25"
-
-
-lg__focus__opacity_50 : Html.Attribute msg
-lg__focus__opacity_50 =
-    A.class "lg:focus:opacity-50"
-
-
-lg__focus__opacity_75 : Html.Attribute msg
-lg__focus__opacity_75 =
-    A.class "lg:focus:opacity-75"
-
-
-lg__focus__opacity_100 : Html.Attribute msg
-lg__focus__opacity_100 =
-    A.class "lg:focus:opacity-100"
+lg__disabled__opacity_100 : Html.Attribute msg
+lg__disabled__opacity_100 =
+    A.class "lg:disabled:opacity-100"
 
 
 lg__outline_none : Html.Attribute msg
@@ -66002,41 +65892,6 @@ xl__box_content =
     A.class "xl:box-content"
 
 
-xl__cursor_auto : Html.Attribute msg
-xl__cursor_auto =
-    A.class "xl:cursor-auto"
-
-
-xl__cursor_default : Html.Attribute msg
-xl__cursor_default =
-    A.class "xl:cursor-default"
-
-
-xl__cursor_pointer : Html.Attribute msg
-xl__cursor_pointer =
-    A.class "xl:cursor-pointer"
-
-
-xl__cursor_wait : Html.Attribute msg
-xl__cursor_wait =
-    A.class "xl:cursor-wait"
-
-
-xl__cursor_text : Html.Attribute msg
-xl__cursor_text =
-    A.class "xl:cursor-text"
-
-
-xl__cursor_move : Html.Attribute msg
-xl__cursor_move =
-    A.class "xl:cursor-move"
-
-
-xl__cursor_not_allowed : Html.Attribute msg
-xl__cursor_not_allowed =
-    A.class "xl:cursor-not-allowed"
-
-
 xl__block : Html.Attribute msg
 xl__block =
     A.class "xl:block"
@@ -68302,54 +68157,29 @@ xl__opacity_100 =
     A.class "xl:opacity-100"
 
 
-xl__hover__opacity_0 : Html.Attribute msg
-xl__hover__opacity_0 =
-    A.class "xl:hover:opacity-0"
+xl__disabled__opacity_0 : Html.Attribute msg
+xl__disabled__opacity_0 =
+    A.class "xl:disabled:opacity-0"
 
 
-xl__hover__opacity_25 : Html.Attribute msg
-xl__hover__opacity_25 =
-    A.class "xl:hover:opacity-25"
+xl__disabled__opacity_25 : Html.Attribute msg
+xl__disabled__opacity_25 =
+    A.class "xl:disabled:opacity-25"
 
 
-xl__hover__opacity_50 : Html.Attribute msg
-xl__hover__opacity_50 =
-    A.class "xl:hover:opacity-50"
+xl__disabled__opacity_50 : Html.Attribute msg
+xl__disabled__opacity_50 =
+    A.class "xl:disabled:opacity-50"
 
 
-xl__hover__opacity_75 : Html.Attribute msg
-xl__hover__opacity_75 =
-    A.class "xl:hover:opacity-75"
+xl__disabled__opacity_75 : Html.Attribute msg
+xl__disabled__opacity_75 =
+    A.class "xl:disabled:opacity-75"
 
 
-xl__hover__opacity_100 : Html.Attribute msg
-xl__hover__opacity_100 =
-    A.class "xl:hover:opacity-100"
-
-
-xl__focus__opacity_0 : Html.Attribute msg
-xl__focus__opacity_0 =
-    A.class "xl:focus:opacity-0"
-
-
-xl__focus__opacity_25 : Html.Attribute msg
-xl__focus__opacity_25 =
-    A.class "xl:focus:opacity-25"
-
-
-xl__focus__opacity_50 : Html.Attribute msg
-xl__focus__opacity_50 =
-    A.class "xl:focus:opacity-50"
-
-
-xl__focus__opacity_75 : Html.Attribute msg
-xl__focus__opacity_75 =
-    A.class "xl:focus:opacity-75"
-
-
-xl__focus__opacity_100 : Html.Attribute msg
-xl__focus__opacity_100 =
-    A.class "xl:focus:opacity-100"
+xl__disabled__opacity_100 : Html.Attribute msg
+xl__disabled__opacity_100 =
+    A.class "xl:disabled:opacity-100"
 
 
 xl__outline_none : Html.Attribute msg
@@ -75165,3 +74995,533 @@ xl__duration_700 =
 xl__duration_1000 : Html.Attribute msg
 xl__duration_1000 =
     A.class "xl:duration-1000"
+
+
+sm__cursor_auto : Html.Attribute msg
+sm__cursor_auto =
+    A.class "sm:cursor-auto"
+
+
+sm__cursor_default : Html.Attribute msg
+sm__cursor_default =
+    A.class "sm:cursor-default"
+
+
+sm__cursor_pointer : Html.Attribute msg
+sm__cursor_pointer =
+    A.class "sm:cursor-pointer"
+
+
+sm__cursor_wait : Html.Attribute msg
+sm__cursor_wait =
+    A.class "sm:cursor-wait"
+
+
+sm__cursor_text : Html.Attribute msg
+sm__cursor_text =
+    A.class "sm:cursor-text"
+
+
+sm__cursor_move : Html.Attribute msg
+sm__cursor_move =
+    A.class "sm:cursor-move"
+
+
+sm__cursor_not_allowed : Html.Attribute msg
+sm__cursor_not_allowed =
+    A.class "sm:cursor-not-allowed"
+
+
+sm__disabled__cursor_auto : Html.Attribute msg
+sm__disabled__cursor_auto =
+    A.class "sm:disabled:cursor-auto"
+
+
+sm__disabled__cursor_default : Html.Attribute msg
+sm__disabled__cursor_default =
+    A.class "sm:disabled:cursor-default"
+
+
+sm__disabled__cursor_pointer : Html.Attribute msg
+sm__disabled__cursor_pointer =
+    A.class "sm:disabled:cursor-pointer"
+
+
+sm__disabled__cursor_wait : Html.Attribute msg
+sm__disabled__cursor_wait =
+    A.class "sm:disabled:cursor-wait"
+
+
+sm__disabled__cursor_text : Html.Attribute msg
+sm__disabled__cursor_text =
+    A.class "sm:disabled:cursor-text"
+
+
+sm__disabled__cursor_move : Html.Attribute msg
+sm__disabled__cursor_move =
+    A.class "sm:disabled:cursor-move"
+
+
+sm__disabled__cursor_not_allowed : Html.Attribute msg
+sm__disabled__cursor_not_allowed =
+    A.class "sm:disabled:cursor-not-allowed"
+
+
+md__cursor_auto : Html.Attribute msg
+md__cursor_auto =
+    A.class "md:cursor-auto"
+
+
+md__cursor_default : Html.Attribute msg
+md__cursor_default =
+    A.class "md:cursor-default"
+
+
+md__cursor_pointer : Html.Attribute msg
+md__cursor_pointer =
+    A.class "md:cursor-pointer"
+
+
+md__cursor_wait : Html.Attribute msg
+md__cursor_wait =
+    A.class "md:cursor-wait"
+
+
+md__cursor_text : Html.Attribute msg
+md__cursor_text =
+    A.class "md:cursor-text"
+
+
+md__cursor_move : Html.Attribute msg
+md__cursor_move =
+    A.class "md:cursor-move"
+
+
+md__cursor_not_allowed : Html.Attribute msg
+md__cursor_not_allowed =
+    A.class "md:cursor-not-allowed"
+
+
+md__disabled__cursor_auto : Html.Attribute msg
+md__disabled__cursor_auto =
+    A.class "md:disabled:cursor-auto"
+
+
+md__disabled__cursor_default : Html.Attribute msg
+md__disabled__cursor_default =
+    A.class "md:disabled:cursor-default"
+
+
+md__disabled__cursor_pointer : Html.Attribute msg
+md__disabled__cursor_pointer =
+    A.class "md:disabled:cursor-pointer"
+
+
+md__disabled__cursor_wait : Html.Attribute msg
+md__disabled__cursor_wait =
+    A.class "md:disabled:cursor-wait"
+
+
+md__disabled__cursor_text : Html.Attribute msg
+md__disabled__cursor_text =
+    A.class "md:disabled:cursor-text"
+
+
+md__disabled__cursor_move : Html.Attribute msg
+md__disabled__cursor_move =
+    A.class "md:disabled:cursor-move"
+
+
+md__disabled__cursor_not_allowed : Html.Attribute msg
+md__disabled__cursor_not_allowed =
+    A.class "md:disabled:cursor-not-allowed"
+
+
+lg__cursor_auto : Html.Attribute msg
+lg__cursor_auto =
+    A.class "lg:cursor-auto"
+
+
+lg__cursor_default : Html.Attribute msg
+lg__cursor_default =
+    A.class "lg:cursor-default"
+
+
+lg__cursor_pointer : Html.Attribute msg
+lg__cursor_pointer =
+    A.class "lg:cursor-pointer"
+
+
+lg__cursor_wait : Html.Attribute msg
+lg__cursor_wait =
+    A.class "lg:cursor-wait"
+
+
+lg__cursor_text : Html.Attribute msg
+lg__cursor_text =
+    A.class "lg:cursor-text"
+
+
+lg__cursor_move : Html.Attribute msg
+lg__cursor_move =
+    A.class "lg:cursor-move"
+
+
+lg__cursor_not_allowed : Html.Attribute msg
+lg__cursor_not_allowed =
+    A.class "lg:cursor-not-allowed"
+
+
+lg__disabled__cursor_auto : Html.Attribute msg
+lg__disabled__cursor_auto =
+    A.class "lg:disabled:cursor-auto"
+
+
+lg__disabled__cursor_default : Html.Attribute msg
+lg__disabled__cursor_default =
+    A.class "lg:disabled:cursor-default"
+
+
+lg__disabled__cursor_pointer : Html.Attribute msg
+lg__disabled__cursor_pointer =
+    A.class "lg:disabled:cursor-pointer"
+
+
+lg__disabled__cursor_wait : Html.Attribute msg
+lg__disabled__cursor_wait =
+    A.class "lg:disabled:cursor-wait"
+
+
+lg__disabled__cursor_text : Html.Attribute msg
+lg__disabled__cursor_text =
+    A.class "lg:disabled:cursor-text"
+
+
+lg__disabled__cursor_move : Html.Attribute msg
+lg__disabled__cursor_move =
+    A.class "lg:disabled:cursor-move"
+
+
+lg__disabled__cursor_not_allowed : Html.Attribute msg
+lg__disabled__cursor_not_allowed =
+    A.class "lg:disabled:cursor-not-allowed"
+
+
+xl__cursor_auto : Html.Attribute msg
+xl__cursor_auto =
+    A.class "xl:cursor-auto"
+
+
+xl__cursor_default : Html.Attribute msg
+xl__cursor_default =
+    A.class "xl:cursor-default"
+
+
+xl__cursor_pointer : Html.Attribute msg
+xl__cursor_pointer =
+    A.class "xl:cursor-pointer"
+
+
+xl__cursor_wait : Html.Attribute msg
+xl__cursor_wait =
+    A.class "xl:cursor-wait"
+
+
+xl__cursor_text : Html.Attribute msg
+xl__cursor_text =
+    A.class "xl:cursor-text"
+
+
+xl__cursor_move : Html.Attribute msg
+xl__cursor_move =
+    A.class "xl:cursor-move"
+
+
+xl__cursor_not_allowed : Html.Attribute msg
+xl__cursor_not_allowed =
+    A.class "xl:cursor-not-allowed"
+
+
+xl__disabled__cursor_auto : Html.Attribute msg
+xl__disabled__cursor_auto =
+    A.class "xl:disabled:cursor-auto"
+
+
+xl__disabled__cursor_default : Html.Attribute msg
+xl__disabled__cursor_default =
+    A.class "xl:disabled:cursor-default"
+
+
+xl__disabled__cursor_pointer : Html.Attribute msg
+xl__disabled__cursor_pointer =
+    A.class "xl:disabled:cursor-pointer"
+
+
+xl__disabled__cursor_wait : Html.Attribute msg
+xl__disabled__cursor_wait =
+    A.class "xl:disabled:cursor-wait"
+
+
+xl__disabled__cursor_text : Html.Attribute msg
+xl__disabled__cursor_text =
+    A.class "xl:disabled:cursor-text"
+
+
+xl__disabled__cursor_move : Html.Attribute msg
+xl__disabled__cursor_move =
+    A.class "xl:disabled:cursor-move"
+
+
+xl__disabled__cursor_not_allowed : Html.Attribute msg
+xl__disabled__cursor_not_allowed =
+    A.class "xl:disabled:cursor-not-allowed"
+
+
+hover__opacity_0 : Html.Attribute msg
+hover__opacity_0 =
+    A.class "hover:opacity-0"
+
+
+hover__opacity_25 : Html.Attribute msg
+hover__opacity_25 =
+    A.class "hover:opacity-25"
+
+
+hover__opacity_50 : Html.Attribute msg
+hover__opacity_50 =
+    A.class "hover:opacity-50"
+
+
+hover__opacity_75 : Html.Attribute msg
+hover__opacity_75 =
+    A.class "hover:opacity-75"
+
+
+hover__opacity_100 : Html.Attribute msg
+hover__opacity_100 =
+    A.class "hover:opacity-100"
+
+
+focus__opacity_0 : Html.Attribute msg
+focus__opacity_0 =
+    A.class "focus:opacity-0"
+
+
+focus__opacity_25 : Html.Attribute msg
+focus__opacity_25 =
+    A.class "focus:opacity-25"
+
+
+focus__opacity_50 : Html.Attribute msg
+focus__opacity_50 =
+    A.class "focus:opacity-50"
+
+
+focus__opacity_75 : Html.Attribute msg
+focus__opacity_75 =
+    A.class "focus:opacity-75"
+
+
+focus__opacity_100 : Html.Attribute msg
+focus__opacity_100 =
+    A.class "focus:opacity-100"
+
+
+sm__hover__opacity_0 : Html.Attribute msg
+sm__hover__opacity_0 =
+    A.class "sm:hover:opacity-0"
+
+
+sm__hover__opacity_25 : Html.Attribute msg
+sm__hover__opacity_25 =
+    A.class "sm:hover:opacity-25"
+
+
+sm__hover__opacity_50 : Html.Attribute msg
+sm__hover__opacity_50 =
+    A.class "sm:hover:opacity-50"
+
+
+sm__hover__opacity_75 : Html.Attribute msg
+sm__hover__opacity_75 =
+    A.class "sm:hover:opacity-75"
+
+
+sm__hover__opacity_100 : Html.Attribute msg
+sm__hover__opacity_100 =
+    A.class "sm:hover:opacity-100"
+
+
+sm__focus__opacity_0 : Html.Attribute msg
+sm__focus__opacity_0 =
+    A.class "sm:focus:opacity-0"
+
+
+sm__focus__opacity_25 : Html.Attribute msg
+sm__focus__opacity_25 =
+    A.class "sm:focus:opacity-25"
+
+
+sm__focus__opacity_50 : Html.Attribute msg
+sm__focus__opacity_50 =
+    A.class "sm:focus:opacity-50"
+
+
+sm__focus__opacity_75 : Html.Attribute msg
+sm__focus__opacity_75 =
+    A.class "sm:focus:opacity-75"
+
+
+sm__focus__opacity_100 : Html.Attribute msg
+sm__focus__opacity_100 =
+    A.class "sm:focus:opacity-100"
+
+
+md__hover__opacity_0 : Html.Attribute msg
+md__hover__opacity_0 =
+    A.class "md:hover:opacity-0"
+
+
+md__hover__opacity_25 : Html.Attribute msg
+md__hover__opacity_25 =
+    A.class "md:hover:opacity-25"
+
+
+md__hover__opacity_50 : Html.Attribute msg
+md__hover__opacity_50 =
+    A.class "md:hover:opacity-50"
+
+
+md__hover__opacity_75 : Html.Attribute msg
+md__hover__opacity_75 =
+    A.class "md:hover:opacity-75"
+
+
+md__hover__opacity_100 : Html.Attribute msg
+md__hover__opacity_100 =
+    A.class "md:hover:opacity-100"
+
+
+md__focus__opacity_0 : Html.Attribute msg
+md__focus__opacity_0 =
+    A.class "md:focus:opacity-0"
+
+
+md__focus__opacity_25 : Html.Attribute msg
+md__focus__opacity_25 =
+    A.class "md:focus:opacity-25"
+
+
+md__focus__opacity_50 : Html.Attribute msg
+md__focus__opacity_50 =
+    A.class "md:focus:opacity-50"
+
+
+md__focus__opacity_75 : Html.Attribute msg
+md__focus__opacity_75 =
+    A.class "md:focus:opacity-75"
+
+
+md__focus__opacity_100 : Html.Attribute msg
+md__focus__opacity_100 =
+    A.class "md:focus:opacity-100"
+
+
+lg__hover__opacity_0 : Html.Attribute msg
+lg__hover__opacity_0 =
+    A.class "lg:hover:opacity-0"
+
+
+lg__hover__opacity_25 : Html.Attribute msg
+lg__hover__opacity_25 =
+    A.class "lg:hover:opacity-25"
+
+
+lg__hover__opacity_50 : Html.Attribute msg
+lg__hover__opacity_50 =
+    A.class "lg:hover:opacity-50"
+
+
+lg__hover__opacity_75 : Html.Attribute msg
+lg__hover__opacity_75 =
+    A.class "lg:hover:opacity-75"
+
+
+lg__hover__opacity_100 : Html.Attribute msg
+lg__hover__opacity_100 =
+    A.class "lg:hover:opacity-100"
+
+
+lg__focus__opacity_0 : Html.Attribute msg
+lg__focus__opacity_0 =
+    A.class "lg:focus:opacity-0"
+
+
+lg__focus__opacity_25 : Html.Attribute msg
+lg__focus__opacity_25 =
+    A.class "lg:focus:opacity-25"
+
+
+lg__focus__opacity_50 : Html.Attribute msg
+lg__focus__opacity_50 =
+    A.class "lg:focus:opacity-50"
+
+
+lg__focus__opacity_75 : Html.Attribute msg
+lg__focus__opacity_75 =
+    A.class "lg:focus:opacity-75"
+
+
+lg__focus__opacity_100 : Html.Attribute msg
+lg__focus__opacity_100 =
+    A.class "lg:focus:opacity-100"
+
+
+xl__hover__opacity_0 : Html.Attribute msg
+xl__hover__opacity_0 =
+    A.class "xl:hover:opacity-0"
+
+
+xl__hover__opacity_25 : Html.Attribute msg
+xl__hover__opacity_25 =
+    A.class "xl:hover:opacity-25"
+
+
+xl__hover__opacity_50 : Html.Attribute msg
+xl__hover__opacity_50 =
+    A.class "xl:hover:opacity-50"
+
+
+xl__hover__opacity_75 : Html.Attribute msg
+xl__hover__opacity_75 =
+    A.class "xl:hover:opacity-75"
+
+
+xl__hover__opacity_100 : Html.Attribute msg
+xl__hover__opacity_100 =
+    A.class "xl:hover:opacity-100"
+
+
+xl__focus__opacity_0 : Html.Attribute msg
+xl__focus__opacity_0 =
+    A.class "xl:focus:opacity-0"
+
+
+xl__focus__opacity_25 : Html.Attribute msg
+xl__focus__opacity_25 =
+    A.class "xl:focus:opacity-25"
+
+
+xl__focus__opacity_50 : Html.Attribute msg
+xl__focus__opacity_50 =
+    A.class "xl:focus:opacity-50"
+
+
+xl__focus__opacity_75 : Html.Attribute msg
+xl__focus__opacity_75 =
+    A.class "xl:focus:opacity-75"
+
+
+xl__focus__opacity_100 : Html.Attribute msg
+xl__focus__opacity_100 =
+    A.class "xl:focus:opacity-100"
