@@ -338,7 +338,7 @@ viewOpenRestMenu rest =
                 else
                     Html.button [ TW.w_full, TW.py_1, TW.bg_white, TW.hover__bg_gray_200, Events.onClick (SetRest (percent pc)) ] [ Html.text <| String.fromInt pc ++ "%" ]
             )
-        |> Html.div [ TW.w_full, TW.absolute, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border_2, TW.shadow_lg, TW.grid, TW.grid_cols_1, TW.gap_1 ]
+        |> Html.div [ TW.w_full, TW.absolute, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border_2, TW.shadow_lg, TW.grid, TW.grid_cols_1, TW.gap_1 ]
 
 
 viewProgress : { a | rest : Percent, stage : Stage } -> Html Msg
@@ -372,7 +372,7 @@ viewProgress state =
                 state
     in
     Html.div [ TW.w_full, TW.bg_gray_300, TW.my_2 ]
-        [ Html.div [ bg_color, TW.transition_colors, TW.duration_500, TW.ease_out, TW.leading_none, TW.py_2, TW.text_center, TW.text_white, progress percent ] [ Html.text label ] ]
+        [ Html.div [ bg_color, TW.transition_colors, TW.duration_500, TW.ease_out, TW.leading_none, TW.py_2, TW.text_center, TW.text_white, TW.text_lg, progress percent ] [ Html.text label ] ]
 
 
 progress : Float -> Html.Attribute Msg
