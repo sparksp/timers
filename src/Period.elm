@@ -1,12 +1,25 @@
 module Period exposing
-    ( Period(..), toHuman, toIso8601, toMillis, toMillisFloat
-    , fromTimer
+    ( Period(..), fromTimer
+    , toHuman, toIso8601, toMillis, toMillisFloat
+    , map, mul
     )
 
 {-| Tools to format a period of time.
 
-@docs Period, toHuman, toIso8601, toMillis, toMillisFloat
-@docs fromTimer
+
+# Creation
+
+@docs Period, fromTimer
+
+
+# Formatting
+
+@docs toHuman, toIso8601, toMillis, toMillisFloat
+
+
+# Mapping
+
+@docs map, mul
 
 -}
 
@@ -82,6 +95,24 @@ toMillis (Millis ms) =
 toMillisFloat : Period -> Float
 toMillisFloat =
     toFloat << toMillis
+
+
+
+--- MAP
+
+
+{-| Apply a function to adjust a Period's Millis.
+-}
+map : (Int -> Int) -> Period -> Period
+map fn (Millis int) =
+    Millis (fn int)
+
+
+{-| Multiply the Period by the given Float.
+-}
+mul : Float -> Period -> Period
+mul multiplicator =
+    map (round << (*) multiplicator << toFloat)
 
 
 

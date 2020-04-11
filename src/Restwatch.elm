@@ -5,6 +5,7 @@ import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
 import Json.Encode as E
+import Percent exposing (Percent, percent)
 import Period exposing (Period(..))
 import Tailwind as TW
 import Theme.Button as Button
@@ -16,7 +17,13 @@ import Timer exposing (Timer)
 port alarm : E.Value -> Cmd msg
 
 
-type Model
+type alias Model =
+    { rest : Percent
+    , stage : Stage
+    }
+
+
+type Stage
     = Clear
     | Starting
     | Running Timer
@@ -38,7 +45,7 @@ type Msg
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( Clear, Cmd.none )
+    ( Model (percent 100) Clear, Cmd.none )
 
 
 loadAlarm : Cmd Msg
@@ -53,24 +60,24 @@ playAlarm =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case ( msg, model ) of
+    case ( msg, model.stage ) of
         ( Start, Clear ) ->
-            ( Starting, loadAlarm )
+            ( { model | stage = Starting }, loadAlarm )
 
         ( Start, PausedRunning timer ) ->
-            ( ResumeRunning timer, loadAlarm )
+            ( { model | stage = ResumeRunning timer }, loadAlarm )
 
         ( Start, Finished _ ) ->
-            ( Starting, loadAlarm )
+            ( { model | stage = Starting }, loadAlarm )
 
         ( Start, _ ) ->
             ( model, Cmd.none )
 
         ( Rest, Clear ) ->
-            ( Clear, Cmd.none )
+            ( { model | stage = Clear }, Cmd.none )
 
         ( Rest, Starting ) ->
-            ( Clear, Cmd.none )
+            ( { model | stage = Clear }, Cmd.none )
 
         ( Rest, Running (( _, end ) as timer) ) ->
             let
@@ -78,9 +85,9 @@ update msg model =
                     Period.fromTimer timer
 
                 target =
-                    timerShiftEnd end timer
+                    timerShiftEnd model.rest end timer
             in
-            ( Resting period target, Cmd.none )
+            ( { model | stage = Resting period target }, Cmd.none )
 
         ( Rest, PausedRunning (( _, end ) as timer) ) ->
             let
@@ -88,62 +95,62 @@ update msg model =
                     Period.fromTimer timer
 
                 target =
-                    timerShiftEnd end timer
+                    timerShiftEnd model.rest end timer
             in
-            ( ResumeResting period target, Cmd.none )
+            ( { model | stage = ResumeResting period target }, Cmd.none )
 
         ( Rest, ResumeRunning timer ) ->
             let
                 period =
                     Period.fromTimer timer
             in
-            ( ResumeResting period timer, Cmd.none )
+            ( { model | stage = ResumeResting period timer }, Cmd.none )
 
         ( Rest, PausedResting period timer ) ->
-            ( ResumeResting period timer, Cmd.none )
+            ( { model | stage = ResumeResting period timer }, Cmd.none )
 
         ( Rest, _ ) ->
             ( model, Cmd.none )
 
         ( Pause, Starting ) ->
-            ( Clear, Cmd.none )
+            ( { model | stage = Clear }, Cmd.none )
 
         ( Pause, Running timer ) ->
-            ( PausedRunning timer, Cmd.none )
+            ( { model | stage = PausedRunning timer }, Cmd.none )
 
         ( Pause, Resting period timer ) ->
-            ( PausedResting period timer, Cmd.none )
+            ( { model | stage = PausedResting period timer }, Cmd.none )
 
         ( Pause, ResumeRunning timer ) ->
-            ( PausedRunning timer, Cmd.none )
+            ( { model | stage = PausedRunning timer }, Cmd.none )
 
         ( Pause, ResumeResting period timer ) ->
-            ( PausedResting period timer, Cmd.none )
+            ( { model | stage = PausedResting period timer }, Cmd.none )
 
         ( Pause, _ ) ->
             ( model, Cmd.none )
 
         ( Reset, _ ) ->
-            ( Clear, loadAlarm )
+            ( { model | stage = Clear }, loadAlarm )
 
         ( Tick now, Starting ) ->
-            ( Running ( now, now ), Cmd.none )
+            ( { model | stage = Running ( now, now ) }, Cmd.none )
 
         ( Tick now, Running ( start, _ ) ) ->
-            ( Running ( start, now ), Cmd.none )
+            ( { model | stage = Running ( start, now ) }, Cmd.none )
 
         ( Tick now, ResumeRunning timer ) ->
-            ( Running <| timerShiftStart now timer, Cmd.none )
+            ( { model | stage = Running <| timerShiftStart now timer }, Cmd.none )
 
         ( Tick now, Resting period ( _, target ) ) ->
             if Time.Extra.lt target now then
-                ( Finished period, playAlarm )
+                ( { model | stage = Finished period }, playAlarm )
 
             else
-                ( Resting period ( now, target ), Cmd.none )
+                ( { model | stage = Resting period ( now, target ) }, Cmd.none )
 
         ( Tick now, ResumeResting period timer ) ->
-            ( Resting period <| timerShiftEnd now timer, Cmd.none )
+            ( { model | stage = Resting period <| timerShiftEnd (percent 100) now timer }, Cmd.none )
 
         ( Tick _, _ ) ->
             ( model, Cmd.none )
@@ -154,14 +161,21 @@ timerShiftStart now ( start, end ) =
     ( Time.Extra.add start <| Time.Extra.sub now end, now )
 
 
-timerShiftEnd : Time.Posix -> Timer -> Timer
-timerShiftEnd now ( start, end ) =
-    ( now, Time.Extra.add now <| Time.Extra.sub end start )
+timerShiftEnd : Percent -> Time.Posix -> Timer -> Timer
+timerShiftEnd rest now ( start, end ) =
+    let
+        elapsed =
+            Time.Extra.sub end start
+
+        resting =
+            Time.Extra.mul (Percent.toFloat rest) elapsed
+    in
+    ( now, Time.Extra.add now resting )
 
 
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    case model of
+subscriptions : { a | stage : Stage } -> Sub Msg
+subscriptions { stage } =
+    case stage of
         Starting ->
             Browser.Events.onAnimationFrame Tick
 
@@ -203,22 +217,22 @@ viewBody model =
                     , Html.p [ TW.text_4xl, TW.font_mono ] [ showRunningTime model ]
                     ]
                 , Html.div [ fadeRestingAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
-                    [ Html.p [] [ Html.text "Rest" ]
+                    [ Html.p [] [ Html.text "Rest (", Html.text <| Percent.toRatio model.rest, Html.text ")" ]
                     , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
                     ]
                 ]
             , viewProgress model
             ]
         , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
-            [ viewStartRestButton model
-            , viewPauseResetButton model
+            [ viewStartRestButton model.stage
+            , viewPauseResetButton model.stage
             ]
         ]
 
 
 viewTitle : Html Msg
 viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Restwatch (1:1)" ]
+    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Restwatch" ]
 
 
 viewAudio : Html Msg
@@ -229,8 +243,8 @@ viewAudio =
         ]
 
 
-viewProgress : Model -> Html Msg
-viewProgress model =
+viewProgress : { a | rest : Percent, stage : Stage } -> Html Msg
+viewProgress state =
     let
         percent =
             mapRestingPeriods
@@ -239,7 +253,7 @@ viewProgress model =
                 , onResting = calculateProgress
                 , onFinished = always 100
                 }
-                model
+                state
 
         label =
             mapRestingTime
@@ -248,7 +262,7 @@ viewProgress model =
                 , onResting = always "Rest..."
                 , onFinished = always "Finished"
                 }
-                model
+                state
 
         bg_color =
             mapRestingTime
@@ -257,7 +271,7 @@ viewProgress model =
                 , onResting = always TW.bg_orange_600
                 , onFinished = always TW.bg_red_600
                 }
-                model
+                state
     in
     Html.div [ TW.w_full, TW.bg_gray_300, TW.my_2 ]
         [ Html.div [ bg_color, TW.transition_colors, TW.duration_500, TW.ease_out, TW.leading_none, TW.py_2, TW.text_center, TW.text_white, progress percent ] [ Html.text label ] ]
@@ -277,9 +291,9 @@ calculateProgress ( target, current ) =
         Period.toMillisFloat current / Period.toMillisFloat target * 100
 
 
-viewStartRestButton : Model -> Html Msg
-viewStartRestButton model =
-    case model of
+viewStartRestButton : Stage -> Html Msg
+viewStartRestButton stage =
+    case stage of
         Clear ->
             viewStartButton
 
@@ -308,9 +322,9 @@ viewStartRestButton model =
             viewStartButton
 
 
-viewPauseResetButton : Model -> Html Msg
-viewPauseResetButton model =
-    case model of
+viewPauseResetButton : Stage -> Html Msg
+viewPauseResetButton stage =
+    case stage of
         Clear ->
             viewDisabledPauseButton
 
@@ -369,17 +383,17 @@ viewResetButton =
     Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just Reset }) [ Html.text "Reset" ]
 
 
-showRunningTime : Model -> Html Msg
+showRunningTime : { a | stage : Stage } -> Html Msg
 showRunningTime =
     mapRunningTime (allStages showPeriod)
 
 
-showRestingTime : Model -> Html Msg
+showRestingTime : { a | rest : Percent, stage : Stage } -> Html Msg
 showRestingTime =
     mapRestingTime (allStages showPeriod)
 
 
-fadeRunningAttr : Model -> Html.Attribute Msg
+fadeRunningAttr : { a | stage : Stage } -> Html.Attribute Msg
 fadeRunningAttr =
     let
         stages =
@@ -388,7 +402,7 @@ fadeRunningAttr =
     mapRunningTime { stages | onResting = always TW.opacity_50 }
 
 
-fadeRestingAttr : Model -> Html.Attribute Msg
+fadeRestingAttr : { a | rest : Percent, stage : Stage } -> Html.Attribute Msg
 fadeRestingAttr =
     mapRestingTime
         { onWaiting = always TW.opacity_50
@@ -415,9 +429,9 @@ allStages value =
     }
 
 
-mapRunningTime : StageMaps (Period -> value) -> Model -> value
-mapRunningTime { onWaiting, onRunning, onResting, onFinished } model =
-    case model of
+mapRunningTime : StageMaps (Period -> value) -> { a | stage : Stage } -> value
+mapRunningTime { onWaiting, onRunning, onResting, onFinished } { stage } =
+    case stage of
         Clear ->
             onWaiting <| Millis 0
 
@@ -446,24 +460,23 @@ mapRunningTime { onWaiting, onRunning, onResting, onFinished } model =
             onFinished period
 
 
-mapRestingTime : StageMaps (Period -> value) -> Model -> value
-mapRestingTime { onWaiting, onRunning, onResting, onFinished } model =
+mapRestingTime : StageMaps (Period -> value) -> { a | rest : Percent, stage : Stage } -> value
+mapRestingTime { onWaiting, onRunning, onResting, onFinished } =
     mapRestingPeriods
         { onWaiting = onWaiting << Tuple.second
         , onRunning = onRunning << Tuple.second
         , onResting = onResting << Tuple.second
         , onFinished = onFinished << Tuple.second
         }
-        model
 
 
 type alias Periods =
     ( Period, Period )
 
 
-mapRestingPeriods : StageMaps (Periods -> value) -> Model -> value
-mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } model =
-    case model of
+mapRestingPeriods : StageMaps (Periods -> value) -> { a | rest : Percent, stage : Stage } -> value
+mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } { rest, stage } =
+    case stage of
         Clear ->
             onWaiting ( Millis 0, Millis 0 )
 
@@ -471,30 +484,35 @@ mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } model =
             onRunning ( Millis 0, Millis 0 )
 
         Running timer ->
-            onRunning <| double <| Period.fromTimer timer
+            onRunning <| double <| periodPercent rest <| Period.fromTimer timer
 
         PausedRunning timer ->
-            onRunning <| double <| Period.fromTimer timer
+            onRunning <| double <| periodPercent rest <| Period.fromTimer timer
 
         ResumeRunning timer ->
-            onRunning <| double <| Period.fromTimer timer
+            onRunning <| double <| periodPercent rest <| Period.fromTimer timer
 
         Resting period timer ->
-            onResting ( period, Period.fromTimer timer )
+            onResting ( periodPercent rest period, Period.fromTimer timer )
 
         PausedResting period timer ->
-            onResting ( period, Period.fromTimer timer )
+            onResting ( periodPercent rest period, Period.fromTimer timer )
 
         ResumeResting period timer ->
-            onResting ( period, Period.fromTimer timer )
+            onResting ( periodPercent rest period, Period.fromTimer timer )
 
         Finished period ->
-            onFinished ( period, Millis 0 )
+            onFinished ( periodPercent rest period, Millis 0 )
 
 
 double : a -> ( a, a )
 double a =
     ( a, a )
+
+
+periodPercent : Percent -> Period -> Period
+periodPercent rest period =
+    Period.mul (Percent.toFloat rest) period
 
 
 showPeriod : Period -> Html Msg
