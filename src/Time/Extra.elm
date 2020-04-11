@@ -1,6 +1,6 @@
 module Time.Extra exposing
     ( add, sub, mul
-    , lt
+    , lt, min
     , map, map2
     )
 
@@ -14,7 +14,7 @@ module Time.Extra exposing
 
 # Comparison
 
-@docs lt
+@docs lt, min
 
 
 # Mapping
@@ -52,6 +52,17 @@ mul multiplicator =
 lt : Time.Posix -> Time.Posix -> Bool
 lt =
     unwrapBy2 (<)
+
+
+{-| Return the smaller of the two times.
+-}
+min : Time.Posix -> Time.Posix -> Time.Posix
+min a b =
+    if lt a b then
+        a
+
+    else
+        b
 
 
 {-| Map the Millis of a Time.Posix and return a Time.Posix.
