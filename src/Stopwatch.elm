@@ -4,8 +4,8 @@ import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
+import Html.Tailwind as TW
 import Period exposing (Period(..))
-import Tailwind as TW
 import Theme.Button as Button
 import Time
 import Time.Extra

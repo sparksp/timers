@@ -1,4 +1,4 @@
-module Tailwind exposing
+module Html.Tailwind exposing
     ( absolute
     , align_baseline
     , align_bottom

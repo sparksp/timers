@@ -5,10 +5,12 @@ import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
 import Html.Events as Events
+import Html.Tailwind as TW
 import Json.Encode as E
 import Percent exposing (Percent, percent)
 import Period exposing (Period(..))
-import Tailwind as TW
+import Svg.Icons as Icons
+import Svg.Tailwind as SvgTW
 import Theme.Button as Button
 import Time
 import Time.Extra
@@ -279,7 +281,12 @@ viewBody model =
                     ]
                 , Html.div [ fadeRestingAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
                     [ Html.button [ Events.onClick (ShowRest Opened) ]
-                        [ Html.p [ TW.text_left ] [ Html.text "Rest (", Html.text <| Percent.toString model.rest, Html.text ")" ]
+                        [ Html.div [ TW.flex, TW.items_center ]
+                            [ Html.p [ TW.text_left ]
+                                [ Html.text <| "Rest (" ++ Percent.toString model.rest ++ ")"
+                                ]
+                            , Icons.cog [ SvgTW.w_4, SvgTW.h_4, SvgTW.ml_2 ]
+                            ]
                         , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
                         ]
                     , viewRestMenu model
