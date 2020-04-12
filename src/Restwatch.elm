@@ -7,6 +7,7 @@ import Html.Attributes as A
 import Html.Events as Events
 import Html.Tailwind as TW
 import Json.Encode as E
+import Menu
 import Percent exposing (Percent, percent)
 import Period exposing (Period(..))
 import Svg.Icons as Icons
@@ -22,14 +23,9 @@ port alarm : E.Value -> Cmd msg
 
 type alias Model =
     { rest : Percent
-    , showRest : Toggle
+    , showRest : Menu.State
     , stage : Stage
     }
-
-
-type Toggle
-    = Opened
-    | Closed
 
 
 type Stage
@@ -46,7 +42,7 @@ type Stage
 
 type Msg
     = SetRest Percent
-    | ShowRest Toggle
+    | ShowRest Menu.State
     | StageMsg StageMsg
 
 
@@ -60,7 +56,7 @@ type StageMsg
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( Model (percent 100) Closed Clear, Cmd.none )
+    ( Model (percent 100) Menu.Closed Clear, Cmd.none )
 
 
 loadAlarm : Cmd Msg
@@ -82,14 +78,14 @@ update msg model =
         SetRest newRest ->
             ( { model
                 | rest = newRest
-                , showRest = Closed
+                , showRest = Menu.Closed
                 , stage = getStageWithNewRest ( model.rest, newRest ) model.stage
               }
             , Cmd.none
             )
 
-        ShowRest toggle ->
-            ( { model | showRest = toggle }, Cmd.none )
+        ShowRest state ->
+            ( { model | showRest = state }, Cmd.none )
 
 
 updateStageMsg : StageMsg -> Model -> ( Model, Cmd Msg )
@@ -280,7 +276,7 @@ viewBody model =
                     , Html.p [ TW.text_4xl, TW.font_mono, TW.select_all ] [ showRunningTime model ]
                     ]
                 , Html.div [ fadeRestingAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
-                    [ Html.button [ Events.onClick (ShowRest Opened) ]
+                    [ Html.button [ Events.onClick (ShowRest <| Menu.toggle model.showRest) ]
                         [ Html.div [ TW.flex, TW.items_center ]
                             [ Html.p [ TW.text_left ]
                                 [ Html.text <| "Rest (" ++ Percent.toString model.rest ++ ")"
@@ -314,23 +310,23 @@ viewAudio =
         ]
 
 
-viewRestMenuOverlay : { a | showRest : Toggle } -> Html Msg
+viewRestMenuOverlay : { a | showRest : Menu.State } -> Html Msg
 viewRestMenuOverlay { showRest } =
     case showRest of
-        Opened ->
-            Html.div [ TW.absolute, TW.inset_0, Events.onClick (ShowRest Closed) ] []
+        Menu.Opened ->
+            Html.div [ TW.absolute, TW.inset_0, Events.onClick (ShowRest Menu.Closed) ] []
 
-        Closed ->
+        Menu.Closed ->
             Html.text ""
 
 
-viewRestMenu : { a | rest : Percent, showRest : Toggle } -> Html Msg
+viewRestMenu : { a | rest : Percent, showRest : Menu.State } -> Html Msg
 viewRestMenu { rest, showRest } =
     case showRest of
-        Opened ->
+        Menu.Opened ->
             viewOpenRestMenu rest
 
-        Closed ->
+        Menu.Closed ->
             Html.text ""
 
 
