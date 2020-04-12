@@ -1,4 +1,4 @@
-import regeneratorRuntime from "regenerator-runtime";
+import "regenerator-runtime";
 import { Elm } from "./src/Main.elm";
 import "./src/assets/css/main.pcss";
 
@@ -22,11 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
             switch (cmd) {
                 case "load":
                     audio.load();
+                case "pause":
                 case "stop":
-                    audio.stop();
+                    audio.pause();
                     break;
 
                 case "play":
+                    audio.currentTime = 0;
                     audio.play();
                     break;
             }
