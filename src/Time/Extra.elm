@@ -1,13 +1,24 @@
 module Time.Extra exposing
-    ( add, sub
-    , lt
+    ( add, sub, mul
+    , lt, min
     , map, map2
     )
 
 {-| Useful extras for Time.
 
-@docs add, sub
-@docs lt
+
+# Maths
+
+@docs add, sub, mul
+
+
+# Comparison
+
+@docs lt, min
+
+
+# Mapping
+
 @docs map, map2
 
 -}
@@ -29,11 +40,29 @@ sub =
     map2 (-)
 
 
+{-| Multiply a `Time.Posix` by a Float and return a `Time.Posix`
+-}
+mul : Float -> Time.Posix -> Time.Posix
+mul multiplicator =
+    map (round << (*) multiplicator << toFloat)
+
+
 {-| Is the first `Time.Posix` < the second `Time.Posix`?
 -}
 lt : Time.Posix -> Time.Posix -> Bool
 lt =
     unwrapBy2 (<)
+
+
+{-| Return the smaller of the two times.
+-}
+min : Time.Posix -> Time.Posix -> Time.Posix
+min a b =
+    if lt a b then
+        a
+
+    else
+        b
 
 
 {-| Map the Millis of a Time.Posix and return a Time.Posix.

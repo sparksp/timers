@@ -3,7 +3,7 @@ module Theme.Button exposing (attr)
 import Html
 import Html.Attributes as A
 import Html.Events as Events
-import Tailwind as TW
+import Html.Tailwind as TW
 
 
 attr : { color : Html.Attribute msg, onClick : Maybe msg } -> List (Html.Attribute msg)

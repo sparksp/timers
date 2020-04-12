@@ -4,9 +4,14 @@ import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
+import Html.Events as Events
+import Html.Tailwind as TW
 import Json.Encode as E
+import Menu
+import Percent exposing (Percent, percent)
 import Period exposing (Period(..))
-import Tailwind as TW
+import Svg.Icons as Icons
+import Svg.Tailwind as SvgTW
 import Theme.Button as Button
 import Time
 import Time.Extra
@@ -16,7 +21,14 @@ import Timer exposing (Timer)
 port alarm : E.Value -> Cmd msg
 
 
-type Model
+type alias Model =
+    { rest : Percent
+    , showRest : Menu.State
+    , stage : Stage
+    }
+
+
+type Stage
     = Clear
     | Starting
     | Running Timer
@@ -29,6 +41,12 @@ type Model
 
 
 type Msg
+    = SetRest Percent
+    | ShowRest Menu.State
+    | StageMsg StageMsg
+
+
+type StageMsg
     = Start
     | Rest
     | Pause
@@ -38,7 +56,7 @@ type Msg
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( Clear, Cmd.none )
+    ( Model (percent 100) Menu.Closed Clear, Cmd.none )
 
 
 loadAlarm : Cmd Msg
@@ -53,24 +71,43 @@ playAlarm =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case ( msg, model ) of
+    case msg of
+        StageMsg stageMsg ->
+            updateStageMsg stageMsg model
+
+        SetRest newRest ->
+            ( { model
+                | rest = newRest
+                , showRest = Menu.Closed
+                , stage = getStageWithNewRest ( model.rest, newRest ) model.stage
+              }
+            , Cmd.none
+            )
+
+        ShowRest state ->
+            ( { model | showRest = state }, Cmd.none )
+
+
+updateStageMsg : StageMsg -> Model -> ( Model, Cmd Msg )
+updateStageMsg msg model =
+    case ( msg, model.stage ) of
         ( Start, Clear ) ->
-            ( Starting, loadAlarm )
+            ( { model | stage = Starting }, loadAlarm )
 
         ( Start, PausedRunning timer ) ->
-            ( ResumeRunning timer, loadAlarm )
+            ( { model | stage = ResumeRunning timer }, loadAlarm )
 
         ( Start, Finished _ ) ->
-            ( Starting, loadAlarm )
+            ( { model | stage = Starting }, loadAlarm )
 
         ( Start, _ ) ->
             ( model, Cmd.none )
 
         ( Rest, Clear ) ->
-            ( Clear, Cmd.none )
+            ( { model | stage = Clear }, Cmd.none )
 
         ( Rest, Starting ) ->
-            ( Clear, Cmd.none )
+            ( { model | stage = Clear }, Cmd.none )
 
         ( Rest, Running (( _, end ) as timer) ) ->
             let
@@ -78,9 +115,9 @@ update msg model =
                     Period.fromTimer timer
 
                 target =
-                    timerShiftEnd end timer
+                    timerShiftEnd model.rest end timer
             in
-            ( Resting period target, Cmd.none )
+            ( { model | stage = Resting period target }, Cmd.none )
 
         ( Rest, PausedRunning (( _, end ) as timer) ) ->
             let
@@ -88,65 +125,93 @@ update msg model =
                     Period.fromTimer timer
 
                 target =
-                    timerShiftEnd end timer
+                    timerShiftEnd model.rest end timer
             in
-            ( ResumeResting period target, Cmd.none )
+            ( { model | stage = ResumeResting period target }, Cmd.none )
 
         ( Rest, ResumeRunning timer ) ->
             let
                 period =
                     Period.fromTimer timer
             in
-            ( ResumeResting period timer, Cmd.none )
+            ( { model | stage = ResumeResting period timer }, Cmd.none )
 
         ( Rest, PausedResting period timer ) ->
-            ( ResumeResting period timer, Cmd.none )
+            ( { model | stage = ResumeResting period timer }, Cmd.none )
 
         ( Rest, _ ) ->
             ( model, Cmd.none )
 
         ( Pause, Starting ) ->
-            ( Clear, Cmd.none )
+            ( { model | stage = Clear }, Cmd.none )
 
         ( Pause, Running timer ) ->
-            ( PausedRunning timer, Cmd.none )
+            ( { model | stage = PausedRunning timer }, Cmd.none )
 
         ( Pause, Resting period timer ) ->
-            ( PausedResting period timer, Cmd.none )
+            ( { model | stage = PausedResting period timer }, Cmd.none )
 
         ( Pause, ResumeRunning timer ) ->
-            ( PausedRunning timer, Cmd.none )
+            ( { model | stage = PausedRunning timer }, Cmd.none )
 
         ( Pause, ResumeResting period timer ) ->
-            ( PausedResting period timer, Cmd.none )
+            ( { model | stage = PausedResting period timer }, Cmd.none )
 
         ( Pause, _ ) ->
             ( model, Cmd.none )
 
         ( Reset, _ ) ->
-            ( Clear, loadAlarm )
+            ( { model | stage = Clear }, loadAlarm )
 
         ( Tick now, Starting ) ->
-            ( Running ( now, now ), Cmd.none )
+            ( { model | stage = Running ( now, now ) }, Cmd.none )
 
         ( Tick now, Running ( start, _ ) ) ->
-            ( Running ( start, now ), Cmd.none )
+            ( { model | stage = Running ( start, now ) }, Cmd.none )
 
         ( Tick now, ResumeRunning timer ) ->
-            ( Running <| timerShiftStart now timer, Cmd.none )
+            ( { model | stage = Running <| timerShiftStart now timer }, Cmd.none )
 
         ( Tick now, Resting period ( _, target ) ) ->
             if Time.Extra.lt target now then
-                ( Finished period, playAlarm )
+                ( { model | stage = Finished period }, playAlarm )
 
             else
-                ( Resting period ( now, target ), Cmd.none )
+                ( { model | stage = Resting period ( now, target ) }, Cmd.none )
 
         ( Tick now, ResumeResting period timer ) ->
-            ( Resting period <| timerShiftEnd now timer, Cmd.none )
+            ( { model | stage = Resting period <| timerShiftEnd (percent 100) now timer }, Cmd.none )
 
         ( Tick _, _ ) ->
             ( model, Cmd.none )
+
+
+getStageWithNewRest : ( Percent, Percent ) -> Stage -> Stage
+getStageWithNewRest rests stage =
+    case stage of
+        Resting period timer ->
+            getNewTargetWithNewRest rests Resting period timer
+
+        PausedResting period timer ->
+            getNewTargetWithNewRest rests PausedResting period timer
+
+        ResumeResting period timer ->
+            getNewTargetWithNewRest rests ResumeResting period timer
+
+        _ ->
+            stage
+
+
+getNewTargetWithNewRest : ( Percent, Percent ) -> (Period -> Timer -> Stage) -> Period -> Timer -> Stage
+getNewTargetWithNewRest ( oldRest, newRest ) stage period ( now, target ) =
+    let
+        start =
+            toFloat (Time.posixToMillis target) - (Percent.toFloat oldRest * Period.toMillisFloat period)
+
+        newTarget =
+            Time.millisToPosix <| round <| start + (Period.toMillisFloat period * Percent.toFloat newRest)
+    in
+    stage period ( Time.Extra.min now newTarget, newTarget )
 
 
 timerShiftStart : Time.Posix -> Timer -> Timer
@@ -154,28 +219,35 @@ timerShiftStart now ( start, end ) =
     ( Time.Extra.add start <| Time.Extra.sub now end, now )
 
 
-timerShiftEnd : Time.Posix -> Timer -> Timer
-timerShiftEnd now ( start, end ) =
-    ( now, Time.Extra.add now <| Time.Extra.sub end start )
+timerShiftEnd : Percent -> Time.Posix -> Timer -> Timer
+timerShiftEnd rest now ( start, end ) =
+    let
+        elapsed =
+            Time.Extra.sub end start
+
+        resting =
+            Time.Extra.mul (Percent.toFloat rest) elapsed
+    in
+    ( now, Time.Extra.add now resting )
 
 
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    case model of
+subscriptions : { a | stage : Stage } -> Sub Msg
+subscriptions { stage } =
+    case stage of
         Starting ->
-            Browser.Events.onAnimationFrame Tick
+            Browser.Events.onAnimationFrame (StageMsg << Tick)
 
         ResumeRunning _ ->
-            Browser.Events.onAnimationFrame Tick
+            Browser.Events.onAnimationFrame (StageMsg << Tick)
 
         ResumeResting _ _ ->
-            Browser.Events.onAnimationFrame Tick
+            Browser.Events.onAnimationFrame (StageMsg << Tick)
 
         Running _ ->
-            Browser.Events.onAnimationFrame Tick
+            Browser.Events.onAnimationFrame (StageMsg << Tick)
 
         Resting _ _ ->
-            Browser.Events.onAnimationFrame Tick
+            Browser.Events.onAnimationFrame (StageMsg << Tick)
 
         _ ->
             Sub.none
@@ -195,30 +267,39 @@ view model =
 viewBody : Model -> Html Msg
 viewBody model =
     Html.div [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col, TW.justify_between ]
-        [ Html.div []
+        [ viewRestMenuOverlay model
+        , Html.div []
             [ viewTitle
             , Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
                 [ Html.div [ fadeRunningAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
-                    [ Html.p [] [ Html.text "Activity" ]
-                    , Html.p [ TW.text_4xl, TW.font_mono ] [ showRunningTime model ]
+                    [ Html.p [ TW.text_left ] [ Html.text "Activity" ]
+                    , Html.p [ TW.text_4xl, TW.font_mono, TW.select_all ] [ showRunningTime model ]
                     ]
-                , Html.div [ fadeRestingAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
-                    [ Html.p [] [ Html.text "Rest" ]
-                    , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
+                , Html.div [ fadeRestingAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
+                    [ Html.button [ Events.onClick (ShowRest <| Menu.toggle model.showRest) ]
+                        [ Html.div [ TW.flex, TW.items_center ]
+                            [ Html.p [ TW.text_left ]
+                                [ Html.text <| "Rest (" ++ Percent.toString model.rest ++ ")"
+                                ]
+                            , Icons.cog [ SvgTW.w_4, SvgTW.h_4, SvgTW.ml_2 ]
+                            ]
+                        , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
+                        ]
+                    , viewRestMenu model
                     ]
                 ]
             , viewProgress model
             ]
         , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
-            [ viewStartRestButton model
-            , viewPauseResetButton model
+            [ viewStartRestButton model.stage
+            , viewPauseResetButton model.stage
             ]
         ]
 
 
 viewTitle : Html Msg
 viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Restwatch (1:1)" ]
+    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Restwatch" ]
 
 
 viewAudio : Html Msg
@@ -229,8 +310,42 @@ viewAudio =
         ]
 
 
-viewProgress : Model -> Html Msg
-viewProgress model =
+viewRestMenuOverlay : { a | showRest : Menu.State } -> Html Msg
+viewRestMenuOverlay { showRest } =
+    case showRest of
+        Menu.Opened ->
+            Html.div [ TW.absolute, TW.inset_0, Events.onClick (ShowRest Menu.Closed) ] []
+
+        Menu.Closed ->
+            Html.text ""
+
+
+viewRestMenu : { a | rest : Percent, showRest : Menu.State } -> Html Msg
+viewRestMenu { rest, showRest } =
+    case showRest of
+        Menu.Opened ->
+            viewOpenRestMenu rest
+
+        Menu.Closed ->
+            Html.text ""
+
+
+viewOpenRestMenu : Percent -> Html Msg
+viewOpenRestMenu rest =
+    [ 25, 50, 75, 100, 150, 200 ]
+        |> List.map
+            (\pc ->
+                if pc == Percent.toInt rest then
+                    Html.button [ TW.w_full, TW.py_1, TW.bg_orange_500, TW.text_white ] [ Html.text <| String.fromInt pc ++ "%" ]
+
+                else
+                    Html.button [ TW.w_full, TW.py_1, TW.bg_white, TW.hover__bg_gray_200, Events.onClick (SetRest (percent pc)) ] [ Html.text <| String.fromInt pc ++ "%" ]
+            )
+        |> Html.div [ TW.w_full, TW.absolute, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border_2, TW.shadow_lg, TW.grid, TW.grid_cols_1, TW.gap_1 ]
+
+
+viewProgress : { a | rest : Percent, stage : Stage } -> Html Msg
+viewProgress state =
     let
         percent =
             mapRestingPeriods
@@ -239,7 +354,7 @@ viewProgress model =
                 , onResting = calculateProgress
                 , onFinished = always 100
                 }
-                model
+                state
 
         label =
             mapRestingTime
@@ -248,7 +363,7 @@ viewProgress model =
                 , onResting = always "Rest..."
                 , onFinished = always "Finished"
                 }
-                model
+                state
 
         bg_color =
             mapRestingTime
@@ -257,10 +372,10 @@ viewProgress model =
                 , onResting = always TW.bg_orange_600
                 , onFinished = always TW.bg_red_600
                 }
-                model
+                state
     in
     Html.div [ TW.w_full, TW.bg_gray_300, TW.my_2 ]
-        [ Html.div [ bg_color, TW.transition_colors, TW.duration_500, TW.ease_out, TW.leading_none, TW.py_2, TW.text_center, TW.text_white, progress percent ] [ Html.text label ] ]
+        [ Html.div [ bg_color, TW.transition_colors, TW.duration_500, TW.ease_out, TW.leading_none, TW.py_2, TW.text_center, TW.text_white, TW.text_lg, progress percent ] [ Html.text label ] ]
 
 
 progress : Float -> Html.Attribute Msg
@@ -277,9 +392,9 @@ calculateProgress ( target, current ) =
         Period.toMillisFloat current / Period.toMillisFloat target * 100
 
 
-viewStartRestButton : Model -> Html Msg
-viewStartRestButton model =
-    case model of
+viewStartRestButton : Stage -> Html Msg
+viewStartRestButton stage =
+    case stage of
         Clear ->
             viewStartButton
 
@@ -308,9 +423,9 @@ viewStartRestButton model =
             viewStartButton
 
 
-viewPauseResetButton : Model -> Html Msg
-viewPauseResetButton model =
-    case model of
+viewPauseResetButton : Stage -> Html Msg
+viewPauseResetButton stage =
+    case stage of
         Clear ->
             viewDisabledPauseButton
 
@@ -341,12 +456,12 @@ viewPauseResetButton model =
 
 viewStartButton : Html Msg
 viewStartButton =
-    Html.button (TW.hover__bg_green_600 :: Button.attr { color = TW.bg_green_500, onClick = Just Start }) [ Html.text "Start" ]
+    Html.button (TW.hover__bg_green_600 :: Button.attr { color = TW.bg_green_500, onClick = Just (StageMsg Start) }) [ Html.text "Start" ]
 
 
 viewRestButton : Html Msg
 viewRestButton =
-    Html.button (TW.hover__bg_orange_600 :: Button.attr { color = TW.bg_orange_500, onClick = Just Rest }) [ Html.text "Rest" ]
+    Html.button (TW.hover__bg_orange_600 :: Button.attr { color = TW.bg_orange_500, onClick = Just (StageMsg Rest) }) [ Html.text "Rest" ]
 
 
 viewDisabledRestButton : Html Msg
@@ -356,7 +471,7 @@ viewDisabledRestButton =
 
 viewPauseButton : Html Msg
 viewPauseButton =
-    Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just Pause }) [ Html.text "Pause" ]
+    Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just (StageMsg Pause) }) [ Html.text "Pause" ]
 
 
 viewDisabledPauseButton : Html Msg
@@ -366,33 +481,33 @@ viewDisabledPauseButton =
 
 viewResetButton : Html Msg
 viewResetButton =
-    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just Reset }) [ Html.text "Reset" ]
+    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just (StageMsg Reset) }) [ Html.text "Reset" ]
 
 
-showRunningTime : Model -> Html Msg
+showRunningTime : { a | stage : Stage } -> Html Msg
 showRunningTime =
     mapRunningTime (allStages showPeriod)
 
 
-showRestingTime : Model -> Html Msg
+showRestingTime : { a | rest : Percent, stage : Stage } -> Html Msg
 showRestingTime =
     mapRestingTime (allStages showPeriod)
 
 
-fadeRunningAttr : Model -> Html.Attribute Msg
+fadeRunningAttr : { a | stage : Stage } -> Html.Attribute Msg
 fadeRunningAttr =
     let
         stages =
             allStages <| always (A.class "")
     in
-    mapRunningTime { stages | onResting = always TW.opacity_50 }
+    mapRunningTime { stages | onResting = always TW.text_gray_600 }
 
 
-fadeRestingAttr : Model -> Html.Attribute Msg
+fadeRestingAttr : { a | rest : Percent, stage : Stage } -> Html.Attribute Msg
 fadeRestingAttr =
     mapRestingTime
-        { onWaiting = always TW.opacity_50
-        , onRunning = always TW.opacity_50
+        { onWaiting = always TW.text_gray_600
+        , onRunning = always TW.text_gray_600
         , onResting = always (A.class "")
         , onFinished = always (A.class "")
         }
@@ -415,9 +530,9 @@ allStages value =
     }
 
 
-mapRunningTime : StageMaps (Period -> value) -> Model -> value
-mapRunningTime { onWaiting, onRunning, onResting, onFinished } model =
-    case model of
+mapRunningTime : StageMaps (Period -> value) -> { a | stage : Stage } -> value
+mapRunningTime { onWaiting, onRunning, onResting, onFinished } { stage } =
+    case stage of
         Clear ->
             onWaiting <| Millis 0
 
@@ -446,24 +561,23 @@ mapRunningTime { onWaiting, onRunning, onResting, onFinished } model =
             onFinished period
 
 
-mapRestingTime : StageMaps (Period -> value) -> Model -> value
-mapRestingTime { onWaiting, onRunning, onResting, onFinished } model =
+mapRestingTime : StageMaps (Period -> value) -> { a | rest : Percent, stage : Stage } -> value
+mapRestingTime { onWaiting, onRunning, onResting, onFinished } =
     mapRestingPeriods
         { onWaiting = onWaiting << Tuple.second
         , onRunning = onRunning << Tuple.second
         , onResting = onResting << Tuple.second
         , onFinished = onFinished << Tuple.second
         }
-        model
 
 
 type alias Periods =
     ( Period, Period )
 
 
-mapRestingPeriods : StageMaps (Periods -> value) -> Model -> value
-mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } model =
-    case model of
+mapRestingPeriods : StageMaps (Periods -> value) -> { a | rest : Percent, stage : Stage } -> value
+mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } { rest, stage } =
+    case stage of
         Clear ->
             onWaiting ( Millis 0, Millis 0 )
 
@@ -471,25 +585,25 @@ mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } model =
             onRunning ( Millis 0, Millis 0 )
 
         Running timer ->
-            onRunning <| double <| Period.fromTimer timer
+            onRunning <| double <| periodPercent rest <| Period.fromTimer timer
 
         PausedRunning timer ->
-            onRunning <| double <| Period.fromTimer timer
+            onRunning <| double <| periodPercent rest <| Period.fromTimer timer
 
         ResumeRunning timer ->
-            onRunning <| double <| Period.fromTimer timer
+            onRunning <| double <| periodPercent rest <| Period.fromTimer timer
 
         Resting period timer ->
-            onResting ( period, Period.fromTimer timer )
+            onResting ( periodPercent rest period, Period.fromTimer timer )
 
         PausedResting period timer ->
-            onResting ( period, Period.fromTimer timer )
+            onResting ( periodPercent rest period, Period.fromTimer timer )
 
         ResumeResting period timer ->
-            onResting ( period, Period.fromTimer timer )
+            onResting ( periodPercent rest period, Period.fromTimer timer )
 
         Finished period ->
-            onFinished ( period, Millis 0 )
+            onFinished ( periodPercent rest period, Millis 0 )
 
 
 double : a -> ( a, a )
@@ -497,6 +611,11 @@ double a =
     ( a, a )
 
 
+periodPercent : Percent -> Period -> Period
+periodPercent rest period =
+    Period.mul (Percent.toFloat rest) period
+
+
 showPeriod : Period -> Html Msg
 showPeriod period =
-    Html.time [ A.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (Period.toHuman period) ]
+    Html.time [ A.datetime (Period.toIso8601 period) ] [ Html.text (Period.toHuman period) ]
