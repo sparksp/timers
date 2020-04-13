@@ -1,0 +1,18 @@
+{
+  "short_name": "Timers",
+  "name": "Training Timers",
+  "description": "A collection of timers useful for sports training",
+  "icons": [
+    {
+      "src": "assets/img/app-icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/#pwa",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#de641a"
+}
