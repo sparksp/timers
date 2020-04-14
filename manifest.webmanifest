@@ -49,6 +49,7 @@
   "start_url": "/#pwa",
   "background_color": "#FFFFFF",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "scope": "/",
   "theme_color": "#de641a"
 }
