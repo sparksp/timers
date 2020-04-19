@@ -4438,9 +4438,9 @@ postcss-discard-overridden@^4.0.1:
   dependencies:
     postcss "^7.0.0"
 
-postcss-elm-tailwind@sparksp/postcss-elm-tailwind#svg:
+postcss-elm-tailwind@monty5811/postcss-elm-tailwind#master:
   version "0.8.0"
-  resolved "https://codeload.github.com/sparksp/postcss-elm-tailwind/tar.gz/6a99308c10066eb9850690d346f756cc1ff5af42"
+  resolved "https://codeload.github.com/monty5811/postcss-elm-tailwind/tar.gz/14a7fa1a485df917312e437510e460fcd40468f1"
 
 postcss-functions@^3.0.0:
   version "3.0.0"
