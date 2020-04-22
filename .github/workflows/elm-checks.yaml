@@ -1,5 +1,4 @@
 name: Elm Checks
-
 on: [pull_request]
 
 jobs:
@@ -12,9 +11,15 @@ jobs:
       with:
         node-version: 12.x
     - run: yarn
+    - name: Add yarn bin to path
+      run: echo ::add-path::$(yarn bin)
     - name: Run elm-test
-      run: yarn run elm-test
+      run: elm-test
     - name: Run elm-review
-      run: yarn run elm-review
-    - name: Run elm-format
-      run: find src -name '*.elm' ! -name Tailwind.elm | xargs yarn run elm-format --validate
+      run: elm-review
+    - uses: sparksp/elm-format-action@v1
+      with:
+        elm_files: |
+          src/**/*.elm
+          !**/Tailwind.elm
+        elm_glob: true
