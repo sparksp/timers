@@ -1,5 +1,8 @@
 name: Elm Checks
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches: [master]
 
 jobs:
   build:
@@ -10,7 +13,8 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - run: yarn
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
     - name: Add yarn bin to path
       run: echo ::add-path::$(yarn bin)
     - name: Run elm-test
