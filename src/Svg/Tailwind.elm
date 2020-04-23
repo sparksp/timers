@@ -23,6 +23,7 @@ module Svg.Tailwind exposing
     , bg_center
     , bg_contain
     , bg_cover
+    , bg_current
     , bg_fixed
     , bg_gray_100
     , bg_gray_200
@@ -144,6 +145,7 @@ module Svg.Tailwind exposing
     , border_blue_800
     , border_blue_900
     , border_collapse
+    , border_current
     , border_dashed
     , border_dotted
     , border_double
@@ -259,6 +261,7 @@ module Svg.Tailwind exposing
     , classList
     , clear_both
     , clear_left
+    , clear_none
     , clear_right
     , clearfix__after
     , col_auto
@@ -334,6 +337,14 @@ module Svg.Tailwind exposing
     , cursor_pointer
     , cursor_text
     , cursor_wait
+    , delay_100
+    , delay_1000
+    , delay_150
+    , delay_200
+    , delay_300
+    , delay_500
+    , delay_700
+    , delay_75
     , disabled__cursor_auto
     , disabled__cursor_default
     , disabled__cursor_move
@@ -346,6 +357,112 @@ module Svg.Tailwind exposing
     , disabled__opacity_25
     , disabled__opacity_50
     , disabled__opacity_75
+    , divide_black
+    , divide_blue_100
+    , divide_blue_200
+    , divide_blue_300
+    , divide_blue_400
+    , divide_blue_500
+    , divide_blue_600
+    , divide_blue_700
+    , divide_blue_800
+    , divide_blue_900
+    , divide_current
+    , divide_gray_100
+    , divide_gray_200
+    , divide_gray_300
+    , divide_gray_400
+    , divide_gray_500
+    , divide_gray_600
+    , divide_gray_700
+    , divide_gray_800
+    , divide_gray_900
+    , divide_green_100
+    , divide_green_200
+    , divide_green_300
+    , divide_green_400
+    , divide_green_500
+    , divide_green_600
+    , divide_green_700
+    , divide_green_800
+    , divide_green_900
+    , divide_indigo_100
+    , divide_indigo_200
+    , divide_indigo_300
+    , divide_indigo_400
+    , divide_indigo_500
+    , divide_indigo_600
+    , divide_indigo_700
+    , divide_indigo_800
+    , divide_indigo_900
+    , divide_orange_100
+    , divide_orange_200
+    , divide_orange_300
+    , divide_orange_400
+    , divide_orange_500
+    , divide_orange_600
+    , divide_orange_700
+    , divide_orange_800
+    , divide_orange_900
+    , divide_pink_100
+    , divide_pink_200
+    , divide_pink_300
+    , divide_pink_400
+    , divide_pink_500
+    , divide_pink_600
+    , divide_pink_700
+    , divide_pink_800
+    , divide_pink_900
+    , divide_purple_100
+    , divide_purple_200
+    , divide_purple_300
+    , divide_purple_400
+    , divide_purple_500
+    , divide_purple_600
+    , divide_purple_700
+    , divide_purple_800
+    , divide_purple_900
+    , divide_red_100
+    , divide_red_200
+    , divide_red_300
+    , divide_red_400
+    , divide_red_500
+    , divide_red_600
+    , divide_red_700
+    , divide_red_800
+    , divide_red_900
+    , divide_teal_100
+    , divide_teal_200
+    , divide_teal_300
+    , divide_teal_400
+    , divide_teal_500
+    , divide_teal_600
+    , divide_teal_700
+    , divide_teal_800
+    , divide_teal_900
+    , divide_transparent
+    , divide_white
+    , divide_x
+    , divide_x_0
+    , divide_x_2
+    , divide_x_4
+    , divide_x_8
+    , divide_x_reverse
+    , divide_y
+    , divide_y_0
+    , divide_y_2
+    , divide_y_4
+    , divide_y_8
+    , divide_y_reverse
+    , divide_yellow_100
+    , divide_yellow_200
+    , divide_yellow_300
+    , divide_yellow_400
+    , divide_yellow_500
+    , divide_yellow_600
+    , divide_yellow_700
+    , divide_yellow_800
+    , divide_yellow_900
     , duration_100
     , duration_1000
     , duration_150
@@ -379,6 +496,7 @@ module Svg.Tailwind exposing
     , float_left
     , float_none
     , float_right
+    , flow_root
     , focus__bg_black
     , focus__bg_blue_100
     , focus__bg_blue_200
@@ -389,6 +507,7 @@ module Svg.Tailwind exposing
     , focus__bg_blue_700
     , focus__bg_blue_800
     , focus__bg_blue_900
+    , focus__bg_current
     , focus__bg_gray_100
     , focus__bg_gray_200
     , focus__bg_gray_300
@@ -482,6 +601,7 @@ module Svg.Tailwind exposing
     , focus__border_blue_700
     , focus__border_blue_800
     , focus__border_blue_900
+    , focus__border_current
     , focus__border_gray_100
     , focus__border_gray_200
     , focus__border_gray_300
@@ -642,6 +762,7 @@ module Svg.Tailwind exposing
     , focus__placeholder_blue_700__focus
     , focus__placeholder_blue_800__focus
     , focus__placeholder_blue_900__focus
+    , focus__placeholder_current__focus
     , focus__placeholder_gray_100__focus
     , focus__placeholder_gray_200__focus
     , focus__placeholder_gray_300__focus
@@ -788,6 +909,7 @@ module Svg.Tailwind exposing
     , focus__text_blue_700
     , focus__text_blue_800
     , focus__text_blue_900
+    , focus__text_current
     , focus__text_gray_100
     , focus__text_gray_200
     , focus__text_gray_300
@@ -1003,6 +1125,7 @@ module Svg.Tailwind exposing
     , hover__bg_blue_700
     , hover__bg_blue_800
     , hover__bg_blue_900
+    , hover__bg_current
     , hover__bg_gray_100
     , hover__bg_gray_200
     , hover__bg_gray_300
@@ -1096,6 +1219,7 @@ module Svg.Tailwind exposing
     , hover__border_blue_700
     , hover__border_blue_800
     , hover__border_blue_900
+    , hover__border_current
     , hover__border_gray_100
     , hover__border_gray_200
     , hover__border_gray_300
@@ -1306,6 +1430,7 @@ module Svg.Tailwind exposing
     , hover__text_blue_700
     , hover__text_blue_800
     , hover__text_blue_900
+    , hover__text_current
     , hover__text_gray_100
     , hover__text_gray_200
     , hover__text_gray_300
@@ -1435,6 +1560,7 @@ module Svg.Tailwind exposing
     , inline
     , inline_block
     , inline_flex
+    , inline_grid
     , inset_0
     , inset_auto
     , inset_x_0
@@ -1494,6 +1620,7 @@ module Svg.Tailwind exposing
     , lg__bg_center
     , lg__bg_contain
     , lg__bg_cover
+    , lg__bg_current
     , lg__bg_fixed
     , lg__bg_gray_100
     , lg__bg_gray_200
@@ -1615,6 +1742,7 @@ module Svg.Tailwind exposing
     , lg__border_blue_800
     , lg__border_blue_900
     , lg__border_collapse
+    , lg__border_current
     , lg__border_dashed
     , lg__border_dotted
     , lg__border_double
@@ -1729,6 +1857,7 @@ module Svg.Tailwind exposing
     , lg__capitalize
     , lg__clear_both
     , lg__clear_left
+    , lg__clear_none
     , lg__clear_right
     , lg__clearfix__after
     , lg__col_auto
@@ -1803,6 +1932,14 @@ module Svg.Tailwind exposing
     , lg__cursor_pointer
     , lg__cursor_text
     , lg__cursor_wait
+    , lg__delay_100
+    , lg__delay_1000
+    , lg__delay_150
+    , lg__delay_200
+    , lg__delay_300
+    , lg__delay_500
+    , lg__delay_700
+    , lg__delay_75
     , lg__disabled__cursor_auto
     , lg__disabled__cursor_default
     , lg__disabled__cursor_move
@@ -1815,6 +1952,112 @@ module Svg.Tailwind exposing
     , lg__disabled__opacity_25
     , lg__disabled__opacity_50
     , lg__disabled__opacity_75
+    , lg__divide_black
+    , lg__divide_blue_100
+    , lg__divide_blue_200
+    , lg__divide_blue_300
+    , lg__divide_blue_400
+    , lg__divide_blue_500
+    , lg__divide_blue_600
+    , lg__divide_blue_700
+    , lg__divide_blue_800
+    , lg__divide_blue_900
+    , lg__divide_current
+    , lg__divide_gray_100
+    , lg__divide_gray_200
+    , lg__divide_gray_300
+    , lg__divide_gray_400
+    , lg__divide_gray_500
+    , lg__divide_gray_600
+    , lg__divide_gray_700
+    , lg__divide_gray_800
+    , lg__divide_gray_900
+    , lg__divide_green_100
+    , lg__divide_green_200
+    , lg__divide_green_300
+    , lg__divide_green_400
+    , lg__divide_green_500
+    , lg__divide_green_600
+    , lg__divide_green_700
+    , lg__divide_green_800
+    , lg__divide_green_900
+    , lg__divide_indigo_100
+    , lg__divide_indigo_200
+    , lg__divide_indigo_300
+    , lg__divide_indigo_400
+    , lg__divide_indigo_500
+    , lg__divide_indigo_600
+    , lg__divide_indigo_700
+    , lg__divide_indigo_800
+    , lg__divide_indigo_900
+    , lg__divide_orange_100
+    , lg__divide_orange_200
+    , lg__divide_orange_300
+    , lg__divide_orange_400
+    , lg__divide_orange_500
+    , lg__divide_orange_600
+    , lg__divide_orange_700
+    , lg__divide_orange_800
+    , lg__divide_orange_900
+    , lg__divide_pink_100
+    , lg__divide_pink_200
+    , lg__divide_pink_300
+    , lg__divide_pink_400
+    , lg__divide_pink_500
+    , lg__divide_pink_600
+    , lg__divide_pink_700
+    , lg__divide_pink_800
+    , lg__divide_pink_900
+    , lg__divide_purple_100
+    , lg__divide_purple_200
+    , lg__divide_purple_300
+    , lg__divide_purple_400
+    , lg__divide_purple_500
+    , lg__divide_purple_600
+    , lg__divide_purple_700
+    , lg__divide_purple_800
+    , lg__divide_purple_900
+    , lg__divide_red_100
+    , lg__divide_red_200
+    , lg__divide_red_300
+    , lg__divide_red_400
+    , lg__divide_red_500
+    , lg__divide_red_600
+    , lg__divide_red_700
+    , lg__divide_red_800
+    , lg__divide_red_900
+    , lg__divide_teal_100
+    , lg__divide_teal_200
+    , lg__divide_teal_300
+    , lg__divide_teal_400
+    , lg__divide_teal_500
+    , lg__divide_teal_600
+    , lg__divide_teal_700
+    , lg__divide_teal_800
+    , lg__divide_teal_900
+    , lg__divide_transparent
+    , lg__divide_white
+    , lg__divide_x
+    , lg__divide_x_0
+    , lg__divide_x_2
+    , lg__divide_x_4
+    , lg__divide_x_8
+    , lg__divide_x_reverse
+    , lg__divide_y
+    , lg__divide_y_0
+    , lg__divide_y_2
+    , lg__divide_y_4
+    , lg__divide_y_8
+    , lg__divide_y_reverse
+    , lg__divide_yellow_100
+    , lg__divide_yellow_200
+    , lg__divide_yellow_300
+    , lg__divide_yellow_400
+    , lg__divide_yellow_500
+    , lg__divide_yellow_600
+    , lg__divide_yellow_700
+    , lg__divide_yellow_800
+    , lg__divide_yellow_900
     , lg__duration_100
     , lg__duration_1000
     , lg__duration_150
@@ -1848,6 +2091,7 @@ module Svg.Tailwind exposing
     , lg__float_left
     , lg__float_none
     , lg__float_right
+    , lg__flow_root
     , lg__focus__bg_black
     , lg__focus__bg_blue_100
     , lg__focus__bg_blue_200
@@ -1858,6 +2102,7 @@ module Svg.Tailwind exposing
     , lg__focus__bg_blue_700
     , lg__focus__bg_blue_800
     , lg__focus__bg_blue_900
+    , lg__focus__bg_current
     , lg__focus__bg_gray_100
     , lg__focus__bg_gray_200
     , lg__focus__bg_gray_300
@@ -1951,6 +2196,7 @@ module Svg.Tailwind exposing
     , lg__focus__border_blue_700
     , lg__focus__border_blue_800
     , lg__focus__border_blue_900
+    , lg__focus__border_current
     , lg__focus__border_gray_100
     , lg__focus__border_gray_200
     , lg__focus__border_gray_300
@@ -2111,6 +2357,7 @@ module Svg.Tailwind exposing
     , lg__focus__placeholder_blue_700__focus
     , lg__focus__placeholder_blue_800__focus
     , lg__focus__placeholder_blue_900__focus
+    , lg__focus__placeholder_current__focus
     , lg__focus__placeholder_gray_100__focus
     , lg__focus__placeholder_gray_200__focus
     , lg__focus__placeholder_gray_300__focus
@@ -2257,6 +2504,7 @@ module Svg.Tailwind exposing
     , lg__focus__text_blue_700
     , lg__focus__text_blue_800
     , lg__focus__text_blue_900
+    , lg__focus__text_current
     , lg__focus__text_gray_100
     , lg__focus__text_gray_200
     , lg__focus__text_gray_300
@@ -2472,6 +2720,7 @@ module Svg.Tailwind exposing
     , lg__hover__bg_blue_700
     , lg__hover__bg_blue_800
     , lg__hover__bg_blue_900
+    , lg__hover__bg_current
     , lg__hover__bg_gray_100
     , lg__hover__bg_gray_200
     , lg__hover__bg_gray_300
@@ -2565,6 +2814,7 @@ module Svg.Tailwind exposing
     , lg__hover__border_blue_700
     , lg__hover__border_blue_800
     , lg__hover__border_blue_900
+    , lg__hover__border_current
     , lg__hover__border_gray_100
     , lg__hover__border_gray_200
     , lg__hover__border_gray_300
@@ -2775,6 +3025,7 @@ module Svg.Tailwind exposing
     , lg__hover__text_blue_700
     , lg__hover__text_blue_800
     , lg__hover__text_blue_900
+    , lg__hover__text_current
     , lg__hover__text_gray_100
     , lg__hover__text_gray_200
     , lg__hover__text_gray_300
@@ -2904,6 +3155,7 @@ module Svg.Tailwind exposing
     , lg__inline
     , lg__inline_block
     , lg__inline_flex
+    , lg__inline_grid
     , lg__inset_0
     , lg__inset_auto
     , lg__inset_x_0
@@ -3244,6 +3496,42 @@ module Svg.Tailwind exposing
     , lg__neg_skew_y_12
     , lg__neg_skew_y_3
     , lg__neg_skew_y_6
+    , lg__neg_space_x_1
+    , lg__neg_space_x_10
+    , lg__neg_space_x_12
+    , lg__neg_space_x_16
+    , lg__neg_space_x_2
+    , lg__neg_space_x_20
+    , lg__neg_space_x_24
+    , lg__neg_space_x_3
+    , lg__neg_space_x_32
+    , lg__neg_space_x_4
+    , lg__neg_space_x_40
+    , lg__neg_space_x_48
+    , lg__neg_space_x_5
+    , lg__neg_space_x_56
+    , lg__neg_space_x_6
+    , lg__neg_space_x_64
+    , lg__neg_space_x_8
+    , lg__neg_space_x_px
+    , lg__neg_space_y_1
+    , lg__neg_space_y_10
+    , lg__neg_space_y_12
+    , lg__neg_space_y_16
+    , lg__neg_space_y_2
+    , lg__neg_space_y_20
+    , lg__neg_space_y_24
+    , lg__neg_space_y_3
+    , lg__neg_space_y_32
+    , lg__neg_space_y_4
+    , lg__neg_space_y_40
+    , lg__neg_space_y_48
+    , lg__neg_space_y_5
+    , lg__neg_space_y_56
+    , lg__neg_space_y_6
+    , lg__neg_space_y_64
+    , lg__neg_space_y_8
+    , lg__neg_space_y_px
     , lg__neg_translate_x_1
     , lg__neg_translate_x_10
     , lg__neg_translate_x_12
@@ -3411,6 +3699,7 @@ module Svg.Tailwind exposing
     , lg__placeholder_blue_700
     , lg__placeholder_blue_800
     , lg__placeholder_blue_900
+    , lg__placeholder_current
     , lg__placeholder_gray_100
     , lg__placeholder_gray_200
     , lg__placeholder_gray_300
@@ -3738,6 +4027,46 @@ module Svg.Tailwind exposing
     , lg__skew_y_12
     , lg__skew_y_3
     , lg__skew_y_6
+    , lg__space_x_0
+    , lg__space_x_1
+    , lg__space_x_10
+    , lg__space_x_12
+    , lg__space_x_16
+    , lg__space_x_2
+    , lg__space_x_20
+    , lg__space_x_24
+    , lg__space_x_3
+    , lg__space_x_32
+    , lg__space_x_4
+    , lg__space_x_40
+    , lg__space_x_48
+    , lg__space_x_5
+    , lg__space_x_56
+    , lg__space_x_6
+    , lg__space_x_64
+    , lg__space_x_8
+    , lg__space_x_px
+    , lg__space_x_reverse
+    , lg__space_y_0
+    , lg__space_y_1
+    , lg__space_y_10
+    , lg__space_y_12
+    , lg__space_y_16
+    , lg__space_y_2
+    , lg__space_y_20
+    , lg__space_y_24
+    , lg__space_y_3
+    , lg__space_y_32
+    , lg__space_y_4
+    , lg__space_y_40
+    , lg__space_y_48
+    , lg__space_y_5
+    , lg__space_y_56
+    , lg__space_y_6
+    , lg__space_y_64
+    , lg__space_y_8
+    , lg__space_y_px
+    , lg__space_y_reverse
     , lg__sr_only
     , lg__static
     , lg__sticky
@@ -3774,6 +4103,7 @@ module Svg.Tailwind exposing
     , lg__text_blue_800
     , lg__text_blue_900
     , lg__text_center
+    , lg__text_current
     , lg__text_gray_100
     , lg__text_gray_200
     , lg__text_gray_300
@@ -4076,6 +4406,7 @@ module Svg.Tailwind exposing
     , md__bg_center
     , md__bg_contain
     , md__bg_cover
+    , md__bg_current
     , md__bg_fixed
     , md__bg_gray_100
     , md__bg_gray_200
@@ -4197,6 +4528,7 @@ module Svg.Tailwind exposing
     , md__border_blue_800
     , md__border_blue_900
     , md__border_collapse
+    , md__border_current
     , md__border_dashed
     , md__border_dotted
     , md__border_double
@@ -4311,6 +4643,7 @@ module Svg.Tailwind exposing
     , md__capitalize
     , md__clear_both
     , md__clear_left
+    , md__clear_none
     , md__clear_right
     , md__clearfix__after
     , md__col_auto
@@ -4385,6 +4718,14 @@ module Svg.Tailwind exposing
     , md__cursor_pointer
     , md__cursor_text
     , md__cursor_wait
+    , md__delay_100
+    , md__delay_1000
+    , md__delay_150
+    , md__delay_200
+    , md__delay_300
+    , md__delay_500
+    , md__delay_700
+    , md__delay_75
     , md__disabled__cursor_auto
     , md__disabled__cursor_default
     , md__disabled__cursor_move
@@ -4397,6 +4738,112 @@ module Svg.Tailwind exposing
     , md__disabled__opacity_25
     , md__disabled__opacity_50
     , md__disabled__opacity_75
+    , md__divide_black
+    , md__divide_blue_100
+    , md__divide_blue_200
+    , md__divide_blue_300
+    , md__divide_blue_400
+    , md__divide_blue_500
+    , md__divide_blue_600
+    , md__divide_blue_700
+    , md__divide_blue_800
+    , md__divide_blue_900
+    , md__divide_current
+    , md__divide_gray_100
+    , md__divide_gray_200
+    , md__divide_gray_300
+    , md__divide_gray_400
+    , md__divide_gray_500
+    , md__divide_gray_600
+    , md__divide_gray_700
+    , md__divide_gray_800
+    , md__divide_gray_900
+    , md__divide_green_100
+    , md__divide_green_200
+    , md__divide_green_300
+    , md__divide_green_400
+    , md__divide_green_500
+    , md__divide_green_600
+    , md__divide_green_700
+    , md__divide_green_800
+    , md__divide_green_900
+    , md__divide_indigo_100
+    , md__divide_indigo_200
+    , md__divide_indigo_300
+    , md__divide_indigo_400
+    , md__divide_indigo_500
+    , md__divide_indigo_600
+    , md__divide_indigo_700
+    , md__divide_indigo_800
+    , md__divide_indigo_900
+    , md__divide_orange_100
+    , md__divide_orange_200
+    , md__divide_orange_300
+    , md__divide_orange_400
+    , md__divide_orange_500
+    , md__divide_orange_600
+    , md__divide_orange_700
+    , md__divide_orange_800
+    , md__divide_orange_900
+    , md__divide_pink_100
+    , md__divide_pink_200
+    , md__divide_pink_300
+    , md__divide_pink_400
+    , md__divide_pink_500
+    , md__divide_pink_600
+    , md__divide_pink_700
+    , md__divide_pink_800
+    , md__divide_pink_900
+    , md__divide_purple_100
+    , md__divide_purple_200
+    , md__divide_purple_300
+    , md__divide_purple_400
+    , md__divide_purple_500
+    , md__divide_purple_600
+    , md__divide_purple_700
+    , md__divide_purple_800
+    , md__divide_purple_900
+    , md__divide_red_100
+    , md__divide_red_200
+    , md__divide_red_300
+    , md__divide_red_400
+    , md__divide_red_500
+    , md__divide_red_600
+    , md__divide_red_700
+    , md__divide_red_800
+    , md__divide_red_900
+    , md__divide_teal_100
+    , md__divide_teal_200
+    , md__divide_teal_300
+    , md__divide_teal_400
+    , md__divide_teal_500
+    , md__divide_teal_600
+    , md__divide_teal_700
+    , md__divide_teal_800
+    , md__divide_teal_900
+    , md__divide_transparent
+    , md__divide_white
+    , md__divide_x
+    , md__divide_x_0
+    , md__divide_x_2
+    , md__divide_x_4
+    , md__divide_x_8
+    , md__divide_x_reverse
+    , md__divide_y
+    , md__divide_y_0
+    , md__divide_y_2
+    , md__divide_y_4
+    , md__divide_y_8
+    , md__divide_y_reverse
+    , md__divide_yellow_100
+    , md__divide_yellow_200
+    , md__divide_yellow_300
+    , md__divide_yellow_400
+    , md__divide_yellow_500
+    , md__divide_yellow_600
+    , md__divide_yellow_700
+    , md__divide_yellow_800
+    , md__divide_yellow_900
     , md__duration_100
     , md__duration_1000
     , md__duration_150
@@ -4430,6 +4877,7 @@ module Svg.Tailwind exposing
     , md__float_left
     , md__float_none
     , md__float_right
+    , md__flow_root
     , md__focus__bg_black
     , md__focus__bg_blue_100
     , md__focus__bg_blue_200
@@ -4440,6 +4888,7 @@ module Svg.Tailwind exposing
     , md__focus__bg_blue_700
     , md__focus__bg_blue_800
     , md__focus__bg_blue_900
+    , md__focus__bg_current
     , md__focus__bg_gray_100
     , md__focus__bg_gray_200
     , md__focus__bg_gray_300
@@ -4533,6 +4982,7 @@ module Svg.Tailwind exposing
     , md__focus__border_blue_700
     , md__focus__border_blue_800
     , md__focus__border_blue_900
+    , md__focus__border_current
     , md__focus__border_gray_100
     , md__focus__border_gray_200
     , md__focus__border_gray_300
@@ -4693,6 +5143,7 @@ module Svg.Tailwind exposing
     , md__focus__placeholder_blue_700__focus
     , md__focus__placeholder_blue_800__focus
     , md__focus__placeholder_blue_900__focus
+    , md__focus__placeholder_current__focus
     , md__focus__placeholder_gray_100__focus
     , md__focus__placeholder_gray_200__focus
     , md__focus__placeholder_gray_300__focus
@@ -4839,6 +5290,7 @@ module Svg.Tailwind exposing
     , md__focus__text_blue_700
     , md__focus__text_blue_800
     , md__focus__text_blue_900
+    , md__focus__text_current
     , md__focus__text_gray_100
     , md__focus__text_gray_200
     , md__focus__text_gray_300
@@ -5054,6 +5506,7 @@ module Svg.Tailwind exposing
     , md__hover__bg_blue_700
     , md__hover__bg_blue_800
     , md__hover__bg_blue_900
+    , md__hover__bg_current
     , md__hover__bg_gray_100
     , md__hover__bg_gray_200
     , md__hover__bg_gray_300
@@ -5147,6 +5600,7 @@ module Svg.Tailwind exposing
     , md__hover__border_blue_700
     , md__hover__border_blue_800
     , md__hover__border_blue_900
+    , md__hover__border_current
     , md__hover__border_gray_100
     , md__hover__border_gray_200
     , md__hover__border_gray_300
@@ -5357,6 +5811,7 @@ module Svg.Tailwind exposing
     , md__hover__text_blue_700
     , md__hover__text_blue_800
     , md__hover__text_blue_900
+    , md__hover__text_current
     , md__hover__text_gray_100
     , md__hover__text_gray_200
     , md__hover__text_gray_300
@@ -5486,6 +5941,7 @@ module Svg.Tailwind exposing
     , md__inline
     , md__inline_block
     , md__inline_flex
+    , md__inline_grid
     , md__inset_0
     , md__inset_auto
     , md__inset_x_0
@@ -5826,6 +6282,42 @@ module Svg.Tailwind exposing
     , md__neg_skew_y_12
     , md__neg_skew_y_3
     , md__neg_skew_y_6
+    , md__neg_space_x_1
+    , md__neg_space_x_10
+    , md__neg_space_x_12
+    , md__neg_space_x_16
+    , md__neg_space_x_2
+    , md__neg_space_x_20
+    , md__neg_space_x_24
+    , md__neg_space_x_3
+    , md__neg_space_x_32
+    , md__neg_space_x_4
+    , md__neg_space_x_40
+    , md__neg_space_x_48
+    , md__neg_space_x_5
+    , md__neg_space_x_56
+    , md__neg_space_x_6
+    , md__neg_space_x_64
+    , md__neg_space_x_8
+    , md__neg_space_x_px
+    , md__neg_space_y_1
+    , md__neg_space_y_10
+    , md__neg_space_y_12
+    , md__neg_space_y_16
+    , md__neg_space_y_2
+    , md__neg_space_y_20
+    , md__neg_space_y_24
+    , md__neg_space_y_3
+    , md__neg_space_y_32
+    , md__neg_space_y_4
+    , md__neg_space_y_40
+    , md__neg_space_y_48
+    , md__neg_space_y_5
+    , md__neg_space_y_56
+    , md__neg_space_y_6
+    , md__neg_space_y_64
+    , md__neg_space_y_8
+    , md__neg_space_y_px
     , md__neg_translate_x_1
     , md__neg_translate_x_10
     , md__neg_translate_x_12
@@ -5993,6 +6485,7 @@ module Svg.Tailwind exposing
     , md__placeholder_blue_700
     , md__placeholder_blue_800
     , md__placeholder_blue_900
+    , md__placeholder_current
     , md__placeholder_gray_100
     , md__placeholder_gray_200
     , md__placeholder_gray_300
@@ -6320,6 +6813,46 @@ module Svg.Tailwind exposing
     , md__skew_y_12
     , md__skew_y_3
     , md__skew_y_6
+    , md__space_x_0
+    , md__space_x_1
+    , md__space_x_10
+    , md__space_x_12
+    , md__space_x_16
+    , md__space_x_2
+    , md__space_x_20
+    , md__space_x_24
+    , md__space_x_3
+    , md__space_x_32
+    , md__space_x_4
+    , md__space_x_40
+    , md__space_x_48
+    , md__space_x_5
+    , md__space_x_56
+    , md__space_x_6
+    , md__space_x_64
+    , md__space_x_8
+    , md__space_x_px
+    , md__space_x_reverse
+    , md__space_y_0
+    , md__space_y_1
+    , md__space_y_10
+    , md__space_y_12
+    , md__space_y_16
+    , md__space_y_2
+    , md__space_y_20
+    , md__space_y_24
+    , md__space_y_3
+    , md__space_y_32
+    , md__space_y_4
+    , md__space_y_40
+    , md__space_y_48
+    , md__space_y_5
+    , md__space_y_56
+    , md__space_y_6
+    , md__space_y_64
+    , md__space_y_8
+    , md__space_y_px
+    , md__space_y_reverse
     , md__sr_only
     , md__static
     , md__sticky
@@ -6356,6 +6889,7 @@ module Svg.Tailwind exposing
     , md__text_blue_800
     , md__text_blue_900
     , md__text_center
+    , md__text_current
     , md__text_gray_100
     , md__text_gray_200
     , md__text_gray_300
@@ -6809,6 +7343,42 @@ module Svg.Tailwind exposing
     , neg_skew_y_12
     , neg_skew_y_3
     , neg_skew_y_6
+    , neg_space_x_1
+    , neg_space_x_10
+    , neg_space_x_12
+    , neg_space_x_16
+    , neg_space_x_2
+    , neg_space_x_20
+    , neg_space_x_24
+    , neg_space_x_3
+    , neg_space_x_32
+    , neg_space_x_4
+    , neg_space_x_40
+    , neg_space_x_48
+    , neg_space_x_5
+    , neg_space_x_56
+    , neg_space_x_6
+    , neg_space_x_64
+    , neg_space_x_8
+    , neg_space_x_px
+    , neg_space_y_1
+    , neg_space_y_10
+    , neg_space_y_12
+    , neg_space_y_16
+    , neg_space_y_2
+    , neg_space_y_20
+    , neg_space_y_24
+    , neg_space_y_3
+    , neg_space_y_32
+    , neg_space_y_4
+    , neg_space_y_40
+    , neg_space_y_48
+    , neg_space_y_5
+    , neg_space_y_56
+    , neg_space_y_6
+    , neg_space_y_64
+    , neg_space_y_8
+    , neg_space_y_px
     , neg_translate_x_1
     , neg_translate_x_10
     , neg_translate_x_12
@@ -6976,6 +7546,7 @@ module Svg.Tailwind exposing
     , placeholder_blue_700
     , placeholder_blue_800
     , placeholder_blue_900
+    , placeholder_current
     , placeholder_gray_100
     , placeholder_gray_200
     , placeholder_gray_300
@@ -7327,6 +7898,7 @@ module Svg.Tailwind exposing
     , sm__bg_center
     , sm__bg_contain
     , sm__bg_cover
+    , sm__bg_current
     , sm__bg_fixed
     , sm__bg_gray_100
     , sm__bg_gray_200
@@ -7448,6 +8020,7 @@ module Svg.Tailwind exposing
     , sm__border_blue_800
     , sm__border_blue_900
     , sm__border_collapse
+    , sm__border_current
     , sm__border_dashed
     , sm__border_dotted
     , sm__border_double
@@ -7562,6 +8135,7 @@ module Svg.Tailwind exposing
     , sm__capitalize
     , sm__clear_both
     , sm__clear_left
+    , sm__clear_none
     , sm__clear_right
     , sm__clearfix__after
     , sm__col_auto
@@ -7636,6 +8210,14 @@ module Svg.Tailwind exposing
     , sm__cursor_pointer
     , sm__cursor_text
     , sm__cursor_wait
+    , sm__delay_100
+    , sm__delay_1000
+    , sm__delay_150
+    , sm__delay_200
+    , sm__delay_300
+    , sm__delay_500
+    , sm__delay_700
+    , sm__delay_75
     , sm__disabled__cursor_auto
     , sm__disabled__cursor_default
     , sm__disabled__cursor_move
@@ -7648,6 +8230,112 @@ module Svg.Tailwind exposing
     , sm__disabled__opacity_25
     , sm__disabled__opacity_50
     , sm__disabled__opacity_75
+    , sm__divide_black
+    , sm__divide_blue_100
+    , sm__divide_blue_200
+    , sm__divide_blue_300
+    , sm__divide_blue_400
+    , sm__divide_blue_500
+    , sm__divide_blue_600
+    , sm__divide_blue_700
+    , sm__divide_blue_800
+    , sm__divide_blue_900
+    , sm__divide_current
+    , sm__divide_gray_100
+    , sm__divide_gray_200
+    , sm__divide_gray_300
+    , sm__divide_gray_400
+    , sm__divide_gray_500
+    , sm__divide_gray_600
+    , sm__divide_gray_700
+    , sm__divide_gray_800
+    , sm__divide_gray_900
+    , sm__divide_green_100
+    , sm__divide_green_200
+    , sm__divide_green_300
+    , sm__divide_green_400
+    , sm__divide_green_500
+    , sm__divide_green_600
+    , sm__divide_green_700
+    , sm__divide_green_800
+    , sm__divide_green_900
+    , sm__divide_indigo_100
+    , sm__divide_indigo_200
+    , sm__divide_indigo_300
+    , sm__divide_indigo_400
+    , sm__divide_indigo_500
+    , sm__divide_indigo_600
+    , sm__divide_indigo_700
+    , sm__divide_indigo_800
+    , sm__divide_indigo_900
+    , sm__divide_orange_100
+    , sm__divide_orange_200
+    , sm__divide_orange_300
+    , sm__divide_orange_400
+    , sm__divide_orange_500
+    , sm__divide_orange_600
+    , sm__divide_orange_700
+    , sm__divide_orange_800
+    , sm__divide_orange_900
+    , sm__divide_pink_100
+    , sm__divide_pink_200
+    , sm__divide_pink_300
+    , sm__divide_pink_400
+    , sm__divide_pink_500
+    , sm__divide_pink_600
+    , sm__divide_pink_700
+    , sm__divide_pink_800
+    , sm__divide_pink_900
+    , sm__divide_purple_100
+    , sm__divide_purple_200
+    , sm__divide_purple_300
+    , sm__divide_purple_400
+    , sm__divide_purple_500
+    , sm__divide_purple_600
+    , sm__divide_purple_700
+    , sm__divide_purple_800
+    , sm__divide_purple_900
+    , sm__divide_red_100
+    , sm__divide_red_200
+    , sm__divide_red_300
+    , sm__divide_red_400
+    , sm__divide_red_500
+    , sm__divide_red_600
+    , sm__divide_red_700
+    , sm__divide_red_800
+    , sm__divide_red_900
+    , sm__divide_teal_100
+    , sm__divide_teal_200
+    , sm__divide_teal_300
+    , sm__divide_teal_400
+    , sm__divide_teal_500
+    , sm__divide_teal_600
+    , sm__divide_teal_700
+    , sm__divide_teal_800
+    , sm__divide_teal_900
+    , sm__divide_transparent
+    , sm__divide_white
+    , sm__divide_x
+    , sm__divide_x_0
+    , sm__divide_x_2
+    , sm__divide_x_4
+    , sm__divide_x_8
+    , sm__divide_x_reverse
+    , sm__divide_y
+    , sm__divide_y_0
+    , sm__divide_y_2
+    , sm__divide_y_4
+    , sm__divide_y_8
+    , sm__divide_y_reverse
+    , sm__divide_yellow_100
+    , sm__divide_yellow_200
+    , sm__divide_yellow_300
+    , sm__divide_yellow_400
+    , sm__divide_yellow_500
+    , sm__divide_yellow_600
+    , sm__divide_yellow_700
+    , sm__divide_yellow_800
+    , sm__divide_yellow_900
     , sm__duration_100
     , sm__duration_1000
     , sm__duration_150
@@ -7681,6 +8369,7 @@ module Svg.Tailwind exposing
     , sm__float_left
     , sm__float_none
     , sm__float_right
+    , sm__flow_root
     , sm__focus__bg_black
     , sm__focus__bg_blue_100
     , sm__focus__bg_blue_200
@@ -7691,6 +8380,7 @@ module Svg.Tailwind exposing
     , sm__focus__bg_blue_700
     , sm__focus__bg_blue_800
     , sm__focus__bg_blue_900
+    , sm__focus__bg_current
     , sm__focus__bg_gray_100
     , sm__focus__bg_gray_200
     , sm__focus__bg_gray_300
@@ -7784,6 +8474,7 @@ module Svg.Tailwind exposing
     , sm__focus__border_blue_700
     , sm__focus__border_blue_800
     , sm__focus__border_blue_900
+    , sm__focus__border_current
     , sm__focus__border_gray_100
     , sm__focus__border_gray_200
     , sm__focus__border_gray_300
@@ -7944,6 +8635,7 @@ module Svg.Tailwind exposing
     , sm__focus__placeholder_blue_700__focus
     , sm__focus__placeholder_blue_800__focus
     , sm__focus__placeholder_blue_900__focus
+    , sm__focus__placeholder_current__focus
     , sm__focus__placeholder_gray_100__focus
     , sm__focus__placeholder_gray_200__focus
     , sm__focus__placeholder_gray_300__focus
@@ -8090,6 +8782,7 @@ module Svg.Tailwind exposing
     , sm__focus__text_blue_700
     , sm__focus__text_blue_800
     , sm__focus__text_blue_900
+    , sm__focus__text_current
     , sm__focus__text_gray_100
     , sm__focus__text_gray_200
     , sm__focus__text_gray_300
@@ -8305,6 +8998,7 @@ module Svg.Tailwind exposing
     , sm__hover__bg_blue_700
     , sm__hover__bg_blue_800
     , sm__hover__bg_blue_900
+    , sm__hover__bg_current
     , sm__hover__bg_gray_100
     , sm__hover__bg_gray_200
     , sm__hover__bg_gray_300
@@ -8398,6 +9092,7 @@ module Svg.Tailwind exposing
     , sm__hover__border_blue_700
     , sm__hover__border_blue_800
     , sm__hover__border_blue_900
+    , sm__hover__border_current
     , sm__hover__border_gray_100
     , sm__hover__border_gray_200
     , sm__hover__border_gray_300
@@ -8608,6 +9303,7 @@ module Svg.Tailwind exposing
     , sm__hover__text_blue_700
     , sm__hover__text_blue_800
     , sm__hover__text_blue_900
+    , sm__hover__text_current
     , sm__hover__text_gray_100
     , sm__hover__text_gray_200
     , sm__hover__text_gray_300
@@ -8737,6 +9433,7 @@ module Svg.Tailwind exposing
     , sm__inline
     , sm__inline_block
     , sm__inline_flex
+    , sm__inline_grid
     , sm__inset_0
     , sm__inset_auto
     , sm__inset_x_0
@@ -9077,6 +9774,42 @@ module Svg.Tailwind exposing
     , sm__neg_skew_y_12
     , sm__neg_skew_y_3
     , sm__neg_skew_y_6
+    , sm__neg_space_x_1
+    , sm__neg_space_x_10
+    , sm__neg_space_x_12
+    , sm__neg_space_x_16
+    , sm__neg_space_x_2
+    , sm__neg_space_x_20
+    , sm__neg_space_x_24
+    , sm__neg_space_x_3
+    , sm__neg_space_x_32
+    , sm__neg_space_x_4
+    , sm__neg_space_x_40
+    , sm__neg_space_x_48
+    , sm__neg_space_x_5
+    , sm__neg_space_x_56
+    , sm__neg_space_x_6
+    , sm__neg_space_x_64
+    , sm__neg_space_x_8
+    , sm__neg_space_x_px
+    , sm__neg_space_y_1
+    , sm__neg_space_y_10
+    , sm__neg_space_y_12
+    , sm__neg_space_y_16
+    , sm__neg_space_y_2
+    , sm__neg_space_y_20
+    , sm__neg_space_y_24
+    , sm__neg_space_y_3
+    , sm__neg_space_y_32
+    , sm__neg_space_y_4
+    , sm__neg_space_y_40
+    , sm__neg_space_y_48
+    , sm__neg_space_y_5
+    , sm__neg_space_y_56
+    , sm__neg_space_y_6
+    , sm__neg_space_y_64
+    , sm__neg_space_y_8
+    , sm__neg_space_y_px
     , sm__neg_translate_x_1
     , sm__neg_translate_x_10
     , sm__neg_translate_x_12
@@ -9244,6 +9977,7 @@ module Svg.Tailwind exposing
     , sm__placeholder_blue_700
     , sm__placeholder_blue_800
     , sm__placeholder_blue_900
+    , sm__placeholder_current
     , sm__placeholder_gray_100
     , sm__placeholder_gray_200
     , sm__placeholder_gray_300
@@ -9571,6 +10305,46 @@ module Svg.Tailwind exposing
     , sm__skew_y_12
     , sm__skew_y_3
     , sm__skew_y_6
+    , sm__space_x_0
+    , sm__space_x_1
+    , sm__space_x_10
+    , sm__space_x_12
+    , sm__space_x_16
+    , sm__space_x_2
+    , sm__space_x_20
+    , sm__space_x_24
+    , sm__space_x_3
+    , sm__space_x_32
+    , sm__space_x_4
+    , sm__space_x_40
+    , sm__space_x_48
+    , sm__space_x_5
+    , sm__space_x_56
+    , sm__space_x_6
+    , sm__space_x_64
+    , sm__space_x_8
+    , sm__space_x_px
+    , sm__space_x_reverse
+    , sm__space_y_0
+    , sm__space_y_1
+    , sm__space_y_10
+    , sm__space_y_12
+    , sm__space_y_16
+    , sm__space_y_2
+    , sm__space_y_20
+    , sm__space_y_24
+    , sm__space_y_3
+    , sm__space_y_32
+    , sm__space_y_4
+    , sm__space_y_40
+    , sm__space_y_48
+    , sm__space_y_5
+    , sm__space_y_56
+    , sm__space_y_6
+    , sm__space_y_64
+    , sm__space_y_8
+    , sm__space_y_px
+    , sm__space_y_reverse
     , sm__sr_only
     , sm__static
     , sm__sticky
@@ -9607,6 +10381,7 @@ module Svg.Tailwind exposing
     , sm__text_blue_800
     , sm__text_blue_900
     , sm__text_center
+    , sm__text_current
     , sm__text_gray_100
     , sm__text_gray_200
     , sm__text_gray_300
@@ -9820,6 +10595,46 @@ module Svg.Tailwind exposing
     , sm__z_40
     , sm__z_50
     , sm__z_auto
+    , space_x_0
+    , space_x_1
+    , space_x_10
+    , space_x_12
+    , space_x_16
+    , space_x_2
+    , space_x_20
+    , space_x_24
+    , space_x_3
+    , space_x_32
+    , space_x_4
+    , space_x_40
+    , space_x_48
+    , space_x_5
+    , space_x_56
+    , space_x_6
+    , space_x_64
+    , space_x_8
+    , space_x_px
+    , space_x_reverse
+    , space_y_0
+    , space_y_1
+    , space_y_10
+    , space_y_12
+    , space_y_16
+    , space_y_2
+    , space_y_20
+    , space_y_24
+    , space_y_3
+    , space_y_32
+    , space_y_4
+    , space_y_40
+    , space_y_48
+    , space_y_5
+    , space_y_56
+    , space_y_6
+    , space_y_64
+    , space_y_8
+    , space_y_px
+    , space_y_reverse
     , sr_only
     , static
     , sticky
@@ -9856,6 +10671,7 @@ module Svg.Tailwind exposing
     , text_blue_800
     , text_blue_900
     , text_center
+    , text_current
     , text_gray_100
     , text_gray_200
     , text_gray_300
@@ -10086,6 +10902,7 @@ module Svg.Tailwind exposing
     , xl__bg_center
     , xl__bg_contain
     , xl__bg_cover
+    , xl__bg_current
     , xl__bg_fixed
     , xl__bg_gray_100
     , xl__bg_gray_200
@@ -10207,6 +11024,7 @@ module Svg.Tailwind exposing
     , xl__border_blue_800
     , xl__border_blue_900
     , xl__border_collapse
+    , xl__border_current
     , xl__border_dashed
     , xl__border_dotted
     , xl__border_double
@@ -10321,6 +11139,7 @@ module Svg.Tailwind exposing
     , xl__capitalize
     , xl__clear_both
     , xl__clear_left
+    , xl__clear_none
     , xl__clear_right
     , xl__clearfix__after
     , xl__col_auto
@@ -10395,6 +11214,14 @@ module Svg.Tailwind exposing
     , xl__cursor_pointer
     , xl__cursor_text
     , xl__cursor_wait
+    , xl__delay_100
+    , xl__delay_1000
+    , xl__delay_150
+    , xl__delay_200
+    , xl__delay_300
+    , xl__delay_500
+    , xl__delay_700
+    , xl__delay_75
     , xl__disabled__cursor_auto
     , xl__disabled__cursor_default
     , xl__disabled__cursor_move
@@ -10407,6 +11234,112 @@ module Svg.Tailwind exposing
     , xl__disabled__opacity_25
     , xl__disabled__opacity_50
     , xl__disabled__opacity_75
+    , xl__divide_black
+    , xl__divide_blue_100
+    , xl__divide_blue_200
+    , xl__divide_blue_300
+    , xl__divide_blue_400
+    , xl__divide_blue_500
+    , xl__divide_blue_600
+    , xl__divide_blue_700
+    , xl__divide_blue_800
+    , xl__divide_blue_900
+    , xl__divide_current
+    , xl__divide_gray_100
+    , xl__divide_gray_200
+    , xl__divide_gray_300
+    , xl__divide_gray_400
+    , xl__divide_gray_500
+    , xl__divide_gray_600
+    , xl__divide_gray_700
+    , xl__divide_gray_800
+    , xl__divide_gray_900
+    , xl__divide_green_100
+    , xl__divide_green_200
+    , xl__divide_green_300
+    , xl__divide_green_400
+    , xl__divide_green_500
+    , xl__divide_green_600
+    , xl__divide_green_700
+    , xl__divide_green_800
+    , xl__divide_green_900
+    , xl__divide_indigo_100
+    , xl__divide_indigo_200
+    , xl__divide_indigo_300
+    , xl__divide_indigo_400
+    , xl__divide_indigo_500
+    , xl__divide_indigo_600
+    , xl__divide_indigo_700
+    , xl__divide_indigo_800
+    , xl__divide_indigo_900
+    , xl__divide_orange_100
+    , xl__divide_orange_200
+    , xl__divide_orange_300
+    , xl__divide_orange_400
+    , xl__divide_orange_500
+    , xl__divide_orange_600
+    , xl__divide_orange_700
+    , xl__divide_orange_800
+    , xl__divide_orange_900
+    , xl__divide_pink_100
+    , xl__divide_pink_200
+    , xl__divide_pink_300
+    , xl__divide_pink_400
+    , xl__divide_pink_500
+    , xl__divide_pink_600
+    , xl__divide_pink_700
+    , xl__divide_pink_800
+    , xl__divide_pink_900
+    , xl__divide_purple_100
+    , xl__divide_purple_200
+    , xl__divide_purple_300
+    , xl__divide_purple_400
+    , xl__divide_purple_500
+    , xl__divide_purple_600
+    , xl__divide_purple_700
+    , xl__divide_purple_800
+    , xl__divide_purple_900
+    , xl__divide_red_100
+    , xl__divide_red_200
+    , xl__divide_red_300
+    , xl__divide_red_400
+    , xl__divide_red_500
+    , xl__divide_red_600
+    , xl__divide_red_700
+    , xl__divide_red_800
+    , xl__divide_red_900
+    , xl__divide_teal_100
+    , xl__divide_teal_200
+    , xl__divide_teal_300
+    , xl__divide_teal_400
+    , xl__divide_teal_500
+    , xl__divide_teal_600
+    , xl__divide_teal_700
+    , xl__divide_teal_800
+    , xl__divide_teal_900
+    , xl__divide_transparent
+    , xl__divide_white
+    , xl__divide_x
+    , xl__divide_x_0
+    , xl__divide_x_2
+    , xl__divide_x_4
+    , xl__divide_x_8
+    , xl__divide_x_reverse
+    , xl__divide_y
+    , xl__divide_y_0
+    , xl__divide_y_2
+    , xl__divide_y_4
+    , xl__divide_y_8
+    , xl__divide_y_reverse
+    , xl__divide_yellow_100
+    , xl__divide_yellow_200
+    , xl__divide_yellow_300
+    , xl__divide_yellow_400
+    , xl__divide_yellow_500
+    , xl__divide_yellow_600
+    , xl__divide_yellow_700
+    , xl__divide_yellow_800
+    , xl__divide_yellow_900
     , xl__duration_100
     , xl__duration_1000
     , xl__duration_150
@@ -10440,6 +11373,7 @@ module Svg.Tailwind exposing
     , xl__float_left
     , xl__float_none
     , xl__float_right
+    , xl__flow_root
     , xl__focus__bg_black
     , xl__focus__bg_blue_100
     , xl__focus__bg_blue_200
@@ -10450,6 +11384,7 @@ module Svg.Tailwind exposing
     , xl__focus__bg_blue_700
     , xl__focus__bg_blue_800
     , xl__focus__bg_blue_900
+    , xl__focus__bg_current
     , xl__focus__bg_gray_100
     , xl__focus__bg_gray_200
     , xl__focus__bg_gray_300
@@ -10543,6 +11478,7 @@ module Svg.Tailwind exposing
     , xl__focus__border_blue_700
     , xl__focus__border_blue_800
     , xl__focus__border_blue_900
+    , xl__focus__border_current
     , xl__focus__border_gray_100
     , xl__focus__border_gray_200
     , xl__focus__border_gray_300
@@ -10703,6 +11639,7 @@ module Svg.Tailwind exposing
     , xl__focus__placeholder_blue_700__focus
     , xl__focus__placeholder_blue_800__focus
     , xl__focus__placeholder_blue_900__focus
+    , xl__focus__placeholder_current__focus
     , xl__focus__placeholder_gray_100__focus
     , xl__focus__placeholder_gray_200__focus
     , xl__focus__placeholder_gray_300__focus
@@ -10849,6 +11786,7 @@ module Svg.Tailwind exposing
     , xl__focus__text_blue_700
     , xl__focus__text_blue_800
     , xl__focus__text_blue_900
+    , xl__focus__text_current
     , xl__focus__text_gray_100
     , xl__focus__text_gray_200
     , xl__focus__text_gray_300
@@ -11064,6 +12002,7 @@ module Svg.Tailwind exposing
     , xl__hover__bg_blue_700
     , xl__hover__bg_blue_800
     , xl__hover__bg_blue_900
+    , xl__hover__bg_current
     , xl__hover__bg_gray_100
     , xl__hover__bg_gray_200
     , xl__hover__bg_gray_300
@@ -11157,6 +12096,7 @@ module Svg.Tailwind exposing
     , xl__hover__border_blue_700
     , xl__hover__border_blue_800
     , xl__hover__border_blue_900
+    , xl__hover__border_current
     , xl__hover__border_gray_100
     , xl__hover__border_gray_200
     , xl__hover__border_gray_300
@@ -11367,6 +12307,7 @@ module Svg.Tailwind exposing
     , xl__hover__text_blue_700
     , xl__hover__text_blue_800
     , xl__hover__text_blue_900
+    , xl__hover__text_current
     , xl__hover__text_gray_100
     , xl__hover__text_gray_200
     , xl__hover__text_gray_300
@@ -11496,6 +12437,7 @@ module Svg.Tailwind exposing
     , xl__inline
     , xl__inline_block
     , xl__inline_flex
+    , xl__inline_grid
     , xl__inset_0
     , xl__inset_auto
     , xl__inset_x_0
@@ -11836,6 +12778,42 @@ module Svg.Tailwind exposing
     , xl__neg_skew_y_12
     , xl__neg_skew_y_3
     , xl__neg_skew_y_6
+    , xl__neg_space_x_1
+    , xl__neg_space_x_10
+    , xl__neg_space_x_12
+    , xl__neg_space_x_16
+    , xl__neg_space_x_2
+    , xl__neg_space_x_20
+    , xl__neg_space_x_24
+    , xl__neg_space_x_3
+    , xl__neg_space_x_32
+    , xl__neg_space_x_4
+    , xl__neg_space_x_40
+    , xl__neg_space_x_48
+    , xl__neg_space_x_5
+    , xl__neg_space_x_56
+    , xl__neg_space_x_6
+    , xl__neg_space_x_64
+    , xl__neg_space_x_8
+    , xl__neg_space_x_px
+    , xl__neg_space_y_1
+    , xl__neg_space_y_10
+    , xl__neg_space_y_12
+    , xl__neg_space_y_16
+    , xl__neg_space_y_2
+    , xl__neg_space_y_20
+    , xl__neg_space_y_24
+    , xl__neg_space_y_3
+    , xl__neg_space_y_32
+    , xl__neg_space_y_4
+    , xl__neg_space_y_40
+    , xl__neg_space_y_48
+    , xl__neg_space_y_5
+    , xl__neg_space_y_56
+    , xl__neg_space_y_6
+    , xl__neg_space_y_64
+    , xl__neg_space_y_8
+    , xl__neg_space_y_px
     , xl__neg_translate_x_1
     , xl__neg_translate_x_10
     , xl__neg_translate_x_12
@@ -12003,6 +12981,7 @@ module Svg.Tailwind exposing
     , xl__placeholder_blue_700
     , xl__placeholder_blue_800
     , xl__placeholder_blue_900
+    , xl__placeholder_current
     , xl__placeholder_gray_100
     , xl__placeholder_gray_200
     , xl__placeholder_gray_300
@@ -12330,6 +13309,46 @@ module Svg.Tailwind exposing
     , xl__skew_y_12
     , xl__skew_y_3
     , xl__skew_y_6
+    , xl__space_x_0
+    , xl__space_x_1
+    , xl__space_x_10
+    , xl__space_x_12
+    , xl__space_x_16
+    , xl__space_x_2
+    , xl__space_x_20
+    , xl__space_x_24
+    , xl__space_x_3
+    , xl__space_x_32
+    , xl__space_x_4
+    , xl__space_x_40
+    , xl__space_x_48
+    , xl__space_x_5
+    , xl__space_x_56
+    , xl__space_x_6
+    , xl__space_x_64
+    , xl__space_x_8
+    , xl__space_x_px
+    , xl__space_x_reverse
+    , xl__space_y_0
+    , xl__space_y_1
+    , xl__space_y_10
+    , xl__space_y_12
+    , xl__space_y_16
+    , xl__space_y_2
+    , xl__space_y_20
+    , xl__space_y_24
+    , xl__space_y_3
+    , xl__space_y_32
+    , xl__space_y_4
+    , xl__space_y_40
+    , xl__space_y_48
+    , xl__space_y_5
+    , xl__space_y_56
+    , xl__space_y_6
+    , xl__space_y_64
+    , xl__space_y_8
+    , xl__space_y_px
+    , xl__space_y_reverse
     , xl__sr_only
     , xl__static
     , xl__sticky
@@ -12366,6 +13385,7 @@ module Svg.Tailwind exposing
     , xl__text_blue_800
     , xl__text_blue_900
     , xl__text_center
+    , xl__text_current
     , xl__text_gray_100
     , xl__text_gray_200
     , xl__text_gray_300
@@ -12602,6 +13622,916 @@ container =
     A.class "container"
 
 
+space_y_0 : Svg.Attribute msg
+space_y_0 =
+    A.class "space-y-0"
+
+
+space_x_0 : Svg.Attribute msg
+space_x_0 =
+    A.class "space-x-0"
+
+
+space_y_1 : Svg.Attribute msg
+space_y_1 =
+    A.class "space-y-1"
+
+
+space_x_1 : Svg.Attribute msg
+space_x_1 =
+    A.class "space-x-1"
+
+
+space_y_2 : Svg.Attribute msg
+space_y_2 =
+    A.class "space-y-2"
+
+
+space_x_2 : Svg.Attribute msg
+space_x_2 =
+    A.class "space-x-2"
+
+
+space_y_3 : Svg.Attribute msg
+space_y_3 =
+    A.class "space-y-3"
+
+
+space_x_3 : Svg.Attribute msg
+space_x_3 =
+    A.class "space-x-3"
+
+
+space_y_4 : Svg.Attribute msg
+space_y_4 =
+    A.class "space-y-4"
+
+
+space_x_4 : Svg.Attribute msg
+space_x_4 =
+    A.class "space-x-4"
+
+
+space_y_5 : Svg.Attribute msg
+space_y_5 =
+    A.class "space-y-5"
+
+
+space_x_5 : Svg.Attribute msg
+space_x_5 =
+    A.class "space-x-5"
+
+
+space_y_6 : Svg.Attribute msg
+space_y_6 =
+    A.class "space-y-6"
+
+
+space_x_6 : Svg.Attribute msg
+space_x_6 =
+    A.class "space-x-6"
+
+
+space_y_8 : Svg.Attribute msg
+space_y_8 =
+    A.class "space-y-8"
+
+
+space_x_8 : Svg.Attribute msg
+space_x_8 =
+    A.class "space-x-8"
+
+
+space_y_10 : Svg.Attribute msg
+space_y_10 =
+    A.class "space-y-10"
+
+
+space_x_10 : Svg.Attribute msg
+space_x_10 =
+    A.class "space-x-10"
+
+
+space_y_12 : Svg.Attribute msg
+space_y_12 =
+    A.class "space-y-12"
+
+
+space_x_12 : Svg.Attribute msg
+space_x_12 =
+    A.class "space-x-12"
+
+
+space_y_16 : Svg.Attribute msg
+space_y_16 =
+    A.class "space-y-16"
+
+
+space_x_16 : Svg.Attribute msg
+space_x_16 =
+    A.class "space-x-16"
+
+
+space_y_20 : Svg.Attribute msg
+space_y_20 =
+    A.class "space-y-20"
+
+
+space_x_20 : Svg.Attribute msg
+space_x_20 =
+    A.class "space-x-20"
+
+
+space_y_24 : Svg.Attribute msg
+space_y_24 =
+    A.class "space-y-24"
+
+
+space_x_24 : Svg.Attribute msg
+space_x_24 =
+    A.class "space-x-24"
+
+
+space_y_32 : Svg.Attribute msg
+space_y_32 =
+    A.class "space-y-32"
+
+
+space_x_32 : Svg.Attribute msg
+space_x_32 =
+    A.class "space-x-32"
+
+
+space_y_40 : Svg.Attribute msg
+space_y_40 =
+    A.class "space-y-40"
+
+
+space_x_40 : Svg.Attribute msg
+space_x_40 =
+    A.class "space-x-40"
+
+
+space_y_48 : Svg.Attribute msg
+space_y_48 =
+    A.class "space-y-48"
+
+
+space_x_48 : Svg.Attribute msg
+space_x_48 =
+    A.class "space-x-48"
+
+
+space_y_56 : Svg.Attribute msg
+space_y_56 =
+    A.class "space-y-56"
+
+
+space_x_56 : Svg.Attribute msg
+space_x_56 =
+    A.class "space-x-56"
+
+
+space_y_64 : Svg.Attribute msg
+space_y_64 =
+    A.class "space-y-64"
+
+
+space_x_64 : Svg.Attribute msg
+space_x_64 =
+    A.class "space-x-64"
+
+
+space_y_px : Svg.Attribute msg
+space_y_px =
+    A.class "space-y-px"
+
+
+space_x_px : Svg.Attribute msg
+space_x_px =
+    A.class "space-x-px"
+
+
+neg_space_y_1 : Svg.Attribute msg
+neg_space_y_1 =
+    A.class "-space-y-1"
+
+
+neg_space_x_1 : Svg.Attribute msg
+neg_space_x_1 =
+    A.class "-space-x-1"
+
+
+neg_space_y_2 : Svg.Attribute msg
+neg_space_y_2 =
+    A.class "-space-y-2"
+
+
+neg_space_x_2 : Svg.Attribute msg
+neg_space_x_2 =
+    A.class "-space-x-2"
+
+
+neg_space_y_3 : Svg.Attribute msg
+neg_space_y_3 =
+    A.class "-space-y-3"
+
+
+neg_space_x_3 : Svg.Attribute msg
+neg_space_x_3 =
+    A.class "-space-x-3"
+
+
+neg_space_y_4 : Svg.Attribute msg
+neg_space_y_4 =
+    A.class "-space-y-4"
+
+
+neg_space_x_4 : Svg.Attribute msg
+neg_space_x_4 =
+    A.class "-space-x-4"
+
+
+neg_space_y_5 : Svg.Attribute msg
+neg_space_y_5 =
+    A.class "-space-y-5"
+
+
+neg_space_x_5 : Svg.Attribute msg
+neg_space_x_5 =
+    A.class "-space-x-5"
+
+
+neg_space_y_6 : Svg.Attribute msg
+neg_space_y_6 =
+    A.class "-space-y-6"
+
+
+neg_space_x_6 : Svg.Attribute msg
+neg_space_x_6 =
+    A.class "-space-x-6"
+
+
+neg_space_y_8 : Svg.Attribute msg
+neg_space_y_8 =
+    A.class "-space-y-8"
+
+
+neg_space_x_8 : Svg.Attribute msg
+neg_space_x_8 =
+    A.class "-space-x-8"
+
+
+neg_space_y_10 : Svg.Attribute msg
+neg_space_y_10 =
+    A.class "-space-y-10"
+
+
+neg_space_x_10 : Svg.Attribute msg
+neg_space_x_10 =
+    A.class "-space-x-10"
+
+
+neg_space_y_12 : Svg.Attribute msg
+neg_space_y_12 =
+    A.class "-space-y-12"
+
+
+neg_space_x_12 : Svg.Attribute msg
+neg_space_x_12 =
+    A.class "-space-x-12"
+
+
+neg_space_y_16 : Svg.Attribute msg
+neg_space_y_16 =
+    A.class "-space-y-16"
+
+
+neg_space_x_16 : Svg.Attribute msg
+neg_space_x_16 =
+    A.class "-space-x-16"
+
+
+neg_space_y_20 : Svg.Attribute msg
+neg_space_y_20 =
+    A.class "-space-y-20"
+
+
+neg_space_x_20 : Svg.Attribute msg
+neg_space_x_20 =
+    A.class "-space-x-20"
+
+
+neg_space_y_24 : Svg.Attribute msg
+neg_space_y_24 =
+    A.class "-space-y-24"
+
+
+neg_space_x_24 : Svg.Attribute msg
+neg_space_x_24 =
+    A.class "-space-x-24"
+
+
+neg_space_y_32 : Svg.Attribute msg
+neg_space_y_32 =
+    A.class "-space-y-32"
+
+
+neg_space_x_32 : Svg.Attribute msg
+neg_space_x_32 =
+    A.class "-space-x-32"
+
+
+neg_space_y_40 : Svg.Attribute msg
+neg_space_y_40 =
+    A.class "-space-y-40"
+
+
+neg_space_x_40 : Svg.Attribute msg
+neg_space_x_40 =
+    A.class "-space-x-40"
+
+
+neg_space_y_48 : Svg.Attribute msg
+neg_space_y_48 =
+    A.class "-space-y-48"
+
+
+neg_space_x_48 : Svg.Attribute msg
+neg_space_x_48 =
+    A.class "-space-x-48"
+
+
+neg_space_y_56 : Svg.Attribute msg
+neg_space_y_56 =
+    A.class "-space-y-56"
+
+
+neg_space_x_56 : Svg.Attribute msg
+neg_space_x_56 =
+    A.class "-space-x-56"
+
+
+neg_space_y_64 : Svg.Attribute msg
+neg_space_y_64 =
+    A.class "-space-y-64"
+
+
+neg_space_x_64 : Svg.Attribute msg
+neg_space_x_64 =
+    A.class "-space-x-64"
+
+
+neg_space_y_px : Svg.Attribute msg
+neg_space_y_px =
+    A.class "-space-y-px"
+
+
+neg_space_x_px : Svg.Attribute msg
+neg_space_x_px =
+    A.class "-space-x-px"
+
+
+space_y_reverse : Svg.Attribute msg
+space_y_reverse =
+    A.class "space-y-reverse"
+
+
+space_x_reverse : Svg.Attribute msg
+space_x_reverse =
+    A.class "space-x-reverse"
+
+
+divide_y_0 : Svg.Attribute msg
+divide_y_0 =
+    A.class "divide-y-0"
+
+
+divide_x_0 : Svg.Attribute msg
+divide_x_0 =
+    A.class "divide-x-0"
+
+
+divide_y_2 : Svg.Attribute msg
+divide_y_2 =
+    A.class "divide-y-2"
+
+
+divide_x_2 : Svg.Attribute msg
+divide_x_2 =
+    A.class "divide-x-2"
+
+
+divide_y_4 : Svg.Attribute msg
+divide_y_4 =
+    A.class "divide-y-4"
+
+
+divide_x_4 : Svg.Attribute msg
+divide_x_4 =
+    A.class "divide-x-4"
+
+
+divide_y_8 : Svg.Attribute msg
+divide_y_8 =
+    A.class "divide-y-8"
+
+
+divide_x_8 : Svg.Attribute msg
+divide_x_8 =
+    A.class "divide-x-8"
+
+
+divide_y : Svg.Attribute msg
+divide_y =
+    A.class "divide-y"
+
+
+divide_x : Svg.Attribute msg
+divide_x =
+    A.class "divide-x"
+
+
+divide_y_reverse : Svg.Attribute msg
+divide_y_reverse =
+    A.class "divide-y-reverse"
+
+
+divide_x_reverse : Svg.Attribute msg
+divide_x_reverse =
+    A.class "divide-x-reverse"
+
+
+divide_transparent : Svg.Attribute msg
+divide_transparent =
+    A.class "divide-transparent"
+
+
+divide_current : Svg.Attribute msg
+divide_current =
+    A.class "divide-current"
+
+
+divide_black : Svg.Attribute msg
+divide_black =
+    A.class "divide-black"
+
+
+divide_white : Svg.Attribute msg
+divide_white =
+    A.class "divide-white"
+
+
+divide_gray_100 : Svg.Attribute msg
+divide_gray_100 =
+    A.class "divide-gray-100"
+
+
+divide_gray_200 : Svg.Attribute msg
+divide_gray_200 =
+    A.class "divide-gray-200"
+
+
+divide_gray_300 : Svg.Attribute msg
+divide_gray_300 =
+    A.class "divide-gray-300"
+
+
+divide_gray_400 : Svg.Attribute msg
+divide_gray_400 =
+    A.class "divide-gray-400"
+
+
+divide_gray_500 : Svg.Attribute msg
+divide_gray_500 =
+    A.class "divide-gray-500"
+
+
+divide_gray_600 : Svg.Attribute msg
+divide_gray_600 =
+    A.class "divide-gray-600"
+
+
+divide_gray_700 : Svg.Attribute msg
+divide_gray_700 =
+    A.class "divide-gray-700"
+
+
+divide_gray_800 : Svg.Attribute msg
+divide_gray_800 =
+    A.class "divide-gray-800"
+
+
+divide_gray_900 : Svg.Attribute msg
+divide_gray_900 =
+    A.class "divide-gray-900"
+
+
+divide_red_100 : Svg.Attribute msg
+divide_red_100 =
+    A.class "divide-red-100"
+
+
+divide_red_200 : Svg.Attribute msg
+divide_red_200 =
+    A.class "divide-red-200"
+
+
+divide_red_300 : Svg.Attribute msg
+divide_red_300 =
+    A.class "divide-red-300"
+
+
+divide_red_400 : Svg.Attribute msg
+divide_red_400 =
+    A.class "divide-red-400"
+
+
+divide_red_500 : Svg.Attribute msg
+divide_red_500 =
+    A.class "divide-red-500"
+
+
+divide_red_600 : Svg.Attribute msg
+divide_red_600 =
+    A.class "divide-red-600"
+
+
+divide_red_700 : Svg.Attribute msg
+divide_red_700 =
+    A.class "divide-red-700"
+
+
+divide_red_800 : Svg.Attribute msg
+divide_red_800 =
+    A.class "divide-red-800"
+
+
+divide_red_900 : Svg.Attribute msg
+divide_red_900 =
+    A.class "divide-red-900"
+
+
+divide_orange_100 : Svg.Attribute msg
+divide_orange_100 =
+    A.class "divide-orange-100"
+
+
+divide_orange_200 : Svg.Attribute msg
+divide_orange_200 =
+    A.class "divide-orange-200"
+
+
+divide_orange_300 : Svg.Attribute msg
+divide_orange_300 =
+    A.class "divide-orange-300"
+
+
+divide_orange_400 : Svg.Attribute msg
+divide_orange_400 =
+    A.class "divide-orange-400"
+
+
+divide_orange_500 : Svg.Attribute msg
+divide_orange_500 =
+    A.class "divide-orange-500"
+
+
+divide_orange_600 : Svg.Attribute msg
+divide_orange_600 =
+    A.class "divide-orange-600"
+
+
+divide_orange_700 : Svg.Attribute msg
+divide_orange_700 =
+    A.class "divide-orange-700"
+
+
+divide_orange_800 : Svg.Attribute msg
+divide_orange_800 =
+    A.class "divide-orange-800"
+
+
+divide_orange_900 : Svg.Attribute msg
+divide_orange_900 =
+    A.class "divide-orange-900"
+
+
+divide_yellow_100 : Svg.Attribute msg
+divide_yellow_100 =
+    A.class "divide-yellow-100"
+
+
+divide_yellow_200 : Svg.Attribute msg
+divide_yellow_200 =
+    A.class "divide-yellow-200"
+
+
+divide_yellow_300 : Svg.Attribute msg
+divide_yellow_300 =
+    A.class "divide-yellow-300"
+
+
+divide_yellow_400 : Svg.Attribute msg
+divide_yellow_400 =
+    A.class "divide-yellow-400"
+
+
+divide_yellow_500 : Svg.Attribute msg
+divide_yellow_500 =
+    A.class "divide-yellow-500"
+
+
+divide_yellow_600 : Svg.Attribute msg
+divide_yellow_600 =
+    A.class "divide-yellow-600"
+
+
+divide_yellow_700 : Svg.Attribute msg
+divide_yellow_700 =
+    A.class "divide-yellow-700"
+
+
+divide_yellow_800 : Svg.Attribute msg
+divide_yellow_800 =
+    A.class "divide-yellow-800"
+
+
+divide_yellow_900 : Svg.Attribute msg
+divide_yellow_900 =
+    A.class "divide-yellow-900"
+
+
+divide_green_100 : Svg.Attribute msg
+divide_green_100 =
+    A.class "divide-green-100"
+
+
+divide_green_200 : Svg.Attribute msg
+divide_green_200 =
+    A.class "divide-green-200"
+
+
+divide_green_300 : Svg.Attribute msg
+divide_green_300 =
+    A.class "divide-green-300"
+
+
+divide_green_400 : Svg.Attribute msg
+divide_green_400 =
+    A.class "divide-green-400"
+
+
+divide_green_500 : Svg.Attribute msg
+divide_green_500 =
+    A.class "divide-green-500"
+
+
+divide_green_600 : Svg.Attribute msg
+divide_green_600 =
+    A.class "divide-green-600"
+
+
+divide_green_700 : Svg.Attribute msg
+divide_green_700 =
+    A.class "divide-green-700"
+
+
+divide_green_800 : Svg.Attribute msg
+divide_green_800 =
+    A.class "divide-green-800"
+
+
+divide_green_900 : Svg.Attribute msg
+divide_green_900 =
+    A.class "divide-green-900"
+
+
+divide_teal_100 : Svg.Attribute msg
+divide_teal_100 =
+    A.class "divide-teal-100"
+
+
+divide_teal_200 : Svg.Attribute msg
+divide_teal_200 =
+    A.class "divide-teal-200"
+
+
+divide_teal_300 : Svg.Attribute msg
+divide_teal_300 =
+    A.class "divide-teal-300"
+
+
+divide_teal_400 : Svg.Attribute msg
+divide_teal_400 =
+    A.class "divide-teal-400"
+
+
+divide_teal_500 : Svg.Attribute msg
+divide_teal_500 =
+    A.class "divide-teal-500"
+
+
+divide_teal_600 : Svg.Attribute msg
+divide_teal_600 =
+    A.class "divide-teal-600"
+
+
+divide_teal_700 : Svg.Attribute msg
+divide_teal_700 =
+    A.class "divide-teal-700"
+
+
+divide_teal_800 : Svg.Attribute msg
+divide_teal_800 =
+    A.class "divide-teal-800"
+
+
+divide_teal_900 : Svg.Attribute msg
+divide_teal_900 =
+    A.class "divide-teal-900"
+
+
+divide_blue_100 : Svg.Attribute msg
+divide_blue_100 =
+    A.class "divide-blue-100"
+
+
+divide_blue_200 : Svg.Attribute msg
+divide_blue_200 =
+    A.class "divide-blue-200"
+
+
+divide_blue_300 : Svg.Attribute msg
+divide_blue_300 =
+    A.class "divide-blue-300"
+
+
+divide_blue_400 : Svg.Attribute msg
+divide_blue_400 =
+    A.class "divide-blue-400"
+
+
+divide_blue_500 : Svg.Attribute msg
+divide_blue_500 =
+    A.class "divide-blue-500"
+
+
+divide_blue_600 : Svg.Attribute msg
+divide_blue_600 =
+    A.class "divide-blue-600"
+
+
+divide_blue_700 : Svg.Attribute msg
+divide_blue_700 =
+    A.class "divide-blue-700"
+
+
+divide_blue_800 : Svg.Attribute msg
+divide_blue_800 =
+    A.class "divide-blue-800"
+
+
+divide_blue_900 : Svg.Attribute msg
+divide_blue_900 =
+    A.class "divide-blue-900"
+
+
+divide_indigo_100 : Svg.Attribute msg
+divide_indigo_100 =
+    A.class "divide-indigo-100"
+
+
+divide_indigo_200 : Svg.Attribute msg
+divide_indigo_200 =
+    A.class "divide-indigo-200"
+
+
+divide_indigo_300 : Svg.Attribute msg
+divide_indigo_300 =
+    A.class "divide-indigo-300"
+
+
+divide_indigo_400 : Svg.Attribute msg
+divide_indigo_400 =
+    A.class "divide-indigo-400"
+
+
+divide_indigo_500 : Svg.Attribute msg
+divide_indigo_500 =
+    A.class "divide-indigo-500"
+
+
+divide_indigo_600 : Svg.Attribute msg
+divide_indigo_600 =
+    A.class "divide-indigo-600"
+
+
+divide_indigo_700 : Svg.Attribute msg
+divide_indigo_700 =
+    A.class "divide-indigo-700"
+
+
+divide_indigo_800 : Svg.Attribute msg
+divide_indigo_800 =
+    A.class "divide-indigo-800"
+
+
+divide_indigo_900 : Svg.Attribute msg
+divide_indigo_900 =
+    A.class "divide-indigo-900"
+
+
+divide_purple_100 : Svg.Attribute msg
+divide_purple_100 =
+    A.class "divide-purple-100"
+
+
+divide_purple_200 : Svg.Attribute msg
+divide_purple_200 =
+    A.class "divide-purple-200"
+
+
+divide_purple_300 : Svg.Attribute msg
+divide_purple_300 =
+    A.class "divide-purple-300"
+
+
+divide_purple_400 : Svg.Attribute msg
+divide_purple_400 =
+    A.class "divide-purple-400"
+
+
+divide_purple_500 : Svg.Attribute msg
+divide_purple_500 =
+    A.class "divide-purple-500"
+
+
+divide_purple_600 : Svg.Attribute msg
+divide_purple_600 =
+    A.class "divide-purple-600"
+
+
+divide_purple_700 : Svg.Attribute msg
+divide_purple_700 =
+    A.class "divide-purple-700"
+
+
+divide_purple_800 : Svg.Attribute msg
+divide_purple_800 =
+    A.class "divide-purple-800"
+
+
+divide_purple_900 : Svg.Attribute msg
+divide_purple_900 =
+    A.class "divide-purple-900"
+
+
+divide_pink_100 : Svg.Attribute msg
+divide_pink_100 =
+    A.class "divide-pink-100"
+
+
+divide_pink_200 : Svg.Attribute msg
+divide_pink_200 =
+    A.class "divide-pink-200"
+
+
+divide_pink_300 : Svg.Attribute msg
+divide_pink_300 =
+    A.class "divide-pink-300"
+
+
+divide_pink_400 : Svg.Attribute msg
+divide_pink_400 =
+    A.class "divide-pink-400"
+
+
+divide_pink_500 : Svg.Attribute msg
+divide_pink_500 =
+    A.class "divide-pink-500"
+
+
+divide_pink_600 : Svg.Attribute msg
+divide_pink_600 =
+    A.class "divide-pink-600"
+
+
+divide_pink_700 : Svg.Attribute msg
+divide_pink_700 =
+    A.class "divide-pink-700"
+
+
+divide_pink_800 : Svg.Attribute msg
+divide_pink_800 =
+    A.class "divide-pink-800"
+
+
+divide_pink_900 : Svg.Attribute msg
+divide_pink_900 =
+    A.class "divide-pink-900"
+
+
 sr_only : Svg.Attribute msg
 sr_only =
     A.class "sr-only"
@@ -12645,6 +14575,11 @@ bg_scroll =
 bg_transparent : Svg.Attribute msg
 bg_transparent =
     A.class "bg-transparent"
+
+
+bg_current : Svg.Attribute msg
+bg_current =
+    A.class "bg-current"
 
 
 bg_black : Svg.Attribute msg
@@ -13112,6 +15047,11 @@ hover__bg_transparent =
     A.class "hover:bg-transparent"
 
 
+hover__bg_current : Svg.Attribute msg
+hover__bg_current =
+    A.class "hover:bg-current"
+
+
 hover__bg_black : Svg.Attribute msg
 hover__bg_black =
     A.class "hover:bg-black"
@@ -13575,6 +15515,11 @@ hover__bg_pink_900 =
 focus__bg_transparent : Svg.Attribute msg
 focus__bg_transparent =
     A.class "focus:bg-transparent"
+
+
+focus__bg_current : Svg.Attribute msg
+focus__bg_current =
+    A.class "focus:bg-current"
 
 
 focus__bg_black : Svg.Attribute msg
@@ -14142,6 +16087,11 @@ border_transparent =
     A.class "border-transparent"
 
 
+border_current : Svg.Attribute msg
+border_current =
+    A.class "border-current"
+
+
 border_black : Svg.Attribute msg
 border_black =
     A.class "border-black"
@@ -14607,6 +16557,11 @@ hover__border_transparent =
     A.class "hover:border-transparent"
 
 
+hover__border_current : Svg.Attribute msg
+hover__border_current =
+    A.class "hover:border-current"
+
+
 hover__border_black : Svg.Attribute msg
 hover__border_black =
     A.class "hover:border-black"
@@ -15070,6 +17025,11 @@ hover__border_pink_900 =
 focus__border_transparent : Svg.Attribute msg
 focus__border_transparent =
     A.class "focus:border-transparent"
+
+
+focus__border_current : Svg.Attribute msg
+focus__border_current =
+    A.class "focus:border-current"
 
 
 focus__border_black : Svg.Attribute msg
@@ -16047,6 +18007,11 @@ inline =
     A.class "inline"
 
 
+flow_root : Svg.Attribute msg
+flow_root =
+    A.class "flow-root"
+
+
 flex : Svg.Attribute msg
 flex =
     A.class "flex"
@@ -16060,6 +18025,11 @@ inline_flex =
 grid : Svg.Attribute msg
 grid =
     A.class "grid"
+
+
+inline_grid : Svg.Attribute msg
+inline_grid =
+    A.class "inline-grid"
 
 
 table : Svg.Attribute msg
@@ -16402,6 +18372,11 @@ clear_both =
     A.class "clear-both"
 
 
+clear_none : Svg.Attribute msg
+clear_none =
+    A.class "clear-none"
+
+
 font_sans : Svg.Attribute msg
 font_sans =
     A.class "font-sans"
@@ -16660,6 +18635,56 @@ h_full =
 h_screen : Svg.Attribute msg
 h_screen =
     A.class "h-screen"
+
+
+text_xs : Svg.Attribute msg
+text_xs =
+    A.class "text-xs"
+
+
+text_sm : Svg.Attribute msg
+text_sm =
+    A.class "text-sm"
+
+
+text_base : Svg.Attribute msg
+text_base =
+    A.class "text-base"
+
+
+text_lg : Svg.Attribute msg
+text_lg =
+    A.class "text-lg"
+
+
+text_xl : Svg.Attribute msg
+text_xl =
+    A.class "text-xl"
+
+
+text_2xl : Svg.Attribute msg
+text_2xl =
+    A.class "text-2xl"
+
+
+text_3xl : Svg.Attribute msg
+text_3xl =
+    A.class "text-3xl"
+
+
+text_4xl : Svg.Attribute msg
+text_4xl =
+    A.class "text-4xl"
+
+
+text_5xl : Svg.Attribute msg
+text_5xl =
+    A.class "text-5xl"
+
+
+text_6xl : Svg.Attribute msg
+text_6xl =
+    A.class "text-6xl"
 
 
 leading_3 : Svg.Attribute msg
@@ -19122,6 +21147,11 @@ placeholder_transparent =
     A.class "placeholder-transparent"
 
 
+placeholder_current : Svg.Attribute msg
+placeholder_current =
+    A.class "placeholder-current"
+
+
 placeholder_black : Svg.Attribute msg
 placeholder_black =
     A.class "placeholder-black"
@@ -19585,6 +21615,11 @@ placeholder_pink_900 =
 focus__placeholder_transparent__focus : Svg.Attribute msg
 focus__placeholder_transparent__focus =
     A.class "focus:placeholder-transparent:focus"
+
+
+focus__placeholder_current__focus : Svg.Attribute msg
+focus__placeholder_current__focus =
+    A.class "focus:placeholder-current:focus"
 
 
 focus__placeholder_black__focus : Svg.Attribute msg
@@ -20382,6 +22417,11 @@ text_transparent =
     A.class "text-transparent"
 
 
+text_current : Svg.Attribute msg
+text_current =
+    A.class "text-current"
+
+
 text_black : Svg.Attribute msg
 text_black =
     A.class "text-black"
@@ -20845,6 +22885,11 @@ text_pink_900 =
 hover__text_transparent : Svg.Attribute msg
 hover__text_transparent =
     A.class "hover:text-transparent"
+
+
+hover__text_current : Svg.Attribute msg
+hover__text_current =
+    A.class "hover:text-current"
 
 
 hover__text_black : Svg.Attribute msg
@@ -21312,6 +23357,11 @@ focus__text_transparent =
     A.class "focus:text-transparent"
 
 
+focus__text_current : Svg.Attribute msg
+focus__text_current =
+    A.class "focus:text-current"
+
+
 focus__text_black : Svg.Attribute msg
 focus__text_black =
     A.class "focus:text-black"
@@ -21770,56 +23820,6 @@ focus__text_pink_800 =
 focus__text_pink_900 : Svg.Attribute msg
 focus__text_pink_900 =
     A.class "focus:text-pink-900"
-
-
-text_xs : Svg.Attribute msg
-text_xs =
-    A.class "text-xs"
-
-
-text_sm : Svg.Attribute msg
-text_sm =
-    A.class "text-sm"
-
-
-text_base : Svg.Attribute msg
-text_base =
-    A.class "text-base"
-
-
-text_lg : Svg.Attribute msg
-text_lg =
-    A.class "text-lg"
-
-
-text_xl : Svg.Attribute msg
-text_xl =
-    A.class "text-xl"
-
-
-text_2xl : Svg.Attribute msg
-text_2xl =
-    A.class "text-2xl"
-
-
-text_3xl : Svg.Attribute msg
-text_3xl =
-    A.class "text-3xl"
-
-
-text_4xl : Svg.Attribute msg
-text_4xl =
-    A.class "text-4xl"
-
-
-text_5xl : Svg.Attribute msg
-text_5xl =
-    A.class "text-5xl"
-
-
-text_6xl : Svg.Attribute msg
-text_6xl =
-    A.class "text-6xl"
 
 
 italic : Svg.Attribute msg
@@ -25187,6 +27187,956 @@ duration_1000 =
     A.class "duration-1000"
 
 
+delay_75 : Svg.Attribute msg
+delay_75 =
+    A.class "delay-75"
+
+
+delay_100 : Svg.Attribute msg
+delay_100 =
+    A.class "delay-100"
+
+
+delay_150 : Svg.Attribute msg
+delay_150 =
+    A.class "delay-150"
+
+
+delay_200 : Svg.Attribute msg
+delay_200 =
+    A.class "delay-200"
+
+
+delay_300 : Svg.Attribute msg
+delay_300 =
+    A.class "delay-300"
+
+
+delay_500 : Svg.Attribute msg
+delay_500 =
+    A.class "delay-500"
+
+
+delay_700 : Svg.Attribute msg
+delay_700 =
+    A.class "delay-700"
+
+
+delay_1000 : Svg.Attribute msg
+delay_1000 =
+    A.class "delay-1000"
+
+
+sm__space_y_0 : Svg.Attribute msg
+sm__space_y_0 =
+    A.class "sm:space-y-0"
+
+
+sm__space_x_0 : Svg.Attribute msg
+sm__space_x_0 =
+    A.class "sm:space-x-0"
+
+
+sm__space_y_1 : Svg.Attribute msg
+sm__space_y_1 =
+    A.class "sm:space-y-1"
+
+
+sm__space_x_1 : Svg.Attribute msg
+sm__space_x_1 =
+    A.class "sm:space-x-1"
+
+
+sm__space_y_2 : Svg.Attribute msg
+sm__space_y_2 =
+    A.class "sm:space-y-2"
+
+
+sm__space_x_2 : Svg.Attribute msg
+sm__space_x_2 =
+    A.class "sm:space-x-2"
+
+
+sm__space_y_3 : Svg.Attribute msg
+sm__space_y_3 =
+    A.class "sm:space-y-3"
+
+
+sm__space_x_3 : Svg.Attribute msg
+sm__space_x_3 =
+    A.class "sm:space-x-3"
+
+
+sm__space_y_4 : Svg.Attribute msg
+sm__space_y_4 =
+    A.class "sm:space-y-4"
+
+
+sm__space_x_4 : Svg.Attribute msg
+sm__space_x_4 =
+    A.class "sm:space-x-4"
+
+
+sm__space_y_5 : Svg.Attribute msg
+sm__space_y_5 =
+    A.class "sm:space-y-5"
+
+
+sm__space_x_5 : Svg.Attribute msg
+sm__space_x_5 =
+    A.class "sm:space-x-5"
+
+
+sm__space_y_6 : Svg.Attribute msg
+sm__space_y_6 =
+    A.class "sm:space-y-6"
+
+
+sm__space_x_6 : Svg.Attribute msg
+sm__space_x_6 =
+    A.class "sm:space-x-6"
+
+
+sm__space_y_8 : Svg.Attribute msg
+sm__space_y_8 =
+    A.class "sm:space-y-8"
+
+
+sm__space_x_8 : Svg.Attribute msg
+sm__space_x_8 =
+    A.class "sm:space-x-8"
+
+
+sm__space_y_10 : Svg.Attribute msg
+sm__space_y_10 =
+    A.class "sm:space-y-10"
+
+
+sm__space_x_10 : Svg.Attribute msg
+sm__space_x_10 =
+    A.class "sm:space-x-10"
+
+
+sm__space_y_12 : Svg.Attribute msg
+sm__space_y_12 =
+    A.class "sm:space-y-12"
+
+
+sm__space_x_12 : Svg.Attribute msg
+sm__space_x_12 =
+    A.class "sm:space-x-12"
+
+
+sm__space_y_16 : Svg.Attribute msg
+sm__space_y_16 =
+    A.class "sm:space-y-16"
+
+
+sm__space_x_16 : Svg.Attribute msg
+sm__space_x_16 =
+    A.class "sm:space-x-16"
+
+
+sm__space_y_20 : Svg.Attribute msg
+sm__space_y_20 =
+    A.class "sm:space-y-20"
+
+
+sm__space_x_20 : Svg.Attribute msg
+sm__space_x_20 =
+    A.class "sm:space-x-20"
+
+
+sm__space_y_24 : Svg.Attribute msg
+sm__space_y_24 =
+    A.class "sm:space-y-24"
+
+
+sm__space_x_24 : Svg.Attribute msg
+sm__space_x_24 =
+    A.class "sm:space-x-24"
+
+
+sm__space_y_32 : Svg.Attribute msg
+sm__space_y_32 =
+    A.class "sm:space-y-32"
+
+
+sm__space_x_32 : Svg.Attribute msg
+sm__space_x_32 =
+    A.class "sm:space-x-32"
+
+
+sm__space_y_40 : Svg.Attribute msg
+sm__space_y_40 =
+    A.class "sm:space-y-40"
+
+
+sm__space_x_40 : Svg.Attribute msg
+sm__space_x_40 =
+    A.class "sm:space-x-40"
+
+
+sm__space_y_48 : Svg.Attribute msg
+sm__space_y_48 =
+    A.class "sm:space-y-48"
+
+
+sm__space_x_48 : Svg.Attribute msg
+sm__space_x_48 =
+    A.class "sm:space-x-48"
+
+
+sm__space_y_56 : Svg.Attribute msg
+sm__space_y_56 =
+    A.class "sm:space-y-56"
+
+
+sm__space_x_56 : Svg.Attribute msg
+sm__space_x_56 =
+    A.class "sm:space-x-56"
+
+
+sm__space_y_64 : Svg.Attribute msg
+sm__space_y_64 =
+    A.class "sm:space-y-64"
+
+
+sm__space_x_64 : Svg.Attribute msg
+sm__space_x_64 =
+    A.class "sm:space-x-64"
+
+
+sm__space_y_px : Svg.Attribute msg
+sm__space_y_px =
+    A.class "sm:space-y-px"
+
+
+sm__space_x_px : Svg.Attribute msg
+sm__space_x_px =
+    A.class "sm:space-x-px"
+
+
+sm__neg_space_y_1 : Svg.Attribute msg
+sm__neg_space_y_1 =
+    A.class "sm:-space-y-1"
+
+
+sm__neg_space_x_1 : Svg.Attribute msg
+sm__neg_space_x_1 =
+    A.class "sm:-space-x-1"
+
+
+sm__neg_space_y_2 : Svg.Attribute msg
+sm__neg_space_y_2 =
+    A.class "sm:-space-y-2"
+
+
+sm__neg_space_x_2 : Svg.Attribute msg
+sm__neg_space_x_2 =
+    A.class "sm:-space-x-2"
+
+
+sm__neg_space_y_3 : Svg.Attribute msg
+sm__neg_space_y_3 =
+    A.class "sm:-space-y-3"
+
+
+sm__neg_space_x_3 : Svg.Attribute msg
+sm__neg_space_x_3 =
+    A.class "sm:-space-x-3"
+
+
+sm__neg_space_y_4 : Svg.Attribute msg
+sm__neg_space_y_4 =
+    A.class "sm:-space-y-4"
+
+
+sm__neg_space_x_4 : Svg.Attribute msg
+sm__neg_space_x_4 =
+    A.class "sm:-space-x-4"
+
+
+sm__neg_space_y_5 : Svg.Attribute msg
+sm__neg_space_y_5 =
+    A.class "sm:-space-y-5"
+
+
+sm__neg_space_x_5 : Svg.Attribute msg
+sm__neg_space_x_5 =
+    A.class "sm:-space-x-5"
+
+
+sm__neg_space_y_6 : Svg.Attribute msg
+sm__neg_space_y_6 =
+    A.class "sm:-space-y-6"
+
+
+sm__neg_space_x_6 : Svg.Attribute msg
+sm__neg_space_x_6 =
+    A.class "sm:-space-x-6"
+
+
+sm__neg_space_y_8 : Svg.Attribute msg
+sm__neg_space_y_8 =
+    A.class "sm:-space-y-8"
+
+
+sm__neg_space_x_8 : Svg.Attribute msg
+sm__neg_space_x_8 =
+    A.class "sm:-space-x-8"
+
+
+sm__neg_space_y_10 : Svg.Attribute msg
+sm__neg_space_y_10 =
+    A.class "sm:-space-y-10"
+
+
+sm__neg_space_x_10 : Svg.Attribute msg
+sm__neg_space_x_10 =
+    A.class "sm:-space-x-10"
+
+
+sm__neg_space_y_12 : Svg.Attribute msg
+sm__neg_space_y_12 =
+    A.class "sm:-space-y-12"
+
+
+sm__neg_space_x_12 : Svg.Attribute msg
+sm__neg_space_x_12 =
+    A.class "sm:-space-x-12"
+
+
+sm__neg_space_y_16 : Svg.Attribute msg
+sm__neg_space_y_16 =
+    A.class "sm:-space-y-16"
+
+
+sm__neg_space_x_16 : Svg.Attribute msg
+sm__neg_space_x_16 =
+    A.class "sm:-space-x-16"
+
+
+sm__neg_space_y_20 : Svg.Attribute msg
+sm__neg_space_y_20 =
+    A.class "sm:-space-y-20"
+
+
+sm__neg_space_x_20 : Svg.Attribute msg
+sm__neg_space_x_20 =
+    A.class "sm:-space-x-20"
+
+
+sm__neg_space_y_24 : Svg.Attribute msg
+sm__neg_space_y_24 =
+    A.class "sm:-space-y-24"
+
+
+sm__neg_space_x_24 : Svg.Attribute msg
+sm__neg_space_x_24 =
+    A.class "sm:-space-x-24"
+
+
+sm__neg_space_y_32 : Svg.Attribute msg
+sm__neg_space_y_32 =
+    A.class "sm:-space-y-32"
+
+
+sm__neg_space_x_32 : Svg.Attribute msg
+sm__neg_space_x_32 =
+    A.class "sm:-space-x-32"
+
+
+sm__neg_space_y_40 : Svg.Attribute msg
+sm__neg_space_y_40 =
+    A.class "sm:-space-y-40"
+
+
+sm__neg_space_x_40 : Svg.Attribute msg
+sm__neg_space_x_40 =
+    A.class "sm:-space-x-40"
+
+
+sm__neg_space_y_48 : Svg.Attribute msg
+sm__neg_space_y_48 =
+    A.class "sm:-space-y-48"
+
+
+sm__neg_space_x_48 : Svg.Attribute msg
+sm__neg_space_x_48 =
+    A.class "sm:-space-x-48"
+
+
+sm__neg_space_y_56 : Svg.Attribute msg
+sm__neg_space_y_56 =
+    A.class "sm:-space-y-56"
+
+
+sm__neg_space_x_56 : Svg.Attribute msg
+sm__neg_space_x_56 =
+    A.class "sm:-space-x-56"
+
+
+sm__neg_space_y_64 : Svg.Attribute msg
+sm__neg_space_y_64 =
+    A.class "sm:-space-y-64"
+
+
+sm__neg_space_x_64 : Svg.Attribute msg
+sm__neg_space_x_64 =
+    A.class "sm:-space-x-64"
+
+
+sm__neg_space_y_px : Svg.Attribute msg
+sm__neg_space_y_px =
+    A.class "sm:-space-y-px"
+
+
+sm__neg_space_x_px : Svg.Attribute msg
+sm__neg_space_x_px =
+    A.class "sm:-space-x-px"
+
+
+sm__space_y_reverse : Svg.Attribute msg
+sm__space_y_reverse =
+    A.class "sm:space-y-reverse"
+
+
+sm__space_x_reverse : Svg.Attribute msg
+sm__space_x_reverse =
+    A.class "sm:space-x-reverse"
+
+
+sm__divide_y_0 : Svg.Attribute msg
+sm__divide_y_0 =
+    A.class "sm:divide-y-0"
+
+
+sm__divide_x_0 : Svg.Attribute msg
+sm__divide_x_0 =
+    A.class "sm:divide-x-0"
+
+
+sm__divide_y_2 : Svg.Attribute msg
+sm__divide_y_2 =
+    A.class "sm:divide-y-2"
+
+
+sm__divide_x_2 : Svg.Attribute msg
+sm__divide_x_2 =
+    A.class "sm:divide-x-2"
+
+
+sm__divide_y_4 : Svg.Attribute msg
+sm__divide_y_4 =
+    A.class "sm:divide-y-4"
+
+
+sm__divide_x_4 : Svg.Attribute msg
+sm__divide_x_4 =
+    A.class "sm:divide-x-4"
+
+
+sm__divide_y_8 : Svg.Attribute msg
+sm__divide_y_8 =
+    A.class "sm:divide-y-8"
+
+
+sm__divide_x_8 : Svg.Attribute msg
+sm__divide_x_8 =
+    A.class "sm:divide-x-8"
+
+
+sm__divide_y : Svg.Attribute msg
+sm__divide_y =
+    A.class "sm:divide-y"
+
+
+sm__divide_x : Svg.Attribute msg
+sm__divide_x =
+    A.class "sm:divide-x"
+
+
+sm__divide_y_reverse : Svg.Attribute msg
+sm__divide_y_reverse =
+    A.class "sm:divide-y-reverse"
+
+
+sm__divide_x_reverse : Svg.Attribute msg
+sm__divide_x_reverse =
+    A.class "sm:divide-x-reverse"
+
+
+sm__divide_transparent : Svg.Attribute msg
+sm__divide_transparent =
+    A.class "sm:divide-transparent"
+
+
+sm__divide_current : Svg.Attribute msg
+sm__divide_current =
+    A.class "sm:divide-current"
+
+
+sm__divide_black : Svg.Attribute msg
+sm__divide_black =
+    A.class "sm:divide-black"
+
+
+sm__divide_white : Svg.Attribute msg
+sm__divide_white =
+    A.class "sm:divide-white"
+
+
+sm__divide_gray_100 : Svg.Attribute msg
+sm__divide_gray_100 =
+    A.class "sm:divide-gray-100"
+
+
+sm__divide_gray_200 : Svg.Attribute msg
+sm__divide_gray_200 =
+    A.class "sm:divide-gray-200"
+
+
+sm__divide_gray_300 : Svg.Attribute msg
+sm__divide_gray_300 =
+    A.class "sm:divide-gray-300"
+
+
+sm__divide_gray_400 : Svg.Attribute msg
+sm__divide_gray_400 =
+    A.class "sm:divide-gray-400"
+
+
+sm__divide_gray_500 : Svg.Attribute msg
+sm__divide_gray_500 =
+    A.class "sm:divide-gray-500"
+
+
+sm__divide_gray_600 : Svg.Attribute msg
+sm__divide_gray_600 =
+    A.class "sm:divide-gray-600"
+
+
+sm__divide_gray_700 : Svg.Attribute msg
+sm__divide_gray_700 =
+    A.class "sm:divide-gray-700"
+
+
+sm__divide_gray_800 : Svg.Attribute msg
+sm__divide_gray_800 =
+    A.class "sm:divide-gray-800"
+
+
+sm__divide_gray_900 : Svg.Attribute msg
+sm__divide_gray_900 =
+    A.class "sm:divide-gray-900"
+
+
+sm__divide_red_100 : Svg.Attribute msg
+sm__divide_red_100 =
+    A.class "sm:divide-red-100"
+
+
+sm__divide_red_200 : Svg.Attribute msg
+sm__divide_red_200 =
+    A.class "sm:divide-red-200"
+
+
+sm__divide_red_300 : Svg.Attribute msg
+sm__divide_red_300 =
+    A.class "sm:divide-red-300"
+
+
+sm__divide_red_400 : Svg.Attribute msg
+sm__divide_red_400 =
+    A.class "sm:divide-red-400"
+
+
+sm__divide_red_500 : Svg.Attribute msg
+sm__divide_red_500 =
+    A.class "sm:divide-red-500"
+
+
+sm__divide_red_600 : Svg.Attribute msg
+sm__divide_red_600 =
+    A.class "sm:divide-red-600"
+
+
+sm__divide_red_700 : Svg.Attribute msg
+sm__divide_red_700 =
+    A.class "sm:divide-red-700"
+
+
+sm__divide_red_800 : Svg.Attribute msg
+sm__divide_red_800 =
+    A.class "sm:divide-red-800"
+
+
+sm__divide_red_900 : Svg.Attribute msg
+sm__divide_red_900 =
+    A.class "sm:divide-red-900"
+
+
+sm__divide_orange_100 : Svg.Attribute msg
+sm__divide_orange_100 =
+    A.class "sm:divide-orange-100"
+
+
+sm__divide_orange_200 : Svg.Attribute msg
+sm__divide_orange_200 =
+    A.class "sm:divide-orange-200"
+
+
+sm__divide_orange_300 : Svg.Attribute msg
+sm__divide_orange_300 =
+    A.class "sm:divide-orange-300"
+
+
+sm__divide_orange_400 : Svg.Attribute msg
+sm__divide_orange_400 =
+    A.class "sm:divide-orange-400"
+
+
+sm__divide_orange_500 : Svg.Attribute msg
+sm__divide_orange_500 =
+    A.class "sm:divide-orange-500"
+
+
+sm__divide_orange_600 : Svg.Attribute msg
+sm__divide_orange_600 =
+    A.class "sm:divide-orange-600"
+
+
+sm__divide_orange_700 : Svg.Attribute msg
+sm__divide_orange_700 =
+    A.class "sm:divide-orange-700"
+
+
+sm__divide_orange_800 : Svg.Attribute msg
+sm__divide_orange_800 =
+    A.class "sm:divide-orange-800"
+
+
+sm__divide_orange_900 : Svg.Attribute msg
+sm__divide_orange_900 =
+    A.class "sm:divide-orange-900"
+
+
+sm__divide_yellow_100 : Svg.Attribute msg
+sm__divide_yellow_100 =
+    A.class "sm:divide-yellow-100"
+
+
+sm__divide_yellow_200 : Svg.Attribute msg
+sm__divide_yellow_200 =
+    A.class "sm:divide-yellow-200"
+
+
+sm__divide_yellow_300 : Svg.Attribute msg
+sm__divide_yellow_300 =
+    A.class "sm:divide-yellow-300"
+
+
+sm__divide_yellow_400 : Svg.Attribute msg
+sm__divide_yellow_400 =
+    A.class "sm:divide-yellow-400"
+
+
+sm__divide_yellow_500 : Svg.Attribute msg
+sm__divide_yellow_500 =
+    A.class "sm:divide-yellow-500"
+
+
+sm__divide_yellow_600 : Svg.Attribute msg
+sm__divide_yellow_600 =
+    A.class "sm:divide-yellow-600"
+
+
+sm__divide_yellow_700 : Svg.Attribute msg
+sm__divide_yellow_700 =
+    A.class "sm:divide-yellow-700"
+
+
+sm__divide_yellow_800 : Svg.Attribute msg
+sm__divide_yellow_800 =
+    A.class "sm:divide-yellow-800"
+
+
+sm__divide_yellow_900 : Svg.Attribute msg
+sm__divide_yellow_900 =
+    A.class "sm:divide-yellow-900"
+
+
+sm__divide_green_100 : Svg.Attribute msg
+sm__divide_green_100 =
+    A.class "sm:divide-green-100"
+
+
+sm__divide_green_200 : Svg.Attribute msg
+sm__divide_green_200 =
+    A.class "sm:divide-green-200"
+
+
+sm__divide_green_300 : Svg.Attribute msg
+sm__divide_green_300 =
+    A.class "sm:divide-green-300"
+
+
+sm__divide_green_400 : Svg.Attribute msg
+sm__divide_green_400 =
+    A.class "sm:divide-green-400"
+
+
+sm__divide_green_500 : Svg.Attribute msg
+sm__divide_green_500 =
+    A.class "sm:divide-green-500"
+
+
+sm__divide_green_600 : Svg.Attribute msg
+sm__divide_green_600 =
+    A.class "sm:divide-green-600"
+
+
+sm__divide_green_700 : Svg.Attribute msg
+sm__divide_green_700 =
+    A.class "sm:divide-green-700"
+
+
+sm__divide_green_800 : Svg.Attribute msg
+sm__divide_green_800 =
+    A.class "sm:divide-green-800"
+
+
+sm__divide_green_900 : Svg.Attribute msg
+sm__divide_green_900 =
+    A.class "sm:divide-green-900"
+
+
+sm__divide_teal_100 : Svg.Attribute msg
+sm__divide_teal_100 =
+    A.class "sm:divide-teal-100"
+
+
+sm__divide_teal_200 : Svg.Attribute msg
+sm__divide_teal_200 =
+    A.class "sm:divide-teal-200"
+
+
+sm__divide_teal_300 : Svg.Attribute msg
+sm__divide_teal_300 =
+    A.class "sm:divide-teal-300"
+
+
+sm__divide_teal_400 : Svg.Attribute msg
+sm__divide_teal_400 =
+    A.class "sm:divide-teal-400"
+
+
+sm__divide_teal_500 : Svg.Attribute msg
+sm__divide_teal_500 =
+    A.class "sm:divide-teal-500"
+
+
+sm__divide_teal_600 : Svg.Attribute msg
+sm__divide_teal_600 =
+    A.class "sm:divide-teal-600"
+
+
+sm__divide_teal_700 : Svg.Attribute msg
+sm__divide_teal_700 =
+    A.class "sm:divide-teal-700"
+
+
+sm__divide_teal_800 : Svg.Attribute msg
+sm__divide_teal_800 =
+    A.class "sm:divide-teal-800"
+
+
+sm__divide_teal_900 : Svg.Attribute msg
+sm__divide_teal_900 =
+    A.class "sm:divide-teal-900"
+
+
+sm__divide_blue_100 : Svg.Attribute msg
+sm__divide_blue_100 =
+    A.class "sm:divide-blue-100"
+
+
+sm__divide_blue_200 : Svg.Attribute msg
+sm__divide_blue_200 =
+    A.class "sm:divide-blue-200"
+
+
+sm__divide_blue_300 : Svg.Attribute msg
+sm__divide_blue_300 =
+    A.class "sm:divide-blue-300"
+
+
+sm__divide_blue_400 : Svg.Attribute msg
+sm__divide_blue_400 =
+    A.class "sm:divide-blue-400"
+
+
+sm__divide_blue_500 : Svg.Attribute msg
+sm__divide_blue_500 =
+    A.class "sm:divide-blue-500"
+
+
+sm__divide_blue_600 : Svg.Attribute msg
+sm__divide_blue_600 =
+    A.class "sm:divide-blue-600"
+
+
+sm__divide_blue_700 : Svg.Attribute msg
+sm__divide_blue_700 =
+    A.class "sm:divide-blue-700"
+
+
+sm__divide_blue_800 : Svg.Attribute msg
+sm__divide_blue_800 =
+    A.class "sm:divide-blue-800"
+
+
+sm__divide_blue_900 : Svg.Attribute msg
+sm__divide_blue_900 =
+    A.class "sm:divide-blue-900"
+
+
+sm__divide_indigo_100 : Svg.Attribute msg
+sm__divide_indigo_100 =
+    A.class "sm:divide-indigo-100"
+
+
+sm__divide_indigo_200 : Svg.Attribute msg
+sm__divide_indigo_200 =
+    A.class "sm:divide-indigo-200"
+
+
+sm__divide_indigo_300 : Svg.Attribute msg
+sm__divide_indigo_300 =
+    A.class "sm:divide-indigo-300"
+
+
+sm__divide_indigo_400 : Svg.Attribute msg
+sm__divide_indigo_400 =
+    A.class "sm:divide-indigo-400"
+
+
+sm__divide_indigo_500 : Svg.Attribute msg
+sm__divide_indigo_500 =
+    A.class "sm:divide-indigo-500"
+
+
+sm__divide_indigo_600 : Svg.Attribute msg
+sm__divide_indigo_600 =
+    A.class "sm:divide-indigo-600"
+
+
+sm__divide_indigo_700 : Svg.Attribute msg
+sm__divide_indigo_700 =
+    A.class "sm:divide-indigo-700"
+
+
+sm__divide_indigo_800 : Svg.Attribute msg
+sm__divide_indigo_800 =
+    A.class "sm:divide-indigo-800"
+
+
+sm__divide_indigo_900 : Svg.Attribute msg
+sm__divide_indigo_900 =
+    A.class "sm:divide-indigo-900"
+
+
+sm__divide_purple_100 : Svg.Attribute msg
+sm__divide_purple_100 =
+    A.class "sm:divide-purple-100"
+
+
+sm__divide_purple_200 : Svg.Attribute msg
+sm__divide_purple_200 =
+    A.class "sm:divide-purple-200"
+
+
+sm__divide_purple_300 : Svg.Attribute msg
+sm__divide_purple_300 =
+    A.class "sm:divide-purple-300"
+
+
+sm__divide_purple_400 : Svg.Attribute msg
+sm__divide_purple_400 =
+    A.class "sm:divide-purple-400"
+
+
+sm__divide_purple_500 : Svg.Attribute msg
+sm__divide_purple_500 =
+    A.class "sm:divide-purple-500"
+
+
+sm__divide_purple_600 : Svg.Attribute msg
+sm__divide_purple_600 =
+    A.class "sm:divide-purple-600"
+
+
+sm__divide_purple_700 : Svg.Attribute msg
+sm__divide_purple_700 =
+    A.class "sm:divide-purple-700"
+
+
+sm__divide_purple_800 : Svg.Attribute msg
+sm__divide_purple_800 =
+    A.class "sm:divide-purple-800"
+
+
+sm__divide_purple_900 : Svg.Attribute msg
+sm__divide_purple_900 =
+    A.class "sm:divide-purple-900"
+
+
+sm__divide_pink_100 : Svg.Attribute msg
+sm__divide_pink_100 =
+    A.class "sm:divide-pink-100"
+
+
+sm__divide_pink_200 : Svg.Attribute msg
+sm__divide_pink_200 =
+    A.class "sm:divide-pink-200"
+
+
+sm__divide_pink_300 : Svg.Attribute msg
+sm__divide_pink_300 =
+    A.class "sm:divide-pink-300"
+
+
+sm__divide_pink_400 : Svg.Attribute msg
+sm__divide_pink_400 =
+    A.class "sm:divide-pink-400"
+
+
+sm__divide_pink_500 : Svg.Attribute msg
+sm__divide_pink_500 =
+    A.class "sm:divide-pink-500"
+
+
+sm__divide_pink_600 : Svg.Attribute msg
+sm__divide_pink_600 =
+    A.class "sm:divide-pink-600"
+
+
+sm__divide_pink_700 : Svg.Attribute msg
+sm__divide_pink_700 =
+    A.class "sm:divide-pink-700"
+
+
+sm__divide_pink_800 : Svg.Attribute msg
+sm__divide_pink_800 =
+    A.class "sm:divide-pink-800"
+
+
+sm__divide_pink_900 : Svg.Attribute msg
+sm__divide_pink_900 =
+    A.class "sm:divide-pink-900"
+
+
 sm__sr_only : Svg.Attribute msg
 sm__sr_only =
     A.class "sm:sr-only"
@@ -25230,6 +28180,11 @@ sm__bg_scroll =
 sm__bg_transparent : Svg.Attribute msg
 sm__bg_transparent =
     A.class "sm:bg-transparent"
+
+
+sm__bg_current : Svg.Attribute msg
+sm__bg_current =
+    A.class "sm:bg-current"
 
 
 sm__bg_black : Svg.Attribute msg
@@ -25697,6 +28652,11 @@ sm__hover__bg_transparent =
     A.class "sm:hover:bg-transparent"
 
 
+sm__hover__bg_current : Svg.Attribute msg
+sm__hover__bg_current =
+    A.class "sm:hover:bg-current"
+
+
 sm__hover__bg_black : Svg.Attribute msg
 sm__hover__bg_black =
     A.class "sm:hover:bg-black"
@@ -26160,6 +29120,11 @@ sm__hover__bg_pink_900 =
 sm__focus__bg_transparent : Svg.Attribute msg
 sm__focus__bg_transparent =
     A.class "sm:focus:bg-transparent"
+
+
+sm__focus__bg_current : Svg.Attribute msg
+sm__focus__bg_current =
+    A.class "sm:focus:bg-current"
 
 
 sm__focus__bg_black : Svg.Attribute msg
@@ -26727,6 +29692,11 @@ sm__border_transparent =
     A.class "sm:border-transparent"
 
 
+sm__border_current : Svg.Attribute msg
+sm__border_current =
+    A.class "sm:border-current"
+
+
 sm__border_black : Svg.Attribute msg
 sm__border_black =
     A.class "sm:border-black"
@@ -27192,6 +30162,11 @@ sm__hover__border_transparent =
     A.class "sm:hover:border-transparent"
 
 
+sm__hover__border_current : Svg.Attribute msg
+sm__hover__border_current =
+    A.class "sm:hover:border-current"
+
+
 sm__hover__border_black : Svg.Attribute msg
 sm__hover__border_black =
     A.class "sm:hover:border-black"
@@ -27655,6 +30630,11 @@ sm__hover__border_pink_900 =
 sm__focus__border_transparent : Svg.Attribute msg
 sm__focus__border_transparent =
     A.class "sm:focus:border-transparent"
+
+
+sm__focus__border_current : Svg.Attribute msg
+sm__focus__border_current =
+    A.class "sm:focus:border-current"
 
 
 sm__focus__border_black : Svg.Attribute msg
@@ -28632,6 +31612,11 @@ sm__inline =
     A.class "sm:inline"
 
 
+sm__flow_root : Svg.Attribute msg
+sm__flow_root =
+    A.class "sm:flow-root"
+
+
 sm__flex : Svg.Attribute msg
 sm__flex =
     A.class "sm:flex"
@@ -28645,6 +31630,11 @@ sm__inline_flex =
 sm__grid : Svg.Attribute msg
 sm__grid =
     A.class "sm:grid"
+
+
+sm__inline_grid : Svg.Attribute msg
+sm__inline_grid =
+    A.class "sm:inline-grid"
 
 
 sm__table : Svg.Attribute msg
@@ -28987,6 +31977,11 @@ sm__clear_both =
     A.class "sm:clear-both"
 
 
+sm__clear_none : Svg.Attribute msg
+sm__clear_none =
+    A.class "sm:clear-none"
+
+
 sm__font_sans : Svg.Attribute msg
 sm__font_sans =
     A.class "sm:font-sans"
@@ -29245,6 +32240,56 @@ sm__h_full =
 sm__h_screen : Svg.Attribute msg
 sm__h_screen =
     A.class "sm:h-screen"
+
+
+sm__text_xs : Svg.Attribute msg
+sm__text_xs =
+    A.class "sm:text-xs"
+
+
+sm__text_sm : Svg.Attribute msg
+sm__text_sm =
+    A.class "sm:text-sm"
+
+
+sm__text_base : Svg.Attribute msg
+sm__text_base =
+    A.class "sm:text-base"
+
+
+sm__text_lg : Svg.Attribute msg
+sm__text_lg =
+    A.class "sm:text-lg"
+
+
+sm__text_xl : Svg.Attribute msg
+sm__text_xl =
+    A.class "sm:text-xl"
+
+
+sm__text_2xl : Svg.Attribute msg
+sm__text_2xl =
+    A.class "sm:text-2xl"
+
+
+sm__text_3xl : Svg.Attribute msg
+sm__text_3xl =
+    A.class "sm:text-3xl"
+
+
+sm__text_4xl : Svg.Attribute msg
+sm__text_4xl =
+    A.class "sm:text-4xl"
+
+
+sm__text_5xl : Svg.Attribute msg
+sm__text_5xl =
+    A.class "sm:text-5xl"
+
+
+sm__text_6xl : Svg.Attribute msg
+sm__text_6xl =
+    A.class "sm:text-6xl"
 
 
 sm__leading_3 : Svg.Attribute msg
@@ -31707,6 +34752,11 @@ sm__placeholder_transparent =
     A.class "sm:placeholder-transparent"
 
 
+sm__placeholder_current : Svg.Attribute msg
+sm__placeholder_current =
+    A.class "sm:placeholder-current"
+
+
 sm__placeholder_black : Svg.Attribute msg
 sm__placeholder_black =
     A.class "sm:placeholder-black"
@@ -32170,6 +35220,11 @@ sm__placeholder_pink_900 =
 sm__focus__placeholder_transparent__focus : Svg.Attribute msg
 sm__focus__placeholder_transparent__focus =
     A.class "sm:focus:placeholder-transparent:focus"
+
+
+sm__focus__placeholder_current__focus : Svg.Attribute msg
+sm__focus__placeholder_current__focus =
+    A.class "sm:focus:placeholder-current:focus"
 
 
 sm__focus__placeholder_black__focus : Svg.Attribute msg
@@ -32967,6 +36022,11 @@ sm__text_transparent =
     A.class "sm:text-transparent"
 
 
+sm__text_current : Svg.Attribute msg
+sm__text_current =
+    A.class "sm:text-current"
+
+
 sm__text_black : Svg.Attribute msg
 sm__text_black =
     A.class "sm:text-black"
@@ -33430,6 +36490,11 @@ sm__text_pink_900 =
 sm__hover__text_transparent : Svg.Attribute msg
 sm__hover__text_transparent =
     A.class "sm:hover:text-transparent"
+
+
+sm__hover__text_current : Svg.Attribute msg
+sm__hover__text_current =
+    A.class "sm:hover:text-current"
 
 
 sm__hover__text_black : Svg.Attribute msg
@@ -33897,6 +36962,11 @@ sm__focus__text_transparent =
     A.class "sm:focus:text-transparent"
 
 
+sm__focus__text_current : Svg.Attribute msg
+sm__focus__text_current =
+    A.class "sm:focus:text-current"
+
+
 sm__focus__text_black : Svg.Attribute msg
 sm__focus__text_black =
     A.class "sm:focus:text-black"
@@ -34355,56 +37425,6 @@ sm__focus__text_pink_800 =
 sm__focus__text_pink_900 : Svg.Attribute msg
 sm__focus__text_pink_900 =
     A.class "sm:focus:text-pink-900"
-
-
-sm__text_xs : Svg.Attribute msg
-sm__text_xs =
-    A.class "sm:text-xs"
-
-
-sm__text_sm : Svg.Attribute msg
-sm__text_sm =
-    A.class "sm:text-sm"
-
-
-sm__text_base : Svg.Attribute msg
-sm__text_base =
-    A.class "sm:text-base"
-
-
-sm__text_lg : Svg.Attribute msg
-sm__text_lg =
-    A.class "sm:text-lg"
-
-
-sm__text_xl : Svg.Attribute msg
-sm__text_xl =
-    A.class "sm:text-xl"
-
-
-sm__text_2xl : Svg.Attribute msg
-sm__text_2xl =
-    A.class "sm:text-2xl"
-
-
-sm__text_3xl : Svg.Attribute msg
-sm__text_3xl =
-    A.class "sm:text-3xl"
-
-
-sm__text_4xl : Svg.Attribute msg
-sm__text_4xl =
-    A.class "sm:text-4xl"
-
-
-sm__text_5xl : Svg.Attribute msg
-sm__text_5xl =
-    A.class "sm:text-5xl"
-
-
-sm__text_6xl : Svg.Attribute msg
-sm__text_6xl =
-    A.class "sm:text-6xl"
 
 
 sm__italic : Svg.Attribute msg
@@ -37772,6 +40792,956 @@ sm__duration_1000 =
     A.class "sm:duration-1000"
 
 
+sm__delay_75 : Svg.Attribute msg
+sm__delay_75 =
+    A.class "sm:delay-75"
+
+
+sm__delay_100 : Svg.Attribute msg
+sm__delay_100 =
+    A.class "sm:delay-100"
+
+
+sm__delay_150 : Svg.Attribute msg
+sm__delay_150 =
+    A.class "sm:delay-150"
+
+
+sm__delay_200 : Svg.Attribute msg
+sm__delay_200 =
+    A.class "sm:delay-200"
+
+
+sm__delay_300 : Svg.Attribute msg
+sm__delay_300 =
+    A.class "sm:delay-300"
+
+
+sm__delay_500 : Svg.Attribute msg
+sm__delay_500 =
+    A.class "sm:delay-500"
+
+
+sm__delay_700 : Svg.Attribute msg
+sm__delay_700 =
+    A.class "sm:delay-700"
+
+
+sm__delay_1000 : Svg.Attribute msg
+sm__delay_1000 =
+    A.class "sm:delay-1000"
+
+
+md__space_y_0 : Svg.Attribute msg
+md__space_y_0 =
+    A.class "md:space-y-0"
+
+
+md__space_x_0 : Svg.Attribute msg
+md__space_x_0 =
+    A.class "md:space-x-0"
+
+
+md__space_y_1 : Svg.Attribute msg
+md__space_y_1 =
+    A.class "md:space-y-1"
+
+
+md__space_x_1 : Svg.Attribute msg
+md__space_x_1 =
+    A.class "md:space-x-1"
+
+
+md__space_y_2 : Svg.Attribute msg
+md__space_y_2 =
+    A.class "md:space-y-2"
+
+
+md__space_x_2 : Svg.Attribute msg
+md__space_x_2 =
+    A.class "md:space-x-2"
+
+
+md__space_y_3 : Svg.Attribute msg
+md__space_y_3 =
+    A.class "md:space-y-3"
+
+
+md__space_x_3 : Svg.Attribute msg
+md__space_x_3 =
+    A.class "md:space-x-3"
+
+
+md__space_y_4 : Svg.Attribute msg
+md__space_y_4 =
+    A.class "md:space-y-4"
+
+
+md__space_x_4 : Svg.Attribute msg
+md__space_x_4 =
+    A.class "md:space-x-4"
+
+
+md__space_y_5 : Svg.Attribute msg
+md__space_y_5 =
+    A.class "md:space-y-5"
+
+
+md__space_x_5 : Svg.Attribute msg
+md__space_x_5 =
+    A.class "md:space-x-5"
+
+
+md__space_y_6 : Svg.Attribute msg
+md__space_y_6 =
+    A.class "md:space-y-6"
+
+
+md__space_x_6 : Svg.Attribute msg
+md__space_x_6 =
+    A.class "md:space-x-6"
+
+
+md__space_y_8 : Svg.Attribute msg
+md__space_y_8 =
+    A.class "md:space-y-8"
+
+
+md__space_x_8 : Svg.Attribute msg
+md__space_x_8 =
+    A.class "md:space-x-8"
+
+
+md__space_y_10 : Svg.Attribute msg
+md__space_y_10 =
+    A.class "md:space-y-10"
+
+
+md__space_x_10 : Svg.Attribute msg
+md__space_x_10 =
+    A.class "md:space-x-10"
+
+
+md__space_y_12 : Svg.Attribute msg
+md__space_y_12 =
+    A.class "md:space-y-12"
+
+
+md__space_x_12 : Svg.Attribute msg
+md__space_x_12 =
+    A.class "md:space-x-12"
+
+
+md__space_y_16 : Svg.Attribute msg
+md__space_y_16 =
+    A.class "md:space-y-16"
+
+
+md__space_x_16 : Svg.Attribute msg
+md__space_x_16 =
+    A.class "md:space-x-16"
+
+
+md__space_y_20 : Svg.Attribute msg
+md__space_y_20 =
+    A.class "md:space-y-20"
+
+
+md__space_x_20 : Svg.Attribute msg
+md__space_x_20 =
+    A.class "md:space-x-20"
+
+
+md__space_y_24 : Svg.Attribute msg
+md__space_y_24 =
+    A.class "md:space-y-24"
+
+
+md__space_x_24 : Svg.Attribute msg
+md__space_x_24 =
+    A.class "md:space-x-24"
+
+
+md__space_y_32 : Svg.Attribute msg
+md__space_y_32 =
+    A.class "md:space-y-32"
+
+
+md__space_x_32 : Svg.Attribute msg
+md__space_x_32 =
+    A.class "md:space-x-32"
+
+
+md__space_y_40 : Svg.Attribute msg
+md__space_y_40 =
+    A.class "md:space-y-40"
+
+
+md__space_x_40 : Svg.Attribute msg
+md__space_x_40 =
+    A.class "md:space-x-40"
+
+
+md__space_y_48 : Svg.Attribute msg
+md__space_y_48 =
+    A.class "md:space-y-48"
+
+
+md__space_x_48 : Svg.Attribute msg
+md__space_x_48 =
+    A.class "md:space-x-48"
+
+
+md__space_y_56 : Svg.Attribute msg
+md__space_y_56 =
+    A.class "md:space-y-56"
+
+
+md__space_x_56 : Svg.Attribute msg
+md__space_x_56 =
+    A.class "md:space-x-56"
+
+
+md__space_y_64 : Svg.Attribute msg
+md__space_y_64 =
+    A.class "md:space-y-64"
+
+
+md__space_x_64 : Svg.Attribute msg
+md__space_x_64 =
+    A.class "md:space-x-64"
+
+
+md__space_y_px : Svg.Attribute msg
+md__space_y_px =
+    A.class "md:space-y-px"
+
+
+md__space_x_px : Svg.Attribute msg
+md__space_x_px =
+    A.class "md:space-x-px"
+
+
+md__neg_space_y_1 : Svg.Attribute msg
+md__neg_space_y_1 =
+    A.class "md:-space-y-1"
+
+
+md__neg_space_x_1 : Svg.Attribute msg
+md__neg_space_x_1 =
+    A.class "md:-space-x-1"
+
+
+md__neg_space_y_2 : Svg.Attribute msg
+md__neg_space_y_2 =
+    A.class "md:-space-y-2"
+
+
+md__neg_space_x_2 : Svg.Attribute msg
+md__neg_space_x_2 =
+    A.class "md:-space-x-2"
+
+
+md__neg_space_y_3 : Svg.Attribute msg
+md__neg_space_y_3 =
+    A.class "md:-space-y-3"
+
+
+md__neg_space_x_3 : Svg.Attribute msg
+md__neg_space_x_3 =
+    A.class "md:-space-x-3"
+
+
+md__neg_space_y_4 : Svg.Attribute msg
+md__neg_space_y_4 =
+    A.class "md:-space-y-4"
+
+
+md__neg_space_x_4 : Svg.Attribute msg
+md__neg_space_x_4 =
+    A.class "md:-space-x-4"
+
+
+md__neg_space_y_5 : Svg.Attribute msg
+md__neg_space_y_5 =
+    A.class "md:-space-y-5"
+
+
+md__neg_space_x_5 : Svg.Attribute msg
+md__neg_space_x_5 =
+    A.class "md:-space-x-5"
+
+
+md__neg_space_y_6 : Svg.Attribute msg
+md__neg_space_y_6 =
+    A.class "md:-space-y-6"
+
+
+md__neg_space_x_6 : Svg.Attribute msg
+md__neg_space_x_6 =
+    A.class "md:-space-x-6"
+
+
+md__neg_space_y_8 : Svg.Attribute msg
+md__neg_space_y_8 =
+    A.class "md:-space-y-8"
+
+
+md__neg_space_x_8 : Svg.Attribute msg
+md__neg_space_x_8 =
+    A.class "md:-space-x-8"
+
+
+md__neg_space_y_10 : Svg.Attribute msg
+md__neg_space_y_10 =
+    A.class "md:-space-y-10"
+
+
+md__neg_space_x_10 : Svg.Attribute msg
+md__neg_space_x_10 =
+    A.class "md:-space-x-10"
+
+
+md__neg_space_y_12 : Svg.Attribute msg
+md__neg_space_y_12 =
+    A.class "md:-space-y-12"
+
+
+md__neg_space_x_12 : Svg.Attribute msg
+md__neg_space_x_12 =
+    A.class "md:-space-x-12"
+
+
+md__neg_space_y_16 : Svg.Attribute msg
+md__neg_space_y_16 =
+    A.class "md:-space-y-16"
+
+
+md__neg_space_x_16 : Svg.Attribute msg
+md__neg_space_x_16 =
+    A.class "md:-space-x-16"
+
+
+md__neg_space_y_20 : Svg.Attribute msg
+md__neg_space_y_20 =
+    A.class "md:-space-y-20"
+
+
+md__neg_space_x_20 : Svg.Attribute msg
+md__neg_space_x_20 =
+    A.class "md:-space-x-20"
+
+
+md__neg_space_y_24 : Svg.Attribute msg
+md__neg_space_y_24 =
+    A.class "md:-space-y-24"
+
+
+md__neg_space_x_24 : Svg.Attribute msg
+md__neg_space_x_24 =
+    A.class "md:-space-x-24"
+
+
+md__neg_space_y_32 : Svg.Attribute msg
+md__neg_space_y_32 =
+    A.class "md:-space-y-32"
+
+
+md__neg_space_x_32 : Svg.Attribute msg
+md__neg_space_x_32 =
+    A.class "md:-space-x-32"
+
+
+md__neg_space_y_40 : Svg.Attribute msg
+md__neg_space_y_40 =
+    A.class "md:-space-y-40"
+
+
+md__neg_space_x_40 : Svg.Attribute msg
+md__neg_space_x_40 =
+    A.class "md:-space-x-40"
+
+
+md__neg_space_y_48 : Svg.Attribute msg
+md__neg_space_y_48 =
+    A.class "md:-space-y-48"
+
+
+md__neg_space_x_48 : Svg.Attribute msg
+md__neg_space_x_48 =
+    A.class "md:-space-x-48"
+
+
+md__neg_space_y_56 : Svg.Attribute msg
+md__neg_space_y_56 =
+    A.class "md:-space-y-56"
+
+
+md__neg_space_x_56 : Svg.Attribute msg
+md__neg_space_x_56 =
+    A.class "md:-space-x-56"
+
+
+md__neg_space_y_64 : Svg.Attribute msg
+md__neg_space_y_64 =
+    A.class "md:-space-y-64"
+
+
+md__neg_space_x_64 : Svg.Attribute msg
+md__neg_space_x_64 =
+    A.class "md:-space-x-64"
+
+
+md__neg_space_y_px : Svg.Attribute msg
+md__neg_space_y_px =
+    A.class "md:-space-y-px"
+
+
+md__neg_space_x_px : Svg.Attribute msg
+md__neg_space_x_px =
+    A.class "md:-space-x-px"
+
+
+md__space_y_reverse : Svg.Attribute msg
+md__space_y_reverse =
+    A.class "md:space-y-reverse"
+
+
+md__space_x_reverse : Svg.Attribute msg
+md__space_x_reverse =
+    A.class "md:space-x-reverse"
+
+
+md__divide_y_0 : Svg.Attribute msg
+md__divide_y_0 =
+    A.class "md:divide-y-0"
+
+
+md__divide_x_0 : Svg.Attribute msg
+md__divide_x_0 =
+    A.class "md:divide-x-0"
+
+
+md__divide_y_2 : Svg.Attribute msg
+md__divide_y_2 =
+    A.class "md:divide-y-2"
+
+
+md__divide_x_2 : Svg.Attribute msg
+md__divide_x_2 =
+    A.class "md:divide-x-2"
+
+
+md__divide_y_4 : Svg.Attribute msg
+md__divide_y_4 =
+    A.class "md:divide-y-4"
+
+
+md__divide_x_4 : Svg.Attribute msg
+md__divide_x_4 =
+    A.class "md:divide-x-4"
+
+
+md__divide_y_8 : Svg.Attribute msg
+md__divide_y_8 =
+    A.class "md:divide-y-8"
+
+
+md__divide_x_8 : Svg.Attribute msg
+md__divide_x_8 =
+    A.class "md:divide-x-8"
+
+
+md__divide_y : Svg.Attribute msg
+md__divide_y =
+    A.class "md:divide-y"
+
+
+md__divide_x : Svg.Attribute msg
+md__divide_x =
+    A.class "md:divide-x"
+
+
+md__divide_y_reverse : Svg.Attribute msg
+md__divide_y_reverse =
+    A.class "md:divide-y-reverse"
+
+
+md__divide_x_reverse : Svg.Attribute msg
+md__divide_x_reverse =
+    A.class "md:divide-x-reverse"
+
+
+md__divide_transparent : Svg.Attribute msg
+md__divide_transparent =
+    A.class "md:divide-transparent"
+
+
+md__divide_current : Svg.Attribute msg
+md__divide_current =
+    A.class "md:divide-current"
+
+
+md__divide_black : Svg.Attribute msg
+md__divide_black =
+    A.class "md:divide-black"
+
+
+md__divide_white : Svg.Attribute msg
+md__divide_white =
+    A.class "md:divide-white"
+
+
+md__divide_gray_100 : Svg.Attribute msg
+md__divide_gray_100 =
+    A.class "md:divide-gray-100"
+
+
+md__divide_gray_200 : Svg.Attribute msg
+md__divide_gray_200 =
+    A.class "md:divide-gray-200"
+
+
+md__divide_gray_300 : Svg.Attribute msg
+md__divide_gray_300 =
+    A.class "md:divide-gray-300"
+
+
+md__divide_gray_400 : Svg.Attribute msg
+md__divide_gray_400 =
+    A.class "md:divide-gray-400"
+
+
+md__divide_gray_500 : Svg.Attribute msg
+md__divide_gray_500 =
+    A.class "md:divide-gray-500"
+
+
+md__divide_gray_600 : Svg.Attribute msg
+md__divide_gray_600 =
+    A.class "md:divide-gray-600"
+
+
+md__divide_gray_700 : Svg.Attribute msg
+md__divide_gray_700 =
+    A.class "md:divide-gray-700"
+
+
+md__divide_gray_800 : Svg.Attribute msg
+md__divide_gray_800 =
+    A.class "md:divide-gray-800"
+
+
+md__divide_gray_900 : Svg.Attribute msg
+md__divide_gray_900 =
+    A.class "md:divide-gray-900"
+
+
+md__divide_red_100 : Svg.Attribute msg
+md__divide_red_100 =
+    A.class "md:divide-red-100"
+
+
+md__divide_red_200 : Svg.Attribute msg
+md__divide_red_200 =
+    A.class "md:divide-red-200"
+
+
+md__divide_red_300 : Svg.Attribute msg
+md__divide_red_300 =
+    A.class "md:divide-red-300"
+
+
+md__divide_red_400 : Svg.Attribute msg
+md__divide_red_400 =
+    A.class "md:divide-red-400"
+
+
+md__divide_red_500 : Svg.Attribute msg
+md__divide_red_500 =
+    A.class "md:divide-red-500"
+
+
+md__divide_red_600 : Svg.Attribute msg
+md__divide_red_600 =
+    A.class "md:divide-red-600"
+
+
+md__divide_red_700 : Svg.Attribute msg
+md__divide_red_700 =
+    A.class "md:divide-red-700"
+
+
+md__divide_red_800 : Svg.Attribute msg
+md__divide_red_800 =
+    A.class "md:divide-red-800"
+
+
+md__divide_red_900 : Svg.Attribute msg
+md__divide_red_900 =
+    A.class "md:divide-red-900"
+
+
+md__divide_orange_100 : Svg.Attribute msg
+md__divide_orange_100 =
+    A.class "md:divide-orange-100"
+
+
+md__divide_orange_200 : Svg.Attribute msg
+md__divide_orange_200 =
+    A.class "md:divide-orange-200"
+
+
+md__divide_orange_300 : Svg.Attribute msg
+md__divide_orange_300 =
+    A.class "md:divide-orange-300"
+
+
+md__divide_orange_400 : Svg.Attribute msg
+md__divide_orange_400 =
+    A.class "md:divide-orange-400"
+
+
+md__divide_orange_500 : Svg.Attribute msg
+md__divide_orange_500 =
+    A.class "md:divide-orange-500"
+
+
+md__divide_orange_600 : Svg.Attribute msg
+md__divide_orange_600 =
+    A.class "md:divide-orange-600"
+
+
+md__divide_orange_700 : Svg.Attribute msg
+md__divide_orange_700 =
+    A.class "md:divide-orange-700"
+
+
+md__divide_orange_800 : Svg.Attribute msg
+md__divide_orange_800 =
+    A.class "md:divide-orange-800"
+
+
+md__divide_orange_900 : Svg.Attribute msg
+md__divide_orange_900 =
+    A.class "md:divide-orange-900"
+
+
+md__divide_yellow_100 : Svg.Attribute msg
+md__divide_yellow_100 =
+    A.class "md:divide-yellow-100"
+
+
+md__divide_yellow_200 : Svg.Attribute msg
+md__divide_yellow_200 =
+    A.class "md:divide-yellow-200"
+
+
+md__divide_yellow_300 : Svg.Attribute msg
+md__divide_yellow_300 =
+    A.class "md:divide-yellow-300"
+
+
+md__divide_yellow_400 : Svg.Attribute msg
+md__divide_yellow_400 =
+    A.class "md:divide-yellow-400"
+
+
+md__divide_yellow_500 : Svg.Attribute msg
+md__divide_yellow_500 =
+    A.class "md:divide-yellow-500"
+
+
+md__divide_yellow_600 : Svg.Attribute msg
+md__divide_yellow_600 =
+    A.class "md:divide-yellow-600"
+
+
+md__divide_yellow_700 : Svg.Attribute msg
+md__divide_yellow_700 =
+    A.class "md:divide-yellow-700"
+
+
+md__divide_yellow_800 : Svg.Attribute msg
+md__divide_yellow_800 =
+    A.class "md:divide-yellow-800"
+
+
+md__divide_yellow_900 : Svg.Attribute msg
+md__divide_yellow_900 =
+    A.class "md:divide-yellow-900"
+
+
+md__divide_green_100 : Svg.Attribute msg
+md__divide_green_100 =
+    A.class "md:divide-green-100"
+
+
+md__divide_green_200 : Svg.Attribute msg
+md__divide_green_200 =
+    A.class "md:divide-green-200"
+
+
+md__divide_green_300 : Svg.Attribute msg
+md__divide_green_300 =
+    A.class "md:divide-green-300"
+
+
+md__divide_green_400 : Svg.Attribute msg
+md__divide_green_400 =
+    A.class "md:divide-green-400"
+
+
+md__divide_green_500 : Svg.Attribute msg
+md__divide_green_500 =
+    A.class "md:divide-green-500"
+
+
+md__divide_green_600 : Svg.Attribute msg
+md__divide_green_600 =
+    A.class "md:divide-green-600"
+
+
+md__divide_green_700 : Svg.Attribute msg
+md__divide_green_700 =
+    A.class "md:divide-green-700"
+
+
+md__divide_green_800 : Svg.Attribute msg
+md__divide_green_800 =
+    A.class "md:divide-green-800"
+
+
+md__divide_green_900 : Svg.Attribute msg
+md__divide_green_900 =
+    A.class "md:divide-green-900"
+
+
+md__divide_teal_100 : Svg.Attribute msg
+md__divide_teal_100 =
+    A.class "md:divide-teal-100"
+
+
+md__divide_teal_200 : Svg.Attribute msg
+md__divide_teal_200 =
+    A.class "md:divide-teal-200"
+
+
+md__divide_teal_300 : Svg.Attribute msg
+md__divide_teal_300 =
+    A.class "md:divide-teal-300"
+
+
+md__divide_teal_400 : Svg.Attribute msg
+md__divide_teal_400 =
+    A.class "md:divide-teal-400"
+
+
+md__divide_teal_500 : Svg.Attribute msg
+md__divide_teal_500 =
+    A.class "md:divide-teal-500"
+
+
+md__divide_teal_600 : Svg.Attribute msg
+md__divide_teal_600 =
+    A.class "md:divide-teal-600"
+
+
+md__divide_teal_700 : Svg.Attribute msg
+md__divide_teal_700 =
+    A.class "md:divide-teal-700"
+
+
+md__divide_teal_800 : Svg.Attribute msg
+md__divide_teal_800 =
+    A.class "md:divide-teal-800"
+
+
+md__divide_teal_900 : Svg.Attribute msg
+md__divide_teal_900 =
+    A.class "md:divide-teal-900"
+
+
+md__divide_blue_100 : Svg.Attribute msg
+md__divide_blue_100 =
+    A.class "md:divide-blue-100"
+
+
+md__divide_blue_200 : Svg.Attribute msg
+md__divide_blue_200 =
+    A.class "md:divide-blue-200"
+
+
+md__divide_blue_300 : Svg.Attribute msg
+md__divide_blue_300 =
+    A.class "md:divide-blue-300"
+
+
+md__divide_blue_400 : Svg.Attribute msg
+md__divide_blue_400 =
+    A.class "md:divide-blue-400"
+
+
+md__divide_blue_500 : Svg.Attribute msg
+md__divide_blue_500 =
+    A.class "md:divide-blue-500"
+
+
+md__divide_blue_600 : Svg.Attribute msg
+md__divide_blue_600 =
+    A.class "md:divide-blue-600"
+
+
+md__divide_blue_700 : Svg.Attribute msg
+md__divide_blue_700 =
+    A.class "md:divide-blue-700"
+
+
+md__divide_blue_800 : Svg.Attribute msg
+md__divide_blue_800 =
+    A.class "md:divide-blue-800"
+
+
+md__divide_blue_900 : Svg.Attribute msg
+md__divide_blue_900 =
+    A.class "md:divide-blue-900"
+
+
+md__divide_indigo_100 : Svg.Attribute msg
+md__divide_indigo_100 =
+    A.class "md:divide-indigo-100"
+
+
+md__divide_indigo_200 : Svg.Attribute msg
+md__divide_indigo_200 =
+    A.class "md:divide-indigo-200"
+
+
+md__divide_indigo_300 : Svg.Attribute msg
+md__divide_indigo_300 =
+    A.class "md:divide-indigo-300"
+
+
+md__divide_indigo_400 : Svg.Attribute msg
+md__divide_indigo_400 =
+    A.class "md:divide-indigo-400"
+
+
+md__divide_indigo_500 : Svg.Attribute msg
+md__divide_indigo_500 =
+    A.class "md:divide-indigo-500"
+
+
+md__divide_indigo_600 : Svg.Attribute msg
+md__divide_indigo_600 =
+    A.class "md:divide-indigo-600"
+
+
+md__divide_indigo_700 : Svg.Attribute msg
+md__divide_indigo_700 =
+    A.class "md:divide-indigo-700"
+
+
+md__divide_indigo_800 : Svg.Attribute msg
+md__divide_indigo_800 =
+    A.class "md:divide-indigo-800"
+
+
+md__divide_indigo_900 : Svg.Attribute msg
+md__divide_indigo_900 =
+    A.class "md:divide-indigo-900"
+
+
+md__divide_purple_100 : Svg.Attribute msg
+md__divide_purple_100 =
+    A.class "md:divide-purple-100"
+
+
+md__divide_purple_200 : Svg.Attribute msg
+md__divide_purple_200 =
+    A.class "md:divide-purple-200"
+
+
+md__divide_purple_300 : Svg.Attribute msg
+md__divide_purple_300 =
+    A.class "md:divide-purple-300"
+
+
+md__divide_purple_400 : Svg.Attribute msg
+md__divide_purple_400 =
+    A.class "md:divide-purple-400"
+
+
+md__divide_purple_500 : Svg.Attribute msg
+md__divide_purple_500 =
+    A.class "md:divide-purple-500"
+
+
+md__divide_purple_600 : Svg.Attribute msg
+md__divide_purple_600 =
+    A.class "md:divide-purple-600"
+
+
+md__divide_purple_700 : Svg.Attribute msg
+md__divide_purple_700 =
+    A.class "md:divide-purple-700"
+
+
+md__divide_purple_800 : Svg.Attribute msg
+md__divide_purple_800 =
+    A.class "md:divide-purple-800"
+
+
+md__divide_purple_900 : Svg.Attribute msg
+md__divide_purple_900 =
+    A.class "md:divide-purple-900"
+
+
+md__divide_pink_100 : Svg.Attribute msg
+md__divide_pink_100 =
+    A.class "md:divide-pink-100"
+
+
+md__divide_pink_200 : Svg.Attribute msg
+md__divide_pink_200 =
+    A.class "md:divide-pink-200"
+
+
+md__divide_pink_300 : Svg.Attribute msg
+md__divide_pink_300 =
+    A.class "md:divide-pink-300"
+
+
+md__divide_pink_400 : Svg.Attribute msg
+md__divide_pink_400 =
+    A.class "md:divide-pink-400"
+
+
+md__divide_pink_500 : Svg.Attribute msg
+md__divide_pink_500 =
+    A.class "md:divide-pink-500"
+
+
+md__divide_pink_600 : Svg.Attribute msg
+md__divide_pink_600 =
+    A.class "md:divide-pink-600"
+
+
+md__divide_pink_700 : Svg.Attribute msg
+md__divide_pink_700 =
+    A.class "md:divide-pink-700"
+
+
+md__divide_pink_800 : Svg.Attribute msg
+md__divide_pink_800 =
+    A.class "md:divide-pink-800"
+
+
+md__divide_pink_900 : Svg.Attribute msg
+md__divide_pink_900 =
+    A.class "md:divide-pink-900"
+
+
 md__sr_only : Svg.Attribute msg
 md__sr_only =
     A.class "md:sr-only"
@@ -37815,6 +41785,11 @@ md__bg_scroll =
 md__bg_transparent : Svg.Attribute msg
 md__bg_transparent =
     A.class "md:bg-transparent"
+
+
+md__bg_current : Svg.Attribute msg
+md__bg_current =
+    A.class "md:bg-current"
 
 
 md__bg_black : Svg.Attribute msg
@@ -38282,6 +42257,11 @@ md__hover__bg_transparent =
     A.class "md:hover:bg-transparent"
 
 
+md__hover__bg_current : Svg.Attribute msg
+md__hover__bg_current =
+    A.class "md:hover:bg-current"
+
+
 md__hover__bg_black : Svg.Attribute msg
 md__hover__bg_black =
     A.class "md:hover:bg-black"
@@ -38745,6 +42725,11 @@ md__hover__bg_pink_900 =
 md__focus__bg_transparent : Svg.Attribute msg
 md__focus__bg_transparent =
     A.class "md:focus:bg-transparent"
+
+
+md__focus__bg_current : Svg.Attribute msg
+md__focus__bg_current =
+    A.class "md:focus:bg-current"
 
 
 md__focus__bg_black : Svg.Attribute msg
@@ -39312,6 +43297,11 @@ md__border_transparent =
     A.class "md:border-transparent"
 
 
+md__border_current : Svg.Attribute msg
+md__border_current =
+    A.class "md:border-current"
+
+
 md__border_black : Svg.Attribute msg
 md__border_black =
     A.class "md:border-black"
@@ -39777,6 +43767,11 @@ md__hover__border_transparent =
     A.class "md:hover:border-transparent"
 
 
+md__hover__border_current : Svg.Attribute msg
+md__hover__border_current =
+    A.class "md:hover:border-current"
+
+
 md__hover__border_black : Svg.Attribute msg
 md__hover__border_black =
     A.class "md:hover:border-black"
@@ -40240,6 +44235,11 @@ md__hover__border_pink_900 =
 md__focus__border_transparent : Svg.Attribute msg
 md__focus__border_transparent =
     A.class "md:focus:border-transparent"
+
+
+md__focus__border_current : Svg.Attribute msg
+md__focus__border_current =
+    A.class "md:focus:border-current"
 
 
 md__focus__border_black : Svg.Attribute msg
@@ -41217,6 +45217,11 @@ md__inline =
     A.class "md:inline"
 
 
+md__flow_root : Svg.Attribute msg
+md__flow_root =
+    A.class "md:flow-root"
+
+
 md__flex : Svg.Attribute msg
 md__flex =
     A.class "md:flex"
@@ -41230,6 +45235,11 @@ md__inline_flex =
 md__grid : Svg.Attribute msg
 md__grid =
     A.class "md:grid"
+
+
+md__inline_grid : Svg.Attribute msg
+md__inline_grid =
+    A.class "md:inline-grid"
 
 
 md__table : Svg.Attribute msg
@@ -41572,6 +45582,11 @@ md__clear_both =
     A.class "md:clear-both"
 
 
+md__clear_none : Svg.Attribute msg
+md__clear_none =
+    A.class "md:clear-none"
+
+
 md__font_sans : Svg.Attribute msg
 md__font_sans =
     A.class "md:font-sans"
@@ -41830,6 +45845,56 @@ md__h_full =
 md__h_screen : Svg.Attribute msg
 md__h_screen =
     A.class "md:h-screen"
+
+
+md__text_xs : Svg.Attribute msg
+md__text_xs =
+    A.class "md:text-xs"
+
+
+md__text_sm : Svg.Attribute msg
+md__text_sm =
+    A.class "md:text-sm"
+
+
+md__text_base : Svg.Attribute msg
+md__text_base =
+    A.class "md:text-base"
+
+
+md__text_lg : Svg.Attribute msg
+md__text_lg =
+    A.class "md:text-lg"
+
+
+md__text_xl : Svg.Attribute msg
+md__text_xl =
+    A.class "md:text-xl"
+
+
+md__text_2xl : Svg.Attribute msg
+md__text_2xl =
+    A.class "md:text-2xl"
+
+
+md__text_3xl : Svg.Attribute msg
+md__text_3xl =
+    A.class "md:text-3xl"
+
+
+md__text_4xl : Svg.Attribute msg
+md__text_4xl =
+    A.class "md:text-4xl"
+
+
+md__text_5xl : Svg.Attribute msg
+md__text_5xl =
+    A.class "md:text-5xl"
+
+
+md__text_6xl : Svg.Attribute msg
+md__text_6xl =
+    A.class "md:text-6xl"
 
 
 md__leading_3 : Svg.Attribute msg
@@ -44292,6 +48357,11 @@ md__placeholder_transparent =
     A.class "md:placeholder-transparent"
 
 
+md__placeholder_current : Svg.Attribute msg
+md__placeholder_current =
+    A.class "md:placeholder-current"
+
+
 md__placeholder_black : Svg.Attribute msg
 md__placeholder_black =
     A.class "md:placeholder-black"
@@ -44755,6 +48825,11 @@ md__placeholder_pink_900 =
 md__focus__placeholder_transparent__focus : Svg.Attribute msg
 md__focus__placeholder_transparent__focus =
     A.class "md:focus:placeholder-transparent:focus"
+
+
+md__focus__placeholder_current__focus : Svg.Attribute msg
+md__focus__placeholder_current__focus =
+    A.class "md:focus:placeholder-current:focus"
 
 
 md__focus__placeholder_black__focus : Svg.Attribute msg
@@ -45552,6 +49627,11 @@ md__text_transparent =
     A.class "md:text-transparent"
 
 
+md__text_current : Svg.Attribute msg
+md__text_current =
+    A.class "md:text-current"
+
+
 md__text_black : Svg.Attribute msg
 md__text_black =
     A.class "md:text-black"
@@ -46015,6 +50095,11 @@ md__text_pink_900 =
 md__hover__text_transparent : Svg.Attribute msg
 md__hover__text_transparent =
     A.class "md:hover:text-transparent"
+
+
+md__hover__text_current : Svg.Attribute msg
+md__hover__text_current =
+    A.class "md:hover:text-current"
 
 
 md__hover__text_black : Svg.Attribute msg
@@ -46482,6 +50567,11 @@ md__focus__text_transparent =
     A.class "md:focus:text-transparent"
 
 
+md__focus__text_current : Svg.Attribute msg
+md__focus__text_current =
+    A.class "md:focus:text-current"
+
+
 md__focus__text_black : Svg.Attribute msg
 md__focus__text_black =
     A.class "md:focus:text-black"
@@ -46940,56 +51030,6 @@ md__focus__text_pink_800 =
 md__focus__text_pink_900 : Svg.Attribute msg
 md__focus__text_pink_900 =
     A.class "md:focus:text-pink-900"
-
-
-md__text_xs : Svg.Attribute msg
-md__text_xs =
-    A.class "md:text-xs"
-
-
-md__text_sm : Svg.Attribute msg
-md__text_sm =
-    A.class "md:text-sm"
-
-
-md__text_base : Svg.Attribute msg
-md__text_base =
-    A.class "md:text-base"
-
-
-md__text_lg : Svg.Attribute msg
-md__text_lg =
-    A.class "md:text-lg"
-
-
-md__text_xl : Svg.Attribute msg
-md__text_xl =
-    A.class "md:text-xl"
-
-
-md__text_2xl : Svg.Attribute msg
-md__text_2xl =
-    A.class "md:text-2xl"
-
-
-md__text_3xl : Svg.Attribute msg
-md__text_3xl =
-    A.class "md:text-3xl"
-
-
-md__text_4xl : Svg.Attribute msg
-md__text_4xl =
-    A.class "md:text-4xl"
-
-
-md__text_5xl : Svg.Attribute msg
-md__text_5xl =
-    A.class "md:text-5xl"
-
-
-md__text_6xl : Svg.Attribute msg
-md__text_6xl =
-    A.class "md:text-6xl"
 
 
 md__italic : Svg.Attribute msg
@@ -50357,6 +54397,956 @@ md__duration_1000 =
     A.class "md:duration-1000"
 
 
+md__delay_75 : Svg.Attribute msg
+md__delay_75 =
+    A.class "md:delay-75"
+
+
+md__delay_100 : Svg.Attribute msg
+md__delay_100 =
+    A.class "md:delay-100"
+
+
+md__delay_150 : Svg.Attribute msg
+md__delay_150 =
+    A.class "md:delay-150"
+
+
+md__delay_200 : Svg.Attribute msg
+md__delay_200 =
+    A.class "md:delay-200"
+
+
+md__delay_300 : Svg.Attribute msg
+md__delay_300 =
+    A.class "md:delay-300"
+
+
+md__delay_500 : Svg.Attribute msg
+md__delay_500 =
+    A.class "md:delay-500"
+
+
+md__delay_700 : Svg.Attribute msg
+md__delay_700 =
+    A.class "md:delay-700"
+
+
+md__delay_1000 : Svg.Attribute msg
+md__delay_1000 =
+    A.class "md:delay-1000"
+
+
+lg__space_y_0 : Svg.Attribute msg
+lg__space_y_0 =
+    A.class "lg:space-y-0"
+
+
+lg__space_x_0 : Svg.Attribute msg
+lg__space_x_0 =
+    A.class "lg:space-x-0"
+
+
+lg__space_y_1 : Svg.Attribute msg
+lg__space_y_1 =
+    A.class "lg:space-y-1"
+
+
+lg__space_x_1 : Svg.Attribute msg
+lg__space_x_1 =
+    A.class "lg:space-x-1"
+
+
+lg__space_y_2 : Svg.Attribute msg
+lg__space_y_2 =
+    A.class "lg:space-y-2"
+
+
+lg__space_x_2 : Svg.Attribute msg
+lg__space_x_2 =
+    A.class "lg:space-x-2"
+
+
+lg__space_y_3 : Svg.Attribute msg
+lg__space_y_3 =
+    A.class "lg:space-y-3"
+
+
+lg__space_x_3 : Svg.Attribute msg
+lg__space_x_3 =
+    A.class "lg:space-x-3"
+
+
+lg__space_y_4 : Svg.Attribute msg
+lg__space_y_4 =
+    A.class "lg:space-y-4"
+
+
+lg__space_x_4 : Svg.Attribute msg
+lg__space_x_4 =
+    A.class "lg:space-x-4"
+
+
+lg__space_y_5 : Svg.Attribute msg
+lg__space_y_5 =
+    A.class "lg:space-y-5"
+
+
+lg__space_x_5 : Svg.Attribute msg
+lg__space_x_5 =
+    A.class "lg:space-x-5"
+
+
+lg__space_y_6 : Svg.Attribute msg
+lg__space_y_6 =
+    A.class "lg:space-y-6"
+
+
+lg__space_x_6 : Svg.Attribute msg
+lg__space_x_6 =
+    A.class "lg:space-x-6"
+
+
+lg__space_y_8 : Svg.Attribute msg
+lg__space_y_8 =
+    A.class "lg:space-y-8"
+
+
+lg__space_x_8 : Svg.Attribute msg
+lg__space_x_8 =
+    A.class "lg:space-x-8"
+
+
+lg__space_y_10 : Svg.Attribute msg
+lg__space_y_10 =
+    A.class "lg:space-y-10"
+
+
+lg__space_x_10 : Svg.Attribute msg
+lg__space_x_10 =
+    A.class "lg:space-x-10"
+
+
+lg__space_y_12 : Svg.Attribute msg
+lg__space_y_12 =
+    A.class "lg:space-y-12"
+
+
+lg__space_x_12 : Svg.Attribute msg
+lg__space_x_12 =
+    A.class "lg:space-x-12"
+
+
+lg__space_y_16 : Svg.Attribute msg
+lg__space_y_16 =
+    A.class "lg:space-y-16"
+
+
+lg__space_x_16 : Svg.Attribute msg
+lg__space_x_16 =
+    A.class "lg:space-x-16"
+
+
+lg__space_y_20 : Svg.Attribute msg
+lg__space_y_20 =
+    A.class "lg:space-y-20"
+
+
+lg__space_x_20 : Svg.Attribute msg
+lg__space_x_20 =
+    A.class "lg:space-x-20"
+
+
+lg__space_y_24 : Svg.Attribute msg
+lg__space_y_24 =
+    A.class "lg:space-y-24"
+
+
+lg__space_x_24 : Svg.Attribute msg
+lg__space_x_24 =
+    A.class "lg:space-x-24"
+
+
+lg__space_y_32 : Svg.Attribute msg
+lg__space_y_32 =
+    A.class "lg:space-y-32"
+
+
+lg__space_x_32 : Svg.Attribute msg
+lg__space_x_32 =
+    A.class "lg:space-x-32"
+
+
+lg__space_y_40 : Svg.Attribute msg
+lg__space_y_40 =
+    A.class "lg:space-y-40"
+
+
+lg__space_x_40 : Svg.Attribute msg
+lg__space_x_40 =
+    A.class "lg:space-x-40"
+
+
+lg__space_y_48 : Svg.Attribute msg
+lg__space_y_48 =
+    A.class "lg:space-y-48"
+
+
+lg__space_x_48 : Svg.Attribute msg
+lg__space_x_48 =
+    A.class "lg:space-x-48"
+
+
+lg__space_y_56 : Svg.Attribute msg
+lg__space_y_56 =
+    A.class "lg:space-y-56"
+
+
+lg__space_x_56 : Svg.Attribute msg
+lg__space_x_56 =
+    A.class "lg:space-x-56"
+
+
+lg__space_y_64 : Svg.Attribute msg
+lg__space_y_64 =
+    A.class "lg:space-y-64"
+
+
+lg__space_x_64 : Svg.Attribute msg
+lg__space_x_64 =
+    A.class "lg:space-x-64"
+
+
+lg__space_y_px : Svg.Attribute msg
+lg__space_y_px =
+    A.class "lg:space-y-px"
+
+
+lg__space_x_px : Svg.Attribute msg
+lg__space_x_px =
+    A.class "lg:space-x-px"
+
+
+lg__neg_space_y_1 : Svg.Attribute msg
+lg__neg_space_y_1 =
+    A.class "lg:-space-y-1"
+
+
+lg__neg_space_x_1 : Svg.Attribute msg
+lg__neg_space_x_1 =
+    A.class "lg:-space-x-1"
+
+
+lg__neg_space_y_2 : Svg.Attribute msg
+lg__neg_space_y_2 =
+    A.class "lg:-space-y-2"
+
+
+lg__neg_space_x_2 : Svg.Attribute msg
+lg__neg_space_x_2 =
+    A.class "lg:-space-x-2"
+
+
+lg__neg_space_y_3 : Svg.Attribute msg
+lg__neg_space_y_3 =
+    A.class "lg:-space-y-3"
+
+
+lg__neg_space_x_3 : Svg.Attribute msg
+lg__neg_space_x_3 =
+    A.class "lg:-space-x-3"
+
+
+lg__neg_space_y_4 : Svg.Attribute msg
+lg__neg_space_y_4 =
+    A.class "lg:-space-y-4"
+
+
+lg__neg_space_x_4 : Svg.Attribute msg
+lg__neg_space_x_4 =
+    A.class "lg:-space-x-4"
+
+
+lg__neg_space_y_5 : Svg.Attribute msg
+lg__neg_space_y_5 =
+    A.class "lg:-space-y-5"
+
+
+lg__neg_space_x_5 : Svg.Attribute msg
+lg__neg_space_x_5 =
+    A.class "lg:-space-x-5"
+
+
+lg__neg_space_y_6 : Svg.Attribute msg
+lg__neg_space_y_6 =
+    A.class "lg:-space-y-6"
+
+
+lg__neg_space_x_6 : Svg.Attribute msg
+lg__neg_space_x_6 =
+    A.class "lg:-space-x-6"
+
+
+lg__neg_space_y_8 : Svg.Attribute msg
+lg__neg_space_y_8 =
+    A.class "lg:-space-y-8"
+
+
+lg__neg_space_x_8 : Svg.Attribute msg
+lg__neg_space_x_8 =
+    A.class "lg:-space-x-8"
+
+
+lg__neg_space_y_10 : Svg.Attribute msg
+lg__neg_space_y_10 =
+    A.class "lg:-space-y-10"
+
+
+lg__neg_space_x_10 : Svg.Attribute msg
+lg__neg_space_x_10 =
+    A.class "lg:-space-x-10"
+
+
+lg__neg_space_y_12 : Svg.Attribute msg
+lg__neg_space_y_12 =
+    A.class "lg:-space-y-12"
+
+
+lg__neg_space_x_12 : Svg.Attribute msg
+lg__neg_space_x_12 =
+    A.class "lg:-space-x-12"
+
+
+lg__neg_space_y_16 : Svg.Attribute msg
+lg__neg_space_y_16 =
+    A.class "lg:-space-y-16"
+
+
+lg__neg_space_x_16 : Svg.Attribute msg
+lg__neg_space_x_16 =
+    A.class "lg:-space-x-16"
+
+
+lg__neg_space_y_20 : Svg.Attribute msg
+lg__neg_space_y_20 =
+    A.class "lg:-space-y-20"
+
+
+lg__neg_space_x_20 : Svg.Attribute msg
+lg__neg_space_x_20 =
+    A.class "lg:-space-x-20"
+
+
+lg__neg_space_y_24 : Svg.Attribute msg
+lg__neg_space_y_24 =
+    A.class "lg:-space-y-24"
+
+
+lg__neg_space_x_24 : Svg.Attribute msg
+lg__neg_space_x_24 =
+    A.class "lg:-space-x-24"
+
+
+lg__neg_space_y_32 : Svg.Attribute msg
+lg__neg_space_y_32 =
+    A.class "lg:-space-y-32"
+
+
+lg__neg_space_x_32 : Svg.Attribute msg
+lg__neg_space_x_32 =
+    A.class "lg:-space-x-32"
+
+
+lg__neg_space_y_40 : Svg.Attribute msg
+lg__neg_space_y_40 =
+    A.class "lg:-space-y-40"
+
+
+lg__neg_space_x_40 : Svg.Attribute msg
+lg__neg_space_x_40 =
+    A.class "lg:-space-x-40"
+
+
+lg__neg_space_y_48 : Svg.Attribute msg
+lg__neg_space_y_48 =
+    A.class "lg:-space-y-48"
+
+
+lg__neg_space_x_48 : Svg.Attribute msg
+lg__neg_space_x_48 =
+    A.class "lg:-space-x-48"
+
+
+lg__neg_space_y_56 : Svg.Attribute msg
+lg__neg_space_y_56 =
+    A.class "lg:-space-y-56"
+
+
+lg__neg_space_x_56 : Svg.Attribute msg
+lg__neg_space_x_56 =
+    A.class "lg:-space-x-56"
+
+
+lg__neg_space_y_64 : Svg.Attribute msg
+lg__neg_space_y_64 =
+    A.class "lg:-space-y-64"
+
+
+lg__neg_space_x_64 : Svg.Attribute msg
+lg__neg_space_x_64 =
+    A.class "lg:-space-x-64"
+
+
+lg__neg_space_y_px : Svg.Attribute msg
+lg__neg_space_y_px =
+    A.class "lg:-space-y-px"
+
+
+lg__neg_space_x_px : Svg.Attribute msg
+lg__neg_space_x_px =
+    A.class "lg:-space-x-px"
+
+
+lg__space_y_reverse : Svg.Attribute msg
+lg__space_y_reverse =
+    A.class "lg:space-y-reverse"
+
+
+lg__space_x_reverse : Svg.Attribute msg
+lg__space_x_reverse =
+    A.class "lg:space-x-reverse"
+
+
+lg__divide_y_0 : Svg.Attribute msg
+lg__divide_y_0 =
+    A.class "lg:divide-y-0"
+
+
+lg__divide_x_0 : Svg.Attribute msg
+lg__divide_x_0 =
+    A.class "lg:divide-x-0"
+
+
+lg__divide_y_2 : Svg.Attribute msg
+lg__divide_y_2 =
+    A.class "lg:divide-y-2"
+
+
+lg__divide_x_2 : Svg.Attribute msg
+lg__divide_x_2 =
+    A.class "lg:divide-x-2"
+
+
+lg__divide_y_4 : Svg.Attribute msg
+lg__divide_y_4 =
+    A.class "lg:divide-y-4"
+
+
+lg__divide_x_4 : Svg.Attribute msg
+lg__divide_x_4 =
+    A.class "lg:divide-x-4"
+
+
+lg__divide_y_8 : Svg.Attribute msg
+lg__divide_y_8 =
+    A.class "lg:divide-y-8"
+
+
+lg__divide_x_8 : Svg.Attribute msg
+lg__divide_x_8 =
+    A.class "lg:divide-x-8"
+
+
+lg__divide_y : Svg.Attribute msg
+lg__divide_y =
+    A.class "lg:divide-y"
+
+
+lg__divide_x : Svg.Attribute msg
+lg__divide_x =
+    A.class "lg:divide-x"
+
+
+lg__divide_y_reverse : Svg.Attribute msg
+lg__divide_y_reverse =
+    A.class "lg:divide-y-reverse"
+
+
+lg__divide_x_reverse : Svg.Attribute msg
+lg__divide_x_reverse =
+    A.class "lg:divide-x-reverse"
+
+
+lg__divide_transparent : Svg.Attribute msg
+lg__divide_transparent =
+    A.class "lg:divide-transparent"
+
+
+lg__divide_current : Svg.Attribute msg
+lg__divide_current =
+    A.class "lg:divide-current"
+
+
+lg__divide_black : Svg.Attribute msg
+lg__divide_black =
+    A.class "lg:divide-black"
+
+
+lg__divide_white : Svg.Attribute msg
+lg__divide_white =
+    A.class "lg:divide-white"
+
+
+lg__divide_gray_100 : Svg.Attribute msg
+lg__divide_gray_100 =
+    A.class "lg:divide-gray-100"
+
+
+lg__divide_gray_200 : Svg.Attribute msg
+lg__divide_gray_200 =
+    A.class "lg:divide-gray-200"
+
+
+lg__divide_gray_300 : Svg.Attribute msg
+lg__divide_gray_300 =
+    A.class "lg:divide-gray-300"
+
+
+lg__divide_gray_400 : Svg.Attribute msg
+lg__divide_gray_400 =
+    A.class "lg:divide-gray-400"
+
+
+lg__divide_gray_500 : Svg.Attribute msg
+lg__divide_gray_500 =
+    A.class "lg:divide-gray-500"
+
+
+lg__divide_gray_600 : Svg.Attribute msg
+lg__divide_gray_600 =
+    A.class "lg:divide-gray-600"
+
+
+lg__divide_gray_700 : Svg.Attribute msg
+lg__divide_gray_700 =
+    A.class "lg:divide-gray-700"
+
+
+lg__divide_gray_800 : Svg.Attribute msg
+lg__divide_gray_800 =
+    A.class "lg:divide-gray-800"
+
+
+lg__divide_gray_900 : Svg.Attribute msg
+lg__divide_gray_900 =
+    A.class "lg:divide-gray-900"
+
+
+lg__divide_red_100 : Svg.Attribute msg
+lg__divide_red_100 =
+    A.class "lg:divide-red-100"
+
+
+lg__divide_red_200 : Svg.Attribute msg
+lg__divide_red_200 =
+    A.class "lg:divide-red-200"
+
+
+lg__divide_red_300 : Svg.Attribute msg
+lg__divide_red_300 =
+    A.class "lg:divide-red-300"
+
+
+lg__divide_red_400 : Svg.Attribute msg
+lg__divide_red_400 =
+    A.class "lg:divide-red-400"
+
+
+lg__divide_red_500 : Svg.Attribute msg
+lg__divide_red_500 =
+    A.class "lg:divide-red-500"
+
+
+lg__divide_red_600 : Svg.Attribute msg
+lg__divide_red_600 =
+    A.class "lg:divide-red-600"
+
+
+lg__divide_red_700 : Svg.Attribute msg
+lg__divide_red_700 =
+    A.class "lg:divide-red-700"
+
+
+lg__divide_red_800 : Svg.Attribute msg
+lg__divide_red_800 =
+    A.class "lg:divide-red-800"
+
+
+lg__divide_red_900 : Svg.Attribute msg
+lg__divide_red_900 =
+    A.class "lg:divide-red-900"
+
+
+lg__divide_orange_100 : Svg.Attribute msg
+lg__divide_orange_100 =
+    A.class "lg:divide-orange-100"
+
+
+lg__divide_orange_200 : Svg.Attribute msg
+lg__divide_orange_200 =
+    A.class "lg:divide-orange-200"
+
+
+lg__divide_orange_300 : Svg.Attribute msg
+lg__divide_orange_300 =
+    A.class "lg:divide-orange-300"
+
+
+lg__divide_orange_400 : Svg.Attribute msg
+lg__divide_orange_400 =
+    A.class "lg:divide-orange-400"
+
+
+lg__divide_orange_500 : Svg.Attribute msg
+lg__divide_orange_500 =
+    A.class "lg:divide-orange-500"
+
+
+lg__divide_orange_600 : Svg.Attribute msg
+lg__divide_orange_600 =
+    A.class "lg:divide-orange-600"
+
+
+lg__divide_orange_700 : Svg.Attribute msg
+lg__divide_orange_700 =
+    A.class "lg:divide-orange-700"
+
+
+lg__divide_orange_800 : Svg.Attribute msg
+lg__divide_orange_800 =
+    A.class "lg:divide-orange-800"
+
+
+lg__divide_orange_900 : Svg.Attribute msg
+lg__divide_orange_900 =
+    A.class "lg:divide-orange-900"
+
+
+lg__divide_yellow_100 : Svg.Attribute msg
+lg__divide_yellow_100 =
+    A.class "lg:divide-yellow-100"
+
+
+lg__divide_yellow_200 : Svg.Attribute msg
+lg__divide_yellow_200 =
+    A.class "lg:divide-yellow-200"
+
+
+lg__divide_yellow_300 : Svg.Attribute msg
+lg__divide_yellow_300 =
+    A.class "lg:divide-yellow-300"
+
+
+lg__divide_yellow_400 : Svg.Attribute msg
+lg__divide_yellow_400 =
+    A.class "lg:divide-yellow-400"
+
+
+lg__divide_yellow_500 : Svg.Attribute msg
+lg__divide_yellow_500 =
+    A.class "lg:divide-yellow-500"
+
+
+lg__divide_yellow_600 : Svg.Attribute msg
+lg__divide_yellow_600 =
+    A.class "lg:divide-yellow-600"
+
+
+lg__divide_yellow_700 : Svg.Attribute msg
+lg__divide_yellow_700 =
+    A.class "lg:divide-yellow-700"
+
+
+lg__divide_yellow_800 : Svg.Attribute msg
+lg__divide_yellow_800 =
+    A.class "lg:divide-yellow-800"
+
+
+lg__divide_yellow_900 : Svg.Attribute msg
+lg__divide_yellow_900 =
+    A.class "lg:divide-yellow-900"
+
+
+lg__divide_green_100 : Svg.Attribute msg
+lg__divide_green_100 =
+    A.class "lg:divide-green-100"
+
+
+lg__divide_green_200 : Svg.Attribute msg
+lg__divide_green_200 =
+    A.class "lg:divide-green-200"
+
+
+lg__divide_green_300 : Svg.Attribute msg
+lg__divide_green_300 =
+    A.class "lg:divide-green-300"
+
+
+lg__divide_green_400 : Svg.Attribute msg
+lg__divide_green_400 =
+    A.class "lg:divide-green-400"
+
+
+lg__divide_green_500 : Svg.Attribute msg
+lg__divide_green_500 =
+    A.class "lg:divide-green-500"
+
+
+lg__divide_green_600 : Svg.Attribute msg
+lg__divide_green_600 =
+    A.class "lg:divide-green-600"
+
+
+lg__divide_green_700 : Svg.Attribute msg
+lg__divide_green_700 =
+    A.class "lg:divide-green-700"
+
+
+lg__divide_green_800 : Svg.Attribute msg
+lg__divide_green_800 =
+    A.class "lg:divide-green-800"
+
+
+lg__divide_green_900 : Svg.Attribute msg
+lg__divide_green_900 =
+    A.class "lg:divide-green-900"
+
+
+lg__divide_teal_100 : Svg.Attribute msg
+lg__divide_teal_100 =
+    A.class "lg:divide-teal-100"
+
+
+lg__divide_teal_200 : Svg.Attribute msg
+lg__divide_teal_200 =
+    A.class "lg:divide-teal-200"
+
+
+lg__divide_teal_300 : Svg.Attribute msg
+lg__divide_teal_300 =
+    A.class "lg:divide-teal-300"
+
+
+lg__divide_teal_400 : Svg.Attribute msg
+lg__divide_teal_400 =
+    A.class "lg:divide-teal-400"
+
+
+lg__divide_teal_500 : Svg.Attribute msg
+lg__divide_teal_500 =
+    A.class "lg:divide-teal-500"
+
+
+lg__divide_teal_600 : Svg.Attribute msg
+lg__divide_teal_600 =
+    A.class "lg:divide-teal-600"
+
+
+lg__divide_teal_700 : Svg.Attribute msg
+lg__divide_teal_700 =
+    A.class "lg:divide-teal-700"
+
+
+lg__divide_teal_800 : Svg.Attribute msg
+lg__divide_teal_800 =
+    A.class "lg:divide-teal-800"
+
+
+lg__divide_teal_900 : Svg.Attribute msg
+lg__divide_teal_900 =
+    A.class "lg:divide-teal-900"
+
+
+lg__divide_blue_100 : Svg.Attribute msg
+lg__divide_blue_100 =
+    A.class "lg:divide-blue-100"
+
+
+lg__divide_blue_200 : Svg.Attribute msg
+lg__divide_blue_200 =
+    A.class "lg:divide-blue-200"
+
+
+lg__divide_blue_300 : Svg.Attribute msg
+lg__divide_blue_300 =
+    A.class "lg:divide-blue-300"
+
+
+lg__divide_blue_400 : Svg.Attribute msg
+lg__divide_blue_400 =
+    A.class "lg:divide-blue-400"
+
+
+lg__divide_blue_500 : Svg.Attribute msg
+lg__divide_blue_500 =
+    A.class "lg:divide-blue-500"
+
+
+lg__divide_blue_600 : Svg.Attribute msg
+lg__divide_blue_600 =
+    A.class "lg:divide-blue-600"
+
+
+lg__divide_blue_700 : Svg.Attribute msg
+lg__divide_blue_700 =
+    A.class "lg:divide-blue-700"
+
+
+lg__divide_blue_800 : Svg.Attribute msg
+lg__divide_blue_800 =
+    A.class "lg:divide-blue-800"
+
+
+lg__divide_blue_900 : Svg.Attribute msg
+lg__divide_blue_900 =
+    A.class "lg:divide-blue-900"
+
+
+lg__divide_indigo_100 : Svg.Attribute msg
+lg__divide_indigo_100 =
+    A.class "lg:divide-indigo-100"
+
+
+lg__divide_indigo_200 : Svg.Attribute msg
+lg__divide_indigo_200 =
+    A.class "lg:divide-indigo-200"
+
+
+lg__divide_indigo_300 : Svg.Attribute msg
+lg__divide_indigo_300 =
+    A.class "lg:divide-indigo-300"
+
+
+lg__divide_indigo_400 : Svg.Attribute msg
+lg__divide_indigo_400 =
+    A.class "lg:divide-indigo-400"
+
+
+lg__divide_indigo_500 : Svg.Attribute msg
+lg__divide_indigo_500 =
+    A.class "lg:divide-indigo-500"
+
+
+lg__divide_indigo_600 : Svg.Attribute msg
+lg__divide_indigo_600 =
+    A.class "lg:divide-indigo-600"
+
+
+lg__divide_indigo_700 : Svg.Attribute msg
+lg__divide_indigo_700 =
+    A.class "lg:divide-indigo-700"
+
+
+lg__divide_indigo_800 : Svg.Attribute msg
+lg__divide_indigo_800 =
+    A.class "lg:divide-indigo-800"
+
+
+lg__divide_indigo_900 : Svg.Attribute msg
+lg__divide_indigo_900 =
+    A.class "lg:divide-indigo-900"
+
+
+lg__divide_purple_100 : Svg.Attribute msg
+lg__divide_purple_100 =
+    A.class "lg:divide-purple-100"
+
+
+lg__divide_purple_200 : Svg.Attribute msg
+lg__divide_purple_200 =
+    A.class "lg:divide-purple-200"
+
+
+lg__divide_purple_300 : Svg.Attribute msg
+lg__divide_purple_300 =
+    A.class "lg:divide-purple-300"
+
+
+lg__divide_purple_400 : Svg.Attribute msg
+lg__divide_purple_400 =
+    A.class "lg:divide-purple-400"
+
+
+lg__divide_purple_500 : Svg.Attribute msg
+lg__divide_purple_500 =
+    A.class "lg:divide-purple-500"
+
+
+lg__divide_purple_600 : Svg.Attribute msg
+lg__divide_purple_600 =
+    A.class "lg:divide-purple-600"
+
+
+lg__divide_purple_700 : Svg.Attribute msg
+lg__divide_purple_700 =
+    A.class "lg:divide-purple-700"
+
+
+lg__divide_purple_800 : Svg.Attribute msg
+lg__divide_purple_800 =
+    A.class "lg:divide-purple-800"
+
+
+lg__divide_purple_900 : Svg.Attribute msg
+lg__divide_purple_900 =
+    A.class "lg:divide-purple-900"
+
+
+lg__divide_pink_100 : Svg.Attribute msg
+lg__divide_pink_100 =
+    A.class "lg:divide-pink-100"
+
+
+lg__divide_pink_200 : Svg.Attribute msg
+lg__divide_pink_200 =
+    A.class "lg:divide-pink-200"
+
+
+lg__divide_pink_300 : Svg.Attribute msg
+lg__divide_pink_300 =
+    A.class "lg:divide-pink-300"
+
+
+lg__divide_pink_400 : Svg.Attribute msg
+lg__divide_pink_400 =
+    A.class "lg:divide-pink-400"
+
+
+lg__divide_pink_500 : Svg.Attribute msg
+lg__divide_pink_500 =
+    A.class "lg:divide-pink-500"
+
+
+lg__divide_pink_600 : Svg.Attribute msg
+lg__divide_pink_600 =
+    A.class "lg:divide-pink-600"
+
+
+lg__divide_pink_700 : Svg.Attribute msg
+lg__divide_pink_700 =
+    A.class "lg:divide-pink-700"
+
+
+lg__divide_pink_800 : Svg.Attribute msg
+lg__divide_pink_800 =
+    A.class "lg:divide-pink-800"
+
+
+lg__divide_pink_900 : Svg.Attribute msg
+lg__divide_pink_900 =
+    A.class "lg:divide-pink-900"
+
+
 lg__sr_only : Svg.Attribute msg
 lg__sr_only =
     A.class "lg:sr-only"
@@ -50400,6 +55390,11 @@ lg__bg_scroll =
 lg__bg_transparent : Svg.Attribute msg
 lg__bg_transparent =
     A.class "lg:bg-transparent"
+
+
+lg__bg_current : Svg.Attribute msg
+lg__bg_current =
+    A.class "lg:bg-current"
 
 
 lg__bg_black : Svg.Attribute msg
@@ -50867,6 +55862,11 @@ lg__hover__bg_transparent =
     A.class "lg:hover:bg-transparent"
 
 
+lg__hover__bg_current : Svg.Attribute msg
+lg__hover__bg_current =
+    A.class "lg:hover:bg-current"
+
+
 lg__hover__bg_black : Svg.Attribute msg
 lg__hover__bg_black =
     A.class "lg:hover:bg-black"
@@ -51330,6 +56330,11 @@ lg__hover__bg_pink_900 =
 lg__focus__bg_transparent : Svg.Attribute msg
 lg__focus__bg_transparent =
     A.class "lg:focus:bg-transparent"
+
+
+lg__focus__bg_current : Svg.Attribute msg
+lg__focus__bg_current =
+    A.class "lg:focus:bg-current"
 
 
 lg__focus__bg_black : Svg.Attribute msg
@@ -51897,6 +56902,11 @@ lg__border_transparent =
     A.class "lg:border-transparent"
 
 
+lg__border_current : Svg.Attribute msg
+lg__border_current =
+    A.class "lg:border-current"
+
+
 lg__border_black : Svg.Attribute msg
 lg__border_black =
     A.class "lg:border-black"
@@ -52362,6 +57372,11 @@ lg__hover__border_transparent =
     A.class "lg:hover:border-transparent"
 
 
+lg__hover__border_current : Svg.Attribute msg
+lg__hover__border_current =
+    A.class "lg:hover:border-current"
+
+
 lg__hover__border_black : Svg.Attribute msg
 lg__hover__border_black =
     A.class "lg:hover:border-black"
@@ -52825,6 +57840,11 @@ lg__hover__border_pink_900 =
 lg__focus__border_transparent : Svg.Attribute msg
 lg__focus__border_transparent =
     A.class "lg:focus:border-transparent"
+
+
+lg__focus__border_current : Svg.Attribute msg
+lg__focus__border_current =
+    A.class "lg:focus:border-current"
 
 
 lg__focus__border_black : Svg.Attribute msg
@@ -53802,6 +58822,11 @@ lg__inline =
     A.class "lg:inline"
 
 
+lg__flow_root : Svg.Attribute msg
+lg__flow_root =
+    A.class "lg:flow-root"
+
+
 lg__flex : Svg.Attribute msg
 lg__flex =
     A.class "lg:flex"
@@ -53815,6 +58840,11 @@ lg__inline_flex =
 lg__grid : Svg.Attribute msg
 lg__grid =
     A.class "lg:grid"
+
+
+lg__inline_grid : Svg.Attribute msg
+lg__inline_grid =
+    A.class "lg:inline-grid"
 
 
 lg__table : Svg.Attribute msg
@@ -54157,6 +59187,11 @@ lg__clear_both =
     A.class "lg:clear-both"
 
 
+lg__clear_none : Svg.Attribute msg
+lg__clear_none =
+    A.class "lg:clear-none"
+
+
 lg__font_sans : Svg.Attribute msg
 lg__font_sans =
     A.class "lg:font-sans"
@@ -54415,6 +59450,56 @@ lg__h_full =
 lg__h_screen : Svg.Attribute msg
 lg__h_screen =
     A.class "lg:h-screen"
+
+
+lg__text_xs : Svg.Attribute msg
+lg__text_xs =
+    A.class "lg:text-xs"
+
+
+lg__text_sm : Svg.Attribute msg
+lg__text_sm =
+    A.class "lg:text-sm"
+
+
+lg__text_base : Svg.Attribute msg
+lg__text_base =
+    A.class "lg:text-base"
+
+
+lg__text_lg : Svg.Attribute msg
+lg__text_lg =
+    A.class "lg:text-lg"
+
+
+lg__text_xl : Svg.Attribute msg
+lg__text_xl =
+    A.class "lg:text-xl"
+
+
+lg__text_2xl : Svg.Attribute msg
+lg__text_2xl =
+    A.class "lg:text-2xl"
+
+
+lg__text_3xl : Svg.Attribute msg
+lg__text_3xl =
+    A.class "lg:text-3xl"
+
+
+lg__text_4xl : Svg.Attribute msg
+lg__text_4xl =
+    A.class "lg:text-4xl"
+
+
+lg__text_5xl : Svg.Attribute msg
+lg__text_5xl =
+    A.class "lg:text-5xl"
+
+
+lg__text_6xl : Svg.Attribute msg
+lg__text_6xl =
+    A.class "lg:text-6xl"
 
 
 lg__leading_3 : Svg.Attribute msg
@@ -56877,6 +61962,11 @@ lg__placeholder_transparent =
     A.class "lg:placeholder-transparent"
 
 
+lg__placeholder_current : Svg.Attribute msg
+lg__placeholder_current =
+    A.class "lg:placeholder-current"
+
+
 lg__placeholder_black : Svg.Attribute msg
 lg__placeholder_black =
     A.class "lg:placeholder-black"
@@ -57340,6 +62430,11 @@ lg__placeholder_pink_900 =
 lg__focus__placeholder_transparent__focus : Svg.Attribute msg
 lg__focus__placeholder_transparent__focus =
     A.class "lg:focus:placeholder-transparent:focus"
+
+
+lg__focus__placeholder_current__focus : Svg.Attribute msg
+lg__focus__placeholder_current__focus =
+    A.class "lg:focus:placeholder-current:focus"
 
 
 lg__focus__placeholder_black__focus : Svg.Attribute msg
@@ -58137,6 +63232,11 @@ lg__text_transparent =
     A.class "lg:text-transparent"
 
 
+lg__text_current : Svg.Attribute msg
+lg__text_current =
+    A.class "lg:text-current"
+
+
 lg__text_black : Svg.Attribute msg
 lg__text_black =
     A.class "lg:text-black"
@@ -58600,6 +63700,11 @@ lg__text_pink_900 =
 lg__hover__text_transparent : Svg.Attribute msg
 lg__hover__text_transparent =
     A.class "lg:hover:text-transparent"
+
+
+lg__hover__text_current : Svg.Attribute msg
+lg__hover__text_current =
+    A.class "lg:hover:text-current"
 
 
 lg__hover__text_black : Svg.Attribute msg
@@ -59067,6 +64172,11 @@ lg__focus__text_transparent =
     A.class "lg:focus:text-transparent"
 
 
+lg__focus__text_current : Svg.Attribute msg
+lg__focus__text_current =
+    A.class "lg:focus:text-current"
+
+
 lg__focus__text_black : Svg.Attribute msg
 lg__focus__text_black =
     A.class "lg:focus:text-black"
@@ -59525,56 +64635,6 @@ lg__focus__text_pink_800 =
 lg__focus__text_pink_900 : Svg.Attribute msg
 lg__focus__text_pink_900 =
     A.class "lg:focus:text-pink-900"
-
-
-lg__text_xs : Svg.Attribute msg
-lg__text_xs =
-    A.class "lg:text-xs"
-
-
-lg__text_sm : Svg.Attribute msg
-lg__text_sm =
-    A.class "lg:text-sm"
-
-
-lg__text_base : Svg.Attribute msg
-lg__text_base =
-    A.class "lg:text-base"
-
-
-lg__text_lg : Svg.Attribute msg
-lg__text_lg =
-    A.class "lg:text-lg"
-
-
-lg__text_xl : Svg.Attribute msg
-lg__text_xl =
-    A.class "lg:text-xl"
-
-
-lg__text_2xl : Svg.Attribute msg
-lg__text_2xl =
-    A.class "lg:text-2xl"
-
-
-lg__text_3xl : Svg.Attribute msg
-lg__text_3xl =
-    A.class "lg:text-3xl"
-
-
-lg__text_4xl : Svg.Attribute msg
-lg__text_4xl =
-    A.class "lg:text-4xl"
-
-
-lg__text_5xl : Svg.Attribute msg
-lg__text_5xl =
-    A.class "lg:text-5xl"
-
-
-lg__text_6xl : Svg.Attribute msg
-lg__text_6xl =
-    A.class "lg:text-6xl"
 
 
 lg__italic : Svg.Attribute msg
@@ -62942,6 +68002,956 @@ lg__duration_1000 =
     A.class "lg:duration-1000"
 
 
+lg__delay_75 : Svg.Attribute msg
+lg__delay_75 =
+    A.class "lg:delay-75"
+
+
+lg__delay_100 : Svg.Attribute msg
+lg__delay_100 =
+    A.class "lg:delay-100"
+
+
+lg__delay_150 : Svg.Attribute msg
+lg__delay_150 =
+    A.class "lg:delay-150"
+
+
+lg__delay_200 : Svg.Attribute msg
+lg__delay_200 =
+    A.class "lg:delay-200"
+
+
+lg__delay_300 : Svg.Attribute msg
+lg__delay_300 =
+    A.class "lg:delay-300"
+
+
+lg__delay_500 : Svg.Attribute msg
+lg__delay_500 =
+    A.class "lg:delay-500"
+
+
+lg__delay_700 : Svg.Attribute msg
+lg__delay_700 =
+    A.class "lg:delay-700"
+
+
+lg__delay_1000 : Svg.Attribute msg
+lg__delay_1000 =
+    A.class "lg:delay-1000"
+
+
+xl__space_y_0 : Svg.Attribute msg
+xl__space_y_0 =
+    A.class "xl:space-y-0"
+
+
+xl__space_x_0 : Svg.Attribute msg
+xl__space_x_0 =
+    A.class "xl:space-x-0"
+
+
+xl__space_y_1 : Svg.Attribute msg
+xl__space_y_1 =
+    A.class "xl:space-y-1"
+
+
+xl__space_x_1 : Svg.Attribute msg
+xl__space_x_1 =
+    A.class "xl:space-x-1"
+
+
+xl__space_y_2 : Svg.Attribute msg
+xl__space_y_2 =
+    A.class "xl:space-y-2"
+
+
+xl__space_x_2 : Svg.Attribute msg
+xl__space_x_2 =
+    A.class "xl:space-x-2"
+
+
+xl__space_y_3 : Svg.Attribute msg
+xl__space_y_3 =
+    A.class "xl:space-y-3"
+
+
+xl__space_x_3 : Svg.Attribute msg
+xl__space_x_3 =
+    A.class "xl:space-x-3"
+
+
+xl__space_y_4 : Svg.Attribute msg
+xl__space_y_4 =
+    A.class "xl:space-y-4"
+
+
+xl__space_x_4 : Svg.Attribute msg
+xl__space_x_4 =
+    A.class "xl:space-x-4"
+
+
+xl__space_y_5 : Svg.Attribute msg
+xl__space_y_5 =
+    A.class "xl:space-y-5"
+
+
+xl__space_x_5 : Svg.Attribute msg
+xl__space_x_5 =
+    A.class "xl:space-x-5"
+
+
+xl__space_y_6 : Svg.Attribute msg
+xl__space_y_6 =
+    A.class "xl:space-y-6"
+
+
+xl__space_x_6 : Svg.Attribute msg
+xl__space_x_6 =
+    A.class "xl:space-x-6"
+
+
+xl__space_y_8 : Svg.Attribute msg
+xl__space_y_8 =
+    A.class "xl:space-y-8"
+
+
+xl__space_x_8 : Svg.Attribute msg
+xl__space_x_8 =
+    A.class "xl:space-x-8"
+
+
+xl__space_y_10 : Svg.Attribute msg
+xl__space_y_10 =
+    A.class "xl:space-y-10"
+
+
+xl__space_x_10 : Svg.Attribute msg
+xl__space_x_10 =
+    A.class "xl:space-x-10"
+
+
+xl__space_y_12 : Svg.Attribute msg
+xl__space_y_12 =
+    A.class "xl:space-y-12"
+
+
+xl__space_x_12 : Svg.Attribute msg
+xl__space_x_12 =
+    A.class "xl:space-x-12"
+
+
+xl__space_y_16 : Svg.Attribute msg
+xl__space_y_16 =
+    A.class "xl:space-y-16"
+
+
+xl__space_x_16 : Svg.Attribute msg
+xl__space_x_16 =
+    A.class "xl:space-x-16"
+
+
+xl__space_y_20 : Svg.Attribute msg
+xl__space_y_20 =
+    A.class "xl:space-y-20"
+
+
+xl__space_x_20 : Svg.Attribute msg
+xl__space_x_20 =
+    A.class "xl:space-x-20"
+
+
+xl__space_y_24 : Svg.Attribute msg
+xl__space_y_24 =
+    A.class "xl:space-y-24"
+
+
+xl__space_x_24 : Svg.Attribute msg
+xl__space_x_24 =
+    A.class "xl:space-x-24"
+
+
+xl__space_y_32 : Svg.Attribute msg
+xl__space_y_32 =
+    A.class "xl:space-y-32"
+
+
+xl__space_x_32 : Svg.Attribute msg
+xl__space_x_32 =
+    A.class "xl:space-x-32"
+
+
+xl__space_y_40 : Svg.Attribute msg
+xl__space_y_40 =
+    A.class "xl:space-y-40"
+
+
+xl__space_x_40 : Svg.Attribute msg
+xl__space_x_40 =
+    A.class "xl:space-x-40"
+
+
+xl__space_y_48 : Svg.Attribute msg
+xl__space_y_48 =
+    A.class "xl:space-y-48"
+
+
+xl__space_x_48 : Svg.Attribute msg
+xl__space_x_48 =
+    A.class "xl:space-x-48"
+
+
+xl__space_y_56 : Svg.Attribute msg
+xl__space_y_56 =
+    A.class "xl:space-y-56"
+
+
+xl__space_x_56 : Svg.Attribute msg
+xl__space_x_56 =
+    A.class "xl:space-x-56"
+
+
+xl__space_y_64 : Svg.Attribute msg
+xl__space_y_64 =
+    A.class "xl:space-y-64"
+
+
+xl__space_x_64 : Svg.Attribute msg
+xl__space_x_64 =
+    A.class "xl:space-x-64"
+
+
+xl__space_y_px : Svg.Attribute msg
+xl__space_y_px =
+    A.class "xl:space-y-px"
+
+
+xl__space_x_px : Svg.Attribute msg
+xl__space_x_px =
+    A.class "xl:space-x-px"
+
+
+xl__neg_space_y_1 : Svg.Attribute msg
+xl__neg_space_y_1 =
+    A.class "xl:-space-y-1"
+
+
+xl__neg_space_x_1 : Svg.Attribute msg
+xl__neg_space_x_1 =
+    A.class "xl:-space-x-1"
+
+
+xl__neg_space_y_2 : Svg.Attribute msg
+xl__neg_space_y_2 =
+    A.class "xl:-space-y-2"
+
+
+xl__neg_space_x_2 : Svg.Attribute msg
+xl__neg_space_x_2 =
+    A.class "xl:-space-x-2"
+
+
+xl__neg_space_y_3 : Svg.Attribute msg
+xl__neg_space_y_3 =
+    A.class "xl:-space-y-3"
+
+
+xl__neg_space_x_3 : Svg.Attribute msg
+xl__neg_space_x_3 =
+    A.class "xl:-space-x-3"
+
+
+xl__neg_space_y_4 : Svg.Attribute msg
+xl__neg_space_y_4 =
+    A.class "xl:-space-y-4"
+
+
+xl__neg_space_x_4 : Svg.Attribute msg
+xl__neg_space_x_4 =
+    A.class "xl:-space-x-4"
+
+
+xl__neg_space_y_5 : Svg.Attribute msg
+xl__neg_space_y_5 =
+    A.class "xl:-space-y-5"
+
+
+xl__neg_space_x_5 : Svg.Attribute msg
+xl__neg_space_x_5 =
+    A.class "xl:-space-x-5"
+
+
+xl__neg_space_y_6 : Svg.Attribute msg
+xl__neg_space_y_6 =
+    A.class "xl:-space-y-6"
+
+
+xl__neg_space_x_6 : Svg.Attribute msg
+xl__neg_space_x_6 =
+    A.class "xl:-space-x-6"
+
+
+xl__neg_space_y_8 : Svg.Attribute msg
+xl__neg_space_y_8 =
+    A.class "xl:-space-y-8"
+
+
+xl__neg_space_x_8 : Svg.Attribute msg
+xl__neg_space_x_8 =
+    A.class "xl:-space-x-8"
+
+
+xl__neg_space_y_10 : Svg.Attribute msg
+xl__neg_space_y_10 =
+    A.class "xl:-space-y-10"
+
+
+xl__neg_space_x_10 : Svg.Attribute msg
+xl__neg_space_x_10 =
+    A.class "xl:-space-x-10"
+
+
+xl__neg_space_y_12 : Svg.Attribute msg
+xl__neg_space_y_12 =
+    A.class "xl:-space-y-12"
+
+
+xl__neg_space_x_12 : Svg.Attribute msg
+xl__neg_space_x_12 =
+    A.class "xl:-space-x-12"
+
+
+xl__neg_space_y_16 : Svg.Attribute msg
+xl__neg_space_y_16 =
+    A.class "xl:-space-y-16"
+
+
+xl__neg_space_x_16 : Svg.Attribute msg
+xl__neg_space_x_16 =
+    A.class "xl:-space-x-16"
+
+
+xl__neg_space_y_20 : Svg.Attribute msg
+xl__neg_space_y_20 =
+    A.class "xl:-space-y-20"
+
+
+xl__neg_space_x_20 : Svg.Attribute msg
+xl__neg_space_x_20 =
+    A.class "xl:-space-x-20"
+
+
+xl__neg_space_y_24 : Svg.Attribute msg
+xl__neg_space_y_24 =
+    A.class "xl:-space-y-24"
+
+
+xl__neg_space_x_24 : Svg.Attribute msg
+xl__neg_space_x_24 =
+    A.class "xl:-space-x-24"
+
+
+xl__neg_space_y_32 : Svg.Attribute msg
+xl__neg_space_y_32 =
+    A.class "xl:-space-y-32"
+
+
+xl__neg_space_x_32 : Svg.Attribute msg
+xl__neg_space_x_32 =
+    A.class "xl:-space-x-32"
+
+
+xl__neg_space_y_40 : Svg.Attribute msg
+xl__neg_space_y_40 =
+    A.class "xl:-space-y-40"
+
+
+xl__neg_space_x_40 : Svg.Attribute msg
+xl__neg_space_x_40 =
+    A.class "xl:-space-x-40"
+
+
+xl__neg_space_y_48 : Svg.Attribute msg
+xl__neg_space_y_48 =
+    A.class "xl:-space-y-48"
+
+
+xl__neg_space_x_48 : Svg.Attribute msg
+xl__neg_space_x_48 =
+    A.class "xl:-space-x-48"
+
+
+xl__neg_space_y_56 : Svg.Attribute msg
+xl__neg_space_y_56 =
+    A.class "xl:-space-y-56"
+
+
+xl__neg_space_x_56 : Svg.Attribute msg
+xl__neg_space_x_56 =
+    A.class "xl:-space-x-56"
+
+
+xl__neg_space_y_64 : Svg.Attribute msg
+xl__neg_space_y_64 =
+    A.class "xl:-space-y-64"
+
+
+xl__neg_space_x_64 : Svg.Attribute msg
+xl__neg_space_x_64 =
+    A.class "xl:-space-x-64"
+
+
+xl__neg_space_y_px : Svg.Attribute msg
+xl__neg_space_y_px =
+    A.class "xl:-space-y-px"
+
+
+xl__neg_space_x_px : Svg.Attribute msg
+xl__neg_space_x_px =
+    A.class "xl:-space-x-px"
+
+
+xl__space_y_reverse : Svg.Attribute msg
+xl__space_y_reverse =
+    A.class "xl:space-y-reverse"
+
+
+xl__space_x_reverse : Svg.Attribute msg
+xl__space_x_reverse =
+    A.class "xl:space-x-reverse"
+
+
+xl__divide_y_0 : Svg.Attribute msg
+xl__divide_y_0 =
+    A.class "xl:divide-y-0"
+
+
+xl__divide_x_0 : Svg.Attribute msg
+xl__divide_x_0 =
+    A.class "xl:divide-x-0"
+
+
+xl__divide_y_2 : Svg.Attribute msg
+xl__divide_y_2 =
+    A.class "xl:divide-y-2"
+
+
+xl__divide_x_2 : Svg.Attribute msg
+xl__divide_x_2 =
+    A.class "xl:divide-x-2"
+
+
+xl__divide_y_4 : Svg.Attribute msg
+xl__divide_y_4 =
+    A.class "xl:divide-y-4"
+
+
+xl__divide_x_4 : Svg.Attribute msg
+xl__divide_x_4 =
+    A.class "xl:divide-x-4"
+
+
+xl__divide_y_8 : Svg.Attribute msg
+xl__divide_y_8 =
+    A.class "xl:divide-y-8"
+
+
+xl__divide_x_8 : Svg.Attribute msg
+xl__divide_x_8 =
+    A.class "xl:divide-x-8"
+
+
+xl__divide_y : Svg.Attribute msg
+xl__divide_y =
+    A.class "xl:divide-y"
+
+
+xl__divide_x : Svg.Attribute msg
+xl__divide_x =
+    A.class "xl:divide-x"
+
+
+xl__divide_y_reverse : Svg.Attribute msg
+xl__divide_y_reverse =
+    A.class "xl:divide-y-reverse"
+
+
+xl__divide_x_reverse : Svg.Attribute msg
+xl__divide_x_reverse =
+    A.class "xl:divide-x-reverse"
+
+
+xl__divide_transparent : Svg.Attribute msg
+xl__divide_transparent =
+    A.class "xl:divide-transparent"
+
+
+xl__divide_current : Svg.Attribute msg
+xl__divide_current =
+    A.class "xl:divide-current"
+
+
+xl__divide_black : Svg.Attribute msg
+xl__divide_black =
+    A.class "xl:divide-black"
+
+
+xl__divide_white : Svg.Attribute msg
+xl__divide_white =
+    A.class "xl:divide-white"
+
+
+xl__divide_gray_100 : Svg.Attribute msg
+xl__divide_gray_100 =
+    A.class "xl:divide-gray-100"
+
+
+xl__divide_gray_200 : Svg.Attribute msg
+xl__divide_gray_200 =
+    A.class "xl:divide-gray-200"
+
+
+xl__divide_gray_300 : Svg.Attribute msg
+xl__divide_gray_300 =
+    A.class "xl:divide-gray-300"
+
+
+xl__divide_gray_400 : Svg.Attribute msg
+xl__divide_gray_400 =
+    A.class "xl:divide-gray-400"
+
+
+xl__divide_gray_500 : Svg.Attribute msg
+xl__divide_gray_500 =
+    A.class "xl:divide-gray-500"
+
+
+xl__divide_gray_600 : Svg.Attribute msg
+xl__divide_gray_600 =
+    A.class "xl:divide-gray-600"
+
+
+xl__divide_gray_700 : Svg.Attribute msg
+xl__divide_gray_700 =
+    A.class "xl:divide-gray-700"
+
+
+xl__divide_gray_800 : Svg.Attribute msg
+xl__divide_gray_800 =
+    A.class "xl:divide-gray-800"
+
+
+xl__divide_gray_900 : Svg.Attribute msg
+xl__divide_gray_900 =
+    A.class "xl:divide-gray-900"
+
+
+xl__divide_red_100 : Svg.Attribute msg
+xl__divide_red_100 =
+    A.class "xl:divide-red-100"
+
+
+xl__divide_red_200 : Svg.Attribute msg
+xl__divide_red_200 =
+    A.class "xl:divide-red-200"
+
+
+xl__divide_red_300 : Svg.Attribute msg
+xl__divide_red_300 =
+    A.class "xl:divide-red-300"
+
+
+xl__divide_red_400 : Svg.Attribute msg
+xl__divide_red_400 =
+    A.class "xl:divide-red-400"
+
+
+xl__divide_red_500 : Svg.Attribute msg
+xl__divide_red_500 =
+    A.class "xl:divide-red-500"
+
+
+xl__divide_red_600 : Svg.Attribute msg
+xl__divide_red_600 =
+    A.class "xl:divide-red-600"
+
+
+xl__divide_red_700 : Svg.Attribute msg
+xl__divide_red_700 =
+    A.class "xl:divide-red-700"
+
+
+xl__divide_red_800 : Svg.Attribute msg
+xl__divide_red_800 =
+    A.class "xl:divide-red-800"
+
+
+xl__divide_red_900 : Svg.Attribute msg
+xl__divide_red_900 =
+    A.class "xl:divide-red-900"
+
+
+xl__divide_orange_100 : Svg.Attribute msg
+xl__divide_orange_100 =
+    A.class "xl:divide-orange-100"
+
+
+xl__divide_orange_200 : Svg.Attribute msg
+xl__divide_orange_200 =
+    A.class "xl:divide-orange-200"
+
+
+xl__divide_orange_300 : Svg.Attribute msg
+xl__divide_orange_300 =
+    A.class "xl:divide-orange-300"
+
+
+xl__divide_orange_400 : Svg.Attribute msg
+xl__divide_orange_400 =
+    A.class "xl:divide-orange-400"
+
+
+xl__divide_orange_500 : Svg.Attribute msg
+xl__divide_orange_500 =
+    A.class "xl:divide-orange-500"
+
+
+xl__divide_orange_600 : Svg.Attribute msg
+xl__divide_orange_600 =
+    A.class "xl:divide-orange-600"
+
+
+xl__divide_orange_700 : Svg.Attribute msg
+xl__divide_orange_700 =
+    A.class "xl:divide-orange-700"
+
+
+xl__divide_orange_800 : Svg.Attribute msg
+xl__divide_orange_800 =
+    A.class "xl:divide-orange-800"
+
+
+xl__divide_orange_900 : Svg.Attribute msg
+xl__divide_orange_900 =
+    A.class "xl:divide-orange-900"
+
+
+xl__divide_yellow_100 : Svg.Attribute msg
+xl__divide_yellow_100 =
+    A.class "xl:divide-yellow-100"
+
+
+xl__divide_yellow_200 : Svg.Attribute msg
+xl__divide_yellow_200 =
+    A.class "xl:divide-yellow-200"
+
+
+xl__divide_yellow_300 : Svg.Attribute msg
+xl__divide_yellow_300 =
+    A.class "xl:divide-yellow-300"
+
+
+xl__divide_yellow_400 : Svg.Attribute msg
+xl__divide_yellow_400 =
+    A.class "xl:divide-yellow-400"
+
+
+xl__divide_yellow_500 : Svg.Attribute msg
+xl__divide_yellow_500 =
+    A.class "xl:divide-yellow-500"
+
+
+xl__divide_yellow_600 : Svg.Attribute msg
+xl__divide_yellow_600 =
+    A.class "xl:divide-yellow-600"
+
+
+xl__divide_yellow_700 : Svg.Attribute msg
+xl__divide_yellow_700 =
+    A.class "xl:divide-yellow-700"
+
+
+xl__divide_yellow_800 : Svg.Attribute msg
+xl__divide_yellow_800 =
+    A.class "xl:divide-yellow-800"
+
+
+xl__divide_yellow_900 : Svg.Attribute msg
+xl__divide_yellow_900 =
+    A.class "xl:divide-yellow-900"
+
+
+xl__divide_green_100 : Svg.Attribute msg
+xl__divide_green_100 =
+    A.class "xl:divide-green-100"
+
+
+xl__divide_green_200 : Svg.Attribute msg
+xl__divide_green_200 =
+    A.class "xl:divide-green-200"
+
+
+xl__divide_green_300 : Svg.Attribute msg
+xl__divide_green_300 =
+    A.class "xl:divide-green-300"
+
+
+xl__divide_green_400 : Svg.Attribute msg
+xl__divide_green_400 =
+    A.class "xl:divide-green-400"
+
+
+xl__divide_green_500 : Svg.Attribute msg
+xl__divide_green_500 =
+    A.class "xl:divide-green-500"
+
+
+xl__divide_green_600 : Svg.Attribute msg
+xl__divide_green_600 =
+    A.class "xl:divide-green-600"
+
+
+xl__divide_green_700 : Svg.Attribute msg
+xl__divide_green_700 =
+    A.class "xl:divide-green-700"
+
+
+xl__divide_green_800 : Svg.Attribute msg
+xl__divide_green_800 =
+    A.class "xl:divide-green-800"
+
+
+xl__divide_green_900 : Svg.Attribute msg
+xl__divide_green_900 =
+    A.class "xl:divide-green-900"
+
+
+xl__divide_teal_100 : Svg.Attribute msg
+xl__divide_teal_100 =
+    A.class "xl:divide-teal-100"
+
+
+xl__divide_teal_200 : Svg.Attribute msg
+xl__divide_teal_200 =
+    A.class "xl:divide-teal-200"
+
+
+xl__divide_teal_300 : Svg.Attribute msg
+xl__divide_teal_300 =
+    A.class "xl:divide-teal-300"
+
+
+xl__divide_teal_400 : Svg.Attribute msg
+xl__divide_teal_400 =
+    A.class "xl:divide-teal-400"
+
+
+xl__divide_teal_500 : Svg.Attribute msg
+xl__divide_teal_500 =
+    A.class "xl:divide-teal-500"
+
+
+xl__divide_teal_600 : Svg.Attribute msg
+xl__divide_teal_600 =
+    A.class "xl:divide-teal-600"
+
+
+xl__divide_teal_700 : Svg.Attribute msg
+xl__divide_teal_700 =
+    A.class "xl:divide-teal-700"
+
+
+xl__divide_teal_800 : Svg.Attribute msg
+xl__divide_teal_800 =
+    A.class "xl:divide-teal-800"
+
+
+xl__divide_teal_900 : Svg.Attribute msg
+xl__divide_teal_900 =
+    A.class "xl:divide-teal-900"
+
+
+xl__divide_blue_100 : Svg.Attribute msg
+xl__divide_blue_100 =
+    A.class "xl:divide-blue-100"
+
+
+xl__divide_blue_200 : Svg.Attribute msg
+xl__divide_blue_200 =
+    A.class "xl:divide-blue-200"
+
+
+xl__divide_blue_300 : Svg.Attribute msg
+xl__divide_blue_300 =
+    A.class "xl:divide-blue-300"
+
+
+xl__divide_blue_400 : Svg.Attribute msg
+xl__divide_blue_400 =
+    A.class "xl:divide-blue-400"
+
+
+xl__divide_blue_500 : Svg.Attribute msg
+xl__divide_blue_500 =
+    A.class "xl:divide-blue-500"
+
+
+xl__divide_blue_600 : Svg.Attribute msg
+xl__divide_blue_600 =
+    A.class "xl:divide-blue-600"
+
+
+xl__divide_blue_700 : Svg.Attribute msg
+xl__divide_blue_700 =
+    A.class "xl:divide-blue-700"
+
+
+xl__divide_blue_800 : Svg.Attribute msg
+xl__divide_blue_800 =
+    A.class "xl:divide-blue-800"
+
+
+xl__divide_blue_900 : Svg.Attribute msg
+xl__divide_blue_900 =
+    A.class "xl:divide-blue-900"
+
+
+xl__divide_indigo_100 : Svg.Attribute msg
+xl__divide_indigo_100 =
+    A.class "xl:divide-indigo-100"
+
+
+xl__divide_indigo_200 : Svg.Attribute msg
+xl__divide_indigo_200 =
+    A.class "xl:divide-indigo-200"
+
+
+xl__divide_indigo_300 : Svg.Attribute msg
+xl__divide_indigo_300 =
+    A.class "xl:divide-indigo-300"
+
+
+xl__divide_indigo_400 : Svg.Attribute msg
+xl__divide_indigo_400 =
+    A.class "xl:divide-indigo-400"
+
+
+xl__divide_indigo_500 : Svg.Attribute msg
+xl__divide_indigo_500 =
+    A.class "xl:divide-indigo-500"
+
+
+xl__divide_indigo_600 : Svg.Attribute msg
+xl__divide_indigo_600 =
+    A.class "xl:divide-indigo-600"
+
+
+xl__divide_indigo_700 : Svg.Attribute msg
+xl__divide_indigo_700 =
+    A.class "xl:divide-indigo-700"
+
+
+xl__divide_indigo_800 : Svg.Attribute msg
+xl__divide_indigo_800 =
+    A.class "xl:divide-indigo-800"
+
+
+xl__divide_indigo_900 : Svg.Attribute msg
+xl__divide_indigo_900 =
+    A.class "xl:divide-indigo-900"
+
+
+xl__divide_purple_100 : Svg.Attribute msg
+xl__divide_purple_100 =
+    A.class "xl:divide-purple-100"
+
+
+xl__divide_purple_200 : Svg.Attribute msg
+xl__divide_purple_200 =
+    A.class "xl:divide-purple-200"
+
+
+xl__divide_purple_300 : Svg.Attribute msg
+xl__divide_purple_300 =
+    A.class "xl:divide-purple-300"
+
+
+xl__divide_purple_400 : Svg.Attribute msg
+xl__divide_purple_400 =
+    A.class "xl:divide-purple-400"
+
+
+xl__divide_purple_500 : Svg.Attribute msg
+xl__divide_purple_500 =
+    A.class "xl:divide-purple-500"
+
+
+xl__divide_purple_600 : Svg.Attribute msg
+xl__divide_purple_600 =
+    A.class "xl:divide-purple-600"
+
+
+xl__divide_purple_700 : Svg.Attribute msg
+xl__divide_purple_700 =
+    A.class "xl:divide-purple-700"
+
+
+xl__divide_purple_800 : Svg.Attribute msg
+xl__divide_purple_800 =
+    A.class "xl:divide-purple-800"
+
+
+xl__divide_purple_900 : Svg.Attribute msg
+xl__divide_purple_900 =
+    A.class "xl:divide-purple-900"
+
+
+xl__divide_pink_100 : Svg.Attribute msg
+xl__divide_pink_100 =
+    A.class "xl:divide-pink-100"
+
+
+xl__divide_pink_200 : Svg.Attribute msg
+xl__divide_pink_200 =
+    A.class "xl:divide-pink-200"
+
+
+xl__divide_pink_300 : Svg.Attribute msg
+xl__divide_pink_300 =
+    A.class "xl:divide-pink-300"
+
+
+xl__divide_pink_400 : Svg.Attribute msg
+xl__divide_pink_400 =
+    A.class "xl:divide-pink-400"
+
+
+xl__divide_pink_500 : Svg.Attribute msg
+xl__divide_pink_500 =
+    A.class "xl:divide-pink-500"
+
+
+xl__divide_pink_600 : Svg.Attribute msg
+xl__divide_pink_600 =
+    A.class "xl:divide-pink-600"
+
+
+xl__divide_pink_700 : Svg.Attribute msg
+xl__divide_pink_700 =
+    A.class "xl:divide-pink-700"
+
+
+xl__divide_pink_800 : Svg.Attribute msg
+xl__divide_pink_800 =
+    A.class "xl:divide-pink-800"
+
+
+xl__divide_pink_900 : Svg.Attribute msg
+xl__divide_pink_900 =
+    A.class "xl:divide-pink-900"
+
+
 xl__sr_only : Svg.Attribute msg
 xl__sr_only =
     A.class "xl:sr-only"
@@ -62985,6 +68995,11 @@ xl__bg_scroll =
 xl__bg_transparent : Svg.Attribute msg
 xl__bg_transparent =
     A.class "xl:bg-transparent"
+
+
+xl__bg_current : Svg.Attribute msg
+xl__bg_current =
+    A.class "xl:bg-current"
 
 
 xl__bg_black : Svg.Attribute msg
@@ -63452,6 +69467,11 @@ xl__hover__bg_transparent =
     A.class "xl:hover:bg-transparent"
 
 
+xl__hover__bg_current : Svg.Attribute msg
+xl__hover__bg_current =
+    A.class "xl:hover:bg-current"
+
+
 xl__hover__bg_black : Svg.Attribute msg
 xl__hover__bg_black =
     A.class "xl:hover:bg-black"
@@ -63915,6 +69935,11 @@ xl__hover__bg_pink_900 =
 xl__focus__bg_transparent : Svg.Attribute msg
 xl__focus__bg_transparent =
     A.class "xl:focus:bg-transparent"
+
+
+xl__focus__bg_current : Svg.Attribute msg
+xl__focus__bg_current =
+    A.class "xl:focus:bg-current"
 
 
 xl__focus__bg_black : Svg.Attribute msg
@@ -64482,6 +70507,11 @@ xl__border_transparent =
     A.class "xl:border-transparent"
 
 
+xl__border_current : Svg.Attribute msg
+xl__border_current =
+    A.class "xl:border-current"
+
+
 xl__border_black : Svg.Attribute msg
 xl__border_black =
     A.class "xl:border-black"
@@ -64947,6 +70977,11 @@ xl__hover__border_transparent =
     A.class "xl:hover:border-transparent"
 
 
+xl__hover__border_current : Svg.Attribute msg
+xl__hover__border_current =
+    A.class "xl:hover:border-current"
+
+
 xl__hover__border_black : Svg.Attribute msg
 xl__hover__border_black =
     A.class "xl:hover:border-black"
@@ -65410,6 +71445,11 @@ xl__hover__border_pink_900 =
 xl__focus__border_transparent : Svg.Attribute msg
 xl__focus__border_transparent =
     A.class "xl:focus:border-transparent"
+
+
+xl__focus__border_current : Svg.Attribute msg
+xl__focus__border_current =
+    A.class "xl:focus:border-current"
 
 
 xl__focus__border_black : Svg.Attribute msg
@@ -66387,6 +72427,11 @@ xl__inline =
     A.class "xl:inline"
 
 
+xl__flow_root : Svg.Attribute msg
+xl__flow_root =
+    A.class "xl:flow-root"
+
+
 xl__flex : Svg.Attribute msg
 xl__flex =
     A.class "xl:flex"
@@ -66400,6 +72445,11 @@ xl__inline_flex =
 xl__grid : Svg.Attribute msg
 xl__grid =
     A.class "xl:grid"
+
+
+xl__inline_grid : Svg.Attribute msg
+xl__inline_grid =
+    A.class "xl:inline-grid"
 
 
 xl__table : Svg.Attribute msg
@@ -66742,6 +72792,11 @@ xl__clear_both =
     A.class "xl:clear-both"
 
 
+xl__clear_none : Svg.Attribute msg
+xl__clear_none =
+    A.class "xl:clear-none"
+
+
 xl__font_sans : Svg.Attribute msg
 xl__font_sans =
     A.class "xl:font-sans"
@@ -67000,6 +73055,56 @@ xl__h_full =
 xl__h_screen : Svg.Attribute msg
 xl__h_screen =
     A.class "xl:h-screen"
+
+
+xl__text_xs : Svg.Attribute msg
+xl__text_xs =
+    A.class "xl:text-xs"
+
+
+xl__text_sm : Svg.Attribute msg
+xl__text_sm =
+    A.class "xl:text-sm"
+
+
+xl__text_base : Svg.Attribute msg
+xl__text_base =
+    A.class "xl:text-base"
+
+
+xl__text_lg : Svg.Attribute msg
+xl__text_lg =
+    A.class "xl:text-lg"
+
+
+xl__text_xl : Svg.Attribute msg
+xl__text_xl =
+    A.class "xl:text-xl"
+
+
+xl__text_2xl : Svg.Attribute msg
+xl__text_2xl =
+    A.class "xl:text-2xl"
+
+
+xl__text_3xl : Svg.Attribute msg
+xl__text_3xl =
+    A.class "xl:text-3xl"
+
+
+xl__text_4xl : Svg.Attribute msg
+xl__text_4xl =
+    A.class "xl:text-4xl"
+
+
+xl__text_5xl : Svg.Attribute msg
+xl__text_5xl =
+    A.class "xl:text-5xl"
+
+
+xl__text_6xl : Svg.Attribute msg
+xl__text_6xl =
+    A.class "xl:text-6xl"
 
 
 xl__leading_3 : Svg.Attribute msg
@@ -69462,6 +75567,11 @@ xl__placeholder_transparent =
     A.class "xl:placeholder-transparent"
 
 
+xl__placeholder_current : Svg.Attribute msg
+xl__placeholder_current =
+    A.class "xl:placeholder-current"
+
+
 xl__placeholder_black : Svg.Attribute msg
 xl__placeholder_black =
     A.class "xl:placeholder-black"
@@ -69925,6 +76035,11 @@ xl__placeholder_pink_900 =
 xl__focus__placeholder_transparent__focus : Svg.Attribute msg
 xl__focus__placeholder_transparent__focus =
     A.class "xl:focus:placeholder-transparent:focus"
+
+
+xl__focus__placeholder_current__focus : Svg.Attribute msg
+xl__focus__placeholder_current__focus =
+    A.class "xl:focus:placeholder-current:focus"
 
 
 xl__focus__placeholder_black__focus : Svg.Attribute msg
@@ -70722,6 +76837,11 @@ xl__text_transparent =
     A.class "xl:text-transparent"
 
 
+xl__text_current : Svg.Attribute msg
+xl__text_current =
+    A.class "xl:text-current"
+
+
 xl__text_black : Svg.Attribute msg
 xl__text_black =
     A.class "xl:text-black"
@@ -71185,6 +77305,11 @@ xl__text_pink_900 =
 xl__hover__text_transparent : Svg.Attribute msg
 xl__hover__text_transparent =
     A.class "xl:hover:text-transparent"
+
+
+xl__hover__text_current : Svg.Attribute msg
+xl__hover__text_current =
+    A.class "xl:hover:text-current"
 
 
 xl__hover__text_black : Svg.Attribute msg
@@ -71652,6 +77777,11 @@ xl__focus__text_transparent =
     A.class "xl:focus:text-transparent"
 
 
+xl__focus__text_current : Svg.Attribute msg
+xl__focus__text_current =
+    A.class "xl:focus:text-current"
+
+
 xl__focus__text_black : Svg.Attribute msg
 xl__focus__text_black =
     A.class "xl:focus:text-black"
@@ -72110,56 +78240,6 @@ xl__focus__text_pink_800 =
 xl__focus__text_pink_900 : Svg.Attribute msg
 xl__focus__text_pink_900 =
     A.class "xl:focus:text-pink-900"
-
-
-xl__text_xs : Svg.Attribute msg
-xl__text_xs =
-    A.class "xl:text-xs"
-
-
-xl__text_sm : Svg.Attribute msg
-xl__text_sm =
-    A.class "xl:text-sm"
-
-
-xl__text_base : Svg.Attribute msg
-xl__text_base =
-    A.class "xl:text-base"
-
-
-xl__text_lg : Svg.Attribute msg
-xl__text_lg =
-    A.class "xl:text-lg"
-
-
-xl__text_xl : Svg.Attribute msg
-xl__text_xl =
-    A.class "xl:text-xl"
-
-
-xl__text_2xl : Svg.Attribute msg
-xl__text_2xl =
-    A.class "xl:text-2xl"
-
-
-xl__text_3xl : Svg.Attribute msg
-xl__text_3xl =
-    A.class "xl:text-3xl"
-
-
-xl__text_4xl : Svg.Attribute msg
-xl__text_4xl =
-    A.class "xl:text-4xl"
-
-
-xl__text_5xl : Svg.Attribute msg
-xl__text_5xl =
-    A.class "xl:text-5xl"
-
-
-xl__text_6xl : Svg.Attribute msg
-xl__text_6xl =
-    A.class "xl:text-6xl"
 
 
 xl__italic : Svg.Attribute msg
@@ -75525,3 +81605,43 @@ xl__duration_700 =
 xl__duration_1000 : Svg.Attribute msg
 xl__duration_1000 =
     A.class "xl:duration-1000"
+
+
+xl__delay_75 : Svg.Attribute msg
+xl__delay_75 =
+    A.class "xl:delay-75"
+
+
+xl__delay_100 : Svg.Attribute msg
+xl__delay_100 =
+    A.class "xl:delay-100"
+
+
+xl__delay_150 : Svg.Attribute msg
+xl__delay_150 =
+    A.class "xl:delay-150"
+
+
+xl__delay_200 : Svg.Attribute msg
+xl__delay_200 =
+    A.class "xl:delay-200"
+
+
+xl__delay_300 : Svg.Attribute msg
+xl__delay_300 =
+    A.class "xl:delay-300"
+
+
+xl__delay_500 : Svg.Attribute msg
+xl__delay_500 =
+    A.class "xl:delay-500"
+
+
+xl__delay_700 : Svg.Attribute msg
+xl__delay_700 =
+    A.class "xl:delay-700"
+
+
+xl__delay_1000 : Svg.Attribute msg
+xl__delay_1000 =
+    A.class "xl:delay-1000"
