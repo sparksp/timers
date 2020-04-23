@@ -17,7 +17,8 @@ jobs:
       run: elm-test
     - name: Run elm-review
       run: elm-review
-    - uses: sparksp/elm-format-action@v1
+    - name: Run elm-format
+      uses: sparksp/elm-format-action@v1
       with:
         elm_files: |
           src/**/*.elm
