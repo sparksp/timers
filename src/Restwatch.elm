@@ -316,7 +316,7 @@ viewRestMenuOverlay : { a | showRest : Menu.State } -> Html Msg
 viewRestMenuOverlay { showRest } =
     case showRest of
         Menu.Opened ->
-            Html.div [ TW.absolute, TW.inset_0, Events.onClick (ShowRest Menu.Closed) ] []
+            Html.div [ TW.z_10, TW.fixed, TW.inset_0, Events.onClick (ShowRest Menu.Closed) ] []
 
         Menu.Closed ->
             Html.text ""
@@ -343,7 +343,7 @@ viewOpenRestMenu rest =
                 else
                     Html.button [ TW.w_full, TW.py_1, TW.bg_white, TW.hover__bg_gray_200, Events.onClick (SetRest (percent pc)) ] [ Html.text <| String.fromInt pc ++ "%" ]
             )
-        |> Html.div [ TW.w_full, TW.absolute, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border, TW.shadow_lg, TW.grid, TW.grid_cols_1, TW.divide_y ]
+        |> Html.div [ TW.w_full, TW.absolute, TW.z_10, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border, TW.divide_y, TW.shadow_lg ]
 
 
 viewProgress : { a | rest : Percent, stage : Stage } -> Html Msg
