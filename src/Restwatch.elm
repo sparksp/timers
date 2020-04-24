@@ -273,7 +273,7 @@ view model =
 
 viewBody : Model -> Html Msg
 viewBody model =
-    Html.div [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col, TW.justify_between ]
+    Html.main_ [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col, TW.justify_between ]
         [ viewRestMenuOverlay model
         , Html.div []
             [ viewTitle

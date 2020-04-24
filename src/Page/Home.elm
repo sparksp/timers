@@ -1,7 +1,9 @@
 module Page.Home exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
 import Browser exposing (Document)
-import Html
+import Html exposing (Html)
+import Html.Tailwind as TW
+import Route
 import Session exposing (Session)
 
 
@@ -31,12 +33,38 @@ update msg model =
 view : Model -> Document Msg
 view model =
     { title = "Home"
-    , body =
-        [ Html.main_ []
-            [ Html.h1 [] [ Html.text "Timers" ]
+    , body = [ viewBody model ]
+    }
+
+
+viewBody : Model -> Html Msg
+viewBody model =
+    Html.main_ [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col ]
+        [ viewTitle
+        , Html.div [ TW.text_center, TW.mt_4 ]
+            [ Html.a
+                [ Route.href Route.Restwatch
+                , TW.hover__bg_blue_500
+                , TW.hover__text_white
+                , TW.hover__border_transparent
+                , TW.bg_transparent
+                , TW.text_blue_700
+                , TW.border
+                , TW.border_blue_500
+                , TW.font_semibold
+                , TW.rounded
+                , TW.py_2
+                , TW.px_4
+                ]
+                [ Html.text "Restwatch"
+                ]
             ]
         ]
-    }
+
+
+viewTitle : Html Msg
+viewTitle =
+    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Timers" ]
 
 
 toSession : Model -> Session
