@@ -127,25 +127,34 @@ update msg model =
             Restwatch.update restwatchMsg restwatch
                 |> updateWith Restwatch GotRestwatchMsg
 
+        ( GotRestwatchMsg _, _ ) ->
+            ( model, Cmd.none )
+
         ( GotStopwatchMsg stopwatchMsg, Stopwatch stopwatch ) ->
             Stopwatch.update stopwatchMsg stopwatch
                 |> updateWith Stopwatch GotStopwatchMsg
 
-        ( _, _ ) ->
+        ( GotStopwatchMsg _, _ ) ->
             ( model, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model of
+        Redirect _ ->
+            Sub.none
+
+        NotFound _ ->
+            Sub.none
+
+        Home _ ->
+            Sub.none
+
         Restwatch restwatch ->
             Sub.map GotRestwatchMsg (Restwatch.subscriptions restwatch)
 
         Stopwatch stopwatch ->
             Sub.map GotStopwatchMsg (Stopwatch.subscriptions stopwatch)
-
-        _ ->
-            Sub.none
 
 
 main : Program () Model Msg
