@@ -1080,6 +1080,7 @@ module Svg.Tailwind exposing
     , grid_cols_7
     , grid_cols_8
     , grid_cols_9
+    , grid_cols_header
     , grid_cols_none
     , grid_flow_col
     , grid_flow_col_dense
@@ -2675,6 +2676,7 @@ module Svg.Tailwind exposing
     , lg__grid_cols_7
     , lg__grid_cols_8
     , lg__grid_cols_9
+    , lg__grid_cols_header
     , lg__grid_cols_none
     , lg__grid_flow_col
     , lg__grid_flow_col_dense
@@ -5461,6 +5463,7 @@ module Svg.Tailwind exposing
     , md__grid_cols_7
     , md__grid_cols_8
     , md__grid_cols_9
+    , md__grid_cols_header
     , md__grid_cols_none
     , md__grid_flow_col
     , md__grid_flow_col_dense
@@ -8953,6 +8956,7 @@ module Svg.Tailwind exposing
     , sm__grid_cols_7
     , sm__grid_cols_8
     , sm__grid_cols_9
+    , sm__grid_cols_header
     , sm__grid_cols_none
     , sm__grid_flow_col
     , sm__grid_flow_col_dense
@@ -11957,6 +11961,7 @@ module Svg.Tailwind exposing
     , xl__grid_cols_7
     , xl__grid_cols_8
     , xl__grid_cols_9
+    , xl__grid_cols_header
     , xl__grid_cols_none
     , xl__grid_flow_col
     , xl__grid_flow_col_dense
@@ -24685,6 +24690,11 @@ grid_cols_12 =
 grid_cols_none : Svg.Attribute msg
 grid_cols_none =
     A.class "grid-cols-none"
+
+
+grid_cols_header : Svg.Attribute msg
+grid_cols_header =
+    A.class "grid-cols-header"
 
 
 col_auto : Svg.Attribute msg
@@ -38292,6 +38302,11 @@ sm__grid_cols_none =
     A.class "sm:grid-cols-none"
 
 
+sm__grid_cols_header : Svg.Attribute msg
+sm__grid_cols_header =
+    A.class "sm:grid-cols-header"
+
+
 sm__col_auto : Svg.Attribute msg
 sm__col_auto =
     A.class "sm:col-auto"
@@ -51895,6 +51910,11 @@ md__grid_cols_12 =
 md__grid_cols_none : Svg.Attribute msg
 md__grid_cols_none =
     A.class "md:grid-cols-none"
+
+
+md__grid_cols_header : Svg.Attribute msg
+md__grid_cols_header =
+    A.class "md:grid-cols-header"
 
 
 md__col_auto : Svg.Attribute msg
@@ -65502,6 +65522,11 @@ lg__grid_cols_none =
     A.class "lg:grid-cols-none"
 
 
+lg__grid_cols_header : Svg.Attribute msg
+lg__grid_cols_header =
+    A.class "lg:grid-cols-header"
+
+
 lg__col_auto : Svg.Attribute msg
 lg__col_auto =
     A.class "lg:col-auto"
@@ -79105,6 +79130,11 @@ xl__grid_cols_12 =
 xl__grid_cols_none : Svg.Attribute msg
 xl__grid_cols_none =
     A.class "xl:grid-cols-none"
+
+
+xl__grid_cols_header : Svg.Attribute msg
+xl__grid_cols_header =
+    A.class "xl:grid-cols-header"
 
 
 xl__col_auto : Svg.Attribute msg

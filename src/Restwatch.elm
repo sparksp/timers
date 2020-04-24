@@ -267,17 +267,16 @@ toSession { session } =
 view : Model -> Document Msg
 view model =
     { title = "Restwatch"
-    , body = [ viewAudio, viewBody model ]
+    , body = viewAudio :: viewBody model
     }
 
 
-viewBody : Model -> Html Msg
+viewBody : Model -> List (Html Msg)
 viewBody model =
-    Html.main_ [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col, TW.justify_between ]
+    [ Html.main_ [ TW.flex_grow ]
         [ viewRestMenuOverlay model
-        , Html.div []
-            [ viewTitle
-            , Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
+        , Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
+            [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
                 [ Html.div [ fadeRunningAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
                     [ Html.p [ TW.text_left ] [ Html.text "Activity" ]
                     , Html.p [ TW.text_4xl, TW.font_mono, TW.select_all ] [ showRunningTime model ]
@@ -297,16 +296,12 @@ viewBody model =
                 ]
             , viewProgress model
             ]
-        , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
-            [ viewStartRestButton model.stage
-            , viewPauseResetButton model.stage
-            ]
         ]
-
-
-viewTitle : Html Msg
-viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Restwatch" ]
+    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
+        [ viewStartRestButton model.stage
+        , viewPauseResetButton model.stage
+        ]
+    ]
 
 
 viewAudio : Html Msg

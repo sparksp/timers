@@ -32,7 +32,7 @@ update msg model =
 
 view : Model -> Document Msg
 view model =
-    { title = "Home"
+    { title = "Timers"
     , body = [ viewBody model ]
     }
 
@@ -40,8 +40,7 @@ view model =
 viewBody : Model -> Html Msg
 viewBody model =
     Html.main_ [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col ]
-        [ viewTitle
-        , Html.div [ TW.text_center, TW.mt_4 ]
+        [ Html.div [ TW.text_center, TW.mt_4 ]
             [ Html.a
                 [ Route.href Route.Restwatch
                 , TW.hover__bg_blue_500
@@ -60,11 +59,6 @@ viewBody model =
                 ]
             ]
         ]
-
-
-viewTitle : Html Msg
-viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Timers" ]
 
 
 toSession : Model -> Session
