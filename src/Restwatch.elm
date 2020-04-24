@@ -1,4 +1,4 @@
-port module Restwatch exposing (Model, Msg, init, subscriptions, update, view)
+port module Restwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
 import Browser exposing (Document)
 import Browser.Events
@@ -10,6 +10,7 @@ import Json.Encode as E
 import Menu
 import Percent exposing (Percent, percent)
 import Period exposing (Period(..))
+import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Tailwind as SvgTW
 import Theme.Button as Button
@@ -22,7 +23,8 @@ port alarm : E.Value -> Cmd msg
 
 
 type alias Model =
-    { rest : Percent
+    { session : Session
+    , rest : Percent
     , showRest : Menu.State
     , stage : Stage
     }
@@ -54,9 +56,9 @@ type StageMsg
     | Tick Time.Posix
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
-    ( Model (percent 100) Menu.Closed Clear, Cmd.none )
+init : Session -> ( Model, Cmd Msg )
+init session =
+    ( Model session (percent 100) Menu.Closed Clear, Cmd.none )
 
 
 loadAlarm : Cmd Msg
@@ -253,6 +255,11 @@ subscriptions { stage } =
             Sub.none
 
 
+toSession : Model -> Session
+toSession { session } =
+    session
+
+
 
 --- VIEW
 
@@ -260,17 +267,16 @@ subscriptions { stage } =
 view : Model -> Document Msg
 view model =
     { title = "Restwatch"
-    , body = [ viewAudio, viewBody model ]
+    , body = viewAudio :: viewBody model
     }
 
 
-viewBody : Model -> Html Msg
+viewBody : Model -> List (Html Msg)
 viewBody model =
-    Html.div [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col, TW.justify_between ]
+    [ Html.main_ [ TW.flex_grow ]
         [ viewRestMenuOverlay model
-        , Html.div []
-            [ viewTitle
-            , Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
+        , Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
+            [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
                 [ Html.div [ fadeRunningAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
                     [ Html.p [ TW.text_left ] [ Html.text "Activity" ]
                     , Html.p [ TW.text_4xl, TW.font_mono, TW.select_all ] [ showRunningTime model ]
@@ -290,16 +296,12 @@ viewBody model =
                 ]
             , viewProgress model
             ]
-        , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
-            [ viewStartRestButton model.stage
-            , viewPauseResetButton model.stage
-            ]
         ]
-
-
-viewTitle : Html Msg
-viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Restwatch" ]
+    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
+        [ viewStartRestButton model.stage
+        , viewPauseResetButton model.stage
+        ]
+    ]
 
 
 viewAudio : Html Msg

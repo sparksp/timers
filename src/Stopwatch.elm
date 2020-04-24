@@ -1,4 +1,4 @@
-module Stopwatch exposing (Model, Msg, init, subscriptions, update, view)
+module Stopwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
 import Browser exposing (Document)
 import Browser.Events
@@ -6,13 +6,20 @@ import Html exposing (Html)
 import Html.Attributes as A
 import Html.Tailwind as TW
 import Period exposing (Period(..))
+import Session exposing (Session)
 import Theme.Button as Button
 import Time
 import Time.Extra
 import Timer exposing (Timer)
 
 
-type Model
+type alias Model =
+    { session : Session
+    , stage : Stage
+    }
+
+
+type Stage
     = Clear
     | Starting
     | Paused Timer
@@ -27,31 +34,36 @@ type Msg
     | Tick Time.Posix
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
-    ( Clear, Cmd.none )
+init : Session -> ( Model, Cmd Msg )
+init session =
+    ( Model session Clear, Cmd.none )
+
+
+toSession : Model -> Session
+toSession { session } =
+    session
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case ( msg, model ) of
+    case ( msg, model.stage ) of
         ( Start, Clear ) ->
-            ( Starting, Cmd.none )
+            ( { model | stage = Starting }, Cmd.none )
 
         ( Start, Paused timer ) ->
-            ( Resuming timer, Cmd.none )
+            ( { model | stage = Resuming timer }, Cmd.none )
 
         ( Start, _ ) ->
             ( model, Cmd.none )
 
         ( Stop, Starting ) ->
-            ( Clear, Cmd.none )
+            ( { model | stage = Clear }, Cmd.none )
 
         ( Stop, Running timer ) ->
-            ( Paused timer, Cmd.none )
+            ( { model | stage = Paused timer }, Cmd.none )
 
         ( Stop, Resuming timer ) ->
-            ( Paused timer, Cmd.none )
+            ( { model | stage = Paused timer }, Cmd.none )
 
         ( Stop, _ ) ->
             ( model, Cmd.none )
@@ -60,16 +72,16 @@ update msg model =
             ( model, Cmd.none )
 
         ( Reset, _ ) ->
-            ( Clear, Cmd.none )
+            ( { model | stage = Clear }, Cmd.none )
 
         ( Tick now, Starting ) ->
-            ( Running ( now, now ), Cmd.none )
+            ( { model | stage = Running ( now, now ) }, Cmd.none )
 
         ( Tick now, Resuming timer ) ->
-            ( Running <| timerShiftStart now timer, Cmd.none )
+            ( { model | stage = Running <| timerShiftStart now timer }, Cmd.none )
 
         ( Tick now, Running ( start, _ ) ) ->
-            ( Running ( start, now ), Cmd.none )
+            ( { model | stage = Running ( start, now ) }, Cmd.none )
 
         ( Tick _, _ ) ->
             ( model, Cmd.none )
@@ -82,7 +94,7 @@ timerShiftStart now ( start, end ) =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    case model of
+    case model.stage of
         Starting ->
             Browser.Events.onAnimationFrame Tick
 
@@ -103,29 +115,24 @@ subscriptions model =
 view : Model -> Document Msg
 view model =
     { title = "Stopwatch"
-    , body = [ viewBody model ]
+    , body = viewBody model
     }
 
 
-viewBody : Model -> Html Msg
+viewBody : Model -> List (Html Msg)
 viewBody model =
-    Html.div [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col, TW.justify_between ]
-        [ Html.div []
-            [ viewTitle
-            , Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
+    [ Html.main_ [ TW.flex_grow ]
+        [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
+            [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
                 [ Html.p [ TW.self_center, TW.text_4xl, TW.font_mono ] [ showTime model ]
                 ]
             ]
-        , Html.div [ TW.grid, TW.grid_cols_2, TW.gap_4, TW.text_xl ]
-            [ viewStartStopButton model
-            , viewResetButton model
-            ]
         ]
-
-
-viewTitle : Html Msg
-viewTitle =
-    Html.h1 [ TW.font_bold, TW.text_3xl, TW.text_center ] [ Html.text "Stopwatch" ]
+    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
+        [ viewStartStopButton model
+        , viewResetButton model
+        ]
+    ]
 
 
 viewStartStopButton : Model -> Html Msg
@@ -149,7 +156,7 @@ viewStopButton =
 
 viewResetButton : Model -> Html Msg
 viewResetButton model =
-    case model of
+    case model.stage of
         Paused _ ->
             Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just Reset }) [ Html.text "Reset" ]
 
@@ -159,7 +166,7 @@ viewResetButton model =
 
 isRunning : Model -> Bool
 isRunning model =
-    case model of
+    case model.stage of
         Starting ->
             True
 
@@ -180,7 +187,7 @@ showTime model =
 
 mapRunningTime : (Period -> value) -> Model -> value
 mapRunningTime fn model =
-    case model of
+    case model.stage of
         Clear ->
             fn <| Millis 0
 
