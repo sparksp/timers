@@ -10,6 +10,7 @@ import Url.Parser as Parser exposing (Parser, oneOf, s)
 type Route
     = Home
     | Restwatch
+    | Stopwatch
 
 
 
@@ -50,10 +51,14 @@ routeToPieces page =
         Restwatch ->
             [ "restwatch" ]
 
+        Stopwatch ->
+            [ "stopwatch" ]
+
 
 parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Parser.map Home Parser.top
         , Parser.map Restwatch (s "restwatch")
+        , Parser.map Stopwatch (s "stopwatch")
         ]

@@ -33,31 +33,36 @@ update msg model =
 view : Model -> Document Msg
 view model =
     { title = "Timers"
-    , body = [ viewBody model ]
+    , body = viewBody model
     }
 
 
-viewBody : Model -> Html Msg
+viewBody : Model -> List (Html Msg)
 viewBody model =
-    Html.main_ [ TW.container, TW.mx_auto, TW.h_screen, TW.p_3, TW.flex, TW.flex_col ]
-        [ Html.div [ TW.text_center, TW.mt_4 ]
-            [ Html.a
-                [ Route.href Route.Restwatch
-                , TW.hover__bg_blue_500
-                , TW.hover__text_white
-                , TW.hover__border_transparent
-                , TW.bg_transparent
-                , TW.text_blue_700
-                , TW.border
-                , TW.border_blue_500
-                , TW.font_semibold
-                , TW.rounded
-                , TW.py_2
-                , TW.px_4
-                ]
-                [ Html.text "Restwatch"
+    [ Html.main_ [ TW.flex_grow ]
+        [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
+            [ Html.div [ TW.text_center, TW.mt_4, TW.grid, TW.grid_cols_1, TW.divide_y, TW.border, TW.border_blue_500, TW.rounded ]
+                [ button "Restwatch" Route.Restwatch
+                , button "Stopwatch" Route.Stopwatch
                 ]
             ]
+        ]
+    ]
+
+
+button : String -> Route.Route -> Html Msg
+button label route =
+    Html.a
+        [ Route.href route
+        , TW.hover__bg_blue_500
+        , TW.hover__text_white
+        , TW.bg_transparent
+        , TW.text_blue_700
+        , TW.border_blue_200
+        , TW.font_semibold
+        , TW.p_2
+        ]
+        [ Html.text label
         ]
 
 

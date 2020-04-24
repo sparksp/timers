@@ -15,6 +15,7 @@ type Page
     = Other
     | Home
     | Restwatch
+    | Stopwatch
 
 
 type Title
@@ -43,7 +44,7 @@ viewErrors dismissErrors errors =
 
 viewHeader : Title -> Page -> Html msg
 viewHeader (Title title) page =
-    Html.nav [ TW.grid, TW.grid_cols_header, TW.p_2, TW.bg_orange_500, TW.text_white, TW.border_b_2, TW.border_orange_200 ]
+    Html.nav [ TW.grid, TW.grid_cols_header, TW.p_2, TW.bg_orange_500, TW.text_white, TW.border_b, TW.border_orange_400, TW.shadow, TW.sticky, TW.top_0 ]
         [ Html.div [ TW.mr_auto ] [ homeLink page ]
         , Html.h1 [ TW.col_start_2, TW.text_center ] [ Html.text title ]
         , Html.div [ TW.ml_auto ] [ menuButton page ]

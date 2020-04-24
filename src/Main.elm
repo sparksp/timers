@@ -10,6 +10,7 @@ import Page.NotFound as NotFound
 import Restwatch
 import Route exposing (Route)
 import Session exposing (Session)
+import Stopwatch
 import Url exposing (Url)
 
 
@@ -18,6 +19,7 @@ type Model
     | NotFound Session
     | Home Home.Model
     | Restwatch Restwatch.Model
+    | Stopwatch Stopwatch.Model
 
 
 init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
@@ -40,6 +42,9 @@ view model =
         Restwatch restwatch ->
             viewPage Page.Restwatch GotRestwatchMsg (Restwatch.view restwatch)
 
+        Stopwatch stopwatch ->
+            viewPage Page.Stopwatch GotStopwatchMsg (Stopwatch.view stopwatch)
+
 
 viewPage : Page -> (msgA -> msgB) -> Document msgA -> Document msgB
 viewPage page toMsg doc =
@@ -57,6 +62,7 @@ type Msg
     | ChangedUrl Url.Url
     | GotHomeMsg Home.Msg
     | GotRestwatchMsg Restwatch.Msg
+    | GotStopwatchMsg Stopwatch.Msg
 
 
 toSession : Model -> Session
@@ -73,6 +79,9 @@ toSession page =
 
         Restwatch restwatch ->
             Restwatch.toSession restwatch
+
+        Stopwatch stopwatch ->
+            Stopwatch.toSession stopwatch
 
 
 changeRouteTo : Maybe Route -> Model -> ( Model, Cmd Msg )
@@ -92,6 +101,10 @@ changeRouteTo maybeRoute model =
         Just Route.Restwatch ->
             Restwatch.init session
                 |> updateWith Restwatch GotRestwatchMsg model
+
+        Just Route.Stopwatch ->
+            Stopwatch.init session
+                |> updateWith Stopwatch GotStopwatchMsg model
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -120,6 +133,10 @@ update msg model =
             Restwatch.update restwatchMsg restwatch
                 |> updateWith Restwatch GotRestwatchMsg model
 
+        ( GotStopwatchMsg stopwatchMsg, Stopwatch stopwatch ) ->
+            Stopwatch.update stopwatchMsg stopwatch
+                |> updateWith Stopwatch GotStopwatchMsg model
+
         ( _, _ ) ->
             ( model, Cmd.none )
 
@@ -138,6 +155,9 @@ subscriptions model =
 
         Restwatch restwatch ->
             Sub.map GotRestwatchMsg (Restwatch.subscriptions restwatch)
+
+        Stopwatch stopwatch ->
+            Sub.map GotStopwatchMsg (Stopwatch.subscriptions stopwatch)
 
 
 main : Program () Model Msg
