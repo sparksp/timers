@@ -2,9 +2,8 @@ module Page exposing (Page(..), view, viewErrors)
 
 import Browser exposing (Document)
 import Html exposing (Html)
-import Html.Attributes as A
 import Html.Tailwind as TW
-import Route exposing (Route)
+import Route
 import Svg.Icons as Icons
 import Svg.Tailwind as STW
 
@@ -69,22 +68,3 @@ menuButton page =
     --     [ Icons.menu [ STW.h_6, STW.w_6 ]
     --     ]
     Html.text ""
-
-
-menuLink : Page -> Route -> List (Html msg) -> Html msg
-menuLink page route linkContent =
-    Html.li [ A.classList [ ( "nav-item", True ), ( "active", isActive page route ) ] ]
-        [ Html.a [ A.class "nav-link", Route.href route ] linkContent ]
-
-
-isActive : Page -> Route -> Bool
-isActive page route =
-    case ( page, route ) of
-        ( Home, Route.Home ) ->
-            True
-
-        ( Restwatch, Route.Restwatch ) ->
-            True
-
-        _ ->
-            False
