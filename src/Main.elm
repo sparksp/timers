@@ -36,7 +36,7 @@ view model =
         NotFound _ ->
             Page.view Page.Other NotFound.view
 
-        Home home ->
+        Home _ ->
             Page.view Page.Home Home.view
 
         Restwatch restwatch ->
