@@ -1,4 +1,4 @@
-port module Restwatch exposing (Model, Msg, init, subscriptions, update, view)
+port module Restwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
 import Browser exposing (Document)
 import Browser.Events
@@ -10,6 +10,7 @@ import Json.Encode as E
 import Menu
 import Percent exposing (Percent, percent)
 import Period exposing (Period(..))
+import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Tailwind as SvgTW
 import Theme.Button as Button
@@ -22,7 +23,8 @@ port alarm : E.Value -> Cmd msg
 
 
 type alias Model =
-    { rest : Percent
+    { session : Session
+    , rest : Percent
     , showRest : Menu.State
     , stage : Stage
     }
@@ -54,9 +56,9 @@ type StageMsg
     | Tick Time.Posix
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
-    ( Model (percent 100) Menu.Closed Clear, Cmd.none )
+init : Session -> ( Model, Cmd Msg )
+init session =
+    ( Model session (percent 100) Menu.Closed Clear, Cmd.none )
 
 
 loadAlarm : Cmd Msg
@@ -251,6 +253,11 @@ subscriptions { stage } =
 
         _ ->
             Sub.none
+
+
+toSession : Model -> Session
+toSession { session } =
+    session
 
 
 
