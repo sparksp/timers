@@ -1,4 +1,4 @@
-module Page exposing (Page(..), view, viewErrors)
+module Page exposing (Page(..), view)
 
 import Browser exposing (Document)
 import Html exposing (Html)
@@ -31,16 +31,6 @@ view page { title, body } =
     }
 
 
-viewErrors : msg -> List String -> Html msg
-viewErrors dismissErrors errors =
-    case errors of
-        [] ->
-            Html.text ""
-
-        _ ->
-            Html.text "Errors!"
-
-
 viewHeader : Title -> Page -> Html msg
 viewHeader (Title title) page =
     Html.nav [ TW.grid, TW.grid_cols_header, TW.p_2, TW.bg_orange_500, TW.text_white, TW.border_b, TW.border_orange_400, TW.shadow, TW.sticky, TW.top_0 ]
@@ -63,7 +53,7 @@ homeLink page =
 
 
 menuButton : Page -> Html msg
-menuButton page =
+menuButton _ =
     -- Html.button [ TW.flex, TW.items_center, TW.text_orange_200, TW.hover__text_white, TW.hover__border_white ]
     --     [ Icons.menu [ STW.h_6, STW.w_6 ]
     --     ]
