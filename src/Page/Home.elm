@@ -1,44 +1,20 @@
-module Page.Home exposing (Model, Msg, init, subscriptions, toSession, update, view)
+module Page.Home exposing (view)
 
 import Browser exposing (Document)
 import Html exposing (Html)
 import Html.Tailwind as TW
 import Route
-import Session exposing (Session)
 
 
-type Model
-    = Home Session
-
-
-type Msg
-    = NoOp
-
-
-init : Session -> ( Model, Cmd Msg )
-init session =
-    ( Home session, Cmd.none )
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    ( model, Cmd.none )
-
-
-view : Model -> Document Msg
-view model =
+view : Document msg
+view =
     { title = "Timers"
-    , body = viewBody model
+    , body = viewBody
     }
 
 
-viewBody : Model -> List (Html Msg)
-viewBody model =
+viewBody : List (Html msg)
+viewBody =
     [ Html.main_ [ TW.flex_grow ]
         [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
             [ Html.div [ TW.text_center, TW.mt_4, TW.grid, TW.grid_cols_1, TW.divide_y, TW.border, TW.border_blue_500, TW.rounded ]
@@ -50,7 +26,7 @@ viewBody model =
     ]
 
 
-button : String -> Route.Route -> Html Msg
+button : String -> Route.Route -> Html msg
 button label route =
     Html.a
         [ Route.href route
@@ -64,8 +40,3 @@ button label route =
         ]
         [ Html.text label
         ]
-
-
-toSession : Model -> Session
-toSession (Home session) =
-    session

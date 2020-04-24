@@ -17,7 +17,7 @@ import Url exposing (Url)
 type Model
     = Redirect Session
     | NotFound Session
-    | Home Home.Model
+    | Home Session
     | Restwatch Restwatch.Model
     | Stopwatch Stopwatch.Model
 
@@ -37,7 +37,7 @@ view model =
             Page.view Page.Other NotFound.view
 
         Home home ->
-            viewPage Page.Home GotHomeMsg (Home.view home)
+            Page.view Page.Home Home.view
 
         Restwatch restwatch ->
             viewPage Page.Restwatch GotRestwatchMsg (Restwatch.view restwatch)
@@ -60,7 +60,6 @@ viewPage page toMsg doc =
 type Msg
     = ClickedLink UrlRequest
     | ChangedUrl Url.Url
-    | GotHomeMsg Home.Msg
     | GotRestwatchMsg Restwatch.Msg
     | GotStopwatchMsg Stopwatch.Msg
 
@@ -74,8 +73,8 @@ toSession page =
         NotFound session ->
             session
 
-        Home home ->
-            Home.toSession home
+        Home session ->
+            session
 
         Restwatch restwatch ->
             Restwatch.toSession restwatch
@@ -95,8 +94,7 @@ changeRouteTo maybeRoute model =
             ( NotFound session, Cmd.none )
 
         Just Route.Home ->
-            Home.init session
-                |> updateWith Home GotHomeMsg model
+            ( Home session, Cmd.none )
 
         Just Route.Restwatch ->
             Restwatch.init session
@@ -125,10 +123,6 @@ update msg model =
         ( ChangedUrl url, _ ) ->
             changeRouteTo (Route.fromUrl url) model
 
-        ( GotHomeMsg homeMsg, Home home ) ->
-            Home.update homeMsg home
-                |> updateWith Home GotHomeMsg model
-
         ( GotRestwatchMsg restwatchMsg, Restwatch restwatch ) ->
             Restwatch.update restwatchMsg restwatch
                 |> updateWith Restwatch GotRestwatchMsg model
@@ -144,20 +138,14 @@ update msg model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model of
-        NotFound _ ->
-            Sub.none
-
-        Redirect _ ->
-            Sub.none
-
-        Home home ->
-            Sub.map GotHomeMsg (Home.subscriptions home)
-
         Restwatch restwatch ->
             Sub.map GotRestwatchMsg (Restwatch.subscriptions restwatch)
 
         Stopwatch stopwatch ->
             Sub.map GotStopwatchMsg (Stopwatch.subscriptions stopwatch)
+
+        _ ->
+            Sub.none
 
 
 main : Program () Model Msg
