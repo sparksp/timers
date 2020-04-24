@@ -343,7 +343,7 @@ viewOpenRestMenu rest =
                 else
                     Html.button [ TW.w_full, TW.py_1, TW.bg_white, TW.hover__bg_gray_200, Events.onClick (SetRest (percent pc)) ] [ Html.text <| String.fromInt pc ++ "%" ]
             )
-        |> Html.div [ TW.w_full, TW.absolute, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border_2, TW.shadow_lg, TW.grid, TW.grid_cols_1, TW.gap_1 ]
+        |> Html.div [ TW.w_full, TW.absolute, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border, TW.shadow_lg, TW.grid, TW.grid_cols_1, TW.divide_y ]
 
 
 viewProgress : { a | rest : Percent, stage : Stage } -> Html Msg
