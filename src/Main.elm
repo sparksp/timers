@@ -98,11 +98,11 @@ changeRouteTo maybeRoute model =
 
         Just Route.Restwatch ->
             Restwatch.init session
-                |> updateWith Restwatch GotRestwatchMsg model
+                |> updateWith Restwatch GotRestwatchMsg
 
         Just Route.Stopwatch ->
             Stopwatch.init session
-                |> updateWith Stopwatch GotStopwatchMsg model
+                |> updateWith Stopwatch GotStopwatchMsg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -125,11 +125,11 @@ update msg model =
 
         ( GotRestwatchMsg restwatchMsg, Restwatch restwatch ) ->
             Restwatch.update restwatchMsg restwatch
-                |> updateWith Restwatch GotRestwatchMsg model
+                |> updateWith Restwatch GotRestwatchMsg
 
         ( GotStopwatchMsg stopwatchMsg, Stopwatch stopwatch ) ->
             Stopwatch.update stopwatchMsg stopwatch
-                |> updateWith Stopwatch GotStopwatchMsg model
+                |> updateWith Stopwatch GotStopwatchMsg
 
         ( _, _ ) ->
             ( model, Cmd.none )
@@ -160,8 +160,8 @@ main =
         }
 
 
-updateWith : (subModel -> Model) -> (subMsg -> Msg) -> Model -> ( subModel, Cmd subMsg ) -> ( Model, Cmd Msg )
-updateWith toModel toMsg model ( subModel, subCmd ) =
+updateWith : (subModel -> Model) -> (subMsg -> Msg) -> ( subModel, Cmd subMsg ) -> ( Model, Cmd Msg )
+updateWith toModel toMsg ( subModel, subCmd ) =
     ( toModel subModel
     , Cmd.map toMsg subCmd
     )
