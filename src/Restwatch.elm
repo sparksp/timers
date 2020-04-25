@@ -267,35 +267,32 @@ toSession { session } =
 view : Model -> Document Msg
 view model =
     { title = "Restwatch"
-    , body = viewAudio :: viewBody model
+    , body = viewAudio :: viewRestMenuOverlay model :: viewBody model
     }
 
 
 viewBody : Model -> List (Html Msg)
 viewBody model =
-    [ Html.main_ [ TW.flex_grow ]
-        [ viewRestMenuOverlay model
-        , Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
-            [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
-                [ Html.div [ fadeRunningAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
-                    [ Html.p [ TW.text_left ] [ Html.text "Activity" ]
-                    , Html.p [ TW.text_4xl, TW.font_mono, TW.select_all ] [ showRunningTime model ]
-                    ]
-                , Html.div [ fadeRestingAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
-                    [ Html.button [ Events.onClick (ShowRest <| Menu.toggle model.showRest) ]
-                        [ Html.div [ TW.flex, TW.items_center ]
-                            [ Html.p [ TW.text_left ]
-                                [ Html.text <| "Rest (" ++ Percent.toString model.rest ++ ")"
-                                ]
-                            , Icons.cog [ SvgTW.w_4, SvgTW.h_4, SvgTW.ml_2 ]
-                            ]
-                        , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
-                        ]
-                    , viewRestMenu model
-                    ]
+    [ Html.main_ [ TW.flex_grow, TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
+        [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
+            [ Html.div [ fadeRunningAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
+                [ Html.p [ TW.text_left ] [ Html.text "Activity" ]
+                , Html.p [ TW.text_4xl, TW.font_mono, TW.select_all ] [ showRunningTime model ]
                 ]
-            , viewProgress model
+            , Html.div [ fadeRestingAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
+                [ Html.button [ Events.onClick (ShowRest <| Menu.toggle model.showRest) ]
+                    [ Html.div [ TW.flex, TW.items_center ]
+                        [ Html.p [ TW.text_left ]
+                            [ Html.text <| "Rest (" ++ Percent.toString model.rest ++ ")"
+                            ]
+                        , Icons.cog [ SvgTW.w_4, SvgTW.h_4, SvgTW.ml_2 ]
+                        ]
+                    , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
+                    ]
+                , viewRestMenu model
+                ]
             ]
+        , viewProgress model
         ]
     , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
         [ viewStartRestButton model.stage
@@ -316,7 +313,7 @@ viewRestMenuOverlay : { a | showRest : Menu.State } -> Html Msg
 viewRestMenuOverlay { showRest } =
     case showRest of
         Menu.Opened ->
-            Html.div [ TW.absolute, TW.inset_0, Events.onClick (ShowRest Menu.Closed) ] []
+            Html.div [ TW.z_10, TW.fixed, TW.inset_0, Events.onClick (ShowRest Menu.Closed) ] []
 
         Menu.Closed ->
             Html.text ""
@@ -343,7 +340,7 @@ viewOpenRestMenu rest =
                 else
                     Html.button [ TW.w_full, TW.py_1, TW.bg_white, TW.hover__bg_gray_200, Events.onClick (SetRest (percent pc)) ] [ Html.text <| String.fromInt pc ++ "%" ]
             )
-        |> Html.div [ TW.w_full, TW.absolute, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border_2, TW.shadow_lg, TW.grid, TW.grid_cols_1, TW.gap_1 ]
+        |> Html.div [ TW.w_full, TW.absolute, TW.z_10, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border, TW.divide_y, TW.shadow_lg ]
 
 
 viewProgress : { a | rest : Percent, stage : Stage } -> Html Msg
