@@ -5,6 +5,7 @@ import Browser.Navigation as Nav
 import Html
 import Page exposing (Page)
 import Page.Blank as Blank
+import Page.Countdown as Countdown
 import Page.Home as Home
 import Page.NotFound as NotFound
 import Page.Restwatch as Restwatch
@@ -18,6 +19,7 @@ type Model
     = Redirect Session
     | NotFound Session
     | Home Session
+    | Countdown Countdown.Model
     | Restwatch Restwatch.Model
     | Stopwatch Stopwatch.Model
 
@@ -38,6 +40,9 @@ view model =
 
         Home _ ->
             Page.view Page.Home Home.view
+
+        Countdown countdown ->
+            viewPage Page.Countdown GotCountdownMsg (Countdown.view countdown)
 
         Restwatch restwatch ->
             viewPage Page.Restwatch GotRestwatchMsg (Restwatch.view restwatch)
@@ -60,6 +65,7 @@ viewPage page toMsg doc =
 type Msg
     = ClickedLink UrlRequest
     | ChangedUrl Url.Url
+    | GotCountdownMsg Countdown.Msg
     | GotRestwatchMsg Restwatch.Msg
     | GotStopwatchMsg Stopwatch.Msg
 
@@ -75,6 +81,9 @@ toSession page =
 
         Home session ->
             session
+
+        Countdown countdown ->
+            Countdown.toSession countdown
 
         Restwatch restwatch ->
             Restwatch.toSession restwatch
@@ -95,6 +104,10 @@ changeRouteTo maybeRoute model =
 
         Just Route.Home ->
             ( Home session, Cmd.none )
+
+        Just Route.Countdown ->
+            Countdown.init session
+                |> updateWith Countdown GotCountdownMsg
 
         Just Route.Restwatch ->
             Restwatch.init session
@@ -123,6 +136,13 @@ update msg model =
         ( ChangedUrl url, _ ) ->
             changeRouteTo (Route.fromUrl url) model
 
+        ( GotCountdownMsg countdownMsg, Countdown countdown ) ->
+            Countdown.update countdownMsg countdown
+                |> updateWith Countdown GotCountdownMsg
+
+        ( GotCountdownMsg _, _ ) ->
+            ( model, Cmd.none )
+
         ( GotRestwatchMsg restwatchMsg, Restwatch restwatch ) ->
             Restwatch.update restwatchMsg restwatch
                 |> updateWith Restwatch GotRestwatchMsg
@@ -149,6 +169,9 @@ subscriptions model =
 
         Home _ ->
             Sub.none
+
+        Countdown countdown ->
+            Sub.map GotCountdownMsg (Countdown.subscriptions countdown)
 
         Restwatch restwatch ->
             Sub.map GotRestwatchMsg (Restwatch.subscriptions restwatch)

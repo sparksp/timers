@@ -9,6 +9,7 @@ import Url.Parser as Parser exposing (Parser, oneOf, s)
 
 type Route
     = Home
+    | Countdown
     | Restwatch
     | Stopwatch
 
@@ -48,6 +49,9 @@ routeToPieces page =
         Home ->
             []
 
+        Countdown ->
+            [ "countdown" ]
+
         Restwatch ->
             [ "restwatch" ]
 
@@ -59,6 +63,7 @@ parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Parser.map Home Parser.top
+        , Parser.map Countdown (s "countdown")
         , Parser.map Restwatch (s "restwatch")
         , Parser.map Stopwatch (s "stopwatch")
         ]
