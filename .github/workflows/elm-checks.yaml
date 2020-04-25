@@ -28,3 +28,10 @@ jobs:
           src/**/*.elm
           !**/Tailwind.elm
         elm_glob: true
+
+  elm-analyse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: harehare/elm-analyse-action@v1
