@@ -9,7 +9,7 @@ import Html.Tailwind as TW
 import Json.Encode as E
 import Menu
 import Percent exposing (Percent, percent)
-import Period exposing (Period(..))
+import Period exposing (Period, millis)
 import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Tailwind as SvgTW
@@ -533,10 +533,10 @@ mapRunningTime : StageMaps (Period -> value) -> { a | stage : Stage } -> value
 mapRunningTime { onWaiting, onRunning, onResting, onFinished } { stage } =
     case stage of
         Clear ->
-            onWaiting <| Millis 0
+            onWaiting <| millis 0
 
         Starting ->
-            onRunning <| Millis 0
+            onRunning <| millis 0
 
         Running timer ->
             onRunning <| Period.fromTimer timer
@@ -578,10 +578,10 @@ mapRestingPeriods : StageMaps (Periods -> value) -> { a | rest : Percent, stage 
 mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } { rest, stage } =
     case stage of
         Clear ->
-            onWaiting ( Millis 0, Millis 0 )
+            onWaiting ( millis 0, millis 0 )
 
         Starting ->
-            onRunning ( Millis 0, Millis 0 )
+            onRunning ( millis 0, millis 0 )
 
         Running timer ->
             onRunning <| double <| periodPercent rest <| Period.fromTimer timer
@@ -602,7 +602,7 @@ mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } { rest, stage 
             onResting ( periodPercent rest period, Period.fromTimer timer )
 
         Finished period ->
-            onFinished ( periodPercent rest period, Millis 0 )
+            onFinished ( periodPercent rest period, millis 0 )
 
 
 double : a -> ( a, a )

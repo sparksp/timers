@@ -5,7 +5,7 @@ import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
 import Html.Tailwind as TW
-import Period exposing (Period(..))
+import Period exposing (Period, millis)
 import Session exposing (Session)
 import Theme.Button as Button
 import Time
@@ -189,10 +189,10 @@ mapRunningTime : (Period -> value) -> Model -> value
 mapRunningTime fn model =
     case model.stage of
         Clear ->
-            fn <| Millis 0
+            fn <| millis 0
 
         Starting ->
-            fn <| Millis 0
+            fn <| millis 0
 
         Running timer ->
             fn <| Period.fromTimer timer

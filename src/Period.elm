@@ -1,5 +1,5 @@
 module Period exposing
-    ( Period(..), fromTimer
+    ( Period, fromTimer, millis
     , toHuman, toIso8601, toMillis, toMillisFloat
     , map, mul
     )
@@ -9,7 +9,7 @@ module Period exposing
 
 # Creation
 
-@docs Period, fromTimer
+@docs Period, fromTimer, millis
 
 
 # Formatting
@@ -32,6 +32,13 @@ import Timer exposing (Timer)
 -}
 type Period
     = Millis Int
+
+
+{-| Create a period from milliseconds.
+-}
+millis : Int -> Period
+millis =
+    Millis
 
 
 {-| Convert from `( Time.Posix, Time.Posix )` to `Period`.
