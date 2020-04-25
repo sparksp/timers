@@ -1,4 +1,4 @@
-module Stopwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
+module Page.Stopwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
 import Browser exposing (Document)
 import Browser.Events
