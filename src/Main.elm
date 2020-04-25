@@ -7,10 +7,10 @@ import Page exposing (Page)
 import Page.Blank as Blank
 import Page.Home as Home
 import Page.NotFound as NotFound
-import Restwatch
+import Page.Restwatch as Restwatch
+import Page.Stopwatch as Stopwatch
 import Route exposing (Route)
 import Session exposing (Session)
-import Stopwatch
 import Url exposing (Url)
 
 

@@ -1,4 +1,4 @@
-port module Restwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
+port module Page.Restwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
 import Browser exposing (Document)
 import Browser.Events
