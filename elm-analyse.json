@@ -1,6 +1,4 @@
 {
   "checks": {},
-  "excludedPaths": [
-    "src/Tailwind.elm"
-  ]
+  "excludedPaths": []
 }
