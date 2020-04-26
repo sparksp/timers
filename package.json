@@ -10,7 +10,7 @@
     "clean": "run-p clean:cache clean:dist clean:elm ;",
     "prebuild": "run-s clean ;",
     "build": "parcel build src/index.html --out-file index.html",
-    "dev": "parcel src/index.html --out-file index.html --open",
+    "dev": "parcel src/index.html --out-file index.html",
     "lint:format": "find src tests review -name *.elm ! -name Tailwind.elm | xargs elm-format --validate",
     "lint:analyse": "elm-analyse",
     "lint:review": "elm-review",
