@@ -4,12 +4,13 @@ import Browser.Navigation as Nav
 import Html exposing (Attribute)
 import Html.Attributes as A
 import Url exposing (Url)
-import Url.Parser as Parser exposing (Parser, oneOf, s)
+import Url.Parser as Parser exposing ((<?>), Parser, oneOf, s)
+import Url.Parser.Query as Query
 
 
 type Route
     = Home
-    | Countdown
+    | Countdown (Maybe Int)
     | Restwatch
     | Stopwatch
 
@@ -49,8 +50,11 @@ routeToPieces page =
         Home ->
             []
 
-        Countdown ->
+        Countdown Nothing ->
             [ "countdown" ]
+
+        Countdown (Just time) ->
+            [ "countdown", String.fromInt time ]
 
         Restwatch ->
             [ "restwatch" ]
@@ -63,7 +67,7 @@ parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Parser.map Home Parser.top
-        , Parser.map Countdown (s "countdown")
+        , Parser.map Countdown (s "countdown" <?> Query.int "t")
         , Parser.map Restwatch (s "restwatch")
         , Parser.map Stopwatch (s "stopwatch")
         ]

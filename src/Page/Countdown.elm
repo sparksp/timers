@@ -41,10 +41,10 @@ type Msg
     = GotStageMsg StageMsg
 
 
-init : Session -> ( Model, Cmd Msg )
-init session =
+init : Session -> Maybe Int -> ( Model, Cmd Msg )
+init session maybeTime =
     ( { session = session
-      , stage = Waiting <| Period.millis 5000
+      , stage = Waiting <| Period.millis <| Maybe.withDefault 5000 maybeTime
       }
     , Cmd.none
     )
@@ -141,9 +141,9 @@ toSession { session } =
 
 
 view : Model -> Document Msg
-view model =
+view { stage } =
     { title = "Countdown"
-    , body = Alarm.view :: viewBody model.stage
+    , body = Alarm.view :: viewBody stage
     }
 
 

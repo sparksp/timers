@@ -105,8 +105,8 @@ changeRouteTo maybeRoute model =
         Just Route.Home ->
             ( Home session, Cmd.none )
 
-        Just Route.Countdown ->
-            Countdown.init session
+        Just (Route.Countdown maybeTime) ->
+            Countdown.init session maybeTime
                 |> updateWith Countdown GotCountdownMsg
 
         Just Route.Restwatch ->
