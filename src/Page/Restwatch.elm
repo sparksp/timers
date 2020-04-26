@@ -1,12 +1,12 @@
-port module Page.Restwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
+module Page.Restwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
+import Alarm
 import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
 import Html.Events as Events
 import Html.Tailwind as TW
-import Json.Encode as E
 import Menu
 import Percent exposing (Percent, percent)
 import Period exposing (Period, millis)
@@ -17,9 +17,6 @@ import Theme.Button as Button
 import Time
 import Time.Extra
 import Timer exposing (Timer)
-
-
-port alarm : E.Value -> Cmd msg
 
 
 type alias Model =
@@ -61,16 +58,6 @@ init session =
     ( Model session (percent 100) Menu.Closed Clear, Cmd.none )
 
 
-loadAlarm : Cmd Msg
-loadAlarm =
-    alarm (E.string "load")
-
-
-playAlarm : Cmd Msg
-playAlarm =
-    alarm (E.string "play")
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -94,13 +81,13 @@ updateStageMsg : StageMsg -> Model -> ( Model, Cmd Msg )
 updateStageMsg msg model =
     case ( msg, model.stage ) of
         ( Start, Clear ) ->
-            ( { model | stage = Starting }, loadAlarm )
+            ( { model | stage = Starting }, Alarm.load )
 
         ( Start, PausedRunning timer ) ->
-            ( { model | stage = ResumeRunning timer }, loadAlarm )
+            ( { model | stage = ResumeRunning timer }, Alarm.load )
 
         ( Start, Finished _ ) ->
-            ( { model | stage = Starting }, loadAlarm )
+            ( { model | stage = Starting }, Alarm.load )
 
         ( Start, _ ) ->
             ( model, Cmd.none )
@@ -163,7 +150,7 @@ updateStageMsg msg model =
             ( model, Cmd.none )
 
         ( Reset, _ ) ->
-            ( { model | stage = Clear }, loadAlarm )
+            ( { model | stage = Clear }, Alarm.stop )
 
         ( Tick now, Starting ) ->
             ( { model | stage = Running ( now, now ) }, Cmd.none )
@@ -176,7 +163,7 @@ updateStageMsg msg model =
 
         ( Tick now, Resting period ( _, target ) ) ->
             if Time.Extra.lt target now then
-                ( { model | stage = Finished period }, playAlarm )
+                ( { model | stage = Finished period }, Alarm.play )
 
             else
                 ( { model | stage = Resting period ( now, target ) }, Cmd.none )
@@ -267,7 +254,7 @@ toSession { session } =
 view : Model -> Document Msg
 view model =
     { title = "Restwatch"
-    , body = viewAudio :: viewRestMenuOverlay model :: viewBody model
+    , body = Alarm.view :: viewRestMenuOverlay model :: viewBody model
     }
 
 
@@ -299,14 +286,6 @@ viewBody model =
         , viewPauseResetButton model.stage
         ]
     ]
-
-
-viewAudio : Html Msg
-viewAudio =
-    Html.audio [ A.id "alarm", A.controls False ]
-        [ Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.mp3" ] []
-        , Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.wav" ] []
-        ]
 
 
 viewRestMenuOverlay : { a | showRest : Menu.State } -> Html Msg
