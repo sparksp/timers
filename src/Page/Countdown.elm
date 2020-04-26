@@ -206,17 +206,27 @@ viewStartButton =
 
 viewStopButton : Html Msg
 viewStopButton =
-    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just (GotStageMsg Stop) }) [ Html.text "Stop" ]
+    Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just (GotStageMsg Stop) }) [ Html.text "Stop" ]
 
 
 viewResetButton : Stage -> Html Msg
 viewResetButton stage =
     case stage of
         Waiting _ ->
-            Html.button (Button.attr { color = TW.bg_blue_500, onClick = Nothing }) [ Html.text "Reset" ]
+            viewDisabledResetButton
 
         _ ->
-            Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just (GotStageMsg Reset) }) [ Html.text "Reset" ]
+            viewResetButton_
+
+
+viewDisabledResetButton : Html Msg
+viewDisabledResetButton =
+    Html.button (Button.attr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Reset" ]
+
+
+viewResetButton_ : Html Msg
+viewResetButton_ =
+    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_gray_500, onClick = Just (GotStageMsg Reset) }) [ Html.text "Reset" ]
 
 
 isRunning : Stage -> Bool
