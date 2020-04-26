@@ -2,7 +2,7 @@ module PeriodTest exposing (suite)
 
 import Expect
 import Fuzz
-import Period exposing (Period, millis)
+import Period exposing (millis)
 import Test exposing (Test, describe, fuzz, fuzz2, test)
 
 
