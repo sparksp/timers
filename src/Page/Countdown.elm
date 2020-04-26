@@ -105,11 +105,7 @@ updateStageMsg msg model =
 
 startCountdown : Period -> Time.Posix -> Timer
 startCountdown period now =
-    let
-        end =
-            Time.Extra.add now <| Time.millisToPosix <| Period.toMillis period
-    in
-    ( now, end )
+    ( now, Time.Extra.add now <| Period.toPosix period )
 
 
 subscriptions : Model -> Sub Msg

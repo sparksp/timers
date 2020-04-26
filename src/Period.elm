@@ -2,6 +2,7 @@ module Period exposing
     ( Period, fromTimer, millis
     , toHuman, toIso8601, toMillis, toMillisFloat
     , map, mul
+    , toPosix
     )
 
 {-| Tools to format a period of time.
@@ -102,6 +103,13 @@ toMillis (Millis ms) =
 toMillisFloat : Period -> Float
 toMillisFloat =
     toFloat << toMillis
+
+
+{-| Get the millis as a Time.Posix.
+-}
+toPosix : Period -> Time.Posix
+toPosix (Millis ms) =
+    Time.millisToPosix ms
 
 
 
