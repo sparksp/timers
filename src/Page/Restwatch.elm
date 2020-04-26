@@ -14,6 +14,7 @@ import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Tailwind as SvgTW
 import Theme.Button as Button
+import Theme.Progress as Progress
 import Time
 import Time.Extra
 import Timer exposing (Timer)
