@@ -93,8 +93,7 @@ finalProjectEvaluation : ProjectContext -> List (Error scope)
 finalProjectEvaluation projectContext =
     projectContext
         |> Dict.values
-        |> List.map errorsFromPortLocations
-        |> List.concat
+        |> List.concatMap errorsFromPortLocations
 
 
 errorsFromPortLocations : Dict ModuleName PortLocation -> List (Error scope)
