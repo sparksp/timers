@@ -71,12 +71,12 @@ fromProjectToModule _ _ _ =
 
 fromModuleToProject : Rule.ModuleKey -> Node ModuleName -> ModuleContext -> ProjectContext
 fromModuleToProject moduleKey moduleNameNode =
-    Dict.map (fromModuleToProjectPort moduleKey moduleNameNode)
+    Dict.map (fromModuleToProjectPort moduleKey (Node.value moduleNameNode))
 
 
-fromModuleToProjectPort : Rule.ModuleKey -> Node ModuleName -> String -> Range -> Dict ModuleName PortLocation
-fromModuleToProjectPort moduleKey moduleNameNode _ range =
-    Dict.singleton (Node.value moduleNameNode) ( moduleKey, range )
+fromModuleToProjectPort : Rule.ModuleKey -> ModuleName -> String -> Range -> Dict ModuleName PortLocation
+fromModuleToProjectPort moduleKey moduleName _ range =
+    Dict.singleton moduleName ( moduleKey, range )
 
 
 foldProjectContexts : ProjectContext -> ProjectContext -> ProjectContext
