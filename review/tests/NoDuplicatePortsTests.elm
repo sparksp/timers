@@ -1,6 +1,5 @@
 module NoDuplicatePortsTests exposing (all)
 
-import Expect
 import NoDuplicatePorts exposing (rule)
 import Review.Test
 import Test exposing (Test, describe, test)
