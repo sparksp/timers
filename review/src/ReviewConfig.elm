@@ -13,6 +13,7 @@ when inside the directory containing this file.
 
 import NoDebug.Log
 import NoDebug.TodoOrToString
+import NoDuplicatePorts
 import NoUnused.CustomTypeConstructors
 import NoUnused.Dependencies
 import NoUnused.Variables
@@ -26,4 +27,5 @@ config =
     , NoUnused.CustomTypeConstructors.rule []
     , NoUnused.Dependencies.rule
     , NoUnused.Variables.rule
+    , NoDuplicatePorts.rule
     ]
