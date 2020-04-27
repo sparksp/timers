@@ -1,6 +1,9 @@
 module NoDuplicatePorts exposing (rule)
 
-{-| Highlights duplicate port names, which will break the Elm compiler
+{-|
+
+@docs rule
+
 -}
 
 import Dict exposing (Dict)
@@ -11,13 +14,13 @@ import Elm.Syntax.Range exposing (Range)
 import Review.Rule as Rule exposing (Direction, Error, Rule)
 
 
-error : { message : String, details : List String }
-error =
-    { message = "Ensure that port names are unique across your project."
-    , details = [ "This port has been defined elsewhere." ]
-    }
+{-| Ensure that port names are unique across your project.
 
+Problem: When there are multiple ports with the same name you may encounter a JavaScript runtime error.
 
+You should not enable this rule when the project is an Elm package.
+
+-}
 rule : Rule
 rule =
     Rule.newProjectRuleSchema "NoDuplicatePorts" initialProjectContext
@@ -29,6 +32,13 @@ rule =
             }
         |> Rule.withFinalProjectEvaluation finalProjectEvaluation
         |> Rule.fromProjectRuleSchema
+
+
+error : { message : String, details : List String }
+error =
+    { message = "Another port with the same name already exists."
+    , details = [ "When there are multiple ports with the same name you may encounter a JavaScript runtime error." ]
+    }
 
 
 moduleVisitor : Rule.ModuleRuleSchema {} ModuleContext -> Rule.ModuleRuleSchema { hasAtLeastOneVisitor : () } ModuleContext

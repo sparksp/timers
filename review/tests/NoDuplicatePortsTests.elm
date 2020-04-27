@@ -6,6 +6,14 @@ import Review.Test
 import Test exposing (Test, describe, test)
 
 
+errorUnder : String -> { message : String, details : List String, under : String }
+errorUnder under =
+    { message = "Another port with the same name already exists."
+    , details = [ "When there are multiple ports with the same name you may encounter a JavaScript runtime error." ]
+    , under = under
+    }
+
+
 all : Test
 all =
     describe "NoDuplicatePorts"
@@ -39,29 +47,13 @@ b = 1""" ]
                     |> Review.Test.runOnModules rule
                     |> Review.Test.expectErrorsForModules
                         [ ( "A"
-                          , [ Review.Test.error
-                                { message = "Ensure that port names are unique across your project."
-                                , details = [ "This port has been defined elsewhere." ]
-                                , under = "send"
-                                }
-                            , Review.Test.error
-                                { message = "Ensure that port names are unique across your project."
-                                , details = [ "This port has been defined elsewhere." ]
-                                , under = "recv"
-                                }
+                          , [ Review.Test.error (errorUnder "send")
+                            , Review.Test.error (errorUnder "recv")
                             ]
                           )
                         , ( "B"
-                          , [ Review.Test.error
-                                { message = "Ensure that port names are unique across your project."
-                                , details = [ "This port has been defined elsewhere." ]
-                                , under = "send"
-                                }
-                            , Review.Test.error
-                                { message = "Ensure that port names are unique across your project."
-                                , details = [ "This port has been defined elsewhere." ]
-                                , under = "recv"
-                                }
+                          , [ Review.Test.error (errorUnder "send")
+                            , Review.Test.error (errorUnder "recv")
                             ]
                           )
                         ]
