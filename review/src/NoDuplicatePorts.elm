@@ -34,13 +34,6 @@ rule =
         |> Rule.fromProjectRuleSchema
 
 
-error : String -> { message : String, details : List String }
-error portName =
-    { message = String.concat [ "Another port named `", portName, "` already exists." ]
-    , details = [ "When there are multiple ports with the same name you may encounter a JavaScript runtime error." ]
-    }
-
-
 moduleVisitor : Rule.ModuleRuleSchema {} ModuleContext -> Rule.ModuleRuleSchema { hasAtLeastOneVisitor : () } ModuleContext
 moduleVisitor schema =
     schema
@@ -120,3 +113,10 @@ errorsFromPortLocations ( portName, locations ) =
 errorFromPortLocation : String -> ( Rule.ModuleKey, Range ) -> Error scope
 errorFromPortLocation portName ( moduleKey, range ) =
     Rule.errorForModule moduleKey (error portName) range
+
+
+error : String -> { message : String, details : List String }
+error portName =
+    { message = String.concat [ "Another port named `", portName, "` already exists." ]
+    , details = [ "When there are multiple ports with the same name you may encounter a JavaScript runtime error." ]
+    }
