@@ -35,13 +35,7 @@ rule =
 moduleVisitor : Rule.ModuleRuleSchema {} ModuleContext -> Rule.ModuleRuleSchema { hasAtLeastOneVisitor : () } ModuleContext
 moduleVisitor schema =
     schema
-        |> Rule.withModuleDefinitionVisitor moduleDefinitionVisitor
         |> Rule.withDeclarationVisitor declarationVisitor
-
-
-moduleDefinitionVisitor : Node Module -> ModuleContext -> ( List (Error {}), ModuleContext )
-moduleDefinitionVisitor node context =
-    ( [], context )
 
 
 declarationVisitor : Node Declaration -> Direction -> ModuleContext -> ( List (Error {}), ModuleContext )
