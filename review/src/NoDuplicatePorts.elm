@@ -34,9 +34,9 @@ rule =
         |> Rule.fromProjectRuleSchema
 
 
-error : { message : String, details : List String }
-error =
-    { message = "Another port with the same name already exists."
+error : String -> { message : String, details : List String }
+error portName =
+    { message = String.concat [ "Another port named `", portName, "` already exists." ]
     , details = [ "When there are multiple ports with the same name you may encounter a JavaScript runtime error." ]
     }
 
@@ -102,21 +102,21 @@ mergePortLocationDicts portName newLocations oldLocations =
 finalProjectEvaluation : ProjectContext -> List (Error scope)
 finalProjectEvaluation projectContext =
     projectContext
-        |> Dict.values
+        |> Dict.toList
         |> List.concatMap errorsFromPortLocations
 
 
-errorsFromPortLocations : Dict ModuleName PortLocation -> List (Error scope)
-errorsFromPortLocations locations =
+errorsFromPortLocations : ( String, Dict ModuleName PortLocation ) -> List (Error scope)
+errorsFromPortLocations ( portName, locations ) =
     if Dict.size locations < 2 then
         []
 
     else
         locations
             |> Dict.values
-            |> List.map errorFromPortLocation
+            |> List.map (errorFromPortLocation portName)
 
 
-errorFromPortLocation : ( Rule.ModuleKey, Range ) -> Error scope
-errorFromPortLocation ( moduleKey, range ) =
-    Rule.errorForModule moduleKey error range
+errorFromPortLocation : String -> ( Rule.ModuleKey, Range ) -> Error scope
+errorFromPortLocation portName ( moduleKey, range ) =
+    Rule.errorForModule moduleKey (error portName) range

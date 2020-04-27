@@ -7,10 +7,10 @@ import Test exposing (Test, describe, test)
 
 
 errorUnder : String -> { message : String, details : List String, under : String }
-errorUnder under =
-    { message = "Another port with the same name already exists."
+errorUnder portName =
+    { message = String.concat [ "Another port named `", portName, "` already exists." ]
     , details = [ "When there are multiple ports with the same name you may encounter a JavaScript runtime error." ]
-    , under = under
+    , under = portName
     }
 
 
