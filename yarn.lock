@@ -4862,9 +4862,10 @@ postcss-discard-overridden@^4.0.1:
   dependencies:
     postcss "^7.0.0"
 
-postcss-elm-tailwind@monty5811/postcss-elm-tailwind#master:
-  version "0.8.0"
-  resolved "https://codeload.github.com/monty5811/postcss-elm-tailwind/tar.gz/80567811700ef7ae7d90119440a7b0dced0679c0"
+postcss-elm-tailwind@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/postcss-elm-tailwind/-/postcss-elm-tailwind-0.9.0.tgz#f882d5f9d50becad0a259c709ce63fbdc0e0b176"
+  integrity sha512-C4f/ovvgKR92+GZoV/CCGQVaeaiRsFDUoFo98f9slVXitdHt6dmxOQQSYjUoeWgnitWDA0VWiMxXvo4jkgMdjA==
   dependencies:
     postcss "^7.0.18"
 
