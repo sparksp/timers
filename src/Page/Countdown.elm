@@ -56,7 +56,10 @@ type Msg
 init : Session -> Maybe Int -> ( Model, Cmd Msg )
 init session maybeTime =
     ( { session = session
-      , stage = Waiting <| Period.millis <| Maybe.withDefault 5000 maybeTime
+      , stage =
+            maybeTime
+                |> Maybe.map (Waiting << Period.millis << (*) 1000)
+                |> Maybe.withDefault ((Editing << Period.millis) 0)
       }
     , Cmd.none
     )
