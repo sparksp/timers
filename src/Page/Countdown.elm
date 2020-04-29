@@ -5,9 +5,12 @@ import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
+import Html.Events as Events
 import Html.Tailwind as TW
 import Period exposing (Period)
 import Session exposing (Session)
+import Svg.Icons as Icons
+import Svg.Tailwind as SvgTW
 import Theme.Button as Button
 import Theme.Progress as Progress
 import Time
@@ -23,6 +26,7 @@ type alias Model =
 
 type Stage
     = Waiting Period
+    | Editing Period
     | Starting Period
     | Running Period Timer
     | Paused Period Period
@@ -37,8 +41,16 @@ type StageMsg
     | Tick Time.Posix
 
 
+type EditMsg
+    = SetHours Int
+    | SetMinutes Int
+    | SetSeconds Int
+
+
 type Msg
     = GotStageMsg StageMsg
+    | GotEditMsg EditMsg
+    | EditTimer
 
 
 init : Session -> Maybe Int -> ( Model, Cmd Msg )
@@ -56,11 +68,23 @@ update msg model =
         ( GotStageMsg stageMsg, _ ) ->
             updateStageMsg stageMsg model
 
+        ( EditTimer, Waiting target ) ->
+            ( { model | stage = Editing target }, Cmd.none )
+
+        ( EditTimer, _ ) ->
+            ( model, Cmd.none )
+
+        ( GotEditMsg editMsg, _ ) ->
+            updateEditMsg editMsg model
+
 
 updateStageMsg : StageMsg -> Model -> ( Model, Cmd Msg )
 updateStageMsg msg model =
     case ( msg, model.stage ) of
         ( Start, Waiting target ) ->
+            ( { model | stage = Starting target }, Alarm.load )
+
+        ( Start, Editing target ) ->
             ( { model | stage = Starting target }, Alarm.load )
 
         ( Start, Paused target timer ) ->
@@ -109,10 +133,40 @@ startCountdown period now =
     ( now, Time.Extra.add now <| Period.toPosix period )
 
 
+updateEditMsg : EditMsg -> Model -> ( Model, Cmd Msg )
+updateEditMsg msg model =
+    case model.stage of
+        Editing duration ->
+            let
+                time =
+                    periodToTime duration
+            in
+            case msg of
+                SetHours newHours ->
+                    updateEditingTime { time | hours = newHours } model
+
+                SetMinutes newMinutes ->
+                    updateEditingTime { time | minutes = newMinutes } model
+
+                SetSeconds newSeconds ->
+                    updateEditingTime { time | seconds = newSeconds } model
+
+        _ ->
+            ( model, Cmd.none )
+
+
+updateEditingTime : Time -> Model -> ( Model, Cmd Msg )
+updateEditingTime time model =
+    ( { model | stage = Editing <| timeToPeriod time }, Cmd.none )
+
+
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model.stage of
         Waiting _ ->
+            Sub.none
+
+        Editing _ ->
             Sub.none
 
         Starting _ ->
@@ -151,9 +205,7 @@ viewBody : Stage -> List (Html Msg)
 viewBody stage =
     [ Html.main_ [ TW.flex_grow ]
         [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
-            [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
-                [ Html.p [ TW.self_center, TW.text_4xl, TW.font_mono ] [ showRemainingTime stage ]
-                ]
+            [ viewEditableTime stage
             , viewProgress stage
             ]
         ]
@@ -162,6 +214,65 @@ viewBody stage =
         , viewResetButton stage
         ]
     ]
+
+
+viewEditableTime : Stage -> Html Msg
+viewEditableTime stage =
+    Html.div [ TW.grid, TW.grid_cols_header ]
+        (case stage of
+            Editing duration ->
+                let
+                    time : Time
+                    time =
+                        periodToTime duration
+                in
+                [ Html.div [ TW.col_start_2, TW.text_4xl, TW.font_mono, TW.self_center, TW.flex, TW.flex_row, TW.leading_none ]
+                    [ viewEditTimePart time.hours (GotEditMsg << SetHours)
+                    , Html.div [ TW.self_center ] [ Html.text ":" ]
+                    , viewEditTimePart time.minutes (GotEditMsg << SetMinutes)
+                    , Html.div [ TW.self_center ] [ Html.text ":" ]
+                    , viewEditTimePart time.seconds (GotEditMsg << SetSeconds)
+                    ]
+                , Html.div [ TW.self_center, TW.mr_auto, TW.ml_2 ]
+                    [ Html.button [ Events.onClick (GotStageMsg Reset) ]
+                        [ Icons.checkmarkOutline [ SvgTW.h_6, SvgTW.w_6 ] ]
+                    ]
+                ]
+
+            _ ->
+                [ Html.p [ TW.col_start_2, TW.text_4xl, TW.font_mono, TW.self_center, TW.leading_none, TW.py_4 ]
+                    [ showRemainingTime stage ]
+                , Html.div [ TW.self_center, TW.mr_auto, TW.ml_2 ]
+                    (viewEditButton stage)
+                ]
+        )
+
+
+viewEditTimePart : Int -> (Int -> msg) -> Html msg
+viewEditTimePart unit msg =
+    Html.div [ TW.flex, TW.flex_col ]
+        [ Html.div [ TW.text_base, TW.flex, TW.justify_center ]
+            [ Html.button [ TW.h_4, TW.w_4, Events.onClick (msg <| unit + 1) ]
+                [ Icons.chevronUp [ SvgTW.h_full, SvgTW.w_full ] ]
+            ]
+        , Html.div []
+            [ Html.text <| pad00 unit ]
+        , Html.div [ TW.text_base, TW.flex, TW.justify_center ]
+            [ Html.button [ TW.h_4, TW.w_4, Events.onClick (msg <| unit - 1) ]
+                [ Icons.chevronDown [ SvgTW.h_full, SvgTW.w_full ] ]
+            ]
+        ]
+
+
+viewEditButton : Stage -> List (Html Msg)
+viewEditButton stage =
+    case stage of
+        Waiting _ ->
+            [ Html.button [ Events.onClick EditTimer ] [ Icons.cog [ SvgTW.h_6, SvgTW.w_6 ] ]
+            ]
+
+        _ ->
+            []
 
 
 viewProgress : Stage -> Html Msg
@@ -257,6 +368,9 @@ stageToTarget stage =
         Waiting target ->
             target
 
+        Editing target ->
+            target
+
         Starting target ->
             target
 
@@ -296,6 +410,9 @@ mapStage { onWaiting, onRunning, onPaused, onFinished } stage =
         Waiting _ ->
             onWaiting
 
+        Editing _ ->
+            onWaiting
+
         Starting _ ->
             onRunning
 
@@ -318,6 +435,9 @@ mapRemainingTime { onWaiting, onRunning, onPaused, onFinished } stage =
         Waiting remaining ->
             onWaiting remaining
 
+        Editing remaining ->
+            onWaiting remaining
+
         Starting remaining ->
             onRunning remaining
 
@@ -337,3 +457,55 @@ mapRemainingTime { onWaiting, onRunning, onPaused, onFinished } stage =
 showPeriod : Period -> Html Msg
 showPeriod period =
     Html.time [ A.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (Period.toHuman period) ]
+
+
+
+--- Period to Time
+
+
+type alias Time =
+    { hours : Int
+    , minutes : Int
+    , seconds : Int
+    }
+
+
+timeToPeriod : Time -> Period
+timeToPeriod { hours, minutes, seconds } =
+    Period.millis <| max 0 (((hours * 60 + minutes) * 60 + seconds) * 1000)
+
+
+periodToTime : Period -> Time
+periodToTime period =
+    let
+        ms =
+            Period.toMillis period
+
+        s =
+            ms // 1000
+
+        m =
+            s // 60
+
+        h =
+            m // 60
+    in
+    { hours = h
+    , minutes = zeroOrRemainderBy 60 m
+    , seconds = zeroOrRemainderBy 60 s
+    }
+
+
+zeroOrRemainderBy : Int -> Int -> Int
+zeroOrRemainderBy a b =
+    case a of
+        0 ->
+            0
+
+        _ ->
+            remainderBy a b
+
+
+pad00 : Int -> String
+pad00 =
+    String.padLeft 2 '0' << String.fromInt
