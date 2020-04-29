@@ -253,11 +253,16 @@ viewEditableTime stage =
                     ]
                 ]
 
+            Waiting duration ->
+                [ Html.p [ TW.col_start_2, TW.text_4xl, TW.font_mono, TW.self_center, TW.leading_none, TW.py_4 ]
+                    [ showPeriodHMS duration ]
+                , Html.div [ TW.self_center, TW.mr_auto, TW.ml_2 ]
+                    [ viewEditButton ]
+                ]
+
             _ ->
                 [ Html.p [ TW.col_start_2, TW.text_4xl, TW.font_mono, TW.self_center, TW.leading_none, TW.py_4 ]
                     [ showRemainingTime stage ]
-                , Html.div [ TW.self_center, TW.mr_auto, TW.ml_2 ]
-                    (viewEditButton stage)
                 ]
         )
 
@@ -278,15 +283,9 @@ viewEditTimePart unit msg =
         ]
 
 
-viewEditButton : Stage -> List (Html Msg)
-viewEditButton stage =
-    case stage of
-        Waiting _ ->
-            [ Html.button [ Events.onClick EditTimer ] [ Icons.cog [ SvgTW.h_6, SvgTW.w_6 ] ]
-            ]
-
-        _ ->
-            []
+viewEditButton : Html Msg
+viewEditButton =
+    Html.button [ Events.onClick EditTimer ] [ Icons.cog [ SvgTW.h_6, SvgTW.w_6 ] ]
 
 
 viewProgress : Stage -> Html Msg
@@ -387,7 +386,7 @@ showRemainingTime : Stage -> Html Msg
 showRemainingTime stage =
     stage
         |> stageToRemaining
-        |> showPeriod
+        |> showPeriodHuman
 
 
 stageToRemaining : Stage -> Period
@@ -487,9 +486,19 @@ mapRemainingTime { onWaiting, onRunning, onPaused, onFinished } stage =
             onFinished <| Period.millis 0
 
 
-showPeriod : Period -> Html Msg
-showPeriod period =
-    Html.time [ A.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (Period.toHuman period) ]
+showPeriodHuman : Period -> Html Msg
+showPeriodHuman =
+    showPeriod Period.toHuman
+
+
+showPeriodHMS : Period -> Html Msg
+showPeriodHMS =
+    showPeriod Period.toHMS
+
+
+showPeriod : (Period -> String) -> Period -> Html Msg
+showPeriod toString period =
+    Html.time [ A.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (toString period) ]
 
 
 

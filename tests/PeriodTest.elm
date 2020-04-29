@@ -35,7 +35,7 @@ testToHuman =
                 in
                 millis ((((d * 24 + h) * 60 + m) * 60 + s) * 1000)
                     |> Period.toHuman
-                    |> Expect.equal (pad00 h ++ ":" ++ pad00 m ++ ":" ++ pad00 s)
+                    |> Expect.equal (pad00 (d * 24 + h) ++ ":" ++ pad00 m ++ ":" ++ pad00 s)
         , test "days with no time has no days output" <|
             \_ ->
                 let
