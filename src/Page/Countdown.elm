@@ -25,8 +25,8 @@ type alias Model =
 
 
 type Stage
-    = Waiting Period
-    | Editing Period
+    = Editing Period
+    | Waiting Period
     | Starting Period
     | Running Period Timer
     | Paused Period Period
@@ -84,10 +84,10 @@ update msg model =
 updateStageMsg : StageMsg -> Model -> ( Model, Cmd Msg )
 updateStageMsg msg model =
     case ( msg, model.stage ) of
-        ( Start, Waiting target ) ->
+        ( Start, Editing target ) ->
             updateStartingTime target model
 
-        ( Start, Editing target ) ->
+        ( Start, Waiting target ) ->
             updateStartingTime target model
 
         ( Start, Paused target timer ) ->
@@ -180,10 +180,10 @@ updateEditingTime time model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model.stage of
-        Waiting _ ->
+        Editing _ ->
             Sub.none
 
-        Editing _ ->
+        Waiting _ ->
             Sub.none
 
         Starting _ ->
@@ -347,10 +347,10 @@ viewStopButton =
 viewResetButton : Stage -> Html Msg
 viewResetButton stage =
     case stage of
-        Waiting _ ->
+        Editing _ ->
             viewDisabledResetButton
 
-        Editing _ ->
+        Waiting _ ->
             viewDisabledResetButton
 
         Finished _ ->
@@ -400,10 +400,10 @@ stageToRemaining stage =
 stageToTarget : Stage -> Period
 stageToTarget stage =
     case stage of
-        Waiting target ->
+        Editing target ->
             target
 
-        Editing target ->
+        Waiting target ->
             target
 
         Starting target ->
@@ -442,10 +442,10 @@ allStages value =
 mapStage : StageMaps value -> Stage -> value
 mapStage { onWaiting, onRunning, onPaused, onFinished } stage =
     case stage of
-        Waiting _ ->
+        Editing _ ->
             onWaiting
 
-        Editing _ ->
+        Waiting _ ->
             onWaiting
 
         Starting _ ->
@@ -467,10 +467,10 @@ mapStage { onWaiting, onRunning, onPaused, onFinished } stage =
 mapRemainingTime : StageMaps (Period -> value) -> Stage -> value
 mapRemainingTime { onWaiting, onRunning, onPaused, onFinished } stage =
     case stage of
-        Waiting remaining ->
+        Editing remaining ->
             onWaiting remaining
 
-        Editing remaining ->
+        Waiting remaining ->
             onWaiting remaining
 
         Starting remaining ->
