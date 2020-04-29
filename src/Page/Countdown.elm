@@ -82,16 +82,16 @@ updateStageMsg : StageMsg -> Model -> ( Model, Cmd Msg )
 updateStageMsg msg model =
     case ( msg, model.stage ) of
         ( Start, Waiting target ) ->
-            ( { model | stage = Starting target }, Alarm.load )
+            updateStartingTime target model
 
         ( Start, Editing target ) ->
-            ( { model | stage = Starting target }, Alarm.load )
+            updateStartingTime target model
 
         ( Start, Paused target timer ) ->
             ( { model | stage = Resuming target timer }, Alarm.load )
 
         ( Start, Finished target ) ->
-            ( { model | stage = Starting target }, Alarm.load )
+            updateStartingTime target model
 
         ( Start, _ ) ->
             ( model, Cmd.none )
@@ -126,6 +126,20 @@ updateStageMsg msg model =
 
         ( Tick _, _ ) ->
             ( model, Cmd.none )
+
+
+updateStartingTime : Period -> Model -> ( Model, Cmd Msg )
+updateStartingTime target model =
+    if canStartTarget target then
+        ( { model | stage = Starting target }, Alarm.load )
+
+    else
+        ( model, Cmd.none )
+
+
+canStartTarget : Period -> Bool
+canStartTarget target =
+    Period.toMillis target // 1000 > 0
 
 
 startCountdown : Period -> Time.Posix -> Timer
@@ -306,13 +320,21 @@ viewStartStopButton stage =
     if isRunning stage then
         viewStopButton
 
-    else
+    else if canStartTarget <| stageToTarget stage then
         viewStartButton
+
+    else
+        viewDisabledStartButton
 
 
 viewStartButton : Html Msg
 viewStartButton =
     Html.button (TW.hover__bg_green_600 :: Button.attr { color = TW.bg_green_500, onClick = Just (GotStageMsg Start) }) [ Html.text "Start" ]
+
+
+viewDisabledStartButton : Html Msg
+viewDisabledStartButton =
+    Html.button (Button.attr { color = TW.bg_green_500, onClick = Nothing }) [ Html.text "Start" ]
 
 
 viewStopButton : Html Msg
@@ -324,6 +346,9 @@ viewResetButton : Stage -> Html Msg
 viewResetButton stage =
     case stage of
         Waiting _ ->
+            viewDisabledResetButton
+
+        Editing _ ->
             viewDisabledResetButton
 
         _ ->
