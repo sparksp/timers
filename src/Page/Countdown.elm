@@ -273,15 +273,15 @@ viewEditableTime stage =
 viewEditTimePart : Int -> (Int -> msg) -> Html msg
 viewEditTimePart unit msg =
     Html.div [ TW.flex, TW.flex_col ]
-        [ Html.div [ TW.text_base, TW.flex, TW.justify_center ]
-            [ Html.button [ TW.h_4, TW.w_4, Events.onClick (msg <| unit + 1), A.style "touch-action" "manipulation" ]
-                [ Icons.chevronUp [ SvgTW.h_full, SvgTW.w_full ] ]
+        [ Html.div [ TW.text_base ]
+            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg <| unit + 1), A.style "touch-action" "manipulation" ]
+                [ Icons.chevronUp [ SvgTW.h_4, SvgTW.w_4 ] ]
             ]
         , Html.div []
             [ Html.text <| pad00 unit ]
-        , Html.div [ TW.text_base, TW.flex, TW.justify_center ]
-            [ Html.button [ TW.h_4, TW.w_4, Events.onClick (msg <| unit - 1), A.style "touch-action" "manipulation" ]
-                [ Icons.chevronDown [ SvgTW.h_full, SvgTW.w_full ] ]
+        , Html.div [ TW.text_base ]
+            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg <| unit - 1), A.style "touch-action" "manipulation" ]
+                [ Icons.chevronDown [ SvgTW.h_4, SvgTW.w_4 ] ]
             ]
         ]
 
