@@ -339,11 +339,6 @@ viewProgress state =
         |> Progress.view [ bgColor ] [ Html.text label ]
 
 
-progress : Float -> Html.Attribute Msg
-progress percent =
-    A.style "width" (String.fromFloat percent ++ "%")
-
-
 calculateProgress : { a | rest : Percent, stage : Stage } -> Float
 calculateProgress =
     mapRestingPeriods
