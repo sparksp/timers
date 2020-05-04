@@ -17,7 +17,8 @@ import NoDuplicatePorts
 import NoUnused.CustomTypeConstructors
 import NoUnused.Dependencies
 import NoUnused.Variables
-import Review.Rule exposing (Rule)
+import Review.Rule as Rule exposing (Rule)
+import UseCamelCase
 
 
 config : List Rule
@@ -28,4 +29,9 @@ config =
     , NoUnused.Dependencies.rule
     , NoUnused.Variables.rule
     , NoDuplicatePorts.rule
+    , UseCamelCase.rule UseCamelCase.default
+        |> Rule.ignoreErrorsForFiles
+            [ "src/Html/Tailwind.elm"
+            , "src/Svg/Tailwind.elm"
+            ]
     ]
