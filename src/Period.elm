@@ -1,6 +1,6 @@
 module Period exposing
     ( Period, fromTimer, millis
-    , toHuman, toHMS, toIso8601, toMillis, toMillisFloat
+    , toHuman, toIso8601, toMillis, toMillisFloat
     , map, mul
     , toPosix
     )
@@ -15,7 +15,7 @@ module Period exposing
 
 # Formatting
 
-@docs toHuman, toHMS, toIso8601, toMillis, toMillisFloat
+@docs toHuman, toIso8601, toMillis, toMillisFloat
 
 
 # Mapping
@@ -69,21 +69,6 @@ toHuman period =
         _ ->
             -- hh:mm:ss
             pad00 (duration.days * 24 + duration.hours) ++ ":" ++ pad00 duration.minutes ++ ":" ++ pad00 duration.seconds
-
-
-{-| A human readable (digital clock style) string.
-
-    Always as "hh:mm:ss" (e.g., 28:37:46)
-
--}
-toHMS : Period -> String
-toHMS period =
-    let
-        duration : Duration
-        duration =
-            toDuration period
-    in
-    pad00 (duration.days * 24 + duration.hours) ++ ":" ++ pad00 duration.minutes ++ ":" ++ pad00 duration.seconds
 
 
 {-| An ISO-8601 formatted String.
