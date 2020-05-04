@@ -395,8 +395,11 @@ viewResetButton stage =
         Clear ->
             viewDisabledResetButton
 
+        Finished _ ->
+            viewRedResetButton
+
         _ ->
-            viewResetButton_
+            viewGrayResetButton
 
 
 viewStartButton : Html Msg
@@ -419,8 +422,13 @@ viewDisabledResetButton =
     Html.button (Button.attr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Reset" ]
 
 
-viewResetButton_ : Html Msg
-viewResetButton_ =
+viewRedResetButton : Html Msg
+viewRedResetButton =
+    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just (StageMsg Reset) }) [ Html.text "Reset" ]
+
+
+viewGrayResetButton : Html Msg
+viewGrayResetButton =
     Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_gray_500, onClick = Just (StageMsg Reset) }) [ Html.text "Reset" ]
 
 
