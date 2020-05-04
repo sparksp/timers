@@ -1,25 +1,23 @@
-port module Page.Restwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
+module Page.Restwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
+import Alarm
 import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
 import Html.Events as Events
 import Html.Tailwind as TW
-import Json.Encode as E
 import Menu
 import Percent exposing (Percent, percent)
-import Period exposing (Period(..))
+import Period exposing (Period, millis)
 import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Tailwind as SvgTW
 import Theme.Button as Button
+import Theme.Progress as Progress
 import Time
 import Time.Extra
 import Timer exposing (Timer)
-
-
-port alarm : E.Value -> Cmd msg
 
 
 type alias Model =
@@ -61,16 +59,6 @@ init session =
     ( Model session (percent 100) Menu.Closed Clear, Cmd.none )
 
 
-loadAlarm : Cmd Msg
-loadAlarm =
-    alarm (E.string "load")
-
-
-playAlarm : Cmd Msg
-playAlarm =
-    alarm (E.string "play")
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -94,13 +82,13 @@ updateStageMsg : StageMsg -> Model -> ( Model, Cmd Msg )
 updateStageMsg msg model =
     case ( msg, model.stage ) of
         ( Start, Clear ) ->
-            ( { model | stage = Starting }, loadAlarm )
+            ( { model | stage = Starting }, Alarm.load )
 
         ( Start, PausedRunning timer ) ->
-            ( { model | stage = ResumeRunning timer }, loadAlarm )
+            ( { model | stage = ResumeRunning timer }, Alarm.load )
 
         ( Start, Finished _ ) ->
-            ( { model | stage = Starting }, loadAlarm )
+            ( { model | stage = Starting }, Alarm.load )
 
         ( Start, _ ) ->
             ( model, Cmd.none )
@@ -163,7 +151,7 @@ updateStageMsg msg model =
             ( model, Cmd.none )
 
         ( Reset, _ ) ->
-            ( { model | stage = Clear }, loadAlarm )
+            ( { model | stage = Clear }, Alarm.stop )
 
         ( Tick now, Starting ) ->
             ( { model | stage = Running ( now, now ) }, Cmd.none )
@@ -176,7 +164,7 @@ updateStageMsg msg model =
 
         ( Tick now, Resting period ( _, target ) ) ->
             if Time.Extra.lt target now then
-                ( { model | stage = Finished period }, playAlarm )
+                ( { model | stage = Finished period }, Alarm.play )
 
             else
                 ( { model | stage = Resting period ( now, target ) }, Cmd.none )
@@ -267,7 +255,7 @@ toSession { session } =
 view : Model -> Document Msg
 view model =
     { title = "Restwatch"
-    , body = viewAudio :: viewRestMenuOverlay model :: viewBody model
+    , body = Alarm.view :: viewRestMenuOverlay model :: viewBody model
     }
 
 
@@ -275,11 +263,11 @@ viewBody : Model -> List (Html Msg)
 viewBody model =
     [ Html.main_ [ TW.flex_grow, TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
         [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
-            [ Html.div [ fadeRunningAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
+            [ Html.div [ fadeRunningAttr model.stage, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
                 [ Html.p [ TW.text_left ] [ Html.text "Activity" ]
                 , Html.p [ TW.text_4xl, TW.font_mono, TW.select_all ] [ showRunningTime model ]
                 ]
-            , Html.div [ fadeRestingAttr model, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
+            , Html.div [ fadeRestingAttr model.stage, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
                 [ Html.button [ Events.onClick (ShowRest <| Menu.toggle model.showRest) ]
                     [ Html.div [ TW.flex, TW.items_center ]
                         [ Html.p [ TW.text_left ]
@@ -296,17 +284,9 @@ viewBody model =
         ]
     , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
         [ viewStartRestButton model.stage
-        , viewPauseResetButton model.stage
+        , viewResetButton model.stage
         ]
     ]
-
-
-viewAudio : Html Msg
-viewAudio =
-    Html.audio [ A.id "alarm", A.controls False ]
-        [ Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.mp3" ] []
-        , Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.wav" ] []
-        ]
 
 
 viewRestMenuOverlay : { a | showRest : Menu.State } -> Html Msg
@@ -346,44 +326,31 @@ viewOpenRestMenu rest =
 viewProgress : { a | rest : Percent, stage : Stage } -> Html Msg
 viewProgress state =
     let
-        percent =
-            mapRestingPeriods
-                { onWaiting = always 100
-                , onRunning = calculateProgress
-                , onResting = calculateProgress
-                , onFinished = always 100
+        ( label, bgColor ) =
+            mapStage
+                { onWaiting = ( "Get Ready!", TW.bg_gray_500 )
+                , onRunning = ( "Go!", TW.bg_green_600 )
+                , onResting = ( "Rest...", TW.bg_orange_600 )
+                , onFinished = ( "Finished", TW.bg_red_600 )
                 }
-                state
-
-        label =
-            mapRestingTime
-                { onWaiting = always "Get Ready!"
-                , onRunning = always "Go!"
-                , onResting = always "Rest..."
-                , onFinished = always "Finished"
-                }
-                state
-
-        bgColor =
-            mapRestingTime
-                { onWaiting = always TW.bg_gray_500
-                , onRunning = always TW.bg_green_600
-                , onResting = always TW.bg_orange_600
-                , onFinished = always TW.bg_red_600
-                }
-                state
+                state.stage
     in
-    Html.div [ TW.w_full, TW.bg_gray_300, TW.my_2 ]
-        [ Html.div [ bgColor, TW.transition_colors, TW.duration_500, TW.ease_out, TW.leading_none, TW.py_2, TW.text_center, TW.text_white, TW.text_lg, progress percent ] [ Html.text label ] ]
+    calculateProgress state
+        |> Progress.view [ bgColor ] [ Html.text label ]
 
 
-progress : Float -> Html.Attribute Msg
-progress percent =
-    A.style "width" (String.fromFloat percent ++ "%")
+calculateProgress : { a | rest : Percent, stage : Stage } -> Float
+calculateProgress =
+    mapRestingPeriods
+        { onWaiting = calculateProgress_
+        , onRunning = calculateProgress_
+        , onResting = calculateProgress_
+        , onFinished = always 100
+        }
 
 
-calculateProgress : ( Period, Period ) -> Float
-calculateProgress ( target, current ) =
+calculateProgress_ : ( Period, Period ) -> Float
+calculateProgress_ ( target, current ) =
     if target == current then
         100
 
@@ -410,47 +377,26 @@ viewStartRestButton stage =
             viewRestButton
 
         Resting _ _ ->
-            viewDisabledRestButton
+            viewPauseButton
 
         PausedResting _ _ ->
             viewRestButton
 
         ResumeResting _ _ ->
-            viewDisabledRestButton
+            viewPauseButton
 
         Finished _ ->
             viewStartButton
 
 
-viewPauseResetButton : Stage -> Html Msg
-viewPauseResetButton stage =
+viewResetButton : Stage -> Html Msg
+viewResetButton stage =
     case stage of
         Clear ->
-            viewDisabledPauseButton
+            viewDisabledResetButton
 
-        Starting ->
-            viewDisabledPauseButton
-
-        Running _ ->
-            viewPauseButton
-
-        Resting _ _ ->
-            viewPauseButton
-
-        Finished _ ->
-            viewResetButton
-
-        PausedRunning _ ->
-            viewResetButton
-
-        ResumeRunning _ ->
-            viewPauseButton
-
-        PausedResting _ _ ->
-            viewResetButton
-
-        ResumeResting _ _ ->
-            viewPauseButton
+        _ ->
+            viewResetButton_
 
 
 viewStartButton : Html Msg
@@ -463,24 +409,19 @@ viewRestButton =
     Html.button (TW.hover__bg_orange_600 :: Button.attr { color = TW.bg_orange_500, onClick = Just (StageMsg Rest) }) [ Html.text "Rest" ]
 
 
-viewDisabledRestButton : Html Msg
-viewDisabledRestButton =
-    Html.button (Button.attr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Rest" ]
-
-
 viewPauseButton : Html Msg
 viewPauseButton =
     Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just (StageMsg Pause) }) [ Html.text "Pause" ]
 
 
-viewDisabledPauseButton : Html Msg
-viewDisabledPauseButton =
-    Html.button (Button.attr { color = TW.bg_blue_500, onClick = Nothing }) [ Html.text "Pause" ]
+viewDisabledResetButton : Html Msg
+viewDisabledResetButton =
+    Html.button (Button.attr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Reset" ]
 
 
-viewResetButton : Html Msg
-viewResetButton =
-    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just (StageMsg Reset) }) [ Html.text "Reset" ]
+viewResetButton_ : Html Msg
+viewResetButton_ =
+    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_gray_500, onClick = Just (StageMsg Reset) }) [ Html.text "Reset" ]
 
 
 showRunningTime : { a | stage : Stage } -> Html Msg
@@ -493,22 +434,22 @@ showRestingTime =
     mapRestingTime (allStages showPeriod)
 
 
-fadeRunningAttr : { a | stage : Stage } -> Html.Attribute Msg
+fadeRunningAttr : Stage -> Html.Attribute Msg
 fadeRunningAttr =
     let
         stages =
-            allStages <| always (A.class "")
+            allStages <| A.class ""
     in
-    mapRunningTime { stages | onResting = always TW.text_gray_600 }
+    mapStage { stages | onResting = TW.text_gray_600 }
 
 
-fadeRestingAttr : { a | rest : Percent, stage : Stage } -> Html.Attribute Msg
+fadeRestingAttr : Stage -> Html.Attribute Msg
 fadeRestingAttr =
-    mapRestingTime
-        { onWaiting = always TW.text_gray_600
-        , onRunning = always TW.text_gray_600
-        , onResting = always (A.class "")
-        , onFinished = always (A.class "")
+    mapStage
+        { onWaiting = TW.text_gray_600
+        , onRunning = TW.text_gray_600
+        , onResting = A.class ""
+        , onFinished = A.class ""
         }
 
 
@@ -529,14 +470,45 @@ allStages value =
     }
 
 
+mapStage : StageMaps value -> Stage -> value
+mapStage { onWaiting, onRunning, onResting, onFinished } stage =
+    case stage of
+        Clear ->
+            onWaiting
+
+        Starting ->
+            onRunning
+
+        Running _ ->
+            onRunning
+
+        PausedRunning _ ->
+            onRunning
+
+        ResumeRunning _ ->
+            onRunning
+
+        Resting _ _ ->
+            onResting
+
+        PausedResting _ _ ->
+            onResting
+
+        ResumeResting _ _ ->
+            onResting
+
+        Finished _ ->
+            onFinished
+
+
 mapRunningTime : StageMaps (Period -> value) -> { a | stage : Stage } -> value
 mapRunningTime { onWaiting, onRunning, onResting, onFinished } { stage } =
     case stage of
         Clear ->
-            onWaiting <| Millis 0
+            onWaiting <| millis 0
 
         Starting ->
-            onRunning <| Millis 0
+            onRunning <| millis 0
 
         Running timer ->
             onRunning <| Period.fromTimer timer
@@ -578,10 +550,10 @@ mapRestingPeriods : StageMaps (Periods -> value) -> { a | rest : Percent, stage 
 mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } { rest, stage } =
     case stage of
         Clear ->
-            onWaiting ( Millis 0, Millis 0 )
+            onWaiting ( millis 0, millis 0 )
 
         Starting ->
-            onRunning ( Millis 0, Millis 0 )
+            onRunning ( millis 0, millis 0 )
 
         Running timer ->
             onRunning <| double <| periodPercent rest <| Period.fromTimer timer
@@ -602,7 +574,7 @@ mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } { rest, stage 
             onResting ( periodPercent rest period, Period.fromTimer timer )
 
         Finished period ->
-            onFinished ( periodPercent rest period, Millis 0 )
+            onFinished ( periodPercent rest period, millis 0 )
 
 
 double : a -> ( a, a )

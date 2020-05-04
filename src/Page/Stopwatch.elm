@@ -5,7 +5,7 @@ import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as A
 import Html.Tailwind as TW
-import Period exposing (Period(..))
+import Period exposing (Period, millis)
 import Session exposing (Session)
 import Theme.Button as Button
 import Time
@@ -22,9 +22,9 @@ type alias Model =
 type Stage
     = Clear
     | Starting
-    | Paused Timer
-    | Resuming Timer
     | Running Timer
+    | Paused Period
+    | Resuming Period
 
 
 type Msg
@@ -50,8 +50,8 @@ update msg model =
         ( Start, Clear ) ->
             ( { model | stage = Starting }, Cmd.none )
 
-        ( Start, Paused timer ) ->
-            ( { model | stage = Resuming timer }, Cmd.none )
+        ( Start, Paused elapsed ) ->
+            ( { model | stage = Resuming elapsed }, Cmd.none )
 
         ( Start, _ ) ->
             ( model, Cmd.none )
@@ -60,15 +60,12 @@ update msg model =
             ( { model | stage = Clear }, Cmd.none )
 
         ( Stop, Running timer ) ->
-            ( { model | stage = Paused timer }, Cmd.none )
+            ( { model | stage = Paused <| Period.fromTimer timer }, Cmd.none )
 
-        ( Stop, Resuming timer ) ->
-            ( { model | stage = Paused timer }, Cmd.none )
+        ( Stop, Resuming elapsed ) ->
+            ( { model | stage = Paused elapsed }, Cmd.none )
 
         ( Stop, _ ) ->
-            ( model, Cmd.none )
-
-        ( Reset, Running _ ) ->
             ( model, Cmd.none )
 
         ( Reset, _ ) ->
@@ -77,8 +74,8 @@ update msg model =
         ( Tick now, Starting ) ->
             ( { model | stage = Running ( now, now ) }, Cmd.none )
 
-        ( Tick now, Resuming timer ) ->
-            ( { model | stage = Running <| timerShiftStart now timer }, Cmd.none )
+        ( Tick now, Resuming elapsed ) ->
+            ( { model | stage = Running <| startTimer now elapsed }, Cmd.none )
 
         ( Tick now, Running ( start, _ ) ) ->
             ( { model | stage = Running ( start, now ) }, Cmd.none )
@@ -87,25 +84,28 @@ update msg model =
             ( model, Cmd.none )
 
 
-timerShiftStart : Time.Posix -> Timer -> Timer
-timerShiftStart now ( start, end ) =
-    ( Time.Extra.add start <| Time.Extra.sub now end, now )
+startTimer : Time.Posix -> Period -> Timer
+startTimer now elapsed =
+    ( Time.Extra.sub now (Period.toPosix elapsed), now )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model.stage of
-        Starting ->
-            Browser.Events.onAnimationFrame Tick
+        Clear ->
+            Sub.none
 
-        Resuming _ ->
+        Starting ->
             Browser.Events.onAnimationFrame Tick
 
         Running _ ->
             Browser.Events.onAnimationFrame Tick
 
-        _ ->
+        Paused _ ->
             Sub.none
+
+        Resuming _ ->
+            Browser.Events.onAnimationFrame Tick
 
 
 
@@ -115,29 +115,29 @@ subscriptions model =
 view : Model -> Document Msg
 view model =
     { title = "Stopwatch"
-    , body = viewBody model
+    , body = viewBody model.stage
     }
 
 
-viewBody : Model -> List (Html Msg)
-viewBody model =
+viewBody : Stage -> List (Html Msg)
+viewBody stage =
     [ Html.main_ [ TW.flex_grow ]
         [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
             [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
-                [ Html.p [ TW.self_center, TW.text_4xl, TW.font_mono ] [ showTime model ]
+                [ Html.p [ TW.self_center, TW.text_4xl, TW.font_mono ] [ showTime stage ]
                 ]
             ]
         ]
     , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
-        [ viewStartStopButton model
-        , viewResetButton model
+        [ viewStartStopButton stage
+        , viewResetButton stage
         ]
     ]
 
 
-viewStartStopButton : Model -> Html Msg
-viewStartStopButton model =
-    if isRunning model then
+viewStartStopButton : Stage -> Html Msg
+viewStartStopButton stage =
+    if isRunning stage then
         viewStopButton
 
     else
@@ -151,57 +151,70 @@ viewStartButton =
 
 viewStopButton : Html Msg
 viewStopButton =
-    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just Stop }) [ Html.text "Stop" ]
+    Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just Stop }) [ Html.text "Stop" ]
 
 
-viewResetButton : Model -> Html Msg
-viewResetButton model =
-    case model.stage of
-        Paused _ ->
-            Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just Reset }) [ Html.text "Reset" ]
+viewResetButton : Stage -> Html Msg
+viewResetButton stage =
+    case stage of
+        Clear ->
+            viewDisabledResetButton
 
         _ ->
-            Html.button (Button.attr { color = TW.bg_blue_500, onClick = Nothing }) [ Html.text "Reset" ]
+            viewResetButton_
 
 
-isRunning : Model -> Bool
-isRunning model =
-    case model.stage of
+viewDisabledResetButton : Html Msg
+viewDisabledResetButton =
+    Html.button (Button.attr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Reset" ]
+
+
+viewResetButton_ : Html Msg
+viewResetButton_ =
+    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_gray_500, onClick = Just Reset }) [ Html.text "Reset" ]
+
+
+isRunning : Stage -> Bool
+isRunning stage =
+    case stage of
+        Clear ->
+            False
+
         Starting ->
             True
 
         Running _ ->
             True
 
+        Paused _ ->
+            False
+
         Resuming _ ->
             True
 
-        _ ->
-            False
+
+showTime : Stage -> Html Msg
+showTime stage =
+    showPeriod <| stageToElapsed stage
 
 
-showTime : Model -> Html Msg
-showTime model =
-    mapRunningTime showPeriod model
-
-
-mapRunningTime : (Period -> value) -> Model -> value
-mapRunningTime fn model =
-    case model.stage of
+stageToElapsed : Stage -> Period
+stageToElapsed stage =
+    case stage of
         Clear ->
-            fn <| Millis 0
+            millis 0
 
         Starting ->
-            fn <| Millis 0
+            millis 0
 
         Running timer ->
-            fn <| Period.fromTimer timer
+            Period.fromTimer timer
 
-        Paused timer ->
-            fn <| Period.fromTimer timer
+        Paused elapsed ->
+            elapsed
 
-        Resuming timer ->
-            fn <| Period.fromTimer timer
+        Resuming elapsed ->
+            elapsed
 
 
 showPeriod : Period -> Html Msg

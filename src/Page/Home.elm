@@ -18,7 +18,8 @@ viewBody =
     [ Html.main_ [ TW.flex_grow ]
         [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
             [ Html.div [ TW.text_center, TW.mt_4, TW.grid, TW.grid_cols_1, TW.divide_y, TW.border, TW.border_blue_500, TW.rounded ]
-                [ button "Restwatch" Route.Restwatch
+                [ button "Countdown" (Route.Countdown Nothing)
+                , button "Restwatch" Route.Restwatch
                 , button "Stopwatch" Route.Stopwatch
                 ]
             ]

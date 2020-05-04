@@ -13,6 +13,7 @@ import Svg.Tailwind as STW
 type Page
     = Other
     | Home
+    | Countdown
     | Restwatch
     | Stopwatch
 

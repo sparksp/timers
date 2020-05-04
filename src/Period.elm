@@ -1,7 +1,8 @@
 module Period exposing
-    ( Period(..), fromTimer
+    ( Period, fromTimer, millis
     , toHuman, toIso8601, toMillis, toMillisFloat
     , map, mul
+    , toPosix
     )
 
 {-| Tools to format a period of time.
@@ -9,7 +10,7 @@ module Period exposing
 
 # Creation
 
-@docs Period, fromTimer
+@docs Period, fromTimer, millis
 
 
 # Formatting
@@ -34,6 +35,13 @@ type Period
     = Millis Int
 
 
+{-| Create a period from milliseconds.
+-}
+millis : Int -> Period
+millis =
+    Millis
+
+
 {-| Convert from `( Time.Posix, Time.Posix )` to `Period`.
 -}
 fromTimer : Timer -> Period
@@ -43,7 +51,7 @@ fromTimer ( start, end ) =
 
 {-| A human readable (digital clock style) string.
 
-    For times under 1 hour, as "mm:ss.µ" (e.g., 03:07.2)
+    For times under 1 hour, as "mm:ss.µ " (e.g., 03:07.2 )
     For times over 1 hour, as "hh:mm:ss" (e.g., 08:03:07)
 
 -}
@@ -60,7 +68,7 @@ toHuman period =
 
         _ ->
             -- hh:mm:ss
-            pad00 duration.hours ++ ":" ++ pad00 duration.minutes ++ ":" ++ pad00 duration.seconds
+            pad00 (duration.days * 24 + duration.hours) ++ ":" ++ pad00 duration.minutes ++ ":" ++ pad00 duration.seconds
 
 
 {-| An ISO-8601 formatted String.
@@ -95,6 +103,13 @@ toMillis (Millis ms) =
 toMillisFloat : Period -> Float
 toMillisFloat =
     toFloat << toMillis
+
+
+{-| Get the millis as a Time.Posix.
+-}
+toPosix : Period -> Time.Posix
+toPosix (Millis ms) =
+    Time.millisToPosix ms
 
 
 
