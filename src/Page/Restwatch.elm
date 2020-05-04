@@ -364,7 +364,7 @@ viewProgress state =
                 }
                 state
 
-        bg_color =
+        bgColor =
             mapRestingTime
                 { onWaiting = always TW.bg_gray_500
                 , onRunning = always TW.bg_green_600
@@ -374,7 +374,7 @@ viewProgress state =
                 state
     in
     Html.div [ TW.w_full, TW.bg_gray_300, TW.my_2 ]
-        [ Html.div [ bg_color, TW.transition_colors, TW.duration_500, TW.ease_out, TW.leading_none, TW.py_2, TW.text_center, TW.text_white, TW.text_lg, progress percent ] [ Html.text label ] ]
+        [ Html.div [ bgColor, TW.transition_colors, TW.duration_500, TW.ease_out, TW.leading_none, TW.py_2, TW.text_center, TW.text_white, TW.text_lg, progress percent ] [ Html.text label ] ]
 
 
 progress : Float -> Html.Attribute Msg
