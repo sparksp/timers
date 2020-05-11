@@ -14,9 +14,11 @@ when inside the directory containing this file.
 import NoDebug.Log
 import NoDebug.TodoOrToString
 import NoDuplicatePorts
+import NoUnsafePorts
 import NoUnused.CustomTypeConstructors
 import NoUnused.Dependencies
 import NoUnused.Variables
+import NoUnusedPorts
 import Review.Rule as Rule exposing (Rule)
 import UseCamelCase
 
@@ -25,10 +27,12 @@ config : List Rule
 config =
     [ NoDebug.Log.rule
     , NoDebug.TodoOrToString.rule
+    , NoDuplicatePorts.rule
     , NoUnused.CustomTypeConstructors.rule []
     , NoUnused.Dependencies.rule
     , NoUnused.Variables.rule
-    , NoDuplicatePorts.rule
+    , NoUnsafePorts.rule NoUnsafePorts.any
+    , NoUnusedPorts.rule
     , UseCamelCase.rule UseCamelCase.default
         |> Rule.ignoreErrorsForFiles
             [ "src/Html/Tailwind.elm"
