@@ -1,10 +1,5 @@
 module.exports = {
-    purge: {
-        content: [
-            './dist/**/*.html',
-            './dist/**/*.js'
-        ],
-    },
+    purge: false,
     theme: {
         extend: {
             gridTemplateColumns: {
