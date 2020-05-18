@@ -57,6 +57,11 @@ module Html.Tailwind exposing
     , bg_left_top
     , bg_local
     , bg_no_repeat
+    , bg_opacity_0
+    , bg_opacity_100
+    , bg_opacity_25
+    , bg_opacity_50
+    , bg_opacity_75
     , bg_orange_100
     , bg_orange_200
     , bg_orange_300
@@ -182,6 +187,11 @@ module Html.Tailwind exposing
     , border_l_4
     , border_l_8
     , border_none
+    , border_opacity_0
+    , border_opacity_100
+    , border_opacity_25
+    , border_opacity_50
+    , border_opacity_75
     , border_orange_100
     , border_orange_200
     , border_orange_300
@@ -395,6 +405,11 @@ module Html.Tailwind exposing
     , divide_indigo_700
     , divide_indigo_800
     , divide_indigo_900
+    , divide_opacity_0
+    , divide_opacity_100
+    , divide_opacity_25
+    , divide_opacity_50
+    , divide_opacity_75
     , divide_orange_100
     , divide_orange_200
     , divide_orange_300
@@ -535,6 +550,11 @@ module Html.Tailwind exposing
     , focus__bg_indigo_700
     , focus__bg_indigo_800
     , focus__bg_indigo_900
+    , focus__bg_opacity_0
+    , focus__bg_opacity_100
+    , focus__bg_opacity_25
+    , focus__bg_opacity_50
+    , focus__bg_opacity_75
     , focus__bg_orange_100
     , focus__bg_orange_200
     , focus__bg_orange_300
@@ -629,6 +649,11 @@ module Html.Tailwind exposing
     , focus__border_indigo_700
     , focus__border_indigo_800
     , focus__border_indigo_900
+    , focus__border_opacity_0
+    , focus__border_opacity_100
+    , focus__border_opacity_25
+    , focus__border_opacity_50
+    , focus__border_opacity_75
     , focus__border_orange_100
     , focus__border_orange_200
     , focus__border_orange_300
@@ -790,6 +815,11 @@ module Html.Tailwind exposing
     , focus__placeholder_indigo_700__focus
     , focus__placeholder_indigo_800__focus
     , focus__placeholder_indigo_900__focus
+    , focus__placeholder_opacity_0__focus
+    , focus__placeholder_opacity_100__focus
+    , focus__placeholder_opacity_25__focus
+    , focus__placeholder_opacity_50__focus
+    , focus__placeholder_opacity_75__focus
     , focus__placeholder_orange_100__focus
     , focus__placeholder_orange_200__focus
     , focus__placeholder_orange_300__focus
@@ -937,6 +967,11 @@ module Html.Tailwind exposing
     , focus__text_indigo_700
     , focus__text_indigo_800
     , focus__text_indigo_900
+    , focus__text_opacity_0
+    , focus__text_opacity_100
+    , focus__text_opacity_25
+    , focus__text_opacity_50
+    , focus__text_opacity_75
     , focus__text_orange_100
     , focus__text_orange_200
     , focus__text_orange_300
@@ -1154,6 +1189,11 @@ module Html.Tailwind exposing
     , hover__bg_indigo_700
     , hover__bg_indigo_800
     , hover__bg_indigo_900
+    , hover__bg_opacity_0
+    , hover__bg_opacity_100
+    , hover__bg_opacity_25
+    , hover__bg_opacity_50
+    , hover__bg_opacity_75
     , hover__bg_orange_100
     , hover__bg_orange_200
     , hover__bg_orange_300
@@ -1248,6 +1288,11 @@ module Html.Tailwind exposing
     , hover__border_indigo_700
     , hover__border_indigo_800
     , hover__border_indigo_900
+    , hover__border_opacity_0
+    , hover__border_opacity_100
+    , hover__border_opacity_25
+    , hover__border_opacity_50
+    , hover__border_opacity_75
     , hover__border_orange_100
     , hover__border_orange_200
     , hover__border_orange_300
@@ -1459,6 +1504,11 @@ module Html.Tailwind exposing
     , hover__text_indigo_700
     , hover__text_indigo_800
     , hover__text_indigo_900
+    , hover__text_opacity_0
+    , hover__text_opacity_100
+    , hover__text_opacity_25
+    , hover__text_opacity_50
+    , hover__text_opacity_75
     , hover__text_orange_100
     , hover__text_orange_200
     , hover__text_orange_300
@@ -1655,6 +1705,11 @@ module Html.Tailwind exposing
     , lg__bg_left_top
     , lg__bg_local
     , lg__bg_no_repeat
+    , lg__bg_opacity_0
+    , lg__bg_opacity_100
+    , lg__bg_opacity_25
+    , lg__bg_opacity_50
+    , lg__bg_opacity_75
     , lg__bg_orange_100
     , lg__bg_orange_200
     , lg__bg_orange_300
@@ -1780,6 +1835,11 @@ module Html.Tailwind exposing
     , lg__border_l_4
     , lg__border_l_8
     , lg__border_none
+    , lg__border_opacity_0
+    , lg__border_opacity_100
+    , lg__border_opacity_25
+    , lg__border_opacity_50
+    , lg__border_opacity_75
     , lg__border_orange_100
     , lg__border_orange_200
     , lg__border_orange_300
@@ -1991,6 +2051,11 @@ module Html.Tailwind exposing
     , lg__divide_indigo_700
     , lg__divide_indigo_800
     , lg__divide_indigo_900
+    , lg__divide_opacity_0
+    , lg__divide_opacity_100
+    , lg__divide_opacity_25
+    , lg__divide_opacity_50
+    , lg__divide_opacity_75
     , lg__divide_orange_100
     , lg__divide_orange_200
     , lg__divide_orange_300
@@ -2131,6 +2196,11 @@ module Html.Tailwind exposing
     , lg__focus__bg_indigo_700
     , lg__focus__bg_indigo_800
     , lg__focus__bg_indigo_900
+    , lg__focus__bg_opacity_0
+    , lg__focus__bg_opacity_100
+    , lg__focus__bg_opacity_25
+    , lg__focus__bg_opacity_50
+    , lg__focus__bg_opacity_75
     , lg__focus__bg_orange_100
     , lg__focus__bg_orange_200
     , lg__focus__bg_orange_300
@@ -2225,6 +2295,11 @@ module Html.Tailwind exposing
     , lg__focus__border_indigo_700
     , lg__focus__border_indigo_800
     , lg__focus__border_indigo_900
+    , lg__focus__border_opacity_0
+    , lg__focus__border_opacity_100
+    , lg__focus__border_opacity_25
+    , lg__focus__border_opacity_50
+    , lg__focus__border_opacity_75
     , lg__focus__border_orange_100
     , lg__focus__border_orange_200
     , lg__focus__border_orange_300
@@ -2386,6 +2461,11 @@ module Html.Tailwind exposing
     , lg__focus__placeholder_indigo_700__focus
     , lg__focus__placeholder_indigo_800__focus
     , lg__focus__placeholder_indigo_900__focus
+    , lg__focus__placeholder_opacity_0__focus
+    , lg__focus__placeholder_opacity_100__focus
+    , lg__focus__placeholder_opacity_25__focus
+    , lg__focus__placeholder_opacity_50__focus
+    , lg__focus__placeholder_opacity_75__focus
     , lg__focus__placeholder_orange_100__focus
     , lg__focus__placeholder_orange_200__focus
     , lg__focus__placeholder_orange_300__focus
@@ -2533,6 +2613,11 @@ module Html.Tailwind exposing
     , lg__focus__text_indigo_700
     , lg__focus__text_indigo_800
     , lg__focus__text_indigo_900
+    , lg__focus__text_opacity_0
+    , lg__focus__text_opacity_100
+    , lg__focus__text_opacity_25
+    , lg__focus__text_opacity_50
+    , lg__focus__text_opacity_75
     , lg__focus__text_orange_100
     , lg__focus__text_orange_200
     , lg__focus__text_orange_300
@@ -2750,6 +2835,11 @@ module Html.Tailwind exposing
     , lg__hover__bg_indigo_700
     , lg__hover__bg_indigo_800
     , lg__hover__bg_indigo_900
+    , lg__hover__bg_opacity_0
+    , lg__hover__bg_opacity_100
+    , lg__hover__bg_opacity_25
+    , lg__hover__bg_opacity_50
+    , lg__hover__bg_opacity_75
     , lg__hover__bg_orange_100
     , lg__hover__bg_orange_200
     , lg__hover__bg_orange_300
@@ -2844,6 +2934,11 @@ module Html.Tailwind exposing
     , lg__hover__border_indigo_700
     , lg__hover__border_indigo_800
     , lg__hover__border_indigo_900
+    , lg__hover__border_opacity_0
+    , lg__hover__border_opacity_100
+    , lg__hover__border_opacity_25
+    , lg__hover__border_opacity_50
+    , lg__hover__border_opacity_75
     , lg__hover__border_orange_100
     , lg__hover__border_orange_200
     , lg__hover__border_orange_300
@@ -3055,6 +3150,11 @@ module Html.Tailwind exposing
     , lg__hover__text_indigo_700
     , lg__hover__text_indigo_800
     , lg__hover__text_indigo_900
+    , lg__hover__text_opacity_0
+    , lg__hover__text_opacity_100
+    , lg__hover__text_opacity_25
+    , lg__hover__text_opacity_50
+    , lg__hover__text_opacity_75
     , lg__hover__text_orange_100
     , lg__hover__text_orange_200
     , lg__hover__text_orange_300
@@ -3729,6 +3829,11 @@ module Html.Tailwind exposing
     , lg__placeholder_indigo_700
     , lg__placeholder_indigo_800
     , lg__placeholder_indigo_900
+    , lg__placeholder_opacity_0
+    , lg__placeholder_opacity_100
+    , lg__placeholder_opacity_25
+    , lg__placeholder_opacity_50
+    , lg__placeholder_opacity_75
     , lg__placeholder_orange_100
     , lg__placeholder_orange_200
     , lg__placeholder_orange_300
@@ -4136,6 +4241,11 @@ module Html.Tailwind exposing
     , lg__text_justify
     , lg__text_left
     , lg__text_lg
+    , lg__text_opacity_0
+    , lg__text_opacity_100
+    , lg__text_opacity_25
+    , lg__text_opacity_50
+    , lg__text_opacity_75
     , lg__text_orange_100
     , lg__text_orange_200
     , lg__text_orange_300
@@ -4442,6 +4552,11 @@ module Html.Tailwind exposing
     , md__bg_left_top
     , md__bg_local
     , md__bg_no_repeat
+    , md__bg_opacity_0
+    , md__bg_opacity_100
+    , md__bg_opacity_25
+    , md__bg_opacity_50
+    , md__bg_opacity_75
     , md__bg_orange_100
     , md__bg_orange_200
     , md__bg_orange_300
@@ -4567,6 +4682,11 @@ module Html.Tailwind exposing
     , md__border_l_4
     , md__border_l_8
     , md__border_none
+    , md__border_opacity_0
+    , md__border_opacity_100
+    , md__border_opacity_25
+    , md__border_opacity_50
+    , md__border_opacity_75
     , md__border_orange_100
     , md__border_orange_200
     , md__border_orange_300
@@ -4778,6 +4898,11 @@ module Html.Tailwind exposing
     , md__divide_indigo_700
     , md__divide_indigo_800
     , md__divide_indigo_900
+    , md__divide_opacity_0
+    , md__divide_opacity_100
+    , md__divide_opacity_25
+    , md__divide_opacity_50
+    , md__divide_opacity_75
     , md__divide_orange_100
     , md__divide_orange_200
     , md__divide_orange_300
@@ -4918,6 +5043,11 @@ module Html.Tailwind exposing
     , md__focus__bg_indigo_700
     , md__focus__bg_indigo_800
     , md__focus__bg_indigo_900
+    , md__focus__bg_opacity_0
+    , md__focus__bg_opacity_100
+    , md__focus__bg_opacity_25
+    , md__focus__bg_opacity_50
+    , md__focus__bg_opacity_75
     , md__focus__bg_orange_100
     , md__focus__bg_orange_200
     , md__focus__bg_orange_300
@@ -5012,6 +5142,11 @@ module Html.Tailwind exposing
     , md__focus__border_indigo_700
     , md__focus__border_indigo_800
     , md__focus__border_indigo_900
+    , md__focus__border_opacity_0
+    , md__focus__border_opacity_100
+    , md__focus__border_opacity_25
+    , md__focus__border_opacity_50
+    , md__focus__border_opacity_75
     , md__focus__border_orange_100
     , md__focus__border_orange_200
     , md__focus__border_orange_300
@@ -5173,6 +5308,11 @@ module Html.Tailwind exposing
     , md__focus__placeholder_indigo_700__focus
     , md__focus__placeholder_indigo_800__focus
     , md__focus__placeholder_indigo_900__focus
+    , md__focus__placeholder_opacity_0__focus
+    , md__focus__placeholder_opacity_100__focus
+    , md__focus__placeholder_opacity_25__focus
+    , md__focus__placeholder_opacity_50__focus
+    , md__focus__placeholder_opacity_75__focus
     , md__focus__placeholder_orange_100__focus
     , md__focus__placeholder_orange_200__focus
     , md__focus__placeholder_orange_300__focus
@@ -5320,6 +5460,11 @@ module Html.Tailwind exposing
     , md__focus__text_indigo_700
     , md__focus__text_indigo_800
     , md__focus__text_indigo_900
+    , md__focus__text_opacity_0
+    , md__focus__text_opacity_100
+    , md__focus__text_opacity_25
+    , md__focus__text_opacity_50
+    , md__focus__text_opacity_75
     , md__focus__text_orange_100
     , md__focus__text_orange_200
     , md__focus__text_orange_300
@@ -5537,6 +5682,11 @@ module Html.Tailwind exposing
     , md__hover__bg_indigo_700
     , md__hover__bg_indigo_800
     , md__hover__bg_indigo_900
+    , md__hover__bg_opacity_0
+    , md__hover__bg_opacity_100
+    , md__hover__bg_opacity_25
+    , md__hover__bg_opacity_50
+    , md__hover__bg_opacity_75
     , md__hover__bg_orange_100
     , md__hover__bg_orange_200
     , md__hover__bg_orange_300
@@ -5631,6 +5781,11 @@ module Html.Tailwind exposing
     , md__hover__border_indigo_700
     , md__hover__border_indigo_800
     , md__hover__border_indigo_900
+    , md__hover__border_opacity_0
+    , md__hover__border_opacity_100
+    , md__hover__border_opacity_25
+    , md__hover__border_opacity_50
+    , md__hover__border_opacity_75
     , md__hover__border_orange_100
     , md__hover__border_orange_200
     , md__hover__border_orange_300
@@ -5842,6 +5997,11 @@ module Html.Tailwind exposing
     , md__hover__text_indigo_700
     , md__hover__text_indigo_800
     , md__hover__text_indigo_900
+    , md__hover__text_opacity_0
+    , md__hover__text_opacity_100
+    , md__hover__text_opacity_25
+    , md__hover__text_opacity_50
+    , md__hover__text_opacity_75
     , md__hover__text_orange_100
     , md__hover__text_orange_200
     , md__hover__text_orange_300
@@ -6516,6 +6676,11 @@ module Html.Tailwind exposing
     , md__placeholder_indigo_700
     , md__placeholder_indigo_800
     , md__placeholder_indigo_900
+    , md__placeholder_opacity_0
+    , md__placeholder_opacity_100
+    , md__placeholder_opacity_25
+    , md__placeholder_opacity_50
+    , md__placeholder_opacity_75
     , md__placeholder_orange_100
     , md__placeholder_orange_200
     , md__placeholder_orange_300
@@ -6923,6 +7088,11 @@ module Html.Tailwind exposing
     , md__text_justify
     , md__text_left
     , md__text_lg
+    , md__text_opacity_0
+    , md__text_opacity_100
+    , md__text_opacity_25
+    , md__text_opacity_50
+    , md__text_opacity_75
     , md__text_orange_100
     , md__text_orange_200
     , md__text_orange_300
@@ -7577,6 +7747,11 @@ module Html.Tailwind exposing
     , placeholder_indigo_700
     , placeholder_indigo_800
     , placeholder_indigo_900
+    , placeholder_opacity_0
+    , placeholder_opacity_100
+    , placeholder_opacity_25
+    , placeholder_opacity_50
+    , placeholder_opacity_75
     , placeholder_orange_100
     , placeholder_orange_200
     , placeholder_orange_300
@@ -7935,6 +8110,11 @@ module Html.Tailwind exposing
     , sm__bg_left_top
     , sm__bg_local
     , sm__bg_no_repeat
+    , sm__bg_opacity_0
+    , sm__bg_opacity_100
+    , sm__bg_opacity_25
+    , sm__bg_opacity_50
+    , sm__bg_opacity_75
     , sm__bg_orange_100
     , sm__bg_orange_200
     , sm__bg_orange_300
@@ -8060,6 +8240,11 @@ module Html.Tailwind exposing
     , sm__border_l_4
     , sm__border_l_8
     , sm__border_none
+    , sm__border_opacity_0
+    , sm__border_opacity_100
+    , sm__border_opacity_25
+    , sm__border_opacity_50
+    , sm__border_opacity_75
     , sm__border_orange_100
     , sm__border_orange_200
     , sm__border_orange_300
@@ -8271,6 +8456,11 @@ module Html.Tailwind exposing
     , sm__divide_indigo_700
     , sm__divide_indigo_800
     , sm__divide_indigo_900
+    , sm__divide_opacity_0
+    , sm__divide_opacity_100
+    , sm__divide_opacity_25
+    , sm__divide_opacity_50
+    , sm__divide_opacity_75
     , sm__divide_orange_100
     , sm__divide_orange_200
     , sm__divide_orange_300
@@ -8411,6 +8601,11 @@ module Html.Tailwind exposing
     , sm__focus__bg_indigo_700
     , sm__focus__bg_indigo_800
     , sm__focus__bg_indigo_900
+    , sm__focus__bg_opacity_0
+    , sm__focus__bg_opacity_100
+    , sm__focus__bg_opacity_25
+    , sm__focus__bg_opacity_50
+    , sm__focus__bg_opacity_75
     , sm__focus__bg_orange_100
     , sm__focus__bg_orange_200
     , sm__focus__bg_orange_300
@@ -8505,6 +8700,11 @@ module Html.Tailwind exposing
     , sm__focus__border_indigo_700
     , sm__focus__border_indigo_800
     , sm__focus__border_indigo_900
+    , sm__focus__border_opacity_0
+    , sm__focus__border_opacity_100
+    , sm__focus__border_opacity_25
+    , sm__focus__border_opacity_50
+    , sm__focus__border_opacity_75
     , sm__focus__border_orange_100
     , sm__focus__border_orange_200
     , sm__focus__border_orange_300
@@ -8666,6 +8866,11 @@ module Html.Tailwind exposing
     , sm__focus__placeholder_indigo_700__focus
     , sm__focus__placeholder_indigo_800__focus
     , sm__focus__placeholder_indigo_900__focus
+    , sm__focus__placeholder_opacity_0__focus
+    , sm__focus__placeholder_opacity_100__focus
+    , sm__focus__placeholder_opacity_25__focus
+    , sm__focus__placeholder_opacity_50__focus
+    , sm__focus__placeholder_opacity_75__focus
     , sm__focus__placeholder_orange_100__focus
     , sm__focus__placeholder_orange_200__focus
     , sm__focus__placeholder_orange_300__focus
@@ -8813,6 +9018,11 @@ module Html.Tailwind exposing
     , sm__focus__text_indigo_700
     , sm__focus__text_indigo_800
     , sm__focus__text_indigo_900
+    , sm__focus__text_opacity_0
+    , sm__focus__text_opacity_100
+    , sm__focus__text_opacity_25
+    , sm__focus__text_opacity_50
+    , sm__focus__text_opacity_75
     , sm__focus__text_orange_100
     , sm__focus__text_orange_200
     , sm__focus__text_orange_300
@@ -9030,6 +9240,11 @@ module Html.Tailwind exposing
     , sm__hover__bg_indigo_700
     , sm__hover__bg_indigo_800
     , sm__hover__bg_indigo_900
+    , sm__hover__bg_opacity_0
+    , sm__hover__bg_opacity_100
+    , sm__hover__bg_opacity_25
+    , sm__hover__bg_opacity_50
+    , sm__hover__bg_opacity_75
     , sm__hover__bg_orange_100
     , sm__hover__bg_orange_200
     , sm__hover__bg_orange_300
@@ -9124,6 +9339,11 @@ module Html.Tailwind exposing
     , sm__hover__border_indigo_700
     , sm__hover__border_indigo_800
     , sm__hover__border_indigo_900
+    , sm__hover__border_opacity_0
+    , sm__hover__border_opacity_100
+    , sm__hover__border_opacity_25
+    , sm__hover__border_opacity_50
+    , sm__hover__border_opacity_75
     , sm__hover__border_orange_100
     , sm__hover__border_orange_200
     , sm__hover__border_orange_300
@@ -9335,6 +9555,11 @@ module Html.Tailwind exposing
     , sm__hover__text_indigo_700
     , sm__hover__text_indigo_800
     , sm__hover__text_indigo_900
+    , sm__hover__text_opacity_0
+    , sm__hover__text_opacity_100
+    , sm__hover__text_opacity_25
+    , sm__hover__text_opacity_50
+    , sm__hover__text_opacity_75
     , sm__hover__text_orange_100
     , sm__hover__text_orange_200
     , sm__hover__text_orange_300
@@ -10009,6 +10234,11 @@ module Html.Tailwind exposing
     , sm__placeholder_indigo_700
     , sm__placeholder_indigo_800
     , sm__placeholder_indigo_900
+    , sm__placeholder_opacity_0
+    , sm__placeholder_opacity_100
+    , sm__placeholder_opacity_25
+    , sm__placeholder_opacity_50
+    , sm__placeholder_opacity_75
     , sm__placeholder_orange_100
     , sm__placeholder_orange_200
     , sm__placeholder_orange_300
@@ -10416,6 +10646,11 @@ module Html.Tailwind exposing
     , sm__text_justify
     , sm__text_left
     , sm__text_lg
+    , sm__text_opacity_0
+    , sm__text_opacity_100
+    , sm__text_opacity_25
+    , sm__text_opacity_50
+    , sm__text_opacity_75
     , sm__text_orange_100
     , sm__text_orange_200
     , sm__text_orange_300
@@ -10706,6 +10941,11 @@ module Html.Tailwind exposing
     , text_justify
     , text_left
     , text_lg
+    , text_opacity_0
+    , text_opacity_100
+    , text_opacity_25
+    , text_opacity_50
+    , text_opacity_75
     , text_orange_100
     , text_orange_200
     , text_orange_300
@@ -10940,6 +11180,11 @@ module Html.Tailwind exposing
     , xl__bg_left_top
     , xl__bg_local
     , xl__bg_no_repeat
+    , xl__bg_opacity_0
+    , xl__bg_opacity_100
+    , xl__bg_opacity_25
+    , xl__bg_opacity_50
+    , xl__bg_opacity_75
     , xl__bg_orange_100
     , xl__bg_orange_200
     , xl__bg_orange_300
@@ -11065,6 +11310,11 @@ module Html.Tailwind exposing
     , xl__border_l_4
     , xl__border_l_8
     , xl__border_none
+    , xl__border_opacity_0
+    , xl__border_opacity_100
+    , xl__border_opacity_25
+    , xl__border_opacity_50
+    , xl__border_opacity_75
     , xl__border_orange_100
     , xl__border_orange_200
     , xl__border_orange_300
@@ -11276,6 +11526,11 @@ module Html.Tailwind exposing
     , xl__divide_indigo_700
     , xl__divide_indigo_800
     , xl__divide_indigo_900
+    , xl__divide_opacity_0
+    , xl__divide_opacity_100
+    , xl__divide_opacity_25
+    , xl__divide_opacity_50
+    , xl__divide_opacity_75
     , xl__divide_orange_100
     , xl__divide_orange_200
     , xl__divide_orange_300
@@ -11416,6 +11671,11 @@ module Html.Tailwind exposing
     , xl__focus__bg_indigo_700
     , xl__focus__bg_indigo_800
     , xl__focus__bg_indigo_900
+    , xl__focus__bg_opacity_0
+    , xl__focus__bg_opacity_100
+    , xl__focus__bg_opacity_25
+    , xl__focus__bg_opacity_50
+    , xl__focus__bg_opacity_75
     , xl__focus__bg_orange_100
     , xl__focus__bg_orange_200
     , xl__focus__bg_orange_300
@@ -11510,6 +11770,11 @@ module Html.Tailwind exposing
     , xl__focus__border_indigo_700
     , xl__focus__border_indigo_800
     , xl__focus__border_indigo_900
+    , xl__focus__border_opacity_0
+    , xl__focus__border_opacity_100
+    , xl__focus__border_opacity_25
+    , xl__focus__border_opacity_50
+    , xl__focus__border_opacity_75
     , xl__focus__border_orange_100
     , xl__focus__border_orange_200
     , xl__focus__border_orange_300
@@ -11671,6 +11936,11 @@ module Html.Tailwind exposing
     , xl__focus__placeholder_indigo_700__focus
     , xl__focus__placeholder_indigo_800__focus
     , xl__focus__placeholder_indigo_900__focus
+    , xl__focus__placeholder_opacity_0__focus
+    , xl__focus__placeholder_opacity_100__focus
+    , xl__focus__placeholder_opacity_25__focus
+    , xl__focus__placeholder_opacity_50__focus
+    , xl__focus__placeholder_opacity_75__focus
     , xl__focus__placeholder_orange_100__focus
     , xl__focus__placeholder_orange_200__focus
     , xl__focus__placeholder_orange_300__focus
@@ -11818,6 +12088,11 @@ module Html.Tailwind exposing
     , xl__focus__text_indigo_700
     , xl__focus__text_indigo_800
     , xl__focus__text_indigo_900
+    , xl__focus__text_opacity_0
+    , xl__focus__text_opacity_100
+    , xl__focus__text_opacity_25
+    , xl__focus__text_opacity_50
+    , xl__focus__text_opacity_75
     , xl__focus__text_orange_100
     , xl__focus__text_orange_200
     , xl__focus__text_orange_300
@@ -12035,6 +12310,11 @@ module Html.Tailwind exposing
     , xl__hover__bg_indigo_700
     , xl__hover__bg_indigo_800
     , xl__hover__bg_indigo_900
+    , xl__hover__bg_opacity_0
+    , xl__hover__bg_opacity_100
+    , xl__hover__bg_opacity_25
+    , xl__hover__bg_opacity_50
+    , xl__hover__bg_opacity_75
     , xl__hover__bg_orange_100
     , xl__hover__bg_orange_200
     , xl__hover__bg_orange_300
@@ -12129,6 +12409,11 @@ module Html.Tailwind exposing
     , xl__hover__border_indigo_700
     , xl__hover__border_indigo_800
     , xl__hover__border_indigo_900
+    , xl__hover__border_opacity_0
+    , xl__hover__border_opacity_100
+    , xl__hover__border_opacity_25
+    , xl__hover__border_opacity_50
+    , xl__hover__border_opacity_75
     , xl__hover__border_orange_100
     , xl__hover__border_orange_200
     , xl__hover__border_orange_300
@@ -12340,6 +12625,11 @@ module Html.Tailwind exposing
     , xl__hover__text_indigo_700
     , xl__hover__text_indigo_800
     , xl__hover__text_indigo_900
+    , xl__hover__text_opacity_0
+    , xl__hover__text_opacity_100
+    , xl__hover__text_opacity_25
+    , xl__hover__text_opacity_50
+    , xl__hover__text_opacity_75
     , xl__hover__text_orange_100
     , xl__hover__text_orange_200
     , xl__hover__text_orange_300
@@ -13014,6 +13304,11 @@ module Html.Tailwind exposing
     , xl__placeholder_indigo_700
     , xl__placeholder_indigo_800
     , xl__placeholder_indigo_900
+    , xl__placeholder_opacity_0
+    , xl__placeholder_opacity_100
+    , xl__placeholder_opacity_25
+    , xl__placeholder_opacity_50
+    , xl__placeholder_opacity_75
     , xl__placeholder_orange_100
     , xl__placeholder_orange_200
     , xl__placeholder_orange_300
@@ -13421,6 +13716,11 @@ module Html.Tailwind exposing
     , xl__text_justify
     , xl__text_left
     , xl__text_lg
+    , xl__text_opacity_0
+    , xl__text_opacity_100
+    , xl__text_opacity_25
+    , xl__text_opacity_50
+    , xl__text_opacity_75
     , xl__text_orange_100
     , xl__text_orange_200
     , xl__text_orange_300
@@ -14535,6 +14835,31 @@ divide_pink_800 =
 divide_pink_900 : Html.Attribute msg
 divide_pink_900 =
     A.class "divide-pink-900"
+
+
+divide_opacity_0 : Html.Attribute msg
+divide_opacity_0 =
+    A.class "divide-opacity-0"
+
+
+divide_opacity_25 : Html.Attribute msg
+divide_opacity_25 =
+    A.class "divide-opacity-25"
+
+
+divide_opacity_50 : Html.Attribute msg
+divide_opacity_50 =
+    A.class "divide-opacity-50"
+
+
+divide_opacity_75 : Html.Attribute msg
+divide_opacity_75 =
+    A.class "divide-opacity-75"
+
+
+divide_opacity_100 : Html.Attribute msg
+divide_opacity_100 =
+    A.class "divide-opacity-100"
 
 
 sr_only : Html.Attribute msg
@@ -15985,6 +16310,81 @@ focus__bg_pink_800 =
 focus__bg_pink_900 : Html.Attribute msg
 focus__bg_pink_900 =
     A.class "focus:bg-pink-900"
+
+
+bg_opacity_0 : Html.Attribute msg
+bg_opacity_0 =
+    A.class "bg-opacity-0"
+
+
+bg_opacity_25 : Html.Attribute msg
+bg_opacity_25 =
+    A.class "bg-opacity-25"
+
+
+bg_opacity_50 : Html.Attribute msg
+bg_opacity_50 =
+    A.class "bg-opacity-50"
+
+
+bg_opacity_75 : Html.Attribute msg
+bg_opacity_75 =
+    A.class "bg-opacity-75"
+
+
+bg_opacity_100 : Html.Attribute msg
+bg_opacity_100 =
+    A.class "bg-opacity-100"
+
+
+hover__bg_opacity_0 : Html.Attribute msg
+hover__bg_opacity_0 =
+    A.class "hover:bg-opacity-0"
+
+
+hover__bg_opacity_25 : Html.Attribute msg
+hover__bg_opacity_25 =
+    A.class "hover:bg-opacity-25"
+
+
+hover__bg_opacity_50 : Html.Attribute msg
+hover__bg_opacity_50 =
+    A.class "hover:bg-opacity-50"
+
+
+hover__bg_opacity_75 : Html.Attribute msg
+hover__bg_opacity_75 =
+    A.class "hover:bg-opacity-75"
+
+
+hover__bg_opacity_100 : Html.Attribute msg
+hover__bg_opacity_100 =
+    A.class "hover:bg-opacity-100"
+
+
+focus__bg_opacity_0 : Html.Attribute msg
+focus__bg_opacity_0 =
+    A.class "focus:bg-opacity-0"
+
+
+focus__bg_opacity_25 : Html.Attribute msg
+focus__bg_opacity_25 =
+    A.class "focus:bg-opacity-25"
+
+
+focus__bg_opacity_50 : Html.Attribute msg
+focus__bg_opacity_50 =
+    A.class "focus:bg-opacity-50"
+
+
+focus__bg_opacity_75 : Html.Attribute msg
+focus__bg_opacity_75 =
+    A.class "focus:bg-opacity-75"
+
+
+focus__bg_opacity_100 : Html.Attribute msg
+focus__bg_opacity_100 =
+    A.class "focus:bg-opacity-100"
 
 
 bg_bottom : Html.Attribute msg
@@ -17497,6 +17897,81 @@ focus__border_pink_900 =
     A.class "focus:border-pink-900"
 
 
+border_opacity_0 : Html.Attribute msg
+border_opacity_0 =
+    A.class "border-opacity-0"
+
+
+border_opacity_25 : Html.Attribute msg
+border_opacity_25 =
+    A.class "border-opacity-25"
+
+
+border_opacity_50 : Html.Attribute msg
+border_opacity_50 =
+    A.class "border-opacity-50"
+
+
+border_opacity_75 : Html.Attribute msg
+border_opacity_75 =
+    A.class "border-opacity-75"
+
+
+border_opacity_100 : Html.Attribute msg
+border_opacity_100 =
+    A.class "border-opacity-100"
+
+
+hover__border_opacity_0 : Html.Attribute msg
+hover__border_opacity_0 =
+    A.class "hover:border-opacity-0"
+
+
+hover__border_opacity_25 : Html.Attribute msg
+hover__border_opacity_25 =
+    A.class "hover:border-opacity-25"
+
+
+hover__border_opacity_50 : Html.Attribute msg
+hover__border_opacity_50 =
+    A.class "hover:border-opacity-50"
+
+
+hover__border_opacity_75 : Html.Attribute msg
+hover__border_opacity_75 =
+    A.class "hover:border-opacity-75"
+
+
+hover__border_opacity_100 : Html.Attribute msg
+hover__border_opacity_100 =
+    A.class "hover:border-opacity-100"
+
+
+focus__border_opacity_0 : Html.Attribute msg
+focus__border_opacity_0 =
+    A.class "focus:border-opacity-0"
+
+
+focus__border_opacity_25 : Html.Attribute msg
+focus__border_opacity_25 =
+    A.class "focus:border-opacity-25"
+
+
+focus__border_opacity_50 : Html.Attribute msg
+focus__border_opacity_50 =
+    A.class "focus:border-opacity-50"
+
+
+focus__border_opacity_75 : Html.Attribute msg
+focus__border_opacity_75 =
+    A.class "focus:border-opacity-75"
+
+
+focus__border_opacity_100 : Html.Attribute msg
+focus__border_opacity_100 =
+    A.class "focus:border-opacity-100"
+
+
 rounded_none : Html.Attribute msg
 rounded_none =
     A.class "rounded-none"
@@ -18012,11 +18487,6 @@ inline =
     A.class "inline"
 
 
-flow_root : Html.Attribute msg
-flow_root =
-    A.class "flow-root"
-
-
 flex : Html.Attribute msg
 flex =
     A.class "flex"
@@ -18025,16 +18495,6 @@ flex =
 inline_flex : Html.Attribute msg
 inline_flex =
     A.class "inline-flex"
-
-
-grid : Html.Attribute msg
-grid =
-    A.class "grid"
-
-
-inline_grid : Html.Attribute msg
-inline_grid =
-    A.class "inline-grid"
 
 
 table : Html.Attribute msg
@@ -18080,6 +18540,21 @@ table_row_group =
 table_row : Html.Attribute msg
 table_row =
     A.class "table-row"
+
+
+flow_root : Html.Attribute msg
+flow_root =
+    A.class "flow-root"
+
+
+grid : Html.Attribute msg
+grid =
+    A.class "grid"
+
+
+inline_grid : Html.Attribute msg
+inline_grid =
+    A.class "inline-grid"
 
 
 hidden : Html.Attribute msg
@@ -22087,6 +22562,56 @@ focus__placeholder_pink_900__focus =
     A.class "focus:placeholder-pink-900:focus"
 
 
+placeholder_opacity_0 : Html.Attribute msg
+placeholder_opacity_0 =
+    A.class "placeholder-opacity-0"
+
+
+placeholder_opacity_25 : Html.Attribute msg
+placeholder_opacity_25 =
+    A.class "placeholder-opacity-25"
+
+
+placeholder_opacity_50 : Html.Attribute msg
+placeholder_opacity_50 =
+    A.class "placeholder-opacity-50"
+
+
+placeholder_opacity_75 : Html.Attribute msg
+placeholder_opacity_75 =
+    A.class "placeholder-opacity-75"
+
+
+placeholder_opacity_100 : Html.Attribute msg
+placeholder_opacity_100 =
+    A.class "placeholder-opacity-100"
+
+
+focus__placeholder_opacity_0__focus : Html.Attribute msg
+focus__placeholder_opacity_0__focus =
+    A.class "focus:placeholder-opacity-0:focus"
+
+
+focus__placeholder_opacity_25__focus : Html.Attribute msg
+focus__placeholder_opacity_25__focus =
+    A.class "focus:placeholder-opacity-25:focus"
+
+
+focus__placeholder_opacity_50__focus : Html.Attribute msg
+focus__placeholder_opacity_50__focus =
+    A.class "focus:placeholder-opacity-50:focus"
+
+
+focus__placeholder_opacity_75__focus : Html.Attribute msg
+focus__placeholder_opacity_75__focus =
+    A.class "focus:placeholder-opacity-75:focus"
+
+
+focus__placeholder_opacity_100__focus : Html.Attribute msg
+focus__placeholder_opacity_100__focus =
+    A.class "focus:placeholder-opacity-100:focus"
+
+
 pointer_events_none : Html.Attribute msg
 pointer_events_none =
     A.class "pointer-events-none"
@@ -23825,6 +24350,81 @@ focus__text_pink_800 =
 focus__text_pink_900 : Html.Attribute msg
 focus__text_pink_900 =
     A.class "focus:text-pink-900"
+
+
+text_opacity_0 : Html.Attribute msg
+text_opacity_0 =
+    A.class "text-opacity-0"
+
+
+text_opacity_25 : Html.Attribute msg
+text_opacity_25 =
+    A.class "text-opacity-25"
+
+
+text_opacity_50 : Html.Attribute msg
+text_opacity_50 =
+    A.class "text-opacity-50"
+
+
+text_opacity_75 : Html.Attribute msg
+text_opacity_75 =
+    A.class "text-opacity-75"
+
+
+text_opacity_100 : Html.Attribute msg
+text_opacity_100 =
+    A.class "text-opacity-100"
+
+
+hover__text_opacity_0 : Html.Attribute msg
+hover__text_opacity_0 =
+    A.class "hover:text-opacity-0"
+
+
+hover__text_opacity_25 : Html.Attribute msg
+hover__text_opacity_25 =
+    A.class "hover:text-opacity-25"
+
+
+hover__text_opacity_50 : Html.Attribute msg
+hover__text_opacity_50 =
+    A.class "hover:text-opacity-50"
+
+
+hover__text_opacity_75 : Html.Attribute msg
+hover__text_opacity_75 =
+    A.class "hover:text-opacity-75"
+
+
+hover__text_opacity_100 : Html.Attribute msg
+hover__text_opacity_100 =
+    A.class "hover:text-opacity-100"
+
+
+focus__text_opacity_0 : Html.Attribute msg
+focus__text_opacity_0 =
+    A.class "focus:text-opacity-0"
+
+
+focus__text_opacity_25 : Html.Attribute msg
+focus__text_opacity_25 =
+    A.class "focus:text-opacity-25"
+
+
+focus__text_opacity_50 : Html.Attribute msg
+focus__text_opacity_50 =
+    A.class "focus:text-opacity-50"
+
+
+focus__text_opacity_75 : Html.Attribute msg
+focus__text_opacity_75 =
+    A.class "focus:text-opacity-75"
+
+
+focus__text_opacity_100 : Html.Attribute msg
+focus__text_opacity_100 =
+    A.class "focus:text-opacity-100"
 
 
 italic : Html.Attribute msg
@@ -28147,6 +28747,31 @@ sm__divide_pink_900 =
     A.class "sm:divide-pink-900"
 
 
+sm__divide_opacity_0 : Html.Attribute msg
+sm__divide_opacity_0 =
+    A.class "sm:divide-opacity-0"
+
+
+sm__divide_opacity_25 : Html.Attribute msg
+sm__divide_opacity_25 =
+    A.class "sm:divide-opacity-25"
+
+
+sm__divide_opacity_50 : Html.Attribute msg
+sm__divide_opacity_50 =
+    A.class "sm:divide-opacity-50"
+
+
+sm__divide_opacity_75 : Html.Attribute msg
+sm__divide_opacity_75 =
+    A.class "sm:divide-opacity-75"
+
+
+sm__divide_opacity_100 : Html.Attribute msg
+sm__divide_opacity_100 =
+    A.class "sm:divide-opacity-100"
+
+
 sm__sr_only : Html.Attribute msg
 sm__sr_only =
     A.class "sm:sr-only"
@@ -29595,6 +30220,81 @@ sm__focus__bg_pink_800 =
 sm__focus__bg_pink_900 : Html.Attribute msg
 sm__focus__bg_pink_900 =
     A.class "sm:focus:bg-pink-900"
+
+
+sm__bg_opacity_0 : Html.Attribute msg
+sm__bg_opacity_0 =
+    A.class "sm:bg-opacity-0"
+
+
+sm__bg_opacity_25 : Html.Attribute msg
+sm__bg_opacity_25 =
+    A.class "sm:bg-opacity-25"
+
+
+sm__bg_opacity_50 : Html.Attribute msg
+sm__bg_opacity_50 =
+    A.class "sm:bg-opacity-50"
+
+
+sm__bg_opacity_75 : Html.Attribute msg
+sm__bg_opacity_75 =
+    A.class "sm:bg-opacity-75"
+
+
+sm__bg_opacity_100 : Html.Attribute msg
+sm__bg_opacity_100 =
+    A.class "sm:bg-opacity-100"
+
+
+sm__hover__bg_opacity_0 : Html.Attribute msg
+sm__hover__bg_opacity_0 =
+    A.class "sm:hover:bg-opacity-0"
+
+
+sm__hover__bg_opacity_25 : Html.Attribute msg
+sm__hover__bg_opacity_25 =
+    A.class "sm:hover:bg-opacity-25"
+
+
+sm__hover__bg_opacity_50 : Html.Attribute msg
+sm__hover__bg_opacity_50 =
+    A.class "sm:hover:bg-opacity-50"
+
+
+sm__hover__bg_opacity_75 : Html.Attribute msg
+sm__hover__bg_opacity_75 =
+    A.class "sm:hover:bg-opacity-75"
+
+
+sm__hover__bg_opacity_100 : Html.Attribute msg
+sm__hover__bg_opacity_100 =
+    A.class "sm:hover:bg-opacity-100"
+
+
+sm__focus__bg_opacity_0 : Html.Attribute msg
+sm__focus__bg_opacity_0 =
+    A.class "sm:focus:bg-opacity-0"
+
+
+sm__focus__bg_opacity_25 : Html.Attribute msg
+sm__focus__bg_opacity_25 =
+    A.class "sm:focus:bg-opacity-25"
+
+
+sm__focus__bg_opacity_50 : Html.Attribute msg
+sm__focus__bg_opacity_50 =
+    A.class "sm:focus:bg-opacity-50"
+
+
+sm__focus__bg_opacity_75 : Html.Attribute msg
+sm__focus__bg_opacity_75 =
+    A.class "sm:focus:bg-opacity-75"
+
+
+sm__focus__bg_opacity_100 : Html.Attribute msg
+sm__focus__bg_opacity_100 =
+    A.class "sm:focus:bg-opacity-100"
 
 
 sm__bg_bottom : Html.Attribute msg
@@ -31107,6 +31807,81 @@ sm__focus__border_pink_900 =
     A.class "sm:focus:border-pink-900"
 
 
+sm__border_opacity_0 : Html.Attribute msg
+sm__border_opacity_0 =
+    A.class "sm:border-opacity-0"
+
+
+sm__border_opacity_25 : Html.Attribute msg
+sm__border_opacity_25 =
+    A.class "sm:border-opacity-25"
+
+
+sm__border_opacity_50 : Html.Attribute msg
+sm__border_opacity_50 =
+    A.class "sm:border-opacity-50"
+
+
+sm__border_opacity_75 : Html.Attribute msg
+sm__border_opacity_75 =
+    A.class "sm:border-opacity-75"
+
+
+sm__border_opacity_100 : Html.Attribute msg
+sm__border_opacity_100 =
+    A.class "sm:border-opacity-100"
+
+
+sm__hover__border_opacity_0 : Html.Attribute msg
+sm__hover__border_opacity_0 =
+    A.class "sm:hover:border-opacity-0"
+
+
+sm__hover__border_opacity_25 : Html.Attribute msg
+sm__hover__border_opacity_25 =
+    A.class "sm:hover:border-opacity-25"
+
+
+sm__hover__border_opacity_50 : Html.Attribute msg
+sm__hover__border_opacity_50 =
+    A.class "sm:hover:border-opacity-50"
+
+
+sm__hover__border_opacity_75 : Html.Attribute msg
+sm__hover__border_opacity_75 =
+    A.class "sm:hover:border-opacity-75"
+
+
+sm__hover__border_opacity_100 : Html.Attribute msg
+sm__hover__border_opacity_100 =
+    A.class "sm:hover:border-opacity-100"
+
+
+sm__focus__border_opacity_0 : Html.Attribute msg
+sm__focus__border_opacity_0 =
+    A.class "sm:focus:border-opacity-0"
+
+
+sm__focus__border_opacity_25 : Html.Attribute msg
+sm__focus__border_opacity_25 =
+    A.class "sm:focus:border-opacity-25"
+
+
+sm__focus__border_opacity_50 : Html.Attribute msg
+sm__focus__border_opacity_50 =
+    A.class "sm:focus:border-opacity-50"
+
+
+sm__focus__border_opacity_75 : Html.Attribute msg
+sm__focus__border_opacity_75 =
+    A.class "sm:focus:border-opacity-75"
+
+
+sm__focus__border_opacity_100 : Html.Attribute msg
+sm__focus__border_opacity_100 =
+    A.class "sm:focus:border-opacity-100"
+
+
 sm__rounded_none : Html.Attribute msg
 sm__rounded_none =
     A.class "sm:rounded-none"
@@ -31622,11 +32397,6 @@ sm__inline =
     A.class "sm:inline"
 
 
-sm__flow_root : Html.Attribute msg
-sm__flow_root =
-    A.class "sm:flow-root"
-
-
 sm__flex : Html.Attribute msg
 sm__flex =
     A.class "sm:flex"
@@ -31635,16 +32405,6 @@ sm__flex =
 sm__inline_flex : Html.Attribute msg
 sm__inline_flex =
     A.class "sm:inline-flex"
-
-
-sm__grid : Html.Attribute msg
-sm__grid =
-    A.class "sm:grid"
-
-
-sm__inline_grid : Html.Attribute msg
-sm__inline_grid =
-    A.class "sm:inline-grid"
 
 
 sm__table : Html.Attribute msg
@@ -31690,6 +32450,21 @@ sm__table_row_group =
 sm__table_row : Html.Attribute msg
 sm__table_row =
     A.class "sm:table-row"
+
+
+sm__flow_root : Html.Attribute msg
+sm__flow_root =
+    A.class "sm:flow-root"
+
+
+sm__grid : Html.Attribute msg
+sm__grid =
+    A.class "sm:grid"
+
+
+sm__inline_grid : Html.Attribute msg
+sm__inline_grid =
+    A.class "sm:inline-grid"
 
 
 sm__hidden : Html.Attribute msg
@@ -35697,6 +36472,56 @@ sm__focus__placeholder_pink_900__focus =
     A.class "sm:focus:placeholder-pink-900:focus"
 
 
+sm__placeholder_opacity_0 : Html.Attribute msg
+sm__placeholder_opacity_0 =
+    A.class "sm:placeholder-opacity-0"
+
+
+sm__placeholder_opacity_25 : Html.Attribute msg
+sm__placeholder_opacity_25 =
+    A.class "sm:placeholder-opacity-25"
+
+
+sm__placeholder_opacity_50 : Html.Attribute msg
+sm__placeholder_opacity_50 =
+    A.class "sm:placeholder-opacity-50"
+
+
+sm__placeholder_opacity_75 : Html.Attribute msg
+sm__placeholder_opacity_75 =
+    A.class "sm:placeholder-opacity-75"
+
+
+sm__placeholder_opacity_100 : Html.Attribute msg
+sm__placeholder_opacity_100 =
+    A.class "sm:placeholder-opacity-100"
+
+
+sm__focus__placeholder_opacity_0__focus : Html.Attribute msg
+sm__focus__placeholder_opacity_0__focus =
+    A.class "sm:focus:placeholder-opacity-0:focus"
+
+
+sm__focus__placeholder_opacity_25__focus : Html.Attribute msg
+sm__focus__placeholder_opacity_25__focus =
+    A.class "sm:focus:placeholder-opacity-25:focus"
+
+
+sm__focus__placeholder_opacity_50__focus : Html.Attribute msg
+sm__focus__placeholder_opacity_50__focus =
+    A.class "sm:focus:placeholder-opacity-50:focus"
+
+
+sm__focus__placeholder_opacity_75__focus : Html.Attribute msg
+sm__focus__placeholder_opacity_75__focus =
+    A.class "sm:focus:placeholder-opacity-75:focus"
+
+
+sm__focus__placeholder_opacity_100__focus : Html.Attribute msg
+sm__focus__placeholder_opacity_100__focus =
+    A.class "sm:focus:placeholder-opacity-100:focus"
+
+
 sm__pointer_events_none : Html.Attribute msg
 sm__pointer_events_none =
     A.class "sm:pointer-events-none"
@@ -37435,6 +38260,81 @@ sm__focus__text_pink_800 =
 sm__focus__text_pink_900 : Html.Attribute msg
 sm__focus__text_pink_900 =
     A.class "sm:focus:text-pink-900"
+
+
+sm__text_opacity_0 : Html.Attribute msg
+sm__text_opacity_0 =
+    A.class "sm:text-opacity-0"
+
+
+sm__text_opacity_25 : Html.Attribute msg
+sm__text_opacity_25 =
+    A.class "sm:text-opacity-25"
+
+
+sm__text_opacity_50 : Html.Attribute msg
+sm__text_opacity_50 =
+    A.class "sm:text-opacity-50"
+
+
+sm__text_opacity_75 : Html.Attribute msg
+sm__text_opacity_75 =
+    A.class "sm:text-opacity-75"
+
+
+sm__text_opacity_100 : Html.Attribute msg
+sm__text_opacity_100 =
+    A.class "sm:text-opacity-100"
+
+
+sm__hover__text_opacity_0 : Html.Attribute msg
+sm__hover__text_opacity_0 =
+    A.class "sm:hover:text-opacity-0"
+
+
+sm__hover__text_opacity_25 : Html.Attribute msg
+sm__hover__text_opacity_25 =
+    A.class "sm:hover:text-opacity-25"
+
+
+sm__hover__text_opacity_50 : Html.Attribute msg
+sm__hover__text_opacity_50 =
+    A.class "sm:hover:text-opacity-50"
+
+
+sm__hover__text_opacity_75 : Html.Attribute msg
+sm__hover__text_opacity_75 =
+    A.class "sm:hover:text-opacity-75"
+
+
+sm__hover__text_opacity_100 : Html.Attribute msg
+sm__hover__text_opacity_100 =
+    A.class "sm:hover:text-opacity-100"
+
+
+sm__focus__text_opacity_0 : Html.Attribute msg
+sm__focus__text_opacity_0 =
+    A.class "sm:focus:text-opacity-0"
+
+
+sm__focus__text_opacity_25 : Html.Attribute msg
+sm__focus__text_opacity_25 =
+    A.class "sm:focus:text-opacity-25"
+
+
+sm__focus__text_opacity_50 : Html.Attribute msg
+sm__focus__text_opacity_50 =
+    A.class "sm:focus:text-opacity-50"
+
+
+sm__focus__text_opacity_75 : Html.Attribute msg
+sm__focus__text_opacity_75 =
+    A.class "sm:focus:text-opacity-75"
+
+
+sm__focus__text_opacity_100 : Html.Attribute msg
+sm__focus__text_opacity_100 =
+    A.class "sm:focus:text-opacity-100"
 
 
 sm__italic : Html.Attribute msg
@@ -41757,6 +42657,31 @@ md__divide_pink_900 =
     A.class "md:divide-pink-900"
 
 
+md__divide_opacity_0 : Html.Attribute msg
+md__divide_opacity_0 =
+    A.class "md:divide-opacity-0"
+
+
+md__divide_opacity_25 : Html.Attribute msg
+md__divide_opacity_25 =
+    A.class "md:divide-opacity-25"
+
+
+md__divide_opacity_50 : Html.Attribute msg
+md__divide_opacity_50 =
+    A.class "md:divide-opacity-50"
+
+
+md__divide_opacity_75 : Html.Attribute msg
+md__divide_opacity_75 =
+    A.class "md:divide-opacity-75"
+
+
+md__divide_opacity_100 : Html.Attribute msg
+md__divide_opacity_100 =
+    A.class "md:divide-opacity-100"
+
+
 md__sr_only : Html.Attribute msg
 md__sr_only =
     A.class "md:sr-only"
@@ -43205,6 +44130,81 @@ md__focus__bg_pink_800 =
 md__focus__bg_pink_900 : Html.Attribute msg
 md__focus__bg_pink_900 =
     A.class "md:focus:bg-pink-900"
+
+
+md__bg_opacity_0 : Html.Attribute msg
+md__bg_opacity_0 =
+    A.class "md:bg-opacity-0"
+
+
+md__bg_opacity_25 : Html.Attribute msg
+md__bg_opacity_25 =
+    A.class "md:bg-opacity-25"
+
+
+md__bg_opacity_50 : Html.Attribute msg
+md__bg_opacity_50 =
+    A.class "md:bg-opacity-50"
+
+
+md__bg_opacity_75 : Html.Attribute msg
+md__bg_opacity_75 =
+    A.class "md:bg-opacity-75"
+
+
+md__bg_opacity_100 : Html.Attribute msg
+md__bg_opacity_100 =
+    A.class "md:bg-opacity-100"
+
+
+md__hover__bg_opacity_0 : Html.Attribute msg
+md__hover__bg_opacity_0 =
+    A.class "md:hover:bg-opacity-0"
+
+
+md__hover__bg_opacity_25 : Html.Attribute msg
+md__hover__bg_opacity_25 =
+    A.class "md:hover:bg-opacity-25"
+
+
+md__hover__bg_opacity_50 : Html.Attribute msg
+md__hover__bg_opacity_50 =
+    A.class "md:hover:bg-opacity-50"
+
+
+md__hover__bg_opacity_75 : Html.Attribute msg
+md__hover__bg_opacity_75 =
+    A.class "md:hover:bg-opacity-75"
+
+
+md__hover__bg_opacity_100 : Html.Attribute msg
+md__hover__bg_opacity_100 =
+    A.class "md:hover:bg-opacity-100"
+
+
+md__focus__bg_opacity_0 : Html.Attribute msg
+md__focus__bg_opacity_0 =
+    A.class "md:focus:bg-opacity-0"
+
+
+md__focus__bg_opacity_25 : Html.Attribute msg
+md__focus__bg_opacity_25 =
+    A.class "md:focus:bg-opacity-25"
+
+
+md__focus__bg_opacity_50 : Html.Attribute msg
+md__focus__bg_opacity_50 =
+    A.class "md:focus:bg-opacity-50"
+
+
+md__focus__bg_opacity_75 : Html.Attribute msg
+md__focus__bg_opacity_75 =
+    A.class "md:focus:bg-opacity-75"
+
+
+md__focus__bg_opacity_100 : Html.Attribute msg
+md__focus__bg_opacity_100 =
+    A.class "md:focus:bg-opacity-100"
 
 
 md__bg_bottom : Html.Attribute msg
@@ -44717,6 +45717,81 @@ md__focus__border_pink_900 =
     A.class "md:focus:border-pink-900"
 
 
+md__border_opacity_0 : Html.Attribute msg
+md__border_opacity_0 =
+    A.class "md:border-opacity-0"
+
+
+md__border_opacity_25 : Html.Attribute msg
+md__border_opacity_25 =
+    A.class "md:border-opacity-25"
+
+
+md__border_opacity_50 : Html.Attribute msg
+md__border_opacity_50 =
+    A.class "md:border-opacity-50"
+
+
+md__border_opacity_75 : Html.Attribute msg
+md__border_opacity_75 =
+    A.class "md:border-opacity-75"
+
+
+md__border_opacity_100 : Html.Attribute msg
+md__border_opacity_100 =
+    A.class "md:border-opacity-100"
+
+
+md__hover__border_opacity_0 : Html.Attribute msg
+md__hover__border_opacity_0 =
+    A.class "md:hover:border-opacity-0"
+
+
+md__hover__border_opacity_25 : Html.Attribute msg
+md__hover__border_opacity_25 =
+    A.class "md:hover:border-opacity-25"
+
+
+md__hover__border_opacity_50 : Html.Attribute msg
+md__hover__border_opacity_50 =
+    A.class "md:hover:border-opacity-50"
+
+
+md__hover__border_opacity_75 : Html.Attribute msg
+md__hover__border_opacity_75 =
+    A.class "md:hover:border-opacity-75"
+
+
+md__hover__border_opacity_100 : Html.Attribute msg
+md__hover__border_opacity_100 =
+    A.class "md:hover:border-opacity-100"
+
+
+md__focus__border_opacity_0 : Html.Attribute msg
+md__focus__border_opacity_0 =
+    A.class "md:focus:border-opacity-0"
+
+
+md__focus__border_opacity_25 : Html.Attribute msg
+md__focus__border_opacity_25 =
+    A.class "md:focus:border-opacity-25"
+
+
+md__focus__border_opacity_50 : Html.Attribute msg
+md__focus__border_opacity_50 =
+    A.class "md:focus:border-opacity-50"
+
+
+md__focus__border_opacity_75 : Html.Attribute msg
+md__focus__border_opacity_75 =
+    A.class "md:focus:border-opacity-75"
+
+
+md__focus__border_opacity_100 : Html.Attribute msg
+md__focus__border_opacity_100 =
+    A.class "md:focus:border-opacity-100"
+
+
 md__rounded_none : Html.Attribute msg
 md__rounded_none =
     A.class "md:rounded-none"
@@ -45232,11 +46307,6 @@ md__inline =
     A.class "md:inline"
 
 
-md__flow_root : Html.Attribute msg
-md__flow_root =
-    A.class "md:flow-root"
-
-
 md__flex : Html.Attribute msg
 md__flex =
     A.class "md:flex"
@@ -45245,16 +46315,6 @@ md__flex =
 md__inline_flex : Html.Attribute msg
 md__inline_flex =
     A.class "md:inline-flex"
-
-
-md__grid : Html.Attribute msg
-md__grid =
-    A.class "md:grid"
-
-
-md__inline_grid : Html.Attribute msg
-md__inline_grid =
-    A.class "md:inline-grid"
 
 
 md__table : Html.Attribute msg
@@ -45300,6 +46360,21 @@ md__table_row_group =
 md__table_row : Html.Attribute msg
 md__table_row =
     A.class "md:table-row"
+
+
+md__flow_root : Html.Attribute msg
+md__flow_root =
+    A.class "md:flow-root"
+
+
+md__grid : Html.Attribute msg
+md__grid =
+    A.class "md:grid"
+
+
+md__inline_grid : Html.Attribute msg
+md__inline_grid =
+    A.class "md:inline-grid"
 
 
 md__hidden : Html.Attribute msg
@@ -49307,6 +50382,56 @@ md__focus__placeholder_pink_900__focus =
     A.class "md:focus:placeholder-pink-900:focus"
 
 
+md__placeholder_opacity_0 : Html.Attribute msg
+md__placeholder_opacity_0 =
+    A.class "md:placeholder-opacity-0"
+
+
+md__placeholder_opacity_25 : Html.Attribute msg
+md__placeholder_opacity_25 =
+    A.class "md:placeholder-opacity-25"
+
+
+md__placeholder_opacity_50 : Html.Attribute msg
+md__placeholder_opacity_50 =
+    A.class "md:placeholder-opacity-50"
+
+
+md__placeholder_opacity_75 : Html.Attribute msg
+md__placeholder_opacity_75 =
+    A.class "md:placeholder-opacity-75"
+
+
+md__placeholder_opacity_100 : Html.Attribute msg
+md__placeholder_opacity_100 =
+    A.class "md:placeholder-opacity-100"
+
+
+md__focus__placeholder_opacity_0__focus : Html.Attribute msg
+md__focus__placeholder_opacity_0__focus =
+    A.class "md:focus:placeholder-opacity-0:focus"
+
+
+md__focus__placeholder_opacity_25__focus : Html.Attribute msg
+md__focus__placeholder_opacity_25__focus =
+    A.class "md:focus:placeholder-opacity-25:focus"
+
+
+md__focus__placeholder_opacity_50__focus : Html.Attribute msg
+md__focus__placeholder_opacity_50__focus =
+    A.class "md:focus:placeholder-opacity-50:focus"
+
+
+md__focus__placeholder_opacity_75__focus : Html.Attribute msg
+md__focus__placeholder_opacity_75__focus =
+    A.class "md:focus:placeholder-opacity-75:focus"
+
+
+md__focus__placeholder_opacity_100__focus : Html.Attribute msg
+md__focus__placeholder_opacity_100__focus =
+    A.class "md:focus:placeholder-opacity-100:focus"
+
+
 md__pointer_events_none : Html.Attribute msg
 md__pointer_events_none =
     A.class "md:pointer-events-none"
@@ -51045,6 +52170,81 @@ md__focus__text_pink_800 =
 md__focus__text_pink_900 : Html.Attribute msg
 md__focus__text_pink_900 =
     A.class "md:focus:text-pink-900"
+
+
+md__text_opacity_0 : Html.Attribute msg
+md__text_opacity_0 =
+    A.class "md:text-opacity-0"
+
+
+md__text_opacity_25 : Html.Attribute msg
+md__text_opacity_25 =
+    A.class "md:text-opacity-25"
+
+
+md__text_opacity_50 : Html.Attribute msg
+md__text_opacity_50 =
+    A.class "md:text-opacity-50"
+
+
+md__text_opacity_75 : Html.Attribute msg
+md__text_opacity_75 =
+    A.class "md:text-opacity-75"
+
+
+md__text_opacity_100 : Html.Attribute msg
+md__text_opacity_100 =
+    A.class "md:text-opacity-100"
+
+
+md__hover__text_opacity_0 : Html.Attribute msg
+md__hover__text_opacity_0 =
+    A.class "md:hover:text-opacity-0"
+
+
+md__hover__text_opacity_25 : Html.Attribute msg
+md__hover__text_opacity_25 =
+    A.class "md:hover:text-opacity-25"
+
+
+md__hover__text_opacity_50 : Html.Attribute msg
+md__hover__text_opacity_50 =
+    A.class "md:hover:text-opacity-50"
+
+
+md__hover__text_opacity_75 : Html.Attribute msg
+md__hover__text_opacity_75 =
+    A.class "md:hover:text-opacity-75"
+
+
+md__hover__text_opacity_100 : Html.Attribute msg
+md__hover__text_opacity_100 =
+    A.class "md:hover:text-opacity-100"
+
+
+md__focus__text_opacity_0 : Html.Attribute msg
+md__focus__text_opacity_0 =
+    A.class "md:focus:text-opacity-0"
+
+
+md__focus__text_opacity_25 : Html.Attribute msg
+md__focus__text_opacity_25 =
+    A.class "md:focus:text-opacity-25"
+
+
+md__focus__text_opacity_50 : Html.Attribute msg
+md__focus__text_opacity_50 =
+    A.class "md:focus:text-opacity-50"
+
+
+md__focus__text_opacity_75 : Html.Attribute msg
+md__focus__text_opacity_75 =
+    A.class "md:focus:text-opacity-75"
+
+
+md__focus__text_opacity_100 : Html.Attribute msg
+md__focus__text_opacity_100 =
+    A.class "md:focus:text-opacity-100"
 
 
 md__italic : Html.Attribute msg
@@ -55367,6 +56567,31 @@ lg__divide_pink_900 =
     A.class "lg:divide-pink-900"
 
 
+lg__divide_opacity_0 : Html.Attribute msg
+lg__divide_opacity_0 =
+    A.class "lg:divide-opacity-0"
+
+
+lg__divide_opacity_25 : Html.Attribute msg
+lg__divide_opacity_25 =
+    A.class "lg:divide-opacity-25"
+
+
+lg__divide_opacity_50 : Html.Attribute msg
+lg__divide_opacity_50 =
+    A.class "lg:divide-opacity-50"
+
+
+lg__divide_opacity_75 : Html.Attribute msg
+lg__divide_opacity_75 =
+    A.class "lg:divide-opacity-75"
+
+
+lg__divide_opacity_100 : Html.Attribute msg
+lg__divide_opacity_100 =
+    A.class "lg:divide-opacity-100"
+
+
 lg__sr_only : Html.Attribute msg
 lg__sr_only =
     A.class "lg:sr-only"
@@ -56815,6 +58040,81 @@ lg__focus__bg_pink_800 =
 lg__focus__bg_pink_900 : Html.Attribute msg
 lg__focus__bg_pink_900 =
     A.class "lg:focus:bg-pink-900"
+
+
+lg__bg_opacity_0 : Html.Attribute msg
+lg__bg_opacity_0 =
+    A.class "lg:bg-opacity-0"
+
+
+lg__bg_opacity_25 : Html.Attribute msg
+lg__bg_opacity_25 =
+    A.class "lg:bg-opacity-25"
+
+
+lg__bg_opacity_50 : Html.Attribute msg
+lg__bg_opacity_50 =
+    A.class "lg:bg-opacity-50"
+
+
+lg__bg_opacity_75 : Html.Attribute msg
+lg__bg_opacity_75 =
+    A.class "lg:bg-opacity-75"
+
+
+lg__bg_opacity_100 : Html.Attribute msg
+lg__bg_opacity_100 =
+    A.class "lg:bg-opacity-100"
+
+
+lg__hover__bg_opacity_0 : Html.Attribute msg
+lg__hover__bg_opacity_0 =
+    A.class "lg:hover:bg-opacity-0"
+
+
+lg__hover__bg_opacity_25 : Html.Attribute msg
+lg__hover__bg_opacity_25 =
+    A.class "lg:hover:bg-opacity-25"
+
+
+lg__hover__bg_opacity_50 : Html.Attribute msg
+lg__hover__bg_opacity_50 =
+    A.class "lg:hover:bg-opacity-50"
+
+
+lg__hover__bg_opacity_75 : Html.Attribute msg
+lg__hover__bg_opacity_75 =
+    A.class "lg:hover:bg-opacity-75"
+
+
+lg__hover__bg_opacity_100 : Html.Attribute msg
+lg__hover__bg_opacity_100 =
+    A.class "lg:hover:bg-opacity-100"
+
+
+lg__focus__bg_opacity_0 : Html.Attribute msg
+lg__focus__bg_opacity_0 =
+    A.class "lg:focus:bg-opacity-0"
+
+
+lg__focus__bg_opacity_25 : Html.Attribute msg
+lg__focus__bg_opacity_25 =
+    A.class "lg:focus:bg-opacity-25"
+
+
+lg__focus__bg_opacity_50 : Html.Attribute msg
+lg__focus__bg_opacity_50 =
+    A.class "lg:focus:bg-opacity-50"
+
+
+lg__focus__bg_opacity_75 : Html.Attribute msg
+lg__focus__bg_opacity_75 =
+    A.class "lg:focus:bg-opacity-75"
+
+
+lg__focus__bg_opacity_100 : Html.Attribute msg
+lg__focus__bg_opacity_100 =
+    A.class "lg:focus:bg-opacity-100"
 
 
 lg__bg_bottom : Html.Attribute msg
@@ -58327,6 +59627,81 @@ lg__focus__border_pink_900 =
     A.class "lg:focus:border-pink-900"
 
 
+lg__border_opacity_0 : Html.Attribute msg
+lg__border_opacity_0 =
+    A.class "lg:border-opacity-0"
+
+
+lg__border_opacity_25 : Html.Attribute msg
+lg__border_opacity_25 =
+    A.class "lg:border-opacity-25"
+
+
+lg__border_opacity_50 : Html.Attribute msg
+lg__border_opacity_50 =
+    A.class "lg:border-opacity-50"
+
+
+lg__border_opacity_75 : Html.Attribute msg
+lg__border_opacity_75 =
+    A.class "lg:border-opacity-75"
+
+
+lg__border_opacity_100 : Html.Attribute msg
+lg__border_opacity_100 =
+    A.class "lg:border-opacity-100"
+
+
+lg__hover__border_opacity_0 : Html.Attribute msg
+lg__hover__border_opacity_0 =
+    A.class "lg:hover:border-opacity-0"
+
+
+lg__hover__border_opacity_25 : Html.Attribute msg
+lg__hover__border_opacity_25 =
+    A.class "lg:hover:border-opacity-25"
+
+
+lg__hover__border_opacity_50 : Html.Attribute msg
+lg__hover__border_opacity_50 =
+    A.class "lg:hover:border-opacity-50"
+
+
+lg__hover__border_opacity_75 : Html.Attribute msg
+lg__hover__border_opacity_75 =
+    A.class "lg:hover:border-opacity-75"
+
+
+lg__hover__border_opacity_100 : Html.Attribute msg
+lg__hover__border_opacity_100 =
+    A.class "lg:hover:border-opacity-100"
+
+
+lg__focus__border_opacity_0 : Html.Attribute msg
+lg__focus__border_opacity_0 =
+    A.class "lg:focus:border-opacity-0"
+
+
+lg__focus__border_opacity_25 : Html.Attribute msg
+lg__focus__border_opacity_25 =
+    A.class "lg:focus:border-opacity-25"
+
+
+lg__focus__border_opacity_50 : Html.Attribute msg
+lg__focus__border_opacity_50 =
+    A.class "lg:focus:border-opacity-50"
+
+
+lg__focus__border_opacity_75 : Html.Attribute msg
+lg__focus__border_opacity_75 =
+    A.class "lg:focus:border-opacity-75"
+
+
+lg__focus__border_opacity_100 : Html.Attribute msg
+lg__focus__border_opacity_100 =
+    A.class "lg:focus:border-opacity-100"
+
+
 lg__rounded_none : Html.Attribute msg
 lg__rounded_none =
     A.class "lg:rounded-none"
@@ -58842,11 +60217,6 @@ lg__inline =
     A.class "lg:inline"
 
 
-lg__flow_root : Html.Attribute msg
-lg__flow_root =
-    A.class "lg:flow-root"
-
-
 lg__flex : Html.Attribute msg
 lg__flex =
     A.class "lg:flex"
@@ -58855,16 +60225,6 @@ lg__flex =
 lg__inline_flex : Html.Attribute msg
 lg__inline_flex =
     A.class "lg:inline-flex"
-
-
-lg__grid : Html.Attribute msg
-lg__grid =
-    A.class "lg:grid"
-
-
-lg__inline_grid : Html.Attribute msg
-lg__inline_grid =
-    A.class "lg:inline-grid"
 
 
 lg__table : Html.Attribute msg
@@ -58910,6 +60270,21 @@ lg__table_row_group =
 lg__table_row : Html.Attribute msg
 lg__table_row =
     A.class "lg:table-row"
+
+
+lg__flow_root : Html.Attribute msg
+lg__flow_root =
+    A.class "lg:flow-root"
+
+
+lg__grid : Html.Attribute msg
+lg__grid =
+    A.class "lg:grid"
+
+
+lg__inline_grid : Html.Attribute msg
+lg__inline_grid =
+    A.class "lg:inline-grid"
 
 
 lg__hidden : Html.Attribute msg
@@ -62917,6 +64292,56 @@ lg__focus__placeholder_pink_900__focus =
     A.class "lg:focus:placeholder-pink-900:focus"
 
 
+lg__placeholder_opacity_0 : Html.Attribute msg
+lg__placeholder_opacity_0 =
+    A.class "lg:placeholder-opacity-0"
+
+
+lg__placeholder_opacity_25 : Html.Attribute msg
+lg__placeholder_opacity_25 =
+    A.class "lg:placeholder-opacity-25"
+
+
+lg__placeholder_opacity_50 : Html.Attribute msg
+lg__placeholder_opacity_50 =
+    A.class "lg:placeholder-opacity-50"
+
+
+lg__placeholder_opacity_75 : Html.Attribute msg
+lg__placeholder_opacity_75 =
+    A.class "lg:placeholder-opacity-75"
+
+
+lg__placeholder_opacity_100 : Html.Attribute msg
+lg__placeholder_opacity_100 =
+    A.class "lg:placeholder-opacity-100"
+
+
+lg__focus__placeholder_opacity_0__focus : Html.Attribute msg
+lg__focus__placeholder_opacity_0__focus =
+    A.class "lg:focus:placeholder-opacity-0:focus"
+
+
+lg__focus__placeholder_opacity_25__focus : Html.Attribute msg
+lg__focus__placeholder_opacity_25__focus =
+    A.class "lg:focus:placeholder-opacity-25:focus"
+
+
+lg__focus__placeholder_opacity_50__focus : Html.Attribute msg
+lg__focus__placeholder_opacity_50__focus =
+    A.class "lg:focus:placeholder-opacity-50:focus"
+
+
+lg__focus__placeholder_opacity_75__focus : Html.Attribute msg
+lg__focus__placeholder_opacity_75__focus =
+    A.class "lg:focus:placeholder-opacity-75:focus"
+
+
+lg__focus__placeholder_opacity_100__focus : Html.Attribute msg
+lg__focus__placeholder_opacity_100__focus =
+    A.class "lg:focus:placeholder-opacity-100:focus"
+
+
 lg__pointer_events_none : Html.Attribute msg
 lg__pointer_events_none =
     A.class "lg:pointer-events-none"
@@ -64655,6 +66080,81 @@ lg__focus__text_pink_800 =
 lg__focus__text_pink_900 : Html.Attribute msg
 lg__focus__text_pink_900 =
     A.class "lg:focus:text-pink-900"
+
+
+lg__text_opacity_0 : Html.Attribute msg
+lg__text_opacity_0 =
+    A.class "lg:text-opacity-0"
+
+
+lg__text_opacity_25 : Html.Attribute msg
+lg__text_opacity_25 =
+    A.class "lg:text-opacity-25"
+
+
+lg__text_opacity_50 : Html.Attribute msg
+lg__text_opacity_50 =
+    A.class "lg:text-opacity-50"
+
+
+lg__text_opacity_75 : Html.Attribute msg
+lg__text_opacity_75 =
+    A.class "lg:text-opacity-75"
+
+
+lg__text_opacity_100 : Html.Attribute msg
+lg__text_opacity_100 =
+    A.class "lg:text-opacity-100"
+
+
+lg__hover__text_opacity_0 : Html.Attribute msg
+lg__hover__text_opacity_0 =
+    A.class "lg:hover:text-opacity-0"
+
+
+lg__hover__text_opacity_25 : Html.Attribute msg
+lg__hover__text_opacity_25 =
+    A.class "lg:hover:text-opacity-25"
+
+
+lg__hover__text_opacity_50 : Html.Attribute msg
+lg__hover__text_opacity_50 =
+    A.class "lg:hover:text-opacity-50"
+
+
+lg__hover__text_opacity_75 : Html.Attribute msg
+lg__hover__text_opacity_75 =
+    A.class "lg:hover:text-opacity-75"
+
+
+lg__hover__text_opacity_100 : Html.Attribute msg
+lg__hover__text_opacity_100 =
+    A.class "lg:hover:text-opacity-100"
+
+
+lg__focus__text_opacity_0 : Html.Attribute msg
+lg__focus__text_opacity_0 =
+    A.class "lg:focus:text-opacity-0"
+
+
+lg__focus__text_opacity_25 : Html.Attribute msg
+lg__focus__text_opacity_25 =
+    A.class "lg:focus:text-opacity-25"
+
+
+lg__focus__text_opacity_50 : Html.Attribute msg
+lg__focus__text_opacity_50 =
+    A.class "lg:focus:text-opacity-50"
+
+
+lg__focus__text_opacity_75 : Html.Attribute msg
+lg__focus__text_opacity_75 =
+    A.class "lg:focus:text-opacity-75"
+
+
+lg__focus__text_opacity_100 : Html.Attribute msg
+lg__focus__text_opacity_100 =
+    A.class "lg:focus:text-opacity-100"
 
 
 lg__italic : Html.Attribute msg
@@ -68977,6 +70477,31 @@ xl__divide_pink_900 =
     A.class "xl:divide-pink-900"
 
 
+xl__divide_opacity_0 : Html.Attribute msg
+xl__divide_opacity_0 =
+    A.class "xl:divide-opacity-0"
+
+
+xl__divide_opacity_25 : Html.Attribute msg
+xl__divide_opacity_25 =
+    A.class "xl:divide-opacity-25"
+
+
+xl__divide_opacity_50 : Html.Attribute msg
+xl__divide_opacity_50 =
+    A.class "xl:divide-opacity-50"
+
+
+xl__divide_opacity_75 : Html.Attribute msg
+xl__divide_opacity_75 =
+    A.class "xl:divide-opacity-75"
+
+
+xl__divide_opacity_100 : Html.Attribute msg
+xl__divide_opacity_100 =
+    A.class "xl:divide-opacity-100"
+
+
 xl__sr_only : Html.Attribute msg
 xl__sr_only =
     A.class "xl:sr-only"
@@ -70425,6 +71950,81 @@ xl__focus__bg_pink_800 =
 xl__focus__bg_pink_900 : Html.Attribute msg
 xl__focus__bg_pink_900 =
     A.class "xl:focus:bg-pink-900"
+
+
+xl__bg_opacity_0 : Html.Attribute msg
+xl__bg_opacity_0 =
+    A.class "xl:bg-opacity-0"
+
+
+xl__bg_opacity_25 : Html.Attribute msg
+xl__bg_opacity_25 =
+    A.class "xl:bg-opacity-25"
+
+
+xl__bg_opacity_50 : Html.Attribute msg
+xl__bg_opacity_50 =
+    A.class "xl:bg-opacity-50"
+
+
+xl__bg_opacity_75 : Html.Attribute msg
+xl__bg_opacity_75 =
+    A.class "xl:bg-opacity-75"
+
+
+xl__bg_opacity_100 : Html.Attribute msg
+xl__bg_opacity_100 =
+    A.class "xl:bg-opacity-100"
+
+
+xl__hover__bg_opacity_0 : Html.Attribute msg
+xl__hover__bg_opacity_0 =
+    A.class "xl:hover:bg-opacity-0"
+
+
+xl__hover__bg_opacity_25 : Html.Attribute msg
+xl__hover__bg_opacity_25 =
+    A.class "xl:hover:bg-opacity-25"
+
+
+xl__hover__bg_opacity_50 : Html.Attribute msg
+xl__hover__bg_opacity_50 =
+    A.class "xl:hover:bg-opacity-50"
+
+
+xl__hover__bg_opacity_75 : Html.Attribute msg
+xl__hover__bg_opacity_75 =
+    A.class "xl:hover:bg-opacity-75"
+
+
+xl__hover__bg_opacity_100 : Html.Attribute msg
+xl__hover__bg_opacity_100 =
+    A.class "xl:hover:bg-opacity-100"
+
+
+xl__focus__bg_opacity_0 : Html.Attribute msg
+xl__focus__bg_opacity_0 =
+    A.class "xl:focus:bg-opacity-0"
+
+
+xl__focus__bg_opacity_25 : Html.Attribute msg
+xl__focus__bg_opacity_25 =
+    A.class "xl:focus:bg-opacity-25"
+
+
+xl__focus__bg_opacity_50 : Html.Attribute msg
+xl__focus__bg_opacity_50 =
+    A.class "xl:focus:bg-opacity-50"
+
+
+xl__focus__bg_opacity_75 : Html.Attribute msg
+xl__focus__bg_opacity_75 =
+    A.class "xl:focus:bg-opacity-75"
+
+
+xl__focus__bg_opacity_100 : Html.Attribute msg
+xl__focus__bg_opacity_100 =
+    A.class "xl:focus:bg-opacity-100"
 
 
 xl__bg_bottom : Html.Attribute msg
@@ -71937,6 +73537,81 @@ xl__focus__border_pink_900 =
     A.class "xl:focus:border-pink-900"
 
 
+xl__border_opacity_0 : Html.Attribute msg
+xl__border_opacity_0 =
+    A.class "xl:border-opacity-0"
+
+
+xl__border_opacity_25 : Html.Attribute msg
+xl__border_opacity_25 =
+    A.class "xl:border-opacity-25"
+
+
+xl__border_opacity_50 : Html.Attribute msg
+xl__border_opacity_50 =
+    A.class "xl:border-opacity-50"
+
+
+xl__border_opacity_75 : Html.Attribute msg
+xl__border_opacity_75 =
+    A.class "xl:border-opacity-75"
+
+
+xl__border_opacity_100 : Html.Attribute msg
+xl__border_opacity_100 =
+    A.class "xl:border-opacity-100"
+
+
+xl__hover__border_opacity_0 : Html.Attribute msg
+xl__hover__border_opacity_0 =
+    A.class "xl:hover:border-opacity-0"
+
+
+xl__hover__border_opacity_25 : Html.Attribute msg
+xl__hover__border_opacity_25 =
+    A.class "xl:hover:border-opacity-25"
+
+
+xl__hover__border_opacity_50 : Html.Attribute msg
+xl__hover__border_opacity_50 =
+    A.class "xl:hover:border-opacity-50"
+
+
+xl__hover__border_opacity_75 : Html.Attribute msg
+xl__hover__border_opacity_75 =
+    A.class "xl:hover:border-opacity-75"
+
+
+xl__hover__border_opacity_100 : Html.Attribute msg
+xl__hover__border_opacity_100 =
+    A.class "xl:hover:border-opacity-100"
+
+
+xl__focus__border_opacity_0 : Html.Attribute msg
+xl__focus__border_opacity_0 =
+    A.class "xl:focus:border-opacity-0"
+
+
+xl__focus__border_opacity_25 : Html.Attribute msg
+xl__focus__border_opacity_25 =
+    A.class "xl:focus:border-opacity-25"
+
+
+xl__focus__border_opacity_50 : Html.Attribute msg
+xl__focus__border_opacity_50 =
+    A.class "xl:focus:border-opacity-50"
+
+
+xl__focus__border_opacity_75 : Html.Attribute msg
+xl__focus__border_opacity_75 =
+    A.class "xl:focus:border-opacity-75"
+
+
+xl__focus__border_opacity_100 : Html.Attribute msg
+xl__focus__border_opacity_100 =
+    A.class "xl:focus:border-opacity-100"
+
+
 xl__rounded_none : Html.Attribute msg
 xl__rounded_none =
     A.class "xl:rounded-none"
@@ -72452,11 +74127,6 @@ xl__inline =
     A.class "xl:inline"
 
 
-xl__flow_root : Html.Attribute msg
-xl__flow_root =
-    A.class "xl:flow-root"
-
-
 xl__flex : Html.Attribute msg
 xl__flex =
     A.class "xl:flex"
@@ -72465,16 +74135,6 @@ xl__flex =
 xl__inline_flex : Html.Attribute msg
 xl__inline_flex =
     A.class "xl:inline-flex"
-
-
-xl__grid : Html.Attribute msg
-xl__grid =
-    A.class "xl:grid"
-
-
-xl__inline_grid : Html.Attribute msg
-xl__inline_grid =
-    A.class "xl:inline-grid"
 
 
 xl__table : Html.Attribute msg
@@ -72520,6 +74180,21 @@ xl__table_row_group =
 xl__table_row : Html.Attribute msg
 xl__table_row =
     A.class "xl:table-row"
+
+
+xl__flow_root : Html.Attribute msg
+xl__flow_root =
+    A.class "xl:flow-root"
+
+
+xl__grid : Html.Attribute msg
+xl__grid =
+    A.class "xl:grid"
+
+
+xl__inline_grid : Html.Attribute msg
+xl__inline_grid =
+    A.class "xl:inline-grid"
 
 
 xl__hidden : Html.Attribute msg
@@ -76527,6 +78202,56 @@ xl__focus__placeholder_pink_900__focus =
     A.class "xl:focus:placeholder-pink-900:focus"
 
 
+xl__placeholder_opacity_0 : Html.Attribute msg
+xl__placeholder_opacity_0 =
+    A.class "xl:placeholder-opacity-0"
+
+
+xl__placeholder_opacity_25 : Html.Attribute msg
+xl__placeholder_opacity_25 =
+    A.class "xl:placeholder-opacity-25"
+
+
+xl__placeholder_opacity_50 : Html.Attribute msg
+xl__placeholder_opacity_50 =
+    A.class "xl:placeholder-opacity-50"
+
+
+xl__placeholder_opacity_75 : Html.Attribute msg
+xl__placeholder_opacity_75 =
+    A.class "xl:placeholder-opacity-75"
+
+
+xl__placeholder_opacity_100 : Html.Attribute msg
+xl__placeholder_opacity_100 =
+    A.class "xl:placeholder-opacity-100"
+
+
+xl__focus__placeholder_opacity_0__focus : Html.Attribute msg
+xl__focus__placeholder_opacity_0__focus =
+    A.class "xl:focus:placeholder-opacity-0:focus"
+
+
+xl__focus__placeholder_opacity_25__focus : Html.Attribute msg
+xl__focus__placeholder_opacity_25__focus =
+    A.class "xl:focus:placeholder-opacity-25:focus"
+
+
+xl__focus__placeholder_opacity_50__focus : Html.Attribute msg
+xl__focus__placeholder_opacity_50__focus =
+    A.class "xl:focus:placeholder-opacity-50:focus"
+
+
+xl__focus__placeholder_opacity_75__focus : Html.Attribute msg
+xl__focus__placeholder_opacity_75__focus =
+    A.class "xl:focus:placeholder-opacity-75:focus"
+
+
+xl__focus__placeholder_opacity_100__focus : Html.Attribute msg
+xl__focus__placeholder_opacity_100__focus =
+    A.class "xl:focus:placeholder-opacity-100:focus"
+
+
 xl__pointer_events_none : Html.Attribute msg
 xl__pointer_events_none =
     A.class "xl:pointer-events-none"
@@ -78265,6 +79990,81 @@ xl__focus__text_pink_800 =
 xl__focus__text_pink_900 : Html.Attribute msg
 xl__focus__text_pink_900 =
     A.class "xl:focus:text-pink-900"
+
+
+xl__text_opacity_0 : Html.Attribute msg
+xl__text_opacity_0 =
+    A.class "xl:text-opacity-0"
+
+
+xl__text_opacity_25 : Html.Attribute msg
+xl__text_opacity_25 =
+    A.class "xl:text-opacity-25"
+
+
+xl__text_opacity_50 : Html.Attribute msg
+xl__text_opacity_50 =
+    A.class "xl:text-opacity-50"
+
+
+xl__text_opacity_75 : Html.Attribute msg
+xl__text_opacity_75 =
+    A.class "xl:text-opacity-75"
+
+
+xl__text_opacity_100 : Html.Attribute msg
+xl__text_opacity_100 =
+    A.class "xl:text-opacity-100"
+
+
+xl__hover__text_opacity_0 : Html.Attribute msg
+xl__hover__text_opacity_0 =
+    A.class "xl:hover:text-opacity-0"
+
+
+xl__hover__text_opacity_25 : Html.Attribute msg
+xl__hover__text_opacity_25 =
+    A.class "xl:hover:text-opacity-25"
+
+
+xl__hover__text_opacity_50 : Html.Attribute msg
+xl__hover__text_opacity_50 =
+    A.class "xl:hover:text-opacity-50"
+
+
+xl__hover__text_opacity_75 : Html.Attribute msg
+xl__hover__text_opacity_75 =
+    A.class "xl:hover:text-opacity-75"
+
+
+xl__hover__text_opacity_100 : Html.Attribute msg
+xl__hover__text_opacity_100 =
+    A.class "xl:hover:text-opacity-100"
+
+
+xl__focus__text_opacity_0 : Html.Attribute msg
+xl__focus__text_opacity_0 =
+    A.class "xl:focus:text-opacity-0"
+
+
+xl__focus__text_opacity_25 : Html.Attribute msg
+xl__focus__text_opacity_25 =
+    A.class "xl:focus:text-opacity-25"
+
+
+xl__focus__text_opacity_50 : Html.Attribute msg
+xl__focus__text_opacity_50 =
+    A.class "xl:focus:text-opacity-50"
+
+
+xl__focus__text_opacity_75 : Html.Attribute msg
+xl__focus__text_opacity_75 =
+    A.class "xl:focus:text-opacity-75"
+
+
+xl__focus__text_opacity_100 : Html.Attribute msg
+xl__focus__text_opacity_100 =
+    A.class "xl:focus:text-opacity-100"
 
 
 xl__italic : Html.Attribute msg
