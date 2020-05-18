@@ -12,10 +12,11 @@
     "build": "parcel build src/index.html --out-file index.html",
     "dev": "parcel src/index.html --out-file index.html",
     "lint:format": "find src tests review/src -name *.elm ! -name Tailwind.elm | xargs elm-format --validate",
-    "lint:analyse": "elm-analyse",
     "lint:review": "elm-review",
-    "lint": "run-p lint:format lint:analyse lint:review ;",
+    "lint:analyse": "elm-analyse",
+    "lint": "run-s lint:format lint:review lint:analyse ;",
     "test": "elm-test",
+    "test:watch": "elm-test --watch",
     "all": "run-s build test lint ;"
   },
   "repository": {

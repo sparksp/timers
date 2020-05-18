@@ -11,6 +11,7 @@ when inside the directory containing this file.
 
 -}
 
+import NoAlways
 import NoDebug.Log
 import NoDebug.TodoOrToString
 import NoDuplicatePorts
@@ -25,7 +26,8 @@ import UseCamelCase
 
 config : List Rule
 config =
-    [ NoDebug.Log.rule
+    [ NoAlways.rule
+    , NoDebug.Log.rule
     , NoDebug.TodoOrToString.rule
     , NoDuplicatePorts.rule
     , NoUnused.CustomTypeConstructors.rule []

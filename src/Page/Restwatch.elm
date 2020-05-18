@@ -345,7 +345,7 @@ calculateProgress =
         { onWaiting = calculateProgress_
         , onRunning = calculateProgress_
         , onResting = calculateProgress_
-        , onFinished = always 100
+        , onFinished = \_ -> 100
         }
 
 
