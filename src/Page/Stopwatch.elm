@@ -60,7 +60,7 @@ update msg model =
             ( { model | stage = Clear }, Cmd.none )
 
         ( Stop, Running timer ) ->
-            ( { model | stage = Paused <| Period.fromTimer timer }, Cmd.none )
+            ( { model | stage = Paused (Period.fromTimer timer) }, Cmd.none )
 
         ( Stop, Resuming elapsed ) ->
             ( { model | stage = Paused elapsed }, Cmd.none )
@@ -75,7 +75,7 @@ update msg model =
             ( { model | stage = Running ( now, now ) }, Cmd.none )
 
         ( Tick now, Resuming elapsed ) ->
-            ( { model | stage = Running <| startTimer now elapsed }, Cmd.none )
+            ( { model | stage = Running (startTimer now elapsed) }, Cmd.none )
 
         ( Tick now, Running ( start, _ ) ) ->
             ( { model | stage = Running ( start, now ) }, Cmd.none )
@@ -195,7 +195,7 @@ isRunning stage =
 
 showTime : Stage -> Html Msg
 showTime stage =
-    showPeriod <| stageToElapsed stage
+    showPeriod (stageToElapsed stage)
 
 
 stageToElapsed : Stage -> Period

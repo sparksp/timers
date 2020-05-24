@@ -160,7 +160,7 @@ updateStageMsg msg model =
             ( { model | stage = Running ( start, now ) }, Cmd.none )
 
         ( Tick now, ResumeRunning timer ) ->
-            ( { model | stage = Running <| timerShiftStart now timer }, Cmd.none )
+            ( { model | stage = Running (timerShiftStart now timer) }, Cmd.none )
 
         ( Tick now, Resting period ( _, target ) ) ->
             if Time.Extra.lt target now then
@@ -170,7 +170,7 @@ updateStageMsg msg model =
                 ( { model | stage = Resting period ( now, target ) }, Cmd.none )
 
         ( Tick now, ResumeResting period timer ) ->
-            ( { model | stage = Resting period <| timerShiftEnd (percent 100) now timer }, Cmd.none )
+            ( { model | stage = Resting period (timerShiftEnd (percent 100) now timer) }, Cmd.none )
 
         ( Tick _, _ ) ->
             ( model, Cmd.none )
@@ -199,14 +199,14 @@ getNewTargetWithNewRest ( oldRest, newRest ) stage period ( now, target ) =
             toFloat (Time.posixToMillis target) - (Percent.toFloat oldRest * Period.toMillisFloat period)
 
         newTarget =
-            Time.millisToPosix <| round <| start + (Period.toMillisFloat period * Percent.toFloat newRest)
+            Time.millisToPosix (round (start + (Period.toMillisFloat period * Percent.toFloat newRest)))
     in
     stage period ( Time.Extra.min now newTarget, newTarget )
 
 
 timerShiftStart : Time.Posix -> Timer -> Timer
 timerShiftStart now ( start, end ) =
-    ( Time.Extra.add start <| Time.Extra.sub now end, now )
+    ( Time.Extra.add start (Time.Extra.sub now end), now )
 
 
 timerShiftEnd : Percent -> Time.Posix -> Timer -> Timer
@@ -268,10 +268,10 @@ viewBody model =
                 , Html.p [ TW.text_4xl, TW.font_mono, TW.select_all ] [ showRunningTime model ]
                 ]
             , Html.div [ fadeRestingAttr model.stage, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
-                [ Html.button [ Events.onClick (ShowRest <| Menu.toggle model.showRest) ]
+                [ Html.button [ Events.onClick (ShowRest (Menu.toggle model.showRest)) ]
                     [ Html.div [ TW.flex, TW.items_center ]
                         [ Html.p [ TW.text_left ]
-                            [ Html.text <| "Rest (" ++ Percent.toString model.rest ++ ")"
+                            [ Html.text ("Rest (" ++ Percent.toString model.rest ++ ")")
                             ]
                         , Icons.cog [ SvgTW.w_4, SvgTW.h_4, SvgTW.ml_2 ]
                         ]
@@ -315,10 +315,10 @@ viewOpenRestMenu rest =
         |> List.map
             (\pc ->
                 if pc == Percent.toInt rest then
-                    Html.button [ TW.w_full, TW.py_1, TW.bg_orange_500, TW.text_white ] [ Html.text <| String.fromInt pc ++ "%" ]
+                    Html.button [ TW.w_full, TW.py_1, TW.bg_orange_500, TW.text_white ] [ Html.text (String.fromInt pc ++ "%") ]
 
                 else
-                    Html.button [ TW.w_full, TW.py_1, TW.bg_white, TW.hover__bg_gray_200, Events.onClick (SetRest (percent pc)) ] [ Html.text <| String.fromInt pc ++ "%" ]
+                    Html.button [ TW.w_full, TW.py_1, TW.bg_white, TW.hover__bg_gray_200, Events.onClick (SetRest (percent pc)) ] [ Html.text (String.fromInt pc ++ "%") ]
             )
         |> Html.div [ TW.w_full, TW.absolute, TW.z_10, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border, TW.divide_y, TW.shadow_lg ]
 
@@ -446,7 +446,7 @@ fadeRunningAttr : Stage -> Html.Attribute Msg
 fadeRunningAttr =
     let
         stages =
-            allStages <| A.class ""
+            allStages (A.class "")
     in
     mapStage { stages | onResting = TW.text_gray_600 }
 
@@ -513,19 +513,19 @@ mapRunningTime : StageMaps (Period -> value) -> { a | stage : Stage } -> value
 mapRunningTime { onWaiting, onRunning, onResting, onFinished } { stage } =
     case stage of
         Clear ->
-            onWaiting <| millis 0
+            onWaiting (millis 0)
 
         Starting ->
-            onRunning <| millis 0
+            onRunning (millis 0)
 
         Running timer ->
-            onRunning <| Period.fromTimer timer
+            onRunning (Period.fromTimer timer)
 
         PausedRunning timer ->
-            onRunning <| Period.fromTimer timer
+            onRunning (Period.fromTimer timer)
 
         ResumeRunning timer ->
-            onRunning <| Period.fromTimer timer
+            onRunning (Period.fromTimer timer)
 
         Resting period _ ->
             onResting period
@@ -564,13 +564,13 @@ mapRestingPeriods { onWaiting, onRunning, onResting, onFinished } { rest, stage 
             onRunning ( millis 0, millis 0 )
 
         Running timer ->
-            onRunning <| double <| periodPercent rest <| Period.fromTimer timer
+            onRunning (double (periodPercent rest (Period.fromTimer timer)))
 
         PausedRunning timer ->
-            onRunning <| double <| periodPercent rest <| Period.fromTimer timer
+            onRunning (double (periodPercent rest (Period.fromTimer timer)))
 
         ResumeRunning timer ->
-            onRunning <| double <| periodPercent rest <| Period.fromTimer timer
+            onRunning (double (periodPercent rest (Period.fromTimer timer)))
 
         Resting period timer ->
             onResting ( periodPercent rest period, Period.fromTimer timer )

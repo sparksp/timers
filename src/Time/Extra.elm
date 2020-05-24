@@ -1,7 +1,6 @@
 module Time.Extra exposing
     ( add, sub, mul
     , lt, min
-    , map, map2
     )
 
 {-| Useful extras for Time.
@@ -69,7 +68,7 @@ min a b =
 -}
 map : (Int -> Int) -> Time.Posix -> Time.Posix
 map fn time =
-    Time.millisToPosix <| fn <| Time.posixToMillis time
+    Time.millisToPosix (fn (Time.posixToMillis time))
 
 
 {-| Map the Millis of two Time.Posix and return a Time.Posix.
@@ -83,7 +82,7 @@ map2 fn timeA timeB =
         millisB =
             Time.posixToMillis timeB
     in
-    Time.millisToPosix <| fn millisA millisB
+    Time.millisToPosix (fn millisA millisB)
 
 
 {-| Pass the Millis of two Time.Posix to the given function and return the result.

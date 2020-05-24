@@ -93,7 +93,7 @@ updateStageMsg msg model =
             ( { model | stage = Waiting target }, Cmd.none )
 
         ( Stop, Running target timer ) ->
-            ( { model | stage = Paused target <| Period.fromTimer timer }, Cmd.none )
+            ( { model | stage = Paused target (Period.fromTimer timer) }, Cmd.none )
 
         ( Stop, Resuming target remaining ) ->
             ( { model | stage = Paused target remaining }, Cmd.none )
@@ -102,10 +102,10 @@ updateStageMsg msg model =
             ( model, Cmd.none )
 
         ( Reset, stage ) ->
-            ( { model | stage = Waiting <| stageToTarget stage }, Alarm.stop )
+            ( { model | stage = Waiting (stageToTarget stage) }, Alarm.stop )
 
         ( Tick now, Starting target ) ->
-            ( { model | stage = Running target <| startCountdown target now }, Cmd.none )
+            ( { model | stage = Running target (startCountdown target now) }, Cmd.none )
 
         ( Tick now, Running target ( _, end ) ) ->
             if Time.Extra.lt end now then
@@ -115,7 +115,7 @@ updateStageMsg msg model =
                 ( { model | stage = Running target ( now, end ) }, Cmd.none )
 
         ( Tick now, Resuming target remaining ) ->
-            ( { model | stage = Running target <| startCountdown remaining now }, Cmd.none )
+            ( { model | stage = Running target (startCountdown remaining now) }, Cmd.none )
 
         ( Tick _, _ ) ->
             ( model, Cmd.none )
@@ -137,7 +137,7 @@ canStartTarget target =
 
 startCountdown : Period -> Time.Posix -> Timer
 startCountdown period now =
-    ( now, Time.Extra.add now <| Period.toPosix period )
+    ( now, Time.Extra.add now (Period.toPosix period) )
 
 
 updateEditMsg : EditMsg -> Model -> ( Model, Cmd Msg )
@@ -164,7 +164,7 @@ updateEditMsg msg model =
 
 updateWaitingTime : Time -> Model -> ( Model, Cmd Msg )
 updateWaitingTime time model =
-    ( { model | stage = Waiting <| timeToPeriod time }, Cmd.none )
+    ( { model | stage = Waiting (timeToPeriod time) }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -245,13 +245,13 @@ viewEditTimePart : Int -> (Int -> msg) -> Html msg
 viewEditTimePart unit msg =
     Html.div [ TW.flex, TW.flex_col ]
         [ Html.div [ TW.text_base ]
-            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg <| unit + 1), A.style "touch-action" "manipulation" ]
+            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg (unit + 1)), A.style "touch-action" "manipulation" ]
                 [ Icons.chevronUp [ SvgTW.h_4, SvgTW.w_4 ] ]
             ]
         , Html.div []
-            [ Html.text <| pad00 unit ]
+            [ Html.text (pad00 unit) ]
         , Html.div [ TW.text_base ]
-            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg <| unit - 1), A.style "touch-action" "manipulation" ]
+            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg (unit - 1)), A.style "touch-action" "manipulation" ]
                 [ Icons.chevronDown [ SvgTW.h_4, SvgTW.w_4 ] ]
             ]
         ]
@@ -288,7 +288,7 @@ viewStartStopButton stage =
     if isRunning stage then
         viewStopButton
 
-    else if canStartTarget <| stageToTarget stage then
+    else if canStartTarget (stageToTarget stage) then
         viewStartButton
 
     else
@@ -431,7 +431,7 @@ mapRemainingTime { onWaiting, onRunning, onPaused, onFinished } stage =
             onRunning remaining
 
         Running _ timer ->
-            onRunning <| Period.fromTimer timer
+            onRunning (Period.fromTimer timer)
 
         Paused _ remaining ->
             onPaused remaining
@@ -440,7 +440,7 @@ mapRemainingTime { onWaiting, onRunning, onPaused, onFinished } stage =
             onRunning remaining
 
         Finished _ ->
-            onFinished <| Period.millis 0
+            onFinished (Period.millis 0)
 
 
 showPeriodHuman : Period -> Html Msg
@@ -466,7 +466,7 @@ type alias Time =
 
 timeToPeriod : Time -> Period
 timeToPeriod { hours, minutes, seconds } =
-    Period.millis <| max 0 (((hours * 60 + minutes) * 60 + seconds) * 1000)
+    Period.millis (max 0 (((hours * 60 + minutes) * 60 + seconds) * 1000))
 
 
 periodToTime : Period -> Time
