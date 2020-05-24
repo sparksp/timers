@@ -1,7 +1,7 @@
 module Period exposing
     ( Period, fromTimer, millis
     , toHuman, toIso8601, toMillis, toMillisFloat
-    , map, mul
+    , mul
     , toPosix
     )
 
@@ -20,7 +20,7 @@ module Period exposing
 
 # Mapping
 
-@docs map, mul
+@docs mul
 
 -}
 
@@ -46,7 +46,7 @@ millis =
 -}
 fromTimer : Timer -> Period
 fromTimer ( start, end ) =
-    Millis <| Time.posixToMillis <| Time.Extra.sub end start
+    Millis (Time.posixToMillis (Time.Extra.sub end start))
 
 
 {-| A human readable (digital clock style) string.
