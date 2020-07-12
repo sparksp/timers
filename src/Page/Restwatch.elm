@@ -20,9 +20,12 @@ import Time.Extra
 import Timer exposing (Timer)
 
 
-type alias Model =
-    { session : Session
-    , rest : Percent
+type Model
+    = Model Session Internals
+
+
+type alias Internals =
+    { rest : Percent
     , showRest : Menu.State
     , stage : Stage
     }
@@ -56,48 +59,55 @@ type StageMsg
 
 init : Session -> ( Model, Cmd Msg )
 init session =
-    ( Model session (percent 100) Menu.Closed Clear, Cmd.none )
+    ( Model session
+        { rest = percent 100
+        , showRest = Menu.Closed
+        , stage = Clear
+        }
+    , Cmd.none
+    )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
+update msg (Model session model) =
     case msg of
         StageMsg stageMsg ->
-            updateStageMsg stageMsg model
+            updateStageMsg stageMsg model.rest model.stage
+                |> Tuple.mapFirst (\stage -> Model session { model | stage = stage })
 
         SetRest newRest ->
-            ( { model
-                | rest = newRest
+            ( Model session
+                { rest = newRest
                 , showRest = Menu.Closed
                 , stage = getStageWithNewRest ( model.rest, newRest ) model.stage
-              }
+                }
             , Cmd.none
             )
 
         ShowRest state ->
-            ( { model | showRest = state }, Cmd.none )
+            ( Model session { model | showRest = state }, Cmd.none )
 
 
-updateStageMsg : StageMsg -> Model -> ( Model, Cmd Msg )
-updateStageMsg msg model =
-    case ( msg, model.stage ) of
+updateStageMsg : StageMsg -> Percent -> Stage -> ( Stage, Cmd Msg )
+updateStageMsg msg rest stage =
+    case ( msg, stage ) of
         ( Start, Clear ) ->
-            ( { model | stage = Starting }, Alarm.load )
+            ( Starting, Alarm.load )
 
         ( Start, PausedRunning timer ) ->
-            ( { model | stage = ResumeRunning timer }, Alarm.load )
+            ( ResumeRunning timer, Alarm.load )
 
         ( Start, Finished _ ) ->
-            ( { model | stage = Starting }, Alarm.load )
+            ( Starting, Alarm.load )
 
         ( Start, _ ) ->
-            ( model, Cmd.none )
+            ( stage, Cmd.none )
 
         ( Rest, Clear ) ->
-            ( { model | stage = Clear }, Cmd.none )
+            ( Clear, Cmd.none )
 
         ( Rest, Starting ) ->
-            ( { model | stage = Clear }, Cmd.none )
+            ( Clear, Cmd.none )
 
         ( Rest, Running (( _, end ) as timer) ) ->
             let
@@ -105,9 +115,9 @@ updateStageMsg msg model =
                     Period.fromTimer timer
 
                 target =
-                    timerShiftEnd model.rest end timer
+                    timerShiftEnd rest end timer
             in
-            ( { model | stage = Resting period target }, Cmd.none )
+            ( Resting period target, Cmd.none )
 
         ( Rest, PausedRunning (( _, end ) as timer) ) ->
             let
@@ -115,65 +125,65 @@ updateStageMsg msg model =
                     Period.fromTimer timer
 
                 target =
-                    timerShiftEnd model.rest end timer
+                    timerShiftEnd rest end timer
             in
-            ( { model | stage = ResumeResting period target }, Cmd.none )
+            ( ResumeResting period target, Cmd.none )
 
         ( Rest, ResumeRunning timer ) ->
             let
                 period =
                     Period.fromTimer timer
             in
-            ( { model | stage = ResumeResting period timer }, Cmd.none )
+            ( ResumeResting period timer, Cmd.none )
 
         ( Rest, PausedResting period timer ) ->
-            ( { model | stage = ResumeResting period timer }, Cmd.none )
+            ( ResumeResting period timer, Cmd.none )
 
         ( Rest, _ ) ->
-            ( model, Cmd.none )
+            ( stage, Cmd.none )
 
         ( Pause, Starting ) ->
-            ( { model | stage = Clear }, Cmd.none )
+            ( Clear, Cmd.none )
 
         ( Pause, Running timer ) ->
-            ( { model | stage = PausedRunning timer }, Cmd.none )
+            ( PausedRunning timer, Cmd.none )
 
         ( Pause, Resting period timer ) ->
-            ( { model | stage = PausedResting period timer }, Cmd.none )
+            ( PausedResting period timer, Cmd.none )
 
         ( Pause, ResumeRunning timer ) ->
-            ( { model | stage = PausedRunning timer }, Cmd.none )
+            ( PausedRunning timer, Cmd.none )
 
         ( Pause, ResumeResting period timer ) ->
-            ( { model | stage = PausedResting period timer }, Cmd.none )
+            ( PausedResting period timer, Cmd.none )
 
         ( Pause, _ ) ->
-            ( model, Cmd.none )
+            ( stage, Cmd.none )
 
         ( Reset, _ ) ->
-            ( { model | stage = Clear }, Alarm.stop )
+            ( Clear, Alarm.stop )
 
         ( Tick now, Starting ) ->
-            ( { model | stage = Running ( now, now ) }, Cmd.none )
+            ( Running ( now, now ), Cmd.none )
 
         ( Tick now, Running ( start, _ ) ) ->
-            ( { model | stage = Running ( start, now ) }, Cmd.none )
+            ( Running ( start, now ), Cmd.none )
 
         ( Tick now, ResumeRunning timer ) ->
-            ( { model | stage = Running (timerShiftStart now timer) }, Cmd.none )
+            ( Running (timerShiftStart now timer), Cmd.none )
 
         ( Tick now, Resting period ( _, target ) ) ->
             if Time.Extra.lt target now then
-                ( { model | stage = Finished period }, Alarm.play )
+                ( Finished period, Alarm.play )
 
             else
-                ( { model | stage = Resting period ( now, target ) }, Cmd.none )
+                ( Resting period ( now, target ), Cmd.none )
 
         ( Tick now, ResumeResting period timer ) ->
-            ( { model | stage = Resting period (timerShiftEnd (percent 100) now timer) }, Cmd.none )
+            ( Resting period (timerShiftEnd (percent 100) now timer), Cmd.none )
 
         ( Tick _, _ ) ->
-            ( model, Cmd.none )
+            ( stage, Cmd.none )
 
 
 getStageWithNewRest : ( Percent, Percent ) -> Stage -> Stage
@@ -221,8 +231,8 @@ timerShiftEnd rest now ( start, end ) =
     ( now, Time.Extra.add now resting )
 
 
-subscriptions : { a | stage : Stage } -> Sub Msg
-subscriptions { stage } =
+subscriptions : Model -> Sub Msg
+subscriptions (Model _ { stage }) =
     case stage of
         Starting ->
             Browser.Events.onAnimationFrame (StageMsg << Tick)
@@ -244,7 +254,7 @@ subscriptions { stage } =
 
 
 toSession : Model -> Session
-toSession { session } =
+toSession (Model session _) =
     session
 
 
@@ -253,13 +263,13 @@ toSession { session } =
 
 
 view : Model -> Document Msg
-view model =
+view (Model _ model) =
     { title = "Restwatch"
-    , body = Alarm.view :: viewRestMenuOverlay model :: viewBody model
+    , body = Alarm.view :: viewRestMenuOverlay model.showRest :: viewBody model
     }
 
 
-viewBody : Model -> List (Html Msg)
+viewBody : Internals -> List (Html Msg)
 viewBody model =
     [ Html.main_ [ TW.flex_grow, TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
         [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
@@ -289,8 +299,8 @@ viewBody model =
     ]
 
 
-viewRestMenuOverlay : { a | showRest : Menu.State } -> Html Msg
-viewRestMenuOverlay { showRest } =
+viewRestMenuOverlay : Menu.State -> Html Msg
+viewRestMenuOverlay showRest =
     case showRest of
         Menu.Opened ->
             Html.div [ TW.z_10, TW.fixed, TW.inset_0, Events.onClick (ShowRest Menu.Closed) ] []
