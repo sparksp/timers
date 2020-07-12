@@ -13,10 +13,8 @@ import Time.Extra
 import Timer exposing (Timer)
 
 
-type alias Model =
-    { session : Session
-    , stage : Stage
-    }
+type Model
+    = Model Session Stage
 
 
 type Stage
@@ -40,48 +38,48 @@ init session =
 
 
 toSession : Model -> Session
-toSession { session } =
+toSession (Model session _) =
     session
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case ( msg, model.stage ) of
+update msg (Model session stage) =
+    case ( msg, stage ) of
         ( Start, Clear ) ->
-            ( { model | stage = Starting }, Cmd.none )
+            ( Model session Starting, Cmd.none )
 
         ( Start, Paused elapsed ) ->
-            ( { model | stage = Resuming elapsed }, Cmd.none )
+            ( Model session (Resuming elapsed), Cmd.none )
 
         ( Start, _ ) ->
-            ( model, Cmd.none )
+            ( Model session stage, Cmd.none )
 
         ( Stop, Starting ) ->
-            ( { model | stage = Clear }, Cmd.none )
+            ( Model session Clear, Cmd.none )
 
         ( Stop, Running timer ) ->
-            ( { model | stage = Paused (Period.fromTimer timer) }, Cmd.none )
+            ( Model session (Paused (Period.fromTimer timer)), Cmd.none )
 
         ( Stop, Resuming elapsed ) ->
-            ( { model | stage = Paused elapsed }, Cmd.none )
+            ( Model session (Paused elapsed), Cmd.none )
 
         ( Stop, _ ) ->
-            ( model, Cmd.none )
+            ( Model session stage, Cmd.none )
 
         ( Reset, _ ) ->
-            ( { model | stage = Clear }, Cmd.none )
+            ( Model session Clear, Cmd.none )
 
         ( Tick now, Starting ) ->
-            ( { model | stage = Running ( now, now ) }, Cmd.none )
+            ( Model session (Running ( now, now )), Cmd.none )
 
         ( Tick now, Resuming elapsed ) ->
-            ( { model | stage = Running (startTimer now elapsed) }, Cmd.none )
+            ( Model session (Running (startTimer now elapsed)), Cmd.none )
 
         ( Tick now, Running ( start, _ ) ) ->
-            ( { model | stage = Running ( start, now ) }, Cmd.none )
+            ( Model session (Running ( start, now )), Cmd.none )
 
         ( Tick _, _ ) ->
-            ( model, Cmd.none )
+            ( Model session stage, Cmd.none )
 
 
 startTimer : Time.Posix -> Period -> Timer
@@ -90,8 +88,8 @@ startTimer now elapsed =
 
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
-    case model.stage of
+subscriptions (Model _ stage) =
+    case stage of
         Clear ->
             Sub.none
 
@@ -113,9 +111,9 @@ subscriptions model =
 
 
 view : Model -> Document Msg
-view model =
+view (Model _ stage) =
     { title = "Stopwatch"
-    , body = viewBody model.stage
+    , body = viewBody stage
     }
 
 

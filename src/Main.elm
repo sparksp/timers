@@ -1,4 +1,4 @@
-module Main exposing (main)
+module Main exposing (Model, Msg, main)
 
 import Browser exposing (Document, UrlRequest(..))
 import Browser.Navigation as Nav

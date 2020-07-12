@@ -18,10 +18,8 @@ import Time.Extra
 import Timer exposing (Timer)
 
 
-type alias Model =
-    { session : Session
-    , stage : Stage
-    }
+type Model
+    = Model Session Stage
 
 
 type Stage
@@ -53,81 +51,83 @@ type Msg
 
 init : Session -> Maybe Int -> ( Model, Cmd Msg )
 init session maybeTime =
-    ( { session = session
-      , stage =
-            maybeTime
-                |> Maybe.map (Period.millis << (*) 1000)
-                |> Maybe.withDefault (Period.millis 0)
-                |> Waiting
-      }
+    ( Model session
+        (maybeTime
+            |> Maybe.map (Period.millis << (*) 1000)
+            |> Maybe.withDefault (Period.millis 0)
+            |> Waiting
+        )
     , Cmd.none
     )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case ( msg, model.stage ) of
+update msg (Model session stage) =
+    case ( msg, stage ) of
         ( GotStageMsg stageMsg, _ ) ->
-            updateStageMsg stageMsg model
+            updateStageMsg stageMsg stage
+                |> Tuple.mapFirst (Model session)
 
         ( GotEditMsg editMsg, _ ) ->
-            updateEditMsg editMsg model
+            ( Model session (updateEditMsg editMsg stage)
+            , Cmd.none
+            )
 
 
-updateStageMsg : StageMsg -> Model -> ( Model, Cmd Msg )
-updateStageMsg msg model =
-    case ( msg, model.stage ) of
+updateStageMsg : StageMsg -> Stage -> ( Stage, Cmd Msg )
+updateStageMsg msg stage =
+    case ( msg, stage ) of
         ( Start, Waiting target ) ->
-            updateStartingTime target model
+            updateStartingTime target stage
 
         ( Start, Paused target timer ) ->
-            ( { model | stage = Resuming target timer }, Alarm.load )
+            ( Resuming target timer, Alarm.load )
 
         ( Start, Finished target ) ->
-            updateStartingTime target model
+            updateStartingTime target stage
 
         ( Start, _ ) ->
-            ( model, Cmd.none )
+            ( stage, Cmd.none )
 
         ( Stop, Starting target ) ->
-            ( { model | stage = Waiting target }, Cmd.none )
+            ( Waiting target, Cmd.none )
 
         ( Stop, Running target timer ) ->
-            ( { model | stage = Paused target (Period.fromTimer timer) }, Cmd.none )
+            ( Paused target (Period.fromTimer timer), Cmd.none )
 
         ( Stop, Resuming target remaining ) ->
-            ( { model | stage = Paused target remaining }, Cmd.none )
+            ( Paused target remaining, Cmd.none )
 
         ( Stop, _ ) ->
-            ( model, Cmd.none )
+            ( stage, Cmd.none )
 
-        ( Reset, stage ) ->
-            ( { model | stage = Waiting (stageToTarget stage) }, Alarm.stop )
+        ( Reset, _ ) ->
+            ( Waiting (stageToTarget stage), Alarm.stop )
 
         ( Tick now, Starting target ) ->
-            ( { model | stage = Running target (startCountdown target now) }, Cmd.none )
+            ( Running target (startCountdown target now), Cmd.none )
 
         ( Tick now, Running target ( _, end ) ) ->
             if Time.Extra.lt end now then
-                ( { model | stage = Finished target }, Alarm.play )
+                ( Finished target, Alarm.play )
 
             else
-                ( { model | stage = Running target ( now, end ) }, Cmd.none )
+                ( Running target ( now, end ), Cmd.none )
 
         ( Tick now, Resuming target remaining ) ->
-            ( { model | stage = Running target (startCountdown remaining now) }, Cmd.none )
+            ( Running target (startCountdown remaining now), Cmd.none )
 
         ( Tick _, _ ) ->
-            ( model, Cmd.none )
+            ( stage, Cmd.none )
 
 
-updateStartingTime : Period -> Model -> ( Model, Cmd Msg )
-updateStartingTime target model =
+updateStartingTime : Period -> Stage -> ( Stage, Cmd Msg )
+updateStartingTime target stage =
     if canStartTarget target then
-        ( { model | stage = Starting target }, Alarm.load )
+        ( Starting target, Alarm.load )
 
     else
-        ( model, Cmd.none )
+        ( stage, Cmd.none )
 
 
 canStartTarget : Period -> Bool
@@ -140,9 +140,9 @@ startCountdown period now =
     ( now, Time.Extra.add now (Period.toPosix period) )
 
 
-updateEditMsg : EditMsg -> Model -> ( Model, Cmd Msg )
-updateEditMsg msg model =
-    case model.stage of
+updateEditMsg : EditMsg -> Stage -> Stage
+updateEditMsg msg stage =
+    case stage of
         Waiting duration ->
             let
                 time =
@@ -150,26 +150,21 @@ updateEditMsg msg model =
             in
             case msg of
                 SetHours newHours ->
-                    updateWaitingTime { time | hours = newHours } model
+                    Waiting (timeToPeriod { time | hours = newHours })
 
                 SetMinutes newMinutes ->
-                    updateWaitingTime { time | minutes = newMinutes } model
+                    Waiting (timeToPeriod { time | minutes = newMinutes })
 
                 SetSeconds newSeconds ->
-                    updateWaitingTime { time | seconds = newSeconds } model
+                    Waiting (timeToPeriod { time | seconds = newSeconds })
 
         _ ->
-            ( model, Cmd.none )
-
-
-updateWaitingTime : Time -> Model -> ( Model, Cmd Msg )
-updateWaitingTime time model =
-    ( { model | stage = Waiting (timeToPeriod time) }, Cmd.none )
+            stage
 
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
-    case model.stage of
+subscriptions (Model _ stage) =
+    case stage of
         Waiting _ ->
             Sub.none
 
@@ -190,7 +185,7 @@ subscriptions model =
 
 
 toSession : Model -> Session
-toSession { session } =
+toSession (Model session _) =
     session
 
 
@@ -199,7 +194,7 @@ toSession { session } =
 
 
 view : Model -> Document Msg
-view { stage } =
+view (Model _ stage) =
     { title = "Countdown"
     , body = Alarm.view :: viewBody stage
     }
