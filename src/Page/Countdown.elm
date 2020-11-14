@@ -209,7 +209,7 @@ viewBody stage =
             , viewProgress stage
             ]
         ]
-    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
+    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.leading_normal, TW.py_2 ]
         [ viewStartStopButton stage
         , viewResetButton stage
         ]
