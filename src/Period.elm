@@ -58,6 +58,7 @@ fromTimer ( start, end ) =
 toHuman : Period -> String
 toHuman period =
     let
+        duration : Duration
         duration =
             toDuration period
     in
@@ -146,15 +147,19 @@ type alias Duration =
 toDuration : Period -> Duration
 toDuration (Millis ms) =
     let
+        s : Int
         s =
             ms // 1000
 
+        m : Int
         m =
             s // 60
 
+        h : Int
         h =
             m // 60
 
+        d : Int
         d =
             h // 24
     in

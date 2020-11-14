@@ -145,6 +145,7 @@ updateEditMsg msg stage =
     case stage of
         Waiting duration ->
             let
+                time : Time
                 time =
                     periodToTime duration
             in
@@ -467,15 +468,19 @@ timeToPeriod { hours, minutes, seconds } =
 periodToTime : Period -> Time
 periodToTime period =
     let
+        ms : Int
         ms =
             Period.toMillis period
 
+        s : Int
         s =
             ms // 1000
 
+        m : Int
         m =
             s // 60
 
+        h : Int
         h =
             m // 60
     in

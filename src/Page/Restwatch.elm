@@ -111,9 +111,11 @@ updateStageMsg msg rest stage =
 
         ( Rest, Running (( _, end ) as timer) ) ->
             let
+                period : Period
                 period =
                     Period.fromTimer timer
 
+                target : Timer
                 target =
                     timerShiftEnd rest end timer
             in
@@ -121,9 +123,11 @@ updateStageMsg msg rest stage =
 
         ( Rest, PausedRunning (( _, end ) as timer) ) ->
             let
+                period : Period
                 period =
                     Period.fromTimer timer
 
+                target : Timer
                 target =
                     timerShiftEnd rest end timer
             in
@@ -131,6 +135,7 @@ updateStageMsg msg rest stage =
 
         ( Rest, ResumeRunning timer ) ->
             let
+                period : Period
                 period =
                     Period.fromTimer timer
             in
@@ -205,9 +210,11 @@ getStageWithNewRest rests stage =
 getNewTargetWithNewRest : ( Percent, Percent ) -> (Period -> Timer -> Stage) -> Period -> Timer -> Stage
 getNewTargetWithNewRest ( oldRest, newRest ) stage period ( now, target ) =
     let
+        start : Float
         start =
             toFloat (Time.posixToMillis target) - (Percent.toFloat oldRest * Period.toMillisFloat period)
 
+        newTarget : Time.Posix
         newTarget =
             Time.millisToPosix (round (start + (Period.toMillisFloat period * Percent.toFloat newRest)))
     in
@@ -222,9 +229,11 @@ timerShiftStart now ( start, end ) =
 timerShiftEnd : Percent -> Time.Posix -> Timer -> Timer
 timerShiftEnd rest now ( start, end ) =
     let
+        elapsed : Time.Posix
         elapsed =
             Time.Extra.sub end start
 
+        resting : Time.Posix
         resting =
             Time.Extra.mul (Percent.toFloat rest) elapsed
     in
@@ -455,6 +464,7 @@ showRestingTime =
 fadeRunningAttr : Stage -> Html.Attribute Msg
 fadeRunningAttr =
     let
+        stages : StageMaps (Html.Attribute msg)
         stages =
             allStages (A.class "")
     in

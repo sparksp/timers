@@ -75,14 +75,8 @@ map fn time =
 -}
 map2 : (Int -> Int -> Int) -> Time.Posix -> Time.Posix -> Time.Posix
 map2 fn timeA timeB =
-    let
-        millisA =
-            Time.posixToMillis timeA
-
-        millisB =
-            Time.posixToMillis timeB
-    in
-    Time.millisToPosix (fn millisA millisB)
+    unwrapBy2 fn timeA timeB
+        |> Time.millisToPosix
 
 
 {-| Pass the Millis of two Time.Posix to the given function and return the result.
