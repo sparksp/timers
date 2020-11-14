@@ -95,6 +95,7 @@ toSession page =
 changeRouteTo : Maybe Route -> Model -> ( Model, Cmd Msg )
 changeRouteTo maybeRoute model =
     let
+        session : Session
         session =
             toSession model
     in

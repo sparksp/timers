@@ -27,6 +27,7 @@ testToHuman =
         , test "converts hours, minutes and seconds with no ms" <|
             \_ ->
                 let
+                    d : number
                     d =
                         2
 
@@ -39,6 +40,7 @@ testToHuman =
         , test "days with no time has no days output" <|
             \_ ->
                 let
+                    d : number
                     d =
                         5
                 in
@@ -64,6 +66,7 @@ testToIso8601 =
         , test "converts to days, hours, minutes and seconds" <|
             \_ ->
                 let
+                    d : number
                     d =
                         2
 
@@ -76,6 +79,7 @@ testToIso8601 =
         , test "days with no time has no time output" <|
             \_ ->
                 let
+                    d : number
                     d =
                         5
                 in

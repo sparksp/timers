@@ -1,4 +1,9 @@
 module.exports = {
+    future: {
+        defaultLineHeights: true,
+        purgeLayersByDefault: true,
+        removeDeprecatedGapUtilities: true,
+    },
     purge: false,
     theme: {
         extend: {

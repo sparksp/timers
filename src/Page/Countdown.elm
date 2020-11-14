@@ -145,6 +145,7 @@ updateEditMsg msg stage =
     case stage of
         Waiting duration ->
             let
+                time : Time
                 time =
                     periodToTime duration
             in
@@ -208,7 +209,7 @@ viewBody stage =
             , viewProgress stage
             ]
         ]
-    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
+    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.leading_normal, TW.py_2 ]
         [ viewStartStopButton stage
         , viewResetButton stage
         ]
@@ -467,15 +468,19 @@ timeToPeriod { hours, minutes, seconds } =
 periodToTime : Period -> Time
 periodToTime period =
     let
+        ms : Int
         ms =
             Period.toMillis period
 
+        s : Int
         s =
             ms // 1000
 
+        m : Int
         m =
             s // 60
 
+        h : Int
         h =
             m // 60
     in

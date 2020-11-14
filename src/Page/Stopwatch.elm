@@ -122,11 +122,11 @@ viewBody stage =
     [ Html.main_ [ TW.flex_grow ]
         [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
             [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
-                [ Html.p [ TW.self_center, TW.text_4xl, TW.font_mono ] [ showTime stage ]
+                [ Html.p [ TW.self_center, TW.text_4xl, TW.leading_normal, TW.font_mono ] [ showTime stage ]
                 ]
             ]
         ]
-    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
+    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.leading_normal, TW.py_2 ]
         [ viewStartStopButton stage
         , viewResetButton stage
         ]

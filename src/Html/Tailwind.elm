@@ -6,8 +6,21 @@ module Html.Tailwind exposing
     , align_text_bottom
     , align_text_top
     , align_top
+    , animate_bounce
+    , animate_none
+    , animate_ping
+    , animate_pulse
+    , animate_spin
     , antialiased
     , appearance_none
+    , auto_cols_auto
+    , auto_cols_fr
+    , auto_cols_max
+    , auto_cols_min
+    , auto_rows_auto
+    , auto_rows_fr
+    , auto_rows_max
+    , auto_rows_min
     , bg_auto
     , bg_black
     , bg_blue_100
@@ -21,10 +34,22 @@ module Html.Tailwind exposing
     , bg_blue_900
     , bg_bottom
     , bg_center
+    , bg_clip_border
+    , bg_clip_content
+    , bg_clip_padding
+    , bg_clip_text
     , bg_contain
     , bg_cover
     , bg_current
     , bg_fixed
+    , bg_gradient_to_b
+    , bg_gradient_to_bl
+    , bg_gradient_to_br
+    , bg_gradient_to_l
+    , bg_gradient_to_r
+    , bg_gradient_to_t
+    , bg_gradient_to_tl
+    , bg_gradient_to_tr
     , bg_gray_100
     , bg_gray_200
     , bg_gray_300
@@ -57,6 +82,7 @@ module Html.Tailwind exposing
     , bg_left_top
     , bg_local
     , bg_no_repeat
+    , bg_none
     , bg_opacity_0
     , bg_opacity_100
     , bg_opacity_25
@@ -289,25 +315,6 @@ module Html.Tailwind exposing
     , col_end_8
     , col_end_9
     , col_end_auto
-    , col_gap_0
-    , col_gap_1
-    , col_gap_10
-    , col_gap_12
-    , col_gap_16
-    , col_gap_2
-    , col_gap_20
-    , col_gap_24
-    , col_gap_3
-    , col_gap_32
-    , col_gap_4
-    , col_gap_40
-    , col_gap_48
-    , col_gap_5
-    , col_gap_56
-    , col_gap_6
-    , col_gap_64
-    , col_gap_8
-    , col_gap_px
     , col_span_1
     , col_span_10
     , col_span_11
@@ -320,6 +327,7 @@ module Html.Tailwind exposing
     , col_span_7
     , col_span_8
     , col_span_9
+    , col_span_full
     , col_start_1
     , col_start_10
     , col_start_11
@@ -339,7 +347,9 @@ module Html.Tailwind exposing
     , content_between
     , content_center
     , content_end
+    , content_evenly
     , content_start
+    , contents
     , cursor_auto
     , cursor_default
     , cursor_move
@@ -355,6 +365,7 @@ module Html.Tailwind exposing
     , delay_500
     , delay_700
     , delay_75
+    , diagonal_fractions
     , disabled__cursor_auto
     , disabled__cursor_default
     , disabled__cursor_move
@@ -378,6 +389,9 @@ module Html.Tailwind exposing
     , divide_blue_800
     , divide_blue_900
     , divide_current
+    , divide_dashed
+    , divide_dotted
+    , divide_double
     , divide_gray_100
     , divide_gray_200
     , divide_gray_300
@@ -405,6 +419,7 @@ module Html.Tailwind exposing
     , divide_indigo_700
     , divide_indigo_800
     , divide_indigo_900
+    , divide_none
     , divide_opacity_0
     , divide_opacity_100
     , divide_opacity_25
@@ -446,6 +461,7 @@ module Html.Tailwind exposing
     , divide_red_700
     , divide_red_800
     , divide_red_900
+    , divide_solid
     , divide_teal_100
     , divide_teal_200
     , divide_teal_300
@@ -719,14 +735,117 @@ module Html.Tailwind exposing
     , focus__font_normal
     , focus__font_semibold
     , focus__font_thin
+    , focus__from_black
+    , focus__from_blue_100
+    , focus__from_blue_200
+    , focus__from_blue_300
+    , focus__from_blue_400
+    , focus__from_blue_500
+    , focus__from_blue_600
+    , focus__from_blue_700
+    , focus__from_blue_800
+    , focus__from_blue_900
+    , focus__from_current
+    , focus__from_gray_100
+    , focus__from_gray_200
+    , focus__from_gray_300
+    , focus__from_gray_400
+    , focus__from_gray_500
+    , focus__from_gray_600
+    , focus__from_gray_700
+    , focus__from_gray_800
+    , focus__from_gray_900
+    , focus__from_green_100
+    , focus__from_green_200
+    , focus__from_green_300
+    , focus__from_green_400
+    , focus__from_green_500
+    , focus__from_green_600
+    , focus__from_green_700
+    , focus__from_green_800
+    , focus__from_green_900
+    , focus__from_indigo_100
+    , focus__from_indigo_200
+    , focus__from_indigo_300
+    , focus__from_indigo_400
+    , focus__from_indigo_500
+    , focus__from_indigo_600
+    , focus__from_indigo_700
+    , focus__from_indigo_800
+    , focus__from_indigo_900
+    , focus__from_orange_100
+    , focus__from_orange_200
+    , focus__from_orange_300
+    , focus__from_orange_400
+    , focus__from_orange_500
+    , focus__from_orange_600
+    , focus__from_orange_700
+    , focus__from_orange_800
+    , focus__from_orange_900
+    , focus__from_pink_100
+    , focus__from_pink_200
+    , focus__from_pink_300
+    , focus__from_pink_400
+    , focus__from_pink_500
+    , focus__from_pink_600
+    , focus__from_pink_700
+    , focus__from_pink_800
+    , focus__from_pink_900
+    , focus__from_purple_100
+    , focus__from_purple_200
+    , focus__from_purple_300
+    , focus__from_purple_400
+    , focus__from_purple_500
+    , focus__from_purple_600
+    , focus__from_purple_700
+    , focus__from_purple_800
+    , focus__from_purple_900
+    , focus__from_red_100
+    , focus__from_red_200
+    , focus__from_red_300
+    , focus__from_red_400
+    , focus__from_red_500
+    , focus__from_red_600
+    , focus__from_red_700
+    , focus__from_red_800
+    , focus__from_red_900
+    , focus__from_teal_100
+    , focus__from_teal_200
+    , focus__from_teal_300
+    , focus__from_teal_400
+    , focus__from_teal_500
+    , focus__from_teal_600
+    , focus__from_teal_700
+    , focus__from_teal_800
+    , focus__from_teal_900
+    , focus__from_transparent
+    , focus__from_white
+    , focus__from_yellow_100
+    , focus__from_yellow_200
+    , focus__from_yellow_300
+    , focus__from_yellow_400
+    , focus__from_yellow_500
+    , focus__from_yellow_600
+    , focus__from_yellow_700
+    , focus__from_yellow_800
+    , focus__from_yellow_900
     , focus__line_through
+    , focus__neg_rotate_1
+    , focus__neg_rotate_12
     , focus__neg_rotate_180
+    , focus__neg_rotate_2
+    , focus__neg_rotate_3
     , focus__neg_rotate_45
+    , focus__neg_rotate_6
     , focus__neg_rotate_90
+    , focus__neg_skew_x_1
     , focus__neg_skew_x_12
+    , focus__neg_skew_x_2
     , focus__neg_skew_x_3
     , focus__neg_skew_x_6
+    , focus__neg_skew_y_1
     , focus__neg_skew_y_12
+    , focus__neg_skew_y_2
     , focus__neg_skew_y_3
     , focus__neg_skew_y_6
     , focus__neg_translate_x_1
@@ -776,7 +895,9 @@ module Html.Tailwind exposing
     , focus__opacity_25
     , focus__opacity_50
     , focus__opacity_75
+    , focus__outline_black
     , focus__outline_none
+    , focus__outline_white
     , focus__placeholder_black__focus
     , focus__placeholder_blue_100__focus
     , focus__placeholder_blue_200__focus
@@ -877,8 +998,13 @@ module Html.Tailwind exposing
     , focus__placeholder_yellow_800__focus
     , focus__placeholder_yellow_900__focus
     , focus__rotate_0
+    , focus__rotate_1
+    , focus__rotate_12
     , focus__rotate_180
+    , focus__rotate_2
+    , focus__rotate_3
     , focus__rotate_45
+    , focus__rotate_6
     , focus__rotate_90
     , focus__scale_0
     , focus__scale_100
@@ -921,11 +1047,15 @@ module Html.Tailwind exposing
     , focus__shadow_xl
     , focus__shadow_xs
     , focus__skew_x_0
+    , focus__skew_x_1
     , focus__skew_x_12
+    , focus__skew_x_2
     , focus__skew_x_3
     , focus__skew_x_6
     , focus__skew_y_0
+    , focus__skew_y_1
     , focus__skew_y_12
+    , focus__skew_y_2
     , focus__skew_y_3
     , focus__skew_y_6
     , focus__sr_only
@@ -1028,6 +1158,100 @@ module Html.Tailwind exposing
     , focus__text_yellow_700
     , focus__text_yellow_800
     , focus__text_yellow_900
+    , focus__to_black
+    , focus__to_blue_100
+    , focus__to_blue_200
+    , focus__to_blue_300
+    , focus__to_blue_400
+    , focus__to_blue_500
+    , focus__to_blue_600
+    , focus__to_blue_700
+    , focus__to_blue_800
+    , focus__to_blue_900
+    , focus__to_current
+    , focus__to_gray_100
+    , focus__to_gray_200
+    , focus__to_gray_300
+    , focus__to_gray_400
+    , focus__to_gray_500
+    , focus__to_gray_600
+    , focus__to_gray_700
+    , focus__to_gray_800
+    , focus__to_gray_900
+    , focus__to_green_100
+    , focus__to_green_200
+    , focus__to_green_300
+    , focus__to_green_400
+    , focus__to_green_500
+    , focus__to_green_600
+    , focus__to_green_700
+    , focus__to_green_800
+    , focus__to_green_900
+    , focus__to_indigo_100
+    , focus__to_indigo_200
+    , focus__to_indigo_300
+    , focus__to_indigo_400
+    , focus__to_indigo_500
+    , focus__to_indigo_600
+    , focus__to_indigo_700
+    , focus__to_indigo_800
+    , focus__to_indigo_900
+    , focus__to_orange_100
+    , focus__to_orange_200
+    , focus__to_orange_300
+    , focus__to_orange_400
+    , focus__to_orange_500
+    , focus__to_orange_600
+    , focus__to_orange_700
+    , focus__to_orange_800
+    , focus__to_orange_900
+    , focus__to_pink_100
+    , focus__to_pink_200
+    , focus__to_pink_300
+    , focus__to_pink_400
+    , focus__to_pink_500
+    , focus__to_pink_600
+    , focus__to_pink_700
+    , focus__to_pink_800
+    , focus__to_pink_900
+    , focus__to_purple_100
+    , focus__to_purple_200
+    , focus__to_purple_300
+    , focus__to_purple_400
+    , focus__to_purple_500
+    , focus__to_purple_600
+    , focus__to_purple_700
+    , focus__to_purple_800
+    , focus__to_purple_900
+    , focus__to_red_100
+    , focus__to_red_200
+    , focus__to_red_300
+    , focus__to_red_400
+    , focus__to_red_500
+    , focus__to_red_600
+    , focus__to_red_700
+    , focus__to_red_800
+    , focus__to_red_900
+    , focus__to_teal_100
+    , focus__to_teal_200
+    , focus__to_teal_300
+    , focus__to_teal_400
+    , focus__to_teal_500
+    , focus__to_teal_600
+    , focus__to_teal_700
+    , focus__to_teal_800
+    , focus__to_teal_900
+    , focus__to_transparent
+    , focus__to_white
+    , focus__to_yellow_100
+    , focus__to_yellow_200
+    , focus__to_yellow_300
+    , focus__to_yellow_400
+    , focus__to_yellow_500
+    , focus__to_yellow_600
+    , focus__to_yellow_700
+    , focus__to_yellow_800
+    , focus__to_yellow_900
     , focus__translate_x_0
     , focus__translate_x_1
     , focus__translate_x_10
@@ -1071,6 +1295,100 @@ module Html.Tailwind exposing
     , focus__translate_y_full
     , focus__translate_y_px
     , focus__underline
+    , focus__via_black
+    , focus__via_blue_100
+    , focus__via_blue_200
+    , focus__via_blue_300
+    , focus__via_blue_400
+    , focus__via_blue_500
+    , focus__via_blue_600
+    , focus__via_blue_700
+    , focus__via_blue_800
+    , focus__via_blue_900
+    , focus__via_current
+    , focus__via_gray_100
+    , focus__via_gray_200
+    , focus__via_gray_300
+    , focus__via_gray_400
+    , focus__via_gray_500
+    , focus__via_gray_600
+    , focus__via_gray_700
+    , focus__via_gray_800
+    , focus__via_gray_900
+    , focus__via_green_100
+    , focus__via_green_200
+    , focus__via_green_300
+    , focus__via_green_400
+    , focus__via_green_500
+    , focus__via_green_600
+    , focus__via_green_700
+    , focus__via_green_800
+    , focus__via_green_900
+    , focus__via_indigo_100
+    , focus__via_indigo_200
+    , focus__via_indigo_300
+    , focus__via_indigo_400
+    , focus__via_indigo_500
+    , focus__via_indigo_600
+    , focus__via_indigo_700
+    , focus__via_indigo_800
+    , focus__via_indigo_900
+    , focus__via_orange_100
+    , focus__via_orange_200
+    , focus__via_orange_300
+    , focus__via_orange_400
+    , focus__via_orange_500
+    , focus__via_orange_600
+    , focus__via_orange_700
+    , focus__via_orange_800
+    , focus__via_orange_900
+    , focus__via_pink_100
+    , focus__via_pink_200
+    , focus__via_pink_300
+    , focus__via_pink_400
+    , focus__via_pink_500
+    , focus__via_pink_600
+    , focus__via_pink_700
+    , focus__via_pink_800
+    , focus__via_pink_900
+    , focus__via_purple_100
+    , focus__via_purple_200
+    , focus__via_purple_300
+    , focus__via_purple_400
+    , focus__via_purple_500
+    , focus__via_purple_600
+    , focus__via_purple_700
+    , focus__via_purple_800
+    , focus__via_purple_900
+    , focus__via_red_100
+    , focus__via_red_200
+    , focus__via_red_300
+    , focus__via_red_400
+    , focus__via_red_500
+    , focus__via_red_600
+    , focus__via_red_700
+    , focus__via_red_800
+    , focus__via_red_900
+    , focus__via_teal_100
+    , focus__via_teal_200
+    , focus__via_teal_300
+    , focus__via_teal_400
+    , focus__via_teal_500
+    , focus__via_teal_600
+    , focus__via_teal_700
+    , focus__via_teal_800
+    , focus__via_teal_900
+    , focus__via_transparent
+    , focus__via_white
+    , focus__via_yellow_100
+    , focus__via_yellow_200
+    , focus__via_yellow_300
+    , focus__via_yellow_400
+    , focus__via_yellow_500
+    , focus__via_yellow_600
+    , focus__via_yellow_700
+    , focus__via_yellow_800
+    , focus__via_yellow_900
     , font_black
     , font_bold
     , font_extrabold
@@ -1083,6 +1401,100 @@ module Html.Tailwind exposing
     , font_semibold
     , font_serif
     , font_thin
+    , from_black
+    , from_blue_100
+    , from_blue_200
+    , from_blue_300
+    , from_blue_400
+    , from_blue_500
+    , from_blue_600
+    , from_blue_700
+    , from_blue_800
+    , from_blue_900
+    , from_current
+    , from_gray_100
+    , from_gray_200
+    , from_gray_300
+    , from_gray_400
+    , from_gray_500
+    , from_gray_600
+    , from_gray_700
+    , from_gray_800
+    , from_gray_900
+    , from_green_100
+    , from_green_200
+    , from_green_300
+    , from_green_400
+    , from_green_500
+    , from_green_600
+    , from_green_700
+    , from_green_800
+    , from_green_900
+    , from_indigo_100
+    , from_indigo_200
+    , from_indigo_300
+    , from_indigo_400
+    , from_indigo_500
+    , from_indigo_600
+    , from_indigo_700
+    , from_indigo_800
+    , from_indigo_900
+    , from_orange_100
+    , from_orange_200
+    , from_orange_300
+    , from_orange_400
+    , from_orange_500
+    , from_orange_600
+    , from_orange_700
+    , from_orange_800
+    , from_orange_900
+    , from_pink_100
+    , from_pink_200
+    , from_pink_300
+    , from_pink_400
+    , from_pink_500
+    , from_pink_600
+    , from_pink_700
+    , from_pink_800
+    , from_pink_900
+    , from_purple_100
+    , from_purple_200
+    , from_purple_300
+    , from_purple_400
+    , from_purple_500
+    , from_purple_600
+    , from_purple_700
+    , from_purple_800
+    , from_purple_900
+    , from_red_100
+    , from_red_200
+    , from_red_300
+    , from_red_400
+    , from_red_500
+    , from_red_600
+    , from_red_700
+    , from_red_800
+    , from_red_900
+    , from_teal_100
+    , from_teal_200
+    , from_teal_300
+    , from_teal_400
+    , from_teal_500
+    , from_teal_600
+    , from_teal_700
+    , from_teal_800
+    , from_teal_900
+    , from_transparent
+    , from_white
+    , from_yellow_100
+    , from_yellow_200
+    , from_yellow_300
+    , from_yellow_400
+    , from_yellow_500
+    , from_yellow_600
+    , from_yellow_700
+    , from_yellow_800
+    , from_yellow_900
     , gap_0
     , gap_1
     , gap_10
@@ -1102,6 +1514,44 @@ module Html.Tailwind exposing
     , gap_64
     , gap_8
     , gap_px
+    , gap_x_0
+    , gap_x_1
+    , gap_x_10
+    , gap_x_12
+    , gap_x_16
+    , gap_x_2
+    , gap_x_20
+    , gap_x_24
+    , gap_x_3
+    , gap_x_32
+    , gap_x_4
+    , gap_x_40
+    , gap_x_48
+    , gap_x_5
+    , gap_x_56
+    , gap_x_6
+    , gap_x_64
+    , gap_x_8
+    , gap_x_px
+    , gap_y_0
+    , gap_y_1
+    , gap_y_10
+    , gap_y_12
+    , gap_y_16
+    , gap_y_2
+    , gap_y_20
+    , gap_y_24
+    , gap_y_3
+    , gap_y_32
+    , gap_y_4
+    , gap_y_40
+    , gap_y_48
+    , gap_y_5
+    , gap_y_56
+    , gap_y_6
+    , gap_y_64
+    , gap_y_8
+    , gap_y_px
     , grid
     , grid_cols_1
     , grid_cols_10
@@ -1358,14 +1808,117 @@ module Html.Tailwind exposing
     , hover__font_normal
     , hover__font_semibold
     , hover__font_thin
+    , hover__from_black
+    , hover__from_blue_100
+    , hover__from_blue_200
+    , hover__from_blue_300
+    , hover__from_blue_400
+    , hover__from_blue_500
+    , hover__from_blue_600
+    , hover__from_blue_700
+    , hover__from_blue_800
+    , hover__from_blue_900
+    , hover__from_current
+    , hover__from_gray_100
+    , hover__from_gray_200
+    , hover__from_gray_300
+    , hover__from_gray_400
+    , hover__from_gray_500
+    , hover__from_gray_600
+    , hover__from_gray_700
+    , hover__from_gray_800
+    , hover__from_gray_900
+    , hover__from_green_100
+    , hover__from_green_200
+    , hover__from_green_300
+    , hover__from_green_400
+    , hover__from_green_500
+    , hover__from_green_600
+    , hover__from_green_700
+    , hover__from_green_800
+    , hover__from_green_900
+    , hover__from_indigo_100
+    , hover__from_indigo_200
+    , hover__from_indigo_300
+    , hover__from_indigo_400
+    , hover__from_indigo_500
+    , hover__from_indigo_600
+    , hover__from_indigo_700
+    , hover__from_indigo_800
+    , hover__from_indigo_900
+    , hover__from_orange_100
+    , hover__from_orange_200
+    , hover__from_orange_300
+    , hover__from_orange_400
+    , hover__from_orange_500
+    , hover__from_orange_600
+    , hover__from_orange_700
+    , hover__from_orange_800
+    , hover__from_orange_900
+    , hover__from_pink_100
+    , hover__from_pink_200
+    , hover__from_pink_300
+    , hover__from_pink_400
+    , hover__from_pink_500
+    , hover__from_pink_600
+    , hover__from_pink_700
+    , hover__from_pink_800
+    , hover__from_pink_900
+    , hover__from_purple_100
+    , hover__from_purple_200
+    , hover__from_purple_300
+    , hover__from_purple_400
+    , hover__from_purple_500
+    , hover__from_purple_600
+    , hover__from_purple_700
+    , hover__from_purple_800
+    , hover__from_purple_900
+    , hover__from_red_100
+    , hover__from_red_200
+    , hover__from_red_300
+    , hover__from_red_400
+    , hover__from_red_500
+    , hover__from_red_600
+    , hover__from_red_700
+    , hover__from_red_800
+    , hover__from_red_900
+    , hover__from_teal_100
+    , hover__from_teal_200
+    , hover__from_teal_300
+    , hover__from_teal_400
+    , hover__from_teal_500
+    , hover__from_teal_600
+    , hover__from_teal_700
+    , hover__from_teal_800
+    , hover__from_teal_900
+    , hover__from_transparent
+    , hover__from_white
+    , hover__from_yellow_100
+    , hover__from_yellow_200
+    , hover__from_yellow_300
+    , hover__from_yellow_400
+    , hover__from_yellow_500
+    , hover__from_yellow_600
+    , hover__from_yellow_700
+    , hover__from_yellow_800
+    , hover__from_yellow_900
     , hover__line_through
+    , hover__neg_rotate_1
+    , hover__neg_rotate_12
     , hover__neg_rotate_180
+    , hover__neg_rotate_2
+    , hover__neg_rotate_3
     , hover__neg_rotate_45
+    , hover__neg_rotate_6
     , hover__neg_rotate_90
+    , hover__neg_skew_x_1
     , hover__neg_skew_x_12
+    , hover__neg_skew_x_2
     , hover__neg_skew_x_3
     , hover__neg_skew_x_6
+    , hover__neg_skew_y_1
     , hover__neg_skew_y_12
+    , hover__neg_skew_y_2
     , hover__neg_skew_y_3
     , hover__neg_skew_y_6
     , hover__neg_translate_x_1
@@ -1415,8 +1968,13 @@ module Html.Tailwind exposing
     , hover__opacity_50
     , hover__opacity_75
     , hover__rotate_0
+    , hover__rotate_1
+    , hover__rotate_12
     , hover__rotate_180
+    , hover__rotate_2
+    , hover__rotate_3
     , hover__rotate_45
+    , hover__rotate_6
     , hover__rotate_90
     , hover__scale_0
     , hover__scale_100
@@ -1459,11 +2017,15 @@ module Html.Tailwind exposing
     , hover__shadow_xl
     , hover__shadow_xs
     , hover__skew_x_0
+    , hover__skew_x_1
     , hover__skew_x_12
+    , hover__skew_x_2
     , hover__skew_x_3
     , hover__skew_x_6
     , hover__skew_y_0
+    , hover__skew_y_1
     , hover__skew_y_12
+    , hover__skew_y_2
     , hover__skew_y_3
     , hover__skew_y_6
     , hover__text_black
@@ -1565,6 +2127,100 @@ module Html.Tailwind exposing
     , hover__text_yellow_700
     , hover__text_yellow_800
     , hover__text_yellow_900
+    , hover__to_black
+    , hover__to_blue_100
+    , hover__to_blue_200
+    , hover__to_blue_300
+    , hover__to_blue_400
+    , hover__to_blue_500
+    , hover__to_blue_600
+    , hover__to_blue_700
+    , hover__to_blue_800
+    , hover__to_blue_900
+    , hover__to_current
+    , hover__to_gray_100
+    , hover__to_gray_200
+    , hover__to_gray_300
+    , hover__to_gray_400
+    , hover__to_gray_500
+    , hover__to_gray_600
+    , hover__to_gray_700
+    , hover__to_gray_800
+    , hover__to_gray_900
+    , hover__to_green_100
+    , hover__to_green_200
+    , hover__to_green_300
+    , hover__to_green_400
+    , hover__to_green_500
+    , hover__to_green_600
+    , hover__to_green_700
+    , hover__to_green_800
+    , hover__to_green_900
+    , hover__to_indigo_100
+    , hover__to_indigo_200
+    , hover__to_indigo_300
+    , hover__to_indigo_400
+    , hover__to_indigo_500
+    , hover__to_indigo_600
+    , hover__to_indigo_700
+    , hover__to_indigo_800
+    , hover__to_indigo_900
+    , hover__to_orange_100
+    , hover__to_orange_200
+    , hover__to_orange_300
+    , hover__to_orange_400
+    , hover__to_orange_500
+    , hover__to_orange_600
+    , hover__to_orange_700
+    , hover__to_orange_800
+    , hover__to_orange_900
+    , hover__to_pink_100
+    , hover__to_pink_200
+    , hover__to_pink_300
+    , hover__to_pink_400
+    , hover__to_pink_500
+    , hover__to_pink_600
+    , hover__to_pink_700
+    , hover__to_pink_800
+    , hover__to_pink_900
+    , hover__to_purple_100
+    , hover__to_purple_200
+    , hover__to_purple_300
+    , hover__to_purple_400
+    , hover__to_purple_500
+    , hover__to_purple_600
+    , hover__to_purple_700
+    , hover__to_purple_800
+    , hover__to_purple_900
+    , hover__to_red_100
+    , hover__to_red_200
+    , hover__to_red_300
+    , hover__to_red_400
+    , hover__to_red_500
+    , hover__to_red_600
+    , hover__to_red_700
+    , hover__to_red_800
+    , hover__to_red_900
+    , hover__to_teal_100
+    , hover__to_teal_200
+    , hover__to_teal_300
+    , hover__to_teal_400
+    , hover__to_teal_500
+    , hover__to_teal_600
+    , hover__to_teal_700
+    , hover__to_teal_800
+    , hover__to_teal_900
+    , hover__to_transparent
+    , hover__to_white
+    , hover__to_yellow_100
+    , hover__to_yellow_200
+    , hover__to_yellow_300
+    , hover__to_yellow_400
+    , hover__to_yellow_500
+    , hover__to_yellow_600
+    , hover__to_yellow_700
+    , hover__to_yellow_800
+    , hover__to_yellow_900
     , hover__translate_x_0
     , hover__translate_x_1
     , hover__translate_x_10
@@ -1608,6 +2264,100 @@ module Html.Tailwind exposing
     , hover__translate_y_full
     , hover__translate_y_px
     , hover__underline
+    , hover__via_black
+    , hover__via_blue_100
+    , hover__via_blue_200
+    , hover__via_blue_300
+    , hover__via_blue_400
+    , hover__via_blue_500
+    , hover__via_blue_600
+    , hover__via_blue_700
+    , hover__via_blue_800
+    , hover__via_blue_900
+    , hover__via_current
+    , hover__via_gray_100
+    , hover__via_gray_200
+    , hover__via_gray_300
+    , hover__via_gray_400
+    , hover__via_gray_500
+    , hover__via_gray_600
+    , hover__via_gray_700
+    , hover__via_gray_800
+    , hover__via_gray_900
+    , hover__via_green_100
+    , hover__via_green_200
+    , hover__via_green_300
+    , hover__via_green_400
+    , hover__via_green_500
+    , hover__via_green_600
+    , hover__via_green_700
+    , hover__via_green_800
+    , hover__via_green_900
+    , hover__via_indigo_100
+    , hover__via_indigo_200
+    , hover__via_indigo_300
+    , hover__via_indigo_400
+    , hover__via_indigo_500
+    , hover__via_indigo_600
+    , hover__via_indigo_700
+    , hover__via_indigo_800
+    , hover__via_indigo_900
+    , hover__via_orange_100
+    , hover__via_orange_200
+    , hover__via_orange_300
+    , hover__via_orange_400
+    , hover__via_orange_500
+    , hover__via_orange_600
+    , hover__via_orange_700
+    , hover__via_orange_800
+    , hover__via_orange_900
+    , hover__via_pink_100
+    , hover__via_pink_200
+    , hover__via_pink_300
+    , hover__via_pink_400
+    , hover__via_pink_500
+    , hover__via_pink_600
+    , hover__via_pink_700
+    , hover__via_pink_800
+    , hover__via_pink_900
+    , hover__via_purple_100
+    , hover__via_purple_200
+    , hover__via_purple_300
+    , hover__via_purple_400
+    , hover__via_purple_500
+    , hover__via_purple_600
+    , hover__via_purple_700
+    , hover__via_purple_800
+    , hover__via_purple_900
+    , hover__via_red_100
+    , hover__via_red_200
+    , hover__via_red_300
+    , hover__via_red_400
+    , hover__via_red_500
+    , hover__via_red_600
+    , hover__via_red_700
+    , hover__via_red_800
+    , hover__via_red_900
+    , hover__via_teal_100
+    , hover__via_teal_200
+    , hover__via_teal_300
+    , hover__via_teal_400
+    , hover__via_teal_500
+    , hover__via_teal_600
+    , hover__via_teal_700
+    , hover__via_teal_800
+    , hover__via_teal_900
+    , hover__via_transparent
+    , hover__via_white
+    , hover__via_yellow_100
+    , hover__via_yellow_200
+    , hover__via_yellow_300
+    , hover__via_yellow_400
+    , hover__via_yellow_500
+    , hover__via_yellow_600
+    , hover__via_yellow_700
+    , hover__via_yellow_800
+    , hover__via_yellow_900
     , inline
     , inline_block
     , inline_flex
@@ -1630,6 +2380,16 @@ module Html.Tailwind exposing
     , justify_center
     , justify_end
     , justify_evenly
+    , justify_items_auto
+    , justify_items_center
+    , justify_items_end
+    , justify_items_start
+    , justify_items_stretch
+    , justify_self_auto
+    , justify_self_center
+    , justify_self_end
+    , justify_self_start
+    , justify_self_stretch
     , justify_start
     , leading_10
     , leading_3
@@ -1654,8 +2414,21 @@ module Html.Tailwind exposing
     , lg__align_text_bottom
     , lg__align_text_top
     , lg__align_top
+    , lg__animate_bounce
+    , lg__animate_none
+    , lg__animate_ping
+    , lg__animate_pulse
+    , lg__animate_spin
     , lg__antialiased
     , lg__appearance_none
+    , lg__auto_cols_auto
+    , lg__auto_cols_fr
+    , lg__auto_cols_max
+    , lg__auto_cols_min
+    , lg__auto_rows_auto
+    , lg__auto_rows_fr
+    , lg__auto_rows_max
+    , lg__auto_rows_min
     , lg__bg_auto
     , lg__bg_black
     , lg__bg_blue_100
@@ -1669,10 +2442,22 @@ module Html.Tailwind exposing
     , lg__bg_blue_900
     , lg__bg_bottom
     , lg__bg_center
+    , lg__bg_clip_border
+    , lg__bg_clip_content
+    , lg__bg_clip_padding
+    , lg__bg_clip_text
     , lg__bg_contain
     , lg__bg_cover
     , lg__bg_current
     , lg__bg_fixed
+    , lg__bg_gradient_to_b
+    , lg__bg_gradient_to_bl
+    , lg__bg_gradient_to_br
+    , lg__bg_gradient_to_l
+    , lg__bg_gradient_to_r
+    , lg__bg_gradient_to_t
+    , lg__bg_gradient_to_tl
+    , lg__bg_gradient_to_tr
     , lg__bg_gray_100
     , lg__bg_gray_200
     , lg__bg_gray_300
@@ -1705,6 +2490,7 @@ module Html.Tailwind exposing
     , lg__bg_left_top
     , lg__bg_local
     , lg__bg_no_repeat
+    , lg__bg_none
     , lg__bg_opacity_0
     , lg__bg_opacity_100
     , lg__bg_opacity_25
@@ -1936,25 +2722,6 @@ module Html.Tailwind exposing
     , lg__col_end_8
     , lg__col_end_9
     , lg__col_end_auto
-    , lg__col_gap_0
-    , lg__col_gap_1
-    , lg__col_gap_10
-    , lg__col_gap_12
-    , lg__col_gap_16
-    , lg__col_gap_2
-    , lg__col_gap_20
-    , lg__col_gap_24
-    , lg__col_gap_3
-    , lg__col_gap_32
-    , lg__col_gap_4
-    , lg__col_gap_40
-    , lg__col_gap_48
-    , lg__col_gap_5
-    , lg__col_gap_56
-    , lg__col_gap_6
-    , lg__col_gap_64
-    , lg__col_gap_8
-    , lg__col_gap_px
     , lg__col_span_1
     , lg__col_span_10
     , lg__col_span_11
@@ -1967,6 +2734,7 @@ module Html.Tailwind exposing
     , lg__col_span_7
     , lg__col_span_8
     , lg__col_span_9
+    , lg__col_span_full
     , lg__col_start_1
     , lg__col_start_10
     , lg__col_start_11
@@ -1981,11 +2749,14 @@ module Html.Tailwind exposing
     , lg__col_start_8
     , lg__col_start_9
     , lg__col_start_auto
+    , lg__container
     , lg__content_around
     , lg__content_between
     , lg__content_center
     , lg__content_end
+    , lg__content_evenly
     , lg__content_start
+    , lg__contents
     , lg__cursor_auto
     , lg__cursor_default
     , lg__cursor_move
@@ -2001,6 +2772,7 @@ module Html.Tailwind exposing
     , lg__delay_500
     , lg__delay_700
     , lg__delay_75
+    , lg__diagonal_fractions
     , lg__disabled__cursor_auto
     , lg__disabled__cursor_default
     , lg__disabled__cursor_move
@@ -2024,6 +2796,9 @@ module Html.Tailwind exposing
     , lg__divide_blue_800
     , lg__divide_blue_900
     , lg__divide_current
+    , lg__divide_dashed
+    , lg__divide_dotted
+    , lg__divide_double
     , lg__divide_gray_100
     , lg__divide_gray_200
     , lg__divide_gray_300
@@ -2051,6 +2826,7 @@ module Html.Tailwind exposing
     , lg__divide_indigo_700
     , lg__divide_indigo_800
     , lg__divide_indigo_900
+    , lg__divide_none
     , lg__divide_opacity_0
     , lg__divide_opacity_100
     , lg__divide_opacity_25
@@ -2092,6 +2868,7 @@ module Html.Tailwind exposing
     , lg__divide_red_700
     , lg__divide_red_800
     , lg__divide_red_900
+    , lg__divide_solid
     , lg__divide_teal_100
     , lg__divide_teal_200
     , lg__divide_teal_300
@@ -2365,14 +3142,117 @@ module Html.Tailwind exposing
     , lg__focus__font_normal
     , lg__focus__font_semibold
     , lg__focus__font_thin
+    , lg__focus__from_black
+    , lg__focus__from_blue_100
+    , lg__focus__from_blue_200
+    , lg__focus__from_blue_300
+    , lg__focus__from_blue_400
+    , lg__focus__from_blue_500
+    , lg__focus__from_blue_600
+    , lg__focus__from_blue_700
+    , lg__focus__from_blue_800
+    , lg__focus__from_blue_900
+    , lg__focus__from_current
+    , lg__focus__from_gray_100
+    , lg__focus__from_gray_200
+    , lg__focus__from_gray_300
+    , lg__focus__from_gray_400
+    , lg__focus__from_gray_500
+    , lg__focus__from_gray_600
+    , lg__focus__from_gray_700
+    , lg__focus__from_gray_800
+    , lg__focus__from_gray_900
+    , lg__focus__from_green_100
+    , lg__focus__from_green_200
+    , lg__focus__from_green_300
+    , lg__focus__from_green_400
+    , lg__focus__from_green_500
+    , lg__focus__from_green_600
+    , lg__focus__from_green_700
+    , lg__focus__from_green_800
+    , lg__focus__from_green_900
+    , lg__focus__from_indigo_100
+    , lg__focus__from_indigo_200
+    , lg__focus__from_indigo_300
+    , lg__focus__from_indigo_400
+    , lg__focus__from_indigo_500
+    , lg__focus__from_indigo_600
+    , lg__focus__from_indigo_700
+    , lg__focus__from_indigo_800
+    , lg__focus__from_indigo_900
+    , lg__focus__from_orange_100
+    , lg__focus__from_orange_200
+    , lg__focus__from_orange_300
+    , lg__focus__from_orange_400
+    , lg__focus__from_orange_500
+    , lg__focus__from_orange_600
+    , lg__focus__from_orange_700
+    , lg__focus__from_orange_800
+    , lg__focus__from_orange_900
+    , lg__focus__from_pink_100
+    , lg__focus__from_pink_200
+    , lg__focus__from_pink_300
+    , lg__focus__from_pink_400
+    , lg__focus__from_pink_500
+    , lg__focus__from_pink_600
+    , lg__focus__from_pink_700
+    , lg__focus__from_pink_800
+    , lg__focus__from_pink_900
+    , lg__focus__from_purple_100
+    , lg__focus__from_purple_200
+    , lg__focus__from_purple_300
+    , lg__focus__from_purple_400
+    , lg__focus__from_purple_500
+    , lg__focus__from_purple_600
+    , lg__focus__from_purple_700
+    , lg__focus__from_purple_800
+    , lg__focus__from_purple_900
+    , lg__focus__from_red_100
+    , lg__focus__from_red_200
+    , lg__focus__from_red_300
+    , lg__focus__from_red_400
+    , lg__focus__from_red_500
+    , lg__focus__from_red_600
+    , lg__focus__from_red_700
+    , lg__focus__from_red_800
+    , lg__focus__from_red_900
+    , lg__focus__from_teal_100
+    , lg__focus__from_teal_200
+    , lg__focus__from_teal_300
+    , lg__focus__from_teal_400
+    , lg__focus__from_teal_500
+    , lg__focus__from_teal_600
+    , lg__focus__from_teal_700
+    , lg__focus__from_teal_800
+    , lg__focus__from_teal_900
+    , lg__focus__from_transparent
+    , lg__focus__from_white
+    , lg__focus__from_yellow_100
+    , lg__focus__from_yellow_200
+    , lg__focus__from_yellow_300
+    , lg__focus__from_yellow_400
+    , lg__focus__from_yellow_500
+    , lg__focus__from_yellow_600
+    , lg__focus__from_yellow_700
+    , lg__focus__from_yellow_800
+    , lg__focus__from_yellow_900
     , lg__focus__line_through
+    , lg__focus__neg_rotate_1
+    , lg__focus__neg_rotate_12
     , lg__focus__neg_rotate_180
+    , lg__focus__neg_rotate_2
+    , lg__focus__neg_rotate_3
     , lg__focus__neg_rotate_45
+    , lg__focus__neg_rotate_6
     , lg__focus__neg_rotate_90
+    , lg__focus__neg_skew_x_1
     , lg__focus__neg_skew_x_12
+    , lg__focus__neg_skew_x_2
     , lg__focus__neg_skew_x_3
     , lg__focus__neg_skew_x_6
+    , lg__focus__neg_skew_y_1
     , lg__focus__neg_skew_y_12
+    , lg__focus__neg_skew_y_2
     , lg__focus__neg_skew_y_3
     , lg__focus__neg_skew_y_6
     , lg__focus__neg_translate_x_1
@@ -2422,7 +3302,9 @@ module Html.Tailwind exposing
     , lg__focus__opacity_25
     , lg__focus__opacity_50
     , lg__focus__opacity_75
+    , lg__focus__outline_black
     , lg__focus__outline_none
+    , lg__focus__outline_white
     , lg__focus__placeholder_black__focus
     , lg__focus__placeholder_blue_100__focus
     , lg__focus__placeholder_blue_200__focus
@@ -2523,8 +3405,13 @@ module Html.Tailwind exposing
     , lg__focus__placeholder_yellow_800__focus
     , lg__focus__placeholder_yellow_900__focus
     , lg__focus__rotate_0
+    , lg__focus__rotate_1
+    , lg__focus__rotate_12
     , lg__focus__rotate_180
+    , lg__focus__rotate_2
+    , lg__focus__rotate_3
     , lg__focus__rotate_45
+    , lg__focus__rotate_6
     , lg__focus__rotate_90
     , lg__focus__scale_0
     , lg__focus__scale_100
@@ -2567,11 +3454,15 @@ module Html.Tailwind exposing
     , lg__focus__shadow_xl
     , lg__focus__shadow_xs
     , lg__focus__skew_x_0
+    , lg__focus__skew_x_1
     , lg__focus__skew_x_12
+    , lg__focus__skew_x_2
     , lg__focus__skew_x_3
     , lg__focus__skew_x_6
     , lg__focus__skew_y_0
+    , lg__focus__skew_y_1
     , lg__focus__skew_y_12
+    , lg__focus__skew_y_2
     , lg__focus__skew_y_3
     , lg__focus__skew_y_6
     , lg__focus__sr_only
@@ -2674,6 +3565,100 @@ module Html.Tailwind exposing
     , lg__focus__text_yellow_700
     , lg__focus__text_yellow_800
     , lg__focus__text_yellow_900
+    , lg__focus__to_black
+    , lg__focus__to_blue_100
+    , lg__focus__to_blue_200
+    , lg__focus__to_blue_300
+    , lg__focus__to_blue_400
+    , lg__focus__to_blue_500
+    , lg__focus__to_blue_600
+    , lg__focus__to_blue_700
+    , lg__focus__to_blue_800
+    , lg__focus__to_blue_900
+    , lg__focus__to_current
+    , lg__focus__to_gray_100
+    , lg__focus__to_gray_200
+    , lg__focus__to_gray_300
+    , lg__focus__to_gray_400
+    , lg__focus__to_gray_500
+    , lg__focus__to_gray_600
+    , lg__focus__to_gray_700
+    , lg__focus__to_gray_800
+    , lg__focus__to_gray_900
+    , lg__focus__to_green_100
+    , lg__focus__to_green_200
+    , lg__focus__to_green_300
+    , lg__focus__to_green_400
+    , lg__focus__to_green_500
+    , lg__focus__to_green_600
+    , lg__focus__to_green_700
+    , lg__focus__to_green_800
+    , lg__focus__to_green_900
+    , lg__focus__to_indigo_100
+    , lg__focus__to_indigo_200
+    , lg__focus__to_indigo_300
+    , lg__focus__to_indigo_400
+    , lg__focus__to_indigo_500
+    , lg__focus__to_indigo_600
+    , lg__focus__to_indigo_700
+    , lg__focus__to_indigo_800
+    , lg__focus__to_indigo_900
+    , lg__focus__to_orange_100
+    , lg__focus__to_orange_200
+    , lg__focus__to_orange_300
+    , lg__focus__to_orange_400
+    , lg__focus__to_orange_500
+    , lg__focus__to_orange_600
+    , lg__focus__to_orange_700
+    , lg__focus__to_orange_800
+    , lg__focus__to_orange_900
+    , lg__focus__to_pink_100
+    , lg__focus__to_pink_200
+    , lg__focus__to_pink_300
+    , lg__focus__to_pink_400
+    , lg__focus__to_pink_500
+    , lg__focus__to_pink_600
+    , lg__focus__to_pink_700
+    , lg__focus__to_pink_800
+    , lg__focus__to_pink_900
+    , lg__focus__to_purple_100
+    , lg__focus__to_purple_200
+    , lg__focus__to_purple_300
+    , lg__focus__to_purple_400
+    , lg__focus__to_purple_500
+    , lg__focus__to_purple_600
+    , lg__focus__to_purple_700
+    , lg__focus__to_purple_800
+    , lg__focus__to_purple_900
+    , lg__focus__to_red_100
+    , lg__focus__to_red_200
+    , lg__focus__to_red_300
+    , lg__focus__to_red_400
+    , lg__focus__to_red_500
+    , lg__focus__to_red_600
+    , lg__focus__to_red_700
+    , lg__focus__to_red_800
+    , lg__focus__to_red_900
+    , lg__focus__to_teal_100
+    , lg__focus__to_teal_200
+    , lg__focus__to_teal_300
+    , lg__focus__to_teal_400
+    , lg__focus__to_teal_500
+    , lg__focus__to_teal_600
+    , lg__focus__to_teal_700
+    , lg__focus__to_teal_800
+    , lg__focus__to_teal_900
+    , lg__focus__to_transparent
+    , lg__focus__to_white
+    , lg__focus__to_yellow_100
+    , lg__focus__to_yellow_200
+    , lg__focus__to_yellow_300
+    , lg__focus__to_yellow_400
+    , lg__focus__to_yellow_500
+    , lg__focus__to_yellow_600
+    , lg__focus__to_yellow_700
+    , lg__focus__to_yellow_800
+    , lg__focus__to_yellow_900
     , lg__focus__translate_x_0
     , lg__focus__translate_x_1
     , lg__focus__translate_x_10
@@ -2717,6 +3702,100 @@ module Html.Tailwind exposing
     , lg__focus__translate_y_full
     , lg__focus__translate_y_px
     , lg__focus__underline
+    , lg__focus__via_black
+    , lg__focus__via_blue_100
+    , lg__focus__via_blue_200
+    , lg__focus__via_blue_300
+    , lg__focus__via_blue_400
+    , lg__focus__via_blue_500
+    , lg__focus__via_blue_600
+    , lg__focus__via_blue_700
+    , lg__focus__via_blue_800
+    , lg__focus__via_blue_900
+    , lg__focus__via_current
+    , lg__focus__via_gray_100
+    , lg__focus__via_gray_200
+    , lg__focus__via_gray_300
+    , lg__focus__via_gray_400
+    , lg__focus__via_gray_500
+    , lg__focus__via_gray_600
+    , lg__focus__via_gray_700
+    , lg__focus__via_gray_800
+    , lg__focus__via_gray_900
+    , lg__focus__via_green_100
+    , lg__focus__via_green_200
+    , lg__focus__via_green_300
+    , lg__focus__via_green_400
+    , lg__focus__via_green_500
+    , lg__focus__via_green_600
+    , lg__focus__via_green_700
+    , lg__focus__via_green_800
+    , lg__focus__via_green_900
+    , lg__focus__via_indigo_100
+    , lg__focus__via_indigo_200
+    , lg__focus__via_indigo_300
+    , lg__focus__via_indigo_400
+    , lg__focus__via_indigo_500
+    , lg__focus__via_indigo_600
+    , lg__focus__via_indigo_700
+    , lg__focus__via_indigo_800
+    , lg__focus__via_indigo_900
+    , lg__focus__via_orange_100
+    , lg__focus__via_orange_200
+    , lg__focus__via_orange_300
+    , lg__focus__via_orange_400
+    , lg__focus__via_orange_500
+    , lg__focus__via_orange_600
+    , lg__focus__via_orange_700
+    , lg__focus__via_orange_800
+    , lg__focus__via_orange_900
+    , lg__focus__via_pink_100
+    , lg__focus__via_pink_200
+    , lg__focus__via_pink_300
+    , lg__focus__via_pink_400
+    , lg__focus__via_pink_500
+    , lg__focus__via_pink_600
+    , lg__focus__via_pink_700
+    , lg__focus__via_pink_800
+    , lg__focus__via_pink_900
+    , lg__focus__via_purple_100
+    , lg__focus__via_purple_200
+    , lg__focus__via_purple_300
+    , lg__focus__via_purple_400
+    , lg__focus__via_purple_500
+    , lg__focus__via_purple_600
+    , lg__focus__via_purple_700
+    , lg__focus__via_purple_800
+    , lg__focus__via_purple_900
+    , lg__focus__via_red_100
+    , lg__focus__via_red_200
+    , lg__focus__via_red_300
+    , lg__focus__via_red_400
+    , lg__focus__via_red_500
+    , lg__focus__via_red_600
+    , lg__focus__via_red_700
+    , lg__focus__via_red_800
+    , lg__focus__via_red_900
+    , lg__focus__via_teal_100
+    , lg__focus__via_teal_200
+    , lg__focus__via_teal_300
+    , lg__focus__via_teal_400
+    , lg__focus__via_teal_500
+    , lg__focus__via_teal_600
+    , lg__focus__via_teal_700
+    , lg__focus__via_teal_800
+    , lg__focus__via_teal_900
+    , lg__focus__via_transparent
+    , lg__focus__via_white
+    , lg__focus__via_yellow_100
+    , lg__focus__via_yellow_200
+    , lg__focus__via_yellow_300
+    , lg__focus__via_yellow_400
+    , lg__focus__via_yellow_500
+    , lg__focus__via_yellow_600
+    , lg__focus__via_yellow_700
+    , lg__focus__via_yellow_800
+    , lg__focus__via_yellow_900
     , lg__font_black
     , lg__font_bold
     , lg__font_extrabold
@@ -2729,6 +3808,100 @@ module Html.Tailwind exposing
     , lg__font_semibold
     , lg__font_serif
     , lg__font_thin
+    , lg__from_black
+    , lg__from_blue_100
+    , lg__from_blue_200
+    , lg__from_blue_300
+    , lg__from_blue_400
+    , lg__from_blue_500
+    , lg__from_blue_600
+    , lg__from_blue_700
+    , lg__from_blue_800
+    , lg__from_blue_900
+    , lg__from_current
+    , lg__from_gray_100
+    , lg__from_gray_200
+    , lg__from_gray_300
+    , lg__from_gray_400
+    , lg__from_gray_500
+    , lg__from_gray_600
+    , lg__from_gray_700
+    , lg__from_gray_800
+    , lg__from_gray_900
+    , lg__from_green_100
+    , lg__from_green_200
+    , lg__from_green_300
+    , lg__from_green_400
+    , lg__from_green_500
+    , lg__from_green_600
+    , lg__from_green_700
+    , lg__from_green_800
+    , lg__from_green_900
+    , lg__from_indigo_100
+    , lg__from_indigo_200
+    , lg__from_indigo_300
+    , lg__from_indigo_400
+    , lg__from_indigo_500
+    , lg__from_indigo_600
+    , lg__from_indigo_700
+    , lg__from_indigo_800
+    , lg__from_indigo_900
+    , lg__from_orange_100
+    , lg__from_orange_200
+    , lg__from_orange_300
+    , lg__from_orange_400
+    , lg__from_orange_500
+    , lg__from_orange_600
+    , lg__from_orange_700
+    , lg__from_orange_800
+    , lg__from_orange_900
+    , lg__from_pink_100
+    , lg__from_pink_200
+    , lg__from_pink_300
+    , lg__from_pink_400
+    , lg__from_pink_500
+    , lg__from_pink_600
+    , lg__from_pink_700
+    , lg__from_pink_800
+    , lg__from_pink_900
+    , lg__from_purple_100
+    , lg__from_purple_200
+    , lg__from_purple_300
+    , lg__from_purple_400
+    , lg__from_purple_500
+    , lg__from_purple_600
+    , lg__from_purple_700
+    , lg__from_purple_800
+    , lg__from_purple_900
+    , lg__from_red_100
+    , lg__from_red_200
+    , lg__from_red_300
+    , lg__from_red_400
+    , lg__from_red_500
+    , lg__from_red_600
+    , lg__from_red_700
+    , lg__from_red_800
+    , lg__from_red_900
+    , lg__from_teal_100
+    , lg__from_teal_200
+    , lg__from_teal_300
+    , lg__from_teal_400
+    , lg__from_teal_500
+    , lg__from_teal_600
+    , lg__from_teal_700
+    , lg__from_teal_800
+    , lg__from_teal_900
+    , lg__from_transparent
+    , lg__from_white
+    , lg__from_yellow_100
+    , lg__from_yellow_200
+    , lg__from_yellow_300
+    , lg__from_yellow_400
+    , lg__from_yellow_500
+    , lg__from_yellow_600
+    , lg__from_yellow_700
+    , lg__from_yellow_800
+    , lg__from_yellow_900
     , lg__gap_0
     , lg__gap_1
     , lg__gap_10
@@ -2748,6 +3921,44 @@ module Html.Tailwind exposing
     , lg__gap_64
     , lg__gap_8
     , lg__gap_px
+    , lg__gap_x_0
+    , lg__gap_x_1
+    , lg__gap_x_10
+    , lg__gap_x_12
+    , lg__gap_x_16
+    , lg__gap_x_2
+    , lg__gap_x_20
+    , lg__gap_x_24
+    , lg__gap_x_3
+    , lg__gap_x_32
+    , lg__gap_x_4
+    , lg__gap_x_40
+    , lg__gap_x_48
+    , lg__gap_x_5
+    , lg__gap_x_56
+    , lg__gap_x_6
+    , lg__gap_x_64
+    , lg__gap_x_8
+    , lg__gap_x_px
+    , lg__gap_y_0
+    , lg__gap_y_1
+    , lg__gap_y_10
+    , lg__gap_y_12
+    , lg__gap_y_16
+    , lg__gap_y_2
+    , lg__gap_y_20
+    , lg__gap_y_24
+    , lg__gap_y_3
+    , lg__gap_y_32
+    , lg__gap_y_4
+    , lg__gap_y_40
+    , lg__gap_y_48
+    , lg__gap_y_5
+    , lg__gap_y_56
+    , lg__gap_y_6
+    , lg__gap_y_64
+    , lg__gap_y_8
+    , lg__gap_y_px
     , lg__grid
     , lg__grid_cols_1
     , lg__grid_cols_10
@@ -3004,14 +4215,117 @@ module Html.Tailwind exposing
     , lg__hover__font_normal
     , lg__hover__font_semibold
     , lg__hover__font_thin
+    , lg__hover__from_black
+    , lg__hover__from_blue_100
+    , lg__hover__from_blue_200
+    , lg__hover__from_blue_300
+    , lg__hover__from_blue_400
+    , lg__hover__from_blue_500
+    , lg__hover__from_blue_600
+    , lg__hover__from_blue_700
+    , lg__hover__from_blue_800
+    , lg__hover__from_blue_900
+    , lg__hover__from_current
+    , lg__hover__from_gray_100
+    , lg__hover__from_gray_200
+    , lg__hover__from_gray_300
+    , lg__hover__from_gray_400
+    , lg__hover__from_gray_500
+    , lg__hover__from_gray_600
+    , lg__hover__from_gray_700
+    , lg__hover__from_gray_800
+    , lg__hover__from_gray_900
+    , lg__hover__from_green_100
+    , lg__hover__from_green_200
+    , lg__hover__from_green_300
+    , lg__hover__from_green_400
+    , lg__hover__from_green_500
+    , lg__hover__from_green_600
+    , lg__hover__from_green_700
+    , lg__hover__from_green_800
+    , lg__hover__from_green_900
+    , lg__hover__from_indigo_100
+    , lg__hover__from_indigo_200
+    , lg__hover__from_indigo_300
+    , lg__hover__from_indigo_400
+    , lg__hover__from_indigo_500
+    , lg__hover__from_indigo_600
+    , lg__hover__from_indigo_700
+    , lg__hover__from_indigo_800
+    , lg__hover__from_indigo_900
+    , lg__hover__from_orange_100
+    , lg__hover__from_orange_200
+    , lg__hover__from_orange_300
+    , lg__hover__from_orange_400
+    , lg__hover__from_orange_500
+    , lg__hover__from_orange_600
+    , lg__hover__from_orange_700
+    , lg__hover__from_orange_800
+    , lg__hover__from_orange_900
+    , lg__hover__from_pink_100
+    , lg__hover__from_pink_200
+    , lg__hover__from_pink_300
+    , lg__hover__from_pink_400
+    , lg__hover__from_pink_500
+    , lg__hover__from_pink_600
+    , lg__hover__from_pink_700
+    , lg__hover__from_pink_800
+    , lg__hover__from_pink_900
+    , lg__hover__from_purple_100
+    , lg__hover__from_purple_200
+    , lg__hover__from_purple_300
+    , lg__hover__from_purple_400
+    , lg__hover__from_purple_500
+    , lg__hover__from_purple_600
+    , lg__hover__from_purple_700
+    , lg__hover__from_purple_800
+    , lg__hover__from_purple_900
+    , lg__hover__from_red_100
+    , lg__hover__from_red_200
+    , lg__hover__from_red_300
+    , lg__hover__from_red_400
+    , lg__hover__from_red_500
+    , lg__hover__from_red_600
+    , lg__hover__from_red_700
+    , lg__hover__from_red_800
+    , lg__hover__from_red_900
+    , lg__hover__from_teal_100
+    , lg__hover__from_teal_200
+    , lg__hover__from_teal_300
+    , lg__hover__from_teal_400
+    , lg__hover__from_teal_500
+    , lg__hover__from_teal_600
+    , lg__hover__from_teal_700
+    , lg__hover__from_teal_800
+    , lg__hover__from_teal_900
+    , lg__hover__from_transparent
+    , lg__hover__from_white
+    , lg__hover__from_yellow_100
+    , lg__hover__from_yellow_200
+    , lg__hover__from_yellow_300
+    , lg__hover__from_yellow_400
+    , lg__hover__from_yellow_500
+    , lg__hover__from_yellow_600
+    , lg__hover__from_yellow_700
+    , lg__hover__from_yellow_800
+    , lg__hover__from_yellow_900
     , lg__hover__line_through
+    , lg__hover__neg_rotate_1
+    , lg__hover__neg_rotate_12
     , lg__hover__neg_rotate_180
+    , lg__hover__neg_rotate_2
+    , lg__hover__neg_rotate_3
     , lg__hover__neg_rotate_45
+    , lg__hover__neg_rotate_6
     , lg__hover__neg_rotate_90
+    , lg__hover__neg_skew_x_1
     , lg__hover__neg_skew_x_12
+    , lg__hover__neg_skew_x_2
     , lg__hover__neg_skew_x_3
     , lg__hover__neg_skew_x_6
+    , lg__hover__neg_skew_y_1
     , lg__hover__neg_skew_y_12
+    , lg__hover__neg_skew_y_2
     , lg__hover__neg_skew_y_3
     , lg__hover__neg_skew_y_6
     , lg__hover__neg_translate_x_1
@@ -3061,8 +4375,13 @@ module Html.Tailwind exposing
     , lg__hover__opacity_50
     , lg__hover__opacity_75
     , lg__hover__rotate_0
+    , lg__hover__rotate_1
+    , lg__hover__rotate_12
     , lg__hover__rotate_180
+    , lg__hover__rotate_2
+    , lg__hover__rotate_3
     , lg__hover__rotate_45
+    , lg__hover__rotate_6
     , lg__hover__rotate_90
     , lg__hover__scale_0
     , lg__hover__scale_100
@@ -3105,11 +4424,15 @@ module Html.Tailwind exposing
     , lg__hover__shadow_xl
     , lg__hover__shadow_xs
     , lg__hover__skew_x_0
+    , lg__hover__skew_x_1
     , lg__hover__skew_x_12
+    , lg__hover__skew_x_2
     , lg__hover__skew_x_3
     , lg__hover__skew_x_6
     , lg__hover__skew_y_0
+    , lg__hover__skew_y_1
     , lg__hover__skew_y_12
+    , lg__hover__skew_y_2
     , lg__hover__skew_y_3
     , lg__hover__skew_y_6
     , lg__hover__text_black
@@ -3211,6 +4534,100 @@ module Html.Tailwind exposing
     , lg__hover__text_yellow_700
     , lg__hover__text_yellow_800
     , lg__hover__text_yellow_900
+    , lg__hover__to_black
+    , lg__hover__to_blue_100
+    , lg__hover__to_blue_200
+    , lg__hover__to_blue_300
+    , lg__hover__to_blue_400
+    , lg__hover__to_blue_500
+    , lg__hover__to_blue_600
+    , lg__hover__to_blue_700
+    , lg__hover__to_blue_800
+    , lg__hover__to_blue_900
+    , lg__hover__to_current
+    , lg__hover__to_gray_100
+    , lg__hover__to_gray_200
+    , lg__hover__to_gray_300
+    , lg__hover__to_gray_400
+    , lg__hover__to_gray_500
+    , lg__hover__to_gray_600
+    , lg__hover__to_gray_700
+    , lg__hover__to_gray_800
+    , lg__hover__to_gray_900
+    , lg__hover__to_green_100
+    , lg__hover__to_green_200
+    , lg__hover__to_green_300
+    , lg__hover__to_green_400
+    , lg__hover__to_green_500
+    , lg__hover__to_green_600
+    , lg__hover__to_green_700
+    , lg__hover__to_green_800
+    , lg__hover__to_green_900
+    , lg__hover__to_indigo_100
+    , lg__hover__to_indigo_200
+    , lg__hover__to_indigo_300
+    , lg__hover__to_indigo_400
+    , lg__hover__to_indigo_500
+    , lg__hover__to_indigo_600
+    , lg__hover__to_indigo_700
+    , lg__hover__to_indigo_800
+    , lg__hover__to_indigo_900
+    , lg__hover__to_orange_100
+    , lg__hover__to_orange_200
+    , lg__hover__to_orange_300
+    , lg__hover__to_orange_400
+    , lg__hover__to_orange_500
+    , lg__hover__to_orange_600
+    , lg__hover__to_orange_700
+    , lg__hover__to_orange_800
+    , lg__hover__to_orange_900
+    , lg__hover__to_pink_100
+    , lg__hover__to_pink_200
+    , lg__hover__to_pink_300
+    , lg__hover__to_pink_400
+    , lg__hover__to_pink_500
+    , lg__hover__to_pink_600
+    , lg__hover__to_pink_700
+    , lg__hover__to_pink_800
+    , lg__hover__to_pink_900
+    , lg__hover__to_purple_100
+    , lg__hover__to_purple_200
+    , lg__hover__to_purple_300
+    , lg__hover__to_purple_400
+    , lg__hover__to_purple_500
+    , lg__hover__to_purple_600
+    , lg__hover__to_purple_700
+    , lg__hover__to_purple_800
+    , lg__hover__to_purple_900
+    , lg__hover__to_red_100
+    , lg__hover__to_red_200
+    , lg__hover__to_red_300
+    , lg__hover__to_red_400
+    , lg__hover__to_red_500
+    , lg__hover__to_red_600
+    , lg__hover__to_red_700
+    , lg__hover__to_red_800
+    , lg__hover__to_red_900
+    , lg__hover__to_teal_100
+    , lg__hover__to_teal_200
+    , lg__hover__to_teal_300
+    , lg__hover__to_teal_400
+    , lg__hover__to_teal_500
+    , lg__hover__to_teal_600
+    , lg__hover__to_teal_700
+    , lg__hover__to_teal_800
+    , lg__hover__to_teal_900
+    , lg__hover__to_transparent
+    , lg__hover__to_white
+    , lg__hover__to_yellow_100
+    , lg__hover__to_yellow_200
+    , lg__hover__to_yellow_300
+    , lg__hover__to_yellow_400
+    , lg__hover__to_yellow_500
+    , lg__hover__to_yellow_600
+    , lg__hover__to_yellow_700
+    , lg__hover__to_yellow_800
+    , lg__hover__to_yellow_900
     , lg__hover__translate_x_0
     , lg__hover__translate_x_1
     , lg__hover__translate_x_10
@@ -3254,6 +4671,100 @@ module Html.Tailwind exposing
     , lg__hover__translate_y_full
     , lg__hover__translate_y_px
     , lg__hover__underline
+    , lg__hover__via_black
+    , lg__hover__via_blue_100
+    , lg__hover__via_blue_200
+    , lg__hover__via_blue_300
+    , lg__hover__via_blue_400
+    , lg__hover__via_blue_500
+    , lg__hover__via_blue_600
+    , lg__hover__via_blue_700
+    , lg__hover__via_blue_800
+    , lg__hover__via_blue_900
+    , lg__hover__via_current
+    , lg__hover__via_gray_100
+    , lg__hover__via_gray_200
+    , lg__hover__via_gray_300
+    , lg__hover__via_gray_400
+    , lg__hover__via_gray_500
+    , lg__hover__via_gray_600
+    , lg__hover__via_gray_700
+    , lg__hover__via_gray_800
+    , lg__hover__via_gray_900
+    , lg__hover__via_green_100
+    , lg__hover__via_green_200
+    , lg__hover__via_green_300
+    , lg__hover__via_green_400
+    , lg__hover__via_green_500
+    , lg__hover__via_green_600
+    , lg__hover__via_green_700
+    , lg__hover__via_green_800
+    , lg__hover__via_green_900
+    , lg__hover__via_indigo_100
+    , lg__hover__via_indigo_200
+    , lg__hover__via_indigo_300
+    , lg__hover__via_indigo_400
+    , lg__hover__via_indigo_500
+    , lg__hover__via_indigo_600
+    , lg__hover__via_indigo_700
+    , lg__hover__via_indigo_800
+    , lg__hover__via_indigo_900
+    , lg__hover__via_orange_100
+    , lg__hover__via_orange_200
+    , lg__hover__via_orange_300
+    , lg__hover__via_orange_400
+    , lg__hover__via_orange_500
+    , lg__hover__via_orange_600
+    , lg__hover__via_orange_700
+    , lg__hover__via_orange_800
+    , lg__hover__via_orange_900
+    , lg__hover__via_pink_100
+    , lg__hover__via_pink_200
+    , lg__hover__via_pink_300
+    , lg__hover__via_pink_400
+    , lg__hover__via_pink_500
+    , lg__hover__via_pink_600
+    , lg__hover__via_pink_700
+    , lg__hover__via_pink_800
+    , lg__hover__via_pink_900
+    , lg__hover__via_purple_100
+    , lg__hover__via_purple_200
+    , lg__hover__via_purple_300
+    , lg__hover__via_purple_400
+    , lg__hover__via_purple_500
+    , lg__hover__via_purple_600
+    , lg__hover__via_purple_700
+    , lg__hover__via_purple_800
+    , lg__hover__via_purple_900
+    , lg__hover__via_red_100
+    , lg__hover__via_red_200
+    , lg__hover__via_red_300
+    , lg__hover__via_red_400
+    , lg__hover__via_red_500
+    , lg__hover__via_red_600
+    , lg__hover__via_red_700
+    , lg__hover__via_red_800
+    , lg__hover__via_red_900
+    , lg__hover__via_teal_100
+    , lg__hover__via_teal_200
+    , lg__hover__via_teal_300
+    , lg__hover__via_teal_400
+    , lg__hover__via_teal_500
+    , lg__hover__via_teal_600
+    , lg__hover__via_teal_700
+    , lg__hover__via_teal_800
+    , lg__hover__via_teal_900
+    , lg__hover__via_transparent
+    , lg__hover__via_white
+    , lg__hover__via_yellow_100
+    , lg__hover__via_yellow_200
+    , lg__hover__via_yellow_300
+    , lg__hover__via_yellow_400
+    , lg__hover__via_yellow_500
+    , lg__hover__via_yellow_600
+    , lg__hover__via_yellow_700
+    , lg__hover__via_yellow_800
+    , lg__hover__via_yellow_900
     , lg__inline
     , lg__inline_block
     , lg__inline_flex
@@ -3276,6 +4787,16 @@ module Html.Tailwind exposing
     , lg__justify_center
     , lg__justify_end
     , lg__justify_evenly
+    , lg__justify_items_auto
+    , lg__justify_items_center
+    , lg__justify_items_end
+    , lg__justify_items_start
+    , lg__justify_items_stretch
+    , lg__justify_self_auto
+    , lg__justify_self_center
+    , lg__justify_self_end
+    , lg__justify_self_start
+    , lg__justify_self_stretch
     , lg__justify_start
     , lg__leading_10
     , lg__leading_3
@@ -3294,6 +4815,7 @@ module Html.Tailwind exposing
     , lg__left_0
     , lg__left_auto
     , lg__line_through
+    , lg__lining_nums
     , lg__list_decimal
     , lg__list_disc
     , lg__list_inside
@@ -3589,13 +5111,22 @@ module Html.Tailwind exposing
     , lg__neg_my_64
     , lg__neg_my_8
     , lg__neg_my_px
+    , lg__neg_rotate_1
+    , lg__neg_rotate_12
     , lg__neg_rotate_180
+    , lg__neg_rotate_2
+    , lg__neg_rotate_3
     , lg__neg_rotate_45
+    , lg__neg_rotate_6
     , lg__neg_rotate_90
+    , lg__neg_skew_x_1
     , lg__neg_skew_x_12
+    , lg__neg_skew_x_2
     , lg__neg_skew_x_3
     , lg__neg_skew_x_6
+    , lg__neg_skew_y_1
     , lg__neg_skew_y_12
+    , lg__neg_skew_y_2
     , lg__neg_skew_y_3
     , lg__neg_skew_y_6
     , lg__neg_space_x_1
@@ -3676,6 +5207,7 @@ module Html.Tailwind exposing
     , lg__neg_translate_y_px
     , lg__no_underline
     , lg__normal_case
+    , lg__normal_nums
     , lg__not_italic
     , lg__not_sr_only
     , lg__object_bottom
@@ -3692,6 +5224,7 @@ module Html.Tailwind exposing
     , lg__object_right_top
     , lg__object_scale_down
     , lg__object_top
+    , lg__oldstyle_nums
     , lg__opacity_0
     , lg__opacity_100
     , lg__opacity_25
@@ -3712,6 +5245,7 @@ module Html.Tailwind exposing
     , lg__order_first
     , lg__order_last
     , lg__order_none
+    , lg__ordinal
     , lg__origin_bottom
     , lg__origin_bottom_left
     , lg__origin_bottom_right
@@ -3721,7 +5255,9 @@ module Html.Tailwind exposing
     , lg__origin_top
     , lg__origin_top_left
     , lg__origin_top_right
+    , lg__outline_black
     , lg__outline_none
+    , lg__outline_white
     , lg__overflow_auto
     , lg__overflow_hidden
     , lg__overflow_scroll
@@ -3734,6 +5270,15 @@ module Html.Tailwind exposing
     , lg__overflow_y_hidden
     , lg__overflow_y_scroll
     , lg__overflow_y_visible
+    , lg__overscroll_auto
+    , lg__overscroll_contain
+    , lg__overscroll_none
+    , lg__overscroll_x_auto
+    , lg__overscroll_x_contain
+    , lg__overscroll_x_none
+    , lg__overscroll_y_auto
+    , lg__overscroll_y_contain
+    , lg__overscroll_y_none
     , lg__p_0
     , lg__p_1
     , lg__p_10
@@ -3791,6 +5336,23 @@ module Html.Tailwind exposing
     , lg__pl_64
     , lg__pl_8
     , lg__pl_px
+    , lg__place_content_around
+    , lg__place_content_between
+    , lg__place_content_center
+    , lg__place_content_end
+    , lg__place_content_evenly
+    , lg__place_content_start
+    , lg__place_content_stretch
+    , lg__place_items_auto
+    , lg__place_items_center
+    , lg__place_items_end
+    , lg__place_items_start
+    , lg__place_items_stretch
+    , lg__place_self_auto
+    , lg__place_self_center
+    , lg__place_self_end
+    , lg__place_self_start
+    , lg__place_self_stretch
     , lg__placeholder_black
     , lg__placeholder_blue_100
     , lg__placeholder_blue_200
@@ -3911,6 +5473,7 @@ module Html.Tailwind exposing
     , lg__pr_64
     , lg__pr_8
     , lg__pr_px
+    , lg__proportional_nums
     , lg__pt_0
     , lg__pt_1
     , lg__pt_10
@@ -3976,63 +5539,95 @@ module Html.Tailwind exposing
     , lg__right_0
     , lg__right_auto
     , lg__rotate_0
+    , lg__rotate_1
+    , lg__rotate_12
     , lg__rotate_180
+    , lg__rotate_2
+    , lg__rotate_3
     , lg__rotate_45
+    , lg__rotate_6
     , lg__rotate_90
     , lg__rounded
+    , lg__rounded_2xl
+    , lg__rounded_3xl
     , lg__rounded_b
+    , lg__rounded_b_2xl
+    , lg__rounded_b_3xl
     , lg__rounded_b_full
     , lg__rounded_b_lg
     , lg__rounded_b_md
     , lg__rounded_b_none
     , lg__rounded_b_sm
+    , lg__rounded_b_xl
     , lg__rounded_bl
+    , lg__rounded_bl_2xl
+    , lg__rounded_bl_3xl
     , lg__rounded_bl_full
     , lg__rounded_bl_lg
     , lg__rounded_bl_md
     , lg__rounded_bl_none
     , lg__rounded_bl_sm
+    , lg__rounded_bl_xl
     , lg__rounded_br
+    , lg__rounded_br_2xl
+    , lg__rounded_br_3xl
     , lg__rounded_br_full
     , lg__rounded_br_lg
     , lg__rounded_br_md
     , lg__rounded_br_none
     , lg__rounded_br_sm
+    , lg__rounded_br_xl
     , lg__rounded_full
     , lg__rounded_l
+    , lg__rounded_l_2xl
+    , lg__rounded_l_3xl
     , lg__rounded_l_full
     , lg__rounded_l_lg
     , lg__rounded_l_md
     , lg__rounded_l_none
     , lg__rounded_l_sm
+    , lg__rounded_l_xl
     , lg__rounded_lg
     , lg__rounded_md
     , lg__rounded_none
     , lg__rounded_r
+    , lg__rounded_r_2xl
+    , lg__rounded_r_3xl
     , lg__rounded_r_full
     , lg__rounded_r_lg
     , lg__rounded_r_md
     , lg__rounded_r_none
     , lg__rounded_r_sm
+    , lg__rounded_r_xl
     , lg__rounded_sm
     , lg__rounded_t
+    , lg__rounded_t_2xl
+    , lg__rounded_t_3xl
     , lg__rounded_t_full
     , lg__rounded_t_lg
     , lg__rounded_t_md
     , lg__rounded_t_none
     , lg__rounded_t_sm
+    , lg__rounded_t_xl
     , lg__rounded_tl
+    , lg__rounded_tl_2xl
+    , lg__rounded_tl_3xl
     , lg__rounded_tl_full
     , lg__rounded_tl_lg
     , lg__rounded_tl_md
     , lg__rounded_tl_none
     , lg__rounded_tl_sm
+    , lg__rounded_tl_xl
     , lg__rounded_tr
+    , lg__rounded_tr_2xl
+    , lg__rounded_tr_3xl
     , lg__rounded_tr_full
     , lg__rounded_tr_lg
     , lg__rounded_tr_md
     , lg__rounded_tr_none
     , lg__rounded_tr_sm
+    , lg__rounded_tr_xl
+    , lg__rounded_xl
     , lg__row_auto
     , lg__row_end_1
     , lg__row_end_2
@@ -4042,31 +5637,13 @@ module Html.Tailwind exposing
     , lg__row_end_6
     , lg__row_end_7
     , lg__row_end_auto
-    , lg__row_gap_0
-    , lg__row_gap_1
-    , lg__row_gap_10
-    , lg__row_gap_12
-    , lg__row_gap_16
-    , lg__row_gap_2
-    , lg__row_gap_20
-    , lg__row_gap_24
-    , lg__row_gap_3
-    , lg__row_gap_32
-    , lg__row_gap_4
-    , lg__row_gap_40
-    , lg__row_gap_48
-    , lg__row_gap_5
-    , lg__row_gap_56
-    , lg__row_gap_6
-    , lg__row_gap_64
-    , lg__row_gap_8
-    , lg__row_gap_px
     , lg__row_span_1
     , lg__row_span_2
     , lg__row_span_3
     , lg__row_span_4
     , lg__row_span_5
     , lg__row_span_6
+    , lg__row_span_full
     , lg__row_start_1
     , lg__row_start_2
     , lg__row_start_3
@@ -4127,13 +5704,18 @@ module Html.Tailwind exposing
     , lg__shadow_xl
     , lg__shadow_xs
     , lg__skew_x_0
+    , lg__skew_x_1
     , lg__skew_x_12
+    , lg__skew_x_2
     , lg__skew_x_3
     , lg__skew_x_6
     , lg__skew_y_0
+    , lg__skew_y_1
     , lg__skew_y_12
+    , lg__skew_y_2
     , lg__skew_y_3
     , lg__skew_y_6
+    , lg__slashed_zero
     , lg__space_x_0
     , lg__space_x_1
     , lg__space_x_10
@@ -4175,6 +5757,7 @@ module Html.Tailwind exposing
     , lg__space_y_px
     , lg__space_y_reverse
     , lg__sr_only
+    , lg__stacked_fractions
     , lg__static
     , lg__sticky
     , lg__stroke_0
@@ -4193,6 +5776,7 @@ module Html.Tailwind exposing
     , lg__table_header_group
     , lg__table_row
     , lg__table_row_group
+    , lg__tabular_nums
     , lg__text_2xl
     , lg__text_3xl
     , lg__text_4xl
@@ -4306,6 +5890,100 @@ module Html.Tailwind exposing
     , lg__text_yellow_700
     , lg__text_yellow_800
     , lg__text_yellow_900
+    , lg__to_black
+    , lg__to_blue_100
+    , lg__to_blue_200
+    , lg__to_blue_300
+    , lg__to_blue_400
+    , lg__to_blue_500
+    , lg__to_blue_600
+    , lg__to_blue_700
+    , lg__to_blue_800
+    , lg__to_blue_900
+    , lg__to_current
+    , lg__to_gray_100
+    , lg__to_gray_200
+    , lg__to_gray_300
+    , lg__to_gray_400
+    , lg__to_gray_500
+    , lg__to_gray_600
+    , lg__to_gray_700
+    , lg__to_gray_800
+    , lg__to_gray_900
+    , lg__to_green_100
+    , lg__to_green_200
+    , lg__to_green_300
+    , lg__to_green_400
+    , lg__to_green_500
+    , lg__to_green_600
+    , lg__to_green_700
+    , lg__to_green_800
+    , lg__to_green_900
+    , lg__to_indigo_100
+    , lg__to_indigo_200
+    , lg__to_indigo_300
+    , lg__to_indigo_400
+    , lg__to_indigo_500
+    , lg__to_indigo_600
+    , lg__to_indigo_700
+    , lg__to_indigo_800
+    , lg__to_indigo_900
+    , lg__to_orange_100
+    , lg__to_orange_200
+    , lg__to_orange_300
+    , lg__to_orange_400
+    , lg__to_orange_500
+    , lg__to_orange_600
+    , lg__to_orange_700
+    , lg__to_orange_800
+    , lg__to_orange_900
+    , lg__to_pink_100
+    , lg__to_pink_200
+    , lg__to_pink_300
+    , lg__to_pink_400
+    , lg__to_pink_500
+    , lg__to_pink_600
+    , lg__to_pink_700
+    , lg__to_pink_800
+    , lg__to_pink_900
+    , lg__to_purple_100
+    , lg__to_purple_200
+    , lg__to_purple_300
+    , lg__to_purple_400
+    , lg__to_purple_500
+    , lg__to_purple_600
+    , lg__to_purple_700
+    , lg__to_purple_800
+    , lg__to_purple_900
+    , lg__to_red_100
+    , lg__to_red_200
+    , lg__to_red_300
+    , lg__to_red_400
+    , lg__to_red_500
+    , lg__to_red_600
+    , lg__to_red_700
+    , lg__to_red_800
+    , lg__to_red_900
+    , lg__to_teal_100
+    , lg__to_teal_200
+    , lg__to_teal_300
+    , lg__to_teal_400
+    , lg__to_teal_500
+    , lg__to_teal_600
+    , lg__to_teal_700
+    , lg__to_teal_800
+    , lg__to_teal_900
+    , lg__to_transparent
+    , lg__to_white
+    , lg__to_yellow_100
+    , lg__to_yellow_200
+    , lg__to_yellow_300
+    , lg__to_yellow_400
+    , lg__to_yellow_500
+    , lg__to_yellow_600
+    , lg__to_yellow_700
+    , lg__to_yellow_800
+    , lg__to_yellow_900
     , lg__top_0
     , lg__top_auto
     , lg__tracking_normal
@@ -4368,6 +6046,100 @@ module Html.Tailwind exposing
     , lg__truncate
     , lg__underline
     , lg__uppercase
+    , lg__via_black
+    , lg__via_blue_100
+    , lg__via_blue_200
+    , lg__via_blue_300
+    , lg__via_blue_400
+    , lg__via_blue_500
+    , lg__via_blue_600
+    , lg__via_blue_700
+    , lg__via_blue_800
+    , lg__via_blue_900
+    , lg__via_current
+    , lg__via_gray_100
+    , lg__via_gray_200
+    , lg__via_gray_300
+    , lg__via_gray_400
+    , lg__via_gray_500
+    , lg__via_gray_600
+    , lg__via_gray_700
+    , lg__via_gray_800
+    , lg__via_gray_900
+    , lg__via_green_100
+    , lg__via_green_200
+    , lg__via_green_300
+    , lg__via_green_400
+    , lg__via_green_500
+    , lg__via_green_600
+    , lg__via_green_700
+    , lg__via_green_800
+    , lg__via_green_900
+    , lg__via_indigo_100
+    , lg__via_indigo_200
+    , lg__via_indigo_300
+    , lg__via_indigo_400
+    , lg__via_indigo_500
+    , lg__via_indigo_600
+    , lg__via_indigo_700
+    , lg__via_indigo_800
+    , lg__via_indigo_900
+    , lg__via_orange_100
+    , lg__via_orange_200
+    , lg__via_orange_300
+    , lg__via_orange_400
+    , lg__via_orange_500
+    , lg__via_orange_600
+    , lg__via_orange_700
+    , lg__via_orange_800
+    , lg__via_orange_900
+    , lg__via_pink_100
+    , lg__via_pink_200
+    , lg__via_pink_300
+    , lg__via_pink_400
+    , lg__via_pink_500
+    , lg__via_pink_600
+    , lg__via_pink_700
+    , lg__via_pink_800
+    , lg__via_pink_900
+    , lg__via_purple_100
+    , lg__via_purple_200
+    , lg__via_purple_300
+    , lg__via_purple_400
+    , lg__via_purple_500
+    , lg__via_purple_600
+    , lg__via_purple_700
+    , lg__via_purple_800
+    , lg__via_purple_900
+    , lg__via_red_100
+    , lg__via_red_200
+    , lg__via_red_300
+    , lg__via_red_400
+    , lg__via_red_500
+    , lg__via_red_600
+    , lg__via_red_700
+    , lg__via_red_800
+    , lg__via_red_900
+    , lg__via_teal_100
+    , lg__via_teal_200
+    , lg__via_teal_300
+    , lg__via_teal_400
+    , lg__via_teal_500
+    , lg__via_teal_600
+    , lg__via_teal_700
+    , lg__via_teal_800
+    , lg__via_teal_900
+    , lg__via_transparent
+    , lg__via_white
+    , lg__via_yellow_100
+    , lg__via_yellow_200
+    , lg__via_yellow_300
+    , lg__via_yellow_400
+    , lg__via_yellow_500
+    , lg__via_yellow_600
+    , lg__via_yellow_700
+    , lg__via_yellow_800
+    , lg__via_yellow_900
     , lg__visible
     , lg__w_0
     , lg__w_1
@@ -4430,6 +6202,7 @@ module Html.Tailwind exposing
     , lg__z_50
     , lg__z_auto
     , line_through
+    , lining_nums
     , list_decimal
     , list_disc
     , list_inside
@@ -4501,8 +6274,21 @@ module Html.Tailwind exposing
     , md__align_text_bottom
     , md__align_text_top
     , md__align_top
+    , md__animate_bounce
+    , md__animate_none
+    , md__animate_ping
+    , md__animate_pulse
+    , md__animate_spin
     , md__antialiased
     , md__appearance_none
+    , md__auto_cols_auto
+    , md__auto_cols_fr
+    , md__auto_cols_max
+    , md__auto_cols_min
+    , md__auto_rows_auto
+    , md__auto_rows_fr
+    , md__auto_rows_max
+    , md__auto_rows_min
     , md__bg_auto
     , md__bg_black
     , md__bg_blue_100
@@ -4516,10 +6302,22 @@ module Html.Tailwind exposing
     , md__bg_blue_900
     , md__bg_bottom
     , md__bg_center
+    , md__bg_clip_border
+    , md__bg_clip_content
+    , md__bg_clip_padding
+    , md__bg_clip_text
     , md__bg_contain
     , md__bg_cover
     , md__bg_current
     , md__bg_fixed
+    , md__bg_gradient_to_b
+    , md__bg_gradient_to_bl
+    , md__bg_gradient_to_br
+    , md__bg_gradient_to_l
+    , md__bg_gradient_to_r
+    , md__bg_gradient_to_t
+    , md__bg_gradient_to_tl
+    , md__bg_gradient_to_tr
     , md__bg_gray_100
     , md__bg_gray_200
     , md__bg_gray_300
@@ -4552,6 +6350,7 @@ module Html.Tailwind exposing
     , md__bg_left_top
     , md__bg_local
     , md__bg_no_repeat
+    , md__bg_none
     , md__bg_opacity_0
     , md__bg_opacity_100
     , md__bg_opacity_25
@@ -4783,25 +6582,6 @@ module Html.Tailwind exposing
     , md__col_end_8
     , md__col_end_9
     , md__col_end_auto
-    , md__col_gap_0
-    , md__col_gap_1
-    , md__col_gap_10
-    , md__col_gap_12
-    , md__col_gap_16
-    , md__col_gap_2
-    , md__col_gap_20
-    , md__col_gap_24
-    , md__col_gap_3
-    , md__col_gap_32
-    , md__col_gap_4
-    , md__col_gap_40
-    , md__col_gap_48
-    , md__col_gap_5
-    , md__col_gap_56
-    , md__col_gap_6
-    , md__col_gap_64
-    , md__col_gap_8
-    , md__col_gap_px
     , md__col_span_1
     , md__col_span_10
     , md__col_span_11
@@ -4814,6 +6594,7 @@ module Html.Tailwind exposing
     , md__col_span_7
     , md__col_span_8
     , md__col_span_9
+    , md__col_span_full
     , md__col_start_1
     , md__col_start_10
     , md__col_start_11
@@ -4828,11 +6609,14 @@ module Html.Tailwind exposing
     , md__col_start_8
     , md__col_start_9
     , md__col_start_auto
+    , md__container
     , md__content_around
     , md__content_between
     , md__content_center
     , md__content_end
+    , md__content_evenly
     , md__content_start
+    , md__contents
     , md__cursor_auto
     , md__cursor_default
     , md__cursor_move
@@ -4848,6 +6632,7 @@ module Html.Tailwind exposing
     , md__delay_500
     , md__delay_700
     , md__delay_75
+    , md__diagonal_fractions
     , md__disabled__cursor_auto
     , md__disabled__cursor_default
     , md__disabled__cursor_move
@@ -4871,6 +6656,9 @@ module Html.Tailwind exposing
     , md__divide_blue_800
     , md__divide_blue_900
     , md__divide_current
+    , md__divide_dashed
+    , md__divide_dotted
+    , md__divide_double
     , md__divide_gray_100
     , md__divide_gray_200
     , md__divide_gray_300
@@ -4898,6 +6686,7 @@ module Html.Tailwind exposing
     , md__divide_indigo_700
     , md__divide_indigo_800
     , md__divide_indigo_900
+    , md__divide_none
     , md__divide_opacity_0
     , md__divide_opacity_100
     , md__divide_opacity_25
@@ -4939,6 +6728,7 @@ module Html.Tailwind exposing
     , md__divide_red_700
     , md__divide_red_800
     , md__divide_red_900
+    , md__divide_solid
     , md__divide_teal_100
     , md__divide_teal_200
     , md__divide_teal_300
@@ -5212,14 +7002,117 @@ module Html.Tailwind exposing
     , md__focus__font_normal
     , md__focus__font_semibold
     , md__focus__font_thin
+    , md__focus__from_black
+    , md__focus__from_blue_100
+    , md__focus__from_blue_200
+    , md__focus__from_blue_300
+    , md__focus__from_blue_400
+    , md__focus__from_blue_500
+    , md__focus__from_blue_600
+    , md__focus__from_blue_700
+    , md__focus__from_blue_800
+    , md__focus__from_blue_900
+    , md__focus__from_current
+    , md__focus__from_gray_100
+    , md__focus__from_gray_200
+    , md__focus__from_gray_300
+    , md__focus__from_gray_400
+    , md__focus__from_gray_500
+    , md__focus__from_gray_600
+    , md__focus__from_gray_700
+    , md__focus__from_gray_800
+    , md__focus__from_gray_900
+    , md__focus__from_green_100
+    , md__focus__from_green_200
+    , md__focus__from_green_300
+    , md__focus__from_green_400
+    , md__focus__from_green_500
+    , md__focus__from_green_600
+    , md__focus__from_green_700
+    , md__focus__from_green_800
+    , md__focus__from_green_900
+    , md__focus__from_indigo_100
+    , md__focus__from_indigo_200
+    , md__focus__from_indigo_300
+    , md__focus__from_indigo_400
+    , md__focus__from_indigo_500
+    , md__focus__from_indigo_600
+    , md__focus__from_indigo_700
+    , md__focus__from_indigo_800
+    , md__focus__from_indigo_900
+    , md__focus__from_orange_100
+    , md__focus__from_orange_200
+    , md__focus__from_orange_300
+    , md__focus__from_orange_400
+    , md__focus__from_orange_500
+    , md__focus__from_orange_600
+    , md__focus__from_orange_700
+    , md__focus__from_orange_800
+    , md__focus__from_orange_900
+    , md__focus__from_pink_100
+    , md__focus__from_pink_200
+    , md__focus__from_pink_300
+    , md__focus__from_pink_400
+    , md__focus__from_pink_500
+    , md__focus__from_pink_600
+    , md__focus__from_pink_700
+    , md__focus__from_pink_800
+    , md__focus__from_pink_900
+    , md__focus__from_purple_100
+    , md__focus__from_purple_200
+    , md__focus__from_purple_300
+    , md__focus__from_purple_400
+    , md__focus__from_purple_500
+    , md__focus__from_purple_600
+    , md__focus__from_purple_700
+    , md__focus__from_purple_800
+    , md__focus__from_purple_900
+    , md__focus__from_red_100
+    , md__focus__from_red_200
+    , md__focus__from_red_300
+    , md__focus__from_red_400
+    , md__focus__from_red_500
+    , md__focus__from_red_600
+    , md__focus__from_red_700
+    , md__focus__from_red_800
+    , md__focus__from_red_900
+    , md__focus__from_teal_100
+    , md__focus__from_teal_200
+    , md__focus__from_teal_300
+    , md__focus__from_teal_400
+    , md__focus__from_teal_500
+    , md__focus__from_teal_600
+    , md__focus__from_teal_700
+    , md__focus__from_teal_800
+    , md__focus__from_teal_900
+    , md__focus__from_transparent
+    , md__focus__from_white
+    , md__focus__from_yellow_100
+    , md__focus__from_yellow_200
+    , md__focus__from_yellow_300
+    , md__focus__from_yellow_400
+    , md__focus__from_yellow_500
+    , md__focus__from_yellow_600
+    , md__focus__from_yellow_700
+    , md__focus__from_yellow_800
+    , md__focus__from_yellow_900
     , md__focus__line_through
+    , md__focus__neg_rotate_1
+    , md__focus__neg_rotate_12
     , md__focus__neg_rotate_180
+    , md__focus__neg_rotate_2
+    , md__focus__neg_rotate_3
     , md__focus__neg_rotate_45
+    , md__focus__neg_rotate_6
     , md__focus__neg_rotate_90
+    , md__focus__neg_skew_x_1
     , md__focus__neg_skew_x_12
+    , md__focus__neg_skew_x_2
     , md__focus__neg_skew_x_3
     , md__focus__neg_skew_x_6
+    , md__focus__neg_skew_y_1
     , md__focus__neg_skew_y_12
+    , md__focus__neg_skew_y_2
     , md__focus__neg_skew_y_3
     , md__focus__neg_skew_y_6
     , md__focus__neg_translate_x_1
@@ -5269,7 +7162,9 @@ module Html.Tailwind exposing
     , md__focus__opacity_25
     , md__focus__opacity_50
     , md__focus__opacity_75
+    , md__focus__outline_black
     , md__focus__outline_none
+    , md__focus__outline_white
     , md__focus__placeholder_black__focus
     , md__focus__placeholder_blue_100__focus
     , md__focus__placeholder_blue_200__focus
@@ -5370,8 +7265,13 @@ module Html.Tailwind exposing
     , md__focus__placeholder_yellow_800__focus
     , md__focus__placeholder_yellow_900__focus
     , md__focus__rotate_0
+    , md__focus__rotate_1
+    , md__focus__rotate_12
     , md__focus__rotate_180
+    , md__focus__rotate_2
+    , md__focus__rotate_3
     , md__focus__rotate_45
+    , md__focus__rotate_6
     , md__focus__rotate_90
     , md__focus__scale_0
     , md__focus__scale_100
@@ -5414,11 +7314,15 @@ module Html.Tailwind exposing
     , md__focus__shadow_xl
     , md__focus__shadow_xs
     , md__focus__skew_x_0
+    , md__focus__skew_x_1
     , md__focus__skew_x_12
+    , md__focus__skew_x_2
     , md__focus__skew_x_3
     , md__focus__skew_x_6
     , md__focus__skew_y_0
+    , md__focus__skew_y_1
     , md__focus__skew_y_12
+    , md__focus__skew_y_2
     , md__focus__skew_y_3
     , md__focus__skew_y_6
     , md__focus__sr_only
@@ -5521,6 +7425,100 @@ module Html.Tailwind exposing
     , md__focus__text_yellow_700
     , md__focus__text_yellow_800
     , md__focus__text_yellow_900
+    , md__focus__to_black
+    , md__focus__to_blue_100
+    , md__focus__to_blue_200
+    , md__focus__to_blue_300
+    , md__focus__to_blue_400
+    , md__focus__to_blue_500
+    , md__focus__to_blue_600
+    , md__focus__to_blue_700
+    , md__focus__to_blue_800
+    , md__focus__to_blue_900
+    , md__focus__to_current
+    , md__focus__to_gray_100
+    , md__focus__to_gray_200
+    , md__focus__to_gray_300
+    , md__focus__to_gray_400
+    , md__focus__to_gray_500
+    , md__focus__to_gray_600
+    , md__focus__to_gray_700
+    , md__focus__to_gray_800
+    , md__focus__to_gray_900
+    , md__focus__to_green_100
+    , md__focus__to_green_200
+    , md__focus__to_green_300
+    , md__focus__to_green_400
+    , md__focus__to_green_500
+    , md__focus__to_green_600
+    , md__focus__to_green_700
+    , md__focus__to_green_800
+    , md__focus__to_green_900
+    , md__focus__to_indigo_100
+    , md__focus__to_indigo_200
+    , md__focus__to_indigo_300
+    , md__focus__to_indigo_400
+    , md__focus__to_indigo_500
+    , md__focus__to_indigo_600
+    , md__focus__to_indigo_700
+    , md__focus__to_indigo_800
+    , md__focus__to_indigo_900
+    , md__focus__to_orange_100
+    , md__focus__to_orange_200
+    , md__focus__to_orange_300
+    , md__focus__to_orange_400
+    , md__focus__to_orange_500
+    , md__focus__to_orange_600
+    , md__focus__to_orange_700
+    , md__focus__to_orange_800
+    , md__focus__to_orange_900
+    , md__focus__to_pink_100
+    , md__focus__to_pink_200
+    , md__focus__to_pink_300
+    , md__focus__to_pink_400
+    , md__focus__to_pink_500
+    , md__focus__to_pink_600
+    , md__focus__to_pink_700
+    , md__focus__to_pink_800
+    , md__focus__to_pink_900
+    , md__focus__to_purple_100
+    , md__focus__to_purple_200
+    , md__focus__to_purple_300
+    , md__focus__to_purple_400
+    , md__focus__to_purple_500
+    , md__focus__to_purple_600
+    , md__focus__to_purple_700
+    , md__focus__to_purple_800
+    , md__focus__to_purple_900
+    , md__focus__to_red_100
+    , md__focus__to_red_200
+    , md__focus__to_red_300
+    , md__focus__to_red_400
+    , md__focus__to_red_500
+    , md__focus__to_red_600
+    , md__focus__to_red_700
+    , md__focus__to_red_800
+    , md__focus__to_red_900
+    , md__focus__to_teal_100
+    , md__focus__to_teal_200
+    , md__focus__to_teal_300
+    , md__focus__to_teal_400
+    , md__focus__to_teal_500
+    , md__focus__to_teal_600
+    , md__focus__to_teal_700
+    , md__focus__to_teal_800
+    , md__focus__to_teal_900
+    , md__focus__to_transparent
+    , md__focus__to_white
+    , md__focus__to_yellow_100
+    , md__focus__to_yellow_200
+    , md__focus__to_yellow_300
+    , md__focus__to_yellow_400
+    , md__focus__to_yellow_500
+    , md__focus__to_yellow_600
+    , md__focus__to_yellow_700
+    , md__focus__to_yellow_800
+    , md__focus__to_yellow_900
     , md__focus__translate_x_0
     , md__focus__translate_x_1
     , md__focus__translate_x_10
@@ -5564,6 +7562,100 @@ module Html.Tailwind exposing
     , md__focus__translate_y_full
     , md__focus__translate_y_px
     , md__focus__underline
+    , md__focus__via_black
+    , md__focus__via_blue_100
+    , md__focus__via_blue_200
+    , md__focus__via_blue_300
+    , md__focus__via_blue_400
+    , md__focus__via_blue_500
+    , md__focus__via_blue_600
+    , md__focus__via_blue_700
+    , md__focus__via_blue_800
+    , md__focus__via_blue_900
+    , md__focus__via_current
+    , md__focus__via_gray_100
+    , md__focus__via_gray_200
+    , md__focus__via_gray_300
+    , md__focus__via_gray_400
+    , md__focus__via_gray_500
+    , md__focus__via_gray_600
+    , md__focus__via_gray_700
+    , md__focus__via_gray_800
+    , md__focus__via_gray_900
+    , md__focus__via_green_100
+    , md__focus__via_green_200
+    , md__focus__via_green_300
+    , md__focus__via_green_400
+    , md__focus__via_green_500
+    , md__focus__via_green_600
+    , md__focus__via_green_700
+    , md__focus__via_green_800
+    , md__focus__via_green_900
+    , md__focus__via_indigo_100
+    , md__focus__via_indigo_200
+    , md__focus__via_indigo_300
+    , md__focus__via_indigo_400
+    , md__focus__via_indigo_500
+    , md__focus__via_indigo_600
+    , md__focus__via_indigo_700
+    , md__focus__via_indigo_800
+    , md__focus__via_indigo_900
+    , md__focus__via_orange_100
+    , md__focus__via_orange_200
+    , md__focus__via_orange_300
+    , md__focus__via_orange_400
+    , md__focus__via_orange_500
+    , md__focus__via_orange_600
+    , md__focus__via_orange_700
+    , md__focus__via_orange_800
+    , md__focus__via_orange_900
+    , md__focus__via_pink_100
+    , md__focus__via_pink_200
+    , md__focus__via_pink_300
+    , md__focus__via_pink_400
+    , md__focus__via_pink_500
+    , md__focus__via_pink_600
+    , md__focus__via_pink_700
+    , md__focus__via_pink_800
+    , md__focus__via_pink_900
+    , md__focus__via_purple_100
+    , md__focus__via_purple_200
+    , md__focus__via_purple_300
+    , md__focus__via_purple_400
+    , md__focus__via_purple_500
+    , md__focus__via_purple_600
+    , md__focus__via_purple_700
+    , md__focus__via_purple_800
+    , md__focus__via_purple_900
+    , md__focus__via_red_100
+    , md__focus__via_red_200
+    , md__focus__via_red_300
+    , md__focus__via_red_400
+    , md__focus__via_red_500
+    , md__focus__via_red_600
+    , md__focus__via_red_700
+    , md__focus__via_red_800
+    , md__focus__via_red_900
+    , md__focus__via_teal_100
+    , md__focus__via_teal_200
+    , md__focus__via_teal_300
+    , md__focus__via_teal_400
+    , md__focus__via_teal_500
+    , md__focus__via_teal_600
+    , md__focus__via_teal_700
+    , md__focus__via_teal_800
+    , md__focus__via_teal_900
+    , md__focus__via_transparent
+    , md__focus__via_white
+    , md__focus__via_yellow_100
+    , md__focus__via_yellow_200
+    , md__focus__via_yellow_300
+    , md__focus__via_yellow_400
+    , md__focus__via_yellow_500
+    , md__focus__via_yellow_600
+    , md__focus__via_yellow_700
+    , md__focus__via_yellow_800
+    , md__focus__via_yellow_900
     , md__font_black
     , md__font_bold
     , md__font_extrabold
@@ -5576,6 +7668,100 @@ module Html.Tailwind exposing
     , md__font_semibold
     , md__font_serif
     , md__font_thin
+    , md__from_black
+    , md__from_blue_100
+    , md__from_blue_200
+    , md__from_blue_300
+    , md__from_blue_400
+    , md__from_blue_500
+    , md__from_blue_600
+    , md__from_blue_700
+    , md__from_blue_800
+    , md__from_blue_900
+    , md__from_current
+    , md__from_gray_100
+    , md__from_gray_200
+    , md__from_gray_300
+    , md__from_gray_400
+    , md__from_gray_500
+    , md__from_gray_600
+    , md__from_gray_700
+    , md__from_gray_800
+    , md__from_gray_900
+    , md__from_green_100
+    , md__from_green_200
+    , md__from_green_300
+    , md__from_green_400
+    , md__from_green_500
+    , md__from_green_600
+    , md__from_green_700
+    , md__from_green_800
+    , md__from_green_900
+    , md__from_indigo_100
+    , md__from_indigo_200
+    , md__from_indigo_300
+    , md__from_indigo_400
+    , md__from_indigo_500
+    , md__from_indigo_600
+    , md__from_indigo_700
+    , md__from_indigo_800
+    , md__from_indigo_900
+    , md__from_orange_100
+    , md__from_orange_200
+    , md__from_orange_300
+    , md__from_orange_400
+    , md__from_orange_500
+    , md__from_orange_600
+    , md__from_orange_700
+    , md__from_orange_800
+    , md__from_orange_900
+    , md__from_pink_100
+    , md__from_pink_200
+    , md__from_pink_300
+    , md__from_pink_400
+    , md__from_pink_500
+    , md__from_pink_600
+    , md__from_pink_700
+    , md__from_pink_800
+    , md__from_pink_900
+    , md__from_purple_100
+    , md__from_purple_200
+    , md__from_purple_300
+    , md__from_purple_400
+    , md__from_purple_500
+    , md__from_purple_600
+    , md__from_purple_700
+    , md__from_purple_800
+    , md__from_purple_900
+    , md__from_red_100
+    , md__from_red_200
+    , md__from_red_300
+    , md__from_red_400
+    , md__from_red_500
+    , md__from_red_600
+    , md__from_red_700
+    , md__from_red_800
+    , md__from_red_900
+    , md__from_teal_100
+    , md__from_teal_200
+    , md__from_teal_300
+    , md__from_teal_400
+    , md__from_teal_500
+    , md__from_teal_600
+    , md__from_teal_700
+    , md__from_teal_800
+    , md__from_teal_900
+    , md__from_transparent
+    , md__from_white
+    , md__from_yellow_100
+    , md__from_yellow_200
+    , md__from_yellow_300
+    , md__from_yellow_400
+    , md__from_yellow_500
+    , md__from_yellow_600
+    , md__from_yellow_700
+    , md__from_yellow_800
+    , md__from_yellow_900
     , md__gap_0
     , md__gap_1
     , md__gap_10
@@ -5595,6 +7781,44 @@ module Html.Tailwind exposing
     , md__gap_64
     , md__gap_8
     , md__gap_px
+    , md__gap_x_0
+    , md__gap_x_1
+    , md__gap_x_10
+    , md__gap_x_12
+    , md__gap_x_16
+    , md__gap_x_2
+    , md__gap_x_20
+    , md__gap_x_24
+    , md__gap_x_3
+    , md__gap_x_32
+    , md__gap_x_4
+    , md__gap_x_40
+    , md__gap_x_48
+    , md__gap_x_5
+    , md__gap_x_56
+    , md__gap_x_6
+    , md__gap_x_64
+    , md__gap_x_8
+    , md__gap_x_px
+    , md__gap_y_0
+    , md__gap_y_1
+    , md__gap_y_10
+    , md__gap_y_12
+    , md__gap_y_16
+    , md__gap_y_2
+    , md__gap_y_20
+    , md__gap_y_24
+    , md__gap_y_3
+    , md__gap_y_32
+    , md__gap_y_4
+    , md__gap_y_40
+    , md__gap_y_48
+    , md__gap_y_5
+    , md__gap_y_56
+    , md__gap_y_6
+    , md__gap_y_64
+    , md__gap_y_8
+    , md__gap_y_px
     , md__grid
     , md__grid_cols_1
     , md__grid_cols_10
@@ -5851,14 +8075,117 @@ module Html.Tailwind exposing
     , md__hover__font_normal
     , md__hover__font_semibold
     , md__hover__font_thin
+    , md__hover__from_black
+    , md__hover__from_blue_100
+    , md__hover__from_blue_200
+    , md__hover__from_blue_300
+    , md__hover__from_blue_400
+    , md__hover__from_blue_500
+    , md__hover__from_blue_600
+    , md__hover__from_blue_700
+    , md__hover__from_blue_800
+    , md__hover__from_blue_900
+    , md__hover__from_current
+    , md__hover__from_gray_100
+    , md__hover__from_gray_200
+    , md__hover__from_gray_300
+    , md__hover__from_gray_400
+    , md__hover__from_gray_500
+    , md__hover__from_gray_600
+    , md__hover__from_gray_700
+    , md__hover__from_gray_800
+    , md__hover__from_gray_900
+    , md__hover__from_green_100
+    , md__hover__from_green_200
+    , md__hover__from_green_300
+    , md__hover__from_green_400
+    , md__hover__from_green_500
+    , md__hover__from_green_600
+    , md__hover__from_green_700
+    , md__hover__from_green_800
+    , md__hover__from_green_900
+    , md__hover__from_indigo_100
+    , md__hover__from_indigo_200
+    , md__hover__from_indigo_300
+    , md__hover__from_indigo_400
+    , md__hover__from_indigo_500
+    , md__hover__from_indigo_600
+    , md__hover__from_indigo_700
+    , md__hover__from_indigo_800
+    , md__hover__from_indigo_900
+    , md__hover__from_orange_100
+    , md__hover__from_orange_200
+    , md__hover__from_orange_300
+    , md__hover__from_orange_400
+    , md__hover__from_orange_500
+    , md__hover__from_orange_600
+    , md__hover__from_orange_700
+    , md__hover__from_orange_800
+    , md__hover__from_orange_900
+    , md__hover__from_pink_100
+    , md__hover__from_pink_200
+    , md__hover__from_pink_300
+    , md__hover__from_pink_400
+    , md__hover__from_pink_500
+    , md__hover__from_pink_600
+    , md__hover__from_pink_700
+    , md__hover__from_pink_800
+    , md__hover__from_pink_900
+    , md__hover__from_purple_100
+    , md__hover__from_purple_200
+    , md__hover__from_purple_300
+    , md__hover__from_purple_400
+    , md__hover__from_purple_500
+    , md__hover__from_purple_600
+    , md__hover__from_purple_700
+    , md__hover__from_purple_800
+    , md__hover__from_purple_900
+    , md__hover__from_red_100
+    , md__hover__from_red_200
+    , md__hover__from_red_300
+    , md__hover__from_red_400
+    , md__hover__from_red_500
+    , md__hover__from_red_600
+    , md__hover__from_red_700
+    , md__hover__from_red_800
+    , md__hover__from_red_900
+    , md__hover__from_teal_100
+    , md__hover__from_teal_200
+    , md__hover__from_teal_300
+    , md__hover__from_teal_400
+    , md__hover__from_teal_500
+    , md__hover__from_teal_600
+    , md__hover__from_teal_700
+    , md__hover__from_teal_800
+    , md__hover__from_teal_900
+    , md__hover__from_transparent
+    , md__hover__from_white
+    , md__hover__from_yellow_100
+    , md__hover__from_yellow_200
+    , md__hover__from_yellow_300
+    , md__hover__from_yellow_400
+    , md__hover__from_yellow_500
+    , md__hover__from_yellow_600
+    , md__hover__from_yellow_700
+    , md__hover__from_yellow_800
+    , md__hover__from_yellow_900
     , md__hover__line_through
+    , md__hover__neg_rotate_1
+    , md__hover__neg_rotate_12
     , md__hover__neg_rotate_180
+    , md__hover__neg_rotate_2
+    , md__hover__neg_rotate_3
     , md__hover__neg_rotate_45
+    , md__hover__neg_rotate_6
     , md__hover__neg_rotate_90
+    , md__hover__neg_skew_x_1
     , md__hover__neg_skew_x_12
+    , md__hover__neg_skew_x_2
     , md__hover__neg_skew_x_3
     , md__hover__neg_skew_x_6
+    , md__hover__neg_skew_y_1
     , md__hover__neg_skew_y_12
+    , md__hover__neg_skew_y_2
     , md__hover__neg_skew_y_3
     , md__hover__neg_skew_y_6
     , md__hover__neg_translate_x_1
@@ -5908,8 +8235,13 @@ module Html.Tailwind exposing
     , md__hover__opacity_50
     , md__hover__opacity_75
     , md__hover__rotate_0
+    , md__hover__rotate_1
+    , md__hover__rotate_12
     , md__hover__rotate_180
+    , md__hover__rotate_2
+    , md__hover__rotate_3
     , md__hover__rotate_45
+    , md__hover__rotate_6
     , md__hover__rotate_90
     , md__hover__scale_0
     , md__hover__scale_100
@@ -5952,11 +8284,15 @@ module Html.Tailwind exposing
     , md__hover__shadow_xl
     , md__hover__shadow_xs
     , md__hover__skew_x_0
+    , md__hover__skew_x_1
     , md__hover__skew_x_12
+    , md__hover__skew_x_2
     , md__hover__skew_x_3
     , md__hover__skew_x_6
     , md__hover__skew_y_0
+    , md__hover__skew_y_1
     , md__hover__skew_y_12
+    , md__hover__skew_y_2
     , md__hover__skew_y_3
     , md__hover__skew_y_6
     , md__hover__text_black
@@ -6058,6 +8394,100 @@ module Html.Tailwind exposing
     , md__hover__text_yellow_700
     , md__hover__text_yellow_800
     , md__hover__text_yellow_900
+    , md__hover__to_black
+    , md__hover__to_blue_100
+    , md__hover__to_blue_200
+    , md__hover__to_blue_300
+    , md__hover__to_blue_400
+    , md__hover__to_blue_500
+    , md__hover__to_blue_600
+    , md__hover__to_blue_700
+    , md__hover__to_blue_800
+    , md__hover__to_blue_900
+    , md__hover__to_current
+    , md__hover__to_gray_100
+    , md__hover__to_gray_200
+    , md__hover__to_gray_300
+    , md__hover__to_gray_400
+    , md__hover__to_gray_500
+    , md__hover__to_gray_600
+    , md__hover__to_gray_700
+    , md__hover__to_gray_800
+    , md__hover__to_gray_900
+    , md__hover__to_green_100
+    , md__hover__to_green_200
+    , md__hover__to_green_300
+    , md__hover__to_green_400
+    , md__hover__to_green_500
+    , md__hover__to_green_600
+    , md__hover__to_green_700
+    , md__hover__to_green_800
+    , md__hover__to_green_900
+    , md__hover__to_indigo_100
+    , md__hover__to_indigo_200
+    , md__hover__to_indigo_300
+    , md__hover__to_indigo_400
+    , md__hover__to_indigo_500
+    , md__hover__to_indigo_600
+    , md__hover__to_indigo_700
+    , md__hover__to_indigo_800
+    , md__hover__to_indigo_900
+    , md__hover__to_orange_100
+    , md__hover__to_orange_200
+    , md__hover__to_orange_300
+    , md__hover__to_orange_400
+    , md__hover__to_orange_500
+    , md__hover__to_orange_600
+    , md__hover__to_orange_700
+    , md__hover__to_orange_800
+    , md__hover__to_orange_900
+    , md__hover__to_pink_100
+    , md__hover__to_pink_200
+    , md__hover__to_pink_300
+    , md__hover__to_pink_400
+    , md__hover__to_pink_500
+    , md__hover__to_pink_600
+    , md__hover__to_pink_700
+    , md__hover__to_pink_800
+    , md__hover__to_pink_900
+    , md__hover__to_purple_100
+    , md__hover__to_purple_200
+    , md__hover__to_purple_300
+    , md__hover__to_purple_400
+    , md__hover__to_purple_500
+    , md__hover__to_purple_600
+    , md__hover__to_purple_700
+    , md__hover__to_purple_800
+    , md__hover__to_purple_900
+    , md__hover__to_red_100
+    , md__hover__to_red_200
+    , md__hover__to_red_300
+    , md__hover__to_red_400
+    , md__hover__to_red_500
+    , md__hover__to_red_600
+    , md__hover__to_red_700
+    , md__hover__to_red_800
+    , md__hover__to_red_900
+    , md__hover__to_teal_100
+    , md__hover__to_teal_200
+    , md__hover__to_teal_300
+    , md__hover__to_teal_400
+    , md__hover__to_teal_500
+    , md__hover__to_teal_600
+    , md__hover__to_teal_700
+    , md__hover__to_teal_800
+    , md__hover__to_teal_900
+    , md__hover__to_transparent
+    , md__hover__to_white
+    , md__hover__to_yellow_100
+    , md__hover__to_yellow_200
+    , md__hover__to_yellow_300
+    , md__hover__to_yellow_400
+    , md__hover__to_yellow_500
+    , md__hover__to_yellow_600
+    , md__hover__to_yellow_700
+    , md__hover__to_yellow_800
+    , md__hover__to_yellow_900
     , md__hover__translate_x_0
     , md__hover__translate_x_1
     , md__hover__translate_x_10
@@ -6101,6 +8531,100 @@ module Html.Tailwind exposing
     , md__hover__translate_y_full
     , md__hover__translate_y_px
     , md__hover__underline
+    , md__hover__via_black
+    , md__hover__via_blue_100
+    , md__hover__via_blue_200
+    , md__hover__via_blue_300
+    , md__hover__via_blue_400
+    , md__hover__via_blue_500
+    , md__hover__via_blue_600
+    , md__hover__via_blue_700
+    , md__hover__via_blue_800
+    , md__hover__via_blue_900
+    , md__hover__via_current
+    , md__hover__via_gray_100
+    , md__hover__via_gray_200
+    , md__hover__via_gray_300
+    , md__hover__via_gray_400
+    , md__hover__via_gray_500
+    , md__hover__via_gray_600
+    , md__hover__via_gray_700
+    , md__hover__via_gray_800
+    , md__hover__via_gray_900
+    , md__hover__via_green_100
+    , md__hover__via_green_200
+    , md__hover__via_green_300
+    , md__hover__via_green_400
+    , md__hover__via_green_500
+    , md__hover__via_green_600
+    , md__hover__via_green_700
+    , md__hover__via_green_800
+    , md__hover__via_green_900
+    , md__hover__via_indigo_100
+    , md__hover__via_indigo_200
+    , md__hover__via_indigo_300
+    , md__hover__via_indigo_400
+    , md__hover__via_indigo_500
+    , md__hover__via_indigo_600
+    , md__hover__via_indigo_700
+    , md__hover__via_indigo_800
+    , md__hover__via_indigo_900
+    , md__hover__via_orange_100
+    , md__hover__via_orange_200
+    , md__hover__via_orange_300
+    , md__hover__via_orange_400
+    , md__hover__via_orange_500
+    , md__hover__via_orange_600
+    , md__hover__via_orange_700
+    , md__hover__via_orange_800
+    , md__hover__via_orange_900
+    , md__hover__via_pink_100
+    , md__hover__via_pink_200
+    , md__hover__via_pink_300
+    , md__hover__via_pink_400
+    , md__hover__via_pink_500
+    , md__hover__via_pink_600
+    , md__hover__via_pink_700
+    , md__hover__via_pink_800
+    , md__hover__via_pink_900
+    , md__hover__via_purple_100
+    , md__hover__via_purple_200
+    , md__hover__via_purple_300
+    , md__hover__via_purple_400
+    , md__hover__via_purple_500
+    , md__hover__via_purple_600
+    , md__hover__via_purple_700
+    , md__hover__via_purple_800
+    , md__hover__via_purple_900
+    , md__hover__via_red_100
+    , md__hover__via_red_200
+    , md__hover__via_red_300
+    , md__hover__via_red_400
+    , md__hover__via_red_500
+    , md__hover__via_red_600
+    , md__hover__via_red_700
+    , md__hover__via_red_800
+    , md__hover__via_red_900
+    , md__hover__via_teal_100
+    , md__hover__via_teal_200
+    , md__hover__via_teal_300
+    , md__hover__via_teal_400
+    , md__hover__via_teal_500
+    , md__hover__via_teal_600
+    , md__hover__via_teal_700
+    , md__hover__via_teal_800
+    , md__hover__via_teal_900
+    , md__hover__via_transparent
+    , md__hover__via_white
+    , md__hover__via_yellow_100
+    , md__hover__via_yellow_200
+    , md__hover__via_yellow_300
+    , md__hover__via_yellow_400
+    , md__hover__via_yellow_500
+    , md__hover__via_yellow_600
+    , md__hover__via_yellow_700
+    , md__hover__via_yellow_800
+    , md__hover__via_yellow_900
     , md__inline
     , md__inline_block
     , md__inline_flex
@@ -6123,6 +8647,16 @@ module Html.Tailwind exposing
     , md__justify_center
     , md__justify_end
     , md__justify_evenly
+    , md__justify_items_auto
+    , md__justify_items_center
+    , md__justify_items_end
+    , md__justify_items_start
+    , md__justify_items_stretch
+    , md__justify_self_auto
+    , md__justify_self_center
+    , md__justify_self_end
+    , md__justify_self_start
+    , md__justify_self_stretch
     , md__justify_start
     , md__leading_10
     , md__leading_3
@@ -6141,6 +8675,7 @@ module Html.Tailwind exposing
     , md__left_0
     , md__left_auto
     , md__line_through
+    , md__lining_nums
     , md__list_decimal
     , md__list_disc
     , md__list_inside
@@ -6436,13 +8971,22 @@ module Html.Tailwind exposing
     , md__neg_my_64
     , md__neg_my_8
     , md__neg_my_px
+    , md__neg_rotate_1
+    , md__neg_rotate_12
     , md__neg_rotate_180
+    , md__neg_rotate_2
+    , md__neg_rotate_3
     , md__neg_rotate_45
+    , md__neg_rotate_6
     , md__neg_rotate_90
+    , md__neg_skew_x_1
     , md__neg_skew_x_12
+    , md__neg_skew_x_2
     , md__neg_skew_x_3
     , md__neg_skew_x_6
+    , md__neg_skew_y_1
     , md__neg_skew_y_12
+    , md__neg_skew_y_2
     , md__neg_skew_y_3
     , md__neg_skew_y_6
     , md__neg_space_x_1
@@ -6523,6 +9067,7 @@ module Html.Tailwind exposing
     , md__neg_translate_y_px
     , md__no_underline
     , md__normal_case
+    , md__normal_nums
     , md__not_italic
     , md__not_sr_only
     , md__object_bottom
@@ -6539,6 +9084,7 @@ module Html.Tailwind exposing
     , md__object_right_top
     , md__object_scale_down
     , md__object_top
+    , md__oldstyle_nums
     , md__opacity_0
     , md__opacity_100
     , md__opacity_25
@@ -6559,6 +9105,7 @@ module Html.Tailwind exposing
     , md__order_first
     , md__order_last
     , md__order_none
+    , md__ordinal
     , md__origin_bottom
     , md__origin_bottom_left
     , md__origin_bottom_right
@@ -6568,7 +9115,9 @@ module Html.Tailwind exposing
     , md__origin_top
     , md__origin_top_left
     , md__origin_top_right
+    , md__outline_black
     , md__outline_none
+    , md__outline_white
     , md__overflow_auto
     , md__overflow_hidden
     , md__overflow_scroll
@@ -6581,6 +9130,15 @@ module Html.Tailwind exposing
     , md__overflow_y_hidden
     , md__overflow_y_scroll
     , md__overflow_y_visible
+    , md__overscroll_auto
+    , md__overscroll_contain
+    , md__overscroll_none
+    , md__overscroll_x_auto
+    , md__overscroll_x_contain
+    , md__overscroll_x_none
+    , md__overscroll_y_auto
+    , md__overscroll_y_contain
+    , md__overscroll_y_none
     , md__p_0
     , md__p_1
     , md__p_10
@@ -6638,6 +9196,23 @@ module Html.Tailwind exposing
     , md__pl_64
     , md__pl_8
     , md__pl_px
+    , md__place_content_around
+    , md__place_content_between
+    , md__place_content_center
+    , md__place_content_end
+    , md__place_content_evenly
+    , md__place_content_start
+    , md__place_content_stretch
+    , md__place_items_auto
+    , md__place_items_center
+    , md__place_items_end
+    , md__place_items_start
+    , md__place_items_stretch
+    , md__place_self_auto
+    , md__place_self_center
+    , md__place_self_end
+    , md__place_self_start
+    , md__place_self_stretch
     , md__placeholder_black
     , md__placeholder_blue_100
     , md__placeholder_blue_200
@@ -6758,6 +9333,7 @@ module Html.Tailwind exposing
     , md__pr_64
     , md__pr_8
     , md__pr_px
+    , md__proportional_nums
     , md__pt_0
     , md__pt_1
     , md__pt_10
@@ -6823,63 +9399,95 @@ module Html.Tailwind exposing
     , md__right_0
     , md__right_auto
     , md__rotate_0
+    , md__rotate_1
+    , md__rotate_12
     , md__rotate_180
+    , md__rotate_2
+    , md__rotate_3
     , md__rotate_45
+    , md__rotate_6
     , md__rotate_90
     , md__rounded
+    , md__rounded_2xl
+    , md__rounded_3xl
     , md__rounded_b
+    , md__rounded_b_2xl
+    , md__rounded_b_3xl
     , md__rounded_b_full
     , md__rounded_b_lg
     , md__rounded_b_md
     , md__rounded_b_none
     , md__rounded_b_sm
+    , md__rounded_b_xl
     , md__rounded_bl
+    , md__rounded_bl_2xl
+    , md__rounded_bl_3xl
     , md__rounded_bl_full
     , md__rounded_bl_lg
     , md__rounded_bl_md
     , md__rounded_bl_none
     , md__rounded_bl_sm
+    , md__rounded_bl_xl
     , md__rounded_br
+    , md__rounded_br_2xl
+    , md__rounded_br_3xl
     , md__rounded_br_full
     , md__rounded_br_lg
     , md__rounded_br_md
     , md__rounded_br_none
     , md__rounded_br_sm
+    , md__rounded_br_xl
     , md__rounded_full
     , md__rounded_l
+    , md__rounded_l_2xl
+    , md__rounded_l_3xl
     , md__rounded_l_full
     , md__rounded_l_lg
     , md__rounded_l_md
     , md__rounded_l_none
     , md__rounded_l_sm
+    , md__rounded_l_xl
     , md__rounded_lg
     , md__rounded_md
     , md__rounded_none
     , md__rounded_r
+    , md__rounded_r_2xl
+    , md__rounded_r_3xl
     , md__rounded_r_full
     , md__rounded_r_lg
     , md__rounded_r_md
     , md__rounded_r_none
     , md__rounded_r_sm
+    , md__rounded_r_xl
     , md__rounded_sm
     , md__rounded_t
+    , md__rounded_t_2xl
+    , md__rounded_t_3xl
     , md__rounded_t_full
     , md__rounded_t_lg
     , md__rounded_t_md
     , md__rounded_t_none
     , md__rounded_t_sm
+    , md__rounded_t_xl
     , md__rounded_tl
+    , md__rounded_tl_2xl
+    , md__rounded_tl_3xl
     , md__rounded_tl_full
     , md__rounded_tl_lg
     , md__rounded_tl_md
     , md__rounded_tl_none
     , md__rounded_tl_sm
+    , md__rounded_tl_xl
     , md__rounded_tr
+    , md__rounded_tr_2xl
+    , md__rounded_tr_3xl
     , md__rounded_tr_full
     , md__rounded_tr_lg
     , md__rounded_tr_md
     , md__rounded_tr_none
     , md__rounded_tr_sm
+    , md__rounded_tr_xl
+    , md__rounded_xl
     , md__row_auto
     , md__row_end_1
     , md__row_end_2
@@ -6889,31 +9497,13 @@ module Html.Tailwind exposing
     , md__row_end_6
     , md__row_end_7
     , md__row_end_auto
-    , md__row_gap_0
-    , md__row_gap_1
-    , md__row_gap_10
-    , md__row_gap_12
-    , md__row_gap_16
-    , md__row_gap_2
-    , md__row_gap_20
-    , md__row_gap_24
-    , md__row_gap_3
-    , md__row_gap_32
-    , md__row_gap_4
-    , md__row_gap_40
-    , md__row_gap_48
-    , md__row_gap_5
-    , md__row_gap_56
-    , md__row_gap_6
-    , md__row_gap_64
-    , md__row_gap_8
-    , md__row_gap_px
     , md__row_span_1
     , md__row_span_2
     , md__row_span_3
     , md__row_span_4
     , md__row_span_5
     , md__row_span_6
+    , md__row_span_full
     , md__row_start_1
     , md__row_start_2
     , md__row_start_3
@@ -6974,13 +9564,18 @@ module Html.Tailwind exposing
     , md__shadow_xl
     , md__shadow_xs
     , md__skew_x_0
+    , md__skew_x_1
     , md__skew_x_12
+    , md__skew_x_2
     , md__skew_x_3
     , md__skew_x_6
     , md__skew_y_0
+    , md__skew_y_1
     , md__skew_y_12
+    , md__skew_y_2
     , md__skew_y_3
     , md__skew_y_6
+    , md__slashed_zero
     , md__space_x_0
     , md__space_x_1
     , md__space_x_10
@@ -7022,6 +9617,7 @@ module Html.Tailwind exposing
     , md__space_y_px
     , md__space_y_reverse
     , md__sr_only
+    , md__stacked_fractions
     , md__static
     , md__sticky
     , md__stroke_0
@@ -7040,6 +9636,7 @@ module Html.Tailwind exposing
     , md__table_header_group
     , md__table_row
     , md__table_row_group
+    , md__tabular_nums
     , md__text_2xl
     , md__text_3xl
     , md__text_4xl
@@ -7153,6 +9750,100 @@ module Html.Tailwind exposing
     , md__text_yellow_700
     , md__text_yellow_800
     , md__text_yellow_900
+    , md__to_black
+    , md__to_blue_100
+    , md__to_blue_200
+    , md__to_blue_300
+    , md__to_blue_400
+    , md__to_blue_500
+    , md__to_blue_600
+    , md__to_blue_700
+    , md__to_blue_800
+    , md__to_blue_900
+    , md__to_current
+    , md__to_gray_100
+    , md__to_gray_200
+    , md__to_gray_300
+    , md__to_gray_400
+    , md__to_gray_500
+    , md__to_gray_600
+    , md__to_gray_700
+    , md__to_gray_800
+    , md__to_gray_900
+    , md__to_green_100
+    , md__to_green_200
+    , md__to_green_300
+    , md__to_green_400
+    , md__to_green_500
+    , md__to_green_600
+    , md__to_green_700
+    , md__to_green_800
+    , md__to_green_900
+    , md__to_indigo_100
+    , md__to_indigo_200
+    , md__to_indigo_300
+    , md__to_indigo_400
+    , md__to_indigo_500
+    , md__to_indigo_600
+    , md__to_indigo_700
+    , md__to_indigo_800
+    , md__to_indigo_900
+    , md__to_orange_100
+    , md__to_orange_200
+    , md__to_orange_300
+    , md__to_orange_400
+    , md__to_orange_500
+    , md__to_orange_600
+    , md__to_orange_700
+    , md__to_orange_800
+    , md__to_orange_900
+    , md__to_pink_100
+    , md__to_pink_200
+    , md__to_pink_300
+    , md__to_pink_400
+    , md__to_pink_500
+    , md__to_pink_600
+    , md__to_pink_700
+    , md__to_pink_800
+    , md__to_pink_900
+    , md__to_purple_100
+    , md__to_purple_200
+    , md__to_purple_300
+    , md__to_purple_400
+    , md__to_purple_500
+    , md__to_purple_600
+    , md__to_purple_700
+    , md__to_purple_800
+    , md__to_purple_900
+    , md__to_red_100
+    , md__to_red_200
+    , md__to_red_300
+    , md__to_red_400
+    , md__to_red_500
+    , md__to_red_600
+    , md__to_red_700
+    , md__to_red_800
+    , md__to_red_900
+    , md__to_teal_100
+    , md__to_teal_200
+    , md__to_teal_300
+    , md__to_teal_400
+    , md__to_teal_500
+    , md__to_teal_600
+    , md__to_teal_700
+    , md__to_teal_800
+    , md__to_teal_900
+    , md__to_transparent
+    , md__to_white
+    , md__to_yellow_100
+    , md__to_yellow_200
+    , md__to_yellow_300
+    , md__to_yellow_400
+    , md__to_yellow_500
+    , md__to_yellow_600
+    , md__to_yellow_700
+    , md__to_yellow_800
+    , md__to_yellow_900
     , md__top_0
     , md__top_auto
     , md__tracking_normal
@@ -7215,6 +9906,100 @@ module Html.Tailwind exposing
     , md__truncate
     , md__underline
     , md__uppercase
+    , md__via_black
+    , md__via_blue_100
+    , md__via_blue_200
+    , md__via_blue_300
+    , md__via_blue_400
+    , md__via_blue_500
+    , md__via_blue_600
+    , md__via_blue_700
+    , md__via_blue_800
+    , md__via_blue_900
+    , md__via_current
+    , md__via_gray_100
+    , md__via_gray_200
+    , md__via_gray_300
+    , md__via_gray_400
+    , md__via_gray_500
+    , md__via_gray_600
+    , md__via_gray_700
+    , md__via_gray_800
+    , md__via_gray_900
+    , md__via_green_100
+    , md__via_green_200
+    , md__via_green_300
+    , md__via_green_400
+    , md__via_green_500
+    , md__via_green_600
+    , md__via_green_700
+    , md__via_green_800
+    , md__via_green_900
+    , md__via_indigo_100
+    , md__via_indigo_200
+    , md__via_indigo_300
+    , md__via_indigo_400
+    , md__via_indigo_500
+    , md__via_indigo_600
+    , md__via_indigo_700
+    , md__via_indigo_800
+    , md__via_indigo_900
+    , md__via_orange_100
+    , md__via_orange_200
+    , md__via_orange_300
+    , md__via_orange_400
+    , md__via_orange_500
+    , md__via_orange_600
+    , md__via_orange_700
+    , md__via_orange_800
+    , md__via_orange_900
+    , md__via_pink_100
+    , md__via_pink_200
+    , md__via_pink_300
+    , md__via_pink_400
+    , md__via_pink_500
+    , md__via_pink_600
+    , md__via_pink_700
+    , md__via_pink_800
+    , md__via_pink_900
+    , md__via_purple_100
+    , md__via_purple_200
+    , md__via_purple_300
+    , md__via_purple_400
+    , md__via_purple_500
+    , md__via_purple_600
+    , md__via_purple_700
+    , md__via_purple_800
+    , md__via_purple_900
+    , md__via_red_100
+    , md__via_red_200
+    , md__via_red_300
+    , md__via_red_400
+    , md__via_red_500
+    , md__via_red_600
+    , md__via_red_700
+    , md__via_red_800
+    , md__via_red_900
+    , md__via_teal_100
+    , md__via_teal_200
+    , md__via_teal_300
+    , md__via_teal_400
+    , md__via_teal_500
+    , md__via_teal_600
+    , md__via_teal_700
+    , md__via_teal_800
+    , md__via_teal_900
+    , md__via_transparent
+    , md__via_white
+    , md__via_yellow_100
+    , md__via_yellow_200
+    , md__via_yellow_300
+    , md__via_yellow_400
+    , md__via_yellow_500
+    , md__via_yellow_600
+    , md__via_yellow_700
+    , md__via_yellow_800
+    , md__via_yellow_900
     , md__visible
     , md__w_0
     , md__w_1
@@ -7507,13 +10292,22 @@ module Html.Tailwind exposing
     , neg_my_64
     , neg_my_8
     , neg_my_px
+    , neg_rotate_1
+    , neg_rotate_12
     , neg_rotate_180
+    , neg_rotate_2
+    , neg_rotate_3
     , neg_rotate_45
+    , neg_rotate_6
     , neg_rotate_90
+    , neg_skew_x_1
     , neg_skew_x_12
+    , neg_skew_x_2
     , neg_skew_x_3
     , neg_skew_x_6
+    , neg_skew_y_1
     , neg_skew_y_12
+    , neg_skew_y_2
     , neg_skew_y_3
     , neg_skew_y_6
     , neg_space_x_1
@@ -7594,6 +10388,7 @@ module Html.Tailwind exposing
     , neg_translate_y_px
     , no_underline
     , normal_case
+    , normal_nums
     , not_italic
     , not_sr_only
     , object_bottom
@@ -7610,6 +10405,7 @@ module Html.Tailwind exposing
     , object_right_top
     , object_scale_down
     , object_top
+    , oldstyle_nums
     , opacity_0
     , opacity_100
     , opacity_25
@@ -7630,6 +10426,7 @@ module Html.Tailwind exposing
     , order_first
     , order_last
     , order_none
+    , ordinal
     , origin_bottom
     , origin_bottom_left
     , origin_bottom_right
@@ -7639,7 +10436,9 @@ module Html.Tailwind exposing
     , origin_top
     , origin_top_left
     , origin_top_right
+    , outline_black
     , outline_none
+    , outline_white
     , overflow_auto
     , overflow_hidden
     , overflow_scroll
@@ -7652,6 +10451,15 @@ module Html.Tailwind exposing
     , overflow_y_hidden
     , overflow_y_scroll
     , overflow_y_visible
+    , overscroll_auto
+    , overscroll_contain
+    , overscroll_none
+    , overscroll_x_auto
+    , overscroll_x_contain
+    , overscroll_x_none
+    , overscroll_y_auto
+    , overscroll_y_contain
+    , overscroll_y_none
     , p_0
     , p_1
     , p_10
@@ -7709,6 +10517,23 @@ module Html.Tailwind exposing
     , pl_64
     , pl_8
     , pl_px
+    , place_content_around
+    , place_content_between
+    , place_content_center
+    , place_content_end
+    , place_content_evenly
+    , place_content_start
+    , place_content_stretch
+    , place_items_auto
+    , place_items_center
+    , place_items_end
+    , place_items_start
+    , place_items_stretch
+    , place_self_auto
+    , place_self_center
+    , place_self_end
+    , place_self_start
+    , place_self_stretch
     , placeholder_black
     , placeholder_blue_100
     , placeholder_blue_200
@@ -7829,6 +10654,7 @@ module Html.Tailwind exposing
     , pr_64
     , pr_8
     , pr_px
+    , proportional_nums
     , pt_0
     , pt_1
     , pt_10
@@ -7894,63 +10720,95 @@ module Html.Tailwind exposing
     , right_0
     , right_auto
     , rotate_0
+    , rotate_1
+    , rotate_12
     , rotate_180
+    , rotate_2
+    , rotate_3
     , rotate_45
+    , rotate_6
     , rotate_90
     , rounded
+    , rounded_2xl
+    , rounded_3xl
     , rounded_b
+    , rounded_b_2xl
+    , rounded_b_3xl
     , rounded_b_full
     , rounded_b_lg
     , rounded_b_md
     , rounded_b_none
     , rounded_b_sm
+    , rounded_b_xl
     , rounded_bl
+    , rounded_bl_2xl
+    , rounded_bl_3xl
     , rounded_bl_full
     , rounded_bl_lg
     , rounded_bl_md
     , rounded_bl_none
     , rounded_bl_sm
+    , rounded_bl_xl
     , rounded_br
+    , rounded_br_2xl
+    , rounded_br_3xl
     , rounded_br_full
     , rounded_br_lg
     , rounded_br_md
     , rounded_br_none
     , rounded_br_sm
+    , rounded_br_xl
     , rounded_full
     , rounded_l
+    , rounded_l_2xl
+    , rounded_l_3xl
     , rounded_l_full
     , rounded_l_lg
     , rounded_l_md
     , rounded_l_none
     , rounded_l_sm
+    , rounded_l_xl
     , rounded_lg
     , rounded_md
     , rounded_none
     , rounded_r
+    , rounded_r_2xl
+    , rounded_r_3xl
     , rounded_r_full
     , rounded_r_lg
     , rounded_r_md
     , rounded_r_none
     , rounded_r_sm
+    , rounded_r_xl
     , rounded_sm
     , rounded_t
+    , rounded_t_2xl
+    , rounded_t_3xl
     , rounded_t_full
     , rounded_t_lg
     , rounded_t_md
     , rounded_t_none
     , rounded_t_sm
+    , rounded_t_xl
     , rounded_tl
+    , rounded_tl_2xl
+    , rounded_tl_3xl
     , rounded_tl_full
     , rounded_tl_lg
     , rounded_tl_md
     , rounded_tl_none
     , rounded_tl_sm
+    , rounded_tl_xl
     , rounded_tr
+    , rounded_tr_2xl
+    , rounded_tr_3xl
     , rounded_tr_full
     , rounded_tr_lg
     , rounded_tr_md
     , rounded_tr_none
     , rounded_tr_sm
+    , rounded_tr_xl
+    , rounded_xl
     , row_auto
     , row_end_1
     , row_end_2
@@ -7960,31 +10818,13 @@ module Html.Tailwind exposing
     , row_end_6
     , row_end_7
     , row_end_auto
-    , row_gap_0
-    , row_gap_1
-    , row_gap_10
-    , row_gap_12
-    , row_gap_16
-    , row_gap_2
-    , row_gap_20
-    , row_gap_24
-    , row_gap_3
-    , row_gap_32
-    , row_gap_4
-    , row_gap_40
-    , row_gap_48
-    , row_gap_5
-    , row_gap_56
-    , row_gap_6
-    , row_gap_64
-    , row_gap_8
-    , row_gap_px
     , row_span_1
     , row_span_2
     , row_span_3
     , row_span_4
     , row_span_5
     , row_span_6
+    , row_span_full
     , row_start_1
     , row_start_2
     , row_start_3
@@ -8045,13 +10885,18 @@ module Html.Tailwind exposing
     , shadow_xl
     , shadow_xs
     , skew_x_0
+    , skew_x_1
     , skew_x_12
+    , skew_x_2
     , skew_x_3
     , skew_x_6
     , skew_y_0
+    , skew_y_1
     , skew_y_12
+    , skew_y_2
     , skew_y_3
     , skew_y_6
+    , slashed_zero
     , sm__absolute
     , sm__align_baseline
     , sm__align_bottom
@@ -8059,8 +10904,21 @@ module Html.Tailwind exposing
     , sm__align_text_bottom
     , sm__align_text_top
     , sm__align_top
+    , sm__animate_bounce
+    , sm__animate_none
+    , sm__animate_ping
+    , sm__animate_pulse
+    , sm__animate_spin
     , sm__antialiased
     , sm__appearance_none
+    , sm__auto_cols_auto
+    , sm__auto_cols_fr
+    , sm__auto_cols_max
+    , sm__auto_cols_min
+    , sm__auto_rows_auto
+    , sm__auto_rows_fr
+    , sm__auto_rows_max
+    , sm__auto_rows_min
     , sm__bg_auto
     , sm__bg_black
     , sm__bg_blue_100
@@ -8074,10 +10932,22 @@ module Html.Tailwind exposing
     , sm__bg_blue_900
     , sm__bg_bottom
     , sm__bg_center
+    , sm__bg_clip_border
+    , sm__bg_clip_content
+    , sm__bg_clip_padding
+    , sm__bg_clip_text
     , sm__bg_contain
     , sm__bg_cover
     , sm__bg_current
     , sm__bg_fixed
+    , sm__bg_gradient_to_b
+    , sm__bg_gradient_to_bl
+    , sm__bg_gradient_to_br
+    , sm__bg_gradient_to_l
+    , sm__bg_gradient_to_r
+    , sm__bg_gradient_to_t
+    , sm__bg_gradient_to_tl
+    , sm__bg_gradient_to_tr
     , sm__bg_gray_100
     , sm__bg_gray_200
     , sm__bg_gray_300
@@ -8110,6 +10980,7 @@ module Html.Tailwind exposing
     , sm__bg_left_top
     , sm__bg_local
     , sm__bg_no_repeat
+    , sm__bg_none
     , sm__bg_opacity_0
     , sm__bg_opacity_100
     , sm__bg_opacity_25
@@ -8341,25 +11212,6 @@ module Html.Tailwind exposing
     , sm__col_end_8
     , sm__col_end_9
     , sm__col_end_auto
-    , sm__col_gap_0
-    , sm__col_gap_1
-    , sm__col_gap_10
-    , sm__col_gap_12
-    , sm__col_gap_16
-    , sm__col_gap_2
-    , sm__col_gap_20
-    , sm__col_gap_24
-    , sm__col_gap_3
-    , sm__col_gap_32
-    , sm__col_gap_4
-    , sm__col_gap_40
-    , sm__col_gap_48
-    , sm__col_gap_5
-    , sm__col_gap_56
-    , sm__col_gap_6
-    , sm__col_gap_64
-    , sm__col_gap_8
-    , sm__col_gap_px
     , sm__col_span_1
     , sm__col_span_10
     , sm__col_span_11
@@ -8372,6 +11224,7 @@ module Html.Tailwind exposing
     , sm__col_span_7
     , sm__col_span_8
     , sm__col_span_9
+    , sm__col_span_full
     , sm__col_start_1
     , sm__col_start_10
     , sm__col_start_11
@@ -8386,11 +11239,14 @@ module Html.Tailwind exposing
     , sm__col_start_8
     , sm__col_start_9
     , sm__col_start_auto
+    , sm__container
     , sm__content_around
     , sm__content_between
     , sm__content_center
     , sm__content_end
+    , sm__content_evenly
     , sm__content_start
+    , sm__contents
     , sm__cursor_auto
     , sm__cursor_default
     , sm__cursor_move
@@ -8406,6 +11262,7 @@ module Html.Tailwind exposing
     , sm__delay_500
     , sm__delay_700
     , sm__delay_75
+    , sm__diagonal_fractions
     , sm__disabled__cursor_auto
     , sm__disabled__cursor_default
     , sm__disabled__cursor_move
@@ -8429,6 +11286,9 @@ module Html.Tailwind exposing
     , sm__divide_blue_800
     , sm__divide_blue_900
     , sm__divide_current
+    , sm__divide_dashed
+    , sm__divide_dotted
+    , sm__divide_double
     , sm__divide_gray_100
     , sm__divide_gray_200
     , sm__divide_gray_300
@@ -8456,6 +11316,7 @@ module Html.Tailwind exposing
     , sm__divide_indigo_700
     , sm__divide_indigo_800
     , sm__divide_indigo_900
+    , sm__divide_none
     , sm__divide_opacity_0
     , sm__divide_opacity_100
     , sm__divide_opacity_25
@@ -8497,6 +11358,7 @@ module Html.Tailwind exposing
     , sm__divide_red_700
     , sm__divide_red_800
     , sm__divide_red_900
+    , sm__divide_solid
     , sm__divide_teal_100
     , sm__divide_teal_200
     , sm__divide_teal_300
@@ -8770,14 +11632,117 @@ module Html.Tailwind exposing
     , sm__focus__font_normal
     , sm__focus__font_semibold
     , sm__focus__font_thin
+    , sm__focus__from_black
+    , sm__focus__from_blue_100
+    , sm__focus__from_blue_200
+    , sm__focus__from_blue_300
+    , sm__focus__from_blue_400
+    , sm__focus__from_blue_500
+    , sm__focus__from_blue_600
+    , sm__focus__from_blue_700
+    , sm__focus__from_blue_800
+    , sm__focus__from_blue_900
+    , sm__focus__from_current
+    , sm__focus__from_gray_100
+    , sm__focus__from_gray_200
+    , sm__focus__from_gray_300
+    , sm__focus__from_gray_400
+    , sm__focus__from_gray_500
+    , sm__focus__from_gray_600
+    , sm__focus__from_gray_700
+    , sm__focus__from_gray_800
+    , sm__focus__from_gray_900
+    , sm__focus__from_green_100
+    , sm__focus__from_green_200
+    , sm__focus__from_green_300
+    , sm__focus__from_green_400
+    , sm__focus__from_green_500
+    , sm__focus__from_green_600
+    , sm__focus__from_green_700
+    , sm__focus__from_green_800
+    , sm__focus__from_green_900
+    , sm__focus__from_indigo_100
+    , sm__focus__from_indigo_200
+    , sm__focus__from_indigo_300
+    , sm__focus__from_indigo_400
+    , sm__focus__from_indigo_500
+    , sm__focus__from_indigo_600
+    , sm__focus__from_indigo_700
+    , sm__focus__from_indigo_800
+    , sm__focus__from_indigo_900
+    , sm__focus__from_orange_100
+    , sm__focus__from_orange_200
+    , sm__focus__from_orange_300
+    , sm__focus__from_orange_400
+    , sm__focus__from_orange_500
+    , sm__focus__from_orange_600
+    , sm__focus__from_orange_700
+    , sm__focus__from_orange_800
+    , sm__focus__from_orange_900
+    , sm__focus__from_pink_100
+    , sm__focus__from_pink_200
+    , sm__focus__from_pink_300
+    , sm__focus__from_pink_400
+    , sm__focus__from_pink_500
+    , sm__focus__from_pink_600
+    , sm__focus__from_pink_700
+    , sm__focus__from_pink_800
+    , sm__focus__from_pink_900
+    , sm__focus__from_purple_100
+    , sm__focus__from_purple_200
+    , sm__focus__from_purple_300
+    , sm__focus__from_purple_400
+    , sm__focus__from_purple_500
+    , sm__focus__from_purple_600
+    , sm__focus__from_purple_700
+    , sm__focus__from_purple_800
+    , sm__focus__from_purple_900
+    , sm__focus__from_red_100
+    , sm__focus__from_red_200
+    , sm__focus__from_red_300
+    , sm__focus__from_red_400
+    , sm__focus__from_red_500
+    , sm__focus__from_red_600
+    , sm__focus__from_red_700
+    , sm__focus__from_red_800
+    , sm__focus__from_red_900
+    , sm__focus__from_teal_100
+    , sm__focus__from_teal_200
+    , sm__focus__from_teal_300
+    , sm__focus__from_teal_400
+    , sm__focus__from_teal_500
+    , sm__focus__from_teal_600
+    , sm__focus__from_teal_700
+    , sm__focus__from_teal_800
+    , sm__focus__from_teal_900
+    , sm__focus__from_transparent
+    , sm__focus__from_white
+    , sm__focus__from_yellow_100
+    , sm__focus__from_yellow_200
+    , sm__focus__from_yellow_300
+    , sm__focus__from_yellow_400
+    , sm__focus__from_yellow_500
+    , sm__focus__from_yellow_600
+    , sm__focus__from_yellow_700
+    , sm__focus__from_yellow_800
+    , sm__focus__from_yellow_900
     , sm__focus__line_through
+    , sm__focus__neg_rotate_1
+    , sm__focus__neg_rotate_12
     , sm__focus__neg_rotate_180
+    , sm__focus__neg_rotate_2
+    , sm__focus__neg_rotate_3
     , sm__focus__neg_rotate_45
+    , sm__focus__neg_rotate_6
     , sm__focus__neg_rotate_90
+    , sm__focus__neg_skew_x_1
     , sm__focus__neg_skew_x_12
+    , sm__focus__neg_skew_x_2
     , sm__focus__neg_skew_x_3
     , sm__focus__neg_skew_x_6
+    , sm__focus__neg_skew_y_1
     , sm__focus__neg_skew_y_12
+    , sm__focus__neg_skew_y_2
     , sm__focus__neg_skew_y_3
     , sm__focus__neg_skew_y_6
     , sm__focus__neg_translate_x_1
@@ -8827,7 +11792,9 @@ module Html.Tailwind exposing
     , sm__focus__opacity_25
     , sm__focus__opacity_50
     , sm__focus__opacity_75
+    , sm__focus__outline_black
     , sm__focus__outline_none
+    , sm__focus__outline_white
     , sm__focus__placeholder_black__focus
     , sm__focus__placeholder_blue_100__focus
     , sm__focus__placeholder_blue_200__focus
@@ -8928,8 +11895,13 @@ module Html.Tailwind exposing
     , sm__focus__placeholder_yellow_800__focus
     , sm__focus__placeholder_yellow_900__focus
     , sm__focus__rotate_0
+    , sm__focus__rotate_1
+    , sm__focus__rotate_12
     , sm__focus__rotate_180
+    , sm__focus__rotate_2
+    , sm__focus__rotate_3
     , sm__focus__rotate_45
+    , sm__focus__rotate_6
     , sm__focus__rotate_90
     , sm__focus__scale_0
     , sm__focus__scale_100
@@ -8972,11 +11944,15 @@ module Html.Tailwind exposing
     , sm__focus__shadow_xl
     , sm__focus__shadow_xs
     , sm__focus__skew_x_0
+    , sm__focus__skew_x_1
     , sm__focus__skew_x_12
+    , sm__focus__skew_x_2
     , sm__focus__skew_x_3
     , sm__focus__skew_x_6
     , sm__focus__skew_y_0
+    , sm__focus__skew_y_1
     , sm__focus__skew_y_12
+    , sm__focus__skew_y_2
     , sm__focus__skew_y_3
     , sm__focus__skew_y_6
     , sm__focus__sr_only
@@ -9079,6 +12055,100 @@ module Html.Tailwind exposing
     , sm__focus__text_yellow_700
     , sm__focus__text_yellow_800
     , sm__focus__text_yellow_900
+    , sm__focus__to_black
+    , sm__focus__to_blue_100
+    , sm__focus__to_blue_200
+    , sm__focus__to_blue_300
+    , sm__focus__to_blue_400
+    , sm__focus__to_blue_500
+    , sm__focus__to_blue_600
+    , sm__focus__to_blue_700
+    , sm__focus__to_blue_800
+    , sm__focus__to_blue_900
+    , sm__focus__to_current
+    , sm__focus__to_gray_100
+    , sm__focus__to_gray_200
+    , sm__focus__to_gray_300
+    , sm__focus__to_gray_400
+    , sm__focus__to_gray_500
+    , sm__focus__to_gray_600
+    , sm__focus__to_gray_700
+    , sm__focus__to_gray_800
+    , sm__focus__to_gray_900
+    , sm__focus__to_green_100
+    , sm__focus__to_green_200
+    , sm__focus__to_green_300
+    , sm__focus__to_green_400
+    , sm__focus__to_green_500
+    , sm__focus__to_green_600
+    , sm__focus__to_green_700
+    , sm__focus__to_green_800
+    , sm__focus__to_green_900
+    , sm__focus__to_indigo_100
+    , sm__focus__to_indigo_200
+    , sm__focus__to_indigo_300
+    , sm__focus__to_indigo_400
+    , sm__focus__to_indigo_500
+    , sm__focus__to_indigo_600
+    , sm__focus__to_indigo_700
+    , sm__focus__to_indigo_800
+    , sm__focus__to_indigo_900
+    , sm__focus__to_orange_100
+    , sm__focus__to_orange_200
+    , sm__focus__to_orange_300
+    , sm__focus__to_orange_400
+    , sm__focus__to_orange_500
+    , sm__focus__to_orange_600
+    , sm__focus__to_orange_700
+    , sm__focus__to_orange_800
+    , sm__focus__to_orange_900
+    , sm__focus__to_pink_100
+    , sm__focus__to_pink_200
+    , sm__focus__to_pink_300
+    , sm__focus__to_pink_400
+    , sm__focus__to_pink_500
+    , sm__focus__to_pink_600
+    , sm__focus__to_pink_700
+    , sm__focus__to_pink_800
+    , sm__focus__to_pink_900
+    , sm__focus__to_purple_100
+    , sm__focus__to_purple_200
+    , sm__focus__to_purple_300
+    , sm__focus__to_purple_400
+    , sm__focus__to_purple_500
+    , sm__focus__to_purple_600
+    , sm__focus__to_purple_700
+    , sm__focus__to_purple_800
+    , sm__focus__to_purple_900
+    , sm__focus__to_red_100
+    , sm__focus__to_red_200
+    , sm__focus__to_red_300
+    , sm__focus__to_red_400
+    , sm__focus__to_red_500
+    , sm__focus__to_red_600
+    , sm__focus__to_red_700
+    , sm__focus__to_red_800
+    , sm__focus__to_red_900
+    , sm__focus__to_teal_100
+    , sm__focus__to_teal_200
+    , sm__focus__to_teal_300
+    , sm__focus__to_teal_400
+    , sm__focus__to_teal_500
+    , sm__focus__to_teal_600
+    , sm__focus__to_teal_700
+    , sm__focus__to_teal_800
+    , sm__focus__to_teal_900
+    , sm__focus__to_transparent
+    , sm__focus__to_white
+    , sm__focus__to_yellow_100
+    , sm__focus__to_yellow_200
+    , sm__focus__to_yellow_300
+    , sm__focus__to_yellow_400
+    , sm__focus__to_yellow_500
+    , sm__focus__to_yellow_600
+    , sm__focus__to_yellow_700
+    , sm__focus__to_yellow_800
+    , sm__focus__to_yellow_900
     , sm__focus__translate_x_0
     , sm__focus__translate_x_1
     , sm__focus__translate_x_10
@@ -9122,6 +12192,100 @@ module Html.Tailwind exposing
     , sm__focus__translate_y_full
     , sm__focus__translate_y_px
     , sm__focus__underline
+    , sm__focus__via_black
+    , sm__focus__via_blue_100
+    , sm__focus__via_blue_200
+    , sm__focus__via_blue_300
+    , sm__focus__via_blue_400
+    , sm__focus__via_blue_500
+    , sm__focus__via_blue_600
+    , sm__focus__via_blue_700
+    , sm__focus__via_blue_800
+    , sm__focus__via_blue_900
+    , sm__focus__via_current
+    , sm__focus__via_gray_100
+    , sm__focus__via_gray_200
+    , sm__focus__via_gray_300
+    , sm__focus__via_gray_400
+    , sm__focus__via_gray_500
+    , sm__focus__via_gray_600
+    , sm__focus__via_gray_700
+    , sm__focus__via_gray_800
+    , sm__focus__via_gray_900
+    , sm__focus__via_green_100
+    , sm__focus__via_green_200
+    , sm__focus__via_green_300
+    , sm__focus__via_green_400
+    , sm__focus__via_green_500
+    , sm__focus__via_green_600
+    , sm__focus__via_green_700
+    , sm__focus__via_green_800
+    , sm__focus__via_green_900
+    , sm__focus__via_indigo_100
+    , sm__focus__via_indigo_200
+    , sm__focus__via_indigo_300
+    , sm__focus__via_indigo_400
+    , sm__focus__via_indigo_500
+    , sm__focus__via_indigo_600
+    , sm__focus__via_indigo_700
+    , sm__focus__via_indigo_800
+    , sm__focus__via_indigo_900
+    , sm__focus__via_orange_100
+    , sm__focus__via_orange_200
+    , sm__focus__via_orange_300
+    , sm__focus__via_orange_400
+    , sm__focus__via_orange_500
+    , sm__focus__via_orange_600
+    , sm__focus__via_orange_700
+    , sm__focus__via_orange_800
+    , sm__focus__via_orange_900
+    , sm__focus__via_pink_100
+    , sm__focus__via_pink_200
+    , sm__focus__via_pink_300
+    , sm__focus__via_pink_400
+    , sm__focus__via_pink_500
+    , sm__focus__via_pink_600
+    , sm__focus__via_pink_700
+    , sm__focus__via_pink_800
+    , sm__focus__via_pink_900
+    , sm__focus__via_purple_100
+    , sm__focus__via_purple_200
+    , sm__focus__via_purple_300
+    , sm__focus__via_purple_400
+    , sm__focus__via_purple_500
+    , sm__focus__via_purple_600
+    , sm__focus__via_purple_700
+    , sm__focus__via_purple_800
+    , sm__focus__via_purple_900
+    , sm__focus__via_red_100
+    , sm__focus__via_red_200
+    , sm__focus__via_red_300
+    , sm__focus__via_red_400
+    , sm__focus__via_red_500
+    , sm__focus__via_red_600
+    , sm__focus__via_red_700
+    , sm__focus__via_red_800
+    , sm__focus__via_red_900
+    , sm__focus__via_teal_100
+    , sm__focus__via_teal_200
+    , sm__focus__via_teal_300
+    , sm__focus__via_teal_400
+    , sm__focus__via_teal_500
+    , sm__focus__via_teal_600
+    , sm__focus__via_teal_700
+    , sm__focus__via_teal_800
+    , sm__focus__via_teal_900
+    , sm__focus__via_transparent
+    , sm__focus__via_white
+    , sm__focus__via_yellow_100
+    , sm__focus__via_yellow_200
+    , sm__focus__via_yellow_300
+    , sm__focus__via_yellow_400
+    , sm__focus__via_yellow_500
+    , sm__focus__via_yellow_600
+    , sm__focus__via_yellow_700
+    , sm__focus__via_yellow_800
+    , sm__focus__via_yellow_900
     , sm__font_black
     , sm__font_bold
     , sm__font_extrabold
@@ -9134,6 +12298,100 @@ module Html.Tailwind exposing
     , sm__font_semibold
     , sm__font_serif
     , sm__font_thin
+    , sm__from_black
+    , sm__from_blue_100
+    , sm__from_blue_200
+    , sm__from_blue_300
+    , sm__from_blue_400
+    , sm__from_blue_500
+    , sm__from_blue_600
+    , sm__from_blue_700
+    , sm__from_blue_800
+    , sm__from_blue_900
+    , sm__from_current
+    , sm__from_gray_100
+    , sm__from_gray_200
+    , sm__from_gray_300
+    , sm__from_gray_400
+    , sm__from_gray_500
+    , sm__from_gray_600
+    , sm__from_gray_700
+    , sm__from_gray_800
+    , sm__from_gray_900
+    , sm__from_green_100
+    , sm__from_green_200
+    , sm__from_green_300
+    , sm__from_green_400
+    , sm__from_green_500
+    , sm__from_green_600
+    , sm__from_green_700
+    , sm__from_green_800
+    , sm__from_green_900
+    , sm__from_indigo_100
+    , sm__from_indigo_200
+    , sm__from_indigo_300
+    , sm__from_indigo_400
+    , sm__from_indigo_500
+    , sm__from_indigo_600
+    , sm__from_indigo_700
+    , sm__from_indigo_800
+    , sm__from_indigo_900
+    , sm__from_orange_100
+    , sm__from_orange_200
+    , sm__from_orange_300
+    , sm__from_orange_400
+    , sm__from_orange_500
+    , sm__from_orange_600
+    , sm__from_orange_700
+    , sm__from_orange_800
+    , sm__from_orange_900
+    , sm__from_pink_100
+    , sm__from_pink_200
+    , sm__from_pink_300
+    , sm__from_pink_400
+    , sm__from_pink_500
+    , sm__from_pink_600
+    , sm__from_pink_700
+    , sm__from_pink_800
+    , sm__from_pink_900
+    , sm__from_purple_100
+    , sm__from_purple_200
+    , sm__from_purple_300
+    , sm__from_purple_400
+    , sm__from_purple_500
+    , sm__from_purple_600
+    , sm__from_purple_700
+    , sm__from_purple_800
+    , sm__from_purple_900
+    , sm__from_red_100
+    , sm__from_red_200
+    , sm__from_red_300
+    , sm__from_red_400
+    , sm__from_red_500
+    , sm__from_red_600
+    , sm__from_red_700
+    , sm__from_red_800
+    , sm__from_red_900
+    , sm__from_teal_100
+    , sm__from_teal_200
+    , sm__from_teal_300
+    , sm__from_teal_400
+    , sm__from_teal_500
+    , sm__from_teal_600
+    , sm__from_teal_700
+    , sm__from_teal_800
+    , sm__from_teal_900
+    , sm__from_transparent
+    , sm__from_white
+    , sm__from_yellow_100
+    , sm__from_yellow_200
+    , sm__from_yellow_300
+    , sm__from_yellow_400
+    , sm__from_yellow_500
+    , sm__from_yellow_600
+    , sm__from_yellow_700
+    , sm__from_yellow_800
+    , sm__from_yellow_900
     , sm__gap_0
     , sm__gap_1
     , sm__gap_10
@@ -9153,6 +12411,44 @@ module Html.Tailwind exposing
     , sm__gap_64
     , sm__gap_8
     , sm__gap_px
+    , sm__gap_x_0
+    , sm__gap_x_1
+    , sm__gap_x_10
+    , sm__gap_x_12
+    , sm__gap_x_16
+    , sm__gap_x_2
+    , sm__gap_x_20
+    , sm__gap_x_24
+    , sm__gap_x_3
+    , sm__gap_x_32
+    , sm__gap_x_4
+    , sm__gap_x_40
+    , sm__gap_x_48
+    , sm__gap_x_5
+    , sm__gap_x_56
+    , sm__gap_x_6
+    , sm__gap_x_64
+    , sm__gap_x_8
+    , sm__gap_x_px
+    , sm__gap_y_0
+    , sm__gap_y_1
+    , sm__gap_y_10
+    , sm__gap_y_12
+    , sm__gap_y_16
+    , sm__gap_y_2
+    , sm__gap_y_20
+    , sm__gap_y_24
+    , sm__gap_y_3
+    , sm__gap_y_32
+    , sm__gap_y_4
+    , sm__gap_y_40
+    , sm__gap_y_48
+    , sm__gap_y_5
+    , sm__gap_y_56
+    , sm__gap_y_6
+    , sm__gap_y_64
+    , sm__gap_y_8
+    , sm__gap_y_px
     , sm__grid
     , sm__grid_cols_1
     , sm__grid_cols_10
@@ -9409,14 +12705,117 @@ module Html.Tailwind exposing
     , sm__hover__font_normal
     , sm__hover__font_semibold
     , sm__hover__font_thin
+    , sm__hover__from_black
+    , sm__hover__from_blue_100
+    , sm__hover__from_blue_200
+    , sm__hover__from_blue_300
+    , sm__hover__from_blue_400
+    , sm__hover__from_blue_500
+    , sm__hover__from_blue_600
+    , sm__hover__from_blue_700
+    , sm__hover__from_blue_800
+    , sm__hover__from_blue_900
+    , sm__hover__from_current
+    , sm__hover__from_gray_100
+    , sm__hover__from_gray_200
+    , sm__hover__from_gray_300
+    , sm__hover__from_gray_400
+    , sm__hover__from_gray_500
+    , sm__hover__from_gray_600
+    , sm__hover__from_gray_700
+    , sm__hover__from_gray_800
+    , sm__hover__from_gray_900
+    , sm__hover__from_green_100
+    , sm__hover__from_green_200
+    , sm__hover__from_green_300
+    , sm__hover__from_green_400
+    , sm__hover__from_green_500
+    , sm__hover__from_green_600
+    , sm__hover__from_green_700
+    , sm__hover__from_green_800
+    , sm__hover__from_green_900
+    , sm__hover__from_indigo_100
+    , sm__hover__from_indigo_200
+    , sm__hover__from_indigo_300
+    , sm__hover__from_indigo_400
+    , sm__hover__from_indigo_500
+    , sm__hover__from_indigo_600
+    , sm__hover__from_indigo_700
+    , sm__hover__from_indigo_800
+    , sm__hover__from_indigo_900
+    , sm__hover__from_orange_100
+    , sm__hover__from_orange_200
+    , sm__hover__from_orange_300
+    , sm__hover__from_orange_400
+    , sm__hover__from_orange_500
+    , sm__hover__from_orange_600
+    , sm__hover__from_orange_700
+    , sm__hover__from_orange_800
+    , sm__hover__from_orange_900
+    , sm__hover__from_pink_100
+    , sm__hover__from_pink_200
+    , sm__hover__from_pink_300
+    , sm__hover__from_pink_400
+    , sm__hover__from_pink_500
+    , sm__hover__from_pink_600
+    , sm__hover__from_pink_700
+    , sm__hover__from_pink_800
+    , sm__hover__from_pink_900
+    , sm__hover__from_purple_100
+    , sm__hover__from_purple_200
+    , sm__hover__from_purple_300
+    , sm__hover__from_purple_400
+    , sm__hover__from_purple_500
+    , sm__hover__from_purple_600
+    , sm__hover__from_purple_700
+    , sm__hover__from_purple_800
+    , sm__hover__from_purple_900
+    , sm__hover__from_red_100
+    , sm__hover__from_red_200
+    , sm__hover__from_red_300
+    , sm__hover__from_red_400
+    , sm__hover__from_red_500
+    , sm__hover__from_red_600
+    , sm__hover__from_red_700
+    , sm__hover__from_red_800
+    , sm__hover__from_red_900
+    , sm__hover__from_teal_100
+    , sm__hover__from_teal_200
+    , sm__hover__from_teal_300
+    , sm__hover__from_teal_400
+    , sm__hover__from_teal_500
+    , sm__hover__from_teal_600
+    , sm__hover__from_teal_700
+    , sm__hover__from_teal_800
+    , sm__hover__from_teal_900
+    , sm__hover__from_transparent
+    , sm__hover__from_white
+    , sm__hover__from_yellow_100
+    , sm__hover__from_yellow_200
+    , sm__hover__from_yellow_300
+    , sm__hover__from_yellow_400
+    , sm__hover__from_yellow_500
+    , sm__hover__from_yellow_600
+    , sm__hover__from_yellow_700
+    , sm__hover__from_yellow_800
+    , sm__hover__from_yellow_900
     , sm__hover__line_through
+    , sm__hover__neg_rotate_1
+    , sm__hover__neg_rotate_12
     , sm__hover__neg_rotate_180
+    , sm__hover__neg_rotate_2
+    , sm__hover__neg_rotate_3
     , sm__hover__neg_rotate_45
+    , sm__hover__neg_rotate_6
     , sm__hover__neg_rotate_90
+    , sm__hover__neg_skew_x_1
     , sm__hover__neg_skew_x_12
+    , sm__hover__neg_skew_x_2
     , sm__hover__neg_skew_x_3
     , sm__hover__neg_skew_x_6
+    , sm__hover__neg_skew_y_1
     , sm__hover__neg_skew_y_12
+    , sm__hover__neg_skew_y_2
     , sm__hover__neg_skew_y_3
     , sm__hover__neg_skew_y_6
     , sm__hover__neg_translate_x_1
@@ -9466,8 +12865,13 @@ module Html.Tailwind exposing
     , sm__hover__opacity_50
     , sm__hover__opacity_75
     , sm__hover__rotate_0
+    , sm__hover__rotate_1
+    , sm__hover__rotate_12
     , sm__hover__rotate_180
+    , sm__hover__rotate_2
+    , sm__hover__rotate_3
     , sm__hover__rotate_45
+    , sm__hover__rotate_6
     , sm__hover__rotate_90
     , sm__hover__scale_0
     , sm__hover__scale_100
@@ -9510,11 +12914,15 @@ module Html.Tailwind exposing
     , sm__hover__shadow_xl
     , sm__hover__shadow_xs
     , sm__hover__skew_x_0
+    , sm__hover__skew_x_1
     , sm__hover__skew_x_12
+    , sm__hover__skew_x_2
     , sm__hover__skew_x_3
     , sm__hover__skew_x_6
     , sm__hover__skew_y_0
+    , sm__hover__skew_y_1
     , sm__hover__skew_y_12
+    , sm__hover__skew_y_2
     , sm__hover__skew_y_3
     , sm__hover__skew_y_6
     , sm__hover__text_black
@@ -9616,6 +13024,100 @@ module Html.Tailwind exposing
     , sm__hover__text_yellow_700
     , sm__hover__text_yellow_800
     , sm__hover__text_yellow_900
+    , sm__hover__to_black
+    , sm__hover__to_blue_100
+    , sm__hover__to_blue_200
+    , sm__hover__to_blue_300
+    , sm__hover__to_blue_400
+    , sm__hover__to_blue_500
+    , sm__hover__to_blue_600
+    , sm__hover__to_blue_700
+    , sm__hover__to_blue_800
+    , sm__hover__to_blue_900
+    , sm__hover__to_current
+    , sm__hover__to_gray_100
+    , sm__hover__to_gray_200
+    , sm__hover__to_gray_300
+    , sm__hover__to_gray_400
+    , sm__hover__to_gray_500
+    , sm__hover__to_gray_600
+    , sm__hover__to_gray_700
+    , sm__hover__to_gray_800
+    , sm__hover__to_gray_900
+    , sm__hover__to_green_100
+    , sm__hover__to_green_200
+    , sm__hover__to_green_300
+    , sm__hover__to_green_400
+    , sm__hover__to_green_500
+    , sm__hover__to_green_600
+    , sm__hover__to_green_700
+    , sm__hover__to_green_800
+    , sm__hover__to_green_900
+    , sm__hover__to_indigo_100
+    , sm__hover__to_indigo_200
+    , sm__hover__to_indigo_300
+    , sm__hover__to_indigo_400
+    , sm__hover__to_indigo_500
+    , sm__hover__to_indigo_600
+    , sm__hover__to_indigo_700
+    , sm__hover__to_indigo_800
+    , sm__hover__to_indigo_900
+    , sm__hover__to_orange_100
+    , sm__hover__to_orange_200
+    , sm__hover__to_orange_300
+    , sm__hover__to_orange_400
+    , sm__hover__to_orange_500
+    , sm__hover__to_orange_600
+    , sm__hover__to_orange_700
+    , sm__hover__to_orange_800
+    , sm__hover__to_orange_900
+    , sm__hover__to_pink_100
+    , sm__hover__to_pink_200
+    , sm__hover__to_pink_300
+    , sm__hover__to_pink_400
+    , sm__hover__to_pink_500
+    , sm__hover__to_pink_600
+    , sm__hover__to_pink_700
+    , sm__hover__to_pink_800
+    , sm__hover__to_pink_900
+    , sm__hover__to_purple_100
+    , sm__hover__to_purple_200
+    , sm__hover__to_purple_300
+    , sm__hover__to_purple_400
+    , sm__hover__to_purple_500
+    , sm__hover__to_purple_600
+    , sm__hover__to_purple_700
+    , sm__hover__to_purple_800
+    , sm__hover__to_purple_900
+    , sm__hover__to_red_100
+    , sm__hover__to_red_200
+    , sm__hover__to_red_300
+    , sm__hover__to_red_400
+    , sm__hover__to_red_500
+    , sm__hover__to_red_600
+    , sm__hover__to_red_700
+    , sm__hover__to_red_800
+    , sm__hover__to_red_900
+    , sm__hover__to_teal_100
+    , sm__hover__to_teal_200
+    , sm__hover__to_teal_300
+    , sm__hover__to_teal_400
+    , sm__hover__to_teal_500
+    , sm__hover__to_teal_600
+    , sm__hover__to_teal_700
+    , sm__hover__to_teal_800
+    , sm__hover__to_teal_900
+    , sm__hover__to_transparent
+    , sm__hover__to_white
+    , sm__hover__to_yellow_100
+    , sm__hover__to_yellow_200
+    , sm__hover__to_yellow_300
+    , sm__hover__to_yellow_400
+    , sm__hover__to_yellow_500
+    , sm__hover__to_yellow_600
+    , sm__hover__to_yellow_700
+    , sm__hover__to_yellow_800
+    , sm__hover__to_yellow_900
     , sm__hover__translate_x_0
     , sm__hover__translate_x_1
     , sm__hover__translate_x_10
@@ -9659,6 +13161,100 @@ module Html.Tailwind exposing
     , sm__hover__translate_y_full
     , sm__hover__translate_y_px
     , sm__hover__underline
+    , sm__hover__via_black
+    , sm__hover__via_blue_100
+    , sm__hover__via_blue_200
+    , sm__hover__via_blue_300
+    , sm__hover__via_blue_400
+    , sm__hover__via_blue_500
+    , sm__hover__via_blue_600
+    , sm__hover__via_blue_700
+    , sm__hover__via_blue_800
+    , sm__hover__via_blue_900
+    , sm__hover__via_current
+    , sm__hover__via_gray_100
+    , sm__hover__via_gray_200
+    , sm__hover__via_gray_300
+    , sm__hover__via_gray_400
+    , sm__hover__via_gray_500
+    , sm__hover__via_gray_600
+    , sm__hover__via_gray_700
+    , sm__hover__via_gray_800
+    , sm__hover__via_gray_900
+    , sm__hover__via_green_100
+    , sm__hover__via_green_200
+    , sm__hover__via_green_300
+    , sm__hover__via_green_400
+    , sm__hover__via_green_500
+    , sm__hover__via_green_600
+    , sm__hover__via_green_700
+    , sm__hover__via_green_800
+    , sm__hover__via_green_900
+    , sm__hover__via_indigo_100
+    , sm__hover__via_indigo_200
+    , sm__hover__via_indigo_300
+    , sm__hover__via_indigo_400
+    , sm__hover__via_indigo_500
+    , sm__hover__via_indigo_600
+    , sm__hover__via_indigo_700
+    , sm__hover__via_indigo_800
+    , sm__hover__via_indigo_900
+    , sm__hover__via_orange_100
+    , sm__hover__via_orange_200
+    , sm__hover__via_orange_300
+    , sm__hover__via_orange_400
+    , sm__hover__via_orange_500
+    , sm__hover__via_orange_600
+    , sm__hover__via_orange_700
+    , sm__hover__via_orange_800
+    , sm__hover__via_orange_900
+    , sm__hover__via_pink_100
+    , sm__hover__via_pink_200
+    , sm__hover__via_pink_300
+    , sm__hover__via_pink_400
+    , sm__hover__via_pink_500
+    , sm__hover__via_pink_600
+    , sm__hover__via_pink_700
+    , sm__hover__via_pink_800
+    , sm__hover__via_pink_900
+    , sm__hover__via_purple_100
+    , sm__hover__via_purple_200
+    , sm__hover__via_purple_300
+    , sm__hover__via_purple_400
+    , sm__hover__via_purple_500
+    , sm__hover__via_purple_600
+    , sm__hover__via_purple_700
+    , sm__hover__via_purple_800
+    , sm__hover__via_purple_900
+    , sm__hover__via_red_100
+    , sm__hover__via_red_200
+    , sm__hover__via_red_300
+    , sm__hover__via_red_400
+    , sm__hover__via_red_500
+    , sm__hover__via_red_600
+    , sm__hover__via_red_700
+    , sm__hover__via_red_800
+    , sm__hover__via_red_900
+    , sm__hover__via_teal_100
+    , sm__hover__via_teal_200
+    , sm__hover__via_teal_300
+    , sm__hover__via_teal_400
+    , sm__hover__via_teal_500
+    , sm__hover__via_teal_600
+    , sm__hover__via_teal_700
+    , sm__hover__via_teal_800
+    , sm__hover__via_teal_900
+    , sm__hover__via_transparent
+    , sm__hover__via_white
+    , sm__hover__via_yellow_100
+    , sm__hover__via_yellow_200
+    , sm__hover__via_yellow_300
+    , sm__hover__via_yellow_400
+    , sm__hover__via_yellow_500
+    , sm__hover__via_yellow_600
+    , sm__hover__via_yellow_700
+    , sm__hover__via_yellow_800
+    , sm__hover__via_yellow_900
     , sm__inline
     , sm__inline_block
     , sm__inline_flex
@@ -9681,6 +13277,16 @@ module Html.Tailwind exposing
     , sm__justify_center
     , sm__justify_end
     , sm__justify_evenly
+    , sm__justify_items_auto
+    , sm__justify_items_center
+    , sm__justify_items_end
+    , sm__justify_items_start
+    , sm__justify_items_stretch
+    , sm__justify_self_auto
+    , sm__justify_self_center
+    , sm__justify_self_end
+    , sm__justify_self_start
+    , sm__justify_self_stretch
     , sm__justify_start
     , sm__leading_10
     , sm__leading_3
@@ -9699,6 +13305,7 @@ module Html.Tailwind exposing
     , sm__left_0
     , sm__left_auto
     , sm__line_through
+    , sm__lining_nums
     , sm__list_decimal
     , sm__list_disc
     , sm__list_inside
@@ -9994,13 +13601,22 @@ module Html.Tailwind exposing
     , sm__neg_my_64
     , sm__neg_my_8
     , sm__neg_my_px
+    , sm__neg_rotate_1
+    , sm__neg_rotate_12
     , sm__neg_rotate_180
+    , sm__neg_rotate_2
+    , sm__neg_rotate_3
     , sm__neg_rotate_45
+    , sm__neg_rotate_6
     , sm__neg_rotate_90
+    , sm__neg_skew_x_1
     , sm__neg_skew_x_12
+    , sm__neg_skew_x_2
     , sm__neg_skew_x_3
     , sm__neg_skew_x_6
+    , sm__neg_skew_y_1
     , sm__neg_skew_y_12
+    , sm__neg_skew_y_2
     , sm__neg_skew_y_3
     , sm__neg_skew_y_6
     , sm__neg_space_x_1
@@ -10081,6 +13697,7 @@ module Html.Tailwind exposing
     , sm__neg_translate_y_px
     , sm__no_underline
     , sm__normal_case
+    , sm__normal_nums
     , sm__not_italic
     , sm__not_sr_only
     , sm__object_bottom
@@ -10097,6 +13714,7 @@ module Html.Tailwind exposing
     , sm__object_right_top
     , sm__object_scale_down
     , sm__object_top
+    , sm__oldstyle_nums
     , sm__opacity_0
     , sm__opacity_100
     , sm__opacity_25
@@ -10117,6 +13735,7 @@ module Html.Tailwind exposing
     , sm__order_first
     , sm__order_last
     , sm__order_none
+    , sm__ordinal
     , sm__origin_bottom
     , sm__origin_bottom_left
     , sm__origin_bottom_right
@@ -10126,7 +13745,9 @@ module Html.Tailwind exposing
     , sm__origin_top
     , sm__origin_top_left
     , sm__origin_top_right
+    , sm__outline_black
     , sm__outline_none
+    , sm__outline_white
     , sm__overflow_auto
     , sm__overflow_hidden
     , sm__overflow_scroll
@@ -10139,6 +13760,15 @@ module Html.Tailwind exposing
     , sm__overflow_y_hidden
     , sm__overflow_y_scroll
     , sm__overflow_y_visible
+    , sm__overscroll_auto
+    , sm__overscroll_contain
+    , sm__overscroll_none
+    , sm__overscroll_x_auto
+    , sm__overscroll_x_contain
+    , sm__overscroll_x_none
+    , sm__overscroll_y_auto
+    , sm__overscroll_y_contain
+    , sm__overscroll_y_none
     , sm__p_0
     , sm__p_1
     , sm__p_10
@@ -10196,6 +13826,23 @@ module Html.Tailwind exposing
     , sm__pl_64
     , sm__pl_8
     , sm__pl_px
+    , sm__place_content_around
+    , sm__place_content_between
+    , sm__place_content_center
+    , sm__place_content_end
+    , sm__place_content_evenly
+    , sm__place_content_start
+    , sm__place_content_stretch
+    , sm__place_items_auto
+    , sm__place_items_center
+    , sm__place_items_end
+    , sm__place_items_start
+    , sm__place_items_stretch
+    , sm__place_self_auto
+    , sm__place_self_center
+    , sm__place_self_end
+    , sm__place_self_start
+    , sm__place_self_stretch
     , sm__placeholder_black
     , sm__placeholder_blue_100
     , sm__placeholder_blue_200
@@ -10316,6 +13963,7 @@ module Html.Tailwind exposing
     , sm__pr_64
     , sm__pr_8
     , sm__pr_px
+    , sm__proportional_nums
     , sm__pt_0
     , sm__pt_1
     , sm__pt_10
@@ -10381,63 +14029,95 @@ module Html.Tailwind exposing
     , sm__right_0
     , sm__right_auto
     , sm__rotate_0
+    , sm__rotate_1
+    , sm__rotate_12
     , sm__rotate_180
+    , sm__rotate_2
+    , sm__rotate_3
     , sm__rotate_45
+    , sm__rotate_6
     , sm__rotate_90
     , sm__rounded
+    , sm__rounded_2xl
+    , sm__rounded_3xl
     , sm__rounded_b
+    , sm__rounded_b_2xl
+    , sm__rounded_b_3xl
     , sm__rounded_b_full
     , sm__rounded_b_lg
     , sm__rounded_b_md
     , sm__rounded_b_none
     , sm__rounded_b_sm
+    , sm__rounded_b_xl
     , sm__rounded_bl
+    , sm__rounded_bl_2xl
+    , sm__rounded_bl_3xl
     , sm__rounded_bl_full
     , sm__rounded_bl_lg
     , sm__rounded_bl_md
     , sm__rounded_bl_none
     , sm__rounded_bl_sm
+    , sm__rounded_bl_xl
     , sm__rounded_br
+    , sm__rounded_br_2xl
+    , sm__rounded_br_3xl
     , sm__rounded_br_full
     , sm__rounded_br_lg
     , sm__rounded_br_md
     , sm__rounded_br_none
     , sm__rounded_br_sm
+    , sm__rounded_br_xl
     , sm__rounded_full
     , sm__rounded_l
+    , sm__rounded_l_2xl
+    , sm__rounded_l_3xl
     , sm__rounded_l_full
     , sm__rounded_l_lg
     , sm__rounded_l_md
     , sm__rounded_l_none
     , sm__rounded_l_sm
+    , sm__rounded_l_xl
     , sm__rounded_lg
     , sm__rounded_md
     , sm__rounded_none
     , sm__rounded_r
+    , sm__rounded_r_2xl
+    , sm__rounded_r_3xl
     , sm__rounded_r_full
     , sm__rounded_r_lg
     , sm__rounded_r_md
     , sm__rounded_r_none
     , sm__rounded_r_sm
+    , sm__rounded_r_xl
     , sm__rounded_sm
     , sm__rounded_t
+    , sm__rounded_t_2xl
+    , sm__rounded_t_3xl
     , sm__rounded_t_full
     , sm__rounded_t_lg
     , sm__rounded_t_md
     , sm__rounded_t_none
     , sm__rounded_t_sm
+    , sm__rounded_t_xl
     , sm__rounded_tl
+    , sm__rounded_tl_2xl
+    , sm__rounded_tl_3xl
     , sm__rounded_tl_full
     , sm__rounded_tl_lg
     , sm__rounded_tl_md
     , sm__rounded_tl_none
     , sm__rounded_tl_sm
+    , sm__rounded_tl_xl
     , sm__rounded_tr
+    , sm__rounded_tr_2xl
+    , sm__rounded_tr_3xl
     , sm__rounded_tr_full
     , sm__rounded_tr_lg
     , sm__rounded_tr_md
     , sm__rounded_tr_none
     , sm__rounded_tr_sm
+    , sm__rounded_tr_xl
+    , sm__rounded_xl
     , sm__row_auto
     , sm__row_end_1
     , sm__row_end_2
@@ -10447,31 +14127,13 @@ module Html.Tailwind exposing
     , sm__row_end_6
     , sm__row_end_7
     , sm__row_end_auto
-    , sm__row_gap_0
-    , sm__row_gap_1
-    , sm__row_gap_10
-    , sm__row_gap_12
-    , sm__row_gap_16
-    , sm__row_gap_2
-    , sm__row_gap_20
-    , sm__row_gap_24
-    , sm__row_gap_3
-    , sm__row_gap_32
-    , sm__row_gap_4
-    , sm__row_gap_40
-    , sm__row_gap_48
-    , sm__row_gap_5
-    , sm__row_gap_56
-    , sm__row_gap_6
-    , sm__row_gap_64
-    , sm__row_gap_8
-    , sm__row_gap_px
     , sm__row_span_1
     , sm__row_span_2
     , sm__row_span_3
     , sm__row_span_4
     , sm__row_span_5
     , sm__row_span_6
+    , sm__row_span_full
     , sm__row_start_1
     , sm__row_start_2
     , sm__row_start_3
@@ -10532,13 +14194,18 @@ module Html.Tailwind exposing
     , sm__shadow_xl
     , sm__shadow_xs
     , sm__skew_x_0
+    , sm__skew_x_1
     , sm__skew_x_12
+    , sm__skew_x_2
     , sm__skew_x_3
     , sm__skew_x_6
     , sm__skew_y_0
+    , sm__skew_y_1
     , sm__skew_y_12
+    , sm__skew_y_2
     , sm__skew_y_3
     , sm__skew_y_6
+    , sm__slashed_zero
     , sm__space_x_0
     , sm__space_x_1
     , sm__space_x_10
@@ -10580,6 +14247,7 @@ module Html.Tailwind exposing
     , sm__space_y_px
     , sm__space_y_reverse
     , sm__sr_only
+    , sm__stacked_fractions
     , sm__static
     , sm__sticky
     , sm__stroke_0
@@ -10598,6 +14266,7 @@ module Html.Tailwind exposing
     , sm__table_header_group
     , sm__table_row
     , sm__table_row_group
+    , sm__tabular_nums
     , sm__text_2xl
     , sm__text_3xl
     , sm__text_4xl
@@ -10711,6 +14380,100 @@ module Html.Tailwind exposing
     , sm__text_yellow_700
     , sm__text_yellow_800
     , sm__text_yellow_900
+    , sm__to_black
+    , sm__to_blue_100
+    , sm__to_blue_200
+    , sm__to_blue_300
+    , sm__to_blue_400
+    , sm__to_blue_500
+    , sm__to_blue_600
+    , sm__to_blue_700
+    , sm__to_blue_800
+    , sm__to_blue_900
+    , sm__to_current
+    , sm__to_gray_100
+    , sm__to_gray_200
+    , sm__to_gray_300
+    , sm__to_gray_400
+    , sm__to_gray_500
+    , sm__to_gray_600
+    , sm__to_gray_700
+    , sm__to_gray_800
+    , sm__to_gray_900
+    , sm__to_green_100
+    , sm__to_green_200
+    , sm__to_green_300
+    , sm__to_green_400
+    , sm__to_green_500
+    , sm__to_green_600
+    , sm__to_green_700
+    , sm__to_green_800
+    , sm__to_green_900
+    , sm__to_indigo_100
+    , sm__to_indigo_200
+    , sm__to_indigo_300
+    , sm__to_indigo_400
+    , sm__to_indigo_500
+    , sm__to_indigo_600
+    , sm__to_indigo_700
+    , sm__to_indigo_800
+    , sm__to_indigo_900
+    , sm__to_orange_100
+    , sm__to_orange_200
+    , sm__to_orange_300
+    , sm__to_orange_400
+    , sm__to_orange_500
+    , sm__to_orange_600
+    , sm__to_orange_700
+    , sm__to_orange_800
+    , sm__to_orange_900
+    , sm__to_pink_100
+    , sm__to_pink_200
+    , sm__to_pink_300
+    , sm__to_pink_400
+    , sm__to_pink_500
+    , sm__to_pink_600
+    , sm__to_pink_700
+    , sm__to_pink_800
+    , sm__to_pink_900
+    , sm__to_purple_100
+    , sm__to_purple_200
+    , sm__to_purple_300
+    , sm__to_purple_400
+    , sm__to_purple_500
+    , sm__to_purple_600
+    , sm__to_purple_700
+    , sm__to_purple_800
+    , sm__to_purple_900
+    , sm__to_red_100
+    , sm__to_red_200
+    , sm__to_red_300
+    , sm__to_red_400
+    , sm__to_red_500
+    , sm__to_red_600
+    , sm__to_red_700
+    , sm__to_red_800
+    , sm__to_red_900
+    , sm__to_teal_100
+    , sm__to_teal_200
+    , sm__to_teal_300
+    , sm__to_teal_400
+    , sm__to_teal_500
+    , sm__to_teal_600
+    , sm__to_teal_700
+    , sm__to_teal_800
+    , sm__to_teal_900
+    , sm__to_transparent
+    , sm__to_white
+    , sm__to_yellow_100
+    , sm__to_yellow_200
+    , sm__to_yellow_300
+    , sm__to_yellow_400
+    , sm__to_yellow_500
+    , sm__to_yellow_600
+    , sm__to_yellow_700
+    , sm__to_yellow_800
+    , sm__to_yellow_900
     , sm__top_0
     , sm__top_auto
     , sm__tracking_normal
@@ -10773,6 +14536,100 @@ module Html.Tailwind exposing
     , sm__truncate
     , sm__underline
     , sm__uppercase
+    , sm__via_black
+    , sm__via_blue_100
+    , sm__via_blue_200
+    , sm__via_blue_300
+    , sm__via_blue_400
+    , sm__via_blue_500
+    , sm__via_blue_600
+    , sm__via_blue_700
+    , sm__via_blue_800
+    , sm__via_blue_900
+    , sm__via_current
+    , sm__via_gray_100
+    , sm__via_gray_200
+    , sm__via_gray_300
+    , sm__via_gray_400
+    , sm__via_gray_500
+    , sm__via_gray_600
+    , sm__via_gray_700
+    , sm__via_gray_800
+    , sm__via_gray_900
+    , sm__via_green_100
+    , sm__via_green_200
+    , sm__via_green_300
+    , sm__via_green_400
+    , sm__via_green_500
+    , sm__via_green_600
+    , sm__via_green_700
+    , sm__via_green_800
+    , sm__via_green_900
+    , sm__via_indigo_100
+    , sm__via_indigo_200
+    , sm__via_indigo_300
+    , sm__via_indigo_400
+    , sm__via_indigo_500
+    , sm__via_indigo_600
+    , sm__via_indigo_700
+    , sm__via_indigo_800
+    , sm__via_indigo_900
+    , sm__via_orange_100
+    , sm__via_orange_200
+    , sm__via_orange_300
+    , sm__via_orange_400
+    , sm__via_orange_500
+    , sm__via_orange_600
+    , sm__via_orange_700
+    , sm__via_orange_800
+    , sm__via_orange_900
+    , sm__via_pink_100
+    , sm__via_pink_200
+    , sm__via_pink_300
+    , sm__via_pink_400
+    , sm__via_pink_500
+    , sm__via_pink_600
+    , sm__via_pink_700
+    , sm__via_pink_800
+    , sm__via_pink_900
+    , sm__via_purple_100
+    , sm__via_purple_200
+    , sm__via_purple_300
+    , sm__via_purple_400
+    , sm__via_purple_500
+    , sm__via_purple_600
+    , sm__via_purple_700
+    , sm__via_purple_800
+    , sm__via_purple_900
+    , sm__via_red_100
+    , sm__via_red_200
+    , sm__via_red_300
+    , sm__via_red_400
+    , sm__via_red_500
+    , sm__via_red_600
+    , sm__via_red_700
+    , sm__via_red_800
+    , sm__via_red_900
+    , sm__via_teal_100
+    , sm__via_teal_200
+    , sm__via_teal_300
+    , sm__via_teal_400
+    , sm__via_teal_500
+    , sm__via_teal_600
+    , sm__via_teal_700
+    , sm__via_teal_800
+    , sm__via_teal_900
+    , sm__via_transparent
+    , sm__via_white
+    , sm__via_yellow_100
+    , sm__via_yellow_200
+    , sm__via_yellow_300
+    , sm__via_yellow_400
+    , sm__via_yellow_500
+    , sm__via_yellow_600
+    , sm__via_yellow_700
+    , sm__via_yellow_800
+    , sm__via_yellow_900
     , sm__visible
     , sm__w_0
     , sm__w_1
@@ -10875,6 +14732,7 @@ module Html.Tailwind exposing
     , space_y_px
     , space_y_reverse
     , sr_only
+    , stacked_fractions
     , static
     , sticky
     , stroke_0
@@ -10893,6 +14751,7 @@ module Html.Tailwind exposing
     , table_header_group
     , table_row
     , table_row_group
+    , tabular_nums
     , text_2xl
     , text_3xl
     , text_4xl
@@ -11006,6 +14865,100 @@ module Html.Tailwind exposing
     , text_yellow_700
     , text_yellow_800
     , text_yellow_900
+    , to_black
+    , to_blue_100
+    , to_blue_200
+    , to_blue_300
+    , to_blue_400
+    , to_blue_500
+    , to_blue_600
+    , to_blue_700
+    , to_blue_800
+    , to_blue_900
+    , to_current
+    , to_gray_100
+    , to_gray_200
+    , to_gray_300
+    , to_gray_400
+    , to_gray_500
+    , to_gray_600
+    , to_gray_700
+    , to_gray_800
+    , to_gray_900
+    , to_green_100
+    , to_green_200
+    , to_green_300
+    , to_green_400
+    , to_green_500
+    , to_green_600
+    , to_green_700
+    , to_green_800
+    , to_green_900
+    , to_indigo_100
+    , to_indigo_200
+    , to_indigo_300
+    , to_indigo_400
+    , to_indigo_500
+    , to_indigo_600
+    , to_indigo_700
+    , to_indigo_800
+    , to_indigo_900
+    , to_orange_100
+    , to_orange_200
+    , to_orange_300
+    , to_orange_400
+    , to_orange_500
+    , to_orange_600
+    , to_orange_700
+    , to_orange_800
+    , to_orange_900
+    , to_pink_100
+    , to_pink_200
+    , to_pink_300
+    , to_pink_400
+    , to_pink_500
+    , to_pink_600
+    , to_pink_700
+    , to_pink_800
+    , to_pink_900
+    , to_purple_100
+    , to_purple_200
+    , to_purple_300
+    , to_purple_400
+    , to_purple_500
+    , to_purple_600
+    , to_purple_700
+    , to_purple_800
+    , to_purple_900
+    , to_red_100
+    , to_red_200
+    , to_red_300
+    , to_red_400
+    , to_red_500
+    , to_red_600
+    , to_red_700
+    , to_red_800
+    , to_red_900
+    , to_teal_100
+    , to_teal_200
+    , to_teal_300
+    , to_teal_400
+    , to_teal_500
+    , to_teal_600
+    , to_teal_700
+    , to_teal_800
+    , to_teal_900
+    , to_transparent
+    , to_white
+    , to_yellow_100
+    , to_yellow_200
+    , to_yellow_300
+    , to_yellow_400
+    , to_yellow_500
+    , to_yellow_600
+    , to_yellow_700
+    , to_yellow_800
+    , to_yellow_900
     , top_0
     , top_auto
     , tracking_normal
@@ -11068,6 +15021,100 @@ module Html.Tailwind exposing
     , truncate
     , underline
     , uppercase
+    , via_black
+    , via_blue_100
+    , via_blue_200
+    , via_blue_300
+    , via_blue_400
+    , via_blue_500
+    , via_blue_600
+    , via_blue_700
+    , via_blue_800
+    , via_blue_900
+    , via_current
+    , via_gray_100
+    , via_gray_200
+    , via_gray_300
+    , via_gray_400
+    , via_gray_500
+    , via_gray_600
+    , via_gray_700
+    , via_gray_800
+    , via_gray_900
+    , via_green_100
+    , via_green_200
+    , via_green_300
+    , via_green_400
+    , via_green_500
+    , via_green_600
+    , via_green_700
+    , via_green_800
+    , via_green_900
+    , via_indigo_100
+    , via_indigo_200
+    , via_indigo_300
+    , via_indigo_400
+    , via_indigo_500
+    , via_indigo_600
+    , via_indigo_700
+    , via_indigo_800
+    , via_indigo_900
+    , via_orange_100
+    , via_orange_200
+    , via_orange_300
+    , via_orange_400
+    , via_orange_500
+    , via_orange_600
+    , via_orange_700
+    , via_orange_800
+    , via_orange_900
+    , via_pink_100
+    , via_pink_200
+    , via_pink_300
+    , via_pink_400
+    , via_pink_500
+    , via_pink_600
+    , via_pink_700
+    , via_pink_800
+    , via_pink_900
+    , via_purple_100
+    , via_purple_200
+    , via_purple_300
+    , via_purple_400
+    , via_purple_500
+    , via_purple_600
+    , via_purple_700
+    , via_purple_800
+    , via_purple_900
+    , via_red_100
+    , via_red_200
+    , via_red_300
+    , via_red_400
+    , via_red_500
+    , via_red_600
+    , via_red_700
+    , via_red_800
+    , via_red_900
+    , via_teal_100
+    , via_teal_200
+    , via_teal_300
+    , via_teal_400
+    , via_teal_500
+    , via_teal_600
+    , via_teal_700
+    , via_teal_800
+    , via_teal_900
+    , via_transparent
+    , via_white
+    , via_yellow_100
+    , via_yellow_200
+    , via_yellow_300
+    , via_yellow_400
+    , via_yellow_500
+    , via_yellow_600
+    , via_yellow_700
+    , via_yellow_800
+    , via_yellow_900
     , visible
     , w_0
     , w_1
@@ -11129,8 +15176,21 @@ module Html.Tailwind exposing
     , xl__align_text_bottom
     , xl__align_text_top
     , xl__align_top
+    , xl__animate_bounce
+    , xl__animate_none
+    , xl__animate_ping
+    , xl__animate_pulse
+    , xl__animate_spin
     , xl__antialiased
     , xl__appearance_none
+    , xl__auto_cols_auto
+    , xl__auto_cols_fr
+    , xl__auto_cols_max
+    , xl__auto_cols_min
+    , xl__auto_rows_auto
+    , xl__auto_rows_fr
+    , xl__auto_rows_max
+    , xl__auto_rows_min
     , xl__bg_auto
     , xl__bg_black
     , xl__bg_blue_100
@@ -11144,10 +15204,22 @@ module Html.Tailwind exposing
     , xl__bg_blue_900
     , xl__bg_bottom
     , xl__bg_center
+    , xl__bg_clip_border
+    , xl__bg_clip_content
+    , xl__bg_clip_padding
+    , xl__bg_clip_text
     , xl__bg_contain
     , xl__bg_cover
     , xl__bg_current
     , xl__bg_fixed
+    , xl__bg_gradient_to_b
+    , xl__bg_gradient_to_bl
+    , xl__bg_gradient_to_br
+    , xl__bg_gradient_to_l
+    , xl__bg_gradient_to_r
+    , xl__bg_gradient_to_t
+    , xl__bg_gradient_to_tl
+    , xl__bg_gradient_to_tr
     , xl__bg_gray_100
     , xl__bg_gray_200
     , xl__bg_gray_300
@@ -11180,6 +15252,7 @@ module Html.Tailwind exposing
     , xl__bg_left_top
     , xl__bg_local
     , xl__bg_no_repeat
+    , xl__bg_none
     , xl__bg_opacity_0
     , xl__bg_opacity_100
     , xl__bg_opacity_25
@@ -11411,25 +15484,6 @@ module Html.Tailwind exposing
     , xl__col_end_8
     , xl__col_end_9
     , xl__col_end_auto
-    , xl__col_gap_0
-    , xl__col_gap_1
-    , xl__col_gap_10
-    , xl__col_gap_12
-    , xl__col_gap_16
-    , xl__col_gap_2
-    , xl__col_gap_20
-    , xl__col_gap_24
-    , xl__col_gap_3
-    , xl__col_gap_32
-    , xl__col_gap_4
-    , xl__col_gap_40
-    , xl__col_gap_48
-    , xl__col_gap_5
-    , xl__col_gap_56
-    , xl__col_gap_6
-    , xl__col_gap_64
-    , xl__col_gap_8
-    , xl__col_gap_px
     , xl__col_span_1
     , xl__col_span_10
     , xl__col_span_11
@@ -11442,6 +15496,7 @@ module Html.Tailwind exposing
     , xl__col_span_7
     , xl__col_span_8
     , xl__col_span_9
+    , xl__col_span_full
     , xl__col_start_1
     , xl__col_start_10
     , xl__col_start_11
@@ -11456,11 +15511,14 @@ module Html.Tailwind exposing
     , xl__col_start_8
     , xl__col_start_9
     , xl__col_start_auto
+    , xl__container
     , xl__content_around
     , xl__content_between
     , xl__content_center
     , xl__content_end
+    , xl__content_evenly
     , xl__content_start
+    , xl__contents
     , xl__cursor_auto
     , xl__cursor_default
     , xl__cursor_move
@@ -11476,6 +15534,7 @@ module Html.Tailwind exposing
     , xl__delay_500
     , xl__delay_700
     , xl__delay_75
+    , xl__diagonal_fractions
     , xl__disabled__cursor_auto
     , xl__disabled__cursor_default
     , xl__disabled__cursor_move
@@ -11499,6 +15558,9 @@ module Html.Tailwind exposing
     , xl__divide_blue_800
     , xl__divide_blue_900
     , xl__divide_current
+    , xl__divide_dashed
+    , xl__divide_dotted
+    , xl__divide_double
     , xl__divide_gray_100
     , xl__divide_gray_200
     , xl__divide_gray_300
@@ -11526,6 +15588,7 @@ module Html.Tailwind exposing
     , xl__divide_indigo_700
     , xl__divide_indigo_800
     , xl__divide_indigo_900
+    , xl__divide_none
     , xl__divide_opacity_0
     , xl__divide_opacity_100
     , xl__divide_opacity_25
@@ -11567,6 +15630,7 @@ module Html.Tailwind exposing
     , xl__divide_red_700
     , xl__divide_red_800
     , xl__divide_red_900
+    , xl__divide_solid
     , xl__divide_teal_100
     , xl__divide_teal_200
     , xl__divide_teal_300
@@ -11840,14 +15904,117 @@ module Html.Tailwind exposing
     , xl__focus__font_normal
     , xl__focus__font_semibold
     , xl__focus__font_thin
+    , xl__focus__from_black
+    , xl__focus__from_blue_100
+    , xl__focus__from_blue_200
+    , xl__focus__from_blue_300
+    , xl__focus__from_blue_400
+    , xl__focus__from_blue_500
+    , xl__focus__from_blue_600
+    , xl__focus__from_blue_700
+    , xl__focus__from_blue_800
+    , xl__focus__from_blue_900
+    , xl__focus__from_current
+    , xl__focus__from_gray_100
+    , xl__focus__from_gray_200
+    , xl__focus__from_gray_300
+    , xl__focus__from_gray_400
+    , xl__focus__from_gray_500
+    , xl__focus__from_gray_600
+    , xl__focus__from_gray_700
+    , xl__focus__from_gray_800
+    , xl__focus__from_gray_900
+    , xl__focus__from_green_100
+    , xl__focus__from_green_200
+    , xl__focus__from_green_300
+    , xl__focus__from_green_400
+    , xl__focus__from_green_500
+    , xl__focus__from_green_600
+    , xl__focus__from_green_700
+    , xl__focus__from_green_800
+    , xl__focus__from_green_900
+    , xl__focus__from_indigo_100
+    , xl__focus__from_indigo_200
+    , xl__focus__from_indigo_300
+    , xl__focus__from_indigo_400
+    , xl__focus__from_indigo_500
+    , xl__focus__from_indigo_600
+    , xl__focus__from_indigo_700
+    , xl__focus__from_indigo_800
+    , xl__focus__from_indigo_900
+    , xl__focus__from_orange_100
+    , xl__focus__from_orange_200
+    , xl__focus__from_orange_300
+    , xl__focus__from_orange_400
+    , xl__focus__from_orange_500
+    , xl__focus__from_orange_600
+    , xl__focus__from_orange_700
+    , xl__focus__from_orange_800
+    , xl__focus__from_orange_900
+    , xl__focus__from_pink_100
+    , xl__focus__from_pink_200
+    , xl__focus__from_pink_300
+    , xl__focus__from_pink_400
+    , xl__focus__from_pink_500
+    , xl__focus__from_pink_600
+    , xl__focus__from_pink_700
+    , xl__focus__from_pink_800
+    , xl__focus__from_pink_900
+    , xl__focus__from_purple_100
+    , xl__focus__from_purple_200
+    , xl__focus__from_purple_300
+    , xl__focus__from_purple_400
+    , xl__focus__from_purple_500
+    , xl__focus__from_purple_600
+    , xl__focus__from_purple_700
+    , xl__focus__from_purple_800
+    , xl__focus__from_purple_900
+    , xl__focus__from_red_100
+    , xl__focus__from_red_200
+    , xl__focus__from_red_300
+    , xl__focus__from_red_400
+    , xl__focus__from_red_500
+    , xl__focus__from_red_600
+    , xl__focus__from_red_700
+    , xl__focus__from_red_800
+    , xl__focus__from_red_900
+    , xl__focus__from_teal_100
+    , xl__focus__from_teal_200
+    , xl__focus__from_teal_300
+    , xl__focus__from_teal_400
+    , xl__focus__from_teal_500
+    , xl__focus__from_teal_600
+    , xl__focus__from_teal_700
+    , xl__focus__from_teal_800
+    , xl__focus__from_teal_900
+    , xl__focus__from_transparent
+    , xl__focus__from_white
+    , xl__focus__from_yellow_100
+    , xl__focus__from_yellow_200
+    , xl__focus__from_yellow_300
+    , xl__focus__from_yellow_400
+    , xl__focus__from_yellow_500
+    , xl__focus__from_yellow_600
+    , xl__focus__from_yellow_700
+    , xl__focus__from_yellow_800
+    , xl__focus__from_yellow_900
     , xl__focus__line_through
+    , xl__focus__neg_rotate_1
+    , xl__focus__neg_rotate_12
     , xl__focus__neg_rotate_180
+    , xl__focus__neg_rotate_2
+    , xl__focus__neg_rotate_3
     , xl__focus__neg_rotate_45
+    , xl__focus__neg_rotate_6
     , xl__focus__neg_rotate_90
+    , xl__focus__neg_skew_x_1
     , xl__focus__neg_skew_x_12
+    , xl__focus__neg_skew_x_2
     , xl__focus__neg_skew_x_3
     , xl__focus__neg_skew_x_6
+    , xl__focus__neg_skew_y_1
     , xl__focus__neg_skew_y_12
+    , xl__focus__neg_skew_y_2
     , xl__focus__neg_skew_y_3
     , xl__focus__neg_skew_y_6
     , xl__focus__neg_translate_x_1
@@ -11897,7 +16064,9 @@ module Html.Tailwind exposing
     , xl__focus__opacity_25
     , xl__focus__opacity_50
     , xl__focus__opacity_75
+    , xl__focus__outline_black
     , xl__focus__outline_none
+    , xl__focus__outline_white
     , xl__focus__placeholder_black__focus
     , xl__focus__placeholder_blue_100__focus
     , xl__focus__placeholder_blue_200__focus
@@ -11998,8 +16167,13 @@ module Html.Tailwind exposing
     , xl__focus__placeholder_yellow_800__focus
     , xl__focus__placeholder_yellow_900__focus
     , xl__focus__rotate_0
+    , xl__focus__rotate_1
+    , xl__focus__rotate_12
     , xl__focus__rotate_180
+    , xl__focus__rotate_2
+    , xl__focus__rotate_3
     , xl__focus__rotate_45
+    , xl__focus__rotate_6
     , xl__focus__rotate_90
     , xl__focus__scale_0
     , xl__focus__scale_100
@@ -12042,11 +16216,15 @@ module Html.Tailwind exposing
     , xl__focus__shadow_xl
     , xl__focus__shadow_xs
     , xl__focus__skew_x_0
+    , xl__focus__skew_x_1
     , xl__focus__skew_x_12
+    , xl__focus__skew_x_2
     , xl__focus__skew_x_3
     , xl__focus__skew_x_6
     , xl__focus__skew_y_0
+    , xl__focus__skew_y_1
     , xl__focus__skew_y_12
+    , xl__focus__skew_y_2
     , xl__focus__skew_y_3
     , xl__focus__skew_y_6
     , xl__focus__sr_only
@@ -12149,6 +16327,100 @@ module Html.Tailwind exposing
     , xl__focus__text_yellow_700
     , xl__focus__text_yellow_800
     , xl__focus__text_yellow_900
+    , xl__focus__to_black
+    , xl__focus__to_blue_100
+    , xl__focus__to_blue_200
+    , xl__focus__to_blue_300
+    , xl__focus__to_blue_400
+    , xl__focus__to_blue_500
+    , xl__focus__to_blue_600
+    , xl__focus__to_blue_700
+    , xl__focus__to_blue_800
+    , xl__focus__to_blue_900
+    , xl__focus__to_current
+    , xl__focus__to_gray_100
+    , xl__focus__to_gray_200
+    , xl__focus__to_gray_300
+    , xl__focus__to_gray_400
+    , xl__focus__to_gray_500
+    , xl__focus__to_gray_600
+    , xl__focus__to_gray_700
+    , xl__focus__to_gray_800
+    , xl__focus__to_gray_900
+    , xl__focus__to_green_100
+    , xl__focus__to_green_200
+    , xl__focus__to_green_300
+    , xl__focus__to_green_400
+    , xl__focus__to_green_500
+    , xl__focus__to_green_600
+    , xl__focus__to_green_700
+    , xl__focus__to_green_800
+    , xl__focus__to_green_900
+    , xl__focus__to_indigo_100
+    , xl__focus__to_indigo_200
+    , xl__focus__to_indigo_300
+    , xl__focus__to_indigo_400
+    , xl__focus__to_indigo_500
+    , xl__focus__to_indigo_600
+    , xl__focus__to_indigo_700
+    , xl__focus__to_indigo_800
+    , xl__focus__to_indigo_900
+    , xl__focus__to_orange_100
+    , xl__focus__to_orange_200
+    , xl__focus__to_orange_300
+    , xl__focus__to_orange_400
+    , xl__focus__to_orange_500
+    , xl__focus__to_orange_600
+    , xl__focus__to_orange_700
+    , xl__focus__to_orange_800
+    , xl__focus__to_orange_900
+    , xl__focus__to_pink_100
+    , xl__focus__to_pink_200
+    , xl__focus__to_pink_300
+    , xl__focus__to_pink_400
+    , xl__focus__to_pink_500
+    , xl__focus__to_pink_600
+    , xl__focus__to_pink_700
+    , xl__focus__to_pink_800
+    , xl__focus__to_pink_900
+    , xl__focus__to_purple_100
+    , xl__focus__to_purple_200
+    , xl__focus__to_purple_300
+    , xl__focus__to_purple_400
+    , xl__focus__to_purple_500
+    , xl__focus__to_purple_600
+    , xl__focus__to_purple_700
+    , xl__focus__to_purple_800
+    , xl__focus__to_purple_900
+    , xl__focus__to_red_100
+    , xl__focus__to_red_200
+    , xl__focus__to_red_300
+    , xl__focus__to_red_400
+    , xl__focus__to_red_500
+    , xl__focus__to_red_600
+    , xl__focus__to_red_700
+    , xl__focus__to_red_800
+    , xl__focus__to_red_900
+    , xl__focus__to_teal_100
+    , xl__focus__to_teal_200
+    , xl__focus__to_teal_300
+    , xl__focus__to_teal_400
+    , xl__focus__to_teal_500
+    , xl__focus__to_teal_600
+    , xl__focus__to_teal_700
+    , xl__focus__to_teal_800
+    , xl__focus__to_teal_900
+    , xl__focus__to_transparent
+    , xl__focus__to_white
+    , xl__focus__to_yellow_100
+    , xl__focus__to_yellow_200
+    , xl__focus__to_yellow_300
+    , xl__focus__to_yellow_400
+    , xl__focus__to_yellow_500
+    , xl__focus__to_yellow_600
+    , xl__focus__to_yellow_700
+    , xl__focus__to_yellow_800
+    , xl__focus__to_yellow_900
     , xl__focus__translate_x_0
     , xl__focus__translate_x_1
     , xl__focus__translate_x_10
@@ -12192,6 +16464,100 @@ module Html.Tailwind exposing
     , xl__focus__translate_y_full
     , xl__focus__translate_y_px
     , xl__focus__underline
+    , xl__focus__via_black
+    , xl__focus__via_blue_100
+    , xl__focus__via_blue_200
+    , xl__focus__via_blue_300
+    , xl__focus__via_blue_400
+    , xl__focus__via_blue_500
+    , xl__focus__via_blue_600
+    , xl__focus__via_blue_700
+    , xl__focus__via_blue_800
+    , xl__focus__via_blue_900
+    , xl__focus__via_current
+    , xl__focus__via_gray_100
+    , xl__focus__via_gray_200
+    , xl__focus__via_gray_300
+    , xl__focus__via_gray_400
+    , xl__focus__via_gray_500
+    , xl__focus__via_gray_600
+    , xl__focus__via_gray_700
+    , xl__focus__via_gray_800
+    , xl__focus__via_gray_900
+    , xl__focus__via_green_100
+    , xl__focus__via_green_200
+    , xl__focus__via_green_300
+    , xl__focus__via_green_400
+    , xl__focus__via_green_500
+    , xl__focus__via_green_600
+    , xl__focus__via_green_700
+    , xl__focus__via_green_800
+    , xl__focus__via_green_900
+    , xl__focus__via_indigo_100
+    , xl__focus__via_indigo_200
+    , xl__focus__via_indigo_300
+    , xl__focus__via_indigo_400
+    , xl__focus__via_indigo_500
+    , xl__focus__via_indigo_600
+    , xl__focus__via_indigo_700
+    , xl__focus__via_indigo_800
+    , xl__focus__via_indigo_900
+    , xl__focus__via_orange_100
+    , xl__focus__via_orange_200
+    , xl__focus__via_orange_300
+    , xl__focus__via_orange_400
+    , xl__focus__via_orange_500
+    , xl__focus__via_orange_600
+    , xl__focus__via_orange_700
+    , xl__focus__via_orange_800
+    , xl__focus__via_orange_900
+    , xl__focus__via_pink_100
+    , xl__focus__via_pink_200
+    , xl__focus__via_pink_300
+    , xl__focus__via_pink_400
+    , xl__focus__via_pink_500
+    , xl__focus__via_pink_600
+    , xl__focus__via_pink_700
+    , xl__focus__via_pink_800
+    , xl__focus__via_pink_900
+    , xl__focus__via_purple_100
+    , xl__focus__via_purple_200
+    , xl__focus__via_purple_300
+    , xl__focus__via_purple_400
+    , xl__focus__via_purple_500
+    , xl__focus__via_purple_600
+    , xl__focus__via_purple_700
+    , xl__focus__via_purple_800
+    , xl__focus__via_purple_900
+    , xl__focus__via_red_100
+    , xl__focus__via_red_200
+    , xl__focus__via_red_300
+    , xl__focus__via_red_400
+    , xl__focus__via_red_500
+    , xl__focus__via_red_600
+    , xl__focus__via_red_700
+    , xl__focus__via_red_800
+    , xl__focus__via_red_900
+    , xl__focus__via_teal_100
+    , xl__focus__via_teal_200
+    , xl__focus__via_teal_300
+    , xl__focus__via_teal_400
+    , xl__focus__via_teal_500
+    , xl__focus__via_teal_600
+    , xl__focus__via_teal_700
+    , xl__focus__via_teal_800
+    , xl__focus__via_teal_900
+    , xl__focus__via_transparent
+    , xl__focus__via_white
+    , xl__focus__via_yellow_100
+    , xl__focus__via_yellow_200
+    , xl__focus__via_yellow_300
+    , xl__focus__via_yellow_400
+    , xl__focus__via_yellow_500
+    , xl__focus__via_yellow_600
+    , xl__focus__via_yellow_700
+    , xl__focus__via_yellow_800
+    , xl__focus__via_yellow_900
     , xl__font_black
     , xl__font_bold
     , xl__font_extrabold
@@ -12204,6 +16570,100 @@ module Html.Tailwind exposing
     , xl__font_semibold
     , xl__font_serif
     , xl__font_thin
+    , xl__from_black
+    , xl__from_blue_100
+    , xl__from_blue_200
+    , xl__from_blue_300
+    , xl__from_blue_400
+    , xl__from_blue_500
+    , xl__from_blue_600
+    , xl__from_blue_700
+    , xl__from_blue_800
+    , xl__from_blue_900
+    , xl__from_current
+    , xl__from_gray_100
+    , xl__from_gray_200
+    , xl__from_gray_300
+    , xl__from_gray_400
+    , xl__from_gray_500
+    , xl__from_gray_600
+    , xl__from_gray_700
+    , xl__from_gray_800
+    , xl__from_gray_900
+    , xl__from_green_100
+    , xl__from_green_200
+    , xl__from_green_300
+    , xl__from_green_400
+    , xl__from_green_500
+    , xl__from_green_600
+    , xl__from_green_700
+    , xl__from_green_800
+    , xl__from_green_900
+    , xl__from_indigo_100
+    , xl__from_indigo_200
+    , xl__from_indigo_300
+    , xl__from_indigo_400
+    , xl__from_indigo_500
+    , xl__from_indigo_600
+    , xl__from_indigo_700
+    , xl__from_indigo_800
+    , xl__from_indigo_900
+    , xl__from_orange_100
+    , xl__from_orange_200
+    , xl__from_orange_300
+    , xl__from_orange_400
+    , xl__from_orange_500
+    , xl__from_orange_600
+    , xl__from_orange_700
+    , xl__from_orange_800
+    , xl__from_orange_900
+    , xl__from_pink_100
+    , xl__from_pink_200
+    , xl__from_pink_300
+    , xl__from_pink_400
+    , xl__from_pink_500
+    , xl__from_pink_600
+    , xl__from_pink_700
+    , xl__from_pink_800
+    , xl__from_pink_900
+    , xl__from_purple_100
+    , xl__from_purple_200
+    , xl__from_purple_300
+    , xl__from_purple_400
+    , xl__from_purple_500
+    , xl__from_purple_600
+    , xl__from_purple_700
+    , xl__from_purple_800
+    , xl__from_purple_900
+    , xl__from_red_100
+    , xl__from_red_200
+    , xl__from_red_300
+    , xl__from_red_400
+    , xl__from_red_500
+    , xl__from_red_600
+    , xl__from_red_700
+    , xl__from_red_800
+    , xl__from_red_900
+    , xl__from_teal_100
+    , xl__from_teal_200
+    , xl__from_teal_300
+    , xl__from_teal_400
+    , xl__from_teal_500
+    , xl__from_teal_600
+    , xl__from_teal_700
+    , xl__from_teal_800
+    , xl__from_teal_900
+    , xl__from_transparent
+    , xl__from_white
+    , xl__from_yellow_100
+    , xl__from_yellow_200
+    , xl__from_yellow_300
+    , xl__from_yellow_400
+    , xl__from_yellow_500
+    , xl__from_yellow_600
+    , xl__from_yellow_700
+    , xl__from_yellow_800
+    , xl__from_yellow_900
     , xl__gap_0
     , xl__gap_1
     , xl__gap_10
@@ -12223,6 +16683,44 @@ module Html.Tailwind exposing
     , xl__gap_64
     , xl__gap_8
     , xl__gap_px
+    , xl__gap_x_0
+    , xl__gap_x_1
+    , xl__gap_x_10
+    , xl__gap_x_12
+    , xl__gap_x_16
+    , xl__gap_x_2
+    , xl__gap_x_20
+    , xl__gap_x_24
+    , xl__gap_x_3
+    , xl__gap_x_32
+    , xl__gap_x_4
+    , xl__gap_x_40
+    , xl__gap_x_48
+    , xl__gap_x_5
+    , xl__gap_x_56
+    , xl__gap_x_6
+    , xl__gap_x_64
+    , xl__gap_x_8
+    , xl__gap_x_px
+    , xl__gap_y_0
+    , xl__gap_y_1
+    , xl__gap_y_10
+    , xl__gap_y_12
+    , xl__gap_y_16
+    , xl__gap_y_2
+    , xl__gap_y_20
+    , xl__gap_y_24
+    , xl__gap_y_3
+    , xl__gap_y_32
+    , xl__gap_y_4
+    , xl__gap_y_40
+    , xl__gap_y_48
+    , xl__gap_y_5
+    , xl__gap_y_56
+    , xl__gap_y_6
+    , xl__gap_y_64
+    , xl__gap_y_8
+    , xl__gap_y_px
     , xl__grid
     , xl__grid_cols_1
     , xl__grid_cols_10
@@ -12479,14 +16977,117 @@ module Html.Tailwind exposing
     , xl__hover__font_normal
     , xl__hover__font_semibold
     , xl__hover__font_thin
+    , xl__hover__from_black
+    , xl__hover__from_blue_100
+    , xl__hover__from_blue_200
+    , xl__hover__from_blue_300
+    , xl__hover__from_blue_400
+    , xl__hover__from_blue_500
+    , xl__hover__from_blue_600
+    , xl__hover__from_blue_700
+    , xl__hover__from_blue_800
+    , xl__hover__from_blue_900
+    , xl__hover__from_current
+    , xl__hover__from_gray_100
+    , xl__hover__from_gray_200
+    , xl__hover__from_gray_300
+    , xl__hover__from_gray_400
+    , xl__hover__from_gray_500
+    , xl__hover__from_gray_600
+    , xl__hover__from_gray_700
+    , xl__hover__from_gray_800
+    , xl__hover__from_gray_900
+    , xl__hover__from_green_100
+    , xl__hover__from_green_200
+    , xl__hover__from_green_300
+    , xl__hover__from_green_400
+    , xl__hover__from_green_500
+    , xl__hover__from_green_600
+    , xl__hover__from_green_700
+    , xl__hover__from_green_800
+    , xl__hover__from_green_900
+    , xl__hover__from_indigo_100
+    , xl__hover__from_indigo_200
+    , xl__hover__from_indigo_300
+    , xl__hover__from_indigo_400
+    , xl__hover__from_indigo_500
+    , xl__hover__from_indigo_600
+    , xl__hover__from_indigo_700
+    , xl__hover__from_indigo_800
+    , xl__hover__from_indigo_900
+    , xl__hover__from_orange_100
+    , xl__hover__from_orange_200
+    , xl__hover__from_orange_300
+    , xl__hover__from_orange_400
+    , xl__hover__from_orange_500
+    , xl__hover__from_orange_600
+    , xl__hover__from_orange_700
+    , xl__hover__from_orange_800
+    , xl__hover__from_orange_900
+    , xl__hover__from_pink_100
+    , xl__hover__from_pink_200
+    , xl__hover__from_pink_300
+    , xl__hover__from_pink_400
+    , xl__hover__from_pink_500
+    , xl__hover__from_pink_600
+    , xl__hover__from_pink_700
+    , xl__hover__from_pink_800
+    , xl__hover__from_pink_900
+    , xl__hover__from_purple_100
+    , xl__hover__from_purple_200
+    , xl__hover__from_purple_300
+    , xl__hover__from_purple_400
+    , xl__hover__from_purple_500
+    , xl__hover__from_purple_600
+    , xl__hover__from_purple_700
+    , xl__hover__from_purple_800
+    , xl__hover__from_purple_900
+    , xl__hover__from_red_100
+    , xl__hover__from_red_200
+    , xl__hover__from_red_300
+    , xl__hover__from_red_400
+    , xl__hover__from_red_500
+    , xl__hover__from_red_600
+    , xl__hover__from_red_700
+    , xl__hover__from_red_800
+    , xl__hover__from_red_900
+    , xl__hover__from_teal_100
+    , xl__hover__from_teal_200
+    , xl__hover__from_teal_300
+    , xl__hover__from_teal_400
+    , xl__hover__from_teal_500
+    , xl__hover__from_teal_600
+    , xl__hover__from_teal_700
+    , xl__hover__from_teal_800
+    , xl__hover__from_teal_900
+    , xl__hover__from_transparent
+    , xl__hover__from_white
+    , xl__hover__from_yellow_100
+    , xl__hover__from_yellow_200
+    , xl__hover__from_yellow_300
+    , xl__hover__from_yellow_400
+    , xl__hover__from_yellow_500
+    , xl__hover__from_yellow_600
+    , xl__hover__from_yellow_700
+    , xl__hover__from_yellow_800
+    , xl__hover__from_yellow_900
     , xl__hover__line_through
+    , xl__hover__neg_rotate_1
+    , xl__hover__neg_rotate_12
     , xl__hover__neg_rotate_180
+    , xl__hover__neg_rotate_2
+    , xl__hover__neg_rotate_3
     , xl__hover__neg_rotate_45
+    , xl__hover__neg_rotate_6
     , xl__hover__neg_rotate_90
+    , xl__hover__neg_skew_x_1
     , xl__hover__neg_skew_x_12
+    , xl__hover__neg_skew_x_2
     , xl__hover__neg_skew_x_3
     , xl__hover__neg_skew_x_6
+    , xl__hover__neg_skew_y_1
     , xl__hover__neg_skew_y_12
+    , xl__hover__neg_skew_y_2
     , xl__hover__neg_skew_y_3
     , xl__hover__neg_skew_y_6
     , xl__hover__neg_translate_x_1
@@ -12536,8 +17137,13 @@ module Html.Tailwind exposing
     , xl__hover__opacity_50
     , xl__hover__opacity_75
     , xl__hover__rotate_0
+    , xl__hover__rotate_1
+    , xl__hover__rotate_12
     , xl__hover__rotate_180
+    , xl__hover__rotate_2
+    , xl__hover__rotate_3
     , xl__hover__rotate_45
+    , xl__hover__rotate_6
     , xl__hover__rotate_90
     , xl__hover__scale_0
     , xl__hover__scale_100
@@ -12580,11 +17186,15 @@ module Html.Tailwind exposing
     , xl__hover__shadow_xl
     , xl__hover__shadow_xs
     , xl__hover__skew_x_0
+    , xl__hover__skew_x_1
     , xl__hover__skew_x_12
+    , xl__hover__skew_x_2
     , xl__hover__skew_x_3
     , xl__hover__skew_x_6
     , xl__hover__skew_y_0
+    , xl__hover__skew_y_1
     , xl__hover__skew_y_12
+    , xl__hover__skew_y_2
     , xl__hover__skew_y_3
     , xl__hover__skew_y_6
     , xl__hover__text_black
@@ -12686,6 +17296,100 @@ module Html.Tailwind exposing
     , xl__hover__text_yellow_700
     , xl__hover__text_yellow_800
     , xl__hover__text_yellow_900
+    , xl__hover__to_black
+    , xl__hover__to_blue_100
+    , xl__hover__to_blue_200
+    , xl__hover__to_blue_300
+    , xl__hover__to_blue_400
+    , xl__hover__to_blue_500
+    , xl__hover__to_blue_600
+    , xl__hover__to_blue_700
+    , xl__hover__to_blue_800
+    , xl__hover__to_blue_900
+    , xl__hover__to_current
+    , xl__hover__to_gray_100
+    , xl__hover__to_gray_200
+    , xl__hover__to_gray_300
+    , xl__hover__to_gray_400
+    , xl__hover__to_gray_500
+    , xl__hover__to_gray_600
+    , xl__hover__to_gray_700
+    , xl__hover__to_gray_800
+    , xl__hover__to_gray_900
+    , xl__hover__to_green_100
+    , xl__hover__to_green_200
+    , xl__hover__to_green_300
+    , xl__hover__to_green_400
+    , xl__hover__to_green_500
+    , xl__hover__to_green_600
+    , xl__hover__to_green_700
+    , xl__hover__to_green_800
+    , xl__hover__to_green_900
+    , xl__hover__to_indigo_100
+    , xl__hover__to_indigo_200
+    , xl__hover__to_indigo_300
+    , xl__hover__to_indigo_400
+    , xl__hover__to_indigo_500
+    , xl__hover__to_indigo_600
+    , xl__hover__to_indigo_700
+    , xl__hover__to_indigo_800
+    , xl__hover__to_indigo_900
+    , xl__hover__to_orange_100
+    , xl__hover__to_orange_200
+    , xl__hover__to_orange_300
+    , xl__hover__to_orange_400
+    , xl__hover__to_orange_500
+    , xl__hover__to_orange_600
+    , xl__hover__to_orange_700
+    , xl__hover__to_orange_800
+    , xl__hover__to_orange_900
+    , xl__hover__to_pink_100
+    , xl__hover__to_pink_200
+    , xl__hover__to_pink_300
+    , xl__hover__to_pink_400
+    , xl__hover__to_pink_500
+    , xl__hover__to_pink_600
+    , xl__hover__to_pink_700
+    , xl__hover__to_pink_800
+    , xl__hover__to_pink_900
+    , xl__hover__to_purple_100
+    , xl__hover__to_purple_200
+    , xl__hover__to_purple_300
+    , xl__hover__to_purple_400
+    , xl__hover__to_purple_500
+    , xl__hover__to_purple_600
+    , xl__hover__to_purple_700
+    , xl__hover__to_purple_800
+    , xl__hover__to_purple_900
+    , xl__hover__to_red_100
+    , xl__hover__to_red_200
+    , xl__hover__to_red_300
+    , xl__hover__to_red_400
+    , xl__hover__to_red_500
+    , xl__hover__to_red_600
+    , xl__hover__to_red_700
+    , xl__hover__to_red_800
+    , xl__hover__to_red_900
+    , xl__hover__to_teal_100
+    , xl__hover__to_teal_200
+    , xl__hover__to_teal_300
+    , xl__hover__to_teal_400
+    , xl__hover__to_teal_500
+    , xl__hover__to_teal_600
+    , xl__hover__to_teal_700
+    , xl__hover__to_teal_800
+    , xl__hover__to_teal_900
+    , xl__hover__to_transparent
+    , xl__hover__to_white
+    , xl__hover__to_yellow_100
+    , xl__hover__to_yellow_200
+    , xl__hover__to_yellow_300
+    , xl__hover__to_yellow_400
+    , xl__hover__to_yellow_500
+    , xl__hover__to_yellow_600
+    , xl__hover__to_yellow_700
+    , xl__hover__to_yellow_800
+    , xl__hover__to_yellow_900
     , xl__hover__translate_x_0
     , xl__hover__translate_x_1
     , xl__hover__translate_x_10
@@ -12729,6 +17433,100 @@ module Html.Tailwind exposing
     , xl__hover__translate_y_full
     , xl__hover__translate_y_px
     , xl__hover__underline
+    , xl__hover__via_black
+    , xl__hover__via_blue_100
+    , xl__hover__via_blue_200
+    , xl__hover__via_blue_300
+    , xl__hover__via_blue_400
+    , xl__hover__via_blue_500
+    , xl__hover__via_blue_600
+    , xl__hover__via_blue_700
+    , xl__hover__via_blue_800
+    , xl__hover__via_blue_900
+    , xl__hover__via_current
+    , xl__hover__via_gray_100
+    , xl__hover__via_gray_200
+    , xl__hover__via_gray_300
+    , xl__hover__via_gray_400
+    , xl__hover__via_gray_500
+    , xl__hover__via_gray_600
+    , xl__hover__via_gray_700
+    , xl__hover__via_gray_800
+    , xl__hover__via_gray_900
+    , xl__hover__via_green_100
+    , xl__hover__via_green_200
+    , xl__hover__via_green_300
+    , xl__hover__via_green_400
+    , xl__hover__via_green_500
+    , xl__hover__via_green_600
+    , xl__hover__via_green_700
+    , xl__hover__via_green_800
+    , xl__hover__via_green_900
+    , xl__hover__via_indigo_100
+    , xl__hover__via_indigo_200
+    , xl__hover__via_indigo_300
+    , xl__hover__via_indigo_400
+    , xl__hover__via_indigo_500
+    , xl__hover__via_indigo_600
+    , xl__hover__via_indigo_700
+    , xl__hover__via_indigo_800
+    , xl__hover__via_indigo_900
+    , xl__hover__via_orange_100
+    , xl__hover__via_orange_200
+    , xl__hover__via_orange_300
+    , xl__hover__via_orange_400
+    , xl__hover__via_orange_500
+    , xl__hover__via_orange_600
+    , xl__hover__via_orange_700
+    , xl__hover__via_orange_800
+    , xl__hover__via_orange_900
+    , xl__hover__via_pink_100
+    , xl__hover__via_pink_200
+    , xl__hover__via_pink_300
+    , xl__hover__via_pink_400
+    , xl__hover__via_pink_500
+    , xl__hover__via_pink_600
+    , xl__hover__via_pink_700
+    , xl__hover__via_pink_800
+    , xl__hover__via_pink_900
+    , xl__hover__via_purple_100
+    , xl__hover__via_purple_200
+    , xl__hover__via_purple_300
+    , xl__hover__via_purple_400
+    , xl__hover__via_purple_500
+    , xl__hover__via_purple_600
+    , xl__hover__via_purple_700
+    , xl__hover__via_purple_800
+    , xl__hover__via_purple_900
+    , xl__hover__via_red_100
+    , xl__hover__via_red_200
+    , xl__hover__via_red_300
+    , xl__hover__via_red_400
+    , xl__hover__via_red_500
+    , xl__hover__via_red_600
+    , xl__hover__via_red_700
+    , xl__hover__via_red_800
+    , xl__hover__via_red_900
+    , xl__hover__via_teal_100
+    , xl__hover__via_teal_200
+    , xl__hover__via_teal_300
+    , xl__hover__via_teal_400
+    , xl__hover__via_teal_500
+    , xl__hover__via_teal_600
+    , xl__hover__via_teal_700
+    , xl__hover__via_teal_800
+    , xl__hover__via_teal_900
+    , xl__hover__via_transparent
+    , xl__hover__via_white
+    , xl__hover__via_yellow_100
+    , xl__hover__via_yellow_200
+    , xl__hover__via_yellow_300
+    , xl__hover__via_yellow_400
+    , xl__hover__via_yellow_500
+    , xl__hover__via_yellow_600
+    , xl__hover__via_yellow_700
+    , xl__hover__via_yellow_800
+    , xl__hover__via_yellow_900
     , xl__inline
     , xl__inline_block
     , xl__inline_flex
@@ -12751,6 +17549,16 @@ module Html.Tailwind exposing
     , xl__justify_center
     , xl__justify_end
     , xl__justify_evenly
+    , xl__justify_items_auto
+    , xl__justify_items_center
+    , xl__justify_items_end
+    , xl__justify_items_start
+    , xl__justify_items_stretch
+    , xl__justify_self_auto
+    , xl__justify_self_center
+    , xl__justify_self_end
+    , xl__justify_self_start
+    , xl__justify_self_stretch
     , xl__justify_start
     , xl__leading_10
     , xl__leading_3
@@ -12769,6 +17577,7 @@ module Html.Tailwind exposing
     , xl__left_0
     , xl__left_auto
     , xl__line_through
+    , xl__lining_nums
     , xl__list_decimal
     , xl__list_disc
     , xl__list_inside
@@ -13064,13 +17873,22 @@ module Html.Tailwind exposing
     , xl__neg_my_64
     , xl__neg_my_8
     , xl__neg_my_px
+    , xl__neg_rotate_1
+    , xl__neg_rotate_12
     , xl__neg_rotate_180
+    , xl__neg_rotate_2
+    , xl__neg_rotate_3
     , xl__neg_rotate_45
+    , xl__neg_rotate_6
     , xl__neg_rotate_90
+    , xl__neg_skew_x_1
     , xl__neg_skew_x_12
+    , xl__neg_skew_x_2
     , xl__neg_skew_x_3
     , xl__neg_skew_x_6
+    , xl__neg_skew_y_1
     , xl__neg_skew_y_12
+    , xl__neg_skew_y_2
     , xl__neg_skew_y_3
     , xl__neg_skew_y_6
     , xl__neg_space_x_1
@@ -13151,6 +17969,7 @@ module Html.Tailwind exposing
     , xl__neg_translate_y_px
     , xl__no_underline
     , xl__normal_case
+    , xl__normal_nums
     , xl__not_italic
     , xl__not_sr_only
     , xl__object_bottom
@@ -13167,6 +17986,7 @@ module Html.Tailwind exposing
     , xl__object_right_top
     , xl__object_scale_down
     , xl__object_top
+    , xl__oldstyle_nums
     , xl__opacity_0
     , xl__opacity_100
     , xl__opacity_25
@@ -13187,6 +18007,7 @@ module Html.Tailwind exposing
     , xl__order_first
     , xl__order_last
     , xl__order_none
+    , xl__ordinal
     , xl__origin_bottom
     , xl__origin_bottom_left
     , xl__origin_bottom_right
@@ -13196,7 +18017,9 @@ module Html.Tailwind exposing
     , xl__origin_top
     , xl__origin_top_left
     , xl__origin_top_right
+    , xl__outline_black
     , xl__outline_none
+    , xl__outline_white
     , xl__overflow_auto
     , xl__overflow_hidden
     , xl__overflow_scroll
@@ -13209,6 +18032,15 @@ module Html.Tailwind exposing
     , xl__overflow_y_hidden
     , xl__overflow_y_scroll
     , xl__overflow_y_visible
+    , xl__overscroll_auto
+    , xl__overscroll_contain
+    , xl__overscroll_none
+    , xl__overscroll_x_auto
+    , xl__overscroll_x_contain
+    , xl__overscroll_x_none
+    , xl__overscroll_y_auto
+    , xl__overscroll_y_contain
+    , xl__overscroll_y_none
     , xl__p_0
     , xl__p_1
     , xl__p_10
@@ -13266,6 +18098,23 @@ module Html.Tailwind exposing
     , xl__pl_64
     , xl__pl_8
     , xl__pl_px
+    , xl__place_content_around
+    , xl__place_content_between
+    , xl__place_content_center
+    , xl__place_content_end
+    , xl__place_content_evenly
+    , xl__place_content_start
+    , xl__place_content_stretch
+    , xl__place_items_auto
+    , xl__place_items_center
+    , xl__place_items_end
+    , xl__place_items_start
+    , xl__place_items_stretch
+    , xl__place_self_auto
+    , xl__place_self_center
+    , xl__place_self_end
+    , xl__place_self_start
+    , xl__place_self_stretch
     , xl__placeholder_black
     , xl__placeholder_blue_100
     , xl__placeholder_blue_200
@@ -13386,6 +18235,7 @@ module Html.Tailwind exposing
     , xl__pr_64
     , xl__pr_8
     , xl__pr_px
+    , xl__proportional_nums
     , xl__pt_0
     , xl__pt_1
     , xl__pt_10
@@ -13451,63 +18301,95 @@ module Html.Tailwind exposing
     , xl__right_0
     , xl__right_auto
     , xl__rotate_0
+    , xl__rotate_1
+    , xl__rotate_12
     , xl__rotate_180
+    , xl__rotate_2
+    , xl__rotate_3
     , xl__rotate_45
+    , xl__rotate_6
     , xl__rotate_90
     , xl__rounded
+    , xl__rounded_2xl
+    , xl__rounded_3xl
     , xl__rounded_b
+    , xl__rounded_b_2xl
+    , xl__rounded_b_3xl
     , xl__rounded_b_full
     , xl__rounded_b_lg
     , xl__rounded_b_md
     , xl__rounded_b_none
     , xl__rounded_b_sm
+    , xl__rounded_b_xl
     , xl__rounded_bl
+    , xl__rounded_bl_2xl
+    , xl__rounded_bl_3xl
     , xl__rounded_bl_full
     , xl__rounded_bl_lg
     , xl__rounded_bl_md
     , xl__rounded_bl_none
     , xl__rounded_bl_sm
+    , xl__rounded_bl_xl
     , xl__rounded_br
+    , xl__rounded_br_2xl
+    , xl__rounded_br_3xl
     , xl__rounded_br_full
     , xl__rounded_br_lg
     , xl__rounded_br_md
     , xl__rounded_br_none
     , xl__rounded_br_sm
+    , xl__rounded_br_xl
     , xl__rounded_full
     , xl__rounded_l
+    , xl__rounded_l_2xl
+    , xl__rounded_l_3xl
     , xl__rounded_l_full
     , xl__rounded_l_lg
     , xl__rounded_l_md
     , xl__rounded_l_none
     , xl__rounded_l_sm
+    , xl__rounded_l_xl
     , xl__rounded_lg
     , xl__rounded_md
     , xl__rounded_none
     , xl__rounded_r
+    , xl__rounded_r_2xl
+    , xl__rounded_r_3xl
     , xl__rounded_r_full
     , xl__rounded_r_lg
     , xl__rounded_r_md
     , xl__rounded_r_none
     , xl__rounded_r_sm
+    , xl__rounded_r_xl
     , xl__rounded_sm
     , xl__rounded_t
+    , xl__rounded_t_2xl
+    , xl__rounded_t_3xl
     , xl__rounded_t_full
     , xl__rounded_t_lg
     , xl__rounded_t_md
     , xl__rounded_t_none
     , xl__rounded_t_sm
+    , xl__rounded_t_xl
     , xl__rounded_tl
+    , xl__rounded_tl_2xl
+    , xl__rounded_tl_3xl
     , xl__rounded_tl_full
     , xl__rounded_tl_lg
     , xl__rounded_tl_md
     , xl__rounded_tl_none
     , xl__rounded_tl_sm
+    , xl__rounded_tl_xl
     , xl__rounded_tr
+    , xl__rounded_tr_2xl
+    , xl__rounded_tr_3xl
     , xl__rounded_tr_full
     , xl__rounded_tr_lg
     , xl__rounded_tr_md
     , xl__rounded_tr_none
     , xl__rounded_tr_sm
+    , xl__rounded_tr_xl
+    , xl__rounded_xl
     , xl__row_auto
     , xl__row_end_1
     , xl__row_end_2
@@ -13517,31 +18399,13 @@ module Html.Tailwind exposing
     , xl__row_end_6
     , xl__row_end_7
     , xl__row_end_auto
-    , xl__row_gap_0
-    , xl__row_gap_1
-    , xl__row_gap_10
-    , xl__row_gap_12
-    , xl__row_gap_16
-    , xl__row_gap_2
-    , xl__row_gap_20
-    , xl__row_gap_24
-    , xl__row_gap_3
-    , xl__row_gap_32
-    , xl__row_gap_4
-    , xl__row_gap_40
-    , xl__row_gap_48
-    , xl__row_gap_5
-    , xl__row_gap_56
-    , xl__row_gap_6
-    , xl__row_gap_64
-    , xl__row_gap_8
-    , xl__row_gap_px
     , xl__row_span_1
     , xl__row_span_2
     , xl__row_span_3
     , xl__row_span_4
     , xl__row_span_5
     , xl__row_span_6
+    , xl__row_span_full
     , xl__row_start_1
     , xl__row_start_2
     , xl__row_start_3
@@ -13602,13 +18466,18 @@ module Html.Tailwind exposing
     , xl__shadow_xl
     , xl__shadow_xs
     , xl__skew_x_0
+    , xl__skew_x_1
     , xl__skew_x_12
+    , xl__skew_x_2
     , xl__skew_x_3
     , xl__skew_x_6
     , xl__skew_y_0
+    , xl__skew_y_1
     , xl__skew_y_12
+    , xl__skew_y_2
     , xl__skew_y_3
     , xl__skew_y_6
+    , xl__slashed_zero
     , xl__space_x_0
     , xl__space_x_1
     , xl__space_x_10
@@ -13650,6 +18519,7 @@ module Html.Tailwind exposing
     , xl__space_y_px
     , xl__space_y_reverse
     , xl__sr_only
+    , xl__stacked_fractions
     , xl__static
     , xl__sticky
     , xl__stroke_0
@@ -13668,6 +18538,7 @@ module Html.Tailwind exposing
     , xl__table_header_group
     , xl__table_row
     , xl__table_row_group
+    , xl__tabular_nums
     , xl__text_2xl
     , xl__text_3xl
     , xl__text_4xl
@@ -13781,6 +18652,100 @@ module Html.Tailwind exposing
     , xl__text_yellow_700
     , xl__text_yellow_800
     , xl__text_yellow_900
+    , xl__to_black
+    , xl__to_blue_100
+    , xl__to_blue_200
+    , xl__to_blue_300
+    , xl__to_blue_400
+    , xl__to_blue_500
+    , xl__to_blue_600
+    , xl__to_blue_700
+    , xl__to_blue_800
+    , xl__to_blue_900
+    , xl__to_current
+    , xl__to_gray_100
+    , xl__to_gray_200
+    , xl__to_gray_300
+    , xl__to_gray_400
+    , xl__to_gray_500
+    , xl__to_gray_600
+    , xl__to_gray_700
+    , xl__to_gray_800
+    , xl__to_gray_900
+    , xl__to_green_100
+    , xl__to_green_200
+    , xl__to_green_300
+    , xl__to_green_400
+    , xl__to_green_500
+    , xl__to_green_600
+    , xl__to_green_700
+    , xl__to_green_800
+    , xl__to_green_900
+    , xl__to_indigo_100
+    , xl__to_indigo_200
+    , xl__to_indigo_300
+    , xl__to_indigo_400
+    , xl__to_indigo_500
+    , xl__to_indigo_600
+    , xl__to_indigo_700
+    , xl__to_indigo_800
+    , xl__to_indigo_900
+    , xl__to_orange_100
+    , xl__to_orange_200
+    , xl__to_orange_300
+    , xl__to_orange_400
+    , xl__to_orange_500
+    , xl__to_orange_600
+    , xl__to_orange_700
+    , xl__to_orange_800
+    , xl__to_orange_900
+    , xl__to_pink_100
+    , xl__to_pink_200
+    , xl__to_pink_300
+    , xl__to_pink_400
+    , xl__to_pink_500
+    , xl__to_pink_600
+    , xl__to_pink_700
+    , xl__to_pink_800
+    , xl__to_pink_900
+    , xl__to_purple_100
+    , xl__to_purple_200
+    , xl__to_purple_300
+    , xl__to_purple_400
+    , xl__to_purple_500
+    , xl__to_purple_600
+    , xl__to_purple_700
+    , xl__to_purple_800
+    , xl__to_purple_900
+    , xl__to_red_100
+    , xl__to_red_200
+    , xl__to_red_300
+    , xl__to_red_400
+    , xl__to_red_500
+    , xl__to_red_600
+    , xl__to_red_700
+    , xl__to_red_800
+    , xl__to_red_900
+    , xl__to_teal_100
+    , xl__to_teal_200
+    , xl__to_teal_300
+    , xl__to_teal_400
+    , xl__to_teal_500
+    , xl__to_teal_600
+    , xl__to_teal_700
+    , xl__to_teal_800
+    , xl__to_teal_900
+    , xl__to_transparent
+    , xl__to_white
+    , xl__to_yellow_100
+    , xl__to_yellow_200
+    , xl__to_yellow_300
+    , xl__to_yellow_400
+    , xl__to_yellow_500
+    , xl__to_yellow_600
+    , xl__to_yellow_700
+    , xl__to_yellow_800
+    , xl__to_yellow_900
     , xl__top_0
     , xl__top_auto
     , xl__tracking_normal
@@ -13843,6 +18808,100 @@ module Html.Tailwind exposing
     , xl__truncate
     , xl__underline
     , xl__uppercase
+    , xl__via_black
+    , xl__via_blue_100
+    , xl__via_blue_200
+    , xl__via_blue_300
+    , xl__via_blue_400
+    , xl__via_blue_500
+    , xl__via_blue_600
+    , xl__via_blue_700
+    , xl__via_blue_800
+    , xl__via_blue_900
+    , xl__via_current
+    , xl__via_gray_100
+    , xl__via_gray_200
+    , xl__via_gray_300
+    , xl__via_gray_400
+    , xl__via_gray_500
+    , xl__via_gray_600
+    , xl__via_gray_700
+    , xl__via_gray_800
+    , xl__via_gray_900
+    , xl__via_green_100
+    , xl__via_green_200
+    , xl__via_green_300
+    , xl__via_green_400
+    , xl__via_green_500
+    , xl__via_green_600
+    , xl__via_green_700
+    , xl__via_green_800
+    , xl__via_green_900
+    , xl__via_indigo_100
+    , xl__via_indigo_200
+    , xl__via_indigo_300
+    , xl__via_indigo_400
+    , xl__via_indigo_500
+    , xl__via_indigo_600
+    , xl__via_indigo_700
+    , xl__via_indigo_800
+    , xl__via_indigo_900
+    , xl__via_orange_100
+    , xl__via_orange_200
+    , xl__via_orange_300
+    , xl__via_orange_400
+    , xl__via_orange_500
+    , xl__via_orange_600
+    , xl__via_orange_700
+    , xl__via_orange_800
+    , xl__via_orange_900
+    , xl__via_pink_100
+    , xl__via_pink_200
+    , xl__via_pink_300
+    , xl__via_pink_400
+    , xl__via_pink_500
+    , xl__via_pink_600
+    , xl__via_pink_700
+    , xl__via_pink_800
+    , xl__via_pink_900
+    , xl__via_purple_100
+    , xl__via_purple_200
+    , xl__via_purple_300
+    , xl__via_purple_400
+    , xl__via_purple_500
+    , xl__via_purple_600
+    , xl__via_purple_700
+    , xl__via_purple_800
+    , xl__via_purple_900
+    , xl__via_red_100
+    , xl__via_red_200
+    , xl__via_red_300
+    , xl__via_red_400
+    , xl__via_red_500
+    , xl__via_red_600
+    , xl__via_red_700
+    , xl__via_red_800
+    , xl__via_red_900
+    , xl__via_teal_100
+    , xl__via_teal_200
+    , xl__via_teal_300
+    , xl__via_teal_400
+    , xl__via_teal_500
+    , xl__via_teal_600
+    , xl__via_teal_700
+    , xl__via_teal_800
+    , xl__via_teal_900
+    , xl__via_transparent
+    , xl__via_white
+    , xl__via_yellow_100
+    , xl__via_yellow_200
+    , xl__via_yellow_300
+    , xl__via_yellow_400
+    , xl__via_yellow_500
+    , xl__via_yellow_600
+    , xl__via_yellow_700
+    , xl__via_yellow_800
+    , xl__via_yellow_900
     , xl__visible
     , xl__w_0
     , xl__w_1
@@ -14837,6 +19896,31 @@ divide_pink_900 =
     A.class "divide-pink-900"
 
 
+divide_solid : Html.Attribute msg
+divide_solid =
+    A.class "divide-solid"
+
+
+divide_dashed : Html.Attribute msg
+divide_dashed =
+    A.class "divide-dashed"
+
+
+divide_dotted : Html.Attribute msg
+divide_dotted =
+    A.class "divide-dotted"
+
+
+divide_double : Html.Attribute msg
+divide_double =
+    A.class "divide-double"
+
+
+divide_none : Html.Attribute msg
+divide_none =
+    A.class "divide-none"
+
+
 divide_opacity_0 : Html.Attribute msg
 divide_opacity_0 =
     A.class "divide-opacity-0"
@@ -14900,6 +19984,26 @@ bg_local =
 bg_scroll : Html.Attribute msg
 bg_scroll =
     A.class "bg-scroll"
+
+
+bg_clip_border : Html.Attribute msg
+bg_clip_border =
+    A.class "bg-clip-border"
+
+
+bg_clip_padding : Html.Attribute msg
+bg_clip_padding =
+    A.class "bg-clip-padding"
+
+
+bg_clip_content : Html.Attribute msg
+bg_clip_content =
+    A.class "bg-clip-content"
+
+
+bg_clip_text : Html.Attribute msg
+bg_clip_text =
+    A.class "bg-clip-text"
 
 
 bg_transparent : Html.Attribute msg
@@ -16310,6 +21414,4281 @@ focus__bg_pink_800 =
 focus__bg_pink_900 : Html.Attribute msg
 focus__bg_pink_900 =
     A.class "focus:bg-pink-900"
+
+
+bg_none : Html.Attribute msg
+bg_none =
+    A.class "bg-none"
+
+
+bg_gradient_to_t : Html.Attribute msg
+bg_gradient_to_t =
+    A.class "bg-gradient-to-t"
+
+
+bg_gradient_to_tr : Html.Attribute msg
+bg_gradient_to_tr =
+    A.class "bg-gradient-to-tr"
+
+
+bg_gradient_to_r : Html.Attribute msg
+bg_gradient_to_r =
+    A.class "bg-gradient-to-r"
+
+
+bg_gradient_to_br : Html.Attribute msg
+bg_gradient_to_br =
+    A.class "bg-gradient-to-br"
+
+
+bg_gradient_to_b : Html.Attribute msg
+bg_gradient_to_b =
+    A.class "bg-gradient-to-b"
+
+
+bg_gradient_to_bl : Html.Attribute msg
+bg_gradient_to_bl =
+    A.class "bg-gradient-to-bl"
+
+
+bg_gradient_to_l : Html.Attribute msg
+bg_gradient_to_l =
+    A.class "bg-gradient-to-l"
+
+
+bg_gradient_to_tl : Html.Attribute msg
+bg_gradient_to_tl =
+    A.class "bg-gradient-to-tl"
+
+
+from_transparent : Html.Attribute msg
+from_transparent =
+    A.class "from-transparent"
+
+
+from_current : Html.Attribute msg
+from_current =
+    A.class "from-current"
+
+
+from_black : Html.Attribute msg
+from_black =
+    A.class "from-black"
+
+
+from_white : Html.Attribute msg
+from_white =
+    A.class "from-white"
+
+
+from_gray_100 : Html.Attribute msg
+from_gray_100 =
+    A.class "from-gray-100"
+
+
+from_gray_200 : Html.Attribute msg
+from_gray_200 =
+    A.class "from-gray-200"
+
+
+from_gray_300 : Html.Attribute msg
+from_gray_300 =
+    A.class "from-gray-300"
+
+
+from_gray_400 : Html.Attribute msg
+from_gray_400 =
+    A.class "from-gray-400"
+
+
+from_gray_500 : Html.Attribute msg
+from_gray_500 =
+    A.class "from-gray-500"
+
+
+from_gray_600 : Html.Attribute msg
+from_gray_600 =
+    A.class "from-gray-600"
+
+
+from_gray_700 : Html.Attribute msg
+from_gray_700 =
+    A.class "from-gray-700"
+
+
+from_gray_800 : Html.Attribute msg
+from_gray_800 =
+    A.class "from-gray-800"
+
+
+from_gray_900 : Html.Attribute msg
+from_gray_900 =
+    A.class "from-gray-900"
+
+
+from_red_100 : Html.Attribute msg
+from_red_100 =
+    A.class "from-red-100"
+
+
+from_red_200 : Html.Attribute msg
+from_red_200 =
+    A.class "from-red-200"
+
+
+from_red_300 : Html.Attribute msg
+from_red_300 =
+    A.class "from-red-300"
+
+
+from_red_400 : Html.Attribute msg
+from_red_400 =
+    A.class "from-red-400"
+
+
+from_red_500 : Html.Attribute msg
+from_red_500 =
+    A.class "from-red-500"
+
+
+from_red_600 : Html.Attribute msg
+from_red_600 =
+    A.class "from-red-600"
+
+
+from_red_700 : Html.Attribute msg
+from_red_700 =
+    A.class "from-red-700"
+
+
+from_red_800 : Html.Attribute msg
+from_red_800 =
+    A.class "from-red-800"
+
+
+from_red_900 : Html.Attribute msg
+from_red_900 =
+    A.class "from-red-900"
+
+
+from_orange_100 : Html.Attribute msg
+from_orange_100 =
+    A.class "from-orange-100"
+
+
+from_orange_200 : Html.Attribute msg
+from_orange_200 =
+    A.class "from-orange-200"
+
+
+from_orange_300 : Html.Attribute msg
+from_orange_300 =
+    A.class "from-orange-300"
+
+
+from_orange_400 : Html.Attribute msg
+from_orange_400 =
+    A.class "from-orange-400"
+
+
+from_orange_500 : Html.Attribute msg
+from_orange_500 =
+    A.class "from-orange-500"
+
+
+from_orange_600 : Html.Attribute msg
+from_orange_600 =
+    A.class "from-orange-600"
+
+
+from_orange_700 : Html.Attribute msg
+from_orange_700 =
+    A.class "from-orange-700"
+
+
+from_orange_800 : Html.Attribute msg
+from_orange_800 =
+    A.class "from-orange-800"
+
+
+from_orange_900 : Html.Attribute msg
+from_orange_900 =
+    A.class "from-orange-900"
+
+
+from_yellow_100 : Html.Attribute msg
+from_yellow_100 =
+    A.class "from-yellow-100"
+
+
+from_yellow_200 : Html.Attribute msg
+from_yellow_200 =
+    A.class "from-yellow-200"
+
+
+from_yellow_300 : Html.Attribute msg
+from_yellow_300 =
+    A.class "from-yellow-300"
+
+
+from_yellow_400 : Html.Attribute msg
+from_yellow_400 =
+    A.class "from-yellow-400"
+
+
+from_yellow_500 : Html.Attribute msg
+from_yellow_500 =
+    A.class "from-yellow-500"
+
+
+from_yellow_600 : Html.Attribute msg
+from_yellow_600 =
+    A.class "from-yellow-600"
+
+
+from_yellow_700 : Html.Attribute msg
+from_yellow_700 =
+    A.class "from-yellow-700"
+
+
+from_yellow_800 : Html.Attribute msg
+from_yellow_800 =
+    A.class "from-yellow-800"
+
+
+from_yellow_900 : Html.Attribute msg
+from_yellow_900 =
+    A.class "from-yellow-900"
+
+
+from_green_100 : Html.Attribute msg
+from_green_100 =
+    A.class "from-green-100"
+
+
+from_green_200 : Html.Attribute msg
+from_green_200 =
+    A.class "from-green-200"
+
+
+from_green_300 : Html.Attribute msg
+from_green_300 =
+    A.class "from-green-300"
+
+
+from_green_400 : Html.Attribute msg
+from_green_400 =
+    A.class "from-green-400"
+
+
+from_green_500 : Html.Attribute msg
+from_green_500 =
+    A.class "from-green-500"
+
+
+from_green_600 : Html.Attribute msg
+from_green_600 =
+    A.class "from-green-600"
+
+
+from_green_700 : Html.Attribute msg
+from_green_700 =
+    A.class "from-green-700"
+
+
+from_green_800 : Html.Attribute msg
+from_green_800 =
+    A.class "from-green-800"
+
+
+from_green_900 : Html.Attribute msg
+from_green_900 =
+    A.class "from-green-900"
+
+
+from_teal_100 : Html.Attribute msg
+from_teal_100 =
+    A.class "from-teal-100"
+
+
+from_teal_200 : Html.Attribute msg
+from_teal_200 =
+    A.class "from-teal-200"
+
+
+from_teal_300 : Html.Attribute msg
+from_teal_300 =
+    A.class "from-teal-300"
+
+
+from_teal_400 : Html.Attribute msg
+from_teal_400 =
+    A.class "from-teal-400"
+
+
+from_teal_500 : Html.Attribute msg
+from_teal_500 =
+    A.class "from-teal-500"
+
+
+from_teal_600 : Html.Attribute msg
+from_teal_600 =
+    A.class "from-teal-600"
+
+
+from_teal_700 : Html.Attribute msg
+from_teal_700 =
+    A.class "from-teal-700"
+
+
+from_teal_800 : Html.Attribute msg
+from_teal_800 =
+    A.class "from-teal-800"
+
+
+from_teal_900 : Html.Attribute msg
+from_teal_900 =
+    A.class "from-teal-900"
+
+
+from_blue_100 : Html.Attribute msg
+from_blue_100 =
+    A.class "from-blue-100"
+
+
+from_blue_200 : Html.Attribute msg
+from_blue_200 =
+    A.class "from-blue-200"
+
+
+from_blue_300 : Html.Attribute msg
+from_blue_300 =
+    A.class "from-blue-300"
+
+
+from_blue_400 : Html.Attribute msg
+from_blue_400 =
+    A.class "from-blue-400"
+
+
+from_blue_500 : Html.Attribute msg
+from_blue_500 =
+    A.class "from-blue-500"
+
+
+from_blue_600 : Html.Attribute msg
+from_blue_600 =
+    A.class "from-blue-600"
+
+
+from_blue_700 : Html.Attribute msg
+from_blue_700 =
+    A.class "from-blue-700"
+
+
+from_blue_800 : Html.Attribute msg
+from_blue_800 =
+    A.class "from-blue-800"
+
+
+from_blue_900 : Html.Attribute msg
+from_blue_900 =
+    A.class "from-blue-900"
+
+
+from_indigo_100 : Html.Attribute msg
+from_indigo_100 =
+    A.class "from-indigo-100"
+
+
+from_indigo_200 : Html.Attribute msg
+from_indigo_200 =
+    A.class "from-indigo-200"
+
+
+from_indigo_300 : Html.Attribute msg
+from_indigo_300 =
+    A.class "from-indigo-300"
+
+
+from_indigo_400 : Html.Attribute msg
+from_indigo_400 =
+    A.class "from-indigo-400"
+
+
+from_indigo_500 : Html.Attribute msg
+from_indigo_500 =
+    A.class "from-indigo-500"
+
+
+from_indigo_600 : Html.Attribute msg
+from_indigo_600 =
+    A.class "from-indigo-600"
+
+
+from_indigo_700 : Html.Attribute msg
+from_indigo_700 =
+    A.class "from-indigo-700"
+
+
+from_indigo_800 : Html.Attribute msg
+from_indigo_800 =
+    A.class "from-indigo-800"
+
+
+from_indigo_900 : Html.Attribute msg
+from_indigo_900 =
+    A.class "from-indigo-900"
+
+
+from_purple_100 : Html.Attribute msg
+from_purple_100 =
+    A.class "from-purple-100"
+
+
+from_purple_200 : Html.Attribute msg
+from_purple_200 =
+    A.class "from-purple-200"
+
+
+from_purple_300 : Html.Attribute msg
+from_purple_300 =
+    A.class "from-purple-300"
+
+
+from_purple_400 : Html.Attribute msg
+from_purple_400 =
+    A.class "from-purple-400"
+
+
+from_purple_500 : Html.Attribute msg
+from_purple_500 =
+    A.class "from-purple-500"
+
+
+from_purple_600 : Html.Attribute msg
+from_purple_600 =
+    A.class "from-purple-600"
+
+
+from_purple_700 : Html.Attribute msg
+from_purple_700 =
+    A.class "from-purple-700"
+
+
+from_purple_800 : Html.Attribute msg
+from_purple_800 =
+    A.class "from-purple-800"
+
+
+from_purple_900 : Html.Attribute msg
+from_purple_900 =
+    A.class "from-purple-900"
+
+
+from_pink_100 : Html.Attribute msg
+from_pink_100 =
+    A.class "from-pink-100"
+
+
+from_pink_200 : Html.Attribute msg
+from_pink_200 =
+    A.class "from-pink-200"
+
+
+from_pink_300 : Html.Attribute msg
+from_pink_300 =
+    A.class "from-pink-300"
+
+
+from_pink_400 : Html.Attribute msg
+from_pink_400 =
+    A.class "from-pink-400"
+
+
+from_pink_500 : Html.Attribute msg
+from_pink_500 =
+    A.class "from-pink-500"
+
+
+from_pink_600 : Html.Attribute msg
+from_pink_600 =
+    A.class "from-pink-600"
+
+
+from_pink_700 : Html.Attribute msg
+from_pink_700 =
+    A.class "from-pink-700"
+
+
+from_pink_800 : Html.Attribute msg
+from_pink_800 =
+    A.class "from-pink-800"
+
+
+from_pink_900 : Html.Attribute msg
+from_pink_900 =
+    A.class "from-pink-900"
+
+
+via_transparent : Html.Attribute msg
+via_transparent =
+    A.class "via-transparent"
+
+
+via_current : Html.Attribute msg
+via_current =
+    A.class "via-current"
+
+
+via_black : Html.Attribute msg
+via_black =
+    A.class "via-black"
+
+
+via_white : Html.Attribute msg
+via_white =
+    A.class "via-white"
+
+
+via_gray_100 : Html.Attribute msg
+via_gray_100 =
+    A.class "via-gray-100"
+
+
+via_gray_200 : Html.Attribute msg
+via_gray_200 =
+    A.class "via-gray-200"
+
+
+via_gray_300 : Html.Attribute msg
+via_gray_300 =
+    A.class "via-gray-300"
+
+
+via_gray_400 : Html.Attribute msg
+via_gray_400 =
+    A.class "via-gray-400"
+
+
+via_gray_500 : Html.Attribute msg
+via_gray_500 =
+    A.class "via-gray-500"
+
+
+via_gray_600 : Html.Attribute msg
+via_gray_600 =
+    A.class "via-gray-600"
+
+
+via_gray_700 : Html.Attribute msg
+via_gray_700 =
+    A.class "via-gray-700"
+
+
+via_gray_800 : Html.Attribute msg
+via_gray_800 =
+    A.class "via-gray-800"
+
+
+via_gray_900 : Html.Attribute msg
+via_gray_900 =
+    A.class "via-gray-900"
+
+
+via_red_100 : Html.Attribute msg
+via_red_100 =
+    A.class "via-red-100"
+
+
+via_red_200 : Html.Attribute msg
+via_red_200 =
+    A.class "via-red-200"
+
+
+via_red_300 : Html.Attribute msg
+via_red_300 =
+    A.class "via-red-300"
+
+
+via_red_400 : Html.Attribute msg
+via_red_400 =
+    A.class "via-red-400"
+
+
+via_red_500 : Html.Attribute msg
+via_red_500 =
+    A.class "via-red-500"
+
+
+via_red_600 : Html.Attribute msg
+via_red_600 =
+    A.class "via-red-600"
+
+
+via_red_700 : Html.Attribute msg
+via_red_700 =
+    A.class "via-red-700"
+
+
+via_red_800 : Html.Attribute msg
+via_red_800 =
+    A.class "via-red-800"
+
+
+via_red_900 : Html.Attribute msg
+via_red_900 =
+    A.class "via-red-900"
+
+
+via_orange_100 : Html.Attribute msg
+via_orange_100 =
+    A.class "via-orange-100"
+
+
+via_orange_200 : Html.Attribute msg
+via_orange_200 =
+    A.class "via-orange-200"
+
+
+via_orange_300 : Html.Attribute msg
+via_orange_300 =
+    A.class "via-orange-300"
+
+
+via_orange_400 : Html.Attribute msg
+via_orange_400 =
+    A.class "via-orange-400"
+
+
+via_orange_500 : Html.Attribute msg
+via_orange_500 =
+    A.class "via-orange-500"
+
+
+via_orange_600 : Html.Attribute msg
+via_orange_600 =
+    A.class "via-orange-600"
+
+
+via_orange_700 : Html.Attribute msg
+via_orange_700 =
+    A.class "via-orange-700"
+
+
+via_orange_800 : Html.Attribute msg
+via_orange_800 =
+    A.class "via-orange-800"
+
+
+via_orange_900 : Html.Attribute msg
+via_orange_900 =
+    A.class "via-orange-900"
+
+
+via_yellow_100 : Html.Attribute msg
+via_yellow_100 =
+    A.class "via-yellow-100"
+
+
+via_yellow_200 : Html.Attribute msg
+via_yellow_200 =
+    A.class "via-yellow-200"
+
+
+via_yellow_300 : Html.Attribute msg
+via_yellow_300 =
+    A.class "via-yellow-300"
+
+
+via_yellow_400 : Html.Attribute msg
+via_yellow_400 =
+    A.class "via-yellow-400"
+
+
+via_yellow_500 : Html.Attribute msg
+via_yellow_500 =
+    A.class "via-yellow-500"
+
+
+via_yellow_600 : Html.Attribute msg
+via_yellow_600 =
+    A.class "via-yellow-600"
+
+
+via_yellow_700 : Html.Attribute msg
+via_yellow_700 =
+    A.class "via-yellow-700"
+
+
+via_yellow_800 : Html.Attribute msg
+via_yellow_800 =
+    A.class "via-yellow-800"
+
+
+via_yellow_900 : Html.Attribute msg
+via_yellow_900 =
+    A.class "via-yellow-900"
+
+
+via_green_100 : Html.Attribute msg
+via_green_100 =
+    A.class "via-green-100"
+
+
+via_green_200 : Html.Attribute msg
+via_green_200 =
+    A.class "via-green-200"
+
+
+via_green_300 : Html.Attribute msg
+via_green_300 =
+    A.class "via-green-300"
+
+
+via_green_400 : Html.Attribute msg
+via_green_400 =
+    A.class "via-green-400"
+
+
+via_green_500 : Html.Attribute msg
+via_green_500 =
+    A.class "via-green-500"
+
+
+via_green_600 : Html.Attribute msg
+via_green_600 =
+    A.class "via-green-600"
+
+
+via_green_700 : Html.Attribute msg
+via_green_700 =
+    A.class "via-green-700"
+
+
+via_green_800 : Html.Attribute msg
+via_green_800 =
+    A.class "via-green-800"
+
+
+via_green_900 : Html.Attribute msg
+via_green_900 =
+    A.class "via-green-900"
+
+
+via_teal_100 : Html.Attribute msg
+via_teal_100 =
+    A.class "via-teal-100"
+
+
+via_teal_200 : Html.Attribute msg
+via_teal_200 =
+    A.class "via-teal-200"
+
+
+via_teal_300 : Html.Attribute msg
+via_teal_300 =
+    A.class "via-teal-300"
+
+
+via_teal_400 : Html.Attribute msg
+via_teal_400 =
+    A.class "via-teal-400"
+
+
+via_teal_500 : Html.Attribute msg
+via_teal_500 =
+    A.class "via-teal-500"
+
+
+via_teal_600 : Html.Attribute msg
+via_teal_600 =
+    A.class "via-teal-600"
+
+
+via_teal_700 : Html.Attribute msg
+via_teal_700 =
+    A.class "via-teal-700"
+
+
+via_teal_800 : Html.Attribute msg
+via_teal_800 =
+    A.class "via-teal-800"
+
+
+via_teal_900 : Html.Attribute msg
+via_teal_900 =
+    A.class "via-teal-900"
+
+
+via_blue_100 : Html.Attribute msg
+via_blue_100 =
+    A.class "via-blue-100"
+
+
+via_blue_200 : Html.Attribute msg
+via_blue_200 =
+    A.class "via-blue-200"
+
+
+via_blue_300 : Html.Attribute msg
+via_blue_300 =
+    A.class "via-blue-300"
+
+
+via_blue_400 : Html.Attribute msg
+via_blue_400 =
+    A.class "via-blue-400"
+
+
+via_blue_500 : Html.Attribute msg
+via_blue_500 =
+    A.class "via-blue-500"
+
+
+via_blue_600 : Html.Attribute msg
+via_blue_600 =
+    A.class "via-blue-600"
+
+
+via_blue_700 : Html.Attribute msg
+via_blue_700 =
+    A.class "via-blue-700"
+
+
+via_blue_800 : Html.Attribute msg
+via_blue_800 =
+    A.class "via-blue-800"
+
+
+via_blue_900 : Html.Attribute msg
+via_blue_900 =
+    A.class "via-blue-900"
+
+
+via_indigo_100 : Html.Attribute msg
+via_indigo_100 =
+    A.class "via-indigo-100"
+
+
+via_indigo_200 : Html.Attribute msg
+via_indigo_200 =
+    A.class "via-indigo-200"
+
+
+via_indigo_300 : Html.Attribute msg
+via_indigo_300 =
+    A.class "via-indigo-300"
+
+
+via_indigo_400 : Html.Attribute msg
+via_indigo_400 =
+    A.class "via-indigo-400"
+
+
+via_indigo_500 : Html.Attribute msg
+via_indigo_500 =
+    A.class "via-indigo-500"
+
+
+via_indigo_600 : Html.Attribute msg
+via_indigo_600 =
+    A.class "via-indigo-600"
+
+
+via_indigo_700 : Html.Attribute msg
+via_indigo_700 =
+    A.class "via-indigo-700"
+
+
+via_indigo_800 : Html.Attribute msg
+via_indigo_800 =
+    A.class "via-indigo-800"
+
+
+via_indigo_900 : Html.Attribute msg
+via_indigo_900 =
+    A.class "via-indigo-900"
+
+
+via_purple_100 : Html.Attribute msg
+via_purple_100 =
+    A.class "via-purple-100"
+
+
+via_purple_200 : Html.Attribute msg
+via_purple_200 =
+    A.class "via-purple-200"
+
+
+via_purple_300 : Html.Attribute msg
+via_purple_300 =
+    A.class "via-purple-300"
+
+
+via_purple_400 : Html.Attribute msg
+via_purple_400 =
+    A.class "via-purple-400"
+
+
+via_purple_500 : Html.Attribute msg
+via_purple_500 =
+    A.class "via-purple-500"
+
+
+via_purple_600 : Html.Attribute msg
+via_purple_600 =
+    A.class "via-purple-600"
+
+
+via_purple_700 : Html.Attribute msg
+via_purple_700 =
+    A.class "via-purple-700"
+
+
+via_purple_800 : Html.Attribute msg
+via_purple_800 =
+    A.class "via-purple-800"
+
+
+via_purple_900 : Html.Attribute msg
+via_purple_900 =
+    A.class "via-purple-900"
+
+
+via_pink_100 : Html.Attribute msg
+via_pink_100 =
+    A.class "via-pink-100"
+
+
+via_pink_200 : Html.Attribute msg
+via_pink_200 =
+    A.class "via-pink-200"
+
+
+via_pink_300 : Html.Attribute msg
+via_pink_300 =
+    A.class "via-pink-300"
+
+
+via_pink_400 : Html.Attribute msg
+via_pink_400 =
+    A.class "via-pink-400"
+
+
+via_pink_500 : Html.Attribute msg
+via_pink_500 =
+    A.class "via-pink-500"
+
+
+via_pink_600 : Html.Attribute msg
+via_pink_600 =
+    A.class "via-pink-600"
+
+
+via_pink_700 : Html.Attribute msg
+via_pink_700 =
+    A.class "via-pink-700"
+
+
+via_pink_800 : Html.Attribute msg
+via_pink_800 =
+    A.class "via-pink-800"
+
+
+via_pink_900 : Html.Attribute msg
+via_pink_900 =
+    A.class "via-pink-900"
+
+
+to_transparent : Html.Attribute msg
+to_transparent =
+    A.class "to-transparent"
+
+
+to_current : Html.Attribute msg
+to_current =
+    A.class "to-current"
+
+
+to_black : Html.Attribute msg
+to_black =
+    A.class "to-black"
+
+
+to_white : Html.Attribute msg
+to_white =
+    A.class "to-white"
+
+
+to_gray_100 : Html.Attribute msg
+to_gray_100 =
+    A.class "to-gray-100"
+
+
+to_gray_200 : Html.Attribute msg
+to_gray_200 =
+    A.class "to-gray-200"
+
+
+to_gray_300 : Html.Attribute msg
+to_gray_300 =
+    A.class "to-gray-300"
+
+
+to_gray_400 : Html.Attribute msg
+to_gray_400 =
+    A.class "to-gray-400"
+
+
+to_gray_500 : Html.Attribute msg
+to_gray_500 =
+    A.class "to-gray-500"
+
+
+to_gray_600 : Html.Attribute msg
+to_gray_600 =
+    A.class "to-gray-600"
+
+
+to_gray_700 : Html.Attribute msg
+to_gray_700 =
+    A.class "to-gray-700"
+
+
+to_gray_800 : Html.Attribute msg
+to_gray_800 =
+    A.class "to-gray-800"
+
+
+to_gray_900 : Html.Attribute msg
+to_gray_900 =
+    A.class "to-gray-900"
+
+
+to_red_100 : Html.Attribute msg
+to_red_100 =
+    A.class "to-red-100"
+
+
+to_red_200 : Html.Attribute msg
+to_red_200 =
+    A.class "to-red-200"
+
+
+to_red_300 : Html.Attribute msg
+to_red_300 =
+    A.class "to-red-300"
+
+
+to_red_400 : Html.Attribute msg
+to_red_400 =
+    A.class "to-red-400"
+
+
+to_red_500 : Html.Attribute msg
+to_red_500 =
+    A.class "to-red-500"
+
+
+to_red_600 : Html.Attribute msg
+to_red_600 =
+    A.class "to-red-600"
+
+
+to_red_700 : Html.Attribute msg
+to_red_700 =
+    A.class "to-red-700"
+
+
+to_red_800 : Html.Attribute msg
+to_red_800 =
+    A.class "to-red-800"
+
+
+to_red_900 : Html.Attribute msg
+to_red_900 =
+    A.class "to-red-900"
+
+
+to_orange_100 : Html.Attribute msg
+to_orange_100 =
+    A.class "to-orange-100"
+
+
+to_orange_200 : Html.Attribute msg
+to_orange_200 =
+    A.class "to-orange-200"
+
+
+to_orange_300 : Html.Attribute msg
+to_orange_300 =
+    A.class "to-orange-300"
+
+
+to_orange_400 : Html.Attribute msg
+to_orange_400 =
+    A.class "to-orange-400"
+
+
+to_orange_500 : Html.Attribute msg
+to_orange_500 =
+    A.class "to-orange-500"
+
+
+to_orange_600 : Html.Attribute msg
+to_orange_600 =
+    A.class "to-orange-600"
+
+
+to_orange_700 : Html.Attribute msg
+to_orange_700 =
+    A.class "to-orange-700"
+
+
+to_orange_800 : Html.Attribute msg
+to_orange_800 =
+    A.class "to-orange-800"
+
+
+to_orange_900 : Html.Attribute msg
+to_orange_900 =
+    A.class "to-orange-900"
+
+
+to_yellow_100 : Html.Attribute msg
+to_yellow_100 =
+    A.class "to-yellow-100"
+
+
+to_yellow_200 : Html.Attribute msg
+to_yellow_200 =
+    A.class "to-yellow-200"
+
+
+to_yellow_300 : Html.Attribute msg
+to_yellow_300 =
+    A.class "to-yellow-300"
+
+
+to_yellow_400 : Html.Attribute msg
+to_yellow_400 =
+    A.class "to-yellow-400"
+
+
+to_yellow_500 : Html.Attribute msg
+to_yellow_500 =
+    A.class "to-yellow-500"
+
+
+to_yellow_600 : Html.Attribute msg
+to_yellow_600 =
+    A.class "to-yellow-600"
+
+
+to_yellow_700 : Html.Attribute msg
+to_yellow_700 =
+    A.class "to-yellow-700"
+
+
+to_yellow_800 : Html.Attribute msg
+to_yellow_800 =
+    A.class "to-yellow-800"
+
+
+to_yellow_900 : Html.Attribute msg
+to_yellow_900 =
+    A.class "to-yellow-900"
+
+
+to_green_100 : Html.Attribute msg
+to_green_100 =
+    A.class "to-green-100"
+
+
+to_green_200 : Html.Attribute msg
+to_green_200 =
+    A.class "to-green-200"
+
+
+to_green_300 : Html.Attribute msg
+to_green_300 =
+    A.class "to-green-300"
+
+
+to_green_400 : Html.Attribute msg
+to_green_400 =
+    A.class "to-green-400"
+
+
+to_green_500 : Html.Attribute msg
+to_green_500 =
+    A.class "to-green-500"
+
+
+to_green_600 : Html.Attribute msg
+to_green_600 =
+    A.class "to-green-600"
+
+
+to_green_700 : Html.Attribute msg
+to_green_700 =
+    A.class "to-green-700"
+
+
+to_green_800 : Html.Attribute msg
+to_green_800 =
+    A.class "to-green-800"
+
+
+to_green_900 : Html.Attribute msg
+to_green_900 =
+    A.class "to-green-900"
+
+
+to_teal_100 : Html.Attribute msg
+to_teal_100 =
+    A.class "to-teal-100"
+
+
+to_teal_200 : Html.Attribute msg
+to_teal_200 =
+    A.class "to-teal-200"
+
+
+to_teal_300 : Html.Attribute msg
+to_teal_300 =
+    A.class "to-teal-300"
+
+
+to_teal_400 : Html.Attribute msg
+to_teal_400 =
+    A.class "to-teal-400"
+
+
+to_teal_500 : Html.Attribute msg
+to_teal_500 =
+    A.class "to-teal-500"
+
+
+to_teal_600 : Html.Attribute msg
+to_teal_600 =
+    A.class "to-teal-600"
+
+
+to_teal_700 : Html.Attribute msg
+to_teal_700 =
+    A.class "to-teal-700"
+
+
+to_teal_800 : Html.Attribute msg
+to_teal_800 =
+    A.class "to-teal-800"
+
+
+to_teal_900 : Html.Attribute msg
+to_teal_900 =
+    A.class "to-teal-900"
+
+
+to_blue_100 : Html.Attribute msg
+to_blue_100 =
+    A.class "to-blue-100"
+
+
+to_blue_200 : Html.Attribute msg
+to_blue_200 =
+    A.class "to-blue-200"
+
+
+to_blue_300 : Html.Attribute msg
+to_blue_300 =
+    A.class "to-blue-300"
+
+
+to_blue_400 : Html.Attribute msg
+to_blue_400 =
+    A.class "to-blue-400"
+
+
+to_blue_500 : Html.Attribute msg
+to_blue_500 =
+    A.class "to-blue-500"
+
+
+to_blue_600 : Html.Attribute msg
+to_blue_600 =
+    A.class "to-blue-600"
+
+
+to_blue_700 : Html.Attribute msg
+to_blue_700 =
+    A.class "to-blue-700"
+
+
+to_blue_800 : Html.Attribute msg
+to_blue_800 =
+    A.class "to-blue-800"
+
+
+to_blue_900 : Html.Attribute msg
+to_blue_900 =
+    A.class "to-blue-900"
+
+
+to_indigo_100 : Html.Attribute msg
+to_indigo_100 =
+    A.class "to-indigo-100"
+
+
+to_indigo_200 : Html.Attribute msg
+to_indigo_200 =
+    A.class "to-indigo-200"
+
+
+to_indigo_300 : Html.Attribute msg
+to_indigo_300 =
+    A.class "to-indigo-300"
+
+
+to_indigo_400 : Html.Attribute msg
+to_indigo_400 =
+    A.class "to-indigo-400"
+
+
+to_indigo_500 : Html.Attribute msg
+to_indigo_500 =
+    A.class "to-indigo-500"
+
+
+to_indigo_600 : Html.Attribute msg
+to_indigo_600 =
+    A.class "to-indigo-600"
+
+
+to_indigo_700 : Html.Attribute msg
+to_indigo_700 =
+    A.class "to-indigo-700"
+
+
+to_indigo_800 : Html.Attribute msg
+to_indigo_800 =
+    A.class "to-indigo-800"
+
+
+to_indigo_900 : Html.Attribute msg
+to_indigo_900 =
+    A.class "to-indigo-900"
+
+
+to_purple_100 : Html.Attribute msg
+to_purple_100 =
+    A.class "to-purple-100"
+
+
+to_purple_200 : Html.Attribute msg
+to_purple_200 =
+    A.class "to-purple-200"
+
+
+to_purple_300 : Html.Attribute msg
+to_purple_300 =
+    A.class "to-purple-300"
+
+
+to_purple_400 : Html.Attribute msg
+to_purple_400 =
+    A.class "to-purple-400"
+
+
+to_purple_500 : Html.Attribute msg
+to_purple_500 =
+    A.class "to-purple-500"
+
+
+to_purple_600 : Html.Attribute msg
+to_purple_600 =
+    A.class "to-purple-600"
+
+
+to_purple_700 : Html.Attribute msg
+to_purple_700 =
+    A.class "to-purple-700"
+
+
+to_purple_800 : Html.Attribute msg
+to_purple_800 =
+    A.class "to-purple-800"
+
+
+to_purple_900 : Html.Attribute msg
+to_purple_900 =
+    A.class "to-purple-900"
+
+
+to_pink_100 : Html.Attribute msg
+to_pink_100 =
+    A.class "to-pink-100"
+
+
+to_pink_200 : Html.Attribute msg
+to_pink_200 =
+    A.class "to-pink-200"
+
+
+to_pink_300 : Html.Attribute msg
+to_pink_300 =
+    A.class "to-pink-300"
+
+
+to_pink_400 : Html.Attribute msg
+to_pink_400 =
+    A.class "to-pink-400"
+
+
+to_pink_500 : Html.Attribute msg
+to_pink_500 =
+    A.class "to-pink-500"
+
+
+to_pink_600 : Html.Attribute msg
+to_pink_600 =
+    A.class "to-pink-600"
+
+
+to_pink_700 : Html.Attribute msg
+to_pink_700 =
+    A.class "to-pink-700"
+
+
+to_pink_800 : Html.Attribute msg
+to_pink_800 =
+    A.class "to-pink-800"
+
+
+to_pink_900 : Html.Attribute msg
+to_pink_900 =
+    A.class "to-pink-900"
+
+
+hover__from_transparent : Html.Attribute msg
+hover__from_transparent =
+    A.class "hover:from-transparent"
+
+
+hover__from_current : Html.Attribute msg
+hover__from_current =
+    A.class "hover:from-current"
+
+
+hover__from_black : Html.Attribute msg
+hover__from_black =
+    A.class "hover:from-black"
+
+
+hover__from_white : Html.Attribute msg
+hover__from_white =
+    A.class "hover:from-white"
+
+
+hover__from_gray_100 : Html.Attribute msg
+hover__from_gray_100 =
+    A.class "hover:from-gray-100"
+
+
+hover__from_gray_200 : Html.Attribute msg
+hover__from_gray_200 =
+    A.class "hover:from-gray-200"
+
+
+hover__from_gray_300 : Html.Attribute msg
+hover__from_gray_300 =
+    A.class "hover:from-gray-300"
+
+
+hover__from_gray_400 : Html.Attribute msg
+hover__from_gray_400 =
+    A.class "hover:from-gray-400"
+
+
+hover__from_gray_500 : Html.Attribute msg
+hover__from_gray_500 =
+    A.class "hover:from-gray-500"
+
+
+hover__from_gray_600 : Html.Attribute msg
+hover__from_gray_600 =
+    A.class "hover:from-gray-600"
+
+
+hover__from_gray_700 : Html.Attribute msg
+hover__from_gray_700 =
+    A.class "hover:from-gray-700"
+
+
+hover__from_gray_800 : Html.Attribute msg
+hover__from_gray_800 =
+    A.class "hover:from-gray-800"
+
+
+hover__from_gray_900 : Html.Attribute msg
+hover__from_gray_900 =
+    A.class "hover:from-gray-900"
+
+
+hover__from_red_100 : Html.Attribute msg
+hover__from_red_100 =
+    A.class "hover:from-red-100"
+
+
+hover__from_red_200 : Html.Attribute msg
+hover__from_red_200 =
+    A.class "hover:from-red-200"
+
+
+hover__from_red_300 : Html.Attribute msg
+hover__from_red_300 =
+    A.class "hover:from-red-300"
+
+
+hover__from_red_400 : Html.Attribute msg
+hover__from_red_400 =
+    A.class "hover:from-red-400"
+
+
+hover__from_red_500 : Html.Attribute msg
+hover__from_red_500 =
+    A.class "hover:from-red-500"
+
+
+hover__from_red_600 : Html.Attribute msg
+hover__from_red_600 =
+    A.class "hover:from-red-600"
+
+
+hover__from_red_700 : Html.Attribute msg
+hover__from_red_700 =
+    A.class "hover:from-red-700"
+
+
+hover__from_red_800 : Html.Attribute msg
+hover__from_red_800 =
+    A.class "hover:from-red-800"
+
+
+hover__from_red_900 : Html.Attribute msg
+hover__from_red_900 =
+    A.class "hover:from-red-900"
+
+
+hover__from_orange_100 : Html.Attribute msg
+hover__from_orange_100 =
+    A.class "hover:from-orange-100"
+
+
+hover__from_orange_200 : Html.Attribute msg
+hover__from_orange_200 =
+    A.class "hover:from-orange-200"
+
+
+hover__from_orange_300 : Html.Attribute msg
+hover__from_orange_300 =
+    A.class "hover:from-orange-300"
+
+
+hover__from_orange_400 : Html.Attribute msg
+hover__from_orange_400 =
+    A.class "hover:from-orange-400"
+
+
+hover__from_orange_500 : Html.Attribute msg
+hover__from_orange_500 =
+    A.class "hover:from-orange-500"
+
+
+hover__from_orange_600 : Html.Attribute msg
+hover__from_orange_600 =
+    A.class "hover:from-orange-600"
+
+
+hover__from_orange_700 : Html.Attribute msg
+hover__from_orange_700 =
+    A.class "hover:from-orange-700"
+
+
+hover__from_orange_800 : Html.Attribute msg
+hover__from_orange_800 =
+    A.class "hover:from-orange-800"
+
+
+hover__from_orange_900 : Html.Attribute msg
+hover__from_orange_900 =
+    A.class "hover:from-orange-900"
+
+
+hover__from_yellow_100 : Html.Attribute msg
+hover__from_yellow_100 =
+    A.class "hover:from-yellow-100"
+
+
+hover__from_yellow_200 : Html.Attribute msg
+hover__from_yellow_200 =
+    A.class "hover:from-yellow-200"
+
+
+hover__from_yellow_300 : Html.Attribute msg
+hover__from_yellow_300 =
+    A.class "hover:from-yellow-300"
+
+
+hover__from_yellow_400 : Html.Attribute msg
+hover__from_yellow_400 =
+    A.class "hover:from-yellow-400"
+
+
+hover__from_yellow_500 : Html.Attribute msg
+hover__from_yellow_500 =
+    A.class "hover:from-yellow-500"
+
+
+hover__from_yellow_600 : Html.Attribute msg
+hover__from_yellow_600 =
+    A.class "hover:from-yellow-600"
+
+
+hover__from_yellow_700 : Html.Attribute msg
+hover__from_yellow_700 =
+    A.class "hover:from-yellow-700"
+
+
+hover__from_yellow_800 : Html.Attribute msg
+hover__from_yellow_800 =
+    A.class "hover:from-yellow-800"
+
+
+hover__from_yellow_900 : Html.Attribute msg
+hover__from_yellow_900 =
+    A.class "hover:from-yellow-900"
+
+
+hover__from_green_100 : Html.Attribute msg
+hover__from_green_100 =
+    A.class "hover:from-green-100"
+
+
+hover__from_green_200 : Html.Attribute msg
+hover__from_green_200 =
+    A.class "hover:from-green-200"
+
+
+hover__from_green_300 : Html.Attribute msg
+hover__from_green_300 =
+    A.class "hover:from-green-300"
+
+
+hover__from_green_400 : Html.Attribute msg
+hover__from_green_400 =
+    A.class "hover:from-green-400"
+
+
+hover__from_green_500 : Html.Attribute msg
+hover__from_green_500 =
+    A.class "hover:from-green-500"
+
+
+hover__from_green_600 : Html.Attribute msg
+hover__from_green_600 =
+    A.class "hover:from-green-600"
+
+
+hover__from_green_700 : Html.Attribute msg
+hover__from_green_700 =
+    A.class "hover:from-green-700"
+
+
+hover__from_green_800 : Html.Attribute msg
+hover__from_green_800 =
+    A.class "hover:from-green-800"
+
+
+hover__from_green_900 : Html.Attribute msg
+hover__from_green_900 =
+    A.class "hover:from-green-900"
+
+
+hover__from_teal_100 : Html.Attribute msg
+hover__from_teal_100 =
+    A.class "hover:from-teal-100"
+
+
+hover__from_teal_200 : Html.Attribute msg
+hover__from_teal_200 =
+    A.class "hover:from-teal-200"
+
+
+hover__from_teal_300 : Html.Attribute msg
+hover__from_teal_300 =
+    A.class "hover:from-teal-300"
+
+
+hover__from_teal_400 : Html.Attribute msg
+hover__from_teal_400 =
+    A.class "hover:from-teal-400"
+
+
+hover__from_teal_500 : Html.Attribute msg
+hover__from_teal_500 =
+    A.class "hover:from-teal-500"
+
+
+hover__from_teal_600 : Html.Attribute msg
+hover__from_teal_600 =
+    A.class "hover:from-teal-600"
+
+
+hover__from_teal_700 : Html.Attribute msg
+hover__from_teal_700 =
+    A.class "hover:from-teal-700"
+
+
+hover__from_teal_800 : Html.Attribute msg
+hover__from_teal_800 =
+    A.class "hover:from-teal-800"
+
+
+hover__from_teal_900 : Html.Attribute msg
+hover__from_teal_900 =
+    A.class "hover:from-teal-900"
+
+
+hover__from_blue_100 : Html.Attribute msg
+hover__from_blue_100 =
+    A.class "hover:from-blue-100"
+
+
+hover__from_blue_200 : Html.Attribute msg
+hover__from_blue_200 =
+    A.class "hover:from-blue-200"
+
+
+hover__from_blue_300 : Html.Attribute msg
+hover__from_blue_300 =
+    A.class "hover:from-blue-300"
+
+
+hover__from_blue_400 : Html.Attribute msg
+hover__from_blue_400 =
+    A.class "hover:from-blue-400"
+
+
+hover__from_blue_500 : Html.Attribute msg
+hover__from_blue_500 =
+    A.class "hover:from-blue-500"
+
+
+hover__from_blue_600 : Html.Attribute msg
+hover__from_blue_600 =
+    A.class "hover:from-blue-600"
+
+
+hover__from_blue_700 : Html.Attribute msg
+hover__from_blue_700 =
+    A.class "hover:from-blue-700"
+
+
+hover__from_blue_800 : Html.Attribute msg
+hover__from_blue_800 =
+    A.class "hover:from-blue-800"
+
+
+hover__from_blue_900 : Html.Attribute msg
+hover__from_blue_900 =
+    A.class "hover:from-blue-900"
+
+
+hover__from_indigo_100 : Html.Attribute msg
+hover__from_indigo_100 =
+    A.class "hover:from-indigo-100"
+
+
+hover__from_indigo_200 : Html.Attribute msg
+hover__from_indigo_200 =
+    A.class "hover:from-indigo-200"
+
+
+hover__from_indigo_300 : Html.Attribute msg
+hover__from_indigo_300 =
+    A.class "hover:from-indigo-300"
+
+
+hover__from_indigo_400 : Html.Attribute msg
+hover__from_indigo_400 =
+    A.class "hover:from-indigo-400"
+
+
+hover__from_indigo_500 : Html.Attribute msg
+hover__from_indigo_500 =
+    A.class "hover:from-indigo-500"
+
+
+hover__from_indigo_600 : Html.Attribute msg
+hover__from_indigo_600 =
+    A.class "hover:from-indigo-600"
+
+
+hover__from_indigo_700 : Html.Attribute msg
+hover__from_indigo_700 =
+    A.class "hover:from-indigo-700"
+
+
+hover__from_indigo_800 : Html.Attribute msg
+hover__from_indigo_800 =
+    A.class "hover:from-indigo-800"
+
+
+hover__from_indigo_900 : Html.Attribute msg
+hover__from_indigo_900 =
+    A.class "hover:from-indigo-900"
+
+
+hover__from_purple_100 : Html.Attribute msg
+hover__from_purple_100 =
+    A.class "hover:from-purple-100"
+
+
+hover__from_purple_200 : Html.Attribute msg
+hover__from_purple_200 =
+    A.class "hover:from-purple-200"
+
+
+hover__from_purple_300 : Html.Attribute msg
+hover__from_purple_300 =
+    A.class "hover:from-purple-300"
+
+
+hover__from_purple_400 : Html.Attribute msg
+hover__from_purple_400 =
+    A.class "hover:from-purple-400"
+
+
+hover__from_purple_500 : Html.Attribute msg
+hover__from_purple_500 =
+    A.class "hover:from-purple-500"
+
+
+hover__from_purple_600 : Html.Attribute msg
+hover__from_purple_600 =
+    A.class "hover:from-purple-600"
+
+
+hover__from_purple_700 : Html.Attribute msg
+hover__from_purple_700 =
+    A.class "hover:from-purple-700"
+
+
+hover__from_purple_800 : Html.Attribute msg
+hover__from_purple_800 =
+    A.class "hover:from-purple-800"
+
+
+hover__from_purple_900 : Html.Attribute msg
+hover__from_purple_900 =
+    A.class "hover:from-purple-900"
+
+
+hover__from_pink_100 : Html.Attribute msg
+hover__from_pink_100 =
+    A.class "hover:from-pink-100"
+
+
+hover__from_pink_200 : Html.Attribute msg
+hover__from_pink_200 =
+    A.class "hover:from-pink-200"
+
+
+hover__from_pink_300 : Html.Attribute msg
+hover__from_pink_300 =
+    A.class "hover:from-pink-300"
+
+
+hover__from_pink_400 : Html.Attribute msg
+hover__from_pink_400 =
+    A.class "hover:from-pink-400"
+
+
+hover__from_pink_500 : Html.Attribute msg
+hover__from_pink_500 =
+    A.class "hover:from-pink-500"
+
+
+hover__from_pink_600 : Html.Attribute msg
+hover__from_pink_600 =
+    A.class "hover:from-pink-600"
+
+
+hover__from_pink_700 : Html.Attribute msg
+hover__from_pink_700 =
+    A.class "hover:from-pink-700"
+
+
+hover__from_pink_800 : Html.Attribute msg
+hover__from_pink_800 =
+    A.class "hover:from-pink-800"
+
+
+hover__from_pink_900 : Html.Attribute msg
+hover__from_pink_900 =
+    A.class "hover:from-pink-900"
+
+
+hover__via_transparent : Html.Attribute msg
+hover__via_transparent =
+    A.class "hover:via-transparent"
+
+
+hover__via_current : Html.Attribute msg
+hover__via_current =
+    A.class "hover:via-current"
+
+
+hover__via_black : Html.Attribute msg
+hover__via_black =
+    A.class "hover:via-black"
+
+
+hover__via_white : Html.Attribute msg
+hover__via_white =
+    A.class "hover:via-white"
+
+
+hover__via_gray_100 : Html.Attribute msg
+hover__via_gray_100 =
+    A.class "hover:via-gray-100"
+
+
+hover__via_gray_200 : Html.Attribute msg
+hover__via_gray_200 =
+    A.class "hover:via-gray-200"
+
+
+hover__via_gray_300 : Html.Attribute msg
+hover__via_gray_300 =
+    A.class "hover:via-gray-300"
+
+
+hover__via_gray_400 : Html.Attribute msg
+hover__via_gray_400 =
+    A.class "hover:via-gray-400"
+
+
+hover__via_gray_500 : Html.Attribute msg
+hover__via_gray_500 =
+    A.class "hover:via-gray-500"
+
+
+hover__via_gray_600 : Html.Attribute msg
+hover__via_gray_600 =
+    A.class "hover:via-gray-600"
+
+
+hover__via_gray_700 : Html.Attribute msg
+hover__via_gray_700 =
+    A.class "hover:via-gray-700"
+
+
+hover__via_gray_800 : Html.Attribute msg
+hover__via_gray_800 =
+    A.class "hover:via-gray-800"
+
+
+hover__via_gray_900 : Html.Attribute msg
+hover__via_gray_900 =
+    A.class "hover:via-gray-900"
+
+
+hover__via_red_100 : Html.Attribute msg
+hover__via_red_100 =
+    A.class "hover:via-red-100"
+
+
+hover__via_red_200 : Html.Attribute msg
+hover__via_red_200 =
+    A.class "hover:via-red-200"
+
+
+hover__via_red_300 : Html.Attribute msg
+hover__via_red_300 =
+    A.class "hover:via-red-300"
+
+
+hover__via_red_400 : Html.Attribute msg
+hover__via_red_400 =
+    A.class "hover:via-red-400"
+
+
+hover__via_red_500 : Html.Attribute msg
+hover__via_red_500 =
+    A.class "hover:via-red-500"
+
+
+hover__via_red_600 : Html.Attribute msg
+hover__via_red_600 =
+    A.class "hover:via-red-600"
+
+
+hover__via_red_700 : Html.Attribute msg
+hover__via_red_700 =
+    A.class "hover:via-red-700"
+
+
+hover__via_red_800 : Html.Attribute msg
+hover__via_red_800 =
+    A.class "hover:via-red-800"
+
+
+hover__via_red_900 : Html.Attribute msg
+hover__via_red_900 =
+    A.class "hover:via-red-900"
+
+
+hover__via_orange_100 : Html.Attribute msg
+hover__via_orange_100 =
+    A.class "hover:via-orange-100"
+
+
+hover__via_orange_200 : Html.Attribute msg
+hover__via_orange_200 =
+    A.class "hover:via-orange-200"
+
+
+hover__via_orange_300 : Html.Attribute msg
+hover__via_orange_300 =
+    A.class "hover:via-orange-300"
+
+
+hover__via_orange_400 : Html.Attribute msg
+hover__via_orange_400 =
+    A.class "hover:via-orange-400"
+
+
+hover__via_orange_500 : Html.Attribute msg
+hover__via_orange_500 =
+    A.class "hover:via-orange-500"
+
+
+hover__via_orange_600 : Html.Attribute msg
+hover__via_orange_600 =
+    A.class "hover:via-orange-600"
+
+
+hover__via_orange_700 : Html.Attribute msg
+hover__via_orange_700 =
+    A.class "hover:via-orange-700"
+
+
+hover__via_orange_800 : Html.Attribute msg
+hover__via_orange_800 =
+    A.class "hover:via-orange-800"
+
+
+hover__via_orange_900 : Html.Attribute msg
+hover__via_orange_900 =
+    A.class "hover:via-orange-900"
+
+
+hover__via_yellow_100 : Html.Attribute msg
+hover__via_yellow_100 =
+    A.class "hover:via-yellow-100"
+
+
+hover__via_yellow_200 : Html.Attribute msg
+hover__via_yellow_200 =
+    A.class "hover:via-yellow-200"
+
+
+hover__via_yellow_300 : Html.Attribute msg
+hover__via_yellow_300 =
+    A.class "hover:via-yellow-300"
+
+
+hover__via_yellow_400 : Html.Attribute msg
+hover__via_yellow_400 =
+    A.class "hover:via-yellow-400"
+
+
+hover__via_yellow_500 : Html.Attribute msg
+hover__via_yellow_500 =
+    A.class "hover:via-yellow-500"
+
+
+hover__via_yellow_600 : Html.Attribute msg
+hover__via_yellow_600 =
+    A.class "hover:via-yellow-600"
+
+
+hover__via_yellow_700 : Html.Attribute msg
+hover__via_yellow_700 =
+    A.class "hover:via-yellow-700"
+
+
+hover__via_yellow_800 : Html.Attribute msg
+hover__via_yellow_800 =
+    A.class "hover:via-yellow-800"
+
+
+hover__via_yellow_900 : Html.Attribute msg
+hover__via_yellow_900 =
+    A.class "hover:via-yellow-900"
+
+
+hover__via_green_100 : Html.Attribute msg
+hover__via_green_100 =
+    A.class "hover:via-green-100"
+
+
+hover__via_green_200 : Html.Attribute msg
+hover__via_green_200 =
+    A.class "hover:via-green-200"
+
+
+hover__via_green_300 : Html.Attribute msg
+hover__via_green_300 =
+    A.class "hover:via-green-300"
+
+
+hover__via_green_400 : Html.Attribute msg
+hover__via_green_400 =
+    A.class "hover:via-green-400"
+
+
+hover__via_green_500 : Html.Attribute msg
+hover__via_green_500 =
+    A.class "hover:via-green-500"
+
+
+hover__via_green_600 : Html.Attribute msg
+hover__via_green_600 =
+    A.class "hover:via-green-600"
+
+
+hover__via_green_700 : Html.Attribute msg
+hover__via_green_700 =
+    A.class "hover:via-green-700"
+
+
+hover__via_green_800 : Html.Attribute msg
+hover__via_green_800 =
+    A.class "hover:via-green-800"
+
+
+hover__via_green_900 : Html.Attribute msg
+hover__via_green_900 =
+    A.class "hover:via-green-900"
+
+
+hover__via_teal_100 : Html.Attribute msg
+hover__via_teal_100 =
+    A.class "hover:via-teal-100"
+
+
+hover__via_teal_200 : Html.Attribute msg
+hover__via_teal_200 =
+    A.class "hover:via-teal-200"
+
+
+hover__via_teal_300 : Html.Attribute msg
+hover__via_teal_300 =
+    A.class "hover:via-teal-300"
+
+
+hover__via_teal_400 : Html.Attribute msg
+hover__via_teal_400 =
+    A.class "hover:via-teal-400"
+
+
+hover__via_teal_500 : Html.Attribute msg
+hover__via_teal_500 =
+    A.class "hover:via-teal-500"
+
+
+hover__via_teal_600 : Html.Attribute msg
+hover__via_teal_600 =
+    A.class "hover:via-teal-600"
+
+
+hover__via_teal_700 : Html.Attribute msg
+hover__via_teal_700 =
+    A.class "hover:via-teal-700"
+
+
+hover__via_teal_800 : Html.Attribute msg
+hover__via_teal_800 =
+    A.class "hover:via-teal-800"
+
+
+hover__via_teal_900 : Html.Attribute msg
+hover__via_teal_900 =
+    A.class "hover:via-teal-900"
+
+
+hover__via_blue_100 : Html.Attribute msg
+hover__via_blue_100 =
+    A.class "hover:via-blue-100"
+
+
+hover__via_blue_200 : Html.Attribute msg
+hover__via_blue_200 =
+    A.class "hover:via-blue-200"
+
+
+hover__via_blue_300 : Html.Attribute msg
+hover__via_blue_300 =
+    A.class "hover:via-blue-300"
+
+
+hover__via_blue_400 : Html.Attribute msg
+hover__via_blue_400 =
+    A.class "hover:via-blue-400"
+
+
+hover__via_blue_500 : Html.Attribute msg
+hover__via_blue_500 =
+    A.class "hover:via-blue-500"
+
+
+hover__via_blue_600 : Html.Attribute msg
+hover__via_blue_600 =
+    A.class "hover:via-blue-600"
+
+
+hover__via_blue_700 : Html.Attribute msg
+hover__via_blue_700 =
+    A.class "hover:via-blue-700"
+
+
+hover__via_blue_800 : Html.Attribute msg
+hover__via_blue_800 =
+    A.class "hover:via-blue-800"
+
+
+hover__via_blue_900 : Html.Attribute msg
+hover__via_blue_900 =
+    A.class "hover:via-blue-900"
+
+
+hover__via_indigo_100 : Html.Attribute msg
+hover__via_indigo_100 =
+    A.class "hover:via-indigo-100"
+
+
+hover__via_indigo_200 : Html.Attribute msg
+hover__via_indigo_200 =
+    A.class "hover:via-indigo-200"
+
+
+hover__via_indigo_300 : Html.Attribute msg
+hover__via_indigo_300 =
+    A.class "hover:via-indigo-300"
+
+
+hover__via_indigo_400 : Html.Attribute msg
+hover__via_indigo_400 =
+    A.class "hover:via-indigo-400"
+
+
+hover__via_indigo_500 : Html.Attribute msg
+hover__via_indigo_500 =
+    A.class "hover:via-indigo-500"
+
+
+hover__via_indigo_600 : Html.Attribute msg
+hover__via_indigo_600 =
+    A.class "hover:via-indigo-600"
+
+
+hover__via_indigo_700 : Html.Attribute msg
+hover__via_indigo_700 =
+    A.class "hover:via-indigo-700"
+
+
+hover__via_indigo_800 : Html.Attribute msg
+hover__via_indigo_800 =
+    A.class "hover:via-indigo-800"
+
+
+hover__via_indigo_900 : Html.Attribute msg
+hover__via_indigo_900 =
+    A.class "hover:via-indigo-900"
+
+
+hover__via_purple_100 : Html.Attribute msg
+hover__via_purple_100 =
+    A.class "hover:via-purple-100"
+
+
+hover__via_purple_200 : Html.Attribute msg
+hover__via_purple_200 =
+    A.class "hover:via-purple-200"
+
+
+hover__via_purple_300 : Html.Attribute msg
+hover__via_purple_300 =
+    A.class "hover:via-purple-300"
+
+
+hover__via_purple_400 : Html.Attribute msg
+hover__via_purple_400 =
+    A.class "hover:via-purple-400"
+
+
+hover__via_purple_500 : Html.Attribute msg
+hover__via_purple_500 =
+    A.class "hover:via-purple-500"
+
+
+hover__via_purple_600 : Html.Attribute msg
+hover__via_purple_600 =
+    A.class "hover:via-purple-600"
+
+
+hover__via_purple_700 : Html.Attribute msg
+hover__via_purple_700 =
+    A.class "hover:via-purple-700"
+
+
+hover__via_purple_800 : Html.Attribute msg
+hover__via_purple_800 =
+    A.class "hover:via-purple-800"
+
+
+hover__via_purple_900 : Html.Attribute msg
+hover__via_purple_900 =
+    A.class "hover:via-purple-900"
+
+
+hover__via_pink_100 : Html.Attribute msg
+hover__via_pink_100 =
+    A.class "hover:via-pink-100"
+
+
+hover__via_pink_200 : Html.Attribute msg
+hover__via_pink_200 =
+    A.class "hover:via-pink-200"
+
+
+hover__via_pink_300 : Html.Attribute msg
+hover__via_pink_300 =
+    A.class "hover:via-pink-300"
+
+
+hover__via_pink_400 : Html.Attribute msg
+hover__via_pink_400 =
+    A.class "hover:via-pink-400"
+
+
+hover__via_pink_500 : Html.Attribute msg
+hover__via_pink_500 =
+    A.class "hover:via-pink-500"
+
+
+hover__via_pink_600 : Html.Attribute msg
+hover__via_pink_600 =
+    A.class "hover:via-pink-600"
+
+
+hover__via_pink_700 : Html.Attribute msg
+hover__via_pink_700 =
+    A.class "hover:via-pink-700"
+
+
+hover__via_pink_800 : Html.Attribute msg
+hover__via_pink_800 =
+    A.class "hover:via-pink-800"
+
+
+hover__via_pink_900 : Html.Attribute msg
+hover__via_pink_900 =
+    A.class "hover:via-pink-900"
+
+
+hover__to_transparent : Html.Attribute msg
+hover__to_transparent =
+    A.class "hover:to-transparent"
+
+
+hover__to_current : Html.Attribute msg
+hover__to_current =
+    A.class "hover:to-current"
+
+
+hover__to_black : Html.Attribute msg
+hover__to_black =
+    A.class "hover:to-black"
+
+
+hover__to_white : Html.Attribute msg
+hover__to_white =
+    A.class "hover:to-white"
+
+
+hover__to_gray_100 : Html.Attribute msg
+hover__to_gray_100 =
+    A.class "hover:to-gray-100"
+
+
+hover__to_gray_200 : Html.Attribute msg
+hover__to_gray_200 =
+    A.class "hover:to-gray-200"
+
+
+hover__to_gray_300 : Html.Attribute msg
+hover__to_gray_300 =
+    A.class "hover:to-gray-300"
+
+
+hover__to_gray_400 : Html.Attribute msg
+hover__to_gray_400 =
+    A.class "hover:to-gray-400"
+
+
+hover__to_gray_500 : Html.Attribute msg
+hover__to_gray_500 =
+    A.class "hover:to-gray-500"
+
+
+hover__to_gray_600 : Html.Attribute msg
+hover__to_gray_600 =
+    A.class "hover:to-gray-600"
+
+
+hover__to_gray_700 : Html.Attribute msg
+hover__to_gray_700 =
+    A.class "hover:to-gray-700"
+
+
+hover__to_gray_800 : Html.Attribute msg
+hover__to_gray_800 =
+    A.class "hover:to-gray-800"
+
+
+hover__to_gray_900 : Html.Attribute msg
+hover__to_gray_900 =
+    A.class "hover:to-gray-900"
+
+
+hover__to_red_100 : Html.Attribute msg
+hover__to_red_100 =
+    A.class "hover:to-red-100"
+
+
+hover__to_red_200 : Html.Attribute msg
+hover__to_red_200 =
+    A.class "hover:to-red-200"
+
+
+hover__to_red_300 : Html.Attribute msg
+hover__to_red_300 =
+    A.class "hover:to-red-300"
+
+
+hover__to_red_400 : Html.Attribute msg
+hover__to_red_400 =
+    A.class "hover:to-red-400"
+
+
+hover__to_red_500 : Html.Attribute msg
+hover__to_red_500 =
+    A.class "hover:to-red-500"
+
+
+hover__to_red_600 : Html.Attribute msg
+hover__to_red_600 =
+    A.class "hover:to-red-600"
+
+
+hover__to_red_700 : Html.Attribute msg
+hover__to_red_700 =
+    A.class "hover:to-red-700"
+
+
+hover__to_red_800 : Html.Attribute msg
+hover__to_red_800 =
+    A.class "hover:to-red-800"
+
+
+hover__to_red_900 : Html.Attribute msg
+hover__to_red_900 =
+    A.class "hover:to-red-900"
+
+
+hover__to_orange_100 : Html.Attribute msg
+hover__to_orange_100 =
+    A.class "hover:to-orange-100"
+
+
+hover__to_orange_200 : Html.Attribute msg
+hover__to_orange_200 =
+    A.class "hover:to-orange-200"
+
+
+hover__to_orange_300 : Html.Attribute msg
+hover__to_orange_300 =
+    A.class "hover:to-orange-300"
+
+
+hover__to_orange_400 : Html.Attribute msg
+hover__to_orange_400 =
+    A.class "hover:to-orange-400"
+
+
+hover__to_orange_500 : Html.Attribute msg
+hover__to_orange_500 =
+    A.class "hover:to-orange-500"
+
+
+hover__to_orange_600 : Html.Attribute msg
+hover__to_orange_600 =
+    A.class "hover:to-orange-600"
+
+
+hover__to_orange_700 : Html.Attribute msg
+hover__to_orange_700 =
+    A.class "hover:to-orange-700"
+
+
+hover__to_orange_800 : Html.Attribute msg
+hover__to_orange_800 =
+    A.class "hover:to-orange-800"
+
+
+hover__to_orange_900 : Html.Attribute msg
+hover__to_orange_900 =
+    A.class "hover:to-orange-900"
+
+
+hover__to_yellow_100 : Html.Attribute msg
+hover__to_yellow_100 =
+    A.class "hover:to-yellow-100"
+
+
+hover__to_yellow_200 : Html.Attribute msg
+hover__to_yellow_200 =
+    A.class "hover:to-yellow-200"
+
+
+hover__to_yellow_300 : Html.Attribute msg
+hover__to_yellow_300 =
+    A.class "hover:to-yellow-300"
+
+
+hover__to_yellow_400 : Html.Attribute msg
+hover__to_yellow_400 =
+    A.class "hover:to-yellow-400"
+
+
+hover__to_yellow_500 : Html.Attribute msg
+hover__to_yellow_500 =
+    A.class "hover:to-yellow-500"
+
+
+hover__to_yellow_600 : Html.Attribute msg
+hover__to_yellow_600 =
+    A.class "hover:to-yellow-600"
+
+
+hover__to_yellow_700 : Html.Attribute msg
+hover__to_yellow_700 =
+    A.class "hover:to-yellow-700"
+
+
+hover__to_yellow_800 : Html.Attribute msg
+hover__to_yellow_800 =
+    A.class "hover:to-yellow-800"
+
+
+hover__to_yellow_900 : Html.Attribute msg
+hover__to_yellow_900 =
+    A.class "hover:to-yellow-900"
+
+
+hover__to_green_100 : Html.Attribute msg
+hover__to_green_100 =
+    A.class "hover:to-green-100"
+
+
+hover__to_green_200 : Html.Attribute msg
+hover__to_green_200 =
+    A.class "hover:to-green-200"
+
+
+hover__to_green_300 : Html.Attribute msg
+hover__to_green_300 =
+    A.class "hover:to-green-300"
+
+
+hover__to_green_400 : Html.Attribute msg
+hover__to_green_400 =
+    A.class "hover:to-green-400"
+
+
+hover__to_green_500 : Html.Attribute msg
+hover__to_green_500 =
+    A.class "hover:to-green-500"
+
+
+hover__to_green_600 : Html.Attribute msg
+hover__to_green_600 =
+    A.class "hover:to-green-600"
+
+
+hover__to_green_700 : Html.Attribute msg
+hover__to_green_700 =
+    A.class "hover:to-green-700"
+
+
+hover__to_green_800 : Html.Attribute msg
+hover__to_green_800 =
+    A.class "hover:to-green-800"
+
+
+hover__to_green_900 : Html.Attribute msg
+hover__to_green_900 =
+    A.class "hover:to-green-900"
+
+
+hover__to_teal_100 : Html.Attribute msg
+hover__to_teal_100 =
+    A.class "hover:to-teal-100"
+
+
+hover__to_teal_200 : Html.Attribute msg
+hover__to_teal_200 =
+    A.class "hover:to-teal-200"
+
+
+hover__to_teal_300 : Html.Attribute msg
+hover__to_teal_300 =
+    A.class "hover:to-teal-300"
+
+
+hover__to_teal_400 : Html.Attribute msg
+hover__to_teal_400 =
+    A.class "hover:to-teal-400"
+
+
+hover__to_teal_500 : Html.Attribute msg
+hover__to_teal_500 =
+    A.class "hover:to-teal-500"
+
+
+hover__to_teal_600 : Html.Attribute msg
+hover__to_teal_600 =
+    A.class "hover:to-teal-600"
+
+
+hover__to_teal_700 : Html.Attribute msg
+hover__to_teal_700 =
+    A.class "hover:to-teal-700"
+
+
+hover__to_teal_800 : Html.Attribute msg
+hover__to_teal_800 =
+    A.class "hover:to-teal-800"
+
+
+hover__to_teal_900 : Html.Attribute msg
+hover__to_teal_900 =
+    A.class "hover:to-teal-900"
+
+
+hover__to_blue_100 : Html.Attribute msg
+hover__to_blue_100 =
+    A.class "hover:to-blue-100"
+
+
+hover__to_blue_200 : Html.Attribute msg
+hover__to_blue_200 =
+    A.class "hover:to-blue-200"
+
+
+hover__to_blue_300 : Html.Attribute msg
+hover__to_blue_300 =
+    A.class "hover:to-blue-300"
+
+
+hover__to_blue_400 : Html.Attribute msg
+hover__to_blue_400 =
+    A.class "hover:to-blue-400"
+
+
+hover__to_blue_500 : Html.Attribute msg
+hover__to_blue_500 =
+    A.class "hover:to-blue-500"
+
+
+hover__to_blue_600 : Html.Attribute msg
+hover__to_blue_600 =
+    A.class "hover:to-blue-600"
+
+
+hover__to_blue_700 : Html.Attribute msg
+hover__to_blue_700 =
+    A.class "hover:to-blue-700"
+
+
+hover__to_blue_800 : Html.Attribute msg
+hover__to_blue_800 =
+    A.class "hover:to-blue-800"
+
+
+hover__to_blue_900 : Html.Attribute msg
+hover__to_blue_900 =
+    A.class "hover:to-blue-900"
+
+
+hover__to_indigo_100 : Html.Attribute msg
+hover__to_indigo_100 =
+    A.class "hover:to-indigo-100"
+
+
+hover__to_indigo_200 : Html.Attribute msg
+hover__to_indigo_200 =
+    A.class "hover:to-indigo-200"
+
+
+hover__to_indigo_300 : Html.Attribute msg
+hover__to_indigo_300 =
+    A.class "hover:to-indigo-300"
+
+
+hover__to_indigo_400 : Html.Attribute msg
+hover__to_indigo_400 =
+    A.class "hover:to-indigo-400"
+
+
+hover__to_indigo_500 : Html.Attribute msg
+hover__to_indigo_500 =
+    A.class "hover:to-indigo-500"
+
+
+hover__to_indigo_600 : Html.Attribute msg
+hover__to_indigo_600 =
+    A.class "hover:to-indigo-600"
+
+
+hover__to_indigo_700 : Html.Attribute msg
+hover__to_indigo_700 =
+    A.class "hover:to-indigo-700"
+
+
+hover__to_indigo_800 : Html.Attribute msg
+hover__to_indigo_800 =
+    A.class "hover:to-indigo-800"
+
+
+hover__to_indigo_900 : Html.Attribute msg
+hover__to_indigo_900 =
+    A.class "hover:to-indigo-900"
+
+
+hover__to_purple_100 : Html.Attribute msg
+hover__to_purple_100 =
+    A.class "hover:to-purple-100"
+
+
+hover__to_purple_200 : Html.Attribute msg
+hover__to_purple_200 =
+    A.class "hover:to-purple-200"
+
+
+hover__to_purple_300 : Html.Attribute msg
+hover__to_purple_300 =
+    A.class "hover:to-purple-300"
+
+
+hover__to_purple_400 : Html.Attribute msg
+hover__to_purple_400 =
+    A.class "hover:to-purple-400"
+
+
+hover__to_purple_500 : Html.Attribute msg
+hover__to_purple_500 =
+    A.class "hover:to-purple-500"
+
+
+hover__to_purple_600 : Html.Attribute msg
+hover__to_purple_600 =
+    A.class "hover:to-purple-600"
+
+
+hover__to_purple_700 : Html.Attribute msg
+hover__to_purple_700 =
+    A.class "hover:to-purple-700"
+
+
+hover__to_purple_800 : Html.Attribute msg
+hover__to_purple_800 =
+    A.class "hover:to-purple-800"
+
+
+hover__to_purple_900 : Html.Attribute msg
+hover__to_purple_900 =
+    A.class "hover:to-purple-900"
+
+
+hover__to_pink_100 : Html.Attribute msg
+hover__to_pink_100 =
+    A.class "hover:to-pink-100"
+
+
+hover__to_pink_200 : Html.Attribute msg
+hover__to_pink_200 =
+    A.class "hover:to-pink-200"
+
+
+hover__to_pink_300 : Html.Attribute msg
+hover__to_pink_300 =
+    A.class "hover:to-pink-300"
+
+
+hover__to_pink_400 : Html.Attribute msg
+hover__to_pink_400 =
+    A.class "hover:to-pink-400"
+
+
+hover__to_pink_500 : Html.Attribute msg
+hover__to_pink_500 =
+    A.class "hover:to-pink-500"
+
+
+hover__to_pink_600 : Html.Attribute msg
+hover__to_pink_600 =
+    A.class "hover:to-pink-600"
+
+
+hover__to_pink_700 : Html.Attribute msg
+hover__to_pink_700 =
+    A.class "hover:to-pink-700"
+
+
+hover__to_pink_800 : Html.Attribute msg
+hover__to_pink_800 =
+    A.class "hover:to-pink-800"
+
+
+hover__to_pink_900 : Html.Attribute msg
+hover__to_pink_900 =
+    A.class "hover:to-pink-900"
+
+
+focus__from_transparent : Html.Attribute msg
+focus__from_transparent =
+    A.class "focus:from-transparent"
+
+
+focus__from_current : Html.Attribute msg
+focus__from_current =
+    A.class "focus:from-current"
+
+
+focus__from_black : Html.Attribute msg
+focus__from_black =
+    A.class "focus:from-black"
+
+
+focus__from_white : Html.Attribute msg
+focus__from_white =
+    A.class "focus:from-white"
+
+
+focus__from_gray_100 : Html.Attribute msg
+focus__from_gray_100 =
+    A.class "focus:from-gray-100"
+
+
+focus__from_gray_200 : Html.Attribute msg
+focus__from_gray_200 =
+    A.class "focus:from-gray-200"
+
+
+focus__from_gray_300 : Html.Attribute msg
+focus__from_gray_300 =
+    A.class "focus:from-gray-300"
+
+
+focus__from_gray_400 : Html.Attribute msg
+focus__from_gray_400 =
+    A.class "focus:from-gray-400"
+
+
+focus__from_gray_500 : Html.Attribute msg
+focus__from_gray_500 =
+    A.class "focus:from-gray-500"
+
+
+focus__from_gray_600 : Html.Attribute msg
+focus__from_gray_600 =
+    A.class "focus:from-gray-600"
+
+
+focus__from_gray_700 : Html.Attribute msg
+focus__from_gray_700 =
+    A.class "focus:from-gray-700"
+
+
+focus__from_gray_800 : Html.Attribute msg
+focus__from_gray_800 =
+    A.class "focus:from-gray-800"
+
+
+focus__from_gray_900 : Html.Attribute msg
+focus__from_gray_900 =
+    A.class "focus:from-gray-900"
+
+
+focus__from_red_100 : Html.Attribute msg
+focus__from_red_100 =
+    A.class "focus:from-red-100"
+
+
+focus__from_red_200 : Html.Attribute msg
+focus__from_red_200 =
+    A.class "focus:from-red-200"
+
+
+focus__from_red_300 : Html.Attribute msg
+focus__from_red_300 =
+    A.class "focus:from-red-300"
+
+
+focus__from_red_400 : Html.Attribute msg
+focus__from_red_400 =
+    A.class "focus:from-red-400"
+
+
+focus__from_red_500 : Html.Attribute msg
+focus__from_red_500 =
+    A.class "focus:from-red-500"
+
+
+focus__from_red_600 : Html.Attribute msg
+focus__from_red_600 =
+    A.class "focus:from-red-600"
+
+
+focus__from_red_700 : Html.Attribute msg
+focus__from_red_700 =
+    A.class "focus:from-red-700"
+
+
+focus__from_red_800 : Html.Attribute msg
+focus__from_red_800 =
+    A.class "focus:from-red-800"
+
+
+focus__from_red_900 : Html.Attribute msg
+focus__from_red_900 =
+    A.class "focus:from-red-900"
+
+
+focus__from_orange_100 : Html.Attribute msg
+focus__from_orange_100 =
+    A.class "focus:from-orange-100"
+
+
+focus__from_orange_200 : Html.Attribute msg
+focus__from_orange_200 =
+    A.class "focus:from-orange-200"
+
+
+focus__from_orange_300 : Html.Attribute msg
+focus__from_orange_300 =
+    A.class "focus:from-orange-300"
+
+
+focus__from_orange_400 : Html.Attribute msg
+focus__from_orange_400 =
+    A.class "focus:from-orange-400"
+
+
+focus__from_orange_500 : Html.Attribute msg
+focus__from_orange_500 =
+    A.class "focus:from-orange-500"
+
+
+focus__from_orange_600 : Html.Attribute msg
+focus__from_orange_600 =
+    A.class "focus:from-orange-600"
+
+
+focus__from_orange_700 : Html.Attribute msg
+focus__from_orange_700 =
+    A.class "focus:from-orange-700"
+
+
+focus__from_orange_800 : Html.Attribute msg
+focus__from_orange_800 =
+    A.class "focus:from-orange-800"
+
+
+focus__from_orange_900 : Html.Attribute msg
+focus__from_orange_900 =
+    A.class "focus:from-orange-900"
+
+
+focus__from_yellow_100 : Html.Attribute msg
+focus__from_yellow_100 =
+    A.class "focus:from-yellow-100"
+
+
+focus__from_yellow_200 : Html.Attribute msg
+focus__from_yellow_200 =
+    A.class "focus:from-yellow-200"
+
+
+focus__from_yellow_300 : Html.Attribute msg
+focus__from_yellow_300 =
+    A.class "focus:from-yellow-300"
+
+
+focus__from_yellow_400 : Html.Attribute msg
+focus__from_yellow_400 =
+    A.class "focus:from-yellow-400"
+
+
+focus__from_yellow_500 : Html.Attribute msg
+focus__from_yellow_500 =
+    A.class "focus:from-yellow-500"
+
+
+focus__from_yellow_600 : Html.Attribute msg
+focus__from_yellow_600 =
+    A.class "focus:from-yellow-600"
+
+
+focus__from_yellow_700 : Html.Attribute msg
+focus__from_yellow_700 =
+    A.class "focus:from-yellow-700"
+
+
+focus__from_yellow_800 : Html.Attribute msg
+focus__from_yellow_800 =
+    A.class "focus:from-yellow-800"
+
+
+focus__from_yellow_900 : Html.Attribute msg
+focus__from_yellow_900 =
+    A.class "focus:from-yellow-900"
+
+
+focus__from_green_100 : Html.Attribute msg
+focus__from_green_100 =
+    A.class "focus:from-green-100"
+
+
+focus__from_green_200 : Html.Attribute msg
+focus__from_green_200 =
+    A.class "focus:from-green-200"
+
+
+focus__from_green_300 : Html.Attribute msg
+focus__from_green_300 =
+    A.class "focus:from-green-300"
+
+
+focus__from_green_400 : Html.Attribute msg
+focus__from_green_400 =
+    A.class "focus:from-green-400"
+
+
+focus__from_green_500 : Html.Attribute msg
+focus__from_green_500 =
+    A.class "focus:from-green-500"
+
+
+focus__from_green_600 : Html.Attribute msg
+focus__from_green_600 =
+    A.class "focus:from-green-600"
+
+
+focus__from_green_700 : Html.Attribute msg
+focus__from_green_700 =
+    A.class "focus:from-green-700"
+
+
+focus__from_green_800 : Html.Attribute msg
+focus__from_green_800 =
+    A.class "focus:from-green-800"
+
+
+focus__from_green_900 : Html.Attribute msg
+focus__from_green_900 =
+    A.class "focus:from-green-900"
+
+
+focus__from_teal_100 : Html.Attribute msg
+focus__from_teal_100 =
+    A.class "focus:from-teal-100"
+
+
+focus__from_teal_200 : Html.Attribute msg
+focus__from_teal_200 =
+    A.class "focus:from-teal-200"
+
+
+focus__from_teal_300 : Html.Attribute msg
+focus__from_teal_300 =
+    A.class "focus:from-teal-300"
+
+
+focus__from_teal_400 : Html.Attribute msg
+focus__from_teal_400 =
+    A.class "focus:from-teal-400"
+
+
+focus__from_teal_500 : Html.Attribute msg
+focus__from_teal_500 =
+    A.class "focus:from-teal-500"
+
+
+focus__from_teal_600 : Html.Attribute msg
+focus__from_teal_600 =
+    A.class "focus:from-teal-600"
+
+
+focus__from_teal_700 : Html.Attribute msg
+focus__from_teal_700 =
+    A.class "focus:from-teal-700"
+
+
+focus__from_teal_800 : Html.Attribute msg
+focus__from_teal_800 =
+    A.class "focus:from-teal-800"
+
+
+focus__from_teal_900 : Html.Attribute msg
+focus__from_teal_900 =
+    A.class "focus:from-teal-900"
+
+
+focus__from_blue_100 : Html.Attribute msg
+focus__from_blue_100 =
+    A.class "focus:from-blue-100"
+
+
+focus__from_blue_200 : Html.Attribute msg
+focus__from_blue_200 =
+    A.class "focus:from-blue-200"
+
+
+focus__from_blue_300 : Html.Attribute msg
+focus__from_blue_300 =
+    A.class "focus:from-blue-300"
+
+
+focus__from_blue_400 : Html.Attribute msg
+focus__from_blue_400 =
+    A.class "focus:from-blue-400"
+
+
+focus__from_blue_500 : Html.Attribute msg
+focus__from_blue_500 =
+    A.class "focus:from-blue-500"
+
+
+focus__from_blue_600 : Html.Attribute msg
+focus__from_blue_600 =
+    A.class "focus:from-blue-600"
+
+
+focus__from_blue_700 : Html.Attribute msg
+focus__from_blue_700 =
+    A.class "focus:from-blue-700"
+
+
+focus__from_blue_800 : Html.Attribute msg
+focus__from_blue_800 =
+    A.class "focus:from-blue-800"
+
+
+focus__from_blue_900 : Html.Attribute msg
+focus__from_blue_900 =
+    A.class "focus:from-blue-900"
+
+
+focus__from_indigo_100 : Html.Attribute msg
+focus__from_indigo_100 =
+    A.class "focus:from-indigo-100"
+
+
+focus__from_indigo_200 : Html.Attribute msg
+focus__from_indigo_200 =
+    A.class "focus:from-indigo-200"
+
+
+focus__from_indigo_300 : Html.Attribute msg
+focus__from_indigo_300 =
+    A.class "focus:from-indigo-300"
+
+
+focus__from_indigo_400 : Html.Attribute msg
+focus__from_indigo_400 =
+    A.class "focus:from-indigo-400"
+
+
+focus__from_indigo_500 : Html.Attribute msg
+focus__from_indigo_500 =
+    A.class "focus:from-indigo-500"
+
+
+focus__from_indigo_600 : Html.Attribute msg
+focus__from_indigo_600 =
+    A.class "focus:from-indigo-600"
+
+
+focus__from_indigo_700 : Html.Attribute msg
+focus__from_indigo_700 =
+    A.class "focus:from-indigo-700"
+
+
+focus__from_indigo_800 : Html.Attribute msg
+focus__from_indigo_800 =
+    A.class "focus:from-indigo-800"
+
+
+focus__from_indigo_900 : Html.Attribute msg
+focus__from_indigo_900 =
+    A.class "focus:from-indigo-900"
+
+
+focus__from_purple_100 : Html.Attribute msg
+focus__from_purple_100 =
+    A.class "focus:from-purple-100"
+
+
+focus__from_purple_200 : Html.Attribute msg
+focus__from_purple_200 =
+    A.class "focus:from-purple-200"
+
+
+focus__from_purple_300 : Html.Attribute msg
+focus__from_purple_300 =
+    A.class "focus:from-purple-300"
+
+
+focus__from_purple_400 : Html.Attribute msg
+focus__from_purple_400 =
+    A.class "focus:from-purple-400"
+
+
+focus__from_purple_500 : Html.Attribute msg
+focus__from_purple_500 =
+    A.class "focus:from-purple-500"
+
+
+focus__from_purple_600 : Html.Attribute msg
+focus__from_purple_600 =
+    A.class "focus:from-purple-600"
+
+
+focus__from_purple_700 : Html.Attribute msg
+focus__from_purple_700 =
+    A.class "focus:from-purple-700"
+
+
+focus__from_purple_800 : Html.Attribute msg
+focus__from_purple_800 =
+    A.class "focus:from-purple-800"
+
+
+focus__from_purple_900 : Html.Attribute msg
+focus__from_purple_900 =
+    A.class "focus:from-purple-900"
+
+
+focus__from_pink_100 : Html.Attribute msg
+focus__from_pink_100 =
+    A.class "focus:from-pink-100"
+
+
+focus__from_pink_200 : Html.Attribute msg
+focus__from_pink_200 =
+    A.class "focus:from-pink-200"
+
+
+focus__from_pink_300 : Html.Attribute msg
+focus__from_pink_300 =
+    A.class "focus:from-pink-300"
+
+
+focus__from_pink_400 : Html.Attribute msg
+focus__from_pink_400 =
+    A.class "focus:from-pink-400"
+
+
+focus__from_pink_500 : Html.Attribute msg
+focus__from_pink_500 =
+    A.class "focus:from-pink-500"
+
+
+focus__from_pink_600 : Html.Attribute msg
+focus__from_pink_600 =
+    A.class "focus:from-pink-600"
+
+
+focus__from_pink_700 : Html.Attribute msg
+focus__from_pink_700 =
+    A.class "focus:from-pink-700"
+
+
+focus__from_pink_800 : Html.Attribute msg
+focus__from_pink_800 =
+    A.class "focus:from-pink-800"
+
+
+focus__from_pink_900 : Html.Attribute msg
+focus__from_pink_900 =
+    A.class "focus:from-pink-900"
+
+
+focus__via_transparent : Html.Attribute msg
+focus__via_transparent =
+    A.class "focus:via-transparent"
+
+
+focus__via_current : Html.Attribute msg
+focus__via_current =
+    A.class "focus:via-current"
+
+
+focus__via_black : Html.Attribute msg
+focus__via_black =
+    A.class "focus:via-black"
+
+
+focus__via_white : Html.Attribute msg
+focus__via_white =
+    A.class "focus:via-white"
+
+
+focus__via_gray_100 : Html.Attribute msg
+focus__via_gray_100 =
+    A.class "focus:via-gray-100"
+
+
+focus__via_gray_200 : Html.Attribute msg
+focus__via_gray_200 =
+    A.class "focus:via-gray-200"
+
+
+focus__via_gray_300 : Html.Attribute msg
+focus__via_gray_300 =
+    A.class "focus:via-gray-300"
+
+
+focus__via_gray_400 : Html.Attribute msg
+focus__via_gray_400 =
+    A.class "focus:via-gray-400"
+
+
+focus__via_gray_500 : Html.Attribute msg
+focus__via_gray_500 =
+    A.class "focus:via-gray-500"
+
+
+focus__via_gray_600 : Html.Attribute msg
+focus__via_gray_600 =
+    A.class "focus:via-gray-600"
+
+
+focus__via_gray_700 : Html.Attribute msg
+focus__via_gray_700 =
+    A.class "focus:via-gray-700"
+
+
+focus__via_gray_800 : Html.Attribute msg
+focus__via_gray_800 =
+    A.class "focus:via-gray-800"
+
+
+focus__via_gray_900 : Html.Attribute msg
+focus__via_gray_900 =
+    A.class "focus:via-gray-900"
+
+
+focus__via_red_100 : Html.Attribute msg
+focus__via_red_100 =
+    A.class "focus:via-red-100"
+
+
+focus__via_red_200 : Html.Attribute msg
+focus__via_red_200 =
+    A.class "focus:via-red-200"
+
+
+focus__via_red_300 : Html.Attribute msg
+focus__via_red_300 =
+    A.class "focus:via-red-300"
+
+
+focus__via_red_400 : Html.Attribute msg
+focus__via_red_400 =
+    A.class "focus:via-red-400"
+
+
+focus__via_red_500 : Html.Attribute msg
+focus__via_red_500 =
+    A.class "focus:via-red-500"
+
+
+focus__via_red_600 : Html.Attribute msg
+focus__via_red_600 =
+    A.class "focus:via-red-600"
+
+
+focus__via_red_700 : Html.Attribute msg
+focus__via_red_700 =
+    A.class "focus:via-red-700"
+
+
+focus__via_red_800 : Html.Attribute msg
+focus__via_red_800 =
+    A.class "focus:via-red-800"
+
+
+focus__via_red_900 : Html.Attribute msg
+focus__via_red_900 =
+    A.class "focus:via-red-900"
+
+
+focus__via_orange_100 : Html.Attribute msg
+focus__via_orange_100 =
+    A.class "focus:via-orange-100"
+
+
+focus__via_orange_200 : Html.Attribute msg
+focus__via_orange_200 =
+    A.class "focus:via-orange-200"
+
+
+focus__via_orange_300 : Html.Attribute msg
+focus__via_orange_300 =
+    A.class "focus:via-orange-300"
+
+
+focus__via_orange_400 : Html.Attribute msg
+focus__via_orange_400 =
+    A.class "focus:via-orange-400"
+
+
+focus__via_orange_500 : Html.Attribute msg
+focus__via_orange_500 =
+    A.class "focus:via-orange-500"
+
+
+focus__via_orange_600 : Html.Attribute msg
+focus__via_orange_600 =
+    A.class "focus:via-orange-600"
+
+
+focus__via_orange_700 : Html.Attribute msg
+focus__via_orange_700 =
+    A.class "focus:via-orange-700"
+
+
+focus__via_orange_800 : Html.Attribute msg
+focus__via_orange_800 =
+    A.class "focus:via-orange-800"
+
+
+focus__via_orange_900 : Html.Attribute msg
+focus__via_orange_900 =
+    A.class "focus:via-orange-900"
+
+
+focus__via_yellow_100 : Html.Attribute msg
+focus__via_yellow_100 =
+    A.class "focus:via-yellow-100"
+
+
+focus__via_yellow_200 : Html.Attribute msg
+focus__via_yellow_200 =
+    A.class "focus:via-yellow-200"
+
+
+focus__via_yellow_300 : Html.Attribute msg
+focus__via_yellow_300 =
+    A.class "focus:via-yellow-300"
+
+
+focus__via_yellow_400 : Html.Attribute msg
+focus__via_yellow_400 =
+    A.class "focus:via-yellow-400"
+
+
+focus__via_yellow_500 : Html.Attribute msg
+focus__via_yellow_500 =
+    A.class "focus:via-yellow-500"
+
+
+focus__via_yellow_600 : Html.Attribute msg
+focus__via_yellow_600 =
+    A.class "focus:via-yellow-600"
+
+
+focus__via_yellow_700 : Html.Attribute msg
+focus__via_yellow_700 =
+    A.class "focus:via-yellow-700"
+
+
+focus__via_yellow_800 : Html.Attribute msg
+focus__via_yellow_800 =
+    A.class "focus:via-yellow-800"
+
+
+focus__via_yellow_900 : Html.Attribute msg
+focus__via_yellow_900 =
+    A.class "focus:via-yellow-900"
+
+
+focus__via_green_100 : Html.Attribute msg
+focus__via_green_100 =
+    A.class "focus:via-green-100"
+
+
+focus__via_green_200 : Html.Attribute msg
+focus__via_green_200 =
+    A.class "focus:via-green-200"
+
+
+focus__via_green_300 : Html.Attribute msg
+focus__via_green_300 =
+    A.class "focus:via-green-300"
+
+
+focus__via_green_400 : Html.Attribute msg
+focus__via_green_400 =
+    A.class "focus:via-green-400"
+
+
+focus__via_green_500 : Html.Attribute msg
+focus__via_green_500 =
+    A.class "focus:via-green-500"
+
+
+focus__via_green_600 : Html.Attribute msg
+focus__via_green_600 =
+    A.class "focus:via-green-600"
+
+
+focus__via_green_700 : Html.Attribute msg
+focus__via_green_700 =
+    A.class "focus:via-green-700"
+
+
+focus__via_green_800 : Html.Attribute msg
+focus__via_green_800 =
+    A.class "focus:via-green-800"
+
+
+focus__via_green_900 : Html.Attribute msg
+focus__via_green_900 =
+    A.class "focus:via-green-900"
+
+
+focus__via_teal_100 : Html.Attribute msg
+focus__via_teal_100 =
+    A.class "focus:via-teal-100"
+
+
+focus__via_teal_200 : Html.Attribute msg
+focus__via_teal_200 =
+    A.class "focus:via-teal-200"
+
+
+focus__via_teal_300 : Html.Attribute msg
+focus__via_teal_300 =
+    A.class "focus:via-teal-300"
+
+
+focus__via_teal_400 : Html.Attribute msg
+focus__via_teal_400 =
+    A.class "focus:via-teal-400"
+
+
+focus__via_teal_500 : Html.Attribute msg
+focus__via_teal_500 =
+    A.class "focus:via-teal-500"
+
+
+focus__via_teal_600 : Html.Attribute msg
+focus__via_teal_600 =
+    A.class "focus:via-teal-600"
+
+
+focus__via_teal_700 : Html.Attribute msg
+focus__via_teal_700 =
+    A.class "focus:via-teal-700"
+
+
+focus__via_teal_800 : Html.Attribute msg
+focus__via_teal_800 =
+    A.class "focus:via-teal-800"
+
+
+focus__via_teal_900 : Html.Attribute msg
+focus__via_teal_900 =
+    A.class "focus:via-teal-900"
+
+
+focus__via_blue_100 : Html.Attribute msg
+focus__via_blue_100 =
+    A.class "focus:via-blue-100"
+
+
+focus__via_blue_200 : Html.Attribute msg
+focus__via_blue_200 =
+    A.class "focus:via-blue-200"
+
+
+focus__via_blue_300 : Html.Attribute msg
+focus__via_blue_300 =
+    A.class "focus:via-blue-300"
+
+
+focus__via_blue_400 : Html.Attribute msg
+focus__via_blue_400 =
+    A.class "focus:via-blue-400"
+
+
+focus__via_blue_500 : Html.Attribute msg
+focus__via_blue_500 =
+    A.class "focus:via-blue-500"
+
+
+focus__via_blue_600 : Html.Attribute msg
+focus__via_blue_600 =
+    A.class "focus:via-blue-600"
+
+
+focus__via_blue_700 : Html.Attribute msg
+focus__via_blue_700 =
+    A.class "focus:via-blue-700"
+
+
+focus__via_blue_800 : Html.Attribute msg
+focus__via_blue_800 =
+    A.class "focus:via-blue-800"
+
+
+focus__via_blue_900 : Html.Attribute msg
+focus__via_blue_900 =
+    A.class "focus:via-blue-900"
+
+
+focus__via_indigo_100 : Html.Attribute msg
+focus__via_indigo_100 =
+    A.class "focus:via-indigo-100"
+
+
+focus__via_indigo_200 : Html.Attribute msg
+focus__via_indigo_200 =
+    A.class "focus:via-indigo-200"
+
+
+focus__via_indigo_300 : Html.Attribute msg
+focus__via_indigo_300 =
+    A.class "focus:via-indigo-300"
+
+
+focus__via_indigo_400 : Html.Attribute msg
+focus__via_indigo_400 =
+    A.class "focus:via-indigo-400"
+
+
+focus__via_indigo_500 : Html.Attribute msg
+focus__via_indigo_500 =
+    A.class "focus:via-indigo-500"
+
+
+focus__via_indigo_600 : Html.Attribute msg
+focus__via_indigo_600 =
+    A.class "focus:via-indigo-600"
+
+
+focus__via_indigo_700 : Html.Attribute msg
+focus__via_indigo_700 =
+    A.class "focus:via-indigo-700"
+
+
+focus__via_indigo_800 : Html.Attribute msg
+focus__via_indigo_800 =
+    A.class "focus:via-indigo-800"
+
+
+focus__via_indigo_900 : Html.Attribute msg
+focus__via_indigo_900 =
+    A.class "focus:via-indigo-900"
+
+
+focus__via_purple_100 : Html.Attribute msg
+focus__via_purple_100 =
+    A.class "focus:via-purple-100"
+
+
+focus__via_purple_200 : Html.Attribute msg
+focus__via_purple_200 =
+    A.class "focus:via-purple-200"
+
+
+focus__via_purple_300 : Html.Attribute msg
+focus__via_purple_300 =
+    A.class "focus:via-purple-300"
+
+
+focus__via_purple_400 : Html.Attribute msg
+focus__via_purple_400 =
+    A.class "focus:via-purple-400"
+
+
+focus__via_purple_500 : Html.Attribute msg
+focus__via_purple_500 =
+    A.class "focus:via-purple-500"
+
+
+focus__via_purple_600 : Html.Attribute msg
+focus__via_purple_600 =
+    A.class "focus:via-purple-600"
+
+
+focus__via_purple_700 : Html.Attribute msg
+focus__via_purple_700 =
+    A.class "focus:via-purple-700"
+
+
+focus__via_purple_800 : Html.Attribute msg
+focus__via_purple_800 =
+    A.class "focus:via-purple-800"
+
+
+focus__via_purple_900 : Html.Attribute msg
+focus__via_purple_900 =
+    A.class "focus:via-purple-900"
+
+
+focus__via_pink_100 : Html.Attribute msg
+focus__via_pink_100 =
+    A.class "focus:via-pink-100"
+
+
+focus__via_pink_200 : Html.Attribute msg
+focus__via_pink_200 =
+    A.class "focus:via-pink-200"
+
+
+focus__via_pink_300 : Html.Attribute msg
+focus__via_pink_300 =
+    A.class "focus:via-pink-300"
+
+
+focus__via_pink_400 : Html.Attribute msg
+focus__via_pink_400 =
+    A.class "focus:via-pink-400"
+
+
+focus__via_pink_500 : Html.Attribute msg
+focus__via_pink_500 =
+    A.class "focus:via-pink-500"
+
+
+focus__via_pink_600 : Html.Attribute msg
+focus__via_pink_600 =
+    A.class "focus:via-pink-600"
+
+
+focus__via_pink_700 : Html.Attribute msg
+focus__via_pink_700 =
+    A.class "focus:via-pink-700"
+
+
+focus__via_pink_800 : Html.Attribute msg
+focus__via_pink_800 =
+    A.class "focus:via-pink-800"
+
+
+focus__via_pink_900 : Html.Attribute msg
+focus__via_pink_900 =
+    A.class "focus:via-pink-900"
+
+
+focus__to_transparent : Html.Attribute msg
+focus__to_transparent =
+    A.class "focus:to-transparent"
+
+
+focus__to_current : Html.Attribute msg
+focus__to_current =
+    A.class "focus:to-current"
+
+
+focus__to_black : Html.Attribute msg
+focus__to_black =
+    A.class "focus:to-black"
+
+
+focus__to_white : Html.Attribute msg
+focus__to_white =
+    A.class "focus:to-white"
+
+
+focus__to_gray_100 : Html.Attribute msg
+focus__to_gray_100 =
+    A.class "focus:to-gray-100"
+
+
+focus__to_gray_200 : Html.Attribute msg
+focus__to_gray_200 =
+    A.class "focus:to-gray-200"
+
+
+focus__to_gray_300 : Html.Attribute msg
+focus__to_gray_300 =
+    A.class "focus:to-gray-300"
+
+
+focus__to_gray_400 : Html.Attribute msg
+focus__to_gray_400 =
+    A.class "focus:to-gray-400"
+
+
+focus__to_gray_500 : Html.Attribute msg
+focus__to_gray_500 =
+    A.class "focus:to-gray-500"
+
+
+focus__to_gray_600 : Html.Attribute msg
+focus__to_gray_600 =
+    A.class "focus:to-gray-600"
+
+
+focus__to_gray_700 : Html.Attribute msg
+focus__to_gray_700 =
+    A.class "focus:to-gray-700"
+
+
+focus__to_gray_800 : Html.Attribute msg
+focus__to_gray_800 =
+    A.class "focus:to-gray-800"
+
+
+focus__to_gray_900 : Html.Attribute msg
+focus__to_gray_900 =
+    A.class "focus:to-gray-900"
+
+
+focus__to_red_100 : Html.Attribute msg
+focus__to_red_100 =
+    A.class "focus:to-red-100"
+
+
+focus__to_red_200 : Html.Attribute msg
+focus__to_red_200 =
+    A.class "focus:to-red-200"
+
+
+focus__to_red_300 : Html.Attribute msg
+focus__to_red_300 =
+    A.class "focus:to-red-300"
+
+
+focus__to_red_400 : Html.Attribute msg
+focus__to_red_400 =
+    A.class "focus:to-red-400"
+
+
+focus__to_red_500 : Html.Attribute msg
+focus__to_red_500 =
+    A.class "focus:to-red-500"
+
+
+focus__to_red_600 : Html.Attribute msg
+focus__to_red_600 =
+    A.class "focus:to-red-600"
+
+
+focus__to_red_700 : Html.Attribute msg
+focus__to_red_700 =
+    A.class "focus:to-red-700"
+
+
+focus__to_red_800 : Html.Attribute msg
+focus__to_red_800 =
+    A.class "focus:to-red-800"
+
+
+focus__to_red_900 : Html.Attribute msg
+focus__to_red_900 =
+    A.class "focus:to-red-900"
+
+
+focus__to_orange_100 : Html.Attribute msg
+focus__to_orange_100 =
+    A.class "focus:to-orange-100"
+
+
+focus__to_orange_200 : Html.Attribute msg
+focus__to_orange_200 =
+    A.class "focus:to-orange-200"
+
+
+focus__to_orange_300 : Html.Attribute msg
+focus__to_orange_300 =
+    A.class "focus:to-orange-300"
+
+
+focus__to_orange_400 : Html.Attribute msg
+focus__to_orange_400 =
+    A.class "focus:to-orange-400"
+
+
+focus__to_orange_500 : Html.Attribute msg
+focus__to_orange_500 =
+    A.class "focus:to-orange-500"
+
+
+focus__to_orange_600 : Html.Attribute msg
+focus__to_orange_600 =
+    A.class "focus:to-orange-600"
+
+
+focus__to_orange_700 : Html.Attribute msg
+focus__to_orange_700 =
+    A.class "focus:to-orange-700"
+
+
+focus__to_orange_800 : Html.Attribute msg
+focus__to_orange_800 =
+    A.class "focus:to-orange-800"
+
+
+focus__to_orange_900 : Html.Attribute msg
+focus__to_orange_900 =
+    A.class "focus:to-orange-900"
+
+
+focus__to_yellow_100 : Html.Attribute msg
+focus__to_yellow_100 =
+    A.class "focus:to-yellow-100"
+
+
+focus__to_yellow_200 : Html.Attribute msg
+focus__to_yellow_200 =
+    A.class "focus:to-yellow-200"
+
+
+focus__to_yellow_300 : Html.Attribute msg
+focus__to_yellow_300 =
+    A.class "focus:to-yellow-300"
+
+
+focus__to_yellow_400 : Html.Attribute msg
+focus__to_yellow_400 =
+    A.class "focus:to-yellow-400"
+
+
+focus__to_yellow_500 : Html.Attribute msg
+focus__to_yellow_500 =
+    A.class "focus:to-yellow-500"
+
+
+focus__to_yellow_600 : Html.Attribute msg
+focus__to_yellow_600 =
+    A.class "focus:to-yellow-600"
+
+
+focus__to_yellow_700 : Html.Attribute msg
+focus__to_yellow_700 =
+    A.class "focus:to-yellow-700"
+
+
+focus__to_yellow_800 : Html.Attribute msg
+focus__to_yellow_800 =
+    A.class "focus:to-yellow-800"
+
+
+focus__to_yellow_900 : Html.Attribute msg
+focus__to_yellow_900 =
+    A.class "focus:to-yellow-900"
+
+
+focus__to_green_100 : Html.Attribute msg
+focus__to_green_100 =
+    A.class "focus:to-green-100"
+
+
+focus__to_green_200 : Html.Attribute msg
+focus__to_green_200 =
+    A.class "focus:to-green-200"
+
+
+focus__to_green_300 : Html.Attribute msg
+focus__to_green_300 =
+    A.class "focus:to-green-300"
+
+
+focus__to_green_400 : Html.Attribute msg
+focus__to_green_400 =
+    A.class "focus:to-green-400"
+
+
+focus__to_green_500 : Html.Attribute msg
+focus__to_green_500 =
+    A.class "focus:to-green-500"
+
+
+focus__to_green_600 : Html.Attribute msg
+focus__to_green_600 =
+    A.class "focus:to-green-600"
+
+
+focus__to_green_700 : Html.Attribute msg
+focus__to_green_700 =
+    A.class "focus:to-green-700"
+
+
+focus__to_green_800 : Html.Attribute msg
+focus__to_green_800 =
+    A.class "focus:to-green-800"
+
+
+focus__to_green_900 : Html.Attribute msg
+focus__to_green_900 =
+    A.class "focus:to-green-900"
+
+
+focus__to_teal_100 : Html.Attribute msg
+focus__to_teal_100 =
+    A.class "focus:to-teal-100"
+
+
+focus__to_teal_200 : Html.Attribute msg
+focus__to_teal_200 =
+    A.class "focus:to-teal-200"
+
+
+focus__to_teal_300 : Html.Attribute msg
+focus__to_teal_300 =
+    A.class "focus:to-teal-300"
+
+
+focus__to_teal_400 : Html.Attribute msg
+focus__to_teal_400 =
+    A.class "focus:to-teal-400"
+
+
+focus__to_teal_500 : Html.Attribute msg
+focus__to_teal_500 =
+    A.class "focus:to-teal-500"
+
+
+focus__to_teal_600 : Html.Attribute msg
+focus__to_teal_600 =
+    A.class "focus:to-teal-600"
+
+
+focus__to_teal_700 : Html.Attribute msg
+focus__to_teal_700 =
+    A.class "focus:to-teal-700"
+
+
+focus__to_teal_800 : Html.Attribute msg
+focus__to_teal_800 =
+    A.class "focus:to-teal-800"
+
+
+focus__to_teal_900 : Html.Attribute msg
+focus__to_teal_900 =
+    A.class "focus:to-teal-900"
+
+
+focus__to_blue_100 : Html.Attribute msg
+focus__to_blue_100 =
+    A.class "focus:to-blue-100"
+
+
+focus__to_blue_200 : Html.Attribute msg
+focus__to_blue_200 =
+    A.class "focus:to-blue-200"
+
+
+focus__to_blue_300 : Html.Attribute msg
+focus__to_blue_300 =
+    A.class "focus:to-blue-300"
+
+
+focus__to_blue_400 : Html.Attribute msg
+focus__to_blue_400 =
+    A.class "focus:to-blue-400"
+
+
+focus__to_blue_500 : Html.Attribute msg
+focus__to_blue_500 =
+    A.class "focus:to-blue-500"
+
+
+focus__to_blue_600 : Html.Attribute msg
+focus__to_blue_600 =
+    A.class "focus:to-blue-600"
+
+
+focus__to_blue_700 : Html.Attribute msg
+focus__to_blue_700 =
+    A.class "focus:to-blue-700"
+
+
+focus__to_blue_800 : Html.Attribute msg
+focus__to_blue_800 =
+    A.class "focus:to-blue-800"
+
+
+focus__to_blue_900 : Html.Attribute msg
+focus__to_blue_900 =
+    A.class "focus:to-blue-900"
+
+
+focus__to_indigo_100 : Html.Attribute msg
+focus__to_indigo_100 =
+    A.class "focus:to-indigo-100"
+
+
+focus__to_indigo_200 : Html.Attribute msg
+focus__to_indigo_200 =
+    A.class "focus:to-indigo-200"
+
+
+focus__to_indigo_300 : Html.Attribute msg
+focus__to_indigo_300 =
+    A.class "focus:to-indigo-300"
+
+
+focus__to_indigo_400 : Html.Attribute msg
+focus__to_indigo_400 =
+    A.class "focus:to-indigo-400"
+
+
+focus__to_indigo_500 : Html.Attribute msg
+focus__to_indigo_500 =
+    A.class "focus:to-indigo-500"
+
+
+focus__to_indigo_600 : Html.Attribute msg
+focus__to_indigo_600 =
+    A.class "focus:to-indigo-600"
+
+
+focus__to_indigo_700 : Html.Attribute msg
+focus__to_indigo_700 =
+    A.class "focus:to-indigo-700"
+
+
+focus__to_indigo_800 : Html.Attribute msg
+focus__to_indigo_800 =
+    A.class "focus:to-indigo-800"
+
+
+focus__to_indigo_900 : Html.Attribute msg
+focus__to_indigo_900 =
+    A.class "focus:to-indigo-900"
+
+
+focus__to_purple_100 : Html.Attribute msg
+focus__to_purple_100 =
+    A.class "focus:to-purple-100"
+
+
+focus__to_purple_200 : Html.Attribute msg
+focus__to_purple_200 =
+    A.class "focus:to-purple-200"
+
+
+focus__to_purple_300 : Html.Attribute msg
+focus__to_purple_300 =
+    A.class "focus:to-purple-300"
+
+
+focus__to_purple_400 : Html.Attribute msg
+focus__to_purple_400 =
+    A.class "focus:to-purple-400"
+
+
+focus__to_purple_500 : Html.Attribute msg
+focus__to_purple_500 =
+    A.class "focus:to-purple-500"
+
+
+focus__to_purple_600 : Html.Attribute msg
+focus__to_purple_600 =
+    A.class "focus:to-purple-600"
+
+
+focus__to_purple_700 : Html.Attribute msg
+focus__to_purple_700 =
+    A.class "focus:to-purple-700"
+
+
+focus__to_purple_800 : Html.Attribute msg
+focus__to_purple_800 =
+    A.class "focus:to-purple-800"
+
+
+focus__to_purple_900 : Html.Attribute msg
+focus__to_purple_900 =
+    A.class "focus:to-purple-900"
+
+
+focus__to_pink_100 : Html.Attribute msg
+focus__to_pink_100 =
+    A.class "focus:to-pink-100"
+
+
+focus__to_pink_200 : Html.Attribute msg
+focus__to_pink_200 =
+    A.class "focus:to-pink-200"
+
+
+focus__to_pink_300 : Html.Attribute msg
+focus__to_pink_300 =
+    A.class "focus:to-pink-300"
+
+
+focus__to_pink_400 : Html.Attribute msg
+focus__to_pink_400 =
+    A.class "focus:to-pink-400"
+
+
+focus__to_pink_500 : Html.Attribute msg
+focus__to_pink_500 =
+    A.class "focus:to-pink-500"
+
+
+focus__to_pink_600 : Html.Attribute msg
+focus__to_pink_600 =
+    A.class "focus:to-pink-600"
+
+
+focus__to_pink_700 : Html.Attribute msg
+focus__to_pink_700 =
+    A.class "focus:to-pink-700"
+
+
+focus__to_pink_800 : Html.Attribute msg
+focus__to_pink_800 =
+    A.class "focus:to-pink-800"
+
+
+focus__to_pink_900 : Html.Attribute msg
+focus__to_pink_900 =
+    A.class "focus:to-pink-900"
 
 
 bg_opacity_0 : Html.Attribute msg
@@ -17997,6 +27376,21 @@ rounded_lg =
     A.class "rounded-lg"
 
 
+rounded_xl : Html.Attribute msg
+rounded_xl =
+    A.class "rounded-xl"
+
+
+rounded_2xl : Html.Attribute msg
+rounded_2xl =
+    A.class "rounded-2xl"
+
+
+rounded_3xl : Html.Attribute msg
+rounded_3xl =
+    A.class "rounded-3xl"
+
+
 rounded_full : Html.Attribute msg
 rounded_full =
     A.class "rounded-full"
@@ -18100,6 +27494,66 @@ rounded_b_lg =
 rounded_l_lg : Html.Attribute msg
 rounded_l_lg =
     A.class "rounded-l-lg"
+
+
+rounded_t_xl : Html.Attribute msg
+rounded_t_xl =
+    A.class "rounded-t-xl"
+
+
+rounded_r_xl : Html.Attribute msg
+rounded_r_xl =
+    A.class "rounded-r-xl"
+
+
+rounded_b_xl : Html.Attribute msg
+rounded_b_xl =
+    A.class "rounded-b-xl"
+
+
+rounded_l_xl : Html.Attribute msg
+rounded_l_xl =
+    A.class "rounded-l-xl"
+
+
+rounded_t_2xl : Html.Attribute msg
+rounded_t_2xl =
+    A.class "rounded-t-2xl"
+
+
+rounded_r_2xl : Html.Attribute msg
+rounded_r_2xl =
+    A.class "rounded-r-2xl"
+
+
+rounded_b_2xl : Html.Attribute msg
+rounded_b_2xl =
+    A.class "rounded-b-2xl"
+
+
+rounded_l_2xl : Html.Attribute msg
+rounded_l_2xl =
+    A.class "rounded-l-2xl"
+
+
+rounded_t_3xl : Html.Attribute msg
+rounded_t_3xl =
+    A.class "rounded-t-3xl"
+
+
+rounded_r_3xl : Html.Attribute msg
+rounded_r_3xl =
+    A.class "rounded-r-3xl"
+
+
+rounded_b_3xl : Html.Attribute msg
+rounded_b_3xl =
+    A.class "rounded-b-3xl"
+
+
+rounded_l_3xl : Html.Attribute msg
+rounded_l_3xl =
+    A.class "rounded-l-3xl"
 
 
 rounded_t_full : Html.Attribute msg
@@ -18220,6 +27674,66 @@ rounded_br_lg =
 rounded_bl_lg : Html.Attribute msg
 rounded_bl_lg =
     A.class "rounded-bl-lg"
+
+
+rounded_tl_xl : Html.Attribute msg
+rounded_tl_xl =
+    A.class "rounded-tl-xl"
+
+
+rounded_tr_xl : Html.Attribute msg
+rounded_tr_xl =
+    A.class "rounded-tr-xl"
+
+
+rounded_br_xl : Html.Attribute msg
+rounded_br_xl =
+    A.class "rounded-br-xl"
+
+
+rounded_bl_xl : Html.Attribute msg
+rounded_bl_xl =
+    A.class "rounded-bl-xl"
+
+
+rounded_tl_2xl : Html.Attribute msg
+rounded_tl_2xl =
+    A.class "rounded-tl-2xl"
+
+
+rounded_tr_2xl : Html.Attribute msg
+rounded_tr_2xl =
+    A.class "rounded-tr-2xl"
+
+
+rounded_br_2xl : Html.Attribute msg
+rounded_br_2xl =
+    A.class "rounded-br-2xl"
+
+
+rounded_bl_2xl : Html.Attribute msg
+rounded_bl_2xl =
+    A.class "rounded-bl-2xl"
+
+
+rounded_tl_3xl : Html.Attribute msg
+rounded_tl_3xl =
+    A.class "rounded-tl-3xl"
+
+
+rounded_tr_3xl : Html.Attribute msg
+rounded_tr_3xl =
+    A.class "rounded-tr-3xl"
+
+
+rounded_br_3xl : Html.Attribute msg
+rounded_br_3xl =
+    A.class "rounded-br-3xl"
+
+
+rounded_bl_3xl : Html.Attribute msg
+rounded_bl_3xl =
+    A.class "rounded-bl-3xl"
 
 
 rounded_tl_full : Html.Attribute msg
@@ -18557,6 +28071,11 @@ inline_grid =
     A.class "inline-grid"
 
 
+contents : Html.Attribute msg
+contents =
+    A.class "contents"
+
+
 hidden : Html.Attribute msg
 hidden =
     A.class "hidden"
@@ -18597,6 +28116,91 @@ flex_no_wrap =
     A.class "flex-no-wrap"
 
 
+place_items_auto : Html.Attribute msg
+place_items_auto =
+    A.class "place-items-auto"
+
+
+place_items_start : Html.Attribute msg
+place_items_start =
+    A.class "place-items-start"
+
+
+place_items_end : Html.Attribute msg
+place_items_end =
+    A.class "place-items-end"
+
+
+place_items_center : Html.Attribute msg
+place_items_center =
+    A.class "place-items-center"
+
+
+place_items_stretch : Html.Attribute msg
+place_items_stretch =
+    A.class "place-items-stretch"
+
+
+place_content_center : Html.Attribute msg
+place_content_center =
+    A.class "place-content-center"
+
+
+place_content_start : Html.Attribute msg
+place_content_start =
+    A.class "place-content-start"
+
+
+place_content_end : Html.Attribute msg
+place_content_end =
+    A.class "place-content-end"
+
+
+place_content_between : Html.Attribute msg
+place_content_between =
+    A.class "place-content-between"
+
+
+place_content_around : Html.Attribute msg
+place_content_around =
+    A.class "place-content-around"
+
+
+place_content_evenly : Html.Attribute msg
+place_content_evenly =
+    A.class "place-content-evenly"
+
+
+place_content_stretch : Html.Attribute msg
+place_content_stretch =
+    A.class "place-content-stretch"
+
+
+place_self_auto : Html.Attribute msg
+place_self_auto =
+    A.class "place-self-auto"
+
+
+place_self_start : Html.Attribute msg
+place_self_start =
+    A.class "place-self-start"
+
+
+place_self_end : Html.Attribute msg
+place_self_end =
+    A.class "place-self-end"
+
+
+place_self_center : Html.Attribute msg
+place_self_center =
+    A.class "place-self-center"
+
+
+place_self_stretch : Html.Attribute msg
+place_self_stretch =
+    A.class "place-self-stretch"
+
+
 items_start : Html.Attribute msg
 items_start =
     A.class "items-start"
@@ -18622,6 +28226,36 @@ items_stretch =
     A.class "items-stretch"
 
 
+content_center : Html.Attribute msg
+content_center =
+    A.class "content-center"
+
+
+content_start : Html.Attribute msg
+content_start =
+    A.class "content-start"
+
+
+content_end : Html.Attribute msg
+content_end =
+    A.class "content-end"
+
+
+content_between : Html.Attribute msg
+content_between =
+    A.class "content-between"
+
+
+content_around : Html.Attribute msg
+content_around =
+    A.class "content-around"
+
+
+content_evenly : Html.Attribute msg
+content_evenly =
+    A.class "content-evenly"
+
+
 self_auto : Html.Attribute msg
 self_auto =
     A.class "self-auto"
@@ -18645,6 +28279,31 @@ self_center =
 self_stretch : Html.Attribute msg
 self_stretch =
     A.class "self-stretch"
+
+
+justify_items_auto : Html.Attribute msg
+justify_items_auto =
+    A.class "justify-items-auto"
+
+
+justify_items_start : Html.Attribute msg
+justify_items_start =
+    A.class "justify-items-start"
+
+
+justify_items_end : Html.Attribute msg
+justify_items_end =
+    A.class "justify-items-end"
+
+
+justify_items_center : Html.Attribute msg
+justify_items_center =
+    A.class "justify-items-center"
+
+
+justify_items_stretch : Html.Attribute msg
+justify_items_stretch =
+    A.class "justify-items-stretch"
 
 
 justify_start : Html.Attribute msg
@@ -18677,29 +28336,29 @@ justify_evenly =
     A.class "justify-evenly"
 
 
-content_center : Html.Attribute msg
-content_center =
-    A.class "content-center"
+justify_self_auto : Html.Attribute msg
+justify_self_auto =
+    A.class "justify-self-auto"
 
 
-content_start : Html.Attribute msg
-content_start =
-    A.class "content-start"
+justify_self_start : Html.Attribute msg
+justify_self_start =
+    A.class "justify-self-start"
 
 
-content_end : Html.Attribute msg
-content_end =
-    A.class "content-end"
+justify_self_end : Html.Attribute msg
+justify_self_end =
+    A.class "justify-self-end"
 
 
-content_between : Html.Attribute msg
-content_between =
-    A.class "content-between"
+justify_self_center : Html.Attribute msg
+justify_self_center =
+    A.class "justify-self-center"
 
 
-content_around : Html.Attribute msg
-content_around =
-    A.class "content-around"
+justify_self_stretch : Html.Attribute msg
+justify_self_stretch =
+    A.class "justify-self-stretch"
 
 
 flex_1 : Html.Attribute msg
@@ -20882,9 +30541,29 @@ outline_none =
     A.class "outline-none"
 
 
+outline_white : Html.Attribute msg
+outline_white =
+    A.class "outline-white"
+
+
+outline_black : Html.Attribute msg
+outline_black =
+    A.class "outline-black"
+
+
 focus__outline_none : Html.Attribute msg
 focus__outline_none =
     A.class "focus:outline-none"
+
+
+focus__outline_white : Html.Attribute msg
+focus__outline_white =
+    A.class "focus:outline-white"
+
+
+focus__outline_black : Html.Attribute msg
+focus__outline_black =
+    A.class "focus:outline-black"
 
 
 overflow_auto : Html.Attribute msg
@@ -20955,6 +30634,51 @@ scrolling_touch =
 scrolling_auto : Html.Attribute msg
 scrolling_auto =
     A.class "scrolling-auto"
+
+
+overscroll_auto : Html.Attribute msg
+overscroll_auto =
+    A.class "overscroll-auto"
+
+
+overscroll_contain : Html.Attribute msg
+overscroll_contain =
+    A.class "overscroll-contain"
+
+
+overscroll_none : Html.Attribute msg
+overscroll_none =
+    A.class "overscroll-none"
+
+
+overscroll_y_auto : Html.Attribute msg
+overscroll_y_auto =
+    A.class "overscroll-y-auto"
+
+
+overscroll_y_contain : Html.Attribute msg
+overscroll_y_contain =
+    A.class "overscroll-y-contain"
+
+
+overscroll_y_none : Html.Attribute msg
+overscroll_y_none =
+    A.class "overscroll-y-none"
+
+
+overscroll_x_auto : Html.Attribute msg
+overscroll_x_auto =
+    A.class "overscroll-x-auto"
+
+
+overscroll_x_contain : Html.Attribute msg
+overscroll_x_contain =
+    A.class "overscroll-x-contain"
+
+
+overscroll_x_none : Html.Attribute msg
+overscroll_x_none =
+    A.class "overscroll-x-none"
 
 
 p_0 : Html.Attribute msg
@@ -24512,6 +34236,51 @@ subpixel_antialiased =
     A.class "subpixel-antialiased"
 
 
+ordinal : Html.Attribute msg
+ordinal =
+    A.class "ordinal"
+
+
+slashed_zero : Html.Attribute msg
+slashed_zero =
+    A.class "slashed-zero"
+
+
+lining_nums : Html.Attribute msg
+lining_nums =
+    A.class "lining-nums"
+
+
+oldstyle_nums : Html.Attribute msg
+oldstyle_nums =
+    A.class "oldstyle-nums"
+
+
+proportional_nums : Html.Attribute msg
+proportional_nums =
+    A.class "proportional-nums"
+
+
+tabular_nums : Html.Attribute msg
+tabular_nums =
+    A.class "tabular-nums"
+
+
+diagonal_fractions : Html.Attribute msg
+diagonal_fractions =
+    A.class "diagonal-fractions"
+
+
+stacked_fractions : Html.Attribute msg
+stacked_fractions =
+    A.class "stacked-fractions"
+
+
+normal_nums : Html.Attribute msg
+normal_nums =
+    A.class "normal-nums"
+
+
 tracking_tighter : Html.Attribute msg
 tracking_tighter =
     A.class "tracking-tighter"
@@ -25017,194 +34786,194 @@ gap_px =
     A.class "gap-px"
 
 
-col_gap_0 : Html.Attribute msg
-col_gap_0 =
-    A.class "col-gap-0"
+gap_x_0 : Html.Attribute msg
+gap_x_0 =
+    A.class "gap-x-0"
 
 
-col_gap_1 : Html.Attribute msg
-col_gap_1 =
-    A.class "col-gap-1"
+gap_x_1 : Html.Attribute msg
+gap_x_1 =
+    A.class "gap-x-1"
 
 
-col_gap_2 : Html.Attribute msg
-col_gap_2 =
-    A.class "col-gap-2"
+gap_x_2 : Html.Attribute msg
+gap_x_2 =
+    A.class "gap-x-2"
 
 
-col_gap_3 : Html.Attribute msg
-col_gap_3 =
-    A.class "col-gap-3"
+gap_x_3 : Html.Attribute msg
+gap_x_3 =
+    A.class "gap-x-3"
 
 
-col_gap_4 : Html.Attribute msg
-col_gap_4 =
-    A.class "col-gap-4"
+gap_x_4 : Html.Attribute msg
+gap_x_4 =
+    A.class "gap-x-4"
 
 
-col_gap_5 : Html.Attribute msg
-col_gap_5 =
-    A.class "col-gap-5"
+gap_x_5 : Html.Attribute msg
+gap_x_5 =
+    A.class "gap-x-5"
 
 
-col_gap_6 : Html.Attribute msg
-col_gap_6 =
-    A.class "col-gap-6"
+gap_x_6 : Html.Attribute msg
+gap_x_6 =
+    A.class "gap-x-6"
 
 
-col_gap_8 : Html.Attribute msg
-col_gap_8 =
-    A.class "col-gap-8"
+gap_x_8 : Html.Attribute msg
+gap_x_8 =
+    A.class "gap-x-8"
 
 
-col_gap_10 : Html.Attribute msg
-col_gap_10 =
-    A.class "col-gap-10"
+gap_x_10 : Html.Attribute msg
+gap_x_10 =
+    A.class "gap-x-10"
 
 
-col_gap_12 : Html.Attribute msg
-col_gap_12 =
-    A.class "col-gap-12"
+gap_x_12 : Html.Attribute msg
+gap_x_12 =
+    A.class "gap-x-12"
 
 
-col_gap_16 : Html.Attribute msg
-col_gap_16 =
-    A.class "col-gap-16"
+gap_x_16 : Html.Attribute msg
+gap_x_16 =
+    A.class "gap-x-16"
 
 
-col_gap_20 : Html.Attribute msg
-col_gap_20 =
-    A.class "col-gap-20"
+gap_x_20 : Html.Attribute msg
+gap_x_20 =
+    A.class "gap-x-20"
 
 
-col_gap_24 : Html.Attribute msg
-col_gap_24 =
-    A.class "col-gap-24"
+gap_x_24 : Html.Attribute msg
+gap_x_24 =
+    A.class "gap-x-24"
 
 
-col_gap_32 : Html.Attribute msg
-col_gap_32 =
-    A.class "col-gap-32"
+gap_x_32 : Html.Attribute msg
+gap_x_32 =
+    A.class "gap-x-32"
 
 
-col_gap_40 : Html.Attribute msg
-col_gap_40 =
-    A.class "col-gap-40"
+gap_x_40 : Html.Attribute msg
+gap_x_40 =
+    A.class "gap-x-40"
 
 
-col_gap_48 : Html.Attribute msg
-col_gap_48 =
-    A.class "col-gap-48"
+gap_x_48 : Html.Attribute msg
+gap_x_48 =
+    A.class "gap-x-48"
 
 
-col_gap_56 : Html.Attribute msg
-col_gap_56 =
-    A.class "col-gap-56"
+gap_x_56 : Html.Attribute msg
+gap_x_56 =
+    A.class "gap-x-56"
 
 
-col_gap_64 : Html.Attribute msg
-col_gap_64 =
-    A.class "col-gap-64"
+gap_x_64 : Html.Attribute msg
+gap_x_64 =
+    A.class "gap-x-64"
 
 
-col_gap_px : Html.Attribute msg
-col_gap_px =
-    A.class "col-gap-px"
+gap_x_px : Html.Attribute msg
+gap_x_px =
+    A.class "gap-x-px"
 
 
-row_gap_0 : Html.Attribute msg
-row_gap_0 =
-    A.class "row-gap-0"
+gap_y_0 : Html.Attribute msg
+gap_y_0 =
+    A.class "gap-y-0"
 
 
-row_gap_1 : Html.Attribute msg
-row_gap_1 =
-    A.class "row-gap-1"
+gap_y_1 : Html.Attribute msg
+gap_y_1 =
+    A.class "gap-y-1"
 
 
-row_gap_2 : Html.Attribute msg
-row_gap_2 =
-    A.class "row-gap-2"
+gap_y_2 : Html.Attribute msg
+gap_y_2 =
+    A.class "gap-y-2"
 
 
-row_gap_3 : Html.Attribute msg
-row_gap_3 =
-    A.class "row-gap-3"
+gap_y_3 : Html.Attribute msg
+gap_y_3 =
+    A.class "gap-y-3"
 
 
-row_gap_4 : Html.Attribute msg
-row_gap_4 =
-    A.class "row-gap-4"
+gap_y_4 : Html.Attribute msg
+gap_y_4 =
+    A.class "gap-y-4"
 
 
-row_gap_5 : Html.Attribute msg
-row_gap_5 =
-    A.class "row-gap-5"
+gap_y_5 : Html.Attribute msg
+gap_y_5 =
+    A.class "gap-y-5"
 
 
-row_gap_6 : Html.Attribute msg
-row_gap_6 =
-    A.class "row-gap-6"
+gap_y_6 : Html.Attribute msg
+gap_y_6 =
+    A.class "gap-y-6"
 
 
-row_gap_8 : Html.Attribute msg
-row_gap_8 =
-    A.class "row-gap-8"
+gap_y_8 : Html.Attribute msg
+gap_y_8 =
+    A.class "gap-y-8"
 
 
-row_gap_10 : Html.Attribute msg
-row_gap_10 =
-    A.class "row-gap-10"
+gap_y_10 : Html.Attribute msg
+gap_y_10 =
+    A.class "gap-y-10"
 
 
-row_gap_12 : Html.Attribute msg
-row_gap_12 =
-    A.class "row-gap-12"
+gap_y_12 : Html.Attribute msg
+gap_y_12 =
+    A.class "gap-y-12"
 
 
-row_gap_16 : Html.Attribute msg
-row_gap_16 =
-    A.class "row-gap-16"
+gap_y_16 : Html.Attribute msg
+gap_y_16 =
+    A.class "gap-y-16"
 
 
-row_gap_20 : Html.Attribute msg
-row_gap_20 =
-    A.class "row-gap-20"
+gap_y_20 : Html.Attribute msg
+gap_y_20 =
+    A.class "gap-y-20"
 
 
-row_gap_24 : Html.Attribute msg
-row_gap_24 =
-    A.class "row-gap-24"
+gap_y_24 : Html.Attribute msg
+gap_y_24 =
+    A.class "gap-y-24"
 
 
-row_gap_32 : Html.Attribute msg
-row_gap_32 =
-    A.class "row-gap-32"
+gap_y_32 : Html.Attribute msg
+gap_y_32 =
+    A.class "gap-y-32"
 
 
-row_gap_40 : Html.Attribute msg
-row_gap_40 =
-    A.class "row-gap-40"
+gap_y_40 : Html.Attribute msg
+gap_y_40 =
+    A.class "gap-y-40"
 
 
-row_gap_48 : Html.Attribute msg
-row_gap_48 =
-    A.class "row-gap-48"
+gap_y_48 : Html.Attribute msg
+gap_y_48 =
+    A.class "gap-y-48"
 
 
-row_gap_56 : Html.Attribute msg
-row_gap_56 =
-    A.class "row-gap-56"
+gap_y_56 : Html.Attribute msg
+gap_y_56 =
+    A.class "gap-y-56"
 
 
-row_gap_64 : Html.Attribute msg
-row_gap_64 =
-    A.class "row-gap-64"
+gap_y_64 : Html.Attribute msg
+gap_y_64 =
+    A.class "gap-y-64"
 
 
-row_gap_px : Html.Attribute msg
-row_gap_px =
-    A.class "row-gap-px"
+gap_y_px : Html.Attribute msg
+gap_y_px =
+    A.class "gap-y-px"
 
 
 grid_flow_row : Html.Attribute msg
@@ -25297,6 +35066,26 @@ grid_cols_header =
     A.class "grid-cols-header"
 
 
+auto_cols_auto : Html.Attribute msg
+auto_cols_auto =
+    A.class "auto-cols-auto"
+
+
+auto_cols_min : Html.Attribute msg
+auto_cols_min =
+    A.class "auto-cols-min"
+
+
+auto_cols_max : Html.Attribute msg
+auto_cols_max =
+    A.class "auto-cols-max"
+
+
+auto_cols_fr : Html.Attribute msg
+auto_cols_fr =
+    A.class "auto-cols-fr"
+
+
 col_auto : Html.Attribute msg
 col_auto =
     A.class "col-auto"
@@ -25360,6 +35149,11 @@ col_span_11 =
 col_span_12 : Html.Attribute msg
 col_span_12 =
     A.class "col-span-12"
+
+
+col_span_full : Html.Attribute msg
+col_span_full =
+    A.class "col-span-full"
 
 
 col_start_1 : Html.Attribute msg
@@ -25537,6 +35331,26 @@ grid_rows_none =
     A.class "grid-rows-none"
 
 
+auto_rows_auto : Html.Attribute msg
+auto_rows_auto =
+    A.class "auto-rows-auto"
+
+
+auto_rows_min : Html.Attribute msg
+auto_rows_min =
+    A.class "auto-rows-min"
+
+
+auto_rows_max : Html.Attribute msg
+auto_rows_max =
+    A.class "auto-rows-max"
+
+
+auto_rows_fr : Html.Attribute msg
+auto_rows_fr =
+    A.class "auto-rows-fr"
+
+
 row_auto : Html.Attribute msg
 row_auto =
     A.class "row-auto"
@@ -25570,6 +35384,11 @@ row_span_5 =
 row_span_6 : Html.Attribute msg
 row_span_6 =
     A.class "row-span-6"
+
+
+row_span_full : Html.Attribute msg
+row_span_full =
+    A.class "row-span-full"
 
 
 row_start_1 : Html.Attribute msg
@@ -26162,6 +35981,31 @@ rotate_0 =
     A.class "rotate-0"
 
 
+rotate_1 : Html.Attribute msg
+rotate_1 =
+    A.class "rotate-1"
+
+
+rotate_2 : Html.Attribute msg
+rotate_2 =
+    A.class "rotate-2"
+
+
+rotate_3 : Html.Attribute msg
+rotate_3 =
+    A.class "rotate-3"
+
+
+rotate_6 : Html.Attribute msg
+rotate_6 =
+    A.class "rotate-6"
+
+
+rotate_12 : Html.Attribute msg
+rotate_12 =
+    A.class "rotate-12"
+
+
 rotate_45 : Html.Attribute msg
 rotate_45 =
     A.class "rotate-45"
@@ -26192,9 +36036,59 @@ neg_rotate_45 =
     A.class "-rotate-45"
 
 
+neg_rotate_12 : Html.Attribute msg
+neg_rotate_12 =
+    A.class "-rotate-12"
+
+
+neg_rotate_6 : Html.Attribute msg
+neg_rotate_6 =
+    A.class "-rotate-6"
+
+
+neg_rotate_3 : Html.Attribute msg
+neg_rotate_3 =
+    A.class "-rotate-3"
+
+
+neg_rotate_2 : Html.Attribute msg
+neg_rotate_2 =
+    A.class "-rotate-2"
+
+
+neg_rotate_1 : Html.Attribute msg
+neg_rotate_1 =
+    A.class "-rotate-1"
+
+
 hover__rotate_0 : Html.Attribute msg
 hover__rotate_0 =
     A.class "hover:rotate-0"
+
+
+hover__rotate_1 : Html.Attribute msg
+hover__rotate_1 =
+    A.class "hover:rotate-1"
+
+
+hover__rotate_2 : Html.Attribute msg
+hover__rotate_2 =
+    A.class "hover:rotate-2"
+
+
+hover__rotate_3 : Html.Attribute msg
+hover__rotate_3 =
+    A.class "hover:rotate-3"
+
+
+hover__rotate_6 : Html.Attribute msg
+hover__rotate_6 =
+    A.class "hover:rotate-6"
+
+
+hover__rotate_12 : Html.Attribute msg
+hover__rotate_12 =
+    A.class "hover:rotate-12"
 
 
 hover__rotate_45 : Html.Attribute msg
@@ -26227,9 +36121,59 @@ hover__neg_rotate_45 =
     A.class "hover:-rotate-45"
 
 
+hover__neg_rotate_12 : Html.Attribute msg
+hover__neg_rotate_12 =
+    A.class "hover:-rotate-12"
+
+
+hover__neg_rotate_6 : Html.Attribute msg
+hover__neg_rotate_6 =
+    A.class "hover:-rotate-6"
+
+
+hover__neg_rotate_3 : Html.Attribute msg
+hover__neg_rotate_3 =
+    A.class "hover:-rotate-3"
+
+
+hover__neg_rotate_2 : Html.Attribute msg
+hover__neg_rotate_2 =
+    A.class "hover:-rotate-2"
+
+
+hover__neg_rotate_1 : Html.Attribute msg
+hover__neg_rotate_1 =
+    A.class "hover:-rotate-1"
+
+
 focus__rotate_0 : Html.Attribute msg
 focus__rotate_0 =
     A.class "focus:rotate-0"
+
+
+focus__rotate_1 : Html.Attribute msg
+focus__rotate_1 =
+    A.class "focus:rotate-1"
+
+
+focus__rotate_2 : Html.Attribute msg
+focus__rotate_2 =
+    A.class "focus:rotate-2"
+
+
+focus__rotate_3 : Html.Attribute msg
+focus__rotate_3 =
+    A.class "focus:rotate-3"
+
+
+focus__rotate_6 : Html.Attribute msg
+focus__rotate_6 =
+    A.class "focus:rotate-6"
+
+
+focus__rotate_12 : Html.Attribute msg
+focus__rotate_12 =
+    A.class "focus:rotate-12"
 
 
 focus__rotate_45 : Html.Attribute msg
@@ -26260,6 +36204,31 @@ focus__neg_rotate_90 =
 focus__neg_rotate_45 : Html.Attribute msg
 focus__neg_rotate_45 =
     A.class "focus:-rotate-45"
+
+
+focus__neg_rotate_12 : Html.Attribute msg
+focus__neg_rotate_12 =
+    A.class "focus:-rotate-12"
+
+
+focus__neg_rotate_6 : Html.Attribute msg
+focus__neg_rotate_6 =
+    A.class "focus:-rotate-6"
+
+
+focus__neg_rotate_3 : Html.Attribute msg
+focus__neg_rotate_3 =
+    A.class "focus:-rotate-3"
+
+
+focus__neg_rotate_2 : Html.Attribute msg
+focus__neg_rotate_2 =
+    A.class "focus:-rotate-2"
+
+
+focus__neg_rotate_1 : Html.Attribute msg
+focus__neg_rotate_1 =
+    A.class "focus:-rotate-1"
 
 
 translate_x_0 : Html.Attribute msg
@@ -27497,6 +37466,16 @@ skew_x_0 =
     A.class "skew-x-0"
 
 
+skew_x_1 : Html.Attribute msg
+skew_x_1 =
+    A.class "skew-x-1"
+
+
+skew_x_2 : Html.Attribute msg
+skew_x_2 =
+    A.class "skew-x-2"
+
+
 skew_x_3 : Html.Attribute msg
 skew_x_3 =
     A.class "skew-x-3"
@@ -27527,9 +37506,29 @@ neg_skew_x_3 =
     A.class "-skew-x-3"
 
 
+neg_skew_x_2 : Html.Attribute msg
+neg_skew_x_2 =
+    A.class "-skew-x-2"
+
+
+neg_skew_x_1 : Html.Attribute msg
+neg_skew_x_1 =
+    A.class "-skew-x-1"
+
+
 skew_y_0 : Html.Attribute msg
 skew_y_0 =
     A.class "skew-y-0"
+
+
+skew_y_1 : Html.Attribute msg
+skew_y_1 =
+    A.class "skew-y-1"
+
+
+skew_y_2 : Html.Attribute msg
+skew_y_2 =
+    A.class "skew-y-2"
 
 
 skew_y_3 : Html.Attribute msg
@@ -27562,9 +37561,29 @@ neg_skew_y_3 =
     A.class "-skew-y-3"
 
 
+neg_skew_y_2 : Html.Attribute msg
+neg_skew_y_2 =
+    A.class "-skew-y-2"
+
+
+neg_skew_y_1 : Html.Attribute msg
+neg_skew_y_1 =
+    A.class "-skew-y-1"
+
+
 hover__skew_x_0 : Html.Attribute msg
 hover__skew_x_0 =
     A.class "hover:skew-x-0"
+
+
+hover__skew_x_1 : Html.Attribute msg
+hover__skew_x_1 =
+    A.class "hover:skew-x-1"
+
+
+hover__skew_x_2 : Html.Attribute msg
+hover__skew_x_2 =
+    A.class "hover:skew-x-2"
 
 
 hover__skew_x_3 : Html.Attribute msg
@@ -27597,9 +37616,29 @@ hover__neg_skew_x_3 =
     A.class "hover:-skew-x-3"
 
 
+hover__neg_skew_x_2 : Html.Attribute msg
+hover__neg_skew_x_2 =
+    A.class "hover:-skew-x-2"
+
+
+hover__neg_skew_x_1 : Html.Attribute msg
+hover__neg_skew_x_1 =
+    A.class "hover:-skew-x-1"
+
+
 hover__skew_y_0 : Html.Attribute msg
 hover__skew_y_0 =
     A.class "hover:skew-y-0"
+
+
+hover__skew_y_1 : Html.Attribute msg
+hover__skew_y_1 =
+    A.class "hover:skew-y-1"
+
+
+hover__skew_y_2 : Html.Attribute msg
+hover__skew_y_2 =
+    A.class "hover:skew-y-2"
 
 
 hover__skew_y_3 : Html.Attribute msg
@@ -27632,9 +37671,29 @@ hover__neg_skew_y_3 =
     A.class "hover:-skew-y-3"
 
 
+hover__neg_skew_y_2 : Html.Attribute msg
+hover__neg_skew_y_2 =
+    A.class "hover:-skew-y-2"
+
+
+hover__neg_skew_y_1 : Html.Attribute msg
+hover__neg_skew_y_1 =
+    A.class "hover:-skew-y-1"
+
+
 focus__skew_x_0 : Html.Attribute msg
 focus__skew_x_0 =
     A.class "focus:skew-x-0"
+
+
+focus__skew_x_1 : Html.Attribute msg
+focus__skew_x_1 =
+    A.class "focus:skew-x-1"
+
+
+focus__skew_x_2 : Html.Attribute msg
+focus__skew_x_2 =
+    A.class "focus:skew-x-2"
 
 
 focus__skew_x_3 : Html.Attribute msg
@@ -27667,9 +37726,29 @@ focus__neg_skew_x_3 =
     A.class "focus:-skew-x-3"
 
 
+focus__neg_skew_x_2 : Html.Attribute msg
+focus__neg_skew_x_2 =
+    A.class "focus:-skew-x-2"
+
+
+focus__neg_skew_x_1 : Html.Attribute msg
+focus__neg_skew_x_1 =
+    A.class "focus:-skew-x-1"
+
+
 focus__skew_y_0 : Html.Attribute msg
 focus__skew_y_0 =
     A.class "focus:skew-y-0"
+
+
+focus__skew_y_1 : Html.Attribute msg
+focus__skew_y_1 =
+    A.class "focus:skew-y-1"
+
+
+focus__skew_y_2 : Html.Attribute msg
+focus__skew_y_2 =
+    A.class "focus:skew-y-2"
 
 
 focus__skew_y_3 : Html.Attribute msg
@@ -27700,6 +37779,16 @@ focus__neg_skew_y_6 =
 focus__neg_skew_y_3 : Html.Attribute msg
 focus__neg_skew_y_3 =
     A.class "focus:-skew-y-3"
+
+
+focus__neg_skew_y_2 : Html.Attribute msg
+focus__neg_skew_y_2 =
+    A.class "focus:-skew-y-2"
+
+
+focus__neg_skew_y_1 : Html.Attribute msg
+focus__neg_skew_y_1 =
+    A.class "focus:-skew-y-1"
 
 
 transition_none : Html.Attribute msg
@@ -27835,6 +37924,36 @@ delay_700 =
 delay_1000 : Html.Attribute msg
 delay_1000 =
     A.class "delay-1000"
+
+
+animate_none : Html.Attribute msg
+animate_none =
+    A.class "animate-none"
+
+
+animate_spin : Html.Attribute msg
+animate_spin =
+    A.class "animate-spin"
+
+
+animate_ping : Html.Attribute msg
+animate_ping =
+    A.class "animate-ping"
+
+
+animate_pulse : Html.Attribute msg
+animate_pulse =
+    A.class "animate-pulse"
+
+
+animate_bounce : Html.Attribute msg
+animate_bounce =
+    A.class "animate-bounce"
+
+
+sm__container : Html.Attribute msg
+sm__container =
+    A.class "sm:container"
 
 
 sm__space_y_0 : Html.Attribute msg
@@ -28747,6 +38866,31 @@ sm__divide_pink_900 =
     A.class "sm:divide-pink-900"
 
 
+sm__divide_solid : Html.Attribute msg
+sm__divide_solid =
+    A.class "sm:divide-solid"
+
+
+sm__divide_dashed : Html.Attribute msg
+sm__divide_dashed =
+    A.class "sm:divide-dashed"
+
+
+sm__divide_dotted : Html.Attribute msg
+sm__divide_dotted =
+    A.class "sm:divide-dotted"
+
+
+sm__divide_double : Html.Attribute msg
+sm__divide_double =
+    A.class "sm:divide-double"
+
+
+sm__divide_none : Html.Attribute msg
+sm__divide_none =
+    A.class "sm:divide-none"
+
+
 sm__divide_opacity_0 : Html.Attribute msg
 sm__divide_opacity_0 =
     A.class "sm:divide-opacity-0"
@@ -28810,6 +38954,26 @@ sm__bg_local =
 sm__bg_scroll : Html.Attribute msg
 sm__bg_scroll =
     A.class "sm:bg-scroll"
+
+
+sm__bg_clip_border : Html.Attribute msg
+sm__bg_clip_border =
+    A.class "sm:bg-clip-border"
+
+
+sm__bg_clip_padding : Html.Attribute msg
+sm__bg_clip_padding =
+    A.class "sm:bg-clip-padding"
+
+
+sm__bg_clip_content : Html.Attribute msg
+sm__bg_clip_content =
+    A.class "sm:bg-clip-content"
+
+
+sm__bg_clip_text : Html.Attribute msg
+sm__bg_clip_text =
+    A.class "sm:bg-clip-text"
 
 
 sm__bg_transparent : Html.Attribute msg
@@ -30220,6 +40384,4281 @@ sm__focus__bg_pink_800 =
 sm__focus__bg_pink_900 : Html.Attribute msg
 sm__focus__bg_pink_900 =
     A.class "sm:focus:bg-pink-900"
+
+
+sm__bg_none : Html.Attribute msg
+sm__bg_none =
+    A.class "sm:bg-none"
+
+
+sm__bg_gradient_to_t : Html.Attribute msg
+sm__bg_gradient_to_t =
+    A.class "sm:bg-gradient-to-t"
+
+
+sm__bg_gradient_to_tr : Html.Attribute msg
+sm__bg_gradient_to_tr =
+    A.class "sm:bg-gradient-to-tr"
+
+
+sm__bg_gradient_to_r : Html.Attribute msg
+sm__bg_gradient_to_r =
+    A.class "sm:bg-gradient-to-r"
+
+
+sm__bg_gradient_to_br : Html.Attribute msg
+sm__bg_gradient_to_br =
+    A.class "sm:bg-gradient-to-br"
+
+
+sm__bg_gradient_to_b : Html.Attribute msg
+sm__bg_gradient_to_b =
+    A.class "sm:bg-gradient-to-b"
+
+
+sm__bg_gradient_to_bl : Html.Attribute msg
+sm__bg_gradient_to_bl =
+    A.class "sm:bg-gradient-to-bl"
+
+
+sm__bg_gradient_to_l : Html.Attribute msg
+sm__bg_gradient_to_l =
+    A.class "sm:bg-gradient-to-l"
+
+
+sm__bg_gradient_to_tl : Html.Attribute msg
+sm__bg_gradient_to_tl =
+    A.class "sm:bg-gradient-to-tl"
+
+
+sm__from_transparent : Html.Attribute msg
+sm__from_transparent =
+    A.class "sm:from-transparent"
+
+
+sm__from_current : Html.Attribute msg
+sm__from_current =
+    A.class "sm:from-current"
+
+
+sm__from_black : Html.Attribute msg
+sm__from_black =
+    A.class "sm:from-black"
+
+
+sm__from_white : Html.Attribute msg
+sm__from_white =
+    A.class "sm:from-white"
+
+
+sm__from_gray_100 : Html.Attribute msg
+sm__from_gray_100 =
+    A.class "sm:from-gray-100"
+
+
+sm__from_gray_200 : Html.Attribute msg
+sm__from_gray_200 =
+    A.class "sm:from-gray-200"
+
+
+sm__from_gray_300 : Html.Attribute msg
+sm__from_gray_300 =
+    A.class "sm:from-gray-300"
+
+
+sm__from_gray_400 : Html.Attribute msg
+sm__from_gray_400 =
+    A.class "sm:from-gray-400"
+
+
+sm__from_gray_500 : Html.Attribute msg
+sm__from_gray_500 =
+    A.class "sm:from-gray-500"
+
+
+sm__from_gray_600 : Html.Attribute msg
+sm__from_gray_600 =
+    A.class "sm:from-gray-600"
+
+
+sm__from_gray_700 : Html.Attribute msg
+sm__from_gray_700 =
+    A.class "sm:from-gray-700"
+
+
+sm__from_gray_800 : Html.Attribute msg
+sm__from_gray_800 =
+    A.class "sm:from-gray-800"
+
+
+sm__from_gray_900 : Html.Attribute msg
+sm__from_gray_900 =
+    A.class "sm:from-gray-900"
+
+
+sm__from_red_100 : Html.Attribute msg
+sm__from_red_100 =
+    A.class "sm:from-red-100"
+
+
+sm__from_red_200 : Html.Attribute msg
+sm__from_red_200 =
+    A.class "sm:from-red-200"
+
+
+sm__from_red_300 : Html.Attribute msg
+sm__from_red_300 =
+    A.class "sm:from-red-300"
+
+
+sm__from_red_400 : Html.Attribute msg
+sm__from_red_400 =
+    A.class "sm:from-red-400"
+
+
+sm__from_red_500 : Html.Attribute msg
+sm__from_red_500 =
+    A.class "sm:from-red-500"
+
+
+sm__from_red_600 : Html.Attribute msg
+sm__from_red_600 =
+    A.class "sm:from-red-600"
+
+
+sm__from_red_700 : Html.Attribute msg
+sm__from_red_700 =
+    A.class "sm:from-red-700"
+
+
+sm__from_red_800 : Html.Attribute msg
+sm__from_red_800 =
+    A.class "sm:from-red-800"
+
+
+sm__from_red_900 : Html.Attribute msg
+sm__from_red_900 =
+    A.class "sm:from-red-900"
+
+
+sm__from_orange_100 : Html.Attribute msg
+sm__from_orange_100 =
+    A.class "sm:from-orange-100"
+
+
+sm__from_orange_200 : Html.Attribute msg
+sm__from_orange_200 =
+    A.class "sm:from-orange-200"
+
+
+sm__from_orange_300 : Html.Attribute msg
+sm__from_orange_300 =
+    A.class "sm:from-orange-300"
+
+
+sm__from_orange_400 : Html.Attribute msg
+sm__from_orange_400 =
+    A.class "sm:from-orange-400"
+
+
+sm__from_orange_500 : Html.Attribute msg
+sm__from_orange_500 =
+    A.class "sm:from-orange-500"
+
+
+sm__from_orange_600 : Html.Attribute msg
+sm__from_orange_600 =
+    A.class "sm:from-orange-600"
+
+
+sm__from_orange_700 : Html.Attribute msg
+sm__from_orange_700 =
+    A.class "sm:from-orange-700"
+
+
+sm__from_orange_800 : Html.Attribute msg
+sm__from_orange_800 =
+    A.class "sm:from-orange-800"
+
+
+sm__from_orange_900 : Html.Attribute msg
+sm__from_orange_900 =
+    A.class "sm:from-orange-900"
+
+
+sm__from_yellow_100 : Html.Attribute msg
+sm__from_yellow_100 =
+    A.class "sm:from-yellow-100"
+
+
+sm__from_yellow_200 : Html.Attribute msg
+sm__from_yellow_200 =
+    A.class "sm:from-yellow-200"
+
+
+sm__from_yellow_300 : Html.Attribute msg
+sm__from_yellow_300 =
+    A.class "sm:from-yellow-300"
+
+
+sm__from_yellow_400 : Html.Attribute msg
+sm__from_yellow_400 =
+    A.class "sm:from-yellow-400"
+
+
+sm__from_yellow_500 : Html.Attribute msg
+sm__from_yellow_500 =
+    A.class "sm:from-yellow-500"
+
+
+sm__from_yellow_600 : Html.Attribute msg
+sm__from_yellow_600 =
+    A.class "sm:from-yellow-600"
+
+
+sm__from_yellow_700 : Html.Attribute msg
+sm__from_yellow_700 =
+    A.class "sm:from-yellow-700"
+
+
+sm__from_yellow_800 : Html.Attribute msg
+sm__from_yellow_800 =
+    A.class "sm:from-yellow-800"
+
+
+sm__from_yellow_900 : Html.Attribute msg
+sm__from_yellow_900 =
+    A.class "sm:from-yellow-900"
+
+
+sm__from_green_100 : Html.Attribute msg
+sm__from_green_100 =
+    A.class "sm:from-green-100"
+
+
+sm__from_green_200 : Html.Attribute msg
+sm__from_green_200 =
+    A.class "sm:from-green-200"
+
+
+sm__from_green_300 : Html.Attribute msg
+sm__from_green_300 =
+    A.class "sm:from-green-300"
+
+
+sm__from_green_400 : Html.Attribute msg
+sm__from_green_400 =
+    A.class "sm:from-green-400"
+
+
+sm__from_green_500 : Html.Attribute msg
+sm__from_green_500 =
+    A.class "sm:from-green-500"
+
+
+sm__from_green_600 : Html.Attribute msg
+sm__from_green_600 =
+    A.class "sm:from-green-600"
+
+
+sm__from_green_700 : Html.Attribute msg
+sm__from_green_700 =
+    A.class "sm:from-green-700"
+
+
+sm__from_green_800 : Html.Attribute msg
+sm__from_green_800 =
+    A.class "sm:from-green-800"
+
+
+sm__from_green_900 : Html.Attribute msg
+sm__from_green_900 =
+    A.class "sm:from-green-900"
+
+
+sm__from_teal_100 : Html.Attribute msg
+sm__from_teal_100 =
+    A.class "sm:from-teal-100"
+
+
+sm__from_teal_200 : Html.Attribute msg
+sm__from_teal_200 =
+    A.class "sm:from-teal-200"
+
+
+sm__from_teal_300 : Html.Attribute msg
+sm__from_teal_300 =
+    A.class "sm:from-teal-300"
+
+
+sm__from_teal_400 : Html.Attribute msg
+sm__from_teal_400 =
+    A.class "sm:from-teal-400"
+
+
+sm__from_teal_500 : Html.Attribute msg
+sm__from_teal_500 =
+    A.class "sm:from-teal-500"
+
+
+sm__from_teal_600 : Html.Attribute msg
+sm__from_teal_600 =
+    A.class "sm:from-teal-600"
+
+
+sm__from_teal_700 : Html.Attribute msg
+sm__from_teal_700 =
+    A.class "sm:from-teal-700"
+
+
+sm__from_teal_800 : Html.Attribute msg
+sm__from_teal_800 =
+    A.class "sm:from-teal-800"
+
+
+sm__from_teal_900 : Html.Attribute msg
+sm__from_teal_900 =
+    A.class "sm:from-teal-900"
+
+
+sm__from_blue_100 : Html.Attribute msg
+sm__from_blue_100 =
+    A.class "sm:from-blue-100"
+
+
+sm__from_blue_200 : Html.Attribute msg
+sm__from_blue_200 =
+    A.class "sm:from-blue-200"
+
+
+sm__from_blue_300 : Html.Attribute msg
+sm__from_blue_300 =
+    A.class "sm:from-blue-300"
+
+
+sm__from_blue_400 : Html.Attribute msg
+sm__from_blue_400 =
+    A.class "sm:from-blue-400"
+
+
+sm__from_blue_500 : Html.Attribute msg
+sm__from_blue_500 =
+    A.class "sm:from-blue-500"
+
+
+sm__from_blue_600 : Html.Attribute msg
+sm__from_blue_600 =
+    A.class "sm:from-blue-600"
+
+
+sm__from_blue_700 : Html.Attribute msg
+sm__from_blue_700 =
+    A.class "sm:from-blue-700"
+
+
+sm__from_blue_800 : Html.Attribute msg
+sm__from_blue_800 =
+    A.class "sm:from-blue-800"
+
+
+sm__from_blue_900 : Html.Attribute msg
+sm__from_blue_900 =
+    A.class "sm:from-blue-900"
+
+
+sm__from_indigo_100 : Html.Attribute msg
+sm__from_indigo_100 =
+    A.class "sm:from-indigo-100"
+
+
+sm__from_indigo_200 : Html.Attribute msg
+sm__from_indigo_200 =
+    A.class "sm:from-indigo-200"
+
+
+sm__from_indigo_300 : Html.Attribute msg
+sm__from_indigo_300 =
+    A.class "sm:from-indigo-300"
+
+
+sm__from_indigo_400 : Html.Attribute msg
+sm__from_indigo_400 =
+    A.class "sm:from-indigo-400"
+
+
+sm__from_indigo_500 : Html.Attribute msg
+sm__from_indigo_500 =
+    A.class "sm:from-indigo-500"
+
+
+sm__from_indigo_600 : Html.Attribute msg
+sm__from_indigo_600 =
+    A.class "sm:from-indigo-600"
+
+
+sm__from_indigo_700 : Html.Attribute msg
+sm__from_indigo_700 =
+    A.class "sm:from-indigo-700"
+
+
+sm__from_indigo_800 : Html.Attribute msg
+sm__from_indigo_800 =
+    A.class "sm:from-indigo-800"
+
+
+sm__from_indigo_900 : Html.Attribute msg
+sm__from_indigo_900 =
+    A.class "sm:from-indigo-900"
+
+
+sm__from_purple_100 : Html.Attribute msg
+sm__from_purple_100 =
+    A.class "sm:from-purple-100"
+
+
+sm__from_purple_200 : Html.Attribute msg
+sm__from_purple_200 =
+    A.class "sm:from-purple-200"
+
+
+sm__from_purple_300 : Html.Attribute msg
+sm__from_purple_300 =
+    A.class "sm:from-purple-300"
+
+
+sm__from_purple_400 : Html.Attribute msg
+sm__from_purple_400 =
+    A.class "sm:from-purple-400"
+
+
+sm__from_purple_500 : Html.Attribute msg
+sm__from_purple_500 =
+    A.class "sm:from-purple-500"
+
+
+sm__from_purple_600 : Html.Attribute msg
+sm__from_purple_600 =
+    A.class "sm:from-purple-600"
+
+
+sm__from_purple_700 : Html.Attribute msg
+sm__from_purple_700 =
+    A.class "sm:from-purple-700"
+
+
+sm__from_purple_800 : Html.Attribute msg
+sm__from_purple_800 =
+    A.class "sm:from-purple-800"
+
+
+sm__from_purple_900 : Html.Attribute msg
+sm__from_purple_900 =
+    A.class "sm:from-purple-900"
+
+
+sm__from_pink_100 : Html.Attribute msg
+sm__from_pink_100 =
+    A.class "sm:from-pink-100"
+
+
+sm__from_pink_200 : Html.Attribute msg
+sm__from_pink_200 =
+    A.class "sm:from-pink-200"
+
+
+sm__from_pink_300 : Html.Attribute msg
+sm__from_pink_300 =
+    A.class "sm:from-pink-300"
+
+
+sm__from_pink_400 : Html.Attribute msg
+sm__from_pink_400 =
+    A.class "sm:from-pink-400"
+
+
+sm__from_pink_500 : Html.Attribute msg
+sm__from_pink_500 =
+    A.class "sm:from-pink-500"
+
+
+sm__from_pink_600 : Html.Attribute msg
+sm__from_pink_600 =
+    A.class "sm:from-pink-600"
+
+
+sm__from_pink_700 : Html.Attribute msg
+sm__from_pink_700 =
+    A.class "sm:from-pink-700"
+
+
+sm__from_pink_800 : Html.Attribute msg
+sm__from_pink_800 =
+    A.class "sm:from-pink-800"
+
+
+sm__from_pink_900 : Html.Attribute msg
+sm__from_pink_900 =
+    A.class "sm:from-pink-900"
+
+
+sm__via_transparent : Html.Attribute msg
+sm__via_transparent =
+    A.class "sm:via-transparent"
+
+
+sm__via_current : Html.Attribute msg
+sm__via_current =
+    A.class "sm:via-current"
+
+
+sm__via_black : Html.Attribute msg
+sm__via_black =
+    A.class "sm:via-black"
+
+
+sm__via_white : Html.Attribute msg
+sm__via_white =
+    A.class "sm:via-white"
+
+
+sm__via_gray_100 : Html.Attribute msg
+sm__via_gray_100 =
+    A.class "sm:via-gray-100"
+
+
+sm__via_gray_200 : Html.Attribute msg
+sm__via_gray_200 =
+    A.class "sm:via-gray-200"
+
+
+sm__via_gray_300 : Html.Attribute msg
+sm__via_gray_300 =
+    A.class "sm:via-gray-300"
+
+
+sm__via_gray_400 : Html.Attribute msg
+sm__via_gray_400 =
+    A.class "sm:via-gray-400"
+
+
+sm__via_gray_500 : Html.Attribute msg
+sm__via_gray_500 =
+    A.class "sm:via-gray-500"
+
+
+sm__via_gray_600 : Html.Attribute msg
+sm__via_gray_600 =
+    A.class "sm:via-gray-600"
+
+
+sm__via_gray_700 : Html.Attribute msg
+sm__via_gray_700 =
+    A.class "sm:via-gray-700"
+
+
+sm__via_gray_800 : Html.Attribute msg
+sm__via_gray_800 =
+    A.class "sm:via-gray-800"
+
+
+sm__via_gray_900 : Html.Attribute msg
+sm__via_gray_900 =
+    A.class "sm:via-gray-900"
+
+
+sm__via_red_100 : Html.Attribute msg
+sm__via_red_100 =
+    A.class "sm:via-red-100"
+
+
+sm__via_red_200 : Html.Attribute msg
+sm__via_red_200 =
+    A.class "sm:via-red-200"
+
+
+sm__via_red_300 : Html.Attribute msg
+sm__via_red_300 =
+    A.class "sm:via-red-300"
+
+
+sm__via_red_400 : Html.Attribute msg
+sm__via_red_400 =
+    A.class "sm:via-red-400"
+
+
+sm__via_red_500 : Html.Attribute msg
+sm__via_red_500 =
+    A.class "sm:via-red-500"
+
+
+sm__via_red_600 : Html.Attribute msg
+sm__via_red_600 =
+    A.class "sm:via-red-600"
+
+
+sm__via_red_700 : Html.Attribute msg
+sm__via_red_700 =
+    A.class "sm:via-red-700"
+
+
+sm__via_red_800 : Html.Attribute msg
+sm__via_red_800 =
+    A.class "sm:via-red-800"
+
+
+sm__via_red_900 : Html.Attribute msg
+sm__via_red_900 =
+    A.class "sm:via-red-900"
+
+
+sm__via_orange_100 : Html.Attribute msg
+sm__via_orange_100 =
+    A.class "sm:via-orange-100"
+
+
+sm__via_orange_200 : Html.Attribute msg
+sm__via_orange_200 =
+    A.class "sm:via-orange-200"
+
+
+sm__via_orange_300 : Html.Attribute msg
+sm__via_orange_300 =
+    A.class "sm:via-orange-300"
+
+
+sm__via_orange_400 : Html.Attribute msg
+sm__via_orange_400 =
+    A.class "sm:via-orange-400"
+
+
+sm__via_orange_500 : Html.Attribute msg
+sm__via_orange_500 =
+    A.class "sm:via-orange-500"
+
+
+sm__via_orange_600 : Html.Attribute msg
+sm__via_orange_600 =
+    A.class "sm:via-orange-600"
+
+
+sm__via_orange_700 : Html.Attribute msg
+sm__via_orange_700 =
+    A.class "sm:via-orange-700"
+
+
+sm__via_orange_800 : Html.Attribute msg
+sm__via_orange_800 =
+    A.class "sm:via-orange-800"
+
+
+sm__via_orange_900 : Html.Attribute msg
+sm__via_orange_900 =
+    A.class "sm:via-orange-900"
+
+
+sm__via_yellow_100 : Html.Attribute msg
+sm__via_yellow_100 =
+    A.class "sm:via-yellow-100"
+
+
+sm__via_yellow_200 : Html.Attribute msg
+sm__via_yellow_200 =
+    A.class "sm:via-yellow-200"
+
+
+sm__via_yellow_300 : Html.Attribute msg
+sm__via_yellow_300 =
+    A.class "sm:via-yellow-300"
+
+
+sm__via_yellow_400 : Html.Attribute msg
+sm__via_yellow_400 =
+    A.class "sm:via-yellow-400"
+
+
+sm__via_yellow_500 : Html.Attribute msg
+sm__via_yellow_500 =
+    A.class "sm:via-yellow-500"
+
+
+sm__via_yellow_600 : Html.Attribute msg
+sm__via_yellow_600 =
+    A.class "sm:via-yellow-600"
+
+
+sm__via_yellow_700 : Html.Attribute msg
+sm__via_yellow_700 =
+    A.class "sm:via-yellow-700"
+
+
+sm__via_yellow_800 : Html.Attribute msg
+sm__via_yellow_800 =
+    A.class "sm:via-yellow-800"
+
+
+sm__via_yellow_900 : Html.Attribute msg
+sm__via_yellow_900 =
+    A.class "sm:via-yellow-900"
+
+
+sm__via_green_100 : Html.Attribute msg
+sm__via_green_100 =
+    A.class "sm:via-green-100"
+
+
+sm__via_green_200 : Html.Attribute msg
+sm__via_green_200 =
+    A.class "sm:via-green-200"
+
+
+sm__via_green_300 : Html.Attribute msg
+sm__via_green_300 =
+    A.class "sm:via-green-300"
+
+
+sm__via_green_400 : Html.Attribute msg
+sm__via_green_400 =
+    A.class "sm:via-green-400"
+
+
+sm__via_green_500 : Html.Attribute msg
+sm__via_green_500 =
+    A.class "sm:via-green-500"
+
+
+sm__via_green_600 : Html.Attribute msg
+sm__via_green_600 =
+    A.class "sm:via-green-600"
+
+
+sm__via_green_700 : Html.Attribute msg
+sm__via_green_700 =
+    A.class "sm:via-green-700"
+
+
+sm__via_green_800 : Html.Attribute msg
+sm__via_green_800 =
+    A.class "sm:via-green-800"
+
+
+sm__via_green_900 : Html.Attribute msg
+sm__via_green_900 =
+    A.class "sm:via-green-900"
+
+
+sm__via_teal_100 : Html.Attribute msg
+sm__via_teal_100 =
+    A.class "sm:via-teal-100"
+
+
+sm__via_teal_200 : Html.Attribute msg
+sm__via_teal_200 =
+    A.class "sm:via-teal-200"
+
+
+sm__via_teal_300 : Html.Attribute msg
+sm__via_teal_300 =
+    A.class "sm:via-teal-300"
+
+
+sm__via_teal_400 : Html.Attribute msg
+sm__via_teal_400 =
+    A.class "sm:via-teal-400"
+
+
+sm__via_teal_500 : Html.Attribute msg
+sm__via_teal_500 =
+    A.class "sm:via-teal-500"
+
+
+sm__via_teal_600 : Html.Attribute msg
+sm__via_teal_600 =
+    A.class "sm:via-teal-600"
+
+
+sm__via_teal_700 : Html.Attribute msg
+sm__via_teal_700 =
+    A.class "sm:via-teal-700"
+
+
+sm__via_teal_800 : Html.Attribute msg
+sm__via_teal_800 =
+    A.class "sm:via-teal-800"
+
+
+sm__via_teal_900 : Html.Attribute msg
+sm__via_teal_900 =
+    A.class "sm:via-teal-900"
+
+
+sm__via_blue_100 : Html.Attribute msg
+sm__via_blue_100 =
+    A.class "sm:via-blue-100"
+
+
+sm__via_blue_200 : Html.Attribute msg
+sm__via_blue_200 =
+    A.class "sm:via-blue-200"
+
+
+sm__via_blue_300 : Html.Attribute msg
+sm__via_blue_300 =
+    A.class "sm:via-blue-300"
+
+
+sm__via_blue_400 : Html.Attribute msg
+sm__via_blue_400 =
+    A.class "sm:via-blue-400"
+
+
+sm__via_blue_500 : Html.Attribute msg
+sm__via_blue_500 =
+    A.class "sm:via-blue-500"
+
+
+sm__via_blue_600 : Html.Attribute msg
+sm__via_blue_600 =
+    A.class "sm:via-blue-600"
+
+
+sm__via_blue_700 : Html.Attribute msg
+sm__via_blue_700 =
+    A.class "sm:via-blue-700"
+
+
+sm__via_blue_800 : Html.Attribute msg
+sm__via_blue_800 =
+    A.class "sm:via-blue-800"
+
+
+sm__via_blue_900 : Html.Attribute msg
+sm__via_blue_900 =
+    A.class "sm:via-blue-900"
+
+
+sm__via_indigo_100 : Html.Attribute msg
+sm__via_indigo_100 =
+    A.class "sm:via-indigo-100"
+
+
+sm__via_indigo_200 : Html.Attribute msg
+sm__via_indigo_200 =
+    A.class "sm:via-indigo-200"
+
+
+sm__via_indigo_300 : Html.Attribute msg
+sm__via_indigo_300 =
+    A.class "sm:via-indigo-300"
+
+
+sm__via_indigo_400 : Html.Attribute msg
+sm__via_indigo_400 =
+    A.class "sm:via-indigo-400"
+
+
+sm__via_indigo_500 : Html.Attribute msg
+sm__via_indigo_500 =
+    A.class "sm:via-indigo-500"
+
+
+sm__via_indigo_600 : Html.Attribute msg
+sm__via_indigo_600 =
+    A.class "sm:via-indigo-600"
+
+
+sm__via_indigo_700 : Html.Attribute msg
+sm__via_indigo_700 =
+    A.class "sm:via-indigo-700"
+
+
+sm__via_indigo_800 : Html.Attribute msg
+sm__via_indigo_800 =
+    A.class "sm:via-indigo-800"
+
+
+sm__via_indigo_900 : Html.Attribute msg
+sm__via_indigo_900 =
+    A.class "sm:via-indigo-900"
+
+
+sm__via_purple_100 : Html.Attribute msg
+sm__via_purple_100 =
+    A.class "sm:via-purple-100"
+
+
+sm__via_purple_200 : Html.Attribute msg
+sm__via_purple_200 =
+    A.class "sm:via-purple-200"
+
+
+sm__via_purple_300 : Html.Attribute msg
+sm__via_purple_300 =
+    A.class "sm:via-purple-300"
+
+
+sm__via_purple_400 : Html.Attribute msg
+sm__via_purple_400 =
+    A.class "sm:via-purple-400"
+
+
+sm__via_purple_500 : Html.Attribute msg
+sm__via_purple_500 =
+    A.class "sm:via-purple-500"
+
+
+sm__via_purple_600 : Html.Attribute msg
+sm__via_purple_600 =
+    A.class "sm:via-purple-600"
+
+
+sm__via_purple_700 : Html.Attribute msg
+sm__via_purple_700 =
+    A.class "sm:via-purple-700"
+
+
+sm__via_purple_800 : Html.Attribute msg
+sm__via_purple_800 =
+    A.class "sm:via-purple-800"
+
+
+sm__via_purple_900 : Html.Attribute msg
+sm__via_purple_900 =
+    A.class "sm:via-purple-900"
+
+
+sm__via_pink_100 : Html.Attribute msg
+sm__via_pink_100 =
+    A.class "sm:via-pink-100"
+
+
+sm__via_pink_200 : Html.Attribute msg
+sm__via_pink_200 =
+    A.class "sm:via-pink-200"
+
+
+sm__via_pink_300 : Html.Attribute msg
+sm__via_pink_300 =
+    A.class "sm:via-pink-300"
+
+
+sm__via_pink_400 : Html.Attribute msg
+sm__via_pink_400 =
+    A.class "sm:via-pink-400"
+
+
+sm__via_pink_500 : Html.Attribute msg
+sm__via_pink_500 =
+    A.class "sm:via-pink-500"
+
+
+sm__via_pink_600 : Html.Attribute msg
+sm__via_pink_600 =
+    A.class "sm:via-pink-600"
+
+
+sm__via_pink_700 : Html.Attribute msg
+sm__via_pink_700 =
+    A.class "sm:via-pink-700"
+
+
+sm__via_pink_800 : Html.Attribute msg
+sm__via_pink_800 =
+    A.class "sm:via-pink-800"
+
+
+sm__via_pink_900 : Html.Attribute msg
+sm__via_pink_900 =
+    A.class "sm:via-pink-900"
+
+
+sm__to_transparent : Html.Attribute msg
+sm__to_transparent =
+    A.class "sm:to-transparent"
+
+
+sm__to_current : Html.Attribute msg
+sm__to_current =
+    A.class "sm:to-current"
+
+
+sm__to_black : Html.Attribute msg
+sm__to_black =
+    A.class "sm:to-black"
+
+
+sm__to_white : Html.Attribute msg
+sm__to_white =
+    A.class "sm:to-white"
+
+
+sm__to_gray_100 : Html.Attribute msg
+sm__to_gray_100 =
+    A.class "sm:to-gray-100"
+
+
+sm__to_gray_200 : Html.Attribute msg
+sm__to_gray_200 =
+    A.class "sm:to-gray-200"
+
+
+sm__to_gray_300 : Html.Attribute msg
+sm__to_gray_300 =
+    A.class "sm:to-gray-300"
+
+
+sm__to_gray_400 : Html.Attribute msg
+sm__to_gray_400 =
+    A.class "sm:to-gray-400"
+
+
+sm__to_gray_500 : Html.Attribute msg
+sm__to_gray_500 =
+    A.class "sm:to-gray-500"
+
+
+sm__to_gray_600 : Html.Attribute msg
+sm__to_gray_600 =
+    A.class "sm:to-gray-600"
+
+
+sm__to_gray_700 : Html.Attribute msg
+sm__to_gray_700 =
+    A.class "sm:to-gray-700"
+
+
+sm__to_gray_800 : Html.Attribute msg
+sm__to_gray_800 =
+    A.class "sm:to-gray-800"
+
+
+sm__to_gray_900 : Html.Attribute msg
+sm__to_gray_900 =
+    A.class "sm:to-gray-900"
+
+
+sm__to_red_100 : Html.Attribute msg
+sm__to_red_100 =
+    A.class "sm:to-red-100"
+
+
+sm__to_red_200 : Html.Attribute msg
+sm__to_red_200 =
+    A.class "sm:to-red-200"
+
+
+sm__to_red_300 : Html.Attribute msg
+sm__to_red_300 =
+    A.class "sm:to-red-300"
+
+
+sm__to_red_400 : Html.Attribute msg
+sm__to_red_400 =
+    A.class "sm:to-red-400"
+
+
+sm__to_red_500 : Html.Attribute msg
+sm__to_red_500 =
+    A.class "sm:to-red-500"
+
+
+sm__to_red_600 : Html.Attribute msg
+sm__to_red_600 =
+    A.class "sm:to-red-600"
+
+
+sm__to_red_700 : Html.Attribute msg
+sm__to_red_700 =
+    A.class "sm:to-red-700"
+
+
+sm__to_red_800 : Html.Attribute msg
+sm__to_red_800 =
+    A.class "sm:to-red-800"
+
+
+sm__to_red_900 : Html.Attribute msg
+sm__to_red_900 =
+    A.class "sm:to-red-900"
+
+
+sm__to_orange_100 : Html.Attribute msg
+sm__to_orange_100 =
+    A.class "sm:to-orange-100"
+
+
+sm__to_orange_200 : Html.Attribute msg
+sm__to_orange_200 =
+    A.class "sm:to-orange-200"
+
+
+sm__to_orange_300 : Html.Attribute msg
+sm__to_orange_300 =
+    A.class "sm:to-orange-300"
+
+
+sm__to_orange_400 : Html.Attribute msg
+sm__to_orange_400 =
+    A.class "sm:to-orange-400"
+
+
+sm__to_orange_500 : Html.Attribute msg
+sm__to_orange_500 =
+    A.class "sm:to-orange-500"
+
+
+sm__to_orange_600 : Html.Attribute msg
+sm__to_orange_600 =
+    A.class "sm:to-orange-600"
+
+
+sm__to_orange_700 : Html.Attribute msg
+sm__to_orange_700 =
+    A.class "sm:to-orange-700"
+
+
+sm__to_orange_800 : Html.Attribute msg
+sm__to_orange_800 =
+    A.class "sm:to-orange-800"
+
+
+sm__to_orange_900 : Html.Attribute msg
+sm__to_orange_900 =
+    A.class "sm:to-orange-900"
+
+
+sm__to_yellow_100 : Html.Attribute msg
+sm__to_yellow_100 =
+    A.class "sm:to-yellow-100"
+
+
+sm__to_yellow_200 : Html.Attribute msg
+sm__to_yellow_200 =
+    A.class "sm:to-yellow-200"
+
+
+sm__to_yellow_300 : Html.Attribute msg
+sm__to_yellow_300 =
+    A.class "sm:to-yellow-300"
+
+
+sm__to_yellow_400 : Html.Attribute msg
+sm__to_yellow_400 =
+    A.class "sm:to-yellow-400"
+
+
+sm__to_yellow_500 : Html.Attribute msg
+sm__to_yellow_500 =
+    A.class "sm:to-yellow-500"
+
+
+sm__to_yellow_600 : Html.Attribute msg
+sm__to_yellow_600 =
+    A.class "sm:to-yellow-600"
+
+
+sm__to_yellow_700 : Html.Attribute msg
+sm__to_yellow_700 =
+    A.class "sm:to-yellow-700"
+
+
+sm__to_yellow_800 : Html.Attribute msg
+sm__to_yellow_800 =
+    A.class "sm:to-yellow-800"
+
+
+sm__to_yellow_900 : Html.Attribute msg
+sm__to_yellow_900 =
+    A.class "sm:to-yellow-900"
+
+
+sm__to_green_100 : Html.Attribute msg
+sm__to_green_100 =
+    A.class "sm:to-green-100"
+
+
+sm__to_green_200 : Html.Attribute msg
+sm__to_green_200 =
+    A.class "sm:to-green-200"
+
+
+sm__to_green_300 : Html.Attribute msg
+sm__to_green_300 =
+    A.class "sm:to-green-300"
+
+
+sm__to_green_400 : Html.Attribute msg
+sm__to_green_400 =
+    A.class "sm:to-green-400"
+
+
+sm__to_green_500 : Html.Attribute msg
+sm__to_green_500 =
+    A.class "sm:to-green-500"
+
+
+sm__to_green_600 : Html.Attribute msg
+sm__to_green_600 =
+    A.class "sm:to-green-600"
+
+
+sm__to_green_700 : Html.Attribute msg
+sm__to_green_700 =
+    A.class "sm:to-green-700"
+
+
+sm__to_green_800 : Html.Attribute msg
+sm__to_green_800 =
+    A.class "sm:to-green-800"
+
+
+sm__to_green_900 : Html.Attribute msg
+sm__to_green_900 =
+    A.class "sm:to-green-900"
+
+
+sm__to_teal_100 : Html.Attribute msg
+sm__to_teal_100 =
+    A.class "sm:to-teal-100"
+
+
+sm__to_teal_200 : Html.Attribute msg
+sm__to_teal_200 =
+    A.class "sm:to-teal-200"
+
+
+sm__to_teal_300 : Html.Attribute msg
+sm__to_teal_300 =
+    A.class "sm:to-teal-300"
+
+
+sm__to_teal_400 : Html.Attribute msg
+sm__to_teal_400 =
+    A.class "sm:to-teal-400"
+
+
+sm__to_teal_500 : Html.Attribute msg
+sm__to_teal_500 =
+    A.class "sm:to-teal-500"
+
+
+sm__to_teal_600 : Html.Attribute msg
+sm__to_teal_600 =
+    A.class "sm:to-teal-600"
+
+
+sm__to_teal_700 : Html.Attribute msg
+sm__to_teal_700 =
+    A.class "sm:to-teal-700"
+
+
+sm__to_teal_800 : Html.Attribute msg
+sm__to_teal_800 =
+    A.class "sm:to-teal-800"
+
+
+sm__to_teal_900 : Html.Attribute msg
+sm__to_teal_900 =
+    A.class "sm:to-teal-900"
+
+
+sm__to_blue_100 : Html.Attribute msg
+sm__to_blue_100 =
+    A.class "sm:to-blue-100"
+
+
+sm__to_blue_200 : Html.Attribute msg
+sm__to_blue_200 =
+    A.class "sm:to-blue-200"
+
+
+sm__to_blue_300 : Html.Attribute msg
+sm__to_blue_300 =
+    A.class "sm:to-blue-300"
+
+
+sm__to_blue_400 : Html.Attribute msg
+sm__to_blue_400 =
+    A.class "sm:to-blue-400"
+
+
+sm__to_blue_500 : Html.Attribute msg
+sm__to_blue_500 =
+    A.class "sm:to-blue-500"
+
+
+sm__to_blue_600 : Html.Attribute msg
+sm__to_blue_600 =
+    A.class "sm:to-blue-600"
+
+
+sm__to_blue_700 : Html.Attribute msg
+sm__to_blue_700 =
+    A.class "sm:to-blue-700"
+
+
+sm__to_blue_800 : Html.Attribute msg
+sm__to_blue_800 =
+    A.class "sm:to-blue-800"
+
+
+sm__to_blue_900 : Html.Attribute msg
+sm__to_blue_900 =
+    A.class "sm:to-blue-900"
+
+
+sm__to_indigo_100 : Html.Attribute msg
+sm__to_indigo_100 =
+    A.class "sm:to-indigo-100"
+
+
+sm__to_indigo_200 : Html.Attribute msg
+sm__to_indigo_200 =
+    A.class "sm:to-indigo-200"
+
+
+sm__to_indigo_300 : Html.Attribute msg
+sm__to_indigo_300 =
+    A.class "sm:to-indigo-300"
+
+
+sm__to_indigo_400 : Html.Attribute msg
+sm__to_indigo_400 =
+    A.class "sm:to-indigo-400"
+
+
+sm__to_indigo_500 : Html.Attribute msg
+sm__to_indigo_500 =
+    A.class "sm:to-indigo-500"
+
+
+sm__to_indigo_600 : Html.Attribute msg
+sm__to_indigo_600 =
+    A.class "sm:to-indigo-600"
+
+
+sm__to_indigo_700 : Html.Attribute msg
+sm__to_indigo_700 =
+    A.class "sm:to-indigo-700"
+
+
+sm__to_indigo_800 : Html.Attribute msg
+sm__to_indigo_800 =
+    A.class "sm:to-indigo-800"
+
+
+sm__to_indigo_900 : Html.Attribute msg
+sm__to_indigo_900 =
+    A.class "sm:to-indigo-900"
+
+
+sm__to_purple_100 : Html.Attribute msg
+sm__to_purple_100 =
+    A.class "sm:to-purple-100"
+
+
+sm__to_purple_200 : Html.Attribute msg
+sm__to_purple_200 =
+    A.class "sm:to-purple-200"
+
+
+sm__to_purple_300 : Html.Attribute msg
+sm__to_purple_300 =
+    A.class "sm:to-purple-300"
+
+
+sm__to_purple_400 : Html.Attribute msg
+sm__to_purple_400 =
+    A.class "sm:to-purple-400"
+
+
+sm__to_purple_500 : Html.Attribute msg
+sm__to_purple_500 =
+    A.class "sm:to-purple-500"
+
+
+sm__to_purple_600 : Html.Attribute msg
+sm__to_purple_600 =
+    A.class "sm:to-purple-600"
+
+
+sm__to_purple_700 : Html.Attribute msg
+sm__to_purple_700 =
+    A.class "sm:to-purple-700"
+
+
+sm__to_purple_800 : Html.Attribute msg
+sm__to_purple_800 =
+    A.class "sm:to-purple-800"
+
+
+sm__to_purple_900 : Html.Attribute msg
+sm__to_purple_900 =
+    A.class "sm:to-purple-900"
+
+
+sm__to_pink_100 : Html.Attribute msg
+sm__to_pink_100 =
+    A.class "sm:to-pink-100"
+
+
+sm__to_pink_200 : Html.Attribute msg
+sm__to_pink_200 =
+    A.class "sm:to-pink-200"
+
+
+sm__to_pink_300 : Html.Attribute msg
+sm__to_pink_300 =
+    A.class "sm:to-pink-300"
+
+
+sm__to_pink_400 : Html.Attribute msg
+sm__to_pink_400 =
+    A.class "sm:to-pink-400"
+
+
+sm__to_pink_500 : Html.Attribute msg
+sm__to_pink_500 =
+    A.class "sm:to-pink-500"
+
+
+sm__to_pink_600 : Html.Attribute msg
+sm__to_pink_600 =
+    A.class "sm:to-pink-600"
+
+
+sm__to_pink_700 : Html.Attribute msg
+sm__to_pink_700 =
+    A.class "sm:to-pink-700"
+
+
+sm__to_pink_800 : Html.Attribute msg
+sm__to_pink_800 =
+    A.class "sm:to-pink-800"
+
+
+sm__to_pink_900 : Html.Attribute msg
+sm__to_pink_900 =
+    A.class "sm:to-pink-900"
+
+
+sm__hover__from_transparent : Html.Attribute msg
+sm__hover__from_transparent =
+    A.class "sm:hover:from-transparent"
+
+
+sm__hover__from_current : Html.Attribute msg
+sm__hover__from_current =
+    A.class "sm:hover:from-current"
+
+
+sm__hover__from_black : Html.Attribute msg
+sm__hover__from_black =
+    A.class "sm:hover:from-black"
+
+
+sm__hover__from_white : Html.Attribute msg
+sm__hover__from_white =
+    A.class "sm:hover:from-white"
+
+
+sm__hover__from_gray_100 : Html.Attribute msg
+sm__hover__from_gray_100 =
+    A.class "sm:hover:from-gray-100"
+
+
+sm__hover__from_gray_200 : Html.Attribute msg
+sm__hover__from_gray_200 =
+    A.class "sm:hover:from-gray-200"
+
+
+sm__hover__from_gray_300 : Html.Attribute msg
+sm__hover__from_gray_300 =
+    A.class "sm:hover:from-gray-300"
+
+
+sm__hover__from_gray_400 : Html.Attribute msg
+sm__hover__from_gray_400 =
+    A.class "sm:hover:from-gray-400"
+
+
+sm__hover__from_gray_500 : Html.Attribute msg
+sm__hover__from_gray_500 =
+    A.class "sm:hover:from-gray-500"
+
+
+sm__hover__from_gray_600 : Html.Attribute msg
+sm__hover__from_gray_600 =
+    A.class "sm:hover:from-gray-600"
+
+
+sm__hover__from_gray_700 : Html.Attribute msg
+sm__hover__from_gray_700 =
+    A.class "sm:hover:from-gray-700"
+
+
+sm__hover__from_gray_800 : Html.Attribute msg
+sm__hover__from_gray_800 =
+    A.class "sm:hover:from-gray-800"
+
+
+sm__hover__from_gray_900 : Html.Attribute msg
+sm__hover__from_gray_900 =
+    A.class "sm:hover:from-gray-900"
+
+
+sm__hover__from_red_100 : Html.Attribute msg
+sm__hover__from_red_100 =
+    A.class "sm:hover:from-red-100"
+
+
+sm__hover__from_red_200 : Html.Attribute msg
+sm__hover__from_red_200 =
+    A.class "sm:hover:from-red-200"
+
+
+sm__hover__from_red_300 : Html.Attribute msg
+sm__hover__from_red_300 =
+    A.class "sm:hover:from-red-300"
+
+
+sm__hover__from_red_400 : Html.Attribute msg
+sm__hover__from_red_400 =
+    A.class "sm:hover:from-red-400"
+
+
+sm__hover__from_red_500 : Html.Attribute msg
+sm__hover__from_red_500 =
+    A.class "sm:hover:from-red-500"
+
+
+sm__hover__from_red_600 : Html.Attribute msg
+sm__hover__from_red_600 =
+    A.class "sm:hover:from-red-600"
+
+
+sm__hover__from_red_700 : Html.Attribute msg
+sm__hover__from_red_700 =
+    A.class "sm:hover:from-red-700"
+
+
+sm__hover__from_red_800 : Html.Attribute msg
+sm__hover__from_red_800 =
+    A.class "sm:hover:from-red-800"
+
+
+sm__hover__from_red_900 : Html.Attribute msg
+sm__hover__from_red_900 =
+    A.class "sm:hover:from-red-900"
+
+
+sm__hover__from_orange_100 : Html.Attribute msg
+sm__hover__from_orange_100 =
+    A.class "sm:hover:from-orange-100"
+
+
+sm__hover__from_orange_200 : Html.Attribute msg
+sm__hover__from_orange_200 =
+    A.class "sm:hover:from-orange-200"
+
+
+sm__hover__from_orange_300 : Html.Attribute msg
+sm__hover__from_orange_300 =
+    A.class "sm:hover:from-orange-300"
+
+
+sm__hover__from_orange_400 : Html.Attribute msg
+sm__hover__from_orange_400 =
+    A.class "sm:hover:from-orange-400"
+
+
+sm__hover__from_orange_500 : Html.Attribute msg
+sm__hover__from_orange_500 =
+    A.class "sm:hover:from-orange-500"
+
+
+sm__hover__from_orange_600 : Html.Attribute msg
+sm__hover__from_orange_600 =
+    A.class "sm:hover:from-orange-600"
+
+
+sm__hover__from_orange_700 : Html.Attribute msg
+sm__hover__from_orange_700 =
+    A.class "sm:hover:from-orange-700"
+
+
+sm__hover__from_orange_800 : Html.Attribute msg
+sm__hover__from_orange_800 =
+    A.class "sm:hover:from-orange-800"
+
+
+sm__hover__from_orange_900 : Html.Attribute msg
+sm__hover__from_orange_900 =
+    A.class "sm:hover:from-orange-900"
+
+
+sm__hover__from_yellow_100 : Html.Attribute msg
+sm__hover__from_yellow_100 =
+    A.class "sm:hover:from-yellow-100"
+
+
+sm__hover__from_yellow_200 : Html.Attribute msg
+sm__hover__from_yellow_200 =
+    A.class "sm:hover:from-yellow-200"
+
+
+sm__hover__from_yellow_300 : Html.Attribute msg
+sm__hover__from_yellow_300 =
+    A.class "sm:hover:from-yellow-300"
+
+
+sm__hover__from_yellow_400 : Html.Attribute msg
+sm__hover__from_yellow_400 =
+    A.class "sm:hover:from-yellow-400"
+
+
+sm__hover__from_yellow_500 : Html.Attribute msg
+sm__hover__from_yellow_500 =
+    A.class "sm:hover:from-yellow-500"
+
+
+sm__hover__from_yellow_600 : Html.Attribute msg
+sm__hover__from_yellow_600 =
+    A.class "sm:hover:from-yellow-600"
+
+
+sm__hover__from_yellow_700 : Html.Attribute msg
+sm__hover__from_yellow_700 =
+    A.class "sm:hover:from-yellow-700"
+
+
+sm__hover__from_yellow_800 : Html.Attribute msg
+sm__hover__from_yellow_800 =
+    A.class "sm:hover:from-yellow-800"
+
+
+sm__hover__from_yellow_900 : Html.Attribute msg
+sm__hover__from_yellow_900 =
+    A.class "sm:hover:from-yellow-900"
+
+
+sm__hover__from_green_100 : Html.Attribute msg
+sm__hover__from_green_100 =
+    A.class "sm:hover:from-green-100"
+
+
+sm__hover__from_green_200 : Html.Attribute msg
+sm__hover__from_green_200 =
+    A.class "sm:hover:from-green-200"
+
+
+sm__hover__from_green_300 : Html.Attribute msg
+sm__hover__from_green_300 =
+    A.class "sm:hover:from-green-300"
+
+
+sm__hover__from_green_400 : Html.Attribute msg
+sm__hover__from_green_400 =
+    A.class "sm:hover:from-green-400"
+
+
+sm__hover__from_green_500 : Html.Attribute msg
+sm__hover__from_green_500 =
+    A.class "sm:hover:from-green-500"
+
+
+sm__hover__from_green_600 : Html.Attribute msg
+sm__hover__from_green_600 =
+    A.class "sm:hover:from-green-600"
+
+
+sm__hover__from_green_700 : Html.Attribute msg
+sm__hover__from_green_700 =
+    A.class "sm:hover:from-green-700"
+
+
+sm__hover__from_green_800 : Html.Attribute msg
+sm__hover__from_green_800 =
+    A.class "sm:hover:from-green-800"
+
+
+sm__hover__from_green_900 : Html.Attribute msg
+sm__hover__from_green_900 =
+    A.class "sm:hover:from-green-900"
+
+
+sm__hover__from_teal_100 : Html.Attribute msg
+sm__hover__from_teal_100 =
+    A.class "sm:hover:from-teal-100"
+
+
+sm__hover__from_teal_200 : Html.Attribute msg
+sm__hover__from_teal_200 =
+    A.class "sm:hover:from-teal-200"
+
+
+sm__hover__from_teal_300 : Html.Attribute msg
+sm__hover__from_teal_300 =
+    A.class "sm:hover:from-teal-300"
+
+
+sm__hover__from_teal_400 : Html.Attribute msg
+sm__hover__from_teal_400 =
+    A.class "sm:hover:from-teal-400"
+
+
+sm__hover__from_teal_500 : Html.Attribute msg
+sm__hover__from_teal_500 =
+    A.class "sm:hover:from-teal-500"
+
+
+sm__hover__from_teal_600 : Html.Attribute msg
+sm__hover__from_teal_600 =
+    A.class "sm:hover:from-teal-600"
+
+
+sm__hover__from_teal_700 : Html.Attribute msg
+sm__hover__from_teal_700 =
+    A.class "sm:hover:from-teal-700"
+
+
+sm__hover__from_teal_800 : Html.Attribute msg
+sm__hover__from_teal_800 =
+    A.class "sm:hover:from-teal-800"
+
+
+sm__hover__from_teal_900 : Html.Attribute msg
+sm__hover__from_teal_900 =
+    A.class "sm:hover:from-teal-900"
+
+
+sm__hover__from_blue_100 : Html.Attribute msg
+sm__hover__from_blue_100 =
+    A.class "sm:hover:from-blue-100"
+
+
+sm__hover__from_blue_200 : Html.Attribute msg
+sm__hover__from_blue_200 =
+    A.class "sm:hover:from-blue-200"
+
+
+sm__hover__from_blue_300 : Html.Attribute msg
+sm__hover__from_blue_300 =
+    A.class "sm:hover:from-blue-300"
+
+
+sm__hover__from_blue_400 : Html.Attribute msg
+sm__hover__from_blue_400 =
+    A.class "sm:hover:from-blue-400"
+
+
+sm__hover__from_blue_500 : Html.Attribute msg
+sm__hover__from_blue_500 =
+    A.class "sm:hover:from-blue-500"
+
+
+sm__hover__from_blue_600 : Html.Attribute msg
+sm__hover__from_blue_600 =
+    A.class "sm:hover:from-blue-600"
+
+
+sm__hover__from_blue_700 : Html.Attribute msg
+sm__hover__from_blue_700 =
+    A.class "sm:hover:from-blue-700"
+
+
+sm__hover__from_blue_800 : Html.Attribute msg
+sm__hover__from_blue_800 =
+    A.class "sm:hover:from-blue-800"
+
+
+sm__hover__from_blue_900 : Html.Attribute msg
+sm__hover__from_blue_900 =
+    A.class "sm:hover:from-blue-900"
+
+
+sm__hover__from_indigo_100 : Html.Attribute msg
+sm__hover__from_indigo_100 =
+    A.class "sm:hover:from-indigo-100"
+
+
+sm__hover__from_indigo_200 : Html.Attribute msg
+sm__hover__from_indigo_200 =
+    A.class "sm:hover:from-indigo-200"
+
+
+sm__hover__from_indigo_300 : Html.Attribute msg
+sm__hover__from_indigo_300 =
+    A.class "sm:hover:from-indigo-300"
+
+
+sm__hover__from_indigo_400 : Html.Attribute msg
+sm__hover__from_indigo_400 =
+    A.class "sm:hover:from-indigo-400"
+
+
+sm__hover__from_indigo_500 : Html.Attribute msg
+sm__hover__from_indigo_500 =
+    A.class "sm:hover:from-indigo-500"
+
+
+sm__hover__from_indigo_600 : Html.Attribute msg
+sm__hover__from_indigo_600 =
+    A.class "sm:hover:from-indigo-600"
+
+
+sm__hover__from_indigo_700 : Html.Attribute msg
+sm__hover__from_indigo_700 =
+    A.class "sm:hover:from-indigo-700"
+
+
+sm__hover__from_indigo_800 : Html.Attribute msg
+sm__hover__from_indigo_800 =
+    A.class "sm:hover:from-indigo-800"
+
+
+sm__hover__from_indigo_900 : Html.Attribute msg
+sm__hover__from_indigo_900 =
+    A.class "sm:hover:from-indigo-900"
+
+
+sm__hover__from_purple_100 : Html.Attribute msg
+sm__hover__from_purple_100 =
+    A.class "sm:hover:from-purple-100"
+
+
+sm__hover__from_purple_200 : Html.Attribute msg
+sm__hover__from_purple_200 =
+    A.class "sm:hover:from-purple-200"
+
+
+sm__hover__from_purple_300 : Html.Attribute msg
+sm__hover__from_purple_300 =
+    A.class "sm:hover:from-purple-300"
+
+
+sm__hover__from_purple_400 : Html.Attribute msg
+sm__hover__from_purple_400 =
+    A.class "sm:hover:from-purple-400"
+
+
+sm__hover__from_purple_500 : Html.Attribute msg
+sm__hover__from_purple_500 =
+    A.class "sm:hover:from-purple-500"
+
+
+sm__hover__from_purple_600 : Html.Attribute msg
+sm__hover__from_purple_600 =
+    A.class "sm:hover:from-purple-600"
+
+
+sm__hover__from_purple_700 : Html.Attribute msg
+sm__hover__from_purple_700 =
+    A.class "sm:hover:from-purple-700"
+
+
+sm__hover__from_purple_800 : Html.Attribute msg
+sm__hover__from_purple_800 =
+    A.class "sm:hover:from-purple-800"
+
+
+sm__hover__from_purple_900 : Html.Attribute msg
+sm__hover__from_purple_900 =
+    A.class "sm:hover:from-purple-900"
+
+
+sm__hover__from_pink_100 : Html.Attribute msg
+sm__hover__from_pink_100 =
+    A.class "sm:hover:from-pink-100"
+
+
+sm__hover__from_pink_200 : Html.Attribute msg
+sm__hover__from_pink_200 =
+    A.class "sm:hover:from-pink-200"
+
+
+sm__hover__from_pink_300 : Html.Attribute msg
+sm__hover__from_pink_300 =
+    A.class "sm:hover:from-pink-300"
+
+
+sm__hover__from_pink_400 : Html.Attribute msg
+sm__hover__from_pink_400 =
+    A.class "sm:hover:from-pink-400"
+
+
+sm__hover__from_pink_500 : Html.Attribute msg
+sm__hover__from_pink_500 =
+    A.class "sm:hover:from-pink-500"
+
+
+sm__hover__from_pink_600 : Html.Attribute msg
+sm__hover__from_pink_600 =
+    A.class "sm:hover:from-pink-600"
+
+
+sm__hover__from_pink_700 : Html.Attribute msg
+sm__hover__from_pink_700 =
+    A.class "sm:hover:from-pink-700"
+
+
+sm__hover__from_pink_800 : Html.Attribute msg
+sm__hover__from_pink_800 =
+    A.class "sm:hover:from-pink-800"
+
+
+sm__hover__from_pink_900 : Html.Attribute msg
+sm__hover__from_pink_900 =
+    A.class "sm:hover:from-pink-900"
+
+
+sm__hover__via_transparent : Html.Attribute msg
+sm__hover__via_transparent =
+    A.class "sm:hover:via-transparent"
+
+
+sm__hover__via_current : Html.Attribute msg
+sm__hover__via_current =
+    A.class "sm:hover:via-current"
+
+
+sm__hover__via_black : Html.Attribute msg
+sm__hover__via_black =
+    A.class "sm:hover:via-black"
+
+
+sm__hover__via_white : Html.Attribute msg
+sm__hover__via_white =
+    A.class "sm:hover:via-white"
+
+
+sm__hover__via_gray_100 : Html.Attribute msg
+sm__hover__via_gray_100 =
+    A.class "sm:hover:via-gray-100"
+
+
+sm__hover__via_gray_200 : Html.Attribute msg
+sm__hover__via_gray_200 =
+    A.class "sm:hover:via-gray-200"
+
+
+sm__hover__via_gray_300 : Html.Attribute msg
+sm__hover__via_gray_300 =
+    A.class "sm:hover:via-gray-300"
+
+
+sm__hover__via_gray_400 : Html.Attribute msg
+sm__hover__via_gray_400 =
+    A.class "sm:hover:via-gray-400"
+
+
+sm__hover__via_gray_500 : Html.Attribute msg
+sm__hover__via_gray_500 =
+    A.class "sm:hover:via-gray-500"
+
+
+sm__hover__via_gray_600 : Html.Attribute msg
+sm__hover__via_gray_600 =
+    A.class "sm:hover:via-gray-600"
+
+
+sm__hover__via_gray_700 : Html.Attribute msg
+sm__hover__via_gray_700 =
+    A.class "sm:hover:via-gray-700"
+
+
+sm__hover__via_gray_800 : Html.Attribute msg
+sm__hover__via_gray_800 =
+    A.class "sm:hover:via-gray-800"
+
+
+sm__hover__via_gray_900 : Html.Attribute msg
+sm__hover__via_gray_900 =
+    A.class "sm:hover:via-gray-900"
+
+
+sm__hover__via_red_100 : Html.Attribute msg
+sm__hover__via_red_100 =
+    A.class "sm:hover:via-red-100"
+
+
+sm__hover__via_red_200 : Html.Attribute msg
+sm__hover__via_red_200 =
+    A.class "sm:hover:via-red-200"
+
+
+sm__hover__via_red_300 : Html.Attribute msg
+sm__hover__via_red_300 =
+    A.class "sm:hover:via-red-300"
+
+
+sm__hover__via_red_400 : Html.Attribute msg
+sm__hover__via_red_400 =
+    A.class "sm:hover:via-red-400"
+
+
+sm__hover__via_red_500 : Html.Attribute msg
+sm__hover__via_red_500 =
+    A.class "sm:hover:via-red-500"
+
+
+sm__hover__via_red_600 : Html.Attribute msg
+sm__hover__via_red_600 =
+    A.class "sm:hover:via-red-600"
+
+
+sm__hover__via_red_700 : Html.Attribute msg
+sm__hover__via_red_700 =
+    A.class "sm:hover:via-red-700"
+
+
+sm__hover__via_red_800 : Html.Attribute msg
+sm__hover__via_red_800 =
+    A.class "sm:hover:via-red-800"
+
+
+sm__hover__via_red_900 : Html.Attribute msg
+sm__hover__via_red_900 =
+    A.class "sm:hover:via-red-900"
+
+
+sm__hover__via_orange_100 : Html.Attribute msg
+sm__hover__via_orange_100 =
+    A.class "sm:hover:via-orange-100"
+
+
+sm__hover__via_orange_200 : Html.Attribute msg
+sm__hover__via_orange_200 =
+    A.class "sm:hover:via-orange-200"
+
+
+sm__hover__via_orange_300 : Html.Attribute msg
+sm__hover__via_orange_300 =
+    A.class "sm:hover:via-orange-300"
+
+
+sm__hover__via_orange_400 : Html.Attribute msg
+sm__hover__via_orange_400 =
+    A.class "sm:hover:via-orange-400"
+
+
+sm__hover__via_orange_500 : Html.Attribute msg
+sm__hover__via_orange_500 =
+    A.class "sm:hover:via-orange-500"
+
+
+sm__hover__via_orange_600 : Html.Attribute msg
+sm__hover__via_orange_600 =
+    A.class "sm:hover:via-orange-600"
+
+
+sm__hover__via_orange_700 : Html.Attribute msg
+sm__hover__via_orange_700 =
+    A.class "sm:hover:via-orange-700"
+
+
+sm__hover__via_orange_800 : Html.Attribute msg
+sm__hover__via_orange_800 =
+    A.class "sm:hover:via-orange-800"
+
+
+sm__hover__via_orange_900 : Html.Attribute msg
+sm__hover__via_orange_900 =
+    A.class "sm:hover:via-orange-900"
+
+
+sm__hover__via_yellow_100 : Html.Attribute msg
+sm__hover__via_yellow_100 =
+    A.class "sm:hover:via-yellow-100"
+
+
+sm__hover__via_yellow_200 : Html.Attribute msg
+sm__hover__via_yellow_200 =
+    A.class "sm:hover:via-yellow-200"
+
+
+sm__hover__via_yellow_300 : Html.Attribute msg
+sm__hover__via_yellow_300 =
+    A.class "sm:hover:via-yellow-300"
+
+
+sm__hover__via_yellow_400 : Html.Attribute msg
+sm__hover__via_yellow_400 =
+    A.class "sm:hover:via-yellow-400"
+
+
+sm__hover__via_yellow_500 : Html.Attribute msg
+sm__hover__via_yellow_500 =
+    A.class "sm:hover:via-yellow-500"
+
+
+sm__hover__via_yellow_600 : Html.Attribute msg
+sm__hover__via_yellow_600 =
+    A.class "sm:hover:via-yellow-600"
+
+
+sm__hover__via_yellow_700 : Html.Attribute msg
+sm__hover__via_yellow_700 =
+    A.class "sm:hover:via-yellow-700"
+
+
+sm__hover__via_yellow_800 : Html.Attribute msg
+sm__hover__via_yellow_800 =
+    A.class "sm:hover:via-yellow-800"
+
+
+sm__hover__via_yellow_900 : Html.Attribute msg
+sm__hover__via_yellow_900 =
+    A.class "sm:hover:via-yellow-900"
+
+
+sm__hover__via_green_100 : Html.Attribute msg
+sm__hover__via_green_100 =
+    A.class "sm:hover:via-green-100"
+
+
+sm__hover__via_green_200 : Html.Attribute msg
+sm__hover__via_green_200 =
+    A.class "sm:hover:via-green-200"
+
+
+sm__hover__via_green_300 : Html.Attribute msg
+sm__hover__via_green_300 =
+    A.class "sm:hover:via-green-300"
+
+
+sm__hover__via_green_400 : Html.Attribute msg
+sm__hover__via_green_400 =
+    A.class "sm:hover:via-green-400"
+
+
+sm__hover__via_green_500 : Html.Attribute msg
+sm__hover__via_green_500 =
+    A.class "sm:hover:via-green-500"
+
+
+sm__hover__via_green_600 : Html.Attribute msg
+sm__hover__via_green_600 =
+    A.class "sm:hover:via-green-600"
+
+
+sm__hover__via_green_700 : Html.Attribute msg
+sm__hover__via_green_700 =
+    A.class "sm:hover:via-green-700"
+
+
+sm__hover__via_green_800 : Html.Attribute msg
+sm__hover__via_green_800 =
+    A.class "sm:hover:via-green-800"
+
+
+sm__hover__via_green_900 : Html.Attribute msg
+sm__hover__via_green_900 =
+    A.class "sm:hover:via-green-900"
+
+
+sm__hover__via_teal_100 : Html.Attribute msg
+sm__hover__via_teal_100 =
+    A.class "sm:hover:via-teal-100"
+
+
+sm__hover__via_teal_200 : Html.Attribute msg
+sm__hover__via_teal_200 =
+    A.class "sm:hover:via-teal-200"
+
+
+sm__hover__via_teal_300 : Html.Attribute msg
+sm__hover__via_teal_300 =
+    A.class "sm:hover:via-teal-300"
+
+
+sm__hover__via_teal_400 : Html.Attribute msg
+sm__hover__via_teal_400 =
+    A.class "sm:hover:via-teal-400"
+
+
+sm__hover__via_teal_500 : Html.Attribute msg
+sm__hover__via_teal_500 =
+    A.class "sm:hover:via-teal-500"
+
+
+sm__hover__via_teal_600 : Html.Attribute msg
+sm__hover__via_teal_600 =
+    A.class "sm:hover:via-teal-600"
+
+
+sm__hover__via_teal_700 : Html.Attribute msg
+sm__hover__via_teal_700 =
+    A.class "sm:hover:via-teal-700"
+
+
+sm__hover__via_teal_800 : Html.Attribute msg
+sm__hover__via_teal_800 =
+    A.class "sm:hover:via-teal-800"
+
+
+sm__hover__via_teal_900 : Html.Attribute msg
+sm__hover__via_teal_900 =
+    A.class "sm:hover:via-teal-900"
+
+
+sm__hover__via_blue_100 : Html.Attribute msg
+sm__hover__via_blue_100 =
+    A.class "sm:hover:via-blue-100"
+
+
+sm__hover__via_blue_200 : Html.Attribute msg
+sm__hover__via_blue_200 =
+    A.class "sm:hover:via-blue-200"
+
+
+sm__hover__via_blue_300 : Html.Attribute msg
+sm__hover__via_blue_300 =
+    A.class "sm:hover:via-blue-300"
+
+
+sm__hover__via_blue_400 : Html.Attribute msg
+sm__hover__via_blue_400 =
+    A.class "sm:hover:via-blue-400"
+
+
+sm__hover__via_blue_500 : Html.Attribute msg
+sm__hover__via_blue_500 =
+    A.class "sm:hover:via-blue-500"
+
+
+sm__hover__via_blue_600 : Html.Attribute msg
+sm__hover__via_blue_600 =
+    A.class "sm:hover:via-blue-600"
+
+
+sm__hover__via_blue_700 : Html.Attribute msg
+sm__hover__via_blue_700 =
+    A.class "sm:hover:via-blue-700"
+
+
+sm__hover__via_blue_800 : Html.Attribute msg
+sm__hover__via_blue_800 =
+    A.class "sm:hover:via-blue-800"
+
+
+sm__hover__via_blue_900 : Html.Attribute msg
+sm__hover__via_blue_900 =
+    A.class "sm:hover:via-blue-900"
+
+
+sm__hover__via_indigo_100 : Html.Attribute msg
+sm__hover__via_indigo_100 =
+    A.class "sm:hover:via-indigo-100"
+
+
+sm__hover__via_indigo_200 : Html.Attribute msg
+sm__hover__via_indigo_200 =
+    A.class "sm:hover:via-indigo-200"
+
+
+sm__hover__via_indigo_300 : Html.Attribute msg
+sm__hover__via_indigo_300 =
+    A.class "sm:hover:via-indigo-300"
+
+
+sm__hover__via_indigo_400 : Html.Attribute msg
+sm__hover__via_indigo_400 =
+    A.class "sm:hover:via-indigo-400"
+
+
+sm__hover__via_indigo_500 : Html.Attribute msg
+sm__hover__via_indigo_500 =
+    A.class "sm:hover:via-indigo-500"
+
+
+sm__hover__via_indigo_600 : Html.Attribute msg
+sm__hover__via_indigo_600 =
+    A.class "sm:hover:via-indigo-600"
+
+
+sm__hover__via_indigo_700 : Html.Attribute msg
+sm__hover__via_indigo_700 =
+    A.class "sm:hover:via-indigo-700"
+
+
+sm__hover__via_indigo_800 : Html.Attribute msg
+sm__hover__via_indigo_800 =
+    A.class "sm:hover:via-indigo-800"
+
+
+sm__hover__via_indigo_900 : Html.Attribute msg
+sm__hover__via_indigo_900 =
+    A.class "sm:hover:via-indigo-900"
+
+
+sm__hover__via_purple_100 : Html.Attribute msg
+sm__hover__via_purple_100 =
+    A.class "sm:hover:via-purple-100"
+
+
+sm__hover__via_purple_200 : Html.Attribute msg
+sm__hover__via_purple_200 =
+    A.class "sm:hover:via-purple-200"
+
+
+sm__hover__via_purple_300 : Html.Attribute msg
+sm__hover__via_purple_300 =
+    A.class "sm:hover:via-purple-300"
+
+
+sm__hover__via_purple_400 : Html.Attribute msg
+sm__hover__via_purple_400 =
+    A.class "sm:hover:via-purple-400"
+
+
+sm__hover__via_purple_500 : Html.Attribute msg
+sm__hover__via_purple_500 =
+    A.class "sm:hover:via-purple-500"
+
+
+sm__hover__via_purple_600 : Html.Attribute msg
+sm__hover__via_purple_600 =
+    A.class "sm:hover:via-purple-600"
+
+
+sm__hover__via_purple_700 : Html.Attribute msg
+sm__hover__via_purple_700 =
+    A.class "sm:hover:via-purple-700"
+
+
+sm__hover__via_purple_800 : Html.Attribute msg
+sm__hover__via_purple_800 =
+    A.class "sm:hover:via-purple-800"
+
+
+sm__hover__via_purple_900 : Html.Attribute msg
+sm__hover__via_purple_900 =
+    A.class "sm:hover:via-purple-900"
+
+
+sm__hover__via_pink_100 : Html.Attribute msg
+sm__hover__via_pink_100 =
+    A.class "sm:hover:via-pink-100"
+
+
+sm__hover__via_pink_200 : Html.Attribute msg
+sm__hover__via_pink_200 =
+    A.class "sm:hover:via-pink-200"
+
+
+sm__hover__via_pink_300 : Html.Attribute msg
+sm__hover__via_pink_300 =
+    A.class "sm:hover:via-pink-300"
+
+
+sm__hover__via_pink_400 : Html.Attribute msg
+sm__hover__via_pink_400 =
+    A.class "sm:hover:via-pink-400"
+
+
+sm__hover__via_pink_500 : Html.Attribute msg
+sm__hover__via_pink_500 =
+    A.class "sm:hover:via-pink-500"
+
+
+sm__hover__via_pink_600 : Html.Attribute msg
+sm__hover__via_pink_600 =
+    A.class "sm:hover:via-pink-600"
+
+
+sm__hover__via_pink_700 : Html.Attribute msg
+sm__hover__via_pink_700 =
+    A.class "sm:hover:via-pink-700"
+
+
+sm__hover__via_pink_800 : Html.Attribute msg
+sm__hover__via_pink_800 =
+    A.class "sm:hover:via-pink-800"
+
+
+sm__hover__via_pink_900 : Html.Attribute msg
+sm__hover__via_pink_900 =
+    A.class "sm:hover:via-pink-900"
+
+
+sm__hover__to_transparent : Html.Attribute msg
+sm__hover__to_transparent =
+    A.class "sm:hover:to-transparent"
+
+
+sm__hover__to_current : Html.Attribute msg
+sm__hover__to_current =
+    A.class "sm:hover:to-current"
+
+
+sm__hover__to_black : Html.Attribute msg
+sm__hover__to_black =
+    A.class "sm:hover:to-black"
+
+
+sm__hover__to_white : Html.Attribute msg
+sm__hover__to_white =
+    A.class "sm:hover:to-white"
+
+
+sm__hover__to_gray_100 : Html.Attribute msg
+sm__hover__to_gray_100 =
+    A.class "sm:hover:to-gray-100"
+
+
+sm__hover__to_gray_200 : Html.Attribute msg
+sm__hover__to_gray_200 =
+    A.class "sm:hover:to-gray-200"
+
+
+sm__hover__to_gray_300 : Html.Attribute msg
+sm__hover__to_gray_300 =
+    A.class "sm:hover:to-gray-300"
+
+
+sm__hover__to_gray_400 : Html.Attribute msg
+sm__hover__to_gray_400 =
+    A.class "sm:hover:to-gray-400"
+
+
+sm__hover__to_gray_500 : Html.Attribute msg
+sm__hover__to_gray_500 =
+    A.class "sm:hover:to-gray-500"
+
+
+sm__hover__to_gray_600 : Html.Attribute msg
+sm__hover__to_gray_600 =
+    A.class "sm:hover:to-gray-600"
+
+
+sm__hover__to_gray_700 : Html.Attribute msg
+sm__hover__to_gray_700 =
+    A.class "sm:hover:to-gray-700"
+
+
+sm__hover__to_gray_800 : Html.Attribute msg
+sm__hover__to_gray_800 =
+    A.class "sm:hover:to-gray-800"
+
+
+sm__hover__to_gray_900 : Html.Attribute msg
+sm__hover__to_gray_900 =
+    A.class "sm:hover:to-gray-900"
+
+
+sm__hover__to_red_100 : Html.Attribute msg
+sm__hover__to_red_100 =
+    A.class "sm:hover:to-red-100"
+
+
+sm__hover__to_red_200 : Html.Attribute msg
+sm__hover__to_red_200 =
+    A.class "sm:hover:to-red-200"
+
+
+sm__hover__to_red_300 : Html.Attribute msg
+sm__hover__to_red_300 =
+    A.class "sm:hover:to-red-300"
+
+
+sm__hover__to_red_400 : Html.Attribute msg
+sm__hover__to_red_400 =
+    A.class "sm:hover:to-red-400"
+
+
+sm__hover__to_red_500 : Html.Attribute msg
+sm__hover__to_red_500 =
+    A.class "sm:hover:to-red-500"
+
+
+sm__hover__to_red_600 : Html.Attribute msg
+sm__hover__to_red_600 =
+    A.class "sm:hover:to-red-600"
+
+
+sm__hover__to_red_700 : Html.Attribute msg
+sm__hover__to_red_700 =
+    A.class "sm:hover:to-red-700"
+
+
+sm__hover__to_red_800 : Html.Attribute msg
+sm__hover__to_red_800 =
+    A.class "sm:hover:to-red-800"
+
+
+sm__hover__to_red_900 : Html.Attribute msg
+sm__hover__to_red_900 =
+    A.class "sm:hover:to-red-900"
+
+
+sm__hover__to_orange_100 : Html.Attribute msg
+sm__hover__to_orange_100 =
+    A.class "sm:hover:to-orange-100"
+
+
+sm__hover__to_orange_200 : Html.Attribute msg
+sm__hover__to_orange_200 =
+    A.class "sm:hover:to-orange-200"
+
+
+sm__hover__to_orange_300 : Html.Attribute msg
+sm__hover__to_orange_300 =
+    A.class "sm:hover:to-orange-300"
+
+
+sm__hover__to_orange_400 : Html.Attribute msg
+sm__hover__to_orange_400 =
+    A.class "sm:hover:to-orange-400"
+
+
+sm__hover__to_orange_500 : Html.Attribute msg
+sm__hover__to_orange_500 =
+    A.class "sm:hover:to-orange-500"
+
+
+sm__hover__to_orange_600 : Html.Attribute msg
+sm__hover__to_orange_600 =
+    A.class "sm:hover:to-orange-600"
+
+
+sm__hover__to_orange_700 : Html.Attribute msg
+sm__hover__to_orange_700 =
+    A.class "sm:hover:to-orange-700"
+
+
+sm__hover__to_orange_800 : Html.Attribute msg
+sm__hover__to_orange_800 =
+    A.class "sm:hover:to-orange-800"
+
+
+sm__hover__to_orange_900 : Html.Attribute msg
+sm__hover__to_orange_900 =
+    A.class "sm:hover:to-orange-900"
+
+
+sm__hover__to_yellow_100 : Html.Attribute msg
+sm__hover__to_yellow_100 =
+    A.class "sm:hover:to-yellow-100"
+
+
+sm__hover__to_yellow_200 : Html.Attribute msg
+sm__hover__to_yellow_200 =
+    A.class "sm:hover:to-yellow-200"
+
+
+sm__hover__to_yellow_300 : Html.Attribute msg
+sm__hover__to_yellow_300 =
+    A.class "sm:hover:to-yellow-300"
+
+
+sm__hover__to_yellow_400 : Html.Attribute msg
+sm__hover__to_yellow_400 =
+    A.class "sm:hover:to-yellow-400"
+
+
+sm__hover__to_yellow_500 : Html.Attribute msg
+sm__hover__to_yellow_500 =
+    A.class "sm:hover:to-yellow-500"
+
+
+sm__hover__to_yellow_600 : Html.Attribute msg
+sm__hover__to_yellow_600 =
+    A.class "sm:hover:to-yellow-600"
+
+
+sm__hover__to_yellow_700 : Html.Attribute msg
+sm__hover__to_yellow_700 =
+    A.class "sm:hover:to-yellow-700"
+
+
+sm__hover__to_yellow_800 : Html.Attribute msg
+sm__hover__to_yellow_800 =
+    A.class "sm:hover:to-yellow-800"
+
+
+sm__hover__to_yellow_900 : Html.Attribute msg
+sm__hover__to_yellow_900 =
+    A.class "sm:hover:to-yellow-900"
+
+
+sm__hover__to_green_100 : Html.Attribute msg
+sm__hover__to_green_100 =
+    A.class "sm:hover:to-green-100"
+
+
+sm__hover__to_green_200 : Html.Attribute msg
+sm__hover__to_green_200 =
+    A.class "sm:hover:to-green-200"
+
+
+sm__hover__to_green_300 : Html.Attribute msg
+sm__hover__to_green_300 =
+    A.class "sm:hover:to-green-300"
+
+
+sm__hover__to_green_400 : Html.Attribute msg
+sm__hover__to_green_400 =
+    A.class "sm:hover:to-green-400"
+
+
+sm__hover__to_green_500 : Html.Attribute msg
+sm__hover__to_green_500 =
+    A.class "sm:hover:to-green-500"
+
+
+sm__hover__to_green_600 : Html.Attribute msg
+sm__hover__to_green_600 =
+    A.class "sm:hover:to-green-600"
+
+
+sm__hover__to_green_700 : Html.Attribute msg
+sm__hover__to_green_700 =
+    A.class "sm:hover:to-green-700"
+
+
+sm__hover__to_green_800 : Html.Attribute msg
+sm__hover__to_green_800 =
+    A.class "sm:hover:to-green-800"
+
+
+sm__hover__to_green_900 : Html.Attribute msg
+sm__hover__to_green_900 =
+    A.class "sm:hover:to-green-900"
+
+
+sm__hover__to_teal_100 : Html.Attribute msg
+sm__hover__to_teal_100 =
+    A.class "sm:hover:to-teal-100"
+
+
+sm__hover__to_teal_200 : Html.Attribute msg
+sm__hover__to_teal_200 =
+    A.class "sm:hover:to-teal-200"
+
+
+sm__hover__to_teal_300 : Html.Attribute msg
+sm__hover__to_teal_300 =
+    A.class "sm:hover:to-teal-300"
+
+
+sm__hover__to_teal_400 : Html.Attribute msg
+sm__hover__to_teal_400 =
+    A.class "sm:hover:to-teal-400"
+
+
+sm__hover__to_teal_500 : Html.Attribute msg
+sm__hover__to_teal_500 =
+    A.class "sm:hover:to-teal-500"
+
+
+sm__hover__to_teal_600 : Html.Attribute msg
+sm__hover__to_teal_600 =
+    A.class "sm:hover:to-teal-600"
+
+
+sm__hover__to_teal_700 : Html.Attribute msg
+sm__hover__to_teal_700 =
+    A.class "sm:hover:to-teal-700"
+
+
+sm__hover__to_teal_800 : Html.Attribute msg
+sm__hover__to_teal_800 =
+    A.class "sm:hover:to-teal-800"
+
+
+sm__hover__to_teal_900 : Html.Attribute msg
+sm__hover__to_teal_900 =
+    A.class "sm:hover:to-teal-900"
+
+
+sm__hover__to_blue_100 : Html.Attribute msg
+sm__hover__to_blue_100 =
+    A.class "sm:hover:to-blue-100"
+
+
+sm__hover__to_blue_200 : Html.Attribute msg
+sm__hover__to_blue_200 =
+    A.class "sm:hover:to-blue-200"
+
+
+sm__hover__to_blue_300 : Html.Attribute msg
+sm__hover__to_blue_300 =
+    A.class "sm:hover:to-blue-300"
+
+
+sm__hover__to_blue_400 : Html.Attribute msg
+sm__hover__to_blue_400 =
+    A.class "sm:hover:to-blue-400"
+
+
+sm__hover__to_blue_500 : Html.Attribute msg
+sm__hover__to_blue_500 =
+    A.class "sm:hover:to-blue-500"
+
+
+sm__hover__to_blue_600 : Html.Attribute msg
+sm__hover__to_blue_600 =
+    A.class "sm:hover:to-blue-600"
+
+
+sm__hover__to_blue_700 : Html.Attribute msg
+sm__hover__to_blue_700 =
+    A.class "sm:hover:to-blue-700"
+
+
+sm__hover__to_blue_800 : Html.Attribute msg
+sm__hover__to_blue_800 =
+    A.class "sm:hover:to-blue-800"
+
+
+sm__hover__to_blue_900 : Html.Attribute msg
+sm__hover__to_blue_900 =
+    A.class "sm:hover:to-blue-900"
+
+
+sm__hover__to_indigo_100 : Html.Attribute msg
+sm__hover__to_indigo_100 =
+    A.class "sm:hover:to-indigo-100"
+
+
+sm__hover__to_indigo_200 : Html.Attribute msg
+sm__hover__to_indigo_200 =
+    A.class "sm:hover:to-indigo-200"
+
+
+sm__hover__to_indigo_300 : Html.Attribute msg
+sm__hover__to_indigo_300 =
+    A.class "sm:hover:to-indigo-300"
+
+
+sm__hover__to_indigo_400 : Html.Attribute msg
+sm__hover__to_indigo_400 =
+    A.class "sm:hover:to-indigo-400"
+
+
+sm__hover__to_indigo_500 : Html.Attribute msg
+sm__hover__to_indigo_500 =
+    A.class "sm:hover:to-indigo-500"
+
+
+sm__hover__to_indigo_600 : Html.Attribute msg
+sm__hover__to_indigo_600 =
+    A.class "sm:hover:to-indigo-600"
+
+
+sm__hover__to_indigo_700 : Html.Attribute msg
+sm__hover__to_indigo_700 =
+    A.class "sm:hover:to-indigo-700"
+
+
+sm__hover__to_indigo_800 : Html.Attribute msg
+sm__hover__to_indigo_800 =
+    A.class "sm:hover:to-indigo-800"
+
+
+sm__hover__to_indigo_900 : Html.Attribute msg
+sm__hover__to_indigo_900 =
+    A.class "sm:hover:to-indigo-900"
+
+
+sm__hover__to_purple_100 : Html.Attribute msg
+sm__hover__to_purple_100 =
+    A.class "sm:hover:to-purple-100"
+
+
+sm__hover__to_purple_200 : Html.Attribute msg
+sm__hover__to_purple_200 =
+    A.class "sm:hover:to-purple-200"
+
+
+sm__hover__to_purple_300 : Html.Attribute msg
+sm__hover__to_purple_300 =
+    A.class "sm:hover:to-purple-300"
+
+
+sm__hover__to_purple_400 : Html.Attribute msg
+sm__hover__to_purple_400 =
+    A.class "sm:hover:to-purple-400"
+
+
+sm__hover__to_purple_500 : Html.Attribute msg
+sm__hover__to_purple_500 =
+    A.class "sm:hover:to-purple-500"
+
+
+sm__hover__to_purple_600 : Html.Attribute msg
+sm__hover__to_purple_600 =
+    A.class "sm:hover:to-purple-600"
+
+
+sm__hover__to_purple_700 : Html.Attribute msg
+sm__hover__to_purple_700 =
+    A.class "sm:hover:to-purple-700"
+
+
+sm__hover__to_purple_800 : Html.Attribute msg
+sm__hover__to_purple_800 =
+    A.class "sm:hover:to-purple-800"
+
+
+sm__hover__to_purple_900 : Html.Attribute msg
+sm__hover__to_purple_900 =
+    A.class "sm:hover:to-purple-900"
+
+
+sm__hover__to_pink_100 : Html.Attribute msg
+sm__hover__to_pink_100 =
+    A.class "sm:hover:to-pink-100"
+
+
+sm__hover__to_pink_200 : Html.Attribute msg
+sm__hover__to_pink_200 =
+    A.class "sm:hover:to-pink-200"
+
+
+sm__hover__to_pink_300 : Html.Attribute msg
+sm__hover__to_pink_300 =
+    A.class "sm:hover:to-pink-300"
+
+
+sm__hover__to_pink_400 : Html.Attribute msg
+sm__hover__to_pink_400 =
+    A.class "sm:hover:to-pink-400"
+
+
+sm__hover__to_pink_500 : Html.Attribute msg
+sm__hover__to_pink_500 =
+    A.class "sm:hover:to-pink-500"
+
+
+sm__hover__to_pink_600 : Html.Attribute msg
+sm__hover__to_pink_600 =
+    A.class "sm:hover:to-pink-600"
+
+
+sm__hover__to_pink_700 : Html.Attribute msg
+sm__hover__to_pink_700 =
+    A.class "sm:hover:to-pink-700"
+
+
+sm__hover__to_pink_800 : Html.Attribute msg
+sm__hover__to_pink_800 =
+    A.class "sm:hover:to-pink-800"
+
+
+sm__hover__to_pink_900 : Html.Attribute msg
+sm__hover__to_pink_900 =
+    A.class "sm:hover:to-pink-900"
+
+
+sm__focus__from_transparent : Html.Attribute msg
+sm__focus__from_transparent =
+    A.class "sm:focus:from-transparent"
+
+
+sm__focus__from_current : Html.Attribute msg
+sm__focus__from_current =
+    A.class "sm:focus:from-current"
+
+
+sm__focus__from_black : Html.Attribute msg
+sm__focus__from_black =
+    A.class "sm:focus:from-black"
+
+
+sm__focus__from_white : Html.Attribute msg
+sm__focus__from_white =
+    A.class "sm:focus:from-white"
+
+
+sm__focus__from_gray_100 : Html.Attribute msg
+sm__focus__from_gray_100 =
+    A.class "sm:focus:from-gray-100"
+
+
+sm__focus__from_gray_200 : Html.Attribute msg
+sm__focus__from_gray_200 =
+    A.class "sm:focus:from-gray-200"
+
+
+sm__focus__from_gray_300 : Html.Attribute msg
+sm__focus__from_gray_300 =
+    A.class "sm:focus:from-gray-300"
+
+
+sm__focus__from_gray_400 : Html.Attribute msg
+sm__focus__from_gray_400 =
+    A.class "sm:focus:from-gray-400"
+
+
+sm__focus__from_gray_500 : Html.Attribute msg
+sm__focus__from_gray_500 =
+    A.class "sm:focus:from-gray-500"
+
+
+sm__focus__from_gray_600 : Html.Attribute msg
+sm__focus__from_gray_600 =
+    A.class "sm:focus:from-gray-600"
+
+
+sm__focus__from_gray_700 : Html.Attribute msg
+sm__focus__from_gray_700 =
+    A.class "sm:focus:from-gray-700"
+
+
+sm__focus__from_gray_800 : Html.Attribute msg
+sm__focus__from_gray_800 =
+    A.class "sm:focus:from-gray-800"
+
+
+sm__focus__from_gray_900 : Html.Attribute msg
+sm__focus__from_gray_900 =
+    A.class "sm:focus:from-gray-900"
+
+
+sm__focus__from_red_100 : Html.Attribute msg
+sm__focus__from_red_100 =
+    A.class "sm:focus:from-red-100"
+
+
+sm__focus__from_red_200 : Html.Attribute msg
+sm__focus__from_red_200 =
+    A.class "sm:focus:from-red-200"
+
+
+sm__focus__from_red_300 : Html.Attribute msg
+sm__focus__from_red_300 =
+    A.class "sm:focus:from-red-300"
+
+
+sm__focus__from_red_400 : Html.Attribute msg
+sm__focus__from_red_400 =
+    A.class "sm:focus:from-red-400"
+
+
+sm__focus__from_red_500 : Html.Attribute msg
+sm__focus__from_red_500 =
+    A.class "sm:focus:from-red-500"
+
+
+sm__focus__from_red_600 : Html.Attribute msg
+sm__focus__from_red_600 =
+    A.class "sm:focus:from-red-600"
+
+
+sm__focus__from_red_700 : Html.Attribute msg
+sm__focus__from_red_700 =
+    A.class "sm:focus:from-red-700"
+
+
+sm__focus__from_red_800 : Html.Attribute msg
+sm__focus__from_red_800 =
+    A.class "sm:focus:from-red-800"
+
+
+sm__focus__from_red_900 : Html.Attribute msg
+sm__focus__from_red_900 =
+    A.class "sm:focus:from-red-900"
+
+
+sm__focus__from_orange_100 : Html.Attribute msg
+sm__focus__from_orange_100 =
+    A.class "sm:focus:from-orange-100"
+
+
+sm__focus__from_orange_200 : Html.Attribute msg
+sm__focus__from_orange_200 =
+    A.class "sm:focus:from-orange-200"
+
+
+sm__focus__from_orange_300 : Html.Attribute msg
+sm__focus__from_orange_300 =
+    A.class "sm:focus:from-orange-300"
+
+
+sm__focus__from_orange_400 : Html.Attribute msg
+sm__focus__from_orange_400 =
+    A.class "sm:focus:from-orange-400"
+
+
+sm__focus__from_orange_500 : Html.Attribute msg
+sm__focus__from_orange_500 =
+    A.class "sm:focus:from-orange-500"
+
+
+sm__focus__from_orange_600 : Html.Attribute msg
+sm__focus__from_orange_600 =
+    A.class "sm:focus:from-orange-600"
+
+
+sm__focus__from_orange_700 : Html.Attribute msg
+sm__focus__from_orange_700 =
+    A.class "sm:focus:from-orange-700"
+
+
+sm__focus__from_orange_800 : Html.Attribute msg
+sm__focus__from_orange_800 =
+    A.class "sm:focus:from-orange-800"
+
+
+sm__focus__from_orange_900 : Html.Attribute msg
+sm__focus__from_orange_900 =
+    A.class "sm:focus:from-orange-900"
+
+
+sm__focus__from_yellow_100 : Html.Attribute msg
+sm__focus__from_yellow_100 =
+    A.class "sm:focus:from-yellow-100"
+
+
+sm__focus__from_yellow_200 : Html.Attribute msg
+sm__focus__from_yellow_200 =
+    A.class "sm:focus:from-yellow-200"
+
+
+sm__focus__from_yellow_300 : Html.Attribute msg
+sm__focus__from_yellow_300 =
+    A.class "sm:focus:from-yellow-300"
+
+
+sm__focus__from_yellow_400 : Html.Attribute msg
+sm__focus__from_yellow_400 =
+    A.class "sm:focus:from-yellow-400"
+
+
+sm__focus__from_yellow_500 : Html.Attribute msg
+sm__focus__from_yellow_500 =
+    A.class "sm:focus:from-yellow-500"
+
+
+sm__focus__from_yellow_600 : Html.Attribute msg
+sm__focus__from_yellow_600 =
+    A.class "sm:focus:from-yellow-600"
+
+
+sm__focus__from_yellow_700 : Html.Attribute msg
+sm__focus__from_yellow_700 =
+    A.class "sm:focus:from-yellow-700"
+
+
+sm__focus__from_yellow_800 : Html.Attribute msg
+sm__focus__from_yellow_800 =
+    A.class "sm:focus:from-yellow-800"
+
+
+sm__focus__from_yellow_900 : Html.Attribute msg
+sm__focus__from_yellow_900 =
+    A.class "sm:focus:from-yellow-900"
+
+
+sm__focus__from_green_100 : Html.Attribute msg
+sm__focus__from_green_100 =
+    A.class "sm:focus:from-green-100"
+
+
+sm__focus__from_green_200 : Html.Attribute msg
+sm__focus__from_green_200 =
+    A.class "sm:focus:from-green-200"
+
+
+sm__focus__from_green_300 : Html.Attribute msg
+sm__focus__from_green_300 =
+    A.class "sm:focus:from-green-300"
+
+
+sm__focus__from_green_400 : Html.Attribute msg
+sm__focus__from_green_400 =
+    A.class "sm:focus:from-green-400"
+
+
+sm__focus__from_green_500 : Html.Attribute msg
+sm__focus__from_green_500 =
+    A.class "sm:focus:from-green-500"
+
+
+sm__focus__from_green_600 : Html.Attribute msg
+sm__focus__from_green_600 =
+    A.class "sm:focus:from-green-600"
+
+
+sm__focus__from_green_700 : Html.Attribute msg
+sm__focus__from_green_700 =
+    A.class "sm:focus:from-green-700"
+
+
+sm__focus__from_green_800 : Html.Attribute msg
+sm__focus__from_green_800 =
+    A.class "sm:focus:from-green-800"
+
+
+sm__focus__from_green_900 : Html.Attribute msg
+sm__focus__from_green_900 =
+    A.class "sm:focus:from-green-900"
+
+
+sm__focus__from_teal_100 : Html.Attribute msg
+sm__focus__from_teal_100 =
+    A.class "sm:focus:from-teal-100"
+
+
+sm__focus__from_teal_200 : Html.Attribute msg
+sm__focus__from_teal_200 =
+    A.class "sm:focus:from-teal-200"
+
+
+sm__focus__from_teal_300 : Html.Attribute msg
+sm__focus__from_teal_300 =
+    A.class "sm:focus:from-teal-300"
+
+
+sm__focus__from_teal_400 : Html.Attribute msg
+sm__focus__from_teal_400 =
+    A.class "sm:focus:from-teal-400"
+
+
+sm__focus__from_teal_500 : Html.Attribute msg
+sm__focus__from_teal_500 =
+    A.class "sm:focus:from-teal-500"
+
+
+sm__focus__from_teal_600 : Html.Attribute msg
+sm__focus__from_teal_600 =
+    A.class "sm:focus:from-teal-600"
+
+
+sm__focus__from_teal_700 : Html.Attribute msg
+sm__focus__from_teal_700 =
+    A.class "sm:focus:from-teal-700"
+
+
+sm__focus__from_teal_800 : Html.Attribute msg
+sm__focus__from_teal_800 =
+    A.class "sm:focus:from-teal-800"
+
+
+sm__focus__from_teal_900 : Html.Attribute msg
+sm__focus__from_teal_900 =
+    A.class "sm:focus:from-teal-900"
+
+
+sm__focus__from_blue_100 : Html.Attribute msg
+sm__focus__from_blue_100 =
+    A.class "sm:focus:from-blue-100"
+
+
+sm__focus__from_blue_200 : Html.Attribute msg
+sm__focus__from_blue_200 =
+    A.class "sm:focus:from-blue-200"
+
+
+sm__focus__from_blue_300 : Html.Attribute msg
+sm__focus__from_blue_300 =
+    A.class "sm:focus:from-blue-300"
+
+
+sm__focus__from_blue_400 : Html.Attribute msg
+sm__focus__from_blue_400 =
+    A.class "sm:focus:from-blue-400"
+
+
+sm__focus__from_blue_500 : Html.Attribute msg
+sm__focus__from_blue_500 =
+    A.class "sm:focus:from-blue-500"
+
+
+sm__focus__from_blue_600 : Html.Attribute msg
+sm__focus__from_blue_600 =
+    A.class "sm:focus:from-blue-600"
+
+
+sm__focus__from_blue_700 : Html.Attribute msg
+sm__focus__from_blue_700 =
+    A.class "sm:focus:from-blue-700"
+
+
+sm__focus__from_blue_800 : Html.Attribute msg
+sm__focus__from_blue_800 =
+    A.class "sm:focus:from-blue-800"
+
+
+sm__focus__from_blue_900 : Html.Attribute msg
+sm__focus__from_blue_900 =
+    A.class "sm:focus:from-blue-900"
+
+
+sm__focus__from_indigo_100 : Html.Attribute msg
+sm__focus__from_indigo_100 =
+    A.class "sm:focus:from-indigo-100"
+
+
+sm__focus__from_indigo_200 : Html.Attribute msg
+sm__focus__from_indigo_200 =
+    A.class "sm:focus:from-indigo-200"
+
+
+sm__focus__from_indigo_300 : Html.Attribute msg
+sm__focus__from_indigo_300 =
+    A.class "sm:focus:from-indigo-300"
+
+
+sm__focus__from_indigo_400 : Html.Attribute msg
+sm__focus__from_indigo_400 =
+    A.class "sm:focus:from-indigo-400"
+
+
+sm__focus__from_indigo_500 : Html.Attribute msg
+sm__focus__from_indigo_500 =
+    A.class "sm:focus:from-indigo-500"
+
+
+sm__focus__from_indigo_600 : Html.Attribute msg
+sm__focus__from_indigo_600 =
+    A.class "sm:focus:from-indigo-600"
+
+
+sm__focus__from_indigo_700 : Html.Attribute msg
+sm__focus__from_indigo_700 =
+    A.class "sm:focus:from-indigo-700"
+
+
+sm__focus__from_indigo_800 : Html.Attribute msg
+sm__focus__from_indigo_800 =
+    A.class "sm:focus:from-indigo-800"
+
+
+sm__focus__from_indigo_900 : Html.Attribute msg
+sm__focus__from_indigo_900 =
+    A.class "sm:focus:from-indigo-900"
+
+
+sm__focus__from_purple_100 : Html.Attribute msg
+sm__focus__from_purple_100 =
+    A.class "sm:focus:from-purple-100"
+
+
+sm__focus__from_purple_200 : Html.Attribute msg
+sm__focus__from_purple_200 =
+    A.class "sm:focus:from-purple-200"
+
+
+sm__focus__from_purple_300 : Html.Attribute msg
+sm__focus__from_purple_300 =
+    A.class "sm:focus:from-purple-300"
+
+
+sm__focus__from_purple_400 : Html.Attribute msg
+sm__focus__from_purple_400 =
+    A.class "sm:focus:from-purple-400"
+
+
+sm__focus__from_purple_500 : Html.Attribute msg
+sm__focus__from_purple_500 =
+    A.class "sm:focus:from-purple-500"
+
+
+sm__focus__from_purple_600 : Html.Attribute msg
+sm__focus__from_purple_600 =
+    A.class "sm:focus:from-purple-600"
+
+
+sm__focus__from_purple_700 : Html.Attribute msg
+sm__focus__from_purple_700 =
+    A.class "sm:focus:from-purple-700"
+
+
+sm__focus__from_purple_800 : Html.Attribute msg
+sm__focus__from_purple_800 =
+    A.class "sm:focus:from-purple-800"
+
+
+sm__focus__from_purple_900 : Html.Attribute msg
+sm__focus__from_purple_900 =
+    A.class "sm:focus:from-purple-900"
+
+
+sm__focus__from_pink_100 : Html.Attribute msg
+sm__focus__from_pink_100 =
+    A.class "sm:focus:from-pink-100"
+
+
+sm__focus__from_pink_200 : Html.Attribute msg
+sm__focus__from_pink_200 =
+    A.class "sm:focus:from-pink-200"
+
+
+sm__focus__from_pink_300 : Html.Attribute msg
+sm__focus__from_pink_300 =
+    A.class "sm:focus:from-pink-300"
+
+
+sm__focus__from_pink_400 : Html.Attribute msg
+sm__focus__from_pink_400 =
+    A.class "sm:focus:from-pink-400"
+
+
+sm__focus__from_pink_500 : Html.Attribute msg
+sm__focus__from_pink_500 =
+    A.class "sm:focus:from-pink-500"
+
+
+sm__focus__from_pink_600 : Html.Attribute msg
+sm__focus__from_pink_600 =
+    A.class "sm:focus:from-pink-600"
+
+
+sm__focus__from_pink_700 : Html.Attribute msg
+sm__focus__from_pink_700 =
+    A.class "sm:focus:from-pink-700"
+
+
+sm__focus__from_pink_800 : Html.Attribute msg
+sm__focus__from_pink_800 =
+    A.class "sm:focus:from-pink-800"
+
+
+sm__focus__from_pink_900 : Html.Attribute msg
+sm__focus__from_pink_900 =
+    A.class "sm:focus:from-pink-900"
+
+
+sm__focus__via_transparent : Html.Attribute msg
+sm__focus__via_transparent =
+    A.class "sm:focus:via-transparent"
+
+
+sm__focus__via_current : Html.Attribute msg
+sm__focus__via_current =
+    A.class "sm:focus:via-current"
+
+
+sm__focus__via_black : Html.Attribute msg
+sm__focus__via_black =
+    A.class "sm:focus:via-black"
+
+
+sm__focus__via_white : Html.Attribute msg
+sm__focus__via_white =
+    A.class "sm:focus:via-white"
+
+
+sm__focus__via_gray_100 : Html.Attribute msg
+sm__focus__via_gray_100 =
+    A.class "sm:focus:via-gray-100"
+
+
+sm__focus__via_gray_200 : Html.Attribute msg
+sm__focus__via_gray_200 =
+    A.class "sm:focus:via-gray-200"
+
+
+sm__focus__via_gray_300 : Html.Attribute msg
+sm__focus__via_gray_300 =
+    A.class "sm:focus:via-gray-300"
+
+
+sm__focus__via_gray_400 : Html.Attribute msg
+sm__focus__via_gray_400 =
+    A.class "sm:focus:via-gray-400"
+
+
+sm__focus__via_gray_500 : Html.Attribute msg
+sm__focus__via_gray_500 =
+    A.class "sm:focus:via-gray-500"
+
+
+sm__focus__via_gray_600 : Html.Attribute msg
+sm__focus__via_gray_600 =
+    A.class "sm:focus:via-gray-600"
+
+
+sm__focus__via_gray_700 : Html.Attribute msg
+sm__focus__via_gray_700 =
+    A.class "sm:focus:via-gray-700"
+
+
+sm__focus__via_gray_800 : Html.Attribute msg
+sm__focus__via_gray_800 =
+    A.class "sm:focus:via-gray-800"
+
+
+sm__focus__via_gray_900 : Html.Attribute msg
+sm__focus__via_gray_900 =
+    A.class "sm:focus:via-gray-900"
+
+
+sm__focus__via_red_100 : Html.Attribute msg
+sm__focus__via_red_100 =
+    A.class "sm:focus:via-red-100"
+
+
+sm__focus__via_red_200 : Html.Attribute msg
+sm__focus__via_red_200 =
+    A.class "sm:focus:via-red-200"
+
+
+sm__focus__via_red_300 : Html.Attribute msg
+sm__focus__via_red_300 =
+    A.class "sm:focus:via-red-300"
+
+
+sm__focus__via_red_400 : Html.Attribute msg
+sm__focus__via_red_400 =
+    A.class "sm:focus:via-red-400"
+
+
+sm__focus__via_red_500 : Html.Attribute msg
+sm__focus__via_red_500 =
+    A.class "sm:focus:via-red-500"
+
+
+sm__focus__via_red_600 : Html.Attribute msg
+sm__focus__via_red_600 =
+    A.class "sm:focus:via-red-600"
+
+
+sm__focus__via_red_700 : Html.Attribute msg
+sm__focus__via_red_700 =
+    A.class "sm:focus:via-red-700"
+
+
+sm__focus__via_red_800 : Html.Attribute msg
+sm__focus__via_red_800 =
+    A.class "sm:focus:via-red-800"
+
+
+sm__focus__via_red_900 : Html.Attribute msg
+sm__focus__via_red_900 =
+    A.class "sm:focus:via-red-900"
+
+
+sm__focus__via_orange_100 : Html.Attribute msg
+sm__focus__via_orange_100 =
+    A.class "sm:focus:via-orange-100"
+
+
+sm__focus__via_orange_200 : Html.Attribute msg
+sm__focus__via_orange_200 =
+    A.class "sm:focus:via-orange-200"
+
+
+sm__focus__via_orange_300 : Html.Attribute msg
+sm__focus__via_orange_300 =
+    A.class "sm:focus:via-orange-300"
+
+
+sm__focus__via_orange_400 : Html.Attribute msg
+sm__focus__via_orange_400 =
+    A.class "sm:focus:via-orange-400"
+
+
+sm__focus__via_orange_500 : Html.Attribute msg
+sm__focus__via_orange_500 =
+    A.class "sm:focus:via-orange-500"
+
+
+sm__focus__via_orange_600 : Html.Attribute msg
+sm__focus__via_orange_600 =
+    A.class "sm:focus:via-orange-600"
+
+
+sm__focus__via_orange_700 : Html.Attribute msg
+sm__focus__via_orange_700 =
+    A.class "sm:focus:via-orange-700"
+
+
+sm__focus__via_orange_800 : Html.Attribute msg
+sm__focus__via_orange_800 =
+    A.class "sm:focus:via-orange-800"
+
+
+sm__focus__via_orange_900 : Html.Attribute msg
+sm__focus__via_orange_900 =
+    A.class "sm:focus:via-orange-900"
+
+
+sm__focus__via_yellow_100 : Html.Attribute msg
+sm__focus__via_yellow_100 =
+    A.class "sm:focus:via-yellow-100"
+
+
+sm__focus__via_yellow_200 : Html.Attribute msg
+sm__focus__via_yellow_200 =
+    A.class "sm:focus:via-yellow-200"
+
+
+sm__focus__via_yellow_300 : Html.Attribute msg
+sm__focus__via_yellow_300 =
+    A.class "sm:focus:via-yellow-300"
+
+
+sm__focus__via_yellow_400 : Html.Attribute msg
+sm__focus__via_yellow_400 =
+    A.class "sm:focus:via-yellow-400"
+
+
+sm__focus__via_yellow_500 : Html.Attribute msg
+sm__focus__via_yellow_500 =
+    A.class "sm:focus:via-yellow-500"
+
+
+sm__focus__via_yellow_600 : Html.Attribute msg
+sm__focus__via_yellow_600 =
+    A.class "sm:focus:via-yellow-600"
+
+
+sm__focus__via_yellow_700 : Html.Attribute msg
+sm__focus__via_yellow_700 =
+    A.class "sm:focus:via-yellow-700"
+
+
+sm__focus__via_yellow_800 : Html.Attribute msg
+sm__focus__via_yellow_800 =
+    A.class "sm:focus:via-yellow-800"
+
+
+sm__focus__via_yellow_900 : Html.Attribute msg
+sm__focus__via_yellow_900 =
+    A.class "sm:focus:via-yellow-900"
+
+
+sm__focus__via_green_100 : Html.Attribute msg
+sm__focus__via_green_100 =
+    A.class "sm:focus:via-green-100"
+
+
+sm__focus__via_green_200 : Html.Attribute msg
+sm__focus__via_green_200 =
+    A.class "sm:focus:via-green-200"
+
+
+sm__focus__via_green_300 : Html.Attribute msg
+sm__focus__via_green_300 =
+    A.class "sm:focus:via-green-300"
+
+
+sm__focus__via_green_400 : Html.Attribute msg
+sm__focus__via_green_400 =
+    A.class "sm:focus:via-green-400"
+
+
+sm__focus__via_green_500 : Html.Attribute msg
+sm__focus__via_green_500 =
+    A.class "sm:focus:via-green-500"
+
+
+sm__focus__via_green_600 : Html.Attribute msg
+sm__focus__via_green_600 =
+    A.class "sm:focus:via-green-600"
+
+
+sm__focus__via_green_700 : Html.Attribute msg
+sm__focus__via_green_700 =
+    A.class "sm:focus:via-green-700"
+
+
+sm__focus__via_green_800 : Html.Attribute msg
+sm__focus__via_green_800 =
+    A.class "sm:focus:via-green-800"
+
+
+sm__focus__via_green_900 : Html.Attribute msg
+sm__focus__via_green_900 =
+    A.class "sm:focus:via-green-900"
+
+
+sm__focus__via_teal_100 : Html.Attribute msg
+sm__focus__via_teal_100 =
+    A.class "sm:focus:via-teal-100"
+
+
+sm__focus__via_teal_200 : Html.Attribute msg
+sm__focus__via_teal_200 =
+    A.class "sm:focus:via-teal-200"
+
+
+sm__focus__via_teal_300 : Html.Attribute msg
+sm__focus__via_teal_300 =
+    A.class "sm:focus:via-teal-300"
+
+
+sm__focus__via_teal_400 : Html.Attribute msg
+sm__focus__via_teal_400 =
+    A.class "sm:focus:via-teal-400"
+
+
+sm__focus__via_teal_500 : Html.Attribute msg
+sm__focus__via_teal_500 =
+    A.class "sm:focus:via-teal-500"
+
+
+sm__focus__via_teal_600 : Html.Attribute msg
+sm__focus__via_teal_600 =
+    A.class "sm:focus:via-teal-600"
+
+
+sm__focus__via_teal_700 : Html.Attribute msg
+sm__focus__via_teal_700 =
+    A.class "sm:focus:via-teal-700"
+
+
+sm__focus__via_teal_800 : Html.Attribute msg
+sm__focus__via_teal_800 =
+    A.class "sm:focus:via-teal-800"
+
+
+sm__focus__via_teal_900 : Html.Attribute msg
+sm__focus__via_teal_900 =
+    A.class "sm:focus:via-teal-900"
+
+
+sm__focus__via_blue_100 : Html.Attribute msg
+sm__focus__via_blue_100 =
+    A.class "sm:focus:via-blue-100"
+
+
+sm__focus__via_blue_200 : Html.Attribute msg
+sm__focus__via_blue_200 =
+    A.class "sm:focus:via-blue-200"
+
+
+sm__focus__via_blue_300 : Html.Attribute msg
+sm__focus__via_blue_300 =
+    A.class "sm:focus:via-blue-300"
+
+
+sm__focus__via_blue_400 : Html.Attribute msg
+sm__focus__via_blue_400 =
+    A.class "sm:focus:via-blue-400"
+
+
+sm__focus__via_blue_500 : Html.Attribute msg
+sm__focus__via_blue_500 =
+    A.class "sm:focus:via-blue-500"
+
+
+sm__focus__via_blue_600 : Html.Attribute msg
+sm__focus__via_blue_600 =
+    A.class "sm:focus:via-blue-600"
+
+
+sm__focus__via_blue_700 : Html.Attribute msg
+sm__focus__via_blue_700 =
+    A.class "sm:focus:via-blue-700"
+
+
+sm__focus__via_blue_800 : Html.Attribute msg
+sm__focus__via_blue_800 =
+    A.class "sm:focus:via-blue-800"
+
+
+sm__focus__via_blue_900 : Html.Attribute msg
+sm__focus__via_blue_900 =
+    A.class "sm:focus:via-blue-900"
+
+
+sm__focus__via_indigo_100 : Html.Attribute msg
+sm__focus__via_indigo_100 =
+    A.class "sm:focus:via-indigo-100"
+
+
+sm__focus__via_indigo_200 : Html.Attribute msg
+sm__focus__via_indigo_200 =
+    A.class "sm:focus:via-indigo-200"
+
+
+sm__focus__via_indigo_300 : Html.Attribute msg
+sm__focus__via_indigo_300 =
+    A.class "sm:focus:via-indigo-300"
+
+
+sm__focus__via_indigo_400 : Html.Attribute msg
+sm__focus__via_indigo_400 =
+    A.class "sm:focus:via-indigo-400"
+
+
+sm__focus__via_indigo_500 : Html.Attribute msg
+sm__focus__via_indigo_500 =
+    A.class "sm:focus:via-indigo-500"
+
+
+sm__focus__via_indigo_600 : Html.Attribute msg
+sm__focus__via_indigo_600 =
+    A.class "sm:focus:via-indigo-600"
+
+
+sm__focus__via_indigo_700 : Html.Attribute msg
+sm__focus__via_indigo_700 =
+    A.class "sm:focus:via-indigo-700"
+
+
+sm__focus__via_indigo_800 : Html.Attribute msg
+sm__focus__via_indigo_800 =
+    A.class "sm:focus:via-indigo-800"
+
+
+sm__focus__via_indigo_900 : Html.Attribute msg
+sm__focus__via_indigo_900 =
+    A.class "sm:focus:via-indigo-900"
+
+
+sm__focus__via_purple_100 : Html.Attribute msg
+sm__focus__via_purple_100 =
+    A.class "sm:focus:via-purple-100"
+
+
+sm__focus__via_purple_200 : Html.Attribute msg
+sm__focus__via_purple_200 =
+    A.class "sm:focus:via-purple-200"
+
+
+sm__focus__via_purple_300 : Html.Attribute msg
+sm__focus__via_purple_300 =
+    A.class "sm:focus:via-purple-300"
+
+
+sm__focus__via_purple_400 : Html.Attribute msg
+sm__focus__via_purple_400 =
+    A.class "sm:focus:via-purple-400"
+
+
+sm__focus__via_purple_500 : Html.Attribute msg
+sm__focus__via_purple_500 =
+    A.class "sm:focus:via-purple-500"
+
+
+sm__focus__via_purple_600 : Html.Attribute msg
+sm__focus__via_purple_600 =
+    A.class "sm:focus:via-purple-600"
+
+
+sm__focus__via_purple_700 : Html.Attribute msg
+sm__focus__via_purple_700 =
+    A.class "sm:focus:via-purple-700"
+
+
+sm__focus__via_purple_800 : Html.Attribute msg
+sm__focus__via_purple_800 =
+    A.class "sm:focus:via-purple-800"
+
+
+sm__focus__via_purple_900 : Html.Attribute msg
+sm__focus__via_purple_900 =
+    A.class "sm:focus:via-purple-900"
+
+
+sm__focus__via_pink_100 : Html.Attribute msg
+sm__focus__via_pink_100 =
+    A.class "sm:focus:via-pink-100"
+
+
+sm__focus__via_pink_200 : Html.Attribute msg
+sm__focus__via_pink_200 =
+    A.class "sm:focus:via-pink-200"
+
+
+sm__focus__via_pink_300 : Html.Attribute msg
+sm__focus__via_pink_300 =
+    A.class "sm:focus:via-pink-300"
+
+
+sm__focus__via_pink_400 : Html.Attribute msg
+sm__focus__via_pink_400 =
+    A.class "sm:focus:via-pink-400"
+
+
+sm__focus__via_pink_500 : Html.Attribute msg
+sm__focus__via_pink_500 =
+    A.class "sm:focus:via-pink-500"
+
+
+sm__focus__via_pink_600 : Html.Attribute msg
+sm__focus__via_pink_600 =
+    A.class "sm:focus:via-pink-600"
+
+
+sm__focus__via_pink_700 : Html.Attribute msg
+sm__focus__via_pink_700 =
+    A.class "sm:focus:via-pink-700"
+
+
+sm__focus__via_pink_800 : Html.Attribute msg
+sm__focus__via_pink_800 =
+    A.class "sm:focus:via-pink-800"
+
+
+sm__focus__via_pink_900 : Html.Attribute msg
+sm__focus__via_pink_900 =
+    A.class "sm:focus:via-pink-900"
+
+
+sm__focus__to_transparent : Html.Attribute msg
+sm__focus__to_transparent =
+    A.class "sm:focus:to-transparent"
+
+
+sm__focus__to_current : Html.Attribute msg
+sm__focus__to_current =
+    A.class "sm:focus:to-current"
+
+
+sm__focus__to_black : Html.Attribute msg
+sm__focus__to_black =
+    A.class "sm:focus:to-black"
+
+
+sm__focus__to_white : Html.Attribute msg
+sm__focus__to_white =
+    A.class "sm:focus:to-white"
+
+
+sm__focus__to_gray_100 : Html.Attribute msg
+sm__focus__to_gray_100 =
+    A.class "sm:focus:to-gray-100"
+
+
+sm__focus__to_gray_200 : Html.Attribute msg
+sm__focus__to_gray_200 =
+    A.class "sm:focus:to-gray-200"
+
+
+sm__focus__to_gray_300 : Html.Attribute msg
+sm__focus__to_gray_300 =
+    A.class "sm:focus:to-gray-300"
+
+
+sm__focus__to_gray_400 : Html.Attribute msg
+sm__focus__to_gray_400 =
+    A.class "sm:focus:to-gray-400"
+
+
+sm__focus__to_gray_500 : Html.Attribute msg
+sm__focus__to_gray_500 =
+    A.class "sm:focus:to-gray-500"
+
+
+sm__focus__to_gray_600 : Html.Attribute msg
+sm__focus__to_gray_600 =
+    A.class "sm:focus:to-gray-600"
+
+
+sm__focus__to_gray_700 : Html.Attribute msg
+sm__focus__to_gray_700 =
+    A.class "sm:focus:to-gray-700"
+
+
+sm__focus__to_gray_800 : Html.Attribute msg
+sm__focus__to_gray_800 =
+    A.class "sm:focus:to-gray-800"
+
+
+sm__focus__to_gray_900 : Html.Attribute msg
+sm__focus__to_gray_900 =
+    A.class "sm:focus:to-gray-900"
+
+
+sm__focus__to_red_100 : Html.Attribute msg
+sm__focus__to_red_100 =
+    A.class "sm:focus:to-red-100"
+
+
+sm__focus__to_red_200 : Html.Attribute msg
+sm__focus__to_red_200 =
+    A.class "sm:focus:to-red-200"
+
+
+sm__focus__to_red_300 : Html.Attribute msg
+sm__focus__to_red_300 =
+    A.class "sm:focus:to-red-300"
+
+
+sm__focus__to_red_400 : Html.Attribute msg
+sm__focus__to_red_400 =
+    A.class "sm:focus:to-red-400"
+
+
+sm__focus__to_red_500 : Html.Attribute msg
+sm__focus__to_red_500 =
+    A.class "sm:focus:to-red-500"
+
+
+sm__focus__to_red_600 : Html.Attribute msg
+sm__focus__to_red_600 =
+    A.class "sm:focus:to-red-600"
+
+
+sm__focus__to_red_700 : Html.Attribute msg
+sm__focus__to_red_700 =
+    A.class "sm:focus:to-red-700"
+
+
+sm__focus__to_red_800 : Html.Attribute msg
+sm__focus__to_red_800 =
+    A.class "sm:focus:to-red-800"
+
+
+sm__focus__to_red_900 : Html.Attribute msg
+sm__focus__to_red_900 =
+    A.class "sm:focus:to-red-900"
+
+
+sm__focus__to_orange_100 : Html.Attribute msg
+sm__focus__to_orange_100 =
+    A.class "sm:focus:to-orange-100"
+
+
+sm__focus__to_orange_200 : Html.Attribute msg
+sm__focus__to_orange_200 =
+    A.class "sm:focus:to-orange-200"
+
+
+sm__focus__to_orange_300 : Html.Attribute msg
+sm__focus__to_orange_300 =
+    A.class "sm:focus:to-orange-300"
+
+
+sm__focus__to_orange_400 : Html.Attribute msg
+sm__focus__to_orange_400 =
+    A.class "sm:focus:to-orange-400"
+
+
+sm__focus__to_orange_500 : Html.Attribute msg
+sm__focus__to_orange_500 =
+    A.class "sm:focus:to-orange-500"
+
+
+sm__focus__to_orange_600 : Html.Attribute msg
+sm__focus__to_orange_600 =
+    A.class "sm:focus:to-orange-600"
+
+
+sm__focus__to_orange_700 : Html.Attribute msg
+sm__focus__to_orange_700 =
+    A.class "sm:focus:to-orange-700"
+
+
+sm__focus__to_orange_800 : Html.Attribute msg
+sm__focus__to_orange_800 =
+    A.class "sm:focus:to-orange-800"
+
+
+sm__focus__to_orange_900 : Html.Attribute msg
+sm__focus__to_orange_900 =
+    A.class "sm:focus:to-orange-900"
+
+
+sm__focus__to_yellow_100 : Html.Attribute msg
+sm__focus__to_yellow_100 =
+    A.class "sm:focus:to-yellow-100"
+
+
+sm__focus__to_yellow_200 : Html.Attribute msg
+sm__focus__to_yellow_200 =
+    A.class "sm:focus:to-yellow-200"
+
+
+sm__focus__to_yellow_300 : Html.Attribute msg
+sm__focus__to_yellow_300 =
+    A.class "sm:focus:to-yellow-300"
+
+
+sm__focus__to_yellow_400 : Html.Attribute msg
+sm__focus__to_yellow_400 =
+    A.class "sm:focus:to-yellow-400"
+
+
+sm__focus__to_yellow_500 : Html.Attribute msg
+sm__focus__to_yellow_500 =
+    A.class "sm:focus:to-yellow-500"
+
+
+sm__focus__to_yellow_600 : Html.Attribute msg
+sm__focus__to_yellow_600 =
+    A.class "sm:focus:to-yellow-600"
+
+
+sm__focus__to_yellow_700 : Html.Attribute msg
+sm__focus__to_yellow_700 =
+    A.class "sm:focus:to-yellow-700"
+
+
+sm__focus__to_yellow_800 : Html.Attribute msg
+sm__focus__to_yellow_800 =
+    A.class "sm:focus:to-yellow-800"
+
+
+sm__focus__to_yellow_900 : Html.Attribute msg
+sm__focus__to_yellow_900 =
+    A.class "sm:focus:to-yellow-900"
+
+
+sm__focus__to_green_100 : Html.Attribute msg
+sm__focus__to_green_100 =
+    A.class "sm:focus:to-green-100"
+
+
+sm__focus__to_green_200 : Html.Attribute msg
+sm__focus__to_green_200 =
+    A.class "sm:focus:to-green-200"
+
+
+sm__focus__to_green_300 : Html.Attribute msg
+sm__focus__to_green_300 =
+    A.class "sm:focus:to-green-300"
+
+
+sm__focus__to_green_400 : Html.Attribute msg
+sm__focus__to_green_400 =
+    A.class "sm:focus:to-green-400"
+
+
+sm__focus__to_green_500 : Html.Attribute msg
+sm__focus__to_green_500 =
+    A.class "sm:focus:to-green-500"
+
+
+sm__focus__to_green_600 : Html.Attribute msg
+sm__focus__to_green_600 =
+    A.class "sm:focus:to-green-600"
+
+
+sm__focus__to_green_700 : Html.Attribute msg
+sm__focus__to_green_700 =
+    A.class "sm:focus:to-green-700"
+
+
+sm__focus__to_green_800 : Html.Attribute msg
+sm__focus__to_green_800 =
+    A.class "sm:focus:to-green-800"
+
+
+sm__focus__to_green_900 : Html.Attribute msg
+sm__focus__to_green_900 =
+    A.class "sm:focus:to-green-900"
+
+
+sm__focus__to_teal_100 : Html.Attribute msg
+sm__focus__to_teal_100 =
+    A.class "sm:focus:to-teal-100"
+
+
+sm__focus__to_teal_200 : Html.Attribute msg
+sm__focus__to_teal_200 =
+    A.class "sm:focus:to-teal-200"
+
+
+sm__focus__to_teal_300 : Html.Attribute msg
+sm__focus__to_teal_300 =
+    A.class "sm:focus:to-teal-300"
+
+
+sm__focus__to_teal_400 : Html.Attribute msg
+sm__focus__to_teal_400 =
+    A.class "sm:focus:to-teal-400"
+
+
+sm__focus__to_teal_500 : Html.Attribute msg
+sm__focus__to_teal_500 =
+    A.class "sm:focus:to-teal-500"
+
+
+sm__focus__to_teal_600 : Html.Attribute msg
+sm__focus__to_teal_600 =
+    A.class "sm:focus:to-teal-600"
+
+
+sm__focus__to_teal_700 : Html.Attribute msg
+sm__focus__to_teal_700 =
+    A.class "sm:focus:to-teal-700"
+
+
+sm__focus__to_teal_800 : Html.Attribute msg
+sm__focus__to_teal_800 =
+    A.class "sm:focus:to-teal-800"
+
+
+sm__focus__to_teal_900 : Html.Attribute msg
+sm__focus__to_teal_900 =
+    A.class "sm:focus:to-teal-900"
+
+
+sm__focus__to_blue_100 : Html.Attribute msg
+sm__focus__to_blue_100 =
+    A.class "sm:focus:to-blue-100"
+
+
+sm__focus__to_blue_200 : Html.Attribute msg
+sm__focus__to_blue_200 =
+    A.class "sm:focus:to-blue-200"
+
+
+sm__focus__to_blue_300 : Html.Attribute msg
+sm__focus__to_blue_300 =
+    A.class "sm:focus:to-blue-300"
+
+
+sm__focus__to_blue_400 : Html.Attribute msg
+sm__focus__to_blue_400 =
+    A.class "sm:focus:to-blue-400"
+
+
+sm__focus__to_blue_500 : Html.Attribute msg
+sm__focus__to_blue_500 =
+    A.class "sm:focus:to-blue-500"
+
+
+sm__focus__to_blue_600 : Html.Attribute msg
+sm__focus__to_blue_600 =
+    A.class "sm:focus:to-blue-600"
+
+
+sm__focus__to_blue_700 : Html.Attribute msg
+sm__focus__to_blue_700 =
+    A.class "sm:focus:to-blue-700"
+
+
+sm__focus__to_blue_800 : Html.Attribute msg
+sm__focus__to_blue_800 =
+    A.class "sm:focus:to-blue-800"
+
+
+sm__focus__to_blue_900 : Html.Attribute msg
+sm__focus__to_blue_900 =
+    A.class "sm:focus:to-blue-900"
+
+
+sm__focus__to_indigo_100 : Html.Attribute msg
+sm__focus__to_indigo_100 =
+    A.class "sm:focus:to-indigo-100"
+
+
+sm__focus__to_indigo_200 : Html.Attribute msg
+sm__focus__to_indigo_200 =
+    A.class "sm:focus:to-indigo-200"
+
+
+sm__focus__to_indigo_300 : Html.Attribute msg
+sm__focus__to_indigo_300 =
+    A.class "sm:focus:to-indigo-300"
+
+
+sm__focus__to_indigo_400 : Html.Attribute msg
+sm__focus__to_indigo_400 =
+    A.class "sm:focus:to-indigo-400"
+
+
+sm__focus__to_indigo_500 : Html.Attribute msg
+sm__focus__to_indigo_500 =
+    A.class "sm:focus:to-indigo-500"
+
+
+sm__focus__to_indigo_600 : Html.Attribute msg
+sm__focus__to_indigo_600 =
+    A.class "sm:focus:to-indigo-600"
+
+
+sm__focus__to_indigo_700 : Html.Attribute msg
+sm__focus__to_indigo_700 =
+    A.class "sm:focus:to-indigo-700"
+
+
+sm__focus__to_indigo_800 : Html.Attribute msg
+sm__focus__to_indigo_800 =
+    A.class "sm:focus:to-indigo-800"
+
+
+sm__focus__to_indigo_900 : Html.Attribute msg
+sm__focus__to_indigo_900 =
+    A.class "sm:focus:to-indigo-900"
+
+
+sm__focus__to_purple_100 : Html.Attribute msg
+sm__focus__to_purple_100 =
+    A.class "sm:focus:to-purple-100"
+
+
+sm__focus__to_purple_200 : Html.Attribute msg
+sm__focus__to_purple_200 =
+    A.class "sm:focus:to-purple-200"
+
+
+sm__focus__to_purple_300 : Html.Attribute msg
+sm__focus__to_purple_300 =
+    A.class "sm:focus:to-purple-300"
+
+
+sm__focus__to_purple_400 : Html.Attribute msg
+sm__focus__to_purple_400 =
+    A.class "sm:focus:to-purple-400"
+
+
+sm__focus__to_purple_500 : Html.Attribute msg
+sm__focus__to_purple_500 =
+    A.class "sm:focus:to-purple-500"
+
+
+sm__focus__to_purple_600 : Html.Attribute msg
+sm__focus__to_purple_600 =
+    A.class "sm:focus:to-purple-600"
+
+
+sm__focus__to_purple_700 : Html.Attribute msg
+sm__focus__to_purple_700 =
+    A.class "sm:focus:to-purple-700"
+
+
+sm__focus__to_purple_800 : Html.Attribute msg
+sm__focus__to_purple_800 =
+    A.class "sm:focus:to-purple-800"
+
+
+sm__focus__to_purple_900 : Html.Attribute msg
+sm__focus__to_purple_900 =
+    A.class "sm:focus:to-purple-900"
+
+
+sm__focus__to_pink_100 : Html.Attribute msg
+sm__focus__to_pink_100 =
+    A.class "sm:focus:to-pink-100"
+
+
+sm__focus__to_pink_200 : Html.Attribute msg
+sm__focus__to_pink_200 =
+    A.class "sm:focus:to-pink-200"
+
+
+sm__focus__to_pink_300 : Html.Attribute msg
+sm__focus__to_pink_300 =
+    A.class "sm:focus:to-pink-300"
+
+
+sm__focus__to_pink_400 : Html.Attribute msg
+sm__focus__to_pink_400 =
+    A.class "sm:focus:to-pink-400"
+
+
+sm__focus__to_pink_500 : Html.Attribute msg
+sm__focus__to_pink_500 =
+    A.class "sm:focus:to-pink-500"
+
+
+sm__focus__to_pink_600 : Html.Attribute msg
+sm__focus__to_pink_600 =
+    A.class "sm:focus:to-pink-600"
+
+
+sm__focus__to_pink_700 : Html.Attribute msg
+sm__focus__to_pink_700 =
+    A.class "sm:focus:to-pink-700"
+
+
+sm__focus__to_pink_800 : Html.Attribute msg
+sm__focus__to_pink_800 =
+    A.class "sm:focus:to-pink-800"
+
+
+sm__focus__to_pink_900 : Html.Attribute msg
+sm__focus__to_pink_900 =
+    A.class "sm:focus:to-pink-900"
 
 
 sm__bg_opacity_0 : Html.Attribute msg
@@ -31907,6 +46346,21 @@ sm__rounded_lg =
     A.class "sm:rounded-lg"
 
 
+sm__rounded_xl : Html.Attribute msg
+sm__rounded_xl =
+    A.class "sm:rounded-xl"
+
+
+sm__rounded_2xl : Html.Attribute msg
+sm__rounded_2xl =
+    A.class "sm:rounded-2xl"
+
+
+sm__rounded_3xl : Html.Attribute msg
+sm__rounded_3xl =
+    A.class "sm:rounded-3xl"
+
+
 sm__rounded_full : Html.Attribute msg
 sm__rounded_full =
     A.class "sm:rounded-full"
@@ -32010,6 +46464,66 @@ sm__rounded_b_lg =
 sm__rounded_l_lg : Html.Attribute msg
 sm__rounded_l_lg =
     A.class "sm:rounded-l-lg"
+
+
+sm__rounded_t_xl : Html.Attribute msg
+sm__rounded_t_xl =
+    A.class "sm:rounded-t-xl"
+
+
+sm__rounded_r_xl : Html.Attribute msg
+sm__rounded_r_xl =
+    A.class "sm:rounded-r-xl"
+
+
+sm__rounded_b_xl : Html.Attribute msg
+sm__rounded_b_xl =
+    A.class "sm:rounded-b-xl"
+
+
+sm__rounded_l_xl : Html.Attribute msg
+sm__rounded_l_xl =
+    A.class "sm:rounded-l-xl"
+
+
+sm__rounded_t_2xl : Html.Attribute msg
+sm__rounded_t_2xl =
+    A.class "sm:rounded-t-2xl"
+
+
+sm__rounded_r_2xl : Html.Attribute msg
+sm__rounded_r_2xl =
+    A.class "sm:rounded-r-2xl"
+
+
+sm__rounded_b_2xl : Html.Attribute msg
+sm__rounded_b_2xl =
+    A.class "sm:rounded-b-2xl"
+
+
+sm__rounded_l_2xl : Html.Attribute msg
+sm__rounded_l_2xl =
+    A.class "sm:rounded-l-2xl"
+
+
+sm__rounded_t_3xl : Html.Attribute msg
+sm__rounded_t_3xl =
+    A.class "sm:rounded-t-3xl"
+
+
+sm__rounded_r_3xl : Html.Attribute msg
+sm__rounded_r_3xl =
+    A.class "sm:rounded-r-3xl"
+
+
+sm__rounded_b_3xl : Html.Attribute msg
+sm__rounded_b_3xl =
+    A.class "sm:rounded-b-3xl"
+
+
+sm__rounded_l_3xl : Html.Attribute msg
+sm__rounded_l_3xl =
+    A.class "sm:rounded-l-3xl"
 
 
 sm__rounded_t_full : Html.Attribute msg
@@ -32130,6 +46644,66 @@ sm__rounded_br_lg =
 sm__rounded_bl_lg : Html.Attribute msg
 sm__rounded_bl_lg =
     A.class "sm:rounded-bl-lg"
+
+
+sm__rounded_tl_xl : Html.Attribute msg
+sm__rounded_tl_xl =
+    A.class "sm:rounded-tl-xl"
+
+
+sm__rounded_tr_xl : Html.Attribute msg
+sm__rounded_tr_xl =
+    A.class "sm:rounded-tr-xl"
+
+
+sm__rounded_br_xl : Html.Attribute msg
+sm__rounded_br_xl =
+    A.class "sm:rounded-br-xl"
+
+
+sm__rounded_bl_xl : Html.Attribute msg
+sm__rounded_bl_xl =
+    A.class "sm:rounded-bl-xl"
+
+
+sm__rounded_tl_2xl : Html.Attribute msg
+sm__rounded_tl_2xl =
+    A.class "sm:rounded-tl-2xl"
+
+
+sm__rounded_tr_2xl : Html.Attribute msg
+sm__rounded_tr_2xl =
+    A.class "sm:rounded-tr-2xl"
+
+
+sm__rounded_br_2xl : Html.Attribute msg
+sm__rounded_br_2xl =
+    A.class "sm:rounded-br-2xl"
+
+
+sm__rounded_bl_2xl : Html.Attribute msg
+sm__rounded_bl_2xl =
+    A.class "sm:rounded-bl-2xl"
+
+
+sm__rounded_tl_3xl : Html.Attribute msg
+sm__rounded_tl_3xl =
+    A.class "sm:rounded-tl-3xl"
+
+
+sm__rounded_tr_3xl : Html.Attribute msg
+sm__rounded_tr_3xl =
+    A.class "sm:rounded-tr-3xl"
+
+
+sm__rounded_br_3xl : Html.Attribute msg
+sm__rounded_br_3xl =
+    A.class "sm:rounded-br-3xl"
+
+
+sm__rounded_bl_3xl : Html.Attribute msg
+sm__rounded_bl_3xl =
+    A.class "sm:rounded-bl-3xl"
 
 
 sm__rounded_tl_full : Html.Attribute msg
@@ -32467,6 +47041,11 @@ sm__inline_grid =
     A.class "sm:inline-grid"
 
 
+sm__contents : Html.Attribute msg
+sm__contents =
+    A.class "sm:contents"
+
+
 sm__hidden : Html.Attribute msg
 sm__hidden =
     A.class "sm:hidden"
@@ -32507,6 +47086,91 @@ sm__flex_no_wrap =
     A.class "sm:flex-no-wrap"
 
 
+sm__place_items_auto : Html.Attribute msg
+sm__place_items_auto =
+    A.class "sm:place-items-auto"
+
+
+sm__place_items_start : Html.Attribute msg
+sm__place_items_start =
+    A.class "sm:place-items-start"
+
+
+sm__place_items_end : Html.Attribute msg
+sm__place_items_end =
+    A.class "sm:place-items-end"
+
+
+sm__place_items_center : Html.Attribute msg
+sm__place_items_center =
+    A.class "sm:place-items-center"
+
+
+sm__place_items_stretch : Html.Attribute msg
+sm__place_items_stretch =
+    A.class "sm:place-items-stretch"
+
+
+sm__place_content_center : Html.Attribute msg
+sm__place_content_center =
+    A.class "sm:place-content-center"
+
+
+sm__place_content_start : Html.Attribute msg
+sm__place_content_start =
+    A.class "sm:place-content-start"
+
+
+sm__place_content_end : Html.Attribute msg
+sm__place_content_end =
+    A.class "sm:place-content-end"
+
+
+sm__place_content_between : Html.Attribute msg
+sm__place_content_between =
+    A.class "sm:place-content-between"
+
+
+sm__place_content_around : Html.Attribute msg
+sm__place_content_around =
+    A.class "sm:place-content-around"
+
+
+sm__place_content_evenly : Html.Attribute msg
+sm__place_content_evenly =
+    A.class "sm:place-content-evenly"
+
+
+sm__place_content_stretch : Html.Attribute msg
+sm__place_content_stretch =
+    A.class "sm:place-content-stretch"
+
+
+sm__place_self_auto : Html.Attribute msg
+sm__place_self_auto =
+    A.class "sm:place-self-auto"
+
+
+sm__place_self_start : Html.Attribute msg
+sm__place_self_start =
+    A.class "sm:place-self-start"
+
+
+sm__place_self_end : Html.Attribute msg
+sm__place_self_end =
+    A.class "sm:place-self-end"
+
+
+sm__place_self_center : Html.Attribute msg
+sm__place_self_center =
+    A.class "sm:place-self-center"
+
+
+sm__place_self_stretch : Html.Attribute msg
+sm__place_self_stretch =
+    A.class "sm:place-self-stretch"
+
+
 sm__items_start : Html.Attribute msg
 sm__items_start =
     A.class "sm:items-start"
@@ -32532,6 +47196,36 @@ sm__items_stretch =
     A.class "sm:items-stretch"
 
 
+sm__content_center : Html.Attribute msg
+sm__content_center =
+    A.class "sm:content-center"
+
+
+sm__content_start : Html.Attribute msg
+sm__content_start =
+    A.class "sm:content-start"
+
+
+sm__content_end : Html.Attribute msg
+sm__content_end =
+    A.class "sm:content-end"
+
+
+sm__content_between : Html.Attribute msg
+sm__content_between =
+    A.class "sm:content-between"
+
+
+sm__content_around : Html.Attribute msg
+sm__content_around =
+    A.class "sm:content-around"
+
+
+sm__content_evenly : Html.Attribute msg
+sm__content_evenly =
+    A.class "sm:content-evenly"
+
+
 sm__self_auto : Html.Attribute msg
 sm__self_auto =
     A.class "sm:self-auto"
@@ -32555,6 +47249,31 @@ sm__self_center =
 sm__self_stretch : Html.Attribute msg
 sm__self_stretch =
     A.class "sm:self-stretch"
+
+
+sm__justify_items_auto : Html.Attribute msg
+sm__justify_items_auto =
+    A.class "sm:justify-items-auto"
+
+
+sm__justify_items_start : Html.Attribute msg
+sm__justify_items_start =
+    A.class "sm:justify-items-start"
+
+
+sm__justify_items_end : Html.Attribute msg
+sm__justify_items_end =
+    A.class "sm:justify-items-end"
+
+
+sm__justify_items_center : Html.Attribute msg
+sm__justify_items_center =
+    A.class "sm:justify-items-center"
+
+
+sm__justify_items_stretch : Html.Attribute msg
+sm__justify_items_stretch =
+    A.class "sm:justify-items-stretch"
 
 
 sm__justify_start : Html.Attribute msg
@@ -32587,29 +47306,29 @@ sm__justify_evenly =
     A.class "sm:justify-evenly"
 
 
-sm__content_center : Html.Attribute msg
-sm__content_center =
-    A.class "sm:content-center"
+sm__justify_self_auto : Html.Attribute msg
+sm__justify_self_auto =
+    A.class "sm:justify-self-auto"
 
 
-sm__content_start : Html.Attribute msg
-sm__content_start =
-    A.class "sm:content-start"
+sm__justify_self_start : Html.Attribute msg
+sm__justify_self_start =
+    A.class "sm:justify-self-start"
 
 
-sm__content_end : Html.Attribute msg
-sm__content_end =
-    A.class "sm:content-end"
+sm__justify_self_end : Html.Attribute msg
+sm__justify_self_end =
+    A.class "sm:justify-self-end"
 
 
-sm__content_between : Html.Attribute msg
-sm__content_between =
-    A.class "sm:content-between"
+sm__justify_self_center : Html.Attribute msg
+sm__justify_self_center =
+    A.class "sm:justify-self-center"
 
 
-sm__content_around : Html.Attribute msg
-sm__content_around =
-    A.class "sm:content-around"
+sm__justify_self_stretch : Html.Attribute msg
+sm__justify_self_stretch =
+    A.class "sm:justify-self-stretch"
 
 
 sm__flex_1 : Html.Attribute msg
@@ -34792,9 +49511,29 @@ sm__outline_none =
     A.class "sm:outline-none"
 
 
+sm__outline_white : Html.Attribute msg
+sm__outline_white =
+    A.class "sm:outline-white"
+
+
+sm__outline_black : Html.Attribute msg
+sm__outline_black =
+    A.class "sm:outline-black"
+
+
 sm__focus__outline_none : Html.Attribute msg
 sm__focus__outline_none =
     A.class "sm:focus:outline-none"
+
+
+sm__focus__outline_white : Html.Attribute msg
+sm__focus__outline_white =
+    A.class "sm:focus:outline-white"
+
+
+sm__focus__outline_black : Html.Attribute msg
+sm__focus__outline_black =
+    A.class "sm:focus:outline-black"
 
 
 sm__overflow_auto : Html.Attribute msg
@@ -34865,6 +49604,51 @@ sm__scrolling_touch =
 sm__scrolling_auto : Html.Attribute msg
 sm__scrolling_auto =
     A.class "sm:scrolling-auto"
+
+
+sm__overscroll_auto : Html.Attribute msg
+sm__overscroll_auto =
+    A.class "sm:overscroll-auto"
+
+
+sm__overscroll_contain : Html.Attribute msg
+sm__overscroll_contain =
+    A.class "sm:overscroll-contain"
+
+
+sm__overscroll_none : Html.Attribute msg
+sm__overscroll_none =
+    A.class "sm:overscroll-none"
+
+
+sm__overscroll_y_auto : Html.Attribute msg
+sm__overscroll_y_auto =
+    A.class "sm:overscroll-y-auto"
+
+
+sm__overscroll_y_contain : Html.Attribute msg
+sm__overscroll_y_contain =
+    A.class "sm:overscroll-y-contain"
+
+
+sm__overscroll_y_none : Html.Attribute msg
+sm__overscroll_y_none =
+    A.class "sm:overscroll-y-none"
+
+
+sm__overscroll_x_auto : Html.Attribute msg
+sm__overscroll_x_auto =
+    A.class "sm:overscroll-x-auto"
+
+
+sm__overscroll_x_contain : Html.Attribute msg
+sm__overscroll_x_contain =
+    A.class "sm:overscroll-x-contain"
+
+
+sm__overscroll_x_none : Html.Attribute msg
+sm__overscroll_x_none =
+    A.class "sm:overscroll-x-none"
 
 
 sm__p_0 : Html.Attribute msg
@@ -38422,6 +53206,51 @@ sm__subpixel_antialiased =
     A.class "sm:subpixel-antialiased"
 
 
+sm__ordinal : Html.Attribute msg
+sm__ordinal =
+    A.class "sm:ordinal"
+
+
+sm__slashed_zero : Html.Attribute msg
+sm__slashed_zero =
+    A.class "sm:slashed-zero"
+
+
+sm__lining_nums : Html.Attribute msg
+sm__lining_nums =
+    A.class "sm:lining-nums"
+
+
+sm__oldstyle_nums : Html.Attribute msg
+sm__oldstyle_nums =
+    A.class "sm:oldstyle-nums"
+
+
+sm__proportional_nums : Html.Attribute msg
+sm__proportional_nums =
+    A.class "sm:proportional-nums"
+
+
+sm__tabular_nums : Html.Attribute msg
+sm__tabular_nums =
+    A.class "sm:tabular-nums"
+
+
+sm__diagonal_fractions : Html.Attribute msg
+sm__diagonal_fractions =
+    A.class "sm:diagonal-fractions"
+
+
+sm__stacked_fractions : Html.Attribute msg
+sm__stacked_fractions =
+    A.class "sm:stacked-fractions"
+
+
+sm__normal_nums : Html.Attribute msg
+sm__normal_nums =
+    A.class "sm:normal-nums"
+
+
 sm__tracking_tighter : Html.Attribute msg
 sm__tracking_tighter =
     A.class "sm:tracking-tighter"
@@ -38927,194 +53756,194 @@ sm__gap_px =
     A.class "sm:gap-px"
 
 
-sm__col_gap_0 : Html.Attribute msg
-sm__col_gap_0 =
-    A.class "sm:col-gap-0"
+sm__gap_x_0 : Html.Attribute msg
+sm__gap_x_0 =
+    A.class "sm:gap-x-0"
 
 
-sm__col_gap_1 : Html.Attribute msg
-sm__col_gap_1 =
-    A.class "sm:col-gap-1"
+sm__gap_x_1 : Html.Attribute msg
+sm__gap_x_1 =
+    A.class "sm:gap-x-1"
 
 
-sm__col_gap_2 : Html.Attribute msg
-sm__col_gap_2 =
-    A.class "sm:col-gap-2"
+sm__gap_x_2 : Html.Attribute msg
+sm__gap_x_2 =
+    A.class "sm:gap-x-2"
 
 
-sm__col_gap_3 : Html.Attribute msg
-sm__col_gap_3 =
-    A.class "sm:col-gap-3"
+sm__gap_x_3 : Html.Attribute msg
+sm__gap_x_3 =
+    A.class "sm:gap-x-3"
 
 
-sm__col_gap_4 : Html.Attribute msg
-sm__col_gap_4 =
-    A.class "sm:col-gap-4"
+sm__gap_x_4 : Html.Attribute msg
+sm__gap_x_4 =
+    A.class "sm:gap-x-4"
 
 
-sm__col_gap_5 : Html.Attribute msg
-sm__col_gap_5 =
-    A.class "sm:col-gap-5"
+sm__gap_x_5 : Html.Attribute msg
+sm__gap_x_5 =
+    A.class "sm:gap-x-5"
 
 
-sm__col_gap_6 : Html.Attribute msg
-sm__col_gap_6 =
-    A.class "sm:col-gap-6"
+sm__gap_x_6 : Html.Attribute msg
+sm__gap_x_6 =
+    A.class "sm:gap-x-6"
 
 
-sm__col_gap_8 : Html.Attribute msg
-sm__col_gap_8 =
-    A.class "sm:col-gap-8"
+sm__gap_x_8 : Html.Attribute msg
+sm__gap_x_8 =
+    A.class "sm:gap-x-8"
 
 
-sm__col_gap_10 : Html.Attribute msg
-sm__col_gap_10 =
-    A.class "sm:col-gap-10"
+sm__gap_x_10 : Html.Attribute msg
+sm__gap_x_10 =
+    A.class "sm:gap-x-10"
 
 
-sm__col_gap_12 : Html.Attribute msg
-sm__col_gap_12 =
-    A.class "sm:col-gap-12"
+sm__gap_x_12 : Html.Attribute msg
+sm__gap_x_12 =
+    A.class "sm:gap-x-12"
 
 
-sm__col_gap_16 : Html.Attribute msg
-sm__col_gap_16 =
-    A.class "sm:col-gap-16"
+sm__gap_x_16 : Html.Attribute msg
+sm__gap_x_16 =
+    A.class "sm:gap-x-16"
 
 
-sm__col_gap_20 : Html.Attribute msg
-sm__col_gap_20 =
-    A.class "sm:col-gap-20"
+sm__gap_x_20 : Html.Attribute msg
+sm__gap_x_20 =
+    A.class "sm:gap-x-20"
 
 
-sm__col_gap_24 : Html.Attribute msg
-sm__col_gap_24 =
-    A.class "sm:col-gap-24"
+sm__gap_x_24 : Html.Attribute msg
+sm__gap_x_24 =
+    A.class "sm:gap-x-24"
 
 
-sm__col_gap_32 : Html.Attribute msg
-sm__col_gap_32 =
-    A.class "sm:col-gap-32"
+sm__gap_x_32 : Html.Attribute msg
+sm__gap_x_32 =
+    A.class "sm:gap-x-32"
 
 
-sm__col_gap_40 : Html.Attribute msg
-sm__col_gap_40 =
-    A.class "sm:col-gap-40"
+sm__gap_x_40 : Html.Attribute msg
+sm__gap_x_40 =
+    A.class "sm:gap-x-40"
 
 
-sm__col_gap_48 : Html.Attribute msg
-sm__col_gap_48 =
-    A.class "sm:col-gap-48"
+sm__gap_x_48 : Html.Attribute msg
+sm__gap_x_48 =
+    A.class "sm:gap-x-48"
 
 
-sm__col_gap_56 : Html.Attribute msg
-sm__col_gap_56 =
-    A.class "sm:col-gap-56"
+sm__gap_x_56 : Html.Attribute msg
+sm__gap_x_56 =
+    A.class "sm:gap-x-56"
 
 
-sm__col_gap_64 : Html.Attribute msg
-sm__col_gap_64 =
-    A.class "sm:col-gap-64"
+sm__gap_x_64 : Html.Attribute msg
+sm__gap_x_64 =
+    A.class "sm:gap-x-64"
 
 
-sm__col_gap_px : Html.Attribute msg
-sm__col_gap_px =
-    A.class "sm:col-gap-px"
+sm__gap_x_px : Html.Attribute msg
+sm__gap_x_px =
+    A.class "sm:gap-x-px"
 
 
-sm__row_gap_0 : Html.Attribute msg
-sm__row_gap_0 =
-    A.class "sm:row-gap-0"
+sm__gap_y_0 : Html.Attribute msg
+sm__gap_y_0 =
+    A.class "sm:gap-y-0"
 
 
-sm__row_gap_1 : Html.Attribute msg
-sm__row_gap_1 =
-    A.class "sm:row-gap-1"
+sm__gap_y_1 : Html.Attribute msg
+sm__gap_y_1 =
+    A.class "sm:gap-y-1"
 
 
-sm__row_gap_2 : Html.Attribute msg
-sm__row_gap_2 =
-    A.class "sm:row-gap-2"
+sm__gap_y_2 : Html.Attribute msg
+sm__gap_y_2 =
+    A.class "sm:gap-y-2"
 
 
-sm__row_gap_3 : Html.Attribute msg
-sm__row_gap_3 =
-    A.class "sm:row-gap-3"
+sm__gap_y_3 : Html.Attribute msg
+sm__gap_y_3 =
+    A.class "sm:gap-y-3"
 
 
-sm__row_gap_4 : Html.Attribute msg
-sm__row_gap_4 =
-    A.class "sm:row-gap-4"
+sm__gap_y_4 : Html.Attribute msg
+sm__gap_y_4 =
+    A.class "sm:gap-y-4"
 
 
-sm__row_gap_5 : Html.Attribute msg
-sm__row_gap_5 =
-    A.class "sm:row-gap-5"
+sm__gap_y_5 : Html.Attribute msg
+sm__gap_y_5 =
+    A.class "sm:gap-y-5"
 
 
-sm__row_gap_6 : Html.Attribute msg
-sm__row_gap_6 =
-    A.class "sm:row-gap-6"
+sm__gap_y_6 : Html.Attribute msg
+sm__gap_y_6 =
+    A.class "sm:gap-y-6"
 
 
-sm__row_gap_8 : Html.Attribute msg
-sm__row_gap_8 =
-    A.class "sm:row-gap-8"
+sm__gap_y_8 : Html.Attribute msg
+sm__gap_y_8 =
+    A.class "sm:gap-y-8"
 
 
-sm__row_gap_10 : Html.Attribute msg
-sm__row_gap_10 =
-    A.class "sm:row-gap-10"
+sm__gap_y_10 : Html.Attribute msg
+sm__gap_y_10 =
+    A.class "sm:gap-y-10"
 
 
-sm__row_gap_12 : Html.Attribute msg
-sm__row_gap_12 =
-    A.class "sm:row-gap-12"
+sm__gap_y_12 : Html.Attribute msg
+sm__gap_y_12 =
+    A.class "sm:gap-y-12"
 
 
-sm__row_gap_16 : Html.Attribute msg
-sm__row_gap_16 =
-    A.class "sm:row-gap-16"
+sm__gap_y_16 : Html.Attribute msg
+sm__gap_y_16 =
+    A.class "sm:gap-y-16"
 
 
-sm__row_gap_20 : Html.Attribute msg
-sm__row_gap_20 =
-    A.class "sm:row-gap-20"
+sm__gap_y_20 : Html.Attribute msg
+sm__gap_y_20 =
+    A.class "sm:gap-y-20"
 
 
-sm__row_gap_24 : Html.Attribute msg
-sm__row_gap_24 =
-    A.class "sm:row-gap-24"
+sm__gap_y_24 : Html.Attribute msg
+sm__gap_y_24 =
+    A.class "sm:gap-y-24"
 
 
-sm__row_gap_32 : Html.Attribute msg
-sm__row_gap_32 =
-    A.class "sm:row-gap-32"
+sm__gap_y_32 : Html.Attribute msg
+sm__gap_y_32 =
+    A.class "sm:gap-y-32"
 
 
-sm__row_gap_40 : Html.Attribute msg
-sm__row_gap_40 =
-    A.class "sm:row-gap-40"
+sm__gap_y_40 : Html.Attribute msg
+sm__gap_y_40 =
+    A.class "sm:gap-y-40"
 
 
-sm__row_gap_48 : Html.Attribute msg
-sm__row_gap_48 =
-    A.class "sm:row-gap-48"
+sm__gap_y_48 : Html.Attribute msg
+sm__gap_y_48 =
+    A.class "sm:gap-y-48"
 
 
-sm__row_gap_56 : Html.Attribute msg
-sm__row_gap_56 =
-    A.class "sm:row-gap-56"
+sm__gap_y_56 : Html.Attribute msg
+sm__gap_y_56 =
+    A.class "sm:gap-y-56"
 
 
-sm__row_gap_64 : Html.Attribute msg
-sm__row_gap_64 =
-    A.class "sm:row-gap-64"
+sm__gap_y_64 : Html.Attribute msg
+sm__gap_y_64 =
+    A.class "sm:gap-y-64"
 
 
-sm__row_gap_px : Html.Attribute msg
-sm__row_gap_px =
-    A.class "sm:row-gap-px"
+sm__gap_y_px : Html.Attribute msg
+sm__gap_y_px =
+    A.class "sm:gap-y-px"
 
 
 sm__grid_flow_row : Html.Attribute msg
@@ -39207,6 +54036,26 @@ sm__grid_cols_header =
     A.class "sm:grid-cols-header"
 
 
+sm__auto_cols_auto : Html.Attribute msg
+sm__auto_cols_auto =
+    A.class "sm:auto-cols-auto"
+
+
+sm__auto_cols_min : Html.Attribute msg
+sm__auto_cols_min =
+    A.class "sm:auto-cols-min"
+
+
+sm__auto_cols_max : Html.Attribute msg
+sm__auto_cols_max =
+    A.class "sm:auto-cols-max"
+
+
+sm__auto_cols_fr : Html.Attribute msg
+sm__auto_cols_fr =
+    A.class "sm:auto-cols-fr"
+
+
 sm__col_auto : Html.Attribute msg
 sm__col_auto =
     A.class "sm:col-auto"
@@ -39270,6 +54119,11 @@ sm__col_span_11 =
 sm__col_span_12 : Html.Attribute msg
 sm__col_span_12 =
     A.class "sm:col-span-12"
+
+
+sm__col_span_full : Html.Attribute msg
+sm__col_span_full =
+    A.class "sm:col-span-full"
 
 
 sm__col_start_1 : Html.Attribute msg
@@ -39447,6 +54301,26 @@ sm__grid_rows_none =
     A.class "sm:grid-rows-none"
 
 
+sm__auto_rows_auto : Html.Attribute msg
+sm__auto_rows_auto =
+    A.class "sm:auto-rows-auto"
+
+
+sm__auto_rows_min : Html.Attribute msg
+sm__auto_rows_min =
+    A.class "sm:auto-rows-min"
+
+
+sm__auto_rows_max : Html.Attribute msg
+sm__auto_rows_max =
+    A.class "sm:auto-rows-max"
+
+
+sm__auto_rows_fr : Html.Attribute msg
+sm__auto_rows_fr =
+    A.class "sm:auto-rows-fr"
+
+
 sm__row_auto : Html.Attribute msg
 sm__row_auto =
     A.class "sm:row-auto"
@@ -39480,6 +54354,11 @@ sm__row_span_5 =
 sm__row_span_6 : Html.Attribute msg
 sm__row_span_6 =
     A.class "sm:row-span-6"
+
+
+sm__row_span_full : Html.Attribute msg
+sm__row_span_full =
+    A.class "sm:row-span-full"
 
 
 sm__row_start_1 : Html.Attribute msg
@@ -40072,6 +54951,31 @@ sm__rotate_0 =
     A.class "sm:rotate-0"
 
 
+sm__rotate_1 : Html.Attribute msg
+sm__rotate_1 =
+    A.class "sm:rotate-1"
+
+
+sm__rotate_2 : Html.Attribute msg
+sm__rotate_2 =
+    A.class "sm:rotate-2"
+
+
+sm__rotate_3 : Html.Attribute msg
+sm__rotate_3 =
+    A.class "sm:rotate-3"
+
+
+sm__rotate_6 : Html.Attribute msg
+sm__rotate_6 =
+    A.class "sm:rotate-6"
+
+
+sm__rotate_12 : Html.Attribute msg
+sm__rotate_12 =
+    A.class "sm:rotate-12"
+
+
 sm__rotate_45 : Html.Attribute msg
 sm__rotate_45 =
     A.class "sm:rotate-45"
@@ -40102,9 +55006,59 @@ sm__neg_rotate_45 =
     A.class "sm:-rotate-45"
 
 
+sm__neg_rotate_12 : Html.Attribute msg
+sm__neg_rotate_12 =
+    A.class "sm:-rotate-12"
+
+
+sm__neg_rotate_6 : Html.Attribute msg
+sm__neg_rotate_6 =
+    A.class "sm:-rotate-6"
+
+
+sm__neg_rotate_3 : Html.Attribute msg
+sm__neg_rotate_3 =
+    A.class "sm:-rotate-3"
+
+
+sm__neg_rotate_2 : Html.Attribute msg
+sm__neg_rotate_2 =
+    A.class "sm:-rotate-2"
+
+
+sm__neg_rotate_1 : Html.Attribute msg
+sm__neg_rotate_1 =
+    A.class "sm:-rotate-1"
+
+
 sm__hover__rotate_0 : Html.Attribute msg
 sm__hover__rotate_0 =
     A.class "sm:hover:rotate-0"
+
+
+sm__hover__rotate_1 : Html.Attribute msg
+sm__hover__rotate_1 =
+    A.class "sm:hover:rotate-1"
+
+
+sm__hover__rotate_2 : Html.Attribute msg
+sm__hover__rotate_2 =
+    A.class "sm:hover:rotate-2"
+
+
+sm__hover__rotate_3 : Html.Attribute msg
+sm__hover__rotate_3 =
+    A.class "sm:hover:rotate-3"
+
+
+sm__hover__rotate_6 : Html.Attribute msg
+sm__hover__rotate_6 =
+    A.class "sm:hover:rotate-6"
+
+
+sm__hover__rotate_12 : Html.Attribute msg
+sm__hover__rotate_12 =
+    A.class "sm:hover:rotate-12"
 
 
 sm__hover__rotate_45 : Html.Attribute msg
@@ -40137,9 +55091,59 @@ sm__hover__neg_rotate_45 =
     A.class "sm:hover:-rotate-45"
 
 
+sm__hover__neg_rotate_12 : Html.Attribute msg
+sm__hover__neg_rotate_12 =
+    A.class "sm:hover:-rotate-12"
+
+
+sm__hover__neg_rotate_6 : Html.Attribute msg
+sm__hover__neg_rotate_6 =
+    A.class "sm:hover:-rotate-6"
+
+
+sm__hover__neg_rotate_3 : Html.Attribute msg
+sm__hover__neg_rotate_3 =
+    A.class "sm:hover:-rotate-3"
+
+
+sm__hover__neg_rotate_2 : Html.Attribute msg
+sm__hover__neg_rotate_2 =
+    A.class "sm:hover:-rotate-2"
+
+
+sm__hover__neg_rotate_1 : Html.Attribute msg
+sm__hover__neg_rotate_1 =
+    A.class "sm:hover:-rotate-1"
+
+
 sm__focus__rotate_0 : Html.Attribute msg
 sm__focus__rotate_0 =
     A.class "sm:focus:rotate-0"
+
+
+sm__focus__rotate_1 : Html.Attribute msg
+sm__focus__rotate_1 =
+    A.class "sm:focus:rotate-1"
+
+
+sm__focus__rotate_2 : Html.Attribute msg
+sm__focus__rotate_2 =
+    A.class "sm:focus:rotate-2"
+
+
+sm__focus__rotate_3 : Html.Attribute msg
+sm__focus__rotate_3 =
+    A.class "sm:focus:rotate-3"
+
+
+sm__focus__rotate_6 : Html.Attribute msg
+sm__focus__rotate_6 =
+    A.class "sm:focus:rotate-6"
+
+
+sm__focus__rotate_12 : Html.Attribute msg
+sm__focus__rotate_12 =
+    A.class "sm:focus:rotate-12"
 
 
 sm__focus__rotate_45 : Html.Attribute msg
@@ -40170,6 +55174,31 @@ sm__focus__neg_rotate_90 =
 sm__focus__neg_rotate_45 : Html.Attribute msg
 sm__focus__neg_rotate_45 =
     A.class "sm:focus:-rotate-45"
+
+
+sm__focus__neg_rotate_12 : Html.Attribute msg
+sm__focus__neg_rotate_12 =
+    A.class "sm:focus:-rotate-12"
+
+
+sm__focus__neg_rotate_6 : Html.Attribute msg
+sm__focus__neg_rotate_6 =
+    A.class "sm:focus:-rotate-6"
+
+
+sm__focus__neg_rotate_3 : Html.Attribute msg
+sm__focus__neg_rotate_3 =
+    A.class "sm:focus:-rotate-3"
+
+
+sm__focus__neg_rotate_2 : Html.Attribute msg
+sm__focus__neg_rotate_2 =
+    A.class "sm:focus:-rotate-2"
+
+
+sm__focus__neg_rotate_1 : Html.Attribute msg
+sm__focus__neg_rotate_1 =
+    A.class "sm:focus:-rotate-1"
 
 
 sm__translate_x_0 : Html.Attribute msg
@@ -41407,6 +56436,16 @@ sm__skew_x_0 =
     A.class "sm:skew-x-0"
 
 
+sm__skew_x_1 : Html.Attribute msg
+sm__skew_x_1 =
+    A.class "sm:skew-x-1"
+
+
+sm__skew_x_2 : Html.Attribute msg
+sm__skew_x_2 =
+    A.class "sm:skew-x-2"
+
+
 sm__skew_x_3 : Html.Attribute msg
 sm__skew_x_3 =
     A.class "sm:skew-x-3"
@@ -41437,9 +56476,29 @@ sm__neg_skew_x_3 =
     A.class "sm:-skew-x-3"
 
 
+sm__neg_skew_x_2 : Html.Attribute msg
+sm__neg_skew_x_2 =
+    A.class "sm:-skew-x-2"
+
+
+sm__neg_skew_x_1 : Html.Attribute msg
+sm__neg_skew_x_1 =
+    A.class "sm:-skew-x-1"
+
+
 sm__skew_y_0 : Html.Attribute msg
 sm__skew_y_0 =
     A.class "sm:skew-y-0"
+
+
+sm__skew_y_1 : Html.Attribute msg
+sm__skew_y_1 =
+    A.class "sm:skew-y-1"
+
+
+sm__skew_y_2 : Html.Attribute msg
+sm__skew_y_2 =
+    A.class "sm:skew-y-2"
 
 
 sm__skew_y_3 : Html.Attribute msg
@@ -41472,9 +56531,29 @@ sm__neg_skew_y_3 =
     A.class "sm:-skew-y-3"
 
 
+sm__neg_skew_y_2 : Html.Attribute msg
+sm__neg_skew_y_2 =
+    A.class "sm:-skew-y-2"
+
+
+sm__neg_skew_y_1 : Html.Attribute msg
+sm__neg_skew_y_1 =
+    A.class "sm:-skew-y-1"
+
+
 sm__hover__skew_x_0 : Html.Attribute msg
 sm__hover__skew_x_0 =
     A.class "sm:hover:skew-x-0"
+
+
+sm__hover__skew_x_1 : Html.Attribute msg
+sm__hover__skew_x_1 =
+    A.class "sm:hover:skew-x-1"
+
+
+sm__hover__skew_x_2 : Html.Attribute msg
+sm__hover__skew_x_2 =
+    A.class "sm:hover:skew-x-2"
 
 
 sm__hover__skew_x_3 : Html.Attribute msg
@@ -41507,9 +56586,29 @@ sm__hover__neg_skew_x_3 =
     A.class "sm:hover:-skew-x-3"
 
 
+sm__hover__neg_skew_x_2 : Html.Attribute msg
+sm__hover__neg_skew_x_2 =
+    A.class "sm:hover:-skew-x-2"
+
+
+sm__hover__neg_skew_x_1 : Html.Attribute msg
+sm__hover__neg_skew_x_1 =
+    A.class "sm:hover:-skew-x-1"
+
+
 sm__hover__skew_y_0 : Html.Attribute msg
 sm__hover__skew_y_0 =
     A.class "sm:hover:skew-y-0"
+
+
+sm__hover__skew_y_1 : Html.Attribute msg
+sm__hover__skew_y_1 =
+    A.class "sm:hover:skew-y-1"
+
+
+sm__hover__skew_y_2 : Html.Attribute msg
+sm__hover__skew_y_2 =
+    A.class "sm:hover:skew-y-2"
 
 
 sm__hover__skew_y_3 : Html.Attribute msg
@@ -41542,9 +56641,29 @@ sm__hover__neg_skew_y_3 =
     A.class "sm:hover:-skew-y-3"
 
 
+sm__hover__neg_skew_y_2 : Html.Attribute msg
+sm__hover__neg_skew_y_2 =
+    A.class "sm:hover:-skew-y-2"
+
+
+sm__hover__neg_skew_y_1 : Html.Attribute msg
+sm__hover__neg_skew_y_1 =
+    A.class "sm:hover:-skew-y-1"
+
+
 sm__focus__skew_x_0 : Html.Attribute msg
 sm__focus__skew_x_0 =
     A.class "sm:focus:skew-x-0"
+
+
+sm__focus__skew_x_1 : Html.Attribute msg
+sm__focus__skew_x_1 =
+    A.class "sm:focus:skew-x-1"
+
+
+sm__focus__skew_x_2 : Html.Attribute msg
+sm__focus__skew_x_2 =
+    A.class "sm:focus:skew-x-2"
 
 
 sm__focus__skew_x_3 : Html.Attribute msg
@@ -41577,9 +56696,29 @@ sm__focus__neg_skew_x_3 =
     A.class "sm:focus:-skew-x-3"
 
 
+sm__focus__neg_skew_x_2 : Html.Attribute msg
+sm__focus__neg_skew_x_2 =
+    A.class "sm:focus:-skew-x-2"
+
+
+sm__focus__neg_skew_x_1 : Html.Attribute msg
+sm__focus__neg_skew_x_1 =
+    A.class "sm:focus:-skew-x-1"
+
+
 sm__focus__skew_y_0 : Html.Attribute msg
 sm__focus__skew_y_0 =
     A.class "sm:focus:skew-y-0"
+
+
+sm__focus__skew_y_1 : Html.Attribute msg
+sm__focus__skew_y_1 =
+    A.class "sm:focus:skew-y-1"
+
+
+sm__focus__skew_y_2 : Html.Attribute msg
+sm__focus__skew_y_2 =
+    A.class "sm:focus:skew-y-2"
 
 
 sm__focus__skew_y_3 : Html.Attribute msg
@@ -41610,6 +56749,16 @@ sm__focus__neg_skew_y_6 =
 sm__focus__neg_skew_y_3 : Html.Attribute msg
 sm__focus__neg_skew_y_3 =
     A.class "sm:focus:-skew-y-3"
+
+
+sm__focus__neg_skew_y_2 : Html.Attribute msg
+sm__focus__neg_skew_y_2 =
+    A.class "sm:focus:-skew-y-2"
+
+
+sm__focus__neg_skew_y_1 : Html.Attribute msg
+sm__focus__neg_skew_y_1 =
+    A.class "sm:focus:-skew-y-1"
 
 
 sm__transition_none : Html.Attribute msg
@@ -41745,6 +56894,36 @@ sm__delay_700 =
 sm__delay_1000 : Html.Attribute msg
 sm__delay_1000 =
     A.class "sm:delay-1000"
+
+
+sm__animate_none : Html.Attribute msg
+sm__animate_none =
+    A.class "sm:animate-none"
+
+
+sm__animate_spin : Html.Attribute msg
+sm__animate_spin =
+    A.class "sm:animate-spin"
+
+
+sm__animate_ping : Html.Attribute msg
+sm__animate_ping =
+    A.class "sm:animate-ping"
+
+
+sm__animate_pulse : Html.Attribute msg
+sm__animate_pulse =
+    A.class "sm:animate-pulse"
+
+
+sm__animate_bounce : Html.Attribute msg
+sm__animate_bounce =
+    A.class "sm:animate-bounce"
+
+
+md__container : Html.Attribute msg
+md__container =
+    A.class "md:container"
 
 
 md__space_y_0 : Html.Attribute msg
@@ -42657,6 +57836,31 @@ md__divide_pink_900 =
     A.class "md:divide-pink-900"
 
 
+md__divide_solid : Html.Attribute msg
+md__divide_solid =
+    A.class "md:divide-solid"
+
+
+md__divide_dashed : Html.Attribute msg
+md__divide_dashed =
+    A.class "md:divide-dashed"
+
+
+md__divide_dotted : Html.Attribute msg
+md__divide_dotted =
+    A.class "md:divide-dotted"
+
+
+md__divide_double : Html.Attribute msg
+md__divide_double =
+    A.class "md:divide-double"
+
+
+md__divide_none : Html.Attribute msg
+md__divide_none =
+    A.class "md:divide-none"
+
+
 md__divide_opacity_0 : Html.Attribute msg
 md__divide_opacity_0 =
     A.class "md:divide-opacity-0"
@@ -42720,6 +57924,26 @@ md__bg_local =
 md__bg_scroll : Html.Attribute msg
 md__bg_scroll =
     A.class "md:bg-scroll"
+
+
+md__bg_clip_border : Html.Attribute msg
+md__bg_clip_border =
+    A.class "md:bg-clip-border"
+
+
+md__bg_clip_padding : Html.Attribute msg
+md__bg_clip_padding =
+    A.class "md:bg-clip-padding"
+
+
+md__bg_clip_content : Html.Attribute msg
+md__bg_clip_content =
+    A.class "md:bg-clip-content"
+
+
+md__bg_clip_text : Html.Attribute msg
+md__bg_clip_text =
+    A.class "md:bg-clip-text"
 
 
 md__bg_transparent : Html.Attribute msg
@@ -44130,6 +59354,4281 @@ md__focus__bg_pink_800 =
 md__focus__bg_pink_900 : Html.Attribute msg
 md__focus__bg_pink_900 =
     A.class "md:focus:bg-pink-900"
+
+
+md__bg_none : Html.Attribute msg
+md__bg_none =
+    A.class "md:bg-none"
+
+
+md__bg_gradient_to_t : Html.Attribute msg
+md__bg_gradient_to_t =
+    A.class "md:bg-gradient-to-t"
+
+
+md__bg_gradient_to_tr : Html.Attribute msg
+md__bg_gradient_to_tr =
+    A.class "md:bg-gradient-to-tr"
+
+
+md__bg_gradient_to_r : Html.Attribute msg
+md__bg_gradient_to_r =
+    A.class "md:bg-gradient-to-r"
+
+
+md__bg_gradient_to_br : Html.Attribute msg
+md__bg_gradient_to_br =
+    A.class "md:bg-gradient-to-br"
+
+
+md__bg_gradient_to_b : Html.Attribute msg
+md__bg_gradient_to_b =
+    A.class "md:bg-gradient-to-b"
+
+
+md__bg_gradient_to_bl : Html.Attribute msg
+md__bg_gradient_to_bl =
+    A.class "md:bg-gradient-to-bl"
+
+
+md__bg_gradient_to_l : Html.Attribute msg
+md__bg_gradient_to_l =
+    A.class "md:bg-gradient-to-l"
+
+
+md__bg_gradient_to_tl : Html.Attribute msg
+md__bg_gradient_to_tl =
+    A.class "md:bg-gradient-to-tl"
+
+
+md__from_transparent : Html.Attribute msg
+md__from_transparent =
+    A.class "md:from-transparent"
+
+
+md__from_current : Html.Attribute msg
+md__from_current =
+    A.class "md:from-current"
+
+
+md__from_black : Html.Attribute msg
+md__from_black =
+    A.class "md:from-black"
+
+
+md__from_white : Html.Attribute msg
+md__from_white =
+    A.class "md:from-white"
+
+
+md__from_gray_100 : Html.Attribute msg
+md__from_gray_100 =
+    A.class "md:from-gray-100"
+
+
+md__from_gray_200 : Html.Attribute msg
+md__from_gray_200 =
+    A.class "md:from-gray-200"
+
+
+md__from_gray_300 : Html.Attribute msg
+md__from_gray_300 =
+    A.class "md:from-gray-300"
+
+
+md__from_gray_400 : Html.Attribute msg
+md__from_gray_400 =
+    A.class "md:from-gray-400"
+
+
+md__from_gray_500 : Html.Attribute msg
+md__from_gray_500 =
+    A.class "md:from-gray-500"
+
+
+md__from_gray_600 : Html.Attribute msg
+md__from_gray_600 =
+    A.class "md:from-gray-600"
+
+
+md__from_gray_700 : Html.Attribute msg
+md__from_gray_700 =
+    A.class "md:from-gray-700"
+
+
+md__from_gray_800 : Html.Attribute msg
+md__from_gray_800 =
+    A.class "md:from-gray-800"
+
+
+md__from_gray_900 : Html.Attribute msg
+md__from_gray_900 =
+    A.class "md:from-gray-900"
+
+
+md__from_red_100 : Html.Attribute msg
+md__from_red_100 =
+    A.class "md:from-red-100"
+
+
+md__from_red_200 : Html.Attribute msg
+md__from_red_200 =
+    A.class "md:from-red-200"
+
+
+md__from_red_300 : Html.Attribute msg
+md__from_red_300 =
+    A.class "md:from-red-300"
+
+
+md__from_red_400 : Html.Attribute msg
+md__from_red_400 =
+    A.class "md:from-red-400"
+
+
+md__from_red_500 : Html.Attribute msg
+md__from_red_500 =
+    A.class "md:from-red-500"
+
+
+md__from_red_600 : Html.Attribute msg
+md__from_red_600 =
+    A.class "md:from-red-600"
+
+
+md__from_red_700 : Html.Attribute msg
+md__from_red_700 =
+    A.class "md:from-red-700"
+
+
+md__from_red_800 : Html.Attribute msg
+md__from_red_800 =
+    A.class "md:from-red-800"
+
+
+md__from_red_900 : Html.Attribute msg
+md__from_red_900 =
+    A.class "md:from-red-900"
+
+
+md__from_orange_100 : Html.Attribute msg
+md__from_orange_100 =
+    A.class "md:from-orange-100"
+
+
+md__from_orange_200 : Html.Attribute msg
+md__from_orange_200 =
+    A.class "md:from-orange-200"
+
+
+md__from_orange_300 : Html.Attribute msg
+md__from_orange_300 =
+    A.class "md:from-orange-300"
+
+
+md__from_orange_400 : Html.Attribute msg
+md__from_orange_400 =
+    A.class "md:from-orange-400"
+
+
+md__from_orange_500 : Html.Attribute msg
+md__from_orange_500 =
+    A.class "md:from-orange-500"
+
+
+md__from_orange_600 : Html.Attribute msg
+md__from_orange_600 =
+    A.class "md:from-orange-600"
+
+
+md__from_orange_700 : Html.Attribute msg
+md__from_orange_700 =
+    A.class "md:from-orange-700"
+
+
+md__from_orange_800 : Html.Attribute msg
+md__from_orange_800 =
+    A.class "md:from-orange-800"
+
+
+md__from_orange_900 : Html.Attribute msg
+md__from_orange_900 =
+    A.class "md:from-orange-900"
+
+
+md__from_yellow_100 : Html.Attribute msg
+md__from_yellow_100 =
+    A.class "md:from-yellow-100"
+
+
+md__from_yellow_200 : Html.Attribute msg
+md__from_yellow_200 =
+    A.class "md:from-yellow-200"
+
+
+md__from_yellow_300 : Html.Attribute msg
+md__from_yellow_300 =
+    A.class "md:from-yellow-300"
+
+
+md__from_yellow_400 : Html.Attribute msg
+md__from_yellow_400 =
+    A.class "md:from-yellow-400"
+
+
+md__from_yellow_500 : Html.Attribute msg
+md__from_yellow_500 =
+    A.class "md:from-yellow-500"
+
+
+md__from_yellow_600 : Html.Attribute msg
+md__from_yellow_600 =
+    A.class "md:from-yellow-600"
+
+
+md__from_yellow_700 : Html.Attribute msg
+md__from_yellow_700 =
+    A.class "md:from-yellow-700"
+
+
+md__from_yellow_800 : Html.Attribute msg
+md__from_yellow_800 =
+    A.class "md:from-yellow-800"
+
+
+md__from_yellow_900 : Html.Attribute msg
+md__from_yellow_900 =
+    A.class "md:from-yellow-900"
+
+
+md__from_green_100 : Html.Attribute msg
+md__from_green_100 =
+    A.class "md:from-green-100"
+
+
+md__from_green_200 : Html.Attribute msg
+md__from_green_200 =
+    A.class "md:from-green-200"
+
+
+md__from_green_300 : Html.Attribute msg
+md__from_green_300 =
+    A.class "md:from-green-300"
+
+
+md__from_green_400 : Html.Attribute msg
+md__from_green_400 =
+    A.class "md:from-green-400"
+
+
+md__from_green_500 : Html.Attribute msg
+md__from_green_500 =
+    A.class "md:from-green-500"
+
+
+md__from_green_600 : Html.Attribute msg
+md__from_green_600 =
+    A.class "md:from-green-600"
+
+
+md__from_green_700 : Html.Attribute msg
+md__from_green_700 =
+    A.class "md:from-green-700"
+
+
+md__from_green_800 : Html.Attribute msg
+md__from_green_800 =
+    A.class "md:from-green-800"
+
+
+md__from_green_900 : Html.Attribute msg
+md__from_green_900 =
+    A.class "md:from-green-900"
+
+
+md__from_teal_100 : Html.Attribute msg
+md__from_teal_100 =
+    A.class "md:from-teal-100"
+
+
+md__from_teal_200 : Html.Attribute msg
+md__from_teal_200 =
+    A.class "md:from-teal-200"
+
+
+md__from_teal_300 : Html.Attribute msg
+md__from_teal_300 =
+    A.class "md:from-teal-300"
+
+
+md__from_teal_400 : Html.Attribute msg
+md__from_teal_400 =
+    A.class "md:from-teal-400"
+
+
+md__from_teal_500 : Html.Attribute msg
+md__from_teal_500 =
+    A.class "md:from-teal-500"
+
+
+md__from_teal_600 : Html.Attribute msg
+md__from_teal_600 =
+    A.class "md:from-teal-600"
+
+
+md__from_teal_700 : Html.Attribute msg
+md__from_teal_700 =
+    A.class "md:from-teal-700"
+
+
+md__from_teal_800 : Html.Attribute msg
+md__from_teal_800 =
+    A.class "md:from-teal-800"
+
+
+md__from_teal_900 : Html.Attribute msg
+md__from_teal_900 =
+    A.class "md:from-teal-900"
+
+
+md__from_blue_100 : Html.Attribute msg
+md__from_blue_100 =
+    A.class "md:from-blue-100"
+
+
+md__from_blue_200 : Html.Attribute msg
+md__from_blue_200 =
+    A.class "md:from-blue-200"
+
+
+md__from_blue_300 : Html.Attribute msg
+md__from_blue_300 =
+    A.class "md:from-blue-300"
+
+
+md__from_blue_400 : Html.Attribute msg
+md__from_blue_400 =
+    A.class "md:from-blue-400"
+
+
+md__from_blue_500 : Html.Attribute msg
+md__from_blue_500 =
+    A.class "md:from-blue-500"
+
+
+md__from_blue_600 : Html.Attribute msg
+md__from_blue_600 =
+    A.class "md:from-blue-600"
+
+
+md__from_blue_700 : Html.Attribute msg
+md__from_blue_700 =
+    A.class "md:from-blue-700"
+
+
+md__from_blue_800 : Html.Attribute msg
+md__from_blue_800 =
+    A.class "md:from-blue-800"
+
+
+md__from_blue_900 : Html.Attribute msg
+md__from_blue_900 =
+    A.class "md:from-blue-900"
+
+
+md__from_indigo_100 : Html.Attribute msg
+md__from_indigo_100 =
+    A.class "md:from-indigo-100"
+
+
+md__from_indigo_200 : Html.Attribute msg
+md__from_indigo_200 =
+    A.class "md:from-indigo-200"
+
+
+md__from_indigo_300 : Html.Attribute msg
+md__from_indigo_300 =
+    A.class "md:from-indigo-300"
+
+
+md__from_indigo_400 : Html.Attribute msg
+md__from_indigo_400 =
+    A.class "md:from-indigo-400"
+
+
+md__from_indigo_500 : Html.Attribute msg
+md__from_indigo_500 =
+    A.class "md:from-indigo-500"
+
+
+md__from_indigo_600 : Html.Attribute msg
+md__from_indigo_600 =
+    A.class "md:from-indigo-600"
+
+
+md__from_indigo_700 : Html.Attribute msg
+md__from_indigo_700 =
+    A.class "md:from-indigo-700"
+
+
+md__from_indigo_800 : Html.Attribute msg
+md__from_indigo_800 =
+    A.class "md:from-indigo-800"
+
+
+md__from_indigo_900 : Html.Attribute msg
+md__from_indigo_900 =
+    A.class "md:from-indigo-900"
+
+
+md__from_purple_100 : Html.Attribute msg
+md__from_purple_100 =
+    A.class "md:from-purple-100"
+
+
+md__from_purple_200 : Html.Attribute msg
+md__from_purple_200 =
+    A.class "md:from-purple-200"
+
+
+md__from_purple_300 : Html.Attribute msg
+md__from_purple_300 =
+    A.class "md:from-purple-300"
+
+
+md__from_purple_400 : Html.Attribute msg
+md__from_purple_400 =
+    A.class "md:from-purple-400"
+
+
+md__from_purple_500 : Html.Attribute msg
+md__from_purple_500 =
+    A.class "md:from-purple-500"
+
+
+md__from_purple_600 : Html.Attribute msg
+md__from_purple_600 =
+    A.class "md:from-purple-600"
+
+
+md__from_purple_700 : Html.Attribute msg
+md__from_purple_700 =
+    A.class "md:from-purple-700"
+
+
+md__from_purple_800 : Html.Attribute msg
+md__from_purple_800 =
+    A.class "md:from-purple-800"
+
+
+md__from_purple_900 : Html.Attribute msg
+md__from_purple_900 =
+    A.class "md:from-purple-900"
+
+
+md__from_pink_100 : Html.Attribute msg
+md__from_pink_100 =
+    A.class "md:from-pink-100"
+
+
+md__from_pink_200 : Html.Attribute msg
+md__from_pink_200 =
+    A.class "md:from-pink-200"
+
+
+md__from_pink_300 : Html.Attribute msg
+md__from_pink_300 =
+    A.class "md:from-pink-300"
+
+
+md__from_pink_400 : Html.Attribute msg
+md__from_pink_400 =
+    A.class "md:from-pink-400"
+
+
+md__from_pink_500 : Html.Attribute msg
+md__from_pink_500 =
+    A.class "md:from-pink-500"
+
+
+md__from_pink_600 : Html.Attribute msg
+md__from_pink_600 =
+    A.class "md:from-pink-600"
+
+
+md__from_pink_700 : Html.Attribute msg
+md__from_pink_700 =
+    A.class "md:from-pink-700"
+
+
+md__from_pink_800 : Html.Attribute msg
+md__from_pink_800 =
+    A.class "md:from-pink-800"
+
+
+md__from_pink_900 : Html.Attribute msg
+md__from_pink_900 =
+    A.class "md:from-pink-900"
+
+
+md__via_transparent : Html.Attribute msg
+md__via_transparent =
+    A.class "md:via-transparent"
+
+
+md__via_current : Html.Attribute msg
+md__via_current =
+    A.class "md:via-current"
+
+
+md__via_black : Html.Attribute msg
+md__via_black =
+    A.class "md:via-black"
+
+
+md__via_white : Html.Attribute msg
+md__via_white =
+    A.class "md:via-white"
+
+
+md__via_gray_100 : Html.Attribute msg
+md__via_gray_100 =
+    A.class "md:via-gray-100"
+
+
+md__via_gray_200 : Html.Attribute msg
+md__via_gray_200 =
+    A.class "md:via-gray-200"
+
+
+md__via_gray_300 : Html.Attribute msg
+md__via_gray_300 =
+    A.class "md:via-gray-300"
+
+
+md__via_gray_400 : Html.Attribute msg
+md__via_gray_400 =
+    A.class "md:via-gray-400"
+
+
+md__via_gray_500 : Html.Attribute msg
+md__via_gray_500 =
+    A.class "md:via-gray-500"
+
+
+md__via_gray_600 : Html.Attribute msg
+md__via_gray_600 =
+    A.class "md:via-gray-600"
+
+
+md__via_gray_700 : Html.Attribute msg
+md__via_gray_700 =
+    A.class "md:via-gray-700"
+
+
+md__via_gray_800 : Html.Attribute msg
+md__via_gray_800 =
+    A.class "md:via-gray-800"
+
+
+md__via_gray_900 : Html.Attribute msg
+md__via_gray_900 =
+    A.class "md:via-gray-900"
+
+
+md__via_red_100 : Html.Attribute msg
+md__via_red_100 =
+    A.class "md:via-red-100"
+
+
+md__via_red_200 : Html.Attribute msg
+md__via_red_200 =
+    A.class "md:via-red-200"
+
+
+md__via_red_300 : Html.Attribute msg
+md__via_red_300 =
+    A.class "md:via-red-300"
+
+
+md__via_red_400 : Html.Attribute msg
+md__via_red_400 =
+    A.class "md:via-red-400"
+
+
+md__via_red_500 : Html.Attribute msg
+md__via_red_500 =
+    A.class "md:via-red-500"
+
+
+md__via_red_600 : Html.Attribute msg
+md__via_red_600 =
+    A.class "md:via-red-600"
+
+
+md__via_red_700 : Html.Attribute msg
+md__via_red_700 =
+    A.class "md:via-red-700"
+
+
+md__via_red_800 : Html.Attribute msg
+md__via_red_800 =
+    A.class "md:via-red-800"
+
+
+md__via_red_900 : Html.Attribute msg
+md__via_red_900 =
+    A.class "md:via-red-900"
+
+
+md__via_orange_100 : Html.Attribute msg
+md__via_orange_100 =
+    A.class "md:via-orange-100"
+
+
+md__via_orange_200 : Html.Attribute msg
+md__via_orange_200 =
+    A.class "md:via-orange-200"
+
+
+md__via_orange_300 : Html.Attribute msg
+md__via_orange_300 =
+    A.class "md:via-orange-300"
+
+
+md__via_orange_400 : Html.Attribute msg
+md__via_orange_400 =
+    A.class "md:via-orange-400"
+
+
+md__via_orange_500 : Html.Attribute msg
+md__via_orange_500 =
+    A.class "md:via-orange-500"
+
+
+md__via_orange_600 : Html.Attribute msg
+md__via_orange_600 =
+    A.class "md:via-orange-600"
+
+
+md__via_orange_700 : Html.Attribute msg
+md__via_orange_700 =
+    A.class "md:via-orange-700"
+
+
+md__via_orange_800 : Html.Attribute msg
+md__via_orange_800 =
+    A.class "md:via-orange-800"
+
+
+md__via_orange_900 : Html.Attribute msg
+md__via_orange_900 =
+    A.class "md:via-orange-900"
+
+
+md__via_yellow_100 : Html.Attribute msg
+md__via_yellow_100 =
+    A.class "md:via-yellow-100"
+
+
+md__via_yellow_200 : Html.Attribute msg
+md__via_yellow_200 =
+    A.class "md:via-yellow-200"
+
+
+md__via_yellow_300 : Html.Attribute msg
+md__via_yellow_300 =
+    A.class "md:via-yellow-300"
+
+
+md__via_yellow_400 : Html.Attribute msg
+md__via_yellow_400 =
+    A.class "md:via-yellow-400"
+
+
+md__via_yellow_500 : Html.Attribute msg
+md__via_yellow_500 =
+    A.class "md:via-yellow-500"
+
+
+md__via_yellow_600 : Html.Attribute msg
+md__via_yellow_600 =
+    A.class "md:via-yellow-600"
+
+
+md__via_yellow_700 : Html.Attribute msg
+md__via_yellow_700 =
+    A.class "md:via-yellow-700"
+
+
+md__via_yellow_800 : Html.Attribute msg
+md__via_yellow_800 =
+    A.class "md:via-yellow-800"
+
+
+md__via_yellow_900 : Html.Attribute msg
+md__via_yellow_900 =
+    A.class "md:via-yellow-900"
+
+
+md__via_green_100 : Html.Attribute msg
+md__via_green_100 =
+    A.class "md:via-green-100"
+
+
+md__via_green_200 : Html.Attribute msg
+md__via_green_200 =
+    A.class "md:via-green-200"
+
+
+md__via_green_300 : Html.Attribute msg
+md__via_green_300 =
+    A.class "md:via-green-300"
+
+
+md__via_green_400 : Html.Attribute msg
+md__via_green_400 =
+    A.class "md:via-green-400"
+
+
+md__via_green_500 : Html.Attribute msg
+md__via_green_500 =
+    A.class "md:via-green-500"
+
+
+md__via_green_600 : Html.Attribute msg
+md__via_green_600 =
+    A.class "md:via-green-600"
+
+
+md__via_green_700 : Html.Attribute msg
+md__via_green_700 =
+    A.class "md:via-green-700"
+
+
+md__via_green_800 : Html.Attribute msg
+md__via_green_800 =
+    A.class "md:via-green-800"
+
+
+md__via_green_900 : Html.Attribute msg
+md__via_green_900 =
+    A.class "md:via-green-900"
+
+
+md__via_teal_100 : Html.Attribute msg
+md__via_teal_100 =
+    A.class "md:via-teal-100"
+
+
+md__via_teal_200 : Html.Attribute msg
+md__via_teal_200 =
+    A.class "md:via-teal-200"
+
+
+md__via_teal_300 : Html.Attribute msg
+md__via_teal_300 =
+    A.class "md:via-teal-300"
+
+
+md__via_teal_400 : Html.Attribute msg
+md__via_teal_400 =
+    A.class "md:via-teal-400"
+
+
+md__via_teal_500 : Html.Attribute msg
+md__via_teal_500 =
+    A.class "md:via-teal-500"
+
+
+md__via_teal_600 : Html.Attribute msg
+md__via_teal_600 =
+    A.class "md:via-teal-600"
+
+
+md__via_teal_700 : Html.Attribute msg
+md__via_teal_700 =
+    A.class "md:via-teal-700"
+
+
+md__via_teal_800 : Html.Attribute msg
+md__via_teal_800 =
+    A.class "md:via-teal-800"
+
+
+md__via_teal_900 : Html.Attribute msg
+md__via_teal_900 =
+    A.class "md:via-teal-900"
+
+
+md__via_blue_100 : Html.Attribute msg
+md__via_blue_100 =
+    A.class "md:via-blue-100"
+
+
+md__via_blue_200 : Html.Attribute msg
+md__via_blue_200 =
+    A.class "md:via-blue-200"
+
+
+md__via_blue_300 : Html.Attribute msg
+md__via_blue_300 =
+    A.class "md:via-blue-300"
+
+
+md__via_blue_400 : Html.Attribute msg
+md__via_blue_400 =
+    A.class "md:via-blue-400"
+
+
+md__via_blue_500 : Html.Attribute msg
+md__via_blue_500 =
+    A.class "md:via-blue-500"
+
+
+md__via_blue_600 : Html.Attribute msg
+md__via_blue_600 =
+    A.class "md:via-blue-600"
+
+
+md__via_blue_700 : Html.Attribute msg
+md__via_blue_700 =
+    A.class "md:via-blue-700"
+
+
+md__via_blue_800 : Html.Attribute msg
+md__via_blue_800 =
+    A.class "md:via-blue-800"
+
+
+md__via_blue_900 : Html.Attribute msg
+md__via_blue_900 =
+    A.class "md:via-blue-900"
+
+
+md__via_indigo_100 : Html.Attribute msg
+md__via_indigo_100 =
+    A.class "md:via-indigo-100"
+
+
+md__via_indigo_200 : Html.Attribute msg
+md__via_indigo_200 =
+    A.class "md:via-indigo-200"
+
+
+md__via_indigo_300 : Html.Attribute msg
+md__via_indigo_300 =
+    A.class "md:via-indigo-300"
+
+
+md__via_indigo_400 : Html.Attribute msg
+md__via_indigo_400 =
+    A.class "md:via-indigo-400"
+
+
+md__via_indigo_500 : Html.Attribute msg
+md__via_indigo_500 =
+    A.class "md:via-indigo-500"
+
+
+md__via_indigo_600 : Html.Attribute msg
+md__via_indigo_600 =
+    A.class "md:via-indigo-600"
+
+
+md__via_indigo_700 : Html.Attribute msg
+md__via_indigo_700 =
+    A.class "md:via-indigo-700"
+
+
+md__via_indigo_800 : Html.Attribute msg
+md__via_indigo_800 =
+    A.class "md:via-indigo-800"
+
+
+md__via_indigo_900 : Html.Attribute msg
+md__via_indigo_900 =
+    A.class "md:via-indigo-900"
+
+
+md__via_purple_100 : Html.Attribute msg
+md__via_purple_100 =
+    A.class "md:via-purple-100"
+
+
+md__via_purple_200 : Html.Attribute msg
+md__via_purple_200 =
+    A.class "md:via-purple-200"
+
+
+md__via_purple_300 : Html.Attribute msg
+md__via_purple_300 =
+    A.class "md:via-purple-300"
+
+
+md__via_purple_400 : Html.Attribute msg
+md__via_purple_400 =
+    A.class "md:via-purple-400"
+
+
+md__via_purple_500 : Html.Attribute msg
+md__via_purple_500 =
+    A.class "md:via-purple-500"
+
+
+md__via_purple_600 : Html.Attribute msg
+md__via_purple_600 =
+    A.class "md:via-purple-600"
+
+
+md__via_purple_700 : Html.Attribute msg
+md__via_purple_700 =
+    A.class "md:via-purple-700"
+
+
+md__via_purple_800 : Html.Attribute msg
+md__via_purple_800 =
+    A.class "md:via-purple-800"
+
+
+md__via_purple_900 : Html.Attribute msg
+md__via_purple_900 =
+    A.class "md:via-purple-900"
+
+
+md__via_pink_100 : Html.Attribute msg
+md__via_pink_100 =
+    A.class "md:via-pink-100"
+
+
+md__via_pink_200 : Html.Attribute msg
+md__via_pink_200 =
+    A.class "md:via-pink-200"
+
+
+md__via_pink_300 : Html.Attribute msg
+md__via_pink_300 =
+    A.class "md:via-pink-300"
+
+
+md__via_pink_400 : Html.Attribute msg
+md__via_pink_400 =
+    A.class "md:via-pink-400"
+
+
+md__via_pink_500 : Html.Attribute msg
+md__via_pink_500 =
+    A.class "md:via-pink-500"
+
+
+md__via_pink_600 : Html.Attribute msg
+md__via_pink_600 =
+    A.class "md:via-pink-600"
+
+
+md__via_pink_700 : Html.Attribute msg
+md__via_pink_700 =
+    A.class "md:via-pink-700"
+
+
+md__via_pink_800 : Html.Attribute msg
+md__via_pink_800 =
+    A.class "md:via-pink-800"
+
+
+md__via_pink_900 : Html.Attribute msg
+md__via_pink_900 =
+    A.class "md:via-pink-900"
+
+
+md__to_transparent : Html.Attribute msg
+md__to_transparent =
+    A.class "md:to-transparent"
+
+
+md__to_current : Html.Attribute msg
+md__to_current =
+    A.class "md:to-current"
+
+
+md__to_black : Html.Attribute msg
+md__to_black =
+    A.class "md:to-black"
+
+
+md__to_white : Html.Attribute msg
+md__to_white =
+    A.class "md:to-white"
+
+
+md__to_gray_100 : Html.Attribute msg
+md__to_gray_100 =
+    A.class "md:to-gray-100"
+
+
+md__to_gray_200 : Html.Attribute msg
+md__to_gray_200 =
+    A.class "md:to-gray-200"
+
+
+md__to_gray_300 : Html.Attribute msg
+md__to_gray_300 =
+    A.class "md:to-gray-300"
+
+
+md__to_gray_400 : Html.Attribute msg
+md__to_gray_400 =
+    A.class "md:to-gray-400"
+
+
+md__to_gray_500 : Html.Attribute msg
+md__to_gray_500 =
+    A.class "md:to-gray-500"
+
+
+md__to_gray_600 : Html.Attribute msg
+md__to_gray_600 =
+    A.class "md:to-gray-600"
+
+
+md__to_gray_700 : Html.Attribute msg
+md__to_gray_700 =
+    A.class "md:to-gray-700"
+
+
+md__to_gray_800 : Html.Attribute msg
+md__to_gray_800 =
+    A.class "md:to-gray-800"
+
+
+md__to_gray_900 : Html.Attribute msg
+md__to_gray_900 =
+    A.class "md:to-gray-900"
+
+
+md__to_red_100 : Html.Attribute msg
+md__to_red_100 =
+    A.class "md:to-red-100"
+
+
+md__to_red_200 : Html.Attribute msg
+md__to_red_200 =
+    A.class "md:to-red-200"
+
+
+md__to_red_300 : Html.Attribute msg
+md__to_red_300 =
+    A.class "md:to-red-300"
+
+
+md__to_red_400 : Html.Attribute msg
+md__to_red_400 =
+    A.class "md:to-red-400"
+
+
+md__to_red_500 : Html.Attribute msg
+md__to_red_500 =
+    A.class "md:to-red-500"
+
+
+md__to_red_600 : Html.Attribute msg
+md__to_red_600 =
+    A.class "md:to-red-600"
+
+
+md__to_red_700 : Html.Attribute msg
+md__to_red_700 =
+    A.class "md:to-red-700"
+
+
+md__to_red_800 : Html.Attribute msg
+md__to_red_800 =
+    A.class "md:to-red-800"
+
+
+md__to_red_900 : Html.Attribute msg
+md__to_red_900 =
+    A.class "md:to-red-900"
+
+
+md__to_orange_100 : Html.Attribute msg
+md__to_orange_100 =
+    A.class "md:to-orange-100"
+
+
+md__to_orange_200 : Html.Attribute msg
+md__to_orange_200 =
+    A.class "md:to-orange-200"
+
+
+md__to_orange_300 : Html.Attribute msg
+md__to_orange_300 =
+    A.class "md:to-orange-300"
+
+
+md__to_orange_400 : Html.Attribute msg
+md__to_orange_400 =
+    A.class "md:to-orange-400"
+
+
+md__to_orange_500 : Html.Attribute msg
+md__to_orange_500 =
+    A.class "md:to-orange-500"
+
+
+md__to_orange_600 : Html.Attribute msg
+md__to_orange_600 =
+    A.class "md:to-orange-600"
+
+
+md__to_orange_700 : Html.Attribute msg
+md__to_orange_700 =
+    A.class "md:to-orange-700"
+
+
+md__to_orange_800 : Html.Attribute msg
+md__to_orange_800 =
+    A.class "md:to-orange-800"
+
+
+md__to_orange_900 : Html.Attribute msg
+md__to_orange_900 =
+    A.class "md:to-orange-900"
+
+
+md__to_yellow_100 : Html.Attribute msg
+md__to_yellow_100 =
+    A.class "md:to-yellow-100"
+
+
+md__to_yellow_200 : Html.Attribute msg
+md__to_yellow_200 =
+    A.class "md:to-yellow-200"
+
+
+md__to_yellow_300 : Html.Attribute msg
+md__to_yellow_300 =
+    A.class "md:to-yellow-300"
+
+
+md__to_yellow_400 : Html.Attribute msg
+md__to_yellow_400 =
+    A.class "md:to-yellow-400"
+
+
+md__to_yellow_500 : Html.Attribute msg
+md__to_yellow_500 =
+    A.class "md:to-yellow-500"
+
+
+md__to_yellow_600 : Html.Attribute msg
+md__to_yellow_600 =
+    A.class "md:to-yellow-600"
+
+
+md__to_yellow_700 : Html.Attribute msg
+md__to_yellow_700 =
+    A.class "md:to-yellow-700"
+
+
+md__to_yellow_800 : Html.Attribute msg
+md__to_yellow_800 =
+    A.class "md:to-yellow-800"
+
+
+md__to_yellow_900 : Html.Attribute msg
+md__to_yellow_900 =
+    A.class "md:to-yellow-900"
+
+
+md__to_green_100 : Html.Attribute msg
+md__to_green_100 =
+    A.class "md:to-green-100"
+
+
+md__to_green_200 : Html.Attribute msg
+md__to_green_200 =
+    A.class "md:to-green-200"
+
+
+md__to_green_300 : Html.Attribute msg
+md__to_green_300 =
+    A.class "md:to-green-300"
+
+
+md__to_green_400 : Html.Attribute msg
+md__to_green_400 =
+    A.class "md:to-green-400"
+
+
+md__to_green_500 : Html.Attribute msg
+md__to_green_500 =
+    A.class "md:to-green-500"
+
+
+md__to_green_600 : Html.Attribute msg
+md__to_green_600 =
+    A.class "md:to-green-600"
+
+
+md__to_green_700 : Html.Attribute msg
+md__to_green_700 =
+    A.class "md:to-green-700"
+
+
+md__to_green_800 : Html.Attribute msg
+md__to_green_800 =
+    A.class "md:to-green-800"
+
+
+md__to_green_900 : Html.Attribute msg
+md__to_green_900 =
+    A.class "md:to-green-900"
+
+
+md__to_teal_100 : Html.Attribute msg
+md__to_teal_100 =
+    A.class "md:to-teal-100"
+
+
+md__to_teal_200 : Html.Attribute msg
+md__to_teal_200 =
+    A.class "md:to-teal-200"
+
+
+md__to_teal_300 : Html.Attribute msg
+md__to_teal_300 =
+    A.class "md:to-teal-300"
+
+
+md__to_teal_400 : Html.Attribute msg
+md__to_teal_400 =
+    A.class "md:to-teal-400"
+
+
+md__to_teal_500 : Html.Attribute msg
+md__to_teal_500 =
+    A.class "md:to-teal-500"
+
+
+md__to_teal_600 : Html.Attribute msg
+md__to_teal_600 =
+    A.class "md:to-teal-600"
+
+
+md__to_teal_700 : Html.Attribute msg
+md__to_teal_700 =
+    A.class "md:to-teal-700"
+
+
+md__to_teal_800 : Html.Attribute msg
+md__to_teal_800 =
+    A.class "md:to-teal-800"
+
+
+md__to_teal_900 : Html.Attribute msg
+md__to_teal_900 =
+    A.class "md:to-teal-900"
+
+
+md__to_blue_100 : Html.Attribute msg
+md__to_blue_100 =
+    A.class "md:to-blue-100"
+
+
+md__to_blue_200 : Html.Attribute msg
+md__to_blue_200 =
+    A.class "md:to-blue-200"
+
+
+md__to_blue_300 : Html.Attribute msg
+md__to_blue_300 =
+    A.class "md:to-blue-300"
+
+
+md__to_blue_400 : Html.Attribute msg
+md__to_blue_400 =
+    A.class "md:to-blue-400"
+
+
+md__to_blue_500 : Html.Attribute msg
+md__to_blue_500 =
+    A.class "md:to-blue-500"
+
+
+md__to_blue_600 : Html.Attribute msg
+md__to_blue_600 =
+    A.class "md:to-blue-600"
+
+
+md__to_blue_700 : Html.Attribute msg
+md__to_blue_700 =
+    A.class "md:to-blue-700"
+
+
+md__to_blue_800 : Html.Attribute msg
+md__to_blue_800 =
+    A.class "md:to-blue-800"
+
+
+md__to_blue_900 : Html.Attribute msg
+md__to_blue_900 =
+    A.class "md:to-blue-900"
+
+
+md__to_indigo_100 : Html.Attribute msg
+md__to_indigo_100 =
+    A.class "md:to-indigo-100"
+
+
+md__to_indigo_200 : Html.Attribute msg
+md__to_indigo_200 =
+    A.class "md:to-indigo-200"
+
+
+md__to_indigo_300 : Html.Attribute msg
+md__to_indigo_300 =
+    A.class "md:to-indigo-300"
+
+
+md__to_indigo_400 : Html.Attribute msg
+md__to_indigo_400 =
+    A.class "md:to-indigo-400"
+
+
+md__to_indigo_500 : Html.Attribute msg
+md__to_indigo_500 =
+    A.class "md:to-indigo-500"
+
+
+md__to_indigo_600 : Html.Attribute msg
+md__to_indigo_600 =
+    A.class "md:to-indigo-600"
+
+
+md__to_indigo_700 : Html.Attribute msg
+md__to_indigo_700 =
+    A.class "md:to-indigo-700"
+
+
+md__to_indigo_800 : Html.Attribute msg
+md__to_indigo_800 =
+    A.class "md:to-indigo-800"
+
+
+md__to_indigo_900 : Html.Attribute msg
+md__to_indigo_900 =
+    A.class "md:to-indigo-900"
+
+
+md__to_purple_100 : Html.Attribute msg
+md__to_purple_100 =
+    A.class "md:to-purple-100"
+
+
+md__to_purple_200 : Html.Attribute msg
+md__to_purple_200 =
+    A.class "md:to-purple-200"
+
+
+md__to_purple_300 : Html.Attribute msg
+md__to_purple_300 =
+    A.class "md:to-purple-300"
+
+
+md__to_purple_400 : Html.Attribute msg
+md__to_purple_400 =
+    A.class "md:to-purple-400"
+
+
+md__to_purple_500 : Html.Attribute msg
+md__to_purple_500 =
+    A.class "md:to-purple-500"
+
+
+md__to_purple_600 : Html.Attribute msg
+md__to_purple_600 =
+    A.class "md:to-purple-600"
+
+
+md__to_purple_700 : Html.Attribute msg
+md__to_purple_700 =
+    A.class "md:to-purple-700"
+
+
+md__to_purple_800 : Html.Attribute msg
+md__to_purple_800 =
+    A.class "md:to-purple-800"
+
+
+md__to_purple_900 : Html.Attribute msg
+md__to_purple_900 =
+    A.class "md:to-purple-900"
+
+
+md__to_pink_100 : Html.Attribute msg
+md__to_pink_100 =
+    A.class "md:to-pink-100"
+
+
+md__to_pink_200 : Html.Attribute msg
+md__to_pink_200 =
+    A.class "md:to-pink-200"
+
+
+md__to_pink_300 : Html.Attribute msg
+md__to_pink_300 =
+    A.class "md:to-pink-300"
+
+
+md__to_pink_400 : Html.Attribute msg
+md__to_pink_400 =
+    A.class "md:to-pink-400"
+
+
+md__to_pink_500 : Html.Attribute msg
+md__to_pink_500 =
+    A.class "md:to-pink-500"
+
+
+md__to_pink_600 : Html.Attribute msg
+md__to_pink_600 =
+    A.class "md:to-pink-600"
+
+
+md__to_pink_700 : Html.Attribute msg
+md__to_pink_700 =
+    A.class "md:to-pink-700"
+
+
+md__to_pink_800 : Html.Attribute msg
+md__to_pink_800 =
+    A.class "md:to-pink-800"
+
+
+md__to_pink_900 : Html.Attribute msg
+md__to_pink_900 =
+    A.class "md:to-pink-900"
+
+
+md__hover__from_transparent : Html.Attribute msg
+md__hover__from_transparent =
+    A.class "md:hover:from-transparent"
+
+
+md__hover__from_current : Html.Attribute msg
+md__hover__from_current =
+    A.class "md:hover:from-current"
+
+
+md__hover__from_black : Html.Attribute msg
+md__hover__from_black =
+    A.class "md:hover:from-black"
+
+
+md__hover__from_white : Html.Attribute msg
+md__hover__from_white =
+    A.class "md:hover:from-white"
+
+
+md__hover__from_gray_100 : Html.Attribute msg
+md__hover__from_gray_100 =
+    A.class "md:hover:from-gray-100"
+
+
+md__hover__from_gray_200 : Html.Attribute msg
+md__hover__from_gray_200 =
+    A.class "md:hover:from-gray-200"
+
+
+md__hover__from_gray_300 : Html.Attribute msg
+md__hover__from_gray_300 =
+    A.class "md:hover:from-gray-300"
+
+
+md__hover__from_gray_400 : Html.Attribute msg
+md__hover__from_gray_400 =
+    A.class "md:hover:from-gray-400"
+
+
+md__hover__from_gray_500 : Html.Attribute msg
+md__hover__from_gray_500 =
+    A.class "md:hover:from-gray-500"
+
+
+md__hover__from_gray_600 : Html.Attribute msg
+md__hover__from_gray_600 =
+    A.class "md:hover:from-gray-600"
+
+
+md__hover__from_gray_700 : Html.Attribute msg
+md__hover__from_gray_700 =
+    A.class "md:hover:from-gray-700"
+
+
+md__hover__from_gray_800 : Html.Attribute msg
+md__hover__from_gray_800 =
+    A.class "md:hover:from-gray-800"
+
+
+md__hover__from_gray_900 : Html.Attribute msg
+md__hover__from_gray_900 =
+    A.class "md:hover:from-gray-900"
+
+
+md__hover__from_red_100 : Html.Attribute msg
+md__hover__from_red_100 =
+    A.class "md:hover:from-red-100"
+
+
+md__hover__from_red_200 : Html.Attribute msg
+md__hover__from_red_200 =
+    A.class "md:hover:from-red-200"
+
+
+md__hover__from_red_300 : Html.Attribute msg
+md__hover__from_red_300 =
+    A.class "md:hover:from-red-300"
+
+
+md__hover__from_red_400 : Html.Attribute msg
+md__hover__from_red_400 =
+    A.class "md:hover:from-red-400"
+
+
+md__hover__from_red_500 : Html.Attribute msg
+md__hover__from_red_500 =
+    A.class "md:hover:from-red-500"
+
+
+md__hover__from_red_600 : Html.Attribute msg
+md__hover__from_red_600 =
+    A.class "md:hover:from-red-600"
+
+
+md__hover__from_red_700 : Html.Attribute msg
+md__hover__from_red_700 =
+    A.class "md:hover:from-red-700"
+
+
+md__hover__from_red_800 : Html.Attribute msg
+md__hover__from_red_800 =
+    A.class "md:hover:from-red-800"
+
+
+md__hover__from_red_900 : Html.Attribute msg
+md__hover__from_red_900 =
+    A.class "md:hover:from-red-900"
+
+
+md__hover__from_orange_100 : Html.Attribute msg
+md__hover__from_orange_100 =
+    A.class "md:hover:from-orange-100"
+
+
+md__hover__from_orange_200 : Html.Attribute msg
+md__hover__from_orange_200 =
+    A.class "md:hover:from-orange-200"
+
+
+md__hover__from_orange_300 : Html.Attribute msg
+md__hover__from_orange_300 =
+    A.class "md:hover:from-orange-300"
+
+
+md__hover__from_orange_400 : Html.Attribute msg
+md__hover__from_orange_400 =
+    A.class "md:hover:from-orange-400"
+
+
+md__hover__from_orange_500 : Html.Attribute msg
+md__hover__from_orange_500 =
+    A.class "md:hover:from-orange-500"
+
+
+md__hover__from_orange_600 : Html.Attribute msg
+md__hover__from_orange_600 =
+    A.class "md:hover:from-orange-600"
+
+
+md__hover__from_orange_700 : Html.Attribute msg
+md__hover__from_orange_700 =
+    A.class "md:hover:from-orange-700"
+
+
+md__hover__from_orange_800 : Html.Attribute msg
+md__hover__from_orange_800 =
+    A.class "md:hover:from-orange-800"
+
+
+md__hover__from_orange_900 : Html.Attribute msg
+md__hover__from_orange_900 =
+    A.class "md:hover:from-orange-900"
+
+
+md__hover__from_yellow_100 : Html.Attribute msg
+md__hover__from_yellow_100 =
+    A.class "md:hover:from-yellow-100"
+
+
+md__hover__from_yellow_200 : Html.Attribute msg
+md__hover__from_yellow_200 =
+    A.class "md:hover:from-yellow-200"
+
+
+md__hover__from_yellow_300 : Html.Attribute msg
+md__hover__from_yellow_300 =
+    A.class "md:hover:from-yellow-300"
+
+
+md__hover__from_yellow_400 : Html.Attribute msg
+md__hover__from_yellow_400 =
+    A.class "md:hover:from-yellow-400"
+
+
+md__hover__from_yellow_500 : Html.Attribute msg
+md__hover__from_yellow_500 =
+    A.class "md:hover:from-yellow-500"
+
+
+md__hover__from_yellow_600 : Html.Attribute msg
+md__hover__from_yellow_600 =
+    A.class "md:hover:from-yellow-600"
+
+
+md__hover__from_yellow_700 : Html.Attribute msg
+md__hover__from_yellow_700 =
+    A.class "md:hover:from-yellow-700"
+
+
+md__hover__from_yellow_800 : Html.Attribute msg
+md__hover__from_yellow_800 =
+    A.class "md:hover:from-yellow-800"
+
+
+md__hover__from_yellow_900 : Html.Attribute msg
+md__hover__from_yellow_900 =
+    A.class "md:hover:from-yellow-900"
+
+
+md__hover__from_green_100 : Html.Attribute msg
+md__hover__from_green_100 =
+    A.class "md:hover:from-green-100"
+
+
+md__hover__from_green_200 : Html.Attribute msg
+md__hover__from_green_200 =
+    A.class "md:hover:from-green-200"
+
+
+md__hover__from_green_300 : Html.Attribute msg
+md__hover__from_green_300 =
+    A.class "md:hover:from-green-300"
+
+
+md__hover__from_green_400 : Html.Attribute msg
+md__hover__from_green_400 =
+    A.class "md:hover:from-green-400"
+
+
+md__hover__from_green_500 : Html.Attribute msg
+md__hover__from_green_500 =
+    A.class "md:hover:from-green-500"
+
+
+md__hover__from_green_600 : Html.Attribute msg
+md__hover__from_green_600 =
+    A.class "md:hover:from-green-600"
+
+
+md__hover__from_green_700 : Html.Attribute msg
+md__hover__from_green_700 =
+    A.class "md:hover:from-green-700"
+
+
+md__hover__from_green_800 : Html.Attribute msg
+md__hover__from_green_800 =
+    A.class "md:hover:from-green-800"
+
+
+md__hover__from_green_900 : Html.Attribute msg
+md__hover__from_green_900 =
+    A.class "md:hover:from-green-900"
+
+
+md__hover__from_teal_100 : Html.Attribute msg
+md__hover__from_teal_100 =
+    A.class "md:hover:from-teal-100"
+
+
+md__hover__from_teal_200 : Html.Attribute msg
+md__hover__from_teal_200 =
+    A.class "md:hover:from-teal-200"
+
+
+md__hover__from_teal_300 : Html.Attribute msg
+md__hover__from_teal_300 =
+    A.class "md:hover:from-teal-300"
+
+
+md__hover__from_teal_400 : Html.Attribute msg
+md__hover__from_teal_400 =
+    A.class "md:hover:from-teal-400"
+
+
+md__hover__from_teal_500 : Html.Attribute msg
+md__hover__from_teal_500 =
+    A.class "md:hover:from-teal-500"
+
+
+md__hover__from_teal_600 : Html.Attribute msg
+md__hover__from_teal_600 =
+    A.class "md:hover:from-teal-600"
+
+
+md__hover__from_teal_700 : Html.Attribute msg
+md__hover__from_teal_700 =
+    A.class "md:hover:from-teal-700"
+
+
+md__hover__from_teal_800 : Html.Attribute msg
+md__hover__from_teal_800 =
+    A.class "md:hover:from-teal-800"
+
+
+md__hover__from_teal_900 : Html.Attribute msg
+md__hover__from_teal_900 =
+    A.class "md:hover:from-teal-900"
+
+
+md__hover__from_blue_100 : Html.Attribute msg
+md__hover__from_blue_100 =
+    A.class "md:hover:from-blue-100"
+
+
+md__hover__from_blue_200 : Html.Attribute msg
+md__hover__from_blue_200 =
+    A.class "md:hover:from-blue-200"
+
+
+md__hover__from_blue_300 : Html.Attribute msg
+md__hover__from_blue_300 =
+    A.class "md:hover:from-blue-300"
+
+
+md__hover__from_blue_400 : Html.Attribute msg
+md__hover__from_blue_400 =
+    A.class "md:hover:from-blue-400"
+
+
+md__hover__from_blue_500 : Html.Attribute msg
+md__hover__from_blue_500 =
+    A.class "md:hover:from-blue-500"
+
+
+md__hover__from_blue_600 : Html.Attribute msg
+md__hover__from_blue_600 =
+    A.class "md:hover:from-blue-600"
+
+
+md__hover__from_blue_700 : Html.Attribute msg
+md__hover__from_blue_700 =
+    A.class "md:hover:from-blue-700"
+
+
+md__hover__from_blue_800 : Html.Attribute msg
+md__hover__from_blue_800 =
+    A.class "md:hover:from-blue-800"
+
+
+md__hover__from_blue_900 : Html.Attribute msg
+md__hover__from_blue_900 =
+    A.class "md:hover:from-blue-900"
+
+
+md__hover__from_indigo_100 : Html.Attribute msg
+md__hover__from_indigo_100 =
+    A.class "md:hover:from-indigo-100"
+
+
+md__hover__from_indigo_200 : Html.Attribute msg
+md__hover__from_indigo_200 =
+    A.class "md:hover:from-indigo-200"
+
+
+md__hover__from_indigo_300 : Html.Attribute msg
+md__hover__from_indigo_300 =
+    A.class "md:hover:from-indigo-300"
+
+
+md__hover__from_indigo_400 : Html.Attribute msg
+md__hover__from_indigo_400 =
+    A.class "md:hover:from-indigo-400"
+
+
+md__hover__from_indigo_500 : Html.Attribute msg
+md__hover__from_indigo_500 =
+    A.class "md:hover:from-indigo-500"
+
+
+md__hover__from_indigo_600 : Html.Attribute msg
+md__hover__from_indigo_600 =
+    A.class "md:hover:from-indigo-600"
+
+
+md__hover__from_indigo_700 : Html.Attribute msg
+md__hover__from_indigo_700 =
+    A.class "md:hover:from-indigo-700"
+
+
+md__hover__from_indigo_800 : Html.Attribute msg
+md__hover__from_indigo_800 =
+    A.class "md:hover:from-indigo-800"
+
+
+md__hover__from_indigo_900 : Html.Attribute msg
+md__hover__from_indigo_900 =
+    A.class "md:hover:from-indigo-900"
+
+
+md__hover__from_purple_100 : Html.Attribute msg
+md__hover__from_purple_100 =
+    A.class "md:hover:from-purple-100"
+
+
+md__hover__from_purple_200 : Html.Attribute msg
+md__hover__from_purple_200 =
+    A.class "md:hover:from-purple-200"
+
+
+md__hover__from_purple_300 : Html.Attribute msg
+md__hover__from_purple_300 =
+    A.class "md:hover:from-purple-300"
+
+
+md__hover__from_purple_400 : Html.Attribute msg
+md__hover__from_purple_400 =
+    A.class "md:hover:from-purple-400"
+
+
+md__hover__from_purple_500 : Html.Attribute msg
+md__hover__from_purple_500 =
+    A.class "md:hover:from-purple-500"
+
+
+md__hover__from_purple_600 : Html.Attribute msg
+md__hover__from_purple_600 =
+    A.class "md:hover:from-purple-600"
+
+
+md__hover__from_purple_700 : Html.Attribute msg
+md__hover__from_purple_700 =
+    A.class "md:hover:from-purple-700"
+
+
+md__hover__from_purple_800 : Html.Attribute msg
+md__hover__from_purple_800 =
+    A.class "md:hover:from-purple-800"
+
+
+md__hover__from_purple_900 : Html.Attribute msg
+md__hover__from_purple_900 =
+    A.class "md:hover:from-purple-900"
+
+
+md__hover__from_pink_100 : Html.Attribute msg
+md__hover__from_pink_100 =
+    A.class "md:hover:from-pink-100"
+
+
+md__hover__from_pink_200 : Html.Attribute msg
+md__hover__from_pink_200 =
+    A.class "md:hover:from-pink-200"
+
+
+md__hover__from_pink_300 : Html.Attribute msg
+md__hover__from_pink_300 =
+    A.class "md:hover:from-pink-300"
+
+
+md__hover__from_pink_400 : Html.Attribute msg
+md__hover__from_pink_400 =
+    A.class "md:hover:from-pink-400"
+
+
+md__hover__from_pink_500 : Html.Attribute msg
+md__hover__from_pink_500 =
+    A.class "md:hover:from-pink-500"
+
+
+md__hover__from_pink_600 : Html.Attribute msg
+md__hover__from_pink_600 =
+    A.class "md:hover:from-pink-600"
+
+
+md__hover__from_pink_700 : Html.Attribute msg
+md__hover__from_pink_700 =
+    A.class "md:hover:from-pink-700"
+
+
+md__hover__from_pink_800 : Html.Attribute msg
+md__hover__from_pink_800 =
+    A.class "md:hover:from-pink-800"
+
+
+md__hover__from_pink_900 : Html.Attribute msg
+md__hover__from_pink_900 =
+    A.class "md:hover:from-pink-900"
+
+
+md__hover__via_transparent : Html.Attribute msg
+md__hover__via_transparent =
+    A.class "md:hover:via-transparent"
+
+
+md__hover__via_current : Html.Attribute msg
+md__hover__via_current =
+    A.class "md:hover:via-current"
+
+
+md__hover__via_black : Html.Attribute msg
+md__hover__via_black =
+    A.class "md:hover:via-black"
+
+
+md__hover__via_white : Html.Attribute msg
+md__hover__via_white =
+    A.class "md:hover:via-white"
+
+
+md__hover__via_gray_100 : Html.Attribute msg
+md__hover__via_gray_100 =
+    A.class "md:hover:via-gray-100"
+
+
+md__hover__via_gray_200 : Html.Attribute msg
+md__hover__via_gray_200 =
+    A.class "md:hover:via-gray-200"
+
+
+md__hover__via_gray_300 : Html.Attribute msg
+md__hover__via_gray_300 =
+    A.class "md:hover:via-gray-300"
+
+
+md__hover__via_gray_400 : Html.Attribute msg
+md__hover__via_gray_400 =
+    A.class "md:hover:via-gray-400"
+
+
+md__hover__via_gray_500 : Html.Attribute msg
+md__hover__via_gray_500 =
+    A.class "md:hover:via-gray-500"
+
+
+md__hover__via_gray_600 : Html.Attribute msg
+md__hover__via_gray_600 =
+    A.class "md:hover:via-gray-600"
+
+
+md__hover__via_gray_700 : Html.Attribute msg
+md__hover__via_gray_700 =
+    A.class "md:hover:via-gray-700"
+
+
+md__hover__via_gray_800 : Html.Attribute msg
+md__hover__via_gray_800 =
+    A.class "md:hover:via-gray-800"
+
+
+md__hover__via_gray_900 : Html.Attribute msg
+md__hover__via_gray_900 =
+    A.class "md:hover:via-gray-900"
+
+
+md__hover__via_red_100 : Html.Attribute msg
+md__hover__via_red_100 =
+    A.class "md:hover:via-red-100"
+
+
+md__hover__via_red_200 : Html.Attribute msg
+md__hover__via_red_200 =
+    A.class "md:hover:via-red-200"
+
+
+md__hover__via_red_300 : Html.Attribute msg
+md__hover__via_red_300 =
+    A.class "md:hover:via-red-300"
+
+
+md__hover__via_red_400 : Html.Attribute msg
+md__hover__via_red_400 =
+    A.class "md:hover:via-red-400"
+
+
+md__hover__via_red_500 : Html.Attribute msg
+md__hover__via_red_500 =
+    A.class "md:hover:via-red-500"
+
+
+md__hover__via_red_600 : Html.Attribute msg
+md__hover__via_red_600 =
+    A.class "md:hover:via-red-600"
+
+
+md__hover__via_red_700 : Html.Attribute msg
+md__hover__via_red_700 =
+    A.class "md:hover:via-red-700"
+
+
+md__hover__via_red_800 : Html.Attribute msg
+md__hover__via_red_800 =
+    A.class "md:hover:via-red-800"
+
+
+md__hover__via_red_900 : Html.Attribute msg
+md__hover__via_red_900 =
+    A.class "md:hover:via-red-900"
+
+
+md__hover__via_orange_100 : Html.Attribute msg
+md__hover__via_orange_100 =
+    A.class "md:hover:via-orange-100"
+
+
+md__hover__via_orange_200 : Html.Attribute msg
+md__hover__via_orange_200 =
+    A.class "md:hover:via-orange-200"
+
+
+md__hover__via_orange_300 : Html.Attribute msg
+md__hover__via_orange_300 =
+    A.class "md:hover:via-orange-300"
+
+
+md__hover__via_orange_400 : Html.Attribute msg
+md__hover__via_orange_400 =
+    A.class "md:hover:via-orange-400"
+
+
+md__hover__via_orange_500 : Html.Attribute msg
+md__hover__via_orange_500 =
+    A.class "md:hover:via-orange-500"
+
+
+md__hover__via_orange_600 : Html.Attribute msg
+md__hover__via_orange_600 =
+    A.class "md:hover:via-orange-600"
+
+
+md__hover__via_orange_700 : Html.Attribute msg
+md__hover__via_orange_700 =
+    A.class "md:hover:via-orange-700"
+
+
+md__hover__via_orange_800 : Html.Attribute msg
+md__hover__via_orange_800 =
+    A.class "md:hover:via-orange-800"
+
+
+md__hover__via_orange_900 : Html.Attribute msg
+md__hover__via_orange_900 =
+    A.class "md:hover:via-orange-900"
+
+
+md__hover__via_yellow_100 : Html.Attribute msg
+md__hover__via_yellow_100 =
+    A.class "md:hover:via-yellow-100"
+
+
+md__hover__via_yellow_200 : Html.Attribute msg
+md__hover__via_yellow_200 =
+    A.class "md:hover:via-yellow-200"
+
+
+md__hover__via_yellow_300 : Html.Attribute msg
+md__hover__via_yellow_300 =
+    A.class "md:hover:via-yellow-300"
+
+
+md__hover__via_yellow_400 : Html.Attribute msg
+md__hover__via_yellow_400 =
+    A.class "md:hover:via-yellow-400"
+
+
+md__hover__via_yellow_500 : Html.Attribute msg
+md__hover__via_yellow_500 =
+    A.class "md:hover:via-yellow-500"
+
+
+md__hover__via_yellow_600 : Html.Attribute msg
+md__hover__via_yellow_600 =
+    A.class "md:hover:via-yellow-600"
+
+
+md__hover__via_yellow_700 : Html.Attribute msg
+md__hover__via_yellow_700 =
+    A.class "md:hover:via-yellow-700"
+
+
+md__hover__via_yellow_800 : Html.Attribute msg
+md__hover__via_yellow_800 =
+    A.class "md:hover:via-yellow-800"
+
+
+md__hover__via_yellow_900 : Html.Attribute msg
+md__hover__via_yellow_900 =
+    A.class "md:hover:via-yellow-900"
+
+
+md__hover__via_green_100 : Html.Attribute msg
+md__hover__via_green_100 =
+    A.class "md:hover:via-green-100"
+
+
+md__hover__via_green_200 : Html.Attribute msg
+md__hover__via_green_200 =
+    A.class "md:hover:via-green-200"
+
+
+md__hover__via_green_300 : Html.Attribute msg
+md__hover__via_green_300 =
+    A.class "md:hover:via-green-300"
+
+
+md__hover__via_green_400 : Html.Attribute msg
+md__hover__via_green_400 =
+    A.class "md:hover:via-green-400"
+
+
+md__hover__via_green_500 : Html.Attribute msg
+md__hover__via_green_500 =
+    A.class "md:hover:via-green-500"
+
+
+md__hover__via_green_600 : Html.Attribute msg
+md__hover__via_green_600 =
+    A.class "md:hover:via-green-600"
+
+
+md__hover__via_green_700 : Html.Attribute msg
+md__hover__via_green_700 =
+    A.class "md:hover:via-green-700"
+
+
+md__hover__via_green_800 : Html.Attribute msg
+md__hover__via_green_800 =
+    A.class "md:hover:via-green-800"
+
+
+md__hover__via_green_900 : Html.Attribute msg
+md__hover__via_green_900 =
+    A.class "md:hover:via-green-900"
+
+
+md__hover__via_teal_100 : Html.Attribute msg
+md__hover__via_teal_100 =
+    A.class "md:hover:via-teal-100"
+
+
+md__hover__via_teal_200 : Html.Attribute msg
+md__hover__via_teal_200 =
+    A.class "md:hover:via-teal-200"
+
+
+md__hover__via_teal_300 : Html.Attribute msg
+md__hover__via_teal_300 =
+    A.class "md:hover:via-teal-300"
+
+
+md__hover__via_teal_400 : Html.Attribute msg
+md__hover__via_teal_400 =
+    A.class "md:hover:via-teal-400"
+
+
+md__hover__via_teal_500 : Html.Attribute msg
+md__hover__via_teal_500 =
+    A.class "md:hover:via-teal-500"
+
+
+md__hover__via_teal_600 : Html.Attribute msg
+md__hover__via_teal_600 =
+    A.class "md:hover:via-teal-600"
+
+
+md__hover__via_teal_700 : Html.Attribute msg
+md__hover__via_teal_700 =
+    A.class "md:hover:via-teal-700"
+
+
+md__hover__via_teal_800 : Html.Attribute msg
+md__hover__via_teal_800 =
+    A.class "md:hover:via-teal-800"
+
+
+md__hover__via_teal_900 : Html.Attribute msg
+md__hover__via_teal_900 =
+    A.class "md:hover:via-teal-900"
+
+
+md__hover__via_blue_100 : Html.Attribute msg
+md__hover__via_blue_100 =
+    A.class "md:hover:via-blue-100"
+
+
+md__hover__via_blue_200 : Html.Attribute msg
+md__hover__via_blue_200 =
+    A.class "md:hover:via-blue-200"
+
+
+md__hover__via_blue_300 : Html.Attribute msg
+md__hover__via_blue_300 =
+    A.class "md:hover:via-blue-300"
+
+
+md__hover__via_blue_400 : Html.Attribute msg
+md__hover__via_blue_400 =
+    A.class "md:hover:via-blue-400"
+
+
+md__hover__via_blue_500 : Html.Attribute msg
+md__hover__via_blue_500 =
+    A.class "md:hover:via-blue-500"
+
+
+md__hover__via_blue_600 : Html.Attribute msg
+md__hover__via_blue_600 =
+    A.class "md:hover:via-blue-600"
+
+
+md__hover__via_blue_700 : Html.Attribute msg
+md__hover__via_blue_700 =
+    A.class "md:hover:via-blue-700"
+
+
+md__hover__via_blue_800 : Html.Attribute msg
+md__hover__via_blue_800 =
+    A.class "md:hover:via-blue-800"
+
+
+md__hover__via_blue_900 : Html.Attribute msg
+md__hover__via_blue_900 =
+    A.class "md:hover:via-blue-900"
+
+
+md__hover__via_indigo_100 : Html.Attribute msg
+md__hover__via_indigo_100 =
+    A.class "md:hover:via-indigo-100"
+
+
+md__hover__via_indigo_200 : Html.Attribute msg
+md__hover__via_indigo_200 =
+    A.class "md:hover:via-indigo-200"
+
+
+md__hover__via_indigo_300 : Html.Attribute msg
+md__hover__via_indigo_300 =
+    A.class "md:hover:via-indigo-300"
+
+
+md__hover__via_indigo_400 : Html.Attribute msg
+md__hover__via_indigo_400 =
+    A.class "md:hover:via-indigo-400"
+
+
+md__hover__via_indigo_500 : Html.Attribute msg
+md__hover__via_indigo_500 =
+    A.class "md:hover:via-indigo-500"
+
+
+md__hover__via_indigo_600 : Html.Attribute msg
+md__hover__via_indigo_600 =
+    A.class "md:hover:via-indigo-600"
+
+
+md__hover__via_indigo_700 : Html.Attribute msg
+md__hover__via_indigo_700 =
+    A.class "md:hover:via-indigo-700"
+
+
+md__hover__via_indigo_800 : Html.Attribute msg
+md__hover__via_indigo_800 =
+    A.class "md:hover:via-indigo-800"
+
+
+md__hover__via_indigo_900 : Html.Attribute msg
+md__hover__via_indigo_900 =
+    A.class "md:hover:via-indigo-900"
+
+
+md__hover__via_purple_100 : Html.Attribute msg
+md__hover__via_purple_100 =
+    A.class "md:hover:via-purple-100"
+
+
+md__hover__via_purple_200 : Html.Attribute msg
+md__hover__via_purple_200 =
+    A.class "md:hover:via-purple-200"
+
+
+md__hover__via_purple_300 : Html.Attribute msg
+md__hover__via_purple_300 =
+    A.class "md:hover:via-purple-300"
+
+
+md__hover__via_purple_400 : Html.Attribute msg
+md__hover__via_purple_400 =
+    A.class "md:hover:via-purple-400"
+
+
+md__hover__via_purple_500 : Html.Attribute msg
+md__hover__via_purple_500 =
+    A.class "md:hover:via-purple-500"
+
+
+md__hover__via_purple_600 : Html.Attribute msg
+md__hover__via_purple_600 =
+    A.class "md:hover:via-purple-600"
+
+
+md__hover__via_purple_700 : Html.Attribute msg
+md__hover__via_purple_700 =
+    A.class "md:hover:via-purple-700"
+
+
+md__hover__via_purple_800 : Html.Attribute msg
+md__hover__via_purple_800 =
+    A.class "md:hover:via-purple-800"
+
+
+md__hover__via_purple_900 : Html.Attribute msg
+md__hover__via_purple_900 =
+    A.class "md:hover:via-purple-900"
+
+
+md__hover__via_pink_100 : Html.Attribute msg
+md__hover__via_pink_100 =
+    A.class "md:hover:via-pink-100"
+
+
+md__hover__via_pink_200 : Html.Attribute msg
+md__hover__via_pink_200 =
+    A.class "md:hover:via-pink-200"
+
+
+md__hover__via_pink_300 : Html.Attribute msg
+md__hover__via_pink_300 =
+    A.class "md:hover:via-pink-300"
+
+
+md__hover__via_pink_400 : Html.Attribute msg
+md__hover__via_pink_400 =
+    A.class "md:hover:via-pink-400"
+
+
+md__hover__via_pink_500 : Html.Attribute msg
+md__hover__via_pink_500 =
+    A.class "md:hover:via-pink-500"
+
+
+md__hover__via_pink_600 : Html.Attribute msg
+md__hover__via_pink_600 =
+    A.class "md:hover:via-pink-600"
+
+
+md__hover__via_pink_700 : Html.Attribute msg
+md__hover__via_pink_700 =
+    A.class "md:hover:via-pink-700"
+
+
+md__hover__via_pink_800 : Html.Attribute msg
+md__hover__via_pink_800 =
+    A.class "md:hover:via-pink-800"
+
+
+md__hover__via_pink_900 : Html.Attribute msg
+md__hover__via_pink_900 =
+    A.class "md:hover:via-pink-900"
+
+
+md__hover__to_transparent : Html.Attribute msg
+md__hover__to_transparent =
+    A.class "md:hover:to-transparent"
+
+
+md__hover__to_current : Html.Attribute msg
+md__hover__to_current =
+    A.class "md:hover:to-current"
+
+
+md__hover__to_black : Html.Attribute msg
+md__hover__to_black =
+    A.class "md:hover:to-black"
+
+
+md__hover__to_white : Html.Attribute msg
+md__hover__to_white =
+    A.class "md:hover:to-white"
+
+
+md__hover__to_gray_100 : Html.Attribute msg
+md__hover__to_gray_100 =
+    A.class "md:hover:to-gray-100"
+
+
+md__hover__to_gray_200 : Html.Attribute msg
+md__hover__to_gray_200 =
+    A.class "md:hover:to-gray-200"
+
+
+md__hover__to_gray_300 : Html.Attribute msg
+md__hover__to_gray_300 =
+    A.class "md:hover:to-gray-300"
+
+
+md__hover__to_gray_400 : Html.Attribute msg
+md__hover__to_gray_400 =
+    A.class "md:hover:to-gray-400"
+
+
+md__hover__to_gray_500 : Html.Attribute msg
+md__hover__to_gray_500 =
+    A.class "md:hover:to-gray-500"
+
+
+md__hover__to_gray_600 : Html.Attribute msg
+md__hover__to_gray_600 =
+    A.class "md:hover:to-gray-600"
+
+
+md__hover__to_gray_700 : Html.Attribute msg
+md__hover__to_gray_700 =
+    A.class "md:hover:to-gray-700"
+
+
+md__hover__to_gray_800 : Html.Attribute msg
+md__hover__to_gray_800 =
+    A.class "md:hover:to-gray-800"
+
+
+md__hover__to_gray_900 : Html.Attribute msg
+md__hover__to_gray_900 =
+    A.class "md:hover:to-gray-900"
+
+
+md__hover__to_red_100 : Html.Attribute msg
+md__hover__to_red_100 =
+    A.class "md:hover:to-red-100"
+
+
+md__hover__to_red_200 : Html.Attribute msg
+md__hover__to_red_200 =
+    A.class "md:hover:to-red-200"
+
+
+md__hover__to_red_300 : Html.Attribute msg
+md__hover__to_red_300 =
+    A.class "md:hover:to-red-300"
+
+
+md__hover__to_red_400 : Html.Attribute msg
+md__hover__to_red_400 =
+    A.class "md:hover:to-red-400"
+
+
+md__hover__to_red_500 : Html.Attribute msg
+md__hover__to_red_500 =
+    A.class "md:hover:to-red-500"
+
+
+md__hover__to_red_600 : Html.Attribute msg
+md__hover__to_red_600 =
+    A.class "md:hover:to-red-600"
+
+
+md__hover__to_red_700 : Html.Attribute msg
+md__hover__to_red_700 =
+    A.class "md:hover:to-red-700"
+
+
+md__hover__to_red_800 : Html.Attribute msg
+md__hover__to_red_800 =
+    A.class "md:hover:to-red-800"
+
+
+md__hover__to_red_900 : Html.Attribute msg
+md__hover__to_red_900 =
+    A.class "md:hover:to-red-900"
+
+
+md__hover__to_orange_100 : Html.Attribute msg
+md__hover__to_orange_100 =
+    A.class "md:hover:to-orange-100"
+
+
+md__hover__to_orange_200 : Html.Attribute msg
+md__hover__to_orange_200 =
+    A.class "md:hover:to-orange-200"
+
+
+md__hover__to_orange_300 : Html.Attribute msg
+md__hover__to_orange_300 =
+    A.class "md:hover:to-orange-300"
+
+
+md__hover__to_orange_400 : Html.Attribute msg
+md__hover__to_orange_400 =
+    A.class "md:hover:to-orange-400"
+
+
+md__hover__to_orange_500 : Html.Attribute msg
+md__hover__to_orange_500 =
+    A.class "md:hover:to-orange-500"
+
+
+md__hover__to_orange_600 : Html.Attribute msg
+md__hover__to_orange_600 =
+    A.class "md:hover:to-orange-600"
+
+
+md__hover__to_orange_700 : Html.Attribute msg
+md__hover__to_orange_700 =
+    A.class "md:hover:to-orange-700"
+
+
+md__hover__to_orange_800 : Html.Attribute msg
+md__hover__to_orange_800 =
+    A.class "md:hover:to-orange-800"
+
+
+md__hover__to_orange_900 : Html.Attribute msg
+md__hover__to_orange_900 =
+    A.class "md:hover:to-orange-900"
+
+
+md__hover__to_yellow_100 : Html.Attribute msg
+md__hover__to_yellow_100 =
+    A.class "md:hover:to-yellow-100"
+
+
+md__hover__to_yellow_200 : Html.Attribute msg
+md__hover__to_yellow_200 =
+    A.class "md:hover:to-yellow-200"
+
+
+md__hover__to_yellow_300 : Html.Attribute msg
+md__hover__to_yellow_300 =
+    A.class "md:hover:to-yellow-300"
+
+
+md__hover__to_yellow_400 : Html.Attribute msg
+md__hover__to_yellow_400 =
+    A.class "md:hover:to-yellow-400"
+
+
+md__hover__to_yellow_500 : Html.Attribute msg
+md__hover__to_yellow_500 =
+    A.class "md:hover:to-yellow-500"
+
+
+md__hover__to_yellow_600 : Html.Attribute msg
+md__hover__to_yellow_600 =
+    A.class "md:hover:to-yellow-600"
+
+
+md__hover__to_yellow_700 : Html.Attribute msg
+md__hover__to_yellow_700 =
+    A.class "md:hover:to-yellow-700"
+
+
+md__hover__to_yellow_800 : Html.Attribute msg
+md__hover__to_yellow_800 =
+    A.class "md:hover:to-yellow-800"
+
+
+md__hover__to_yellow_900 : Html.Attribute msg
+md__hover__to_yellow_900 =
+    A.class "md:hover:to-yellow-900"
+
+
+md__hover__to_green_100 : Html.Attribute msg
+md__hover__to_green_100 =
+    A.class "md:hover:to-green-100"
+
+
+md__hover__to_green_200 : Html.Attribute msg
+md__hover__to_green_200 =
+    A.class "md:hover:to-green-200"
+
+
+md__hover__to_green_300 : Html.Attribute msg
+md__hover__to_green_300 =
+    A.class "md:hover:to-green-300"
+
+
+md__hover__to_green_400 : Html.Attribute msg
+md__hover__to_green_400 =
+    A.class "md:hover:to-green-400"
+
+
+md__hover__to_green_500 : Html.Attribute msg
+md__hover__to_green_500 =
+    A.class "md:hover:to-green-500"
+
+
+md__hover__to_green_600 : Html.Attribute msg
+md__hover__to_green_600 =
+    A.class "md:hover:to-green-600"
+
+
+md__hover__to_green_700 : Html.Attribute msg
+md__hover__to_green_700 =
+    A.class "md:hover:to-green-700"
+
+
+md__hover__to_green_800 : Html.Attribute msg
+md__hover__to_green_800 =
+    A.class "md:hover:to-green-800"
+
+
+md__hover__to_green_900 : Html.Attribute msg
+md__hover__to_green_900 =
+    A.class "md:hover:to-green-900"
+
+
+md__hover__to_teal_100 : Html.Attribute msg
+md__hover__to_teal_100 =
+    A.class "md:hover:to-teal-100"
+
+
+md__hover__to_teal_200 : Html.Attribute msg
+md__hover__to_teal_200 =
+    A.class "md:hover:to-teal-200"
+
+
+md__hover__to_teal_300 : Html.Attribute msg
+md__hover__to_teal_300 =
+    A.class "md:hover:to-teal-300"
+
+
+md__hover__to_teal_400 : Html.Attribute msg
+md__hover__to_teal_400 =
+    A.class "md:hover:to-teal-400"
+
+
+md__hover__to_teal_500 : Html.Attribute msg
+md__hover__to_teal_500 =
+    A.class "md:hover:to-teal-500"
+
+
+md__hover__to_teal_600 : Html.Attribute msg
+md__hover__to_teal_600 =
+    A.class "md:hover:to-teal-600"
+
+
+md__hover__to_teal_700 : Html.Attribute msg
+md__hover__to_teal_700 =
+    A.class "md:hover:to-teal-700"
+
+
+md__hover__to_teal_800 : Html.Attribute msg
+md__hover__to_teal_800 =
+    A.class "md:hover:to-teal-800"
+
+
+md__hover__to_teal_900 : Html.Attribute msg
+md__hover__to_teal_900 =
+    A.class "md:hover:to-teal-900"
+
+
+md__hover__to_blue_100 : Html.Attribute msg
+md__hover__to_blue_100 =
+    A.class "md:hover:to-blue-100"
+
+
+md__hover__to_blue_200 : Html.Attribute msg
+md__hover__to_blue_200 =
+    A.class "md:hover:to-blue-200"
+
+
+md__hover__to_blue_300 : Html.Attribute msg
+md__hover__to_blue_300 =
+    A.class "md:hover:to-blue-300"
+
+
+md__hover__to_blue_400 : Html.Attribute msg
+md__hover__to_blue_400 =
+    A.class "md:hover:to-blue-400"
+
+
+md__hover__to_blue_500 : Html.Attribute msg
+md__hover__to_blue_500 =
+    A.class "md:hover:to-blue-500"
+
+
+md__hover__to_blue_600 : Html.Attribute msg
+md__hover__to_blue_600 =
+    A.class "md:hover:to-blue-600"
+
+
+md__hover__to_blue_700 : Html.Attribute msg
+md__hover__to_blue_700 =
+    A.class "md:hover:to-blue-700"
+
+
+md__hover__to_blue_800 : Html.Attribute msg
+md__hover__to_blue_800 =
+    A.class "md:hover:to-blue-800"
+
+
+md__hover__to_blue_900 : Html.Attribute msg
+md__hover__to_blue_900 =
+    A.class "md:hover:to-blue-900"
+
+
+md__hover__to_indigo_100 : Html.Attribute msg
+md__hover__to_indigo_100 =
+    A.class "md:hover:to-indigo-100"
+
+
+md__hover__to_indigo_200 : Html.Attribute msg
+md__hover__to_indigo_200 =
+    A.class "md:hover:to-indigo-200"
+
+
+md__hover__to_indigo_300 : Html.Attribute msg
+md__hover__to_indigo_300 =
+    A.class "md:hover:to-indigo-300"
+
+
+md__hover__to_indigo_400 : Html.Attribute msg
+md__hover__to_indigo_400 =
+    A.class "md:hover:to-indigo-400"
+
+
+md__hover__to_indigo_500 : Html.Attribute msg
+md__hover__to_indigo_500 =
+    A.class "md:hover:to-indigo-500"
+
+
+md__hover__to_indigo_600 : Html.Attribute msg
+md__hover__to_indigo_600 =
+    A.class "md:hover:to-indigo-600"
+
+
+md__hover__to_indigo_700 : Html.Attribute msg
+md__hover__to_indigo_700 =
+    A.class "md:hover:to-indigo-700"
+
+
+md__hover__to_indigo_800 : Html.Attribute msg
+md__hover__to_indigo_800 =
+    A.class "md:hover:to-indigo-800"
+
+
+md__hover__to_indigo_900 : Html.Attribute msg
+md__hover__to_indigo_900 =
+    A.class "md:hover:to-indigo-900"
+
+
+md__hover__to_purple_100 : Html.Attribute msg
+md__hover__to_purple_100 =
+    A.class "md:hover:to-purple-100"
+
+
+md__hover__to_purple_200 : Html.Attribute msg
+md__hover__to_purple_200 =
+    A.class "md:hover:to-purple-200"
+
+
+md__hover__to_purple_300 : Html.Attribute msg
+md__hover__to_purple_300 =
+    A.class "md:hover:to-purple-300"
+
+
+md__hover__to_purple_400 : Html.Attribute msg
+md__hover__to_purple_400 =
+    A.class "md:hover:to-purple-400"
+
+
+md__hover__to_purple_500 : Html.Attribute msg
+md__hover__to_purple_500 =
+    A.class "md:hover:to-purple-500"
+
+
+md__hover__to_purple_600 : Html.Attribute msg
+md__hover__to_purple_600 =
+    A.class "md:hover:to-purple-600"
+
+
+md__hover__to_purple_700 : Html.Attribute msg
+md__hover__to_purple_700 =
+    A.class "md:hover:to-purple-700"
+
+
+md__hover__to_purple_800 : Html.Attribute msg
+md__hover__to_purple_800 =
+    A.class "md:hover:to-purple-800"
+
+
+md__hover__to_purple_900 : Html.Attribute msg
+md__hover__to_purple_900 =
+    A.class "md:hover:to-purple-900"
+
+
+md__hover__to_pink_100 : Html.Attribute msg
+md__hover__to_pink_100 =
+    A.class "md:hover:to-pink-100"
+
+
+md__hover__to_pink_200 : Html.Attribute msg
+md__hover__to_pink_200 =
+    A.class "md:hover:to-pink-200"
+
+
+md__hover__to_pink_300 : Html.Attribute msg
+md__hover__to_pink_300 =
+    A.class "md:hover:to-pink-300"
+
+
+md__hover__to_pink_400 : Html.Attribute msg
+md__hover__to_pink_400 =
+    A.class "md:hover:to-pink-400"
+
+
+md__hover__to_pink_500 : Html.Attribute msg
+md__hover__to_pink_500 =
+    A.class "md:hover:to-pink-500"
+
+
+md__hover__to_pink_600 : Html.Attribute msg
+md__hover__to_pink_600 =
+    A.class "md:hover:to-pink-600"
+
+
+md__hover__to_pink_700 : Html.Attribute msg
+md__hover__to_pink_700 =
+    A.class "md:hover:to-pink-700"
+
+
+md__hover__to_pink_800 : Html.Attribute msg
+md__hover__to_pink_800 =
+    A.class "md:hover:to-pink-800"
+
+
+md__hover__to_pink_900 : Html.Attribute msg
+md__hover__to_pink_900 =
+    A.class "md:hover:to-pink-900"
+
+
+md__focus__from_transparent : Html.Attribute msg
+md__focus__from_transparent =
+    A.class "md:focus:from-transparent"
+
+
+md__focus__from_current : Html.Attribute msg
+md__focus__from_current =
+    A.class "md:focus:from-current"
+
+
+md__focus__from_black : Html.Attribute msg
+md__focus__from_black =
+    A.class "md:focus:from-black"
+
+
+md__focus__from_white : Html.Attribute msg
+md__focus__from_white =
+    A.class "md:focus:from-white"
+
+
+md__focus__from_gray_100 : Html.Attribute msg
+md__focus__from_gray_100 =
+    A.class "md:focus:from-gray-100"
+
+
+md__focus__from_gray_200 : Html.Attribute msg
+md__focus__from_gray_200 =
+    A.class "md:focus:from-gray-200"
+
+
+md__focus__from_gray_300 : Html.Attribute msg
+md__focus__from_gray_300 =
+    A.class "md:focus:from-gray-300"
+
+
+md__focus__from_gray_400 : Html.Attribute msg
+md__focus__from_gray_400 =
+    A.class "md:focus:from-gray-400"
+
+
+md__focus__from_gray_500 : Html.Attribute msg
+md__focus__from_gray_500 =
+    A.class "md:focus:from-gray-500"
+
+
+md__focus__from_gray_600 : Html.Attribute msg
+md__focus__from_gray_600 =
+    A.class "md:focus:from-gray-600"
+
+
+md__focus__from_gray_700 : Html.Attribute msg
+md__focus__from_gray_700 =
+    A.class "md:focus:from-gray-700"
+
+
+md__focus__from_gray_800 : Html.Attribute msg
+md__focus__from_gray_800 =
+    A.class "md:focus:from-gray-800"
+
+
+md__focus__from_gray_900 : Html.Attribute msg
+md__focus__from_gray_900 =
+    A.class "md:focus:from-gray-900"
+
+
+md__focus__from_red_100 : Html.Attribute msg
+md__focus__from_red_100 =
+    A.class "md:focus:from-red-100"
+
+
+md__focus__from_red_200 : Html.Attribute msg
+md__focus__from_red_200 =
+    A.class "md:focus:from-red-200"
+
+
+md__focus__from_red_300 : Html.Attribute msg
+md__focus__from_red_300 =
+    A.class "md:focus:from-red-300"
+
+
+md__focus__from_red_400 : Html.Attribute msg
+md__focus__from_red_400 =
+    A.class "md:focus:from-red-400"
+
+
+md__focus__from_red_500 : Html.Attribute msg
+md__focus__from_red_500 =
+    A.class "md:focus:from-red-500"
+
+
+md__focus__from_red_600 : Html.Attribute msg
+md__focus__from_red_600 =
+    A.class "md:focus:from-red-600"
+
+
+md__focus__from_red_700 : Html.Attribute msg
+md__focus__from_red_700 =
+    A.class "md:focus:from-red-700"
+
+
+md__focus__from_red_800 : Html.Attribute msg
+md__focus__from_red_800 =
+    A.class "md:focus:from-red-800"
+
+
+md__focus__from_red_900 : Html.Attribute msg
+md__focus__from_red_900 =
+    A.class "md:focus:from-red-900"
+
+
+md__focus__from_orange_100 : Html.Attribute msg
+md__focus__from_orange_100 =
+    A.class "md:focus:from-orange-100"
+
+
+md__focus__from_orange_200 : Html.Attribute msg
+md__focus__from_orange_200 =
+    A.class "md:focus:from-orange-200"
+
+
+md__focus__from_orange_300 : Html.Attribute msg
+md__focus__from_orange_300 =
+    A.class "md:focus:from-orange-300"
+
+
+md__focus__from_orange_400 : Html.Attribute msg
+md__focus__from_orange_400 =
+    A.class "md:focus:from-orange-400"
+
+
+md__focus__from_orange_500 : Html.Attribute msg
+md__focus__from_orange_500 =
+    A.class "md:focus:from-orange-500"
+
+
+md__focus__from_orange_600 : Html.Attribute msg
+md__focus__from_orange_600 =
+    A.class "md:focus:from-orange-600"
+
+
+md__focus__from_orange_700 : Html.Attribute msg
+md__focus__from_orange_700 =
+    A.class "md:focus:from-orange-700"
+
+
+md__focus__from_orange_800 : Html.Attribute msg
+md__focus__from_orange_800 =
+    A.class "md:focus:from-orange-800"
+
+
+md__focus__from_orange_900 : Html.Attribute msg
+md__focus__from_orange_900 =
+    A.class "md:focus:from-orange-900"
+
+
+md__focus__from_yellow_100 : Html.Attribute msg
+md__focus__from_yellow_100 =
+    A.class "md:focus:from-yellow-100"
+
+
+md__focus__from_yellow_200 : Html.Attribute msg
+md__focus__from_yellow_200 =
+    A.class "md:focus:from-yellow-200"
+
+
+md__focus__from_yellow_300 : Html.Attribute msg
+md__focus__from_yellow_300 =
+    A.class "md:focus:from-yellow-300"
+
+
+md__focus__from_yellow_400 : Html.Attribute msg
+md__focus__from_yellow_400 =
+    A.class "md:focus:from-yellow-400"
+
+
+md__focus__from_yellow_500 : Html.Attribute msg
+md__focus__from_yellow_500 =
+    A.class "md:focus:from-yellow-500"
+
+
+md__focus__from_yellow_600 : Html.Attribute msg
+md__focus__from_yellow_600 =
+    A.class "md:focus:from-yellow-600"
+
+
+md__focus__from_yellow_700 : Html.Attribute msg
+md__focus__from_yellow_700 =
+    A.class "md:focus:from-yellow-700"
+
+
+md__focus__from_yellow_800 : Html.Attribute msg
+md__focus__from_yellow_800 =
+    A.class "md:focus:from-yellow-800"
+
+
+md__focus__from_yellow_900 : Html.Attribute msg
+md__focus__from_yellow_900 =
+    A.class "md:focus:from-yellow-900"
+
+
+md__focus__from_green_100 : Html.Attribute msg
+md__focus__from_green_100 =
+    A.class "md:focus:from-green-100"
+
+
+md__focus__from_green_200 : Html.Attribute msg
+md__focus__from_green_200 =
+    A.class "md:focus:from-green-200"
+
+
+md__focus__from_green_300 : Html.Attribute msg
+md__focus__from_green_300 =
+    A.class "md:focus:from-green-300"
+
+
+md__focus__from_green_400 : Html.Attribute msg
+md__focus__from_green_400 =
+    A.class "md:focus:from-green-400"
+
+
+md__focus__from_green_500 : Html.Attribute msg
+md__focus__from_green_500 =
+    A.class "md:focus:from-green-500"
+
+
+md__focus__from_green_600 : Html.Attribute msg
+md__focus__from_green_600 =
+    A.class "md:focus:from-green-600"
+
+
+md__focus__from_green_700 : Html.Attribute msg
+md__focus__from_green_700 =
+    A.class "md:focus:from-green-700"
+
+
+md__focus__from_green_800 : Html.Attribute msg
+md__focus__from_green_800 =
+    A.class "md:focus:from-green-800"
+
+
+md__focus__from_green_900 : Html.Attribute msg
+md__focus__from_green_900 =
+    A.class "md:focus:from-green-900"
+
+
+md__focus__from_teal_100 : Html.Attribute msg
+md__focus__from_teal_100 =
+    A.class "md:focus:from-teal-100"
+
+
+md__focus__from_teal_200 : Html.Attribute msg
+md__focus__from_teal_200 =
+    A.class "md:focus:from-teal-200"
+
+
+md__focus__from_teal_300 : Html.Attribute msg
+md__focus__from_teal_300 =
+    A.class "md:focus:from-teal-300"
+
+
+md__focus__from_teal_400 : Html.Attribute msg
+md__focus__from_teal_400 =
+    A.class "md:focus:from-teal-400"
+
+
+md__focus__from_teal_500 : Html.Attribute msg
+md__focus__from_teal_500 =
+    A.class "md:focus:from-teal-500"
+
+
+md__focus__from_teal_600 : Html.Attribute msg
+md__focus__from_teal_600 =
+    A.class "md:focus:from-teal-600"
+
+
+md__focus__from_teal_700 : Html.Attribute msg
+md__focus__from_teal_700 =
+    A.class "md:focus:from-teal-700"
+
+
+md__focus__from_teal_800 : Html.Attribute msg
+md__focus__from_teal_800 =
+    A.class "md:focus:from-teal-800"
+
+
+md__focus__from_teal_900 : Html.Attribute msg
+md__focus__from_teal_900 =
+    A.class "md:focus:from-teal-900"
+
+
+md__focus__from_blue_100 : Html.Attribute msg
+md__focus__from_blue_100 =
+    A.class "md:focus:from-blue-100"
+
+
+md__focus__from_blue_200 : Html.Attribute msg
+md__focus__from_blue_200 =
+    A.class "md:focus:from-blue-200"
+
+
+md__focus__from_blue_300 : Html.Attribute msg
+md__focus__from_blue_300 =
+    A.class "md:focus:from-blue-300"
+
+
+md__focus__from_blue_400 : Html.Attribute msg
+md__focus__from_blue_400 =
+    A.class "md:focus:from-blue-400"
+
+
+md__focus__from_blue_500 : Html.Attribute msg
+md__focus__from_blue_500 =
+    A.class "md:focus:from-blue-500"
+
+
+md__focus__from_blue_600 : Html.Attribute msg
+md__focus__from_blue_600 =
+    A.class "md:focus:from-blue-600"
+
+
+md__focus__from_blue_700 : Html.Attribute msg
+md__focus__from_blue_700 =
+    A.class "md:focus:from-blue-700"
+
+
+md__focus__from_blue_800 : Html.Attribute msg
+md__focus__from_blue_800 =
+    A.class "md:focus:from-blue-800"
+
+
+md__focus__from_blue_900 : Html.Attribute msg
+md__focus__from_blue_900 =
+    A.class "md:focus:from-blue-900"
+
+
+md__focus__from_indigo_100 : Html.Attribute msg
+md__focus__from_indigo_100 =
+    A.class "md:focus:from-indigo-100"
+
+
+md__focus__from_indigo_200 : Html.Attribute msg
+md__focus__from_indigo_200 =
+    A.class "md:focus:from-indigo-200"
+
+
+md__focus__from_indigo_300 : Html.Attribute msg
+md__focus__from_indigo_300 =
+    A.class "md:focus:from-indigo-300"
+
+
+md__focus__from_indigo_400 : Html.Attribute msg
+md__focus__from_indigo_400 =
+    A.class "md:focus:from-indigo-400"
+
+
+md__focus__from_indigo_500 : Html.Attribute msg
+md__focus__from_indigo_500 =
+    A.class "md:focus:from-indigo-500"
+
+
+md__focus__from_indigo_600 : Html.Attribute msg
+md__focus__from_indigo_600 =
+    A.class "md:focus:from-indigo-600"
+
+
+md__focus__from_indigo_700 : Html.Attribute msg
+md__focus__from_indigo_700 =
+    A.class "md:focus:from-indigo-700"
+
+
+md__focus__from_indigo_800 : Html.Attribute msg
+md__focus__from_indigo_800 =
+    A.class "md:focus:from-indigo-800"
+
+
+md__focus__from_indigo_900 : Html.Attribute msg
+md__focus__from_indigo_900 =
+    A.class "md:focus:from-indigo-900"
+
+
+md__focus__from_purple_100 : Html.Attribute msg
+md__focus__from_purple_100 =
+    A.class "md:focus:from-purple-100"
+
+
+md__focus__from_purple_200 : Html.Attribute msg
+md__focus__from_purple_200 =
+    A.class "md:focus:from-purple-200"
+
+
+md__focus__from_purple_300 : Html.Attribute msg
+md__focus__from_purple_300 =
+    A.class "md:focus:from-purple-300"
+
+
+md__focus__from_purple_400 : Html.Attribute msg
+md__focus__from_purple_400 =
+    A.class "md:focus:from-purple-400"
+
+
+md__focus__from_purple_500 : Html.Attribute msg
+md__focus__from_purple_500 =
+    A.class "md:focus:from-purple-500"
+
+
+md__focus__from_purple_600 : Html.Attribute msg
+md__focus__from_purple_600 =
+    A.class "md:focus:from-purple-600"
+
+
+md__focus__from_purple_700 : Html.Attribute msg
+md__focus__from_purple_700 =
+    A.class "md:focus:from-purple-700"
+
+
+md__focus__from_purple_800 : Html.Attribute msg
+md__focus__from_purple_800 =
+    A.class "md:focus:from-purple-800"
+
+
+md__focus__from_purple_900 : Html.Attribute msg
+md__focus__from_purple_900 =
+    A.class "md:focus:from-purple-900"
+
+
+md__focus__from_pink_100 : Html.Attribute msg
+md__focus__from_pink_100 =
+    A.class "md:focus:from-pink-100"
+
+
+md__focus__from_pink_200 : Html.Attribute msg
+md__focus__from_pink_200 =
+    A.class "md:focus:from-pink-200"
+
+
+md__focus__from_pink_300 : Html.Attribute msg
+md__focus__from_pink_300 =
+    A.class "md:focus:from-pink-300"
+
+
+md__focus__from_pink_400 : Html.Attribute msg
+md__focus__from_pink_400 =
+    A.class "md:focus:from-pink-400"
+
+
+md__focus__from_pink_500 : Html.Attribute msg
+md__focus__from_pink_500 =
+    A.class "md:focus:from-pink-500"
+
+
+md__focus__from_pink_600 : Html.Attribute msg
+md__focus__from_pink_600 =
+    A.class "md:focus:from-pink-600"
+
+
+md__focus__from_pink_700 : Html.Attribute msg
+md__focus__from_pink_700 =
+    A.class "md:focus:from-pink-700"
+
+
+md__focus__from_pink_800 : Html.Attribute msg
+md__focus__from_pink_800 =
+    A.class "md:focus:from-pink-800"
+
+
+md__focus__from_pink_900 : Html.Attribute msg
+md__focus__from_pink_900 =
+    A.class "md:focus:from-pink-900"
+
+
+md__focus__via_transparent : Html.Attribute msg
+md__focus__via_transparent =
+    A.class "md:focus:via-transparent"
+
+
+md__focus__via_current : Html.Attribute msg
+md__focus__via_current =
+    A.class "md:focus:via-current"
+
+
+md__focus__via_black : Html.Attribute msg
+md__focus__via_black =
+    A.class "md:focus:via-black"
+
+
+md__focus__via_white : Html.Attribute msg
+md__focus__via_white =
+    A.class "md:focus:via-white"
+
+
+md__focus__via_gray_100 : Html.Attribute msg
+md__focus__via_gray_100 =
+    A.class "md:focus:via-gray-100"
+
+
+md__focus__via_gray_200 : Html.Attribute msg
+md__focus__via_gray_200 =
+    A.class "md:focus:via-gray-200"
+
+
+md__focus__via_gray_300 : Html.Attribute msg
+md__focus__via_gray_300 =
+    A.class "md:focus:via-gray-300"
+
+
+md__focus__via_gray_400 : Html.Attribute msg
+md__focus__via_gray_400 =
+    A.class "md:focus:via-gray-400"
+
+
+md__focus__via_gray_500 : Html.Attribute msg
+md__focus__via_gray_500 =
+    A.class "md:focus:via-gray-500"
+
+
+md__focus__via_gray_600 : Html.Attribute msg
+md__focus__via_gray_600 =
+    A.class "md:focus:via-gray-600"
+
+
+md__focus__via_gray_700 : Html.Attribute msg
+md__focus__via_gray_700 =
+    A.class "md:focus:via-gray-700"
+
+
+md__focus__via_gray_800 : Html.Attribute msg
+md__focus__via_gray_800 =
+    A.class "md:focus:via-gray-800"
+
+
+md__focus__via_gray_900 : Html.Attribute msg
+md__focus__via_gray_900 =
+    A.class "md:focus:via-gray-900"
+
+
+md__focus__via_red_100 : Html.Attribute msg
+md__focus__via_red_100 =
+    A.class "md:focus:via-red-100"
+
+
+md__focus__via_red_200 : Html.Attribute msg
+md__focus__via_red_200 =
+    A.class "md:focus:via-red-200"
+
+
+md__focus__via_red_300 : Html.Attribute msg
+md__focus__via_red_300 =
+    A.class "md:focus:via-red-300"
+
+
+md__focus__via_red_400 : Html.Attribute msg
+md__focus__via_red_400 =
+    A.class "md:focus:via-red-400"
+
+
+md__focus__via_red_500 : Html.Attribute msg
+md__focus__via_red_500 =
+    A.class "md:focus:via-red-500"
+
+
+md__focus__via_red_600 : Html.Attribute msg
+md__focus__via_red_600 =
+    A.class "md:focus:via-red-600"
+
+
+md__focus__via_red_700 : Html.Attribute msg
+md__focus__via_red_700 =
+    A.class "md:focus:via-red-700"
+
+
+md__focus__via_red_800 : Html.Attribute msg
+md__focus__via_red_800 =
+    A.class "md:focus:via-red-800"
+
+
+md__focus__via_red_900 : Html.Attribute msg
+md__focus__via_red_900 =
+    A.class "md:focus:via-red-900"
+
+
+md__focus__via_orange_100 : Html.Attribute msg
+md__focus__via_orange_100 =
+    A.class "md:focus:via-orange-100"
+
+
+md__focus__via_orange_200 : Html.Attribute msg
+md__focus__via_orange_200 =
+    A.class "md:focus:via-orange-200"
+
+
+md__focus__via_orange_300 : Html.Attribute msg
+md__focus__via_orange_300 =
+    A.class "md:focus:via-orange-300"
+
+
+md__focus__via_orange_400 : Html.Attribute msg
+md__focus__via_orange_400 =
+    A.class "md:focus:via-orange-400"
+
+
+md__focus__via_orange_500 : Html.Attribute msg
+md__focus__via_orange_500 =
+    A.class "md:focus:via-orange-500"
+
+
+md__focus__via_orange_600 : Html.Attribute msg
+md__focus__via_orange_600 =
+    A.class "md:focus:via-orange-600"
+
+
+md__focus__via_orange_700 : Html.Attribute msg
+md__focus__via_orange_700 =
+    A.class "md:focus:via-orange-700"
+
+
+md__focus__via_orange_800 : Html.Attribute msg
+md__focus__via_orange_800 =
+    A.class "md:focus:via-orange-800"
+
+
+md__focus__via_orange_900 : Html.Attribute msg
+md__focus__via_orange_900 =
+    A.class "md:focus:via-orange-900"
+
+
+md__focus__via_yellow_100 : Html.Attribute msg
+md__focus__via_yellow_100 =
+    A.class "md:focus:via-yellow-100"
+
+
+md__focus__via_yellow_200 : Html.Attribute msg
+md__focus__via_yellow_200 =
+    A.class "md:focus:via-yellow-200"
+
+
+md__focus__via_yellow_300 : Html.Attribute msg
+md__focus__via_yellow_300 =
+    A.class "md:focus:via-yellow-300"
+
+
+md__focus__via_yellow_400 : Html.Attribute msg
+md__focus__via_yellow_400 =
+    A.class "md:focus:via-yellow-400"
+
+
+md__focus__via_yellow_500 : Html.Attribute msg
+md__focus__via_yellow_500 =
+    A.class "md:focus:via-yellow-500"
+
+
+md__focus__via_yellow_600 : Html.Attribute msg
+md__focus__via_yellow_600 =
+    A.class "md:focus:via-yellow-600"
+
+
+md__focus__via_yellow_700 : Html.Attribute msg
+md__focus__via_yellow_700 =
+    A.class "md:focus:via-yellow-700"
+
+
+md__focus__via_yellow_800 : Html.Attribute msg
+md__focus__via_yellow_800 =
+    A.class "md:focus:via-yellow-800"
+
+
+md__focus__via_yellow_900 : Html.Attribute msg
+md__focus__via_yellow_900 =
+    A.class "md:focus:via-yellow-900"
+
+
+md__focus__via_green_100 : Html.Attribute msg
+md__focus__via_green_100 =
+    A.class "md:focus:via-green-100"
+
+
+md__focus__via_green_200 : Html.Attribute msg
+md__focus__via_green_200 =
+    A.class "md:focus:via-green-200"
+
+
+md__focus__via_green_300 : Html.Attribute msg
+md__focus__via_green_300 =
+    A.class "md:focus:via-green-300"
+
+
+md__focus__via_green_400 : Html.Attribute msg
+md__focus__via_green_400 =
+    A.class "md:focus:via-green-400"
+
+
+md__focus__via_green_500 : Html.Attribute msg
+md__focus__via_green_500 =
+    A.class "md:focus:via-green-500"
+
+
+md__focus__via_green_600 : Html.Attribute msg
+md__focus__via_green_600 =
+    A.class "md:focus:via-green-600"
+
+
+md__focus__via_green_700 : Html.Attribute msg
+md__focus__via_green_700 =
+    A.class "md:focus:via-green-700"
+
+
+md__focus__via_green_800 : Html.Attribute msg
+md__focus__via_green_800 =
+    A.class "md:focus:via-green-800"
+
+
+md__focus__via_green_900 : Html.Attribute msg
+md__focus__via_green_900 =
+    A.class "md:focus:via-green-900"
+
+
+md__focus__via_teal_100 : Html.Attribute msg
+md__focus__via_teal_100 =
+    A.class "md:focus:via-teal-100"
+
+
+md__focus__via_teal_200 : Html.Attribute msg
+md__focus__via_teal_200 =
+    A.class "md:focus:via-teal-200"
+
+
+md__focus__via_teal_300 : Html.Attribute msg
+md__focus__via_teal_300 =
+    A.class "md:focus:via-teal-300"
+
+
+md__focus__via_teal_400 : Html.Attribute msg
+md__focus__via_teal_400 =
+    A.class "md:focus:via-teal-400"
+
+
+md__focus__via_teal_500 : Html.Attribute msg
+md__focus__via_teal_500 =
+    A.class "md:focus:via-teal-500"
+
+
+md__focus__via_teal_600 : Html.Attribute msg
+md__focus__via_teal_600 =
+    A.class "md:focus:via-teal-600"
+
+
+md__focus__via_teal_700 : Html.Attribute msg
+md__focus__via_teal_700 =
+    A.class "md:focus:via-teal-700"
+
+
+md__focus__via_teal_800 : Html.Attribute msg
+md__focus__via_teal_800 =
+    A.class "md:focus:via-teal-800"
+
+
+md__focus__via_teal_900 : Html.Attribute msg
+md__focus__via_teal_900 =
+    A.class "md:focus:via-teal-900"
+
+
+md__focus__via_blue_100 : Html.Attribute msg
+md__focus__via_blue_100 =
+    A.class "md:focus:via-blue-100"
+
+
+md__focus__via_blue_200 : Html.Attribute msg
+md__focus__via_blue_200 =
+    A.class "md:focus:via-blue-200"
+
+
+md__focus__via_blue_300 : Html.Attribute msg
+md__focus__via_blue_300 =
+    A.class "md:focus:via-blue-300"
+
+
+md__focus__via_blue_400 : Html.Attribute msg
+md__focus__via_blue_400 =
+    A.class "md:focus:via-blue-400"
+
+
+md__focus__via_blue_500 : Html.Attribute msg
+md__focus__via_blue_500 =
+    A.class "md:focus:via-blue-500"
+
+
+md__focus__via_blue_600 : Html.Attribute msg
+md__focus__via_blue_600 =
+    A.class "md:focus:via-blue-600"
+
+
+md__focus__via_blue_700 : Html.Attribute msg
+md__focus__via_blue_700 =
+    A.class "md:focus:via-blue-700"
+
+
+md__focus__via_blue_800 : Html.Attribute msg
+md__focus__via_blue_800 =
+    A.class "md:focus:via-blue-800"
+
+
+md__focus__via_blue_900 : Html.Attribute msg
+md__focus__via_blue_900 =
+    A.class "md:focus:via-blue-900"
+
+
+md__focus__via_indigo_100 : Html.Attribute msg
+md__focus__via_indigo_100 =
+    A.class "md:focus:via-indigo-100"
+
+
+md__focus__via_indigo_200 : Html.Attribute msg
+md__focus__via_indigo_200 =
+    A.class "md:focus:via-indigo-200"
+
+
+md__focus__via_indigo_300 : Html.Attribute msg
+md__focus__via_indigo_300 =
+    A.class "md:focus:via-indigo-300"
+
+
+md__focus__via_indigo_400 : Html.Attribute msg
+md__focus__via_indigo_400 =
+    A.class "md:focus:via-indigo-400"
+
+
+md__focus__via_indigo_500 : Html.Attribute msg
+md__focus__via_indigo_500 =
+    A.class "md:focus:via-indigo-500"
+
+
+md__focus__via_indigo_600 : Html.Attribute msg
+md__focus__via_indigo_600 =
+    A.class "md:focus:via-indigo-600"
+
+
+md__focus__via_indigo_700 : Html.Attribute msg
+md__focus__via_indigo_700 =
+    A.class "md:focus:via-indigo-700"
+
+
+md__focus__via_indigo_800 : Html.Attribute msg
+md__focus__via_indigo_800 =
+    A.class "md:focus:via-indigo-800"
+
+
+md__focus__via_indigo_900 : Html.Attribute msg
+md__focus__via_indigo_900 =
+    A.class "md:focus:via-indigo-900"
+
+
+md__focus__via_purple_100 : Html.Attribute msg
+md__focus__via_purple_100 =
+    A.class "md:focus:via-purple-100"
+
+
+md__focus__via_purple_200 : Html.Attribute msg
+md__focus__via_purple_200 =
+    A.class "md:focus:via-purple-200"
+
+
+md__focus__via_purple_300 : Html.Attribute msg
+md__focus__via_purple_300 =
+    A.class "md:focus:via-purple-300"
+
+
+md__focus__via_purple_400 : Html.Attribute msg
+md__focus__via_purple_400 =
+    A.class "md:focus:via-purple-400"
+
+
+md__focus__via_purple_500 : Html.Attribute msg
+md__focus__via_purple_500 =
+    A.class "md:focus:via-purple-500"
+
+
+md__focus__via_purple_600 : Html.Attribute msg
+md__focus__via_purple_600 =
+    A.class "md:focus:via-purple-600"
+
+
+md__focus__via_purple_700 : Html.Attribute msg
+md__focus__via_purple_700 =
+    A.class "md:focus:via-purple-700"
+
+
+md__focus__via_purple_800 : Html.Attribute msg
+md__focus__via_purple_800 =
+    A.class "md:focus:via-purple-800"
+
+
+md__focus__via_purple_900 : Html.Attribute msg
+md__focus__via_purple_900 =
+    A.class "md:focus:via-purple-900"
+
+
+md__focus__via_pink_100 : Html.Attribute msg
+md__focus__via_pink_100 =
+    A.class "md:focus:via-pink-100"
+
+
+md__focus__via_pink_200 : Html.Attribute msg
+md__focus__via_pink_200 =
+    A.class "md:focus:via-pink-200"
+
+
+md__focus__via_pink_300 : Html.Attribute msg
+md__focus__via_pink_300 =
+    A.class "md:focus:via-pink-300"
+
+
+md__focus__via_pink_400 : Html.Attribute msg
+md__focus__via_pink_400 =
+    A.class "md:focus:via-pink-400"
+
+
+md__focus__via_pink_500 : Html.Attribute msg
+md__focus__via_pink_500 =
+    A.class "md:focus:via-pink-500"
+
+
+md__focus__via_pink_600 : Html.Attribute msg
+md__focus__via_pink_600 =
+    A.class "md:focus:via-pink-600"
+
+
+md__focus__via_pink_700 : Html.Attribute msg
+md__focus__via_pink_700 =
+    A.class "md:focus:via-pink-700"
+
+
+md__focus__via_pink_800 : Html.Attribute msg
+md__focus__via_pink_800 =
+    A.class "md:focus:via-pink-800"
+
+
+md__focus__via_pink_900 : Html.Attribute msg
+md__focus__via_pink_900 =
+    A.class "md:focus:via-pink-900"
+
+
+md__focus__to_transparent : Html.Attribute msg
+md__focus__to_transparent =
+    A.class "md:focus:to-transparent"
+
+
+md__focus__to_current : Html.Attribute msg
+md__focus__to_current =
+    A.class "md:focus:to-current"
+
+
+md__focus__to_black : Html.Attribute msg
+md__focus__to_black =
+    A.class "md:focus:to-black"
+
+
+md__focus__to_white : Html.Attribute msg
+md__focus__to_white =
+    A.class "md:focus:to-white"
+
+
+md__focus__to_gray_100 : Html.Attribute msg
+md__focus__to_gray_100 =
+    A.class "md:focus:to-gray-100"
+
+
+md__focus__to_gray_200 : Html.Attribute msg
+md__focus__to_gray_200 =
+    A.class "md:focus:to-gray-200"
+
+
+md__focus__to_gray_300 : Html.Attribute msg
+md__focus__to_gray_300 =
+    A.class "md:focus:to-gray-300"
+
+
+md__focus__to_gray_400 : Html.Attribute msg
+md__focus__to_gray_400 =
+    A.class "md:focus:to-gray-400"
+
+
+md__focus__to_gray_500 : Html.Attribute msg
+md__focus__to_gray_500 =
+    A.class "md:focus:to-gray-500"
+
+
+md__focus__to_gray_600 : Html.Attribute msg
+md__focus__to_gray_600 =
+    A.class "md:focus:to-gray-600"
+
+
+md__focus__to_gray_700 : Html.Attribute msg
+md__focus__to_gray_700 =
+    A.class "md:focus:to-gray-700"
+
+
+md__focus__to_gray_800 : Html.Attribute msg
+md__focus__to_gray_800 =
+    A.class "md:focus:to-gray-800"
+
+
+md__focus__to_gray_900 : Html.Attribute msg
+md__focus__to_gray_900 =
+    A.class "md:focus:to-gray-900"
+
+
+md__focus__to_red_100 : Html.Attribute msg
+md__focus__to_red_100 =
+    A.class "md:focus:to-red-100"
+
+
+md__focus__to_red_200 : Html.Attribute msg
+md__focus__to_red_200 =
+    A.class "md:focus:to-red-200"
+
+
+md__focus__to_red_300 : Html.Attribute msg
+md__focus__to_red_300 =
+    A.class "md:focus:to-red-300"
+
+
+md__focus__to_red_400 : Html.Attribute msg
+md__focus__to_red_400 =
+    A.class "md:focus:to-red-400"
+
+
+md__focus__to_red_500 : Html.Attribute msg
+md__focus__to_red_500 =
+    A.class "md:focus:to-red-500"
+
+
+md__focus__to_red_600 : Html.Attribute msg
+md__focus__to_red_600 =
+    A.class "md:focus:to-red-600"
+
+
+md__focus__to_red_700 : Html.Attribute msg
+md__focus__to_red_700 =
+    A.class "md:focus:to-red-700"
+
+
+md__focus__to_red_800 : Html.Attribute msg
+md__focus__to_red_800 =
+    A.class "md:focus:to-red-800"
+
+
+md__focus__to_red_900 : Html.Attribute msg
+md__focus__to_red_900 =
+    A.class "md:focus:to-red-900"
+
+
+md__focus__to_orange_100 : Html.Attribute msg
+md__focus__to_orange_100 =
+    A.class "md:focus:to-orange-100"
+
+
+md__focus__to_orange_200 : Html.Attribute msg
+md__focus__to_orange_200 =
+    A.class "md:focus:to-orange-200"
+
+
+md__focus__to_orange_300 : Html.Attribute msg
+md__focus__to_orange_300 =
+    A.class "md:focus:to-orange-300"
+
+
+md__focus__to_orange_400 : Html.Attribute msg
+md__focus__to_orange_400 =
+    A.class "md:focus:to-orange-400"
+
+
+md__focus__to_orange_500 : Html.Attribute msg
+md__focus__to_orange_500 =
+    A.class "md:focus:to-orange-500"
+
+
+md__focus__to_orange_600 : Html.Attribute msg
+md__focus__to_orange_600 =
+    A.class "md:focus:to-orange-600"
+
+
+md__focus__to_orange_700 : Html.Attribute msg
+md__focus__to_orange_700 =
+    A.class "md:focus:to-orange-700"
+
+
+md__focus__to_orange_800 : Html.Attribute msg
+md__focus__to_orange_800 =
+    A.class "md:focus:to-orange-800"
+
+
+md__focus__to_orange_900 : Html.Attribute msg
+md__focus__to_orange_900 =
+    A.class "md:focus:to-orange-900"
+
+
+md__focus__to_yellow_100 : Html.Attribute msg
+md__focus__to_yellow_100 =
+    A.class "md:focus:to-yellow-100"
+
+
+md__focus__to_yellow_200 : Html.Attribute msg
+md__focus__to_yellow_200 =
+    A.class "md:focus:to-yellow-200"
+
+
+md__focus__to_yellow_300 : Html.Attribute msg
+md__focus__to_yellow_300 =
+    A.class "md:focus:to-yellow-300"
+
+
+md__focus__to_yellow_400 : Html.Attribute msg
+md__focus__to_yellow_400 =
+    A.class "md:focus:to-yellow-400"
+
+
+md__focus__to_yellow_500 : Html.Attribute msg
+md__focus__to_yellow_500 =
+    A.class "md:focus:to-yellow-500"
+
+
+md__focus__to_yellow_600 : Html.Attribute msg
+md__focus__to_yellow_600 =
+    A.class "md:focus:to-yellow-600"
+
+
+md__focus__to_yellow_700 : Html.Attribute msg
+md__focus__to_yellow_700 =
+    A.class "md:focus:to-yellow-700"
+
+
+md__focus__to_yellow_800 : Html.Attribute msg
+md__focus__to_yellow_800 =
+    A.class "md:focus:to-yellow-800"
+
+
+md__focus__to_yellow_900 : Html.Attribute msg
+md__focus__to_yellow_900 =
+    A.class "md:focus:to-yellow-900"
+
+
+md__focus__to_green_100 : Html.Attribute msg
+md__focus__to_green_100 =
+    A.class "md:focus:to-green-100"
+
+
+md__focus__to_green_200 : Html.Attribute msg
+md__focus__to_green_200 =
+    A.class "md:focus:to-green-200"
+
+
+md__focus__to_green_300 : Html.Attribute msg
+md__focus__to_green_300 =
+    A.class "md:focus:to-green-300"
+
+
+md__focus__to_green_400 : Html.Attribute msg
+md__focus__to_green_400 =
+    A.class "md:focus:to-green-400"
+
+
+md__focus__to_green_500 : Html.Attribute msg
+md__focus__to_green_500 =
+    A.class "md:focus:to-green-500"
+
+
+md__focus__to_green_600 : Html.Attribute msg
+md__focus__to_green_600 =
+    A.class "md:focus:to-green-600"
+
+
+md__focus__to_green_700 : Html.Attribute msg
+md__focus__to_green_700 =
+    A.class "md:focus:to-green-700"
+
+
+md__focus__to_green_800 : Html.Attribute msg
+md__focus__to_green_800 =
+    A.class "md:focus:to-green-800"
+
+
+md__focus__to_green_900 : Html.Attribute msg
+md__focus__to_green_900 =
+    A.class "md:focus:to-green-900"
+
+
+md__focus__to_teal_100 : Html.Attribute msg
+md__focus__to_teal_100 =
+    A.class "md:focus:to-teal-100"
+
+
+md__focus__to_teal_200 : Html.Attribute msg
+md__focus__to_teal_200 =
+    A.class "md:focus:to-teal-200"
+
+
+md__focus__to_teal_300 : Html.Attribute msg
+md__focus__to_teal_300 =
+    A.class "md:focus:to-teal-300"
+
+
+md__focus__to_teal_400 : Html.Attribute msg
+md__focus__to_teal_400 =
+    A.class "md:focus:to-teal-400"
+
+
+md__focus__to_teal_500 : Html.Attribute msg
+md__focus__to_teal_500 =
+    A.class "md:focus:to-teal-500"
+
+
+md__focus__to_teal_600 : Html.Attribute msg
+md__focus__to_teal_600 =
+    A.class "md:focus:to-teal-600"
+
+
+md__focus__to_teal_700 : Html.Attribute msg
+md__focus__to_teal_700 =
+    A.class "md:focus:to-teal-700"
+
+
+md__focus__to_teal_800 : Html.Attribute msg
+md__focus__to_teal_800 =
+    A.class "md:focus:to-teal-800"
+
+
+md__focus__to_teal_900 : Html.Attribute msg
+md__focus__to_teal_900 =
+    A.class "md:focus:to-teal-900"
+
+
+md__focus__to_blue_100 : Html.Attribute msg
+md__focus__to_blue_100 =
+    A.class "md:focus:to-blue-100"
+
+
+md__focus__to_blue_200 : Html.Attribute msg
+md__focus__to_blue_200 =
+    A.class "md:focus:to-blue-200"
+
+
+md__focus__to_blue_300 : Html.Attribute msg
+md__focus__to_blue_300 =
+    A.class "md:focus:to-blue-300"
+
+
+md__focus__to_blue_400 : Html.Attribute msg
+md__focus__to_blue_400 =
+    A.class "md:focus:to-blue-400"
+
+
+md__focus__to_blue_500 : Html.Attribute msg
+md__focus__to_blue_500 =
+    A.class "md:focus:to-blue-500"
+
+
+md__focus__to_blue_600 : Html.Attribute msg
+md__focus__to_blue_600 =
+    A.class "md:focus:to-blue-600"
+
+
+md__focus__to_blue_700 : Html.Attribute msg
+md__focus__to_blue_700 =
+    A.class "md:focus:to-blue-700"
+
+
+md__focus__to_blue_800 : Html.Attribute msg
+md__focus__to_blue_800 =
+    A.class "md:focus:to-blue-800"
+
+
+md__focus__to_blue_900 : Html.Attribute msg
+md__focus__to_blue_900 =
+    A.class "md:focus:to-blue-900"
+
+
+md__focus__to_indigo_100 : Html.Attribute msg
+md__focus__to_indigo_100 =
+    A.class "md:focus:to-indigo-100"
+
+
+md__focus__to_indigo_200 : Html.Attribute msg
+md__focus__to_indigo_200 =
+    A.class "md:focus:to-indigo-200"
+
+
+md__focus__to_indigo_300 : Html.Attribute msg
+md__focus__to_indigo_300 =
+    A.class "md:focus:to-indigo-300"
+
+
+md__focus__to_indigo_400 : Html.Attribute msg
+md__focus__to_indigo_400 =
+    A.class "md:focus:to-indigo-400"
+
+
+md__focus__to_indigo_500 : Html.Attribute msg
+md__focus__to_indigo_500 =
+    A.class "md:focus:to-indigo-500"
+
+
+md__focus__to_indigo_600 : Html.Attribute msg
+md__focus__to_indigo_600 =
+    A.class "md:focus:to-indigo-600"
+
+
+md__focus__to_indigo_700 : Html.Attribute msg
+md__focus__to_indigo_700 =
+    A.class "md:focus:to-indigo-700"
+
+
+md__focus__to_indigo_800 : Html.Attribute msg
+md__focus__to_indigo_800 =
+    A.class "md:focus:to-indigo-800"
+
+
+md__focus__to_indigo_900 : Html.Attribute msg
+md__focus__to_indigo_900 =
+    A.class "md:focus:to-indigo-900"
+
+
+md__focus__to_purple_100 : Html.Attribute msg
+md__focus__to_purple_100 =
+    A.class "md:focus:to-purple-100"
+
+
+md__focus__to_purple_200 : Html.Attribute msg
+md__focus__to_purple_200 =
+    A.class "md:focus:to-purple-200"
+
+
+md__focus__to_purple_300 : Html.Attribute msg
+md__focus__to_purple_300 =
+    A.class "md:focus:to-purple-300"
+
+
+md__focus__to_purple_400 : Html.Attribute msg
+md__focus__to_purple_400 =
+    A.class "md:focus:to-purple-400"
+
+
+md__focus__to_purple_500 : Html.Attribute msg
+md__focus__to_purple_500 =
+    A.class "md:focus:to-purple-500"
+
+
+md__focus__to_purple_600 : Html.Attribute msg
+md__focus__to_purple_600 =
+    A.class "md:focus:to-purple-600"
+
+
+md__focus__to_purple_700 : Html.Attribute msg
+md__focus__to_purple_700 =
+    A.class "md:focus:to-purple-700"
+
+
+md__focus__to_purple_800 : Html.Attribute msg
+md__focus__to_purple_800 =
+    A.class "md:focus:to-purple-800"
+
+
+md__focus__to_purple_900 : Html.Attribute msg
+md__focus__to_purple_900 =
+    A.class "md:focus:to-purple-900"
+
+
+md__focus__to_pink_100 : Html.Attribute msg
+md__focus__to_pink_100 =
+    A.class "md:focus:to-pink-100"
+
+
+md__focus__to_pink_200 : Html.Attribute msg
+md__focus__to_pink_200 =
+    A.class "md:focus:to-pink-200"
+
+
+md__focus__to_pink_300 : Html.Attribute msg
+md__focus__to_pink_300 =
+    A.class "md:focus:to-pink-300"
+
+
+md__focus__to_pink_400 : Html.Attribute msg
+md__focus__to_pink_400 =
+    A.class "md:focus:to-pink-400"
+
+
+md__focus__to_pink_500 : Html.Attribute msg
+md__focus__to_pink_500 =
+    A.class "md:focus:to-pink-500"
+
+
+md__focus__to_pink_600 : Html.Attribute msg
+md__focus__to_pink_600 =
+    A.class "md:focus:to-pink-600"
+
+
+md__focus__to_pink_700 : Html.Attribute msg
+md__focus__to_pink_700 =
+    A.class "md:focus:to-pink-700"
+
+
+md__focus__to_pink_800 : Html.Attribute msg
+md__focus__to_pink_800 =
+    A.class "md:focus:to-pink-800"
+
+
+md__focus__to_pink_900 : Html.Attribute msg
+md__focus__to_pink_900 =
+    A.class "md:focus:to-pink-900"
 
 
 md__bg_opacity_0 : Html.Attribute msg
@@ -45817,6 +65316,21 @@ md__rounded_lg =
     A.class "md:rounded-lg"
 
 
+md__rounded_xl : Html.Attribute msg
+md__rounded_xl =
+    A.class "md:rounded-xl"
+
+
+md__rounded_2xl : Html.Attribute msg
+md__rounded_2xl =
+    A.class "md:rounded-2xl"
+
+
+md__rounded_3xl : Html.Attribute msg
+md__rounded_3xl =
+    A.class "md:rounded-3xl"
+
+
 md__rounded_full : Html.Attribute msg
 md__rounded_full =
     A.class "md:rounded-full"
@@ -45920,6 +65434,66 @@ md__rounded_b_lg =
 md__rounded_l_lg : Html.Attribute msg
 md__rounded_l_lg =
     A.class "md:rounded-l-lg"
+
+
+md__rounded_t_xl : Html.Attribute msg
+md__rounded_t_xl =
+    A.class "md:rounded-t-xl"
+
+
+md__rounded_r_xl : Html.Attribute msg
+md__rounded_r_xl =
+    A.class "md:rounded-r-xl"
+
+
+md__rounded_b_xl : Html.Attribute msg
+md__rounded_b_xl =
+    A.class "md:rounded-b-xl"
+
+
+md__rounded_l_xl : Html.Attribute msg
+md__rounded_l_xl =
+    A.class "md:rounded-l-xl"
+
+
+md__rounded_t_2xl : Html.Attribute msg
+md__rounded_t_2xl =
+    A.class "md:rounded-t-2xl"
+
+
+md__rounded_r_2xl : Html.Attribute msg
+md__rounded_r_2xl =
+    A.class "md:rounded-r-2xl"
+
+
+md__rounded_b_2xl : Html.Attribute msg
+md__rounded_b_2xl =
+    A.class "md:rounded-b-2xl"
+
+
+md__rounded_l_2xl : Html.Attribute msg
+md__rounded_l_2xl =
+    A.class "md:rounded-l-2xl"
+
+
+md__rounded_t_3xl : Html.Attribute msg
+md__rounded_t_3xl =
+    A.class "md:rounded-t-3xl"
+
+
+md__rounded_r_3xl : Html.Attribute msg
+md__rounded_r_3xl =
+    A.class "md:rounded-r-3xl"
+
+
+md__rounded_b_3xl : Html.Attribute msg
+md__rounded_b_3xl =
+    A.class "md:rounded-b-3xl"
+
+
+md__rounded_l_3xl : Html.Attribute msg
+md__rounded_l_3xl =
+    A.class "md:rounded-l-3xl"
 
 
 md__rounded_t_full : Html.Attribute msg
@@ -46040,6 +65614,66 @@ md__rounded_br_lg =
 md__rounded_bl_lg : Html.Attribute msg
 md__rounded_bl_lg =
     A.class "md:rounded-bl-lg"
+
+
+md__rounded_tl_xl : Html.Attribute msg
+md__rounded_tl_xl =
+    A.class "md:rounded-tl-xl"
+
+
+md__rounded_tr_xl : Html.Attribute msg
+md__rounded_tr_xl =
+    A.class "md:rounded-tr-xl"
+
+
+md__rounded_br_xl : Html.Attribute msg
+md__rounded_br_xl =
+    A.class "md:rounded-br-xl"
+
+
+md__rounded_bl_xl : Html.Attribute msg
+md__rounded_bl_xl =
+    A.class "md:rounded-bl-xl"
+
+
+md__rounded_tl_2xl : Html.Attribute msg
+md__rounded_tl_2xl =
+    A.class "md:rounded-tl-2xl"
+
+
+md__rounded_tr_2xl : Html.Attribute msg
+md__rounded_tr_2xl =
+    A.class "md:rounded-tr-2xl"
+
+
+md__rounded_br_2xl : Html.Attribute msg
+md__rounded_br_2xl =
+    A.class "md:rounded-br-2xl"
+
+
+md__rounded_bl_2xl : Html.Attribute msg
+md__rounded_bl_2xl =
+    A.class "md:rounded-bl-2xl"
+
+
+md__rounded_tl_3xl : Html.Attribute msg
+md__rounded_tl_3xl =
+    A.class "md:rounded-tl-3xl"
+
+
+md__rounded_tr_3xl : Html.Attribute msg
+md__rounded_tr_3xl =
+    A.class "md:rounded-tr-3xl"
+
+
+md__rounded_br_3xl : Html.Attribute msg
+md__rounded_br_3xl =
+    A.class "md:rounded-br-3xl"
+
+
+md__rounded_bl_3xl : Html.Attribute msg
+md__rounded_bl_3xl =
+    A.class "md:rounded-bl-3xl"
 
 
 md__rounded_tl_full : Html.Attribute msg
@@ -46377,6 +66011,11 @@ md__inline_grid =
     A.class "md:inline-grid"
 
 
+md__contents : Html.Attribute msg
+md__contents =
+    A.class "md:contents"
+
+
 md__hidden : Html.Attribute msg
 md__hidden =
     A.class "md:hidden"
@@ -46417,6 +66056,91 @@ md__flex_no_wrap =
     A.class "md:flex-no-wrap"
 
 
+md__place_items_auto : Html.Attribute msg
+md__place_items_auto =
+    A.class "md:place-items-auto"
+
+
+md__place_items_start : Html.Attribute msg
+md__place_items_start =
+    A.class "md:place-items-start"
+
+
+md__place_items_end : Html.Attribute msg
+md__place_items_end =
+    A.class "md:place-items-end"
+
+
+md__place_items_center : Html.Attribute msg
+md__place_items_center =
+    A.class "md:place-items-center"
+
+
+md__place_items_stretch : Html.Attribute msg
+md__place_items_stretch =
+    A.class "md:place-items-stretch"
+
+
+md__place_content_center : Html.Attribute msg
+md__place_content_center =
+    A.class "md:place-content-center"
+
+
+md__place_content_start : Html.Attribute msg
+md__place_content_start =
+    A.class "md:place-content-start"
+
+
+md__place_content_end : Html.Attribute msg
+md__place_content_end =
+    A.class "md:place-content-end"
+
+
+md__place_content_between : Html.Attribute msg
+md__place_content_between =
+    A.class "md:place-content-between"
+
+
+md__place_content_around : Html.Attribute msg
+md__place_content_around =
+    A.class "md:place-content-around"
+
+
+md__place_content_evenly : Html.Attribute msg
+md__place_content_evenly =
+    A.class "md:place-content-evenly"
+
+
+md__place_content_stretch : Html.Attribute msg
+md__place_content_stretch =
+    A.class "md:place-content-stretch"
+
+
+md__place_self_auto : Html.Attribute msg
+md__place_self_auto =
+    A.class "md:place-self-auto"
+
+
+md__place_self_start : Html.Attribute msg
+md__place_self_start =
+    A.class "md:place-self-start"
+
+
+md__place_self_end : Html.Attribute msg
+md__place_self_end =
+    A.class "md:place-self-end"
+
+
+md__place_self_center : Html.Attribute msg
+md__place_self_center =
+    A.class "md:place-self-center"
+
+
+md__place_self_stretch : Html.Attribute msg
+md__place_self_stretch =
+    A.class "md:place-self-stretch"
+
+
 md__items_start : Html.Attribute msg
 md__items_start =
     A.class "md:items-start"
@@ -46442,6 +66166,36 @@ md__items_stretch =
     A.class "md:items-stretch"
 
 
+md__content_center : Html.Attribute msg
+md__content_center =
+    A.class "md:content-center"
+
+
+md__content_start : Html.Attribute msg
+md__content_start =
+    A.class "md:content-start"
+
+
+md__content_end : Html.Attribute msg
+md__content_end =
+    A.class "md:content-end"
+
+
+md__content_between : Html.Attribute msg
+md__content_between =
+    A.class "md:content-between"
+
+
+md__content_around : Html.Attribute msg
+md__content_around =
+    A.class "md:content-around"
+
+
+md__content_evenly : Html.Attribute msg
+md__content_evenly =
+    A.class "md:content-evenly"
+
+
 md__self_auto : Html.Attribute msg
 md__self_auto =
     A.class "md:self-auto"
@@ -46465,6 +66219,31 @@ md__self_center =
 md__self_stretch : Html.Attribute msg
 md__self_stretch =
     A.class "md:self-stretch"
+
+
+md__justify_items_auto : Html.Attribute msg
+md__justify_items_auto =
+    A.class "md:justify-items-auto"
+
+
+md__justify_items_start : Html.Attribute msg
+md__justify_items_start =
+    A.class "md:justify-items-start"
+
+
+md__justify_items_end : Html.Attribute msg
+md__justify_items_end =
+    A.class "md:justify-items-end"
+
+
+md__justify_items_center : Html.Attribute msg
+md__justify_items_center =
+    A.class "md:justify-items-center"
+
+
+md__justify_items_stretch : Html.Attribute msg
+md__justify_items_stretch =
+    A.class "md:justify-items-stretch"
 
 
 md__justify_start : Html.Attribute msg
@@ -46497,29 +66276,29 @@ md__justify_evenly =
     A.class "md:justify-evenly"
 
 
-md__content_center : Html.Attribute msg
-md__content_center =
-    A.class "md:content-center"
+md__justify_self_auto : Html.Attribute msg
+md__justify_self_auto =
+    A.class "md:justify-self-auto"
 
 
-md__content_start : Html.Attribute msg
-md__content_start =
-    A.class "md:content-start"
+md__justify_self_start : Html.Attribute msg
+md__justify_self_start =
+    A.class "md:justify-self-start"
 
 
-md__content_end : Html.Attribute msg
-md__content_end =
-    A.class "md:content-end"
+md__justify_self_end : Html.Attribute msg
+md__justify_self_end =
+    A.class "md:justify-self-end"
 
 
-md__content_between : Html.Attribute msg
-md__content_between =
-    A.class "md:content-between"
+md__justify_self_center : Html.Attribute msg
+md__justify_self_center =
+    A.class "md:justify-self-center"
 
 
-md__content_around : Html.Attribute msg
-md__content_around =
-    A.class "md:content-around"
+md__justify_self_stretch : Html.Attribute msg
+md__justify_self_stretch =
+    A.class "md:justify-self-stretch"
 
 
 md__flex_1 : Html.Attribute msg
@@ -48702,9 +68481,29 @@ md__outline_none =
     A.class "md:outline-none"
 
 
+md__outline_white : Html.Attribute msg
+md__outline_white =
+    A.class "md:outline-white"
+
+
+md__outline_black : Html.Attribute msg
+md__outline_black =
+    A.class "md:outline-black"
+
+
 md__focus__outline_none : Html.Attribute msg
 md__focus__outline_none =
     A.class "md:focus:outline-none"
+
+
+md__focus__outline_white : Html.Attribute msg
+md__focus__outline_white =
+    A.class "md:focus:outline-white"
+
+
+md__focus__outline_black : Html.Attribute msg
+md__focus__outline_black =
+    A.class "md:focus:outline-black"
 
 
 md__overflow_auto : Html.Attribute msg
@@ -48775,6 +68574,51 @@ md__scrolling_touch =
 md__scrolling_auto : Html.Attribute msg
 md__scrolling_auto =
     A.class "md:scrolling-auto"
+
+
+md__overscroll_auto : Html.Attribute msg
+md__overscroll_auto =
+    A.class "md:overscroll-auto"
+
+
+md__overscroll_contain : Html.Attribute msg
+md__overscroll_contain =
+    A.class "md:overscroll-contain"
+
+
+md__overscroll_none : Html.Attribute msg
+md__overscroll_none =
+    A.class "md:overscroll-none"
+
+
+md__overscroll_y_auto : Html.Attribute msg
+md__overscroll_y_auto =
+    A.class "md:overscroll-y-auto"
+
+
+md__overscroll_y_contain : Html.Attribute msg
+md__overscroll_y_contain =
+    A.class "md:overscroll-y-contain"
+
+
+md__overscroll_y_none : Html.Attribute msg
+md__overscroll_y_none =
+    A.class "md:overscroll-y-none"
+
+
+md__overscroll_x_auto : Html.Attribute msg
+md__overscroll_x_auto =
+    A.class "md:overscroll-x-auto"
+
+
+md__overscroll_x_contain : Html.Attribute msg
+md__overscroll_x_contain =
+    A.class "md:overscroll-x-contain"
+
+
+md__overscroll_x_none : Html.Attribute msg
+md__overscroll_x_none =
+    A.class "md:overscroll-x-none"
 
 
 md__p_0 : Html.Attribute msg
@@ -52332,6 +72176,51 @@ md__subpixel_antialiased =
     A.class "md:subpixel-antialiased"
 
 
+md__ordinal : Html.Attribute msg
+md__ordinal =
+    A.class "md:ordinal"
+
+
+md__slashed_zero : Html.Attribute msg
+md__slashed_zero =
+    A.class "md:slashed-zero"
+
+
+md__lining_nums : Html.Attribute msg
+md__lining_nums =
+    A.class "md:lining-nums"
+
+
+md__oldstyle_nums : Html.Attribute msg
+md__oldstyle_nums =
+    A.class "md:oldstyle-nums"
+
+
+md__proportional_nums : Html.Attribute msg
+md__proportional_nums =
+    A.class "md:proportional-nums"
+
+
+md__tabular_nums : Html.Attribute msg
+md__tabular_nums =
+    A.class "md:tabular-nums"
+
+
+md__diagonal_fractions : Html.Attribute msg
+md__diagonal_fractions =
+    A.class "md:diagonal-fractions"
+
+
+md__stacked_fractions : Html.Attribute msg
+md__stacked_fractions =
+    A.class "md:stacked-fractions"
+
+
+md__normal_nums : Html.Attribute msg
+md__normal_nums =
+    A.class "md:normal-nums"
+
+
 md__tracking_tighter : Html.Attribute msg
 md__tracking_tighter =
     A.class "md:tracking-tighter"
@@ -52837,194 +72726,194 @@ md__gap_px =
     A.class "md:gap-px"
 
 
-md__col_gap_0 : Html.Attribute msg
-md__col_gap_0 =
-    A.class "md:col-gap-0"
+md__gap_x_0 : Html.Attribute msg
+md__gap_x_0 =
+    A.class "md:gap-x-0"
 
 
-md__col_gap_1 : Html.Attribute msg
-md__col_gap_1 =
-    A.class "md:col-gap-1"
+md__gap_x_1 : Html.Attribute msg
+md__gap_x_1 =
+    A.class "md:gap-x-1"
 
 
-md__col_gap_2 : Html.Attribute msg
-md__col_gap_2 =
-    A.class "md:col-gap-2"
+md__gap_x_2 : Html.Attribute msg
+md__gap_x_2 =
+    A.class "md:gap-x-2"
 
 
-md__col_gap_3 : Html.Attribute msg
-md__col_gap_3 =
-    A.class "md:col-gap-3"
+md__gap_x_3 : Html.Attribute msg
+md__gap_x_3 =
+    A.class "md:gap-x-3"
 
 
-md__col_gap_4 : Html.Attribute msg
-md__col_gap_4 =
-    A.class "md:col-gap-4"
+md__gap_x_4 : Html.Attribute msg
+md__gap_x_4 =
+    A.class "md:gap-x-4"
 
 
-md__col_gap_5 : Html.Attribute msg
-md__col_gap_5 =
-    A.class "md:col-gap-5"
+md__gap_x_5 : Html.Attribute msg
+md__gap_x_5 =
+    A.class "md:gap-x-5"
 
 
-md__col_gap_6 : Html.Attribute msg
-md__col_gap_6 =
-    A.class "md:col-gap-6"
+md__gap_x_6 : Html.Attribute msg
+md__gap_x_6 =
+    A.class "md:gap-x-6"
 
 
-md__col_gap_8 : Html.Attribute msg
-md__col_gap_8 =
-    A.class "md:col-gap-8"
+md__gap_x_8 : Html.Attribute msg
+md__gap_x_8 =
+    A.class "md:gap-x-8"
 
 
-md__col_gap_10 : Html.Attribute msg
-md__col_gap_10 =
-    A.class "md:col-gap-10"
+md__gap_x_10 : Html.Attribute msg
+md__gap_x_10 =
+    A.class "md:gap-x-10"
 
 
-md__col_gap_12 : Html.Attribute msg
-md__col_gap_12 =
-    A.class "md:col-gap-12"
+md__gap_x_12 : Html.Attribute msg
+md__gap_x_12 =
+    A.class "md:gap-x-12"
 
 
-md__col_gap_16 : Html.Attribute msg
-md__col_gap_16 =
-    A.class "md:col-gap-16"
+md__gap_x_16 : Html.Attribute msg
+md__gap_x_16 =
+    A.class "md:gap-x-16"
 
 
-md__col_gap_20 : Html.Attribute msg
-md__col_gap_20 =
-    A.class "md:col-gap-20"
+md__gap_x_20 : Html.Attribute msg
+md__gap_x_20 =
+    A.class "md:gap-x-20"
 
 
-md__col_gap_24 : Html.Attribute msg
-md__col_gap_24 =
-    A.class "md:col-gap-24"
+md__gap_x_24 : Html.Attribute msg
+md__gap_x_24 =
+    A.class "md:gap-x-24"
 
 
-md__col_gap_32 : Html.Attribute msg
-md__col_gap_32 =
-    A.class "md:col-gap-32"
+md__gap_x_32 : Html.Attribute msg
+md__gap_x_32 =
+    A.class "md:gap-x-32"
 
 
-md__col_gap_40 : Html.Attribute msg
-md__col_gap_40 =
-    A.class "md:col-gap-40"
+md__gap_x_40 : Html.Attribute msg
+md__gap_x_40 =
+    A.class "md:gap-x-40"
 
 
-md__col_gap_48 : Html.Attribute msg
-md__col_gap_48 =
-    A.class "md:col-gap-48"
+md__gap_x_48 : Html.Attribute msg
+md__gap_x_48 =
+    A.class "md:gap-x-48"
 
 
-md__col_gap_56 : Html.Attribute msg
-md__col_gap_56 =
-    A.class "md:col-gap-56"
+md__gap_x_56 : Html.Attribute msg
+md__gap_x_56 =
+    A.class "md:gap-x-56"
 
 
-md__col_gap_64 : Html.Attribute msg
-md__col_gap_64 =
-    A.class "md:col-gap-64"
+md__gap_x_64 : Html.Attribute msg
+md__gap_x_64 =
+    A.class "md:gap-x-64"
 
 
-md__col_gap_px : Html.Attribute msg
-md__col_gap_px =
-    A.class "md:col-gap-px"
+md__gap_x_px : Html.Attribute msg
+md__gap_x_px =
+    A.class "md:gap-x-px"
 
 
-md__row_gap_0 : Html.Attribute msg
-md__row_gap_0 =
-    A.class "md:row-gap-0"
+md__gap_y_0 : Html.Attribute msg
+md__gap_y_0 =
+    A.class "md:gap-y-0"
 
 
-md__row_gap_1 : Html.Attribute msg
-md__row_gap_1 =
-    A.class "md:row-gap-1"
+md__gap_y_1 : Html.Attribute msg
+md__gap_y_1 =
+    A.class "md:gap-y-1"
 
 
-md__row_gap_2 : Html.Attribute msg
-md__row_gap_2 =
-    A.class "md:row-gap-2"
+md__gap_y_2 : Html.Attribute msg
+md__gap_y_2 =
+    A.class "md:gap-y-2"
 
 
-md__row_gap_3 : Html.Attribute msg
-md__row_gap_3 =
-    A.class "md:row-gap-3"
+md__gap_y_3 : Html.Attribute msg
+md__gap_y_3 =
+    A.class "md:gap-y-3"
 
 
-md__row_gap_4 : Html.Attribute msg
-md__row_gap_4 =
-    A.class "md:row-gap-4"
+md__gap_y_4 : Html.Attribute msg
+md__gap_y_4 =
+    A.class "md:gap-y-4"
 
 
-md__row_gap_5 : Html.Attribute msg
-md__row_gap_5 =
-    A.class "md:row-gap-5"
+md__gap_y_5 : Html.Attribute msg
+md__gap_y_5 =
+    A.class "md:gap-y-5"
 
 
-md__row_gap_6 : Html.Attribute msg
-md__row_gap_6 =
-    A.class "md:row-gap-6"
+md__gap_y_6 : Html.Attribute msg
+md__gap_y_6 =
+    A.class "md:gap-y-6"
 
 
-md__row_gap_8 : Html.Attribute msg
-md__row_gap_8 =
-    A.class "md:row-gap-8"
+md__gap_y_8 : Html.Attribute msg
+md__gap_y_8 =
+    A.class "md:gap-y-8"
 
 
-md__row_gap_10 : Html.Attribute msg
-md__row_gap_10 =
-    A.class "md:row-gap-10"
+md__gap_y_10 : Html.Attribute msg
+md__gap_y_10 =
+    A.class "md:gap-y-10"
 
 
-md__row_gap_12 : Html.Attribute msg
-md__row_gap_12 =
-    A.class "md:row-gap-12"
+md__gap_y_12 : Html.Attribute msg
+md__gap_y_12 =
+    A.class "md:gap-y-12"
 
 
-md__row_gap_16 : Html.Attribute msg
-md__row_gap_16 =
-    A.class "md:row-gap-16"
+md__gap_y_16 : Html.Attribute msg
+md__gap_y_16 =
+    A.class "md:gap-y-16"
 
 
-md__row_gap_20 : Html.Attribute msg
-md__row_gap_20 =
-    A.class "md:row-gap-20"
+md__gap_y_20 : Html.Attribute msg
+md__gap_y_20 =
+    A.class "md:gap-y-20"
 
 
-md__row_gap_24 : Html.Attribute msg
-md__row_gap_24 =
-    A.class "md:row-gap-24"
+md__gap_y_24 : Html.Attribute msg
+md__gap_y_24 =
+    A.class "md:gap-y-24"
 
 
-md__row_gap_32 : Html.Attribute msg
-md__row_gap_32 =
-    A.class "md:row-gap-32"
+md__gap_y_32 : Html.Attribute msg
+md__gap_y_32 =
+    A.class "md:gap-y-32"
 
 
-md__row_gap_40 : Html.Attribute msg
-md__row_gap_40 =
-    A.class "md:row-gap-40"
+md__gap_y_40 : Html.Attribute msg
+md__gap_y_40 =
+    A.class "md:gap-y-40"
 
 
-md__row_gap_48 : Html.Attribute msg
-md__row_gap_48 =
-    A.class "md:row-gap-48"
+md__gap_y_48 : Html.Attribute msg
+md__gap_y_48 =
+    A.class "md:gap-y-48"
 
 
-md__row_gap_56 : Html.Attribute msg
-md__row_gap_56 =
-    A.class "md:row-gap-56"
+md__gap_y_56 : Html.Attribute msg
+md__gap_y_56 =
+    A.class "md:gap-y-56"
 
 
-md__row_gap_64 : Html.Attribute msg
-md__row_gap_64 =
-    A.class "md:row-gap-64"
+md__gap_y_64 : Html.Attribute msg
+md__gap_y_64 =
+    A.class "md:gap-y-64"
 
 
-md__row_gap_px : Html.Attribute msg
-md__row_gap_px =
-    A.class "md:row-gap-px"
+md__gap_y_px : Html.Attribute msg
+md__gap_y_px =
+    A.class "md:gap-y-px"
 
 
 md__grid_flow_row : Html.Attribute msg
@@ -53117,6 +73006,26 @@ md__grid_cols_header =
     A.class "md:grid-cols-header"
 
 
+md__auto_cols_auto : Html.Attribute msg
+md__auto_cols_auto =
+    A.class "md:auto-cols-auto"
+
+
+md__auto_cols_min : Html.Attribute msg
+md__auto_cols_min =
+    A.class "md:auto-cols-min"
+
+
+md__auto_cols_max : Html.Attribute msg
+md__auto_cols_max =
+    A.class "md:auto-cols-max"
+
+
+md__auto_cols_fr : Html.Attribute msg
+md__auto_cols_fr =
+    A.class "md:auto-cols-fr"
+
+
 md__col_auto : Html.Attribute msg
 md__col_auto =
     A.class "md:col-auto"
@@ -53180,6 +73089,11 @@ md__col_span_11 =
 md__col_span_12 : Html.Attribute msg
 md__col_span_12 =
     A.class "md:col-span-12"
+
+
+md__col_span_full : Html.Attribute msg
+md__col_span_full =
+    A.class "md:col-span-full"
 
 
 md__col_start_1 : Html.Attribute msg
@@ -53357,6 +73271,26 @@ md__grid_rows_none =
     A.class "md:grid-rows-none"
 
 
+md__auto_rows_auto : Html.Attribute msg
+md__auto_rows_auto =
+    A.class "md:auto-rows-auto"
+
+
+md__auto_rows_min : Html.Attribute msg
+md__auto_rows_min =
+    A.class "md:auto-rows-min"
+
+
+md__auto_rows_max : Html.Attribute msg
+md__auto_rows_max =
+    A.class "md:auto-rows-max"
+
+
+md__auto_rows_fr : Html.Attribute msg
+md__auto_rows_fr =
+    A.class "md:auto-rows-fr"
+
+
 md__row_auto : Html.Attribute msg
 md__row_auto =
     A.class "md:row-auto"
@@ -53390,6 +73324,11 @@ md__row_span_5 =
 md__row_span_6 : Html.Attribute msg
 md__row_span_6 =
     A.class "md:row-span-6"
+
+
+md__row_span_full : Html.Attribute msg
+md__row_span_full =
+    A.class "md:row-span-full"
 
 
 md__row_start_1 : Html.Attribute msg
@@ -53982,6 +73921,31 @@ md__rotate_0 =
     A.class "md:rotate-0"
 
 
+md__rotate_1 : Html.Attribute msg
+md__rotate_1 =
+    A.class "md:rotate-1"
+
+
+md__rotate_2 : Html.Attribute msg
+md__rotate_2 =
+    A.class "md:rotate-2"
+
+
+md__rotate_3 : Html.Attribute msg
+md__rotate_3 =
+    A.class "md:rotate-3"
+
+
+md__rotate_6 : Html.Attribute msg
+md__rotate_6 =
+    A.class "md:rotate-6"
+
+
+md__rotate_12 : Html.Attribute msg
+md__rotate_12 =
+    A.class "md:rotate-12"
+
+
 md__rotate_45 : Html.Attribute msg
 md__rotate_45 =
     A.class "md:rotate-45"
@@ -54012,9 +73976,59 @@ md__neg_rotate_45 =
     A.class "md:-rotate-45"
 
 
+md__neg_rotate_12 : Html.Attribute msg
+md__neg_rotate_12 =
+    A.class "md:-rotate-12"
+
+
+md__neg_rotate_6 : Html.Attribute msg
+md__neg_rotate_6 =
+    A.class "md:-rotate-6"
+
+
+md__neg_rotate_3 : Html.Attribute msg
+md__neg_rotate_3 =
+    A.class "md:-rotate-3"
+
+
+md__neg_rotate_2 : Html.Attribute msg
+md__neg_rotate_2 =
+    A.class "md:-rotate-2"
+
+
+md__neg_rotate_1 : Html.Attribute msg
+md__neg_rotate_1 =
+    A.class "md:-rotate-1"
+
+
 md__hover__rotate_0 : Html.Attribute msg
 md__hover__rotate_0 =
     A.class "md:hover:rotate-0"
+
+
+md__hover__rotate_1 : Html.Attribute msg
+md__hover__rotate_1 =
+    A.class "md:hover:rotate-1"
+
+
+md__hover__rotate_2 : Html.Attribute msg
+md__hover__rotate_2 =
+    A.class "md:hover:rotate-2"
+
+
+md__hover__rotate_3 : Html.Attribute msg
+md__hover__rotate_3 =
+    A.class "md:hover:rotate-3"
+
+
+md__hover__rotate_6 : Html.Attribute msg
+md__hover__rotate_6 =
+    A.class "md:hover:rotate-6"
+
+
+md__hover__rotate_12 : Html.Attribute msg
+md__hover__rotate_12 =
+    A.class "md:hover:rotate-12"
 
 
 md__hover__rotate_45 : Html.Attribute msg
@@ -54047,9 +74061,59 @@ md__hover__neg_rotate_45 =
     A.class "md:hover:-rotate-45"
 
 
+md__hover__neg_rotate_12 : Html.Attribute msg
+md__hover__neg_rotate_12 =
+    A.class "md:hover:-rotate-12"
+
+
+md__hover__neg_rotate_6 : Html.Attribute msg
+md__hover__neg_rotate_6 =
+    A.class "md:hover:-rotate-6"
+
+
+md__hover__neg_rotate_3 : Html.Attribute msg
+md__hover__neg_rotate_3 =
+    A.class "md:hover:-rotate-3"
+
+
+md__hover__neg_rotate_2 : Html.Attribute msg
+md__hover__neg_rotate_2 =
+    A.class "md:hover:-rotate-2"
+
+
+md__hover__neg_rotate_1 : Html.Attribute msg
+md__hover__neg_rotate_1 =
+    A.class "md:hover:-rotate-1"
+
+
 md__focus__rotate_0 : Html.Attribute msg
 md__focus__rotate_0 =
     A.class "md:focus:rotate-0"
+
+
+md__focus__rotate_1 : Html.Attribute msg
+md__focus__rotate_1 =
+    A.class "md:focus:rotate-1"
+
+
+md__focus__rotate_2 : Html.Attribute msg
+md__focus__rotate_2 =
+    A.class "md:focus:rotate-2"
+
+
+md__focus__rotate_3 : Html.Attribute msg
+md__focus__rotate_3 =
+    A.class "md:focus:rotate-3"
+
+
+md__focus__rotate_6 : Html.Attribute msg
+md__focus__rotate_6 =
+    A.class "md:focus:rotate-6"
+
+
+md__focus__rotate_12 : Html.Attribute msg
+md__focus__rotate_12 =
+    A.class "md:focus:rotate-12"
 
 
 md__focus__rotate_45 : Html.Attribute msg
@@ -54080,6 +74144,31 @@ md__focus__neg_rotate_90 =
 md__focus__neg_rotate_45 : Html.Attribute msg
 md__focus__neg_rotate_45 =
     A.class "md:focus:-rotate-45"
+
+
+md__focus__neg_rotate_12 : Html.Attribute msg
+md__focus__neg_rotate_12 =
+    A.class "md:focus:-rotate-12"
+
+
+md__focus__neg_rotate_6 : Html.Attribute msg
+md__focus__neg_rotate_6 =
+    A.class "md:focus:-rotate-6"
+
+
+md__focus__neg_rotate_3 : Html.Attribute msg
+md__focus__neg_rotate_3 =
+    A.class "md:focus:-rotate-3"
+
+
+md__focus__neg_rotate_2 : Html.Attribute msg
+md__focus__neg_rotate_2 =
+    A.class "md:focus:-rotate-2"
+
+
+md__focus__neg_rotate_1 : Html.Attribute msg
+md__focus__neg_rotate_1 =
+    A.class "md:focus:-rotate-1"
 
 
 md__translate_x_0 : Html.Attribute msg
@@ -55317,6 +75406,16 @@ md__skew_x_0 =
     A.class "md:skew-x-0"
 
 
+md__skew_x_1 : Html.Attribute msg
+md__skew_x_1 =
+    A.class "md:skew-x-1"
+
+
+md__skew_x_2 : Html.Attribute msg
+md__skew_x_2 =
+    A.class "md:skew-x-2"
+
+
 md__skew_x_3 : Html.Attribute msg
 md__skew_x_3 =
     A.class "md:skew-x-3"
@@ -55347,9 +75446,29 @@ md__neg_skew_x_3 =
     A.class "md:-skew-x-3"
 
 
+md__neg_skew_x_2 : Html.Attribute msg
+md__neg_skew_x_2 =
+    A.class "md:-skew-x-2"
+
+
+md__neg_skew_x_1 : Html.Attribute msg
+md__neg_skew_x_1 =
+    A.class "md:-skew-x-1"
+
+
 md__skew_y_0 : Html.Attribute msg
 md__skew_y_0 =
     A.class "md:skew-y-0"
+
+
+md__skew_y_1 : Html.Attribute msg
+md__skew_y_1 =
+    A.class "md:skew-y-1"
+
+
+md__skew_y_2 : Html.Attribute msg
+md__skew_y_2 =
+    A.class "md:skew-y-2"
 
 
 md__skew_y_3 : Html.Attribute msg
@@ -55382,9 +75501,29 @@ md__neg_skew_y_3 =
     A.class "md:-skew-y-3"
 
 
+md__neg_skew_y_2 : Html.Attribute msg
+md__neg_skew_y_2 =
+    A.class "md:-skew-y-2"
+
+
+md__neg_skew_y_1 : Html.Attribute msg
+md__neg_skew_y_1 =
+    A.class "md:-skew-y-1"
+
+
 md__hover__skew_x_0 : Html.Attribute msg
 md__hover__skew_x_0 =
     A.class "md:hover:skew-x-0"
+
+
+md__hover__skew_x_1 : Html.Attribute msg
+md__hover__skew_x_1 =
+    A.class "md:hover:skew-x-1"
+
+
+md__hover__skew_x_2 : Html.Attribute msg
+md__hover__skew_x_2 =
+    A.class "md:hover:skew-x-2"
 
 
 md__hover__skew_x_3 : Html.Attribute msg
@@ -55417,9 +75556,29 @@ md__hover__neg_skew_x_3 =
     A.class "md:hover:-skew-x-3"
 
 
+md__hover__neg_skew_x_2 : Html.Attribute msg
+md__hover__neg_skew_x_2 =
+    A.class "md:hover:-skew-x-2"
+
+
+md__hover__neg_skew_x_1 : Html.Attribute msg
+md__hover__neg_skew_x_1 =
+    A.class "md:hover:-skew-x-1"
+
+
 md__hover__skew_y_0 : Html.Attribute msg
 md__hover__skew_y_0 =
     A.class "md:hover:skew-y-0"
+
+
+md__hover__skew_y_1 : Html.Attribute msg
+md__hover__skew_y_1 =
+    A.class "md:hover:skew-y-1"
+
+
+md__hover__skew_y_2 : Html.Attribute msg
+md__hover__skew_y_2 =
+    A.class "md:hover:skew-y-2"
 
 
 md__hover__skew_y_3 : Html.Attribute msg
@@ -55452,9 +75611,29 @@ md__hover__neg_skew_y_3 =
     A.class "md:hover:-skew-y-3"
 
 
+md__hover__neg_skew_y_2 : Html.Attribute msg
+md__hover__neg_skew_y_2 =
+    A.class "md:hover:-skew-y-2"
+
+
+md__hover__neg_skew_y_1 : Html.Attribute msg
+md__hover__neg_skew_y_1 =
+    A.class "md:hover:-skew-y-1"
+
+
 md__focus__skew_x_0 : Html.Attribute msg
 md__focus__skew_x_0 =
     A.class "md:focus:skew-x-0"
+
+
+md__focus__skew_x_1 : Html.Attribute msg
+md__focus__skew_x_1 =
+    A.class "md:focus:skew-x-1"
+
+
+md__focus__skew_x_2 : Html.Attribute msg
+md__focus__skew_x_2 =
+    A.class "md:focus:skew-x-2"
 
 
 md__focus__skew_x_3 : Html.Attribute msg
@@ -55487,9 +75666,29 @@ md__focus__neg_skew_x_3 =
     A.class "md:focus:-skew-x-3"
 
 
+md__focus__neg_skew_x_2 : Html.Attribute msg
+md__focus__neg_skew_x_2 =
+    A.class "md:focus:-skew-x-2"
+
+
+md__focus__neg_skew_x_1 : Html.Attribute msg
+md__focus__neg_skew_x_1 =
+    A.class "md:focus:-skew-x-1"
+
+
 md__focus__skew_y_0 : Html.Attribute msg
 md__focus__skew_y_0 =
     A.class "md:focus:skew-y-0"
+
+
+md__focus__skew_y_1 : Html.Attribute msg
+md__focus__skew_y_1 =
+    A.class "md:focus:skew-y-1"
+
+
+md__focus__skew_y_2 : Html.Attribute msg
+md__focus__skew_y_2 =
+    A.class "md:focus:skew-y-2"
 
 
 md__focus__skew_y_3 : Html.Attribute msg
@@ -55520,6 +75719,16 @@ md__focus__neg_skew_y_6 =
 md__focus__neg_skew_y_3 : Html.Attribute msg
 md__focus__neg_skew_y_3 =
     A.class "md:focus:-skew-y-3"
+
+
+md__focus__neg_skew_y_2 : Html.Attribute msg
+md__focus__neg_skew_y_2 =
+    A.class "md:focus:-skew-y-2"
+
+
+md__focus__neg_skew_y_1 : Html.Attribute msg
+md__focus__neg_skew_y_1 =
+    A.class "md:focus:-skew-y-1"
 
 
 md__transition_none : Html.Attribute msg
@@ -55655,6 +75864,36 @@ md__delay_700 =
 md__delay_1000 : Html.Attribute msg
 md__delay_1000 =
     A.class "md:delay-1000"
+
+
+md__animate_none : Html.Attribute msg
+md__animate_none =
+    A.class "md:animate-none"
+
+
+md__animate_spin : Html.Attribute msg
+md__animate_spin =
+    A.class "md:animate-spin"
+
+
+md__animate_ping : Html.Attribute msg
+md__animate_ping =
+    A.class "md:animate-ping"
+
+
+md__animate_pulse : Html.Attribute msg
+md__animate_pulse =
+    A.class "md:animate-pulse"
+
+
+md__animate_bounce : Html.Attribute msg
+md__animate_bounce =
+    A.class "md:animate-bounce"
+
+
+lg__container : Html.Attribute msg
+lg__container =
+    A.class "lg:container"
 
 
 lg__space_y_0 : Html.Attribute msg
@@ -56567,6 +76806,31 @@ lg__divide_pink_900 =
     A.class "lg:divide-pink-900"
 
 
+lg__divide_solid : Html.Attribute msg
+lg__divide_solid =
+    A.class "lg:divide-solid"
+
+
+lg__divide_dashed : Html.Attribute msg
+lg__divide_dashed =
+    A.class "lg:divide-dashed"
+
+
+lg__divide_dotted : Html.Attribute msg
+lg__divide_dotted =
+    A.class "lg:divide-dotted"
+
+
+lg__divide_double : Html.Attribute msg
+lg__divide_double =
+    A.class "lg:divide-double"
+
+
+lg__divide_none : Html.Attribute msg
+lg__divide_none =
+    A.class "lg:divide-none"
+
+
 lg__divide_opacity_0 : Html.Attribute msg
 lg__divide_opacity_0 =
     A.class "lg:divide-opacity-0"
@@ -56630,6 +76894,26 @@ lg__bg_local =
 lg__bg_scroll : Html.Attribute msg
 lg__bg_scroll =
     A.class "lg:bg-scroll"
+
+
+lg__bg_clip_border : Html.Attribute msg
+lg__bg_clip_border =
+    A.class "lg:bg-clip-border"
+
+
+lg__bg_clip_padding : Html.Attribute msg
+lg__bg_clip_padding =
+    A.class "lg:bg-clip-padding"
+
+
+lg__bg_clip_content : Html.Attribute msg
+lg__bg_clip_content =
+    A.class "lg:bg-clip-content"
+
+
+lg__bg_clip_text : Html.Attribute msg
+lg__bg_clip_text =
+    A.class "lg:bg-clip-text"
 
 
 lg__bg_transparent : Html.Attribute msg
@@ -58040,6 +78324,4281 @@ lg__focus__bg_pink_800 =
 lg__focus__bg_pink_900 : Html.Attribute msg
 lg__focus__bg_pink_900 =
     A.class "lg:focus:bg-pink-900"
+
+
+lg__bg_none : Html.Attribute msg
+lg__bg_none =
+    A.class "lg:bg-none"
+
+
+lg__bg_gradient_to_t : Html.Attribute msg
+lg__bg_gradient_to_t =
+    A.class "lg:bg-gradient-to-t"
+
+
+lg__bg_gradient_to_tr : Html.Attribute msg
+lg__bg_gradient_to_tr =
+    A.class "lg:bg-gradient-to-tr"
+
+
+lg__bg_gradient_to_r : Html.Attribute msg
+lg__bg_gradient_to_r =
+    A.class "lg:bg-gradient-to-r"
+
+
+lg__bg_gradient_to_br : Html.Attribute msg
+lg__bg_gradient_to_br =
+    A.class "lg:bg-gradient-to-br"
+
+
+lg__bg_gradient_to_b : Html.Attribute msg
+lg__bg_gradient_to_b =
+    A.class "lg:bg-gradient-to-b"
+
+
+lg__bg_gradient_to_bl : Html.Attribute msg
+lg__bg_gradient_to_bl =
+    A.class "lg:bg-gradient-to-bl"
+
+
+lg__bg_gradient_to_l : Html.Attribute msg
+lg__bg_gradient_to_l =
+    A.class "lg:bg-gradient-to-l"
+
+
+lg__bg_gradient_to_tl : Html.Attribute msg
+lg__bg_gradient_to_tl =
+    A.class "lg:bg-gradient-to-tl"
+
+
+lg__from_transparent : Html.Attribute msg
+lg__from_transparent =
+    A.class "lg:from-transparent"
+
+
+lg__from_current : Html.Attribute msg
+lg__from_current =
+    A.class "lg:from-current"
+
+
+lg__from_black : Html.Attribute msg
+lg__from_black =
+    A.class "lg:from-black"
+
+
+lg__from_white : Html.Attribute msg
+lg__from_white =
+    A.class "lg:from-white"
+
+
+lg__from_gray_100 : Html.Attribute msg
+lg__from_gray_100 =
+    A.class "lg:from-gray-100"
+
+
+lg__from_gray_200 : Html.Attribute msg
+lg__from_gray_200 =
+    A.class "lg:from-gray-200"
+
+
+lg__from_gray_300 : Html.Attribute msg
+lg__from_gray_300 =
+    A.class "lg:from-gray-300"
+
+
+lg__from_gray_400 : Html.Attribute msg
+lg__from_gray_400 =
+    A.class "lg:from-gray-400"
+
+
+lg__from_gray_500 : Html.Attribute msg
+lg__from_gray_500 =
+    A.class "lg:from-gray-500"
+
+
+lg__from_gray_600 : Html.Attribute msg
+lg__from_gray_600 =
+    A.class "lg:from-gray-600"
+
+
+lg__from_gray_700 : Html.Attribute msg
+lg__from_gray_700 =
+    A.class "lg:from-gray-700"
+
+
+lg__from_gray_800 : Html.Attribute msg
+lg__from_gray_800 =
+    A.class "lg:from-gray-800"
+
+
+lg__from_gray_900 : Html.Attribute msg
+lg__from_gray_900 =
+    A.class "lg:from-gray-900"
+
+
+lg__from_red_100 : Html.Attribute msg
+lg__from_red_100 =
+    A.class "lg:from-red-100"
+
+
+lg__from_red_200 : Html.Attribute msg
+lg__from_red_200 =
+    A.class "lg:from-red-200"
+
+
+lg__from_red_300 : Html.Attribute msg
+lg__from_red_300 =
+    A.class "lg:from-red-300"
+
+
+lg__from_red_400 : Html.Attribute msg
+lg__from_red_400 =
+    A.class "lg:from-red-400"
+
+
+lg__from_red_500 : Html.Attribute msg
+lg__from_red_500 =
+    A.class "lg:from-red-500"
+
+
+lg__from_red_600 : Html.Attribute msg
+lg__from_red_600 =
+    A.class "lg:from-red-600"
+
+
+lg__from_red_700 : Html.Attribute msg
+lg__from_red_700 =
+    A.class "lg:from-red-700"
+
+
+lg__from_red_800 : Html.Attribute msg
+lg__from_red_800 =
+    A.class "lg:from-red-800"
+
+
+lg__from_red_900 : Html.Attribute msg
+lg__from_red_900 =
+    A.class "lg:from-red-900"
+
+
+lg__from_orange_100 : Html.Attribute msg
+lg__from_orange_100 =
+    A.class "lg:from-orange-100"
+
+
+lg__from_orange_200 : Html.Attribute msg
+lg__from_orange_200 =
+    A.class "lg:from-orange-200"
+
+
+lg__from_orange_300 : Html.Attribute msg
+lg__from_orange_300 =
+    A.class "lg:from-orange-300"
+
+
+lg__from_orange_400 : Html.Attribute msg
+lg__from_orange_400 =
+    A.class "lg:from-orange-400"
+
+
+lg__from_orange_500 : Html.Attribute msg
+lg__from_orange_500 =
+    A.class "lg:from-orange-500"
+
+
+lg__from_orange_600 : Html.Attribute msg
+lg__from_orange_600 =
+    A.class "lg:from-orange-600"
+
+
+lg__from_orange_700 : Html.Attribute msg
+lg__from_orange_700 =
+    A.class "lg:from-orange-700"
+
+
+lg__from_orange_800 : Html.Attribute msg
+lg__from_orange_800 =
+    A.class "lg:from-orange-800"
+
+
+lg__from_orange_900 : Html.Attribute msg
+lg__from_orange_900 =
+    A.class "lg:from-orange-900"
+
+
+lg__from_yellow_100 : Html.Attribute msg
+lg__from_yellow_100 =
+    A.class "lg:from-yellow-100"
+
+
+lg__from_yellow_200 : Html.Attribute msg
+lg__from_yellow_200 =
+    A.class "lg:from-yellow-200"
+
+
+lg__from_yellow_300 : Html.Attribute msg
+lg__from_yellow_300 =
+    A.class "lg:from-yellow-300"
+
+
+lg__from_yellow_400 : Html.Attribute msg
+lg__from_yellow_400 =
+    A.class "lg:from-yellow-400"
+
+
+lg__from_yellow_500 : Html.Attribute msg
+lg__from_yellow_500 =
+    A.class "lg:from-yellow-500"
+
+
+lg__from_yellow_600 : Html.Attribute msg
+lg__from_yellow_600 =
+    A.class "lg:from-yellow-600"
+
+
+lg__from_yellow_700 : Html.Attribute msg
+lg__from_yellow_700 =
+    A.class "lg:from-yellow-700"
+
+
+lg__from_yellow_800 : Html.Attribute msg
+lg__from_yellow_800 =
+    A.class "lg:from-yellow-800"
+
+
+lg__from_yellow_900 : Html.Attribute msg
+lg__from_yellow_900 =
+    A.class "lg:from-yellow-900"
+
+
+lg__from_green_100 : Html.Attribute msg
+lg__from_green_100 =
+    A.class "lg:from-green-100"
+
+
+lg__from_green_200 : Html.Attribute msg
+lg__from_green_200 =
+    A.class "lg:from-green-200"
+
+
+lg__from_green_300 : Html.Attribute msg
+lg__from_green_300 =
+    A.class "lg:from-green-300"
+
+
+lg__from_green_400 : Html.Attribute msg
+lg__from_green_400 =
+    A.class "lg:from-green-400"
+
+
+lg__from_green_500 : Html.Attribute msg
+lg__from_green_500 =
+    A.class "lg:from-green-500"
+
+
+lg__from_green_600 : Html.Attribute msg
+lg__from_green_600 =
+    A.class "lg:from-green-600"
+
+
+lg__from_green_700 : Html.Attribute msg
+lg__from_green_700 =
+    A.class "lg:from-green-700"
+
+
+lg__from_green_800 : Html.Attribute msg
+lg__from_green_800 =
+    A.class "lg:from-green-800"
+
+
+lg__from_green_900 : Html.Attribute msg
+lg__from_green_900 =
+    A.class "lg:from-green-900"
+
+
+lg__from_teal_100 : Html.Attribute msg
+lg__from_teal_100 =
+    A.class "lg:from-teal-100"
+
+
+lg__from_teal_200 : Html.Attribute msg
+lg__from_teal_200 =
+    A.class "lg:from-teal-200"
+
+
+lg__from_teal_300 : Html.Attribute msg
+lg__from_teal_300 =
+    A.class "lg:from-teal-300"
+
+
+lg__from_teal_400 : Html.Attribute msg
+lg__from_teal_400 =
+    A.class "lg:from-teal-400"
+
+
+lg__from_teal_500 : Html.Attribute msg
+lg__from_teal_500 =
+    A.class "lg:from-teal-500"
+
+
+lg__from_teal_600 : Html.Attribute msg
+lg__from_teal_600 =
+    A.class "lg:from-teal-600"
+
+
+lg__from_teal_700 : Html.Attribute msg
+lg__from_teal_700 =
+    A.class "lg:from-teal-700"
+
+
+lg__from_teal_800 : Html.Attribute msg
+lg__from_teal_800 =
+    A.class "lg:from-teal-800"
+
+
+lg__from_teal_900 : Html.Attribute msg
+lg__from_teal_900 =
+    A.class "lg:from-teal-900"
+
+
+lg__from_blue_100 : Html.Attribute msg
+lg__from_blue_100 =
+    A.class "lg:from-blue-100"
+
+
+lg__from_blue_200 : Html.Attribute msg
+lg__from_blue_200 =
+    A.class "lg:from-blue-200"
+
+
+lg__from_blue_300 : Html.Attribute msg
+lg__from_blue_300 =
+    A.class "lg:from-blue-300"
+
+
+lg__from_blue_400 : Html.Attribute msg
+lg__from_blue_400 =
+    A.class "lg:from-blue-400"
+
+
+lg__from_blue_500 : Html.Attribute msg
+lg__from_blue_500 =
+    A.class "lg:from-blue-500"
+
+
+lg__from_blue_600 : Html.Attribute msg
+lg__from_blue_600 =
+    A.class "lg:from-blue-600"
+
+
+lg__from_blue_700 : Html.Attribute msg
+lg__from_blue_700 =
+    A.class "lg:from-blue-700"
+
+
+lg__from_blue_800 : Html.Attribute msg
+lg__from_blue_800 =
+    A.class "lg:from-blue-800"
+
+
+lg__from_blue_900 : Html.Attribute msg
+lg__from_blue_900 =
+    A.class "lg:from-blue-900"
+
+
+lg__from_indigo_100 : Html.Attribute msg
+lg__from_indigo_100 =
+    A.class "lg:from-indigo-100"
+
+
+lg__from_indigo_200 : Html.Attribute msg
+lg__from_indigo_200 =
+    A.class "lg:from-indigo-200"
+
+
+lg__from_indigo_300 : Html.Attribute msg
+lg__from_indigo_300 =
+    A.class "lg:from-indigo-300"
+
+
+lg__from_indigo_400 : Html.Attribute msg
+lg__from_indigo_400 =
+    A.class "lg:from-indigo-400"
+
+
+lg__from_indigo_500 : Html.Attribute msg
+lg__from_indigo_500 =
+    A.class "lg:from-indigo-500"
+
+
+lg__from_indigo_600 : Html.Attribute msg
+lg__from_indigo_600 =
+    A.class "lg:from-indigo-600"
+
+
+lg__from_indigo_700 : Html.Attribute msg
+lg__from_indigo_700 =
+    A.class "lg:from-indigo-700"
+
+
+lg__from_indigo_800 : Html.Attribute msg
+lg__from_indigo_800 =
+    A.class "lg:from-indigo-800"
+
+
+lg__from_indigo_900 : Html.Attribute msg
+lg__from_indigo_900 =
+    A.class "lg:from-indigo-900"
+
+
+lg__from_purple_100 : Html.Attribute msg
+lg__from_purple_100 =
+    A.class "lg:from-purple-100"
+
+
+lg__from_purple_200 : Html.Attribute msg
+lg__from_purple_200 =
+    A.class "lg:from-purple-200"
+
+
+lg__from_purple_300 : Html.Attribute msg
+lg__from_purple_300 =
+    A.class "lg:from-purple-300"
+
+
+lg__from_purple_400 : Html.Attribute msg
+lg__from_purple_400 =
+    A.class "lg:from-purple-400"
+
+
+lg__from_purple_500 : Html.Attribute msg
+lg__from_purple_500 =
+    A.class "lg:from-purple-500"
+
+
+lg__from_purple_600 : Html.Attribute msg
+lg__from_purple_600 =
+    A.class "lg:from-purple-600"
+
+
+lg__from_purple_700 : Html.Attribute msg
+lg__from_purple_700 =
+    A.class "lg:from-purple-700"
+
+
+lg__from_purple_800 : Html.Attribute msg
+lg__from_purple_800 =
+    A.class "lg:from-purple-800"
+
+
+lg__from_purple_900 : Html.Attribute msg
+lg__from_purple_900 =
+    A.class "lg:from-purple-900"
+
+
+lg__from_pink_100 : Html.Attribute msg
+lg__from_pink_100 =
+    A.class "lg:from-pink-100"
+
+
+lg__from_pink_200 : Html.Attribute msg
+lg__from_pink_200 =
+    A.class "lg:from-pink-200"
+
+
+lg__from_pink_300 : Html.Attribute msg
+lg__from_pink_300 =
+    A.class "lg:from-pink-300"
+
+
+lg__from_pink_400 : Html.Attribute msg
+lg__from_pink_400 =
+    A.class "lg:from-pink-400"
+
+
+lg__from_pink_500 : Html.Attribute msg
+lg__from_pink_500 =
+    A.class "lg:from-pink-500"
+
+
+lg__from_pink_600 : Html.Attribute msg
+lg__from_pink_600 =
+    A.class "lg:from-pink-600"
+
+
+lg__from_pink_700 : Html.Attribute msg
+lg__from_pink_700 =
+    A.class "lg:from-pink-700"
+
+
+lg__from_pink_800 : Html.Attribute msg
+lg__from_pink_800 =
+    A.class "lg:from-pink-800"
+
+
+lg__from_pink_900 : Html.Attribute msg
+lg__from_pink_900 =
+    A.class "lg:from-pink-900"
+
+
+lg__via_transparent : Html.Attribute msg
+lg__via_transparent =
+    A.class "lg:via-transparent"
+
+
+lg__via_current : Html.Attribute msg
+lg__via_current =
+    A.class "lg:via-current"
+
+
+lg__via_black : Html.Attribute msg
+lg__via_black =
+    A.class "lg:via-black"
+
+
+lg__via_white : Html.Attribute msg
+lg__via_white =
+    A.class "lg:via-white"
+
+
+lg__via_gray_100 : Html.Attribute msg
+lg__via_gray_100 =
+    A.class "lg:via-gray-100"
+
+
+lg__via_gray_200 : Html.Attribute msg
+lg__via_gray_200 =
+    A.class "lg:via-gray-200"
+
+
+lg__via_gray_300 : Html.Attribute msg
+lg__via_gray_300 =
+    A.class "lg:via-gray-300"
+
+
+lg__via_gray_400 : Html.Attribute msg
+lg__via_gray_400 =
+    A.class "lg:via-gray-400"
+
+
+lg__via_gray_500 : Html.Attribute msg
+lg__via_gray_500 =
+    A.class "lg:via-gray-500"
+
+
+lg__via_gray_600 : Html.Attribute msg
+lg__via_gray_600 =
+    A.class "lg:via-gray-600"
+
+
+lg__via_gray_700 : Html.Attribute msg
+lg__via_gray_700 =
+    A.class "lg:via-gray-700"
+
+
+lg__via_gray_800 : Html.Attribute msg
+lg__via_gray_800 =
+    A.class "lg:via-gray-800"
+
+
+lg__via_gray_900 : Html.Attribute msg
+lg__via_gray_900 =
+    A.class "lg:via-gray-900"
+
+
+lg__via_red_100 : Html.Attribute msg
+lg__via_red_100 =
+    A.class "lg:via-red-100"
+
+
+lg__via_red_200 : Html.Attribute msg
+lg__via_red_200 =
+    A.class "lg:via-red-200"
+
+
+lg__via_red_300 : Html.Attribute msg
+lg__via_red_300 =
+    A.class "lg:via-red-300"
+
+
+lg__via_red_400 : Html.Attribute msg
+lg__via_red_400 =
+    A.class "lg:via-red-400"
+
+
+lg__via_red_500 : Html.Attribute msg
+lg__via_red_500 =
+    A.class "lg:via-red-500"
+
+
+lg__via_red_600 : Html.Attribute msg
+lg__via_red_600 =
+    A.class "lg:via-red-600"
+
+
+lg__via_red_700 : Html.Attribute msg
+lg__via_red_700 =
+    A.class "lg:via-red-700"
+
+
+lg__via_red_800 : Html.Attribute msg
+lg__via_red_800 =
+    A.class "lg:via-red-800"
+
+
+lg__via_red_900 : Html.Attribute msg
+lg__via_red_900 =
+    A.class "lg:via-red-900"
+
+
+lg__via_orange_100 : Html.Attribute msg
+lg__via_orange_100 =
+    A.class "lg:via-orange-100"
+
+
+lg__via_orange_200 : Html.Attribute msg
+lg__via_orange_200 =
+    A.class "lg:via-orange-200"
+
+
+lg__via_orange_300 : Html.Attribute msg
+lg__via_orange_300 =
+    A.class "lg:via-orange-300"
+
+
+lg__via_orange_400 : Html.Attribute msg
+lg__via_orange_400 =
+    A.class "lg:via-orange-400"
+
+
+lg__via_orange_500 : Html.Attribute msg
+lg__via_orange_500 =
+    A.class "lg:via-orange-500"
+
+
+lg__via_orange_600 : Html.Attribute msg
+lg__via_orange_600 =
+    A.class "lg:via-orange-600"
+
+
+lg__via_orange_700 : Html.Attribute msg
+lg__via_orange_700 =
+    A.class "lg:via-orange-700"
+
+
+lg__via_orange_800 : Html.Attribute msg
+lg__via_orange_800 =
+    A.class "lg:via-orange-800"
+
+
+lg__via_orange_900 : Html.Attribute msg
+lg__via_orange_900 =
+    A.class "lg:via-orange-900"
+
+
+lg__via_yellow_100 : Html.Attribute msg
+lg__via_yellow_100 =
+    A.class "lg:via-yellow-100"
+
+
+lg__via_yellow_200 : Html.Attribute msg
+lg__via_yellow_200 =
+    A.class "lg:via-yellow-200"
+
+
+lg__via_yellow_300 : Html.Attribute msg
+lg__via_yellow_300 =
+    A.class "lg:via-yellow-300"
+
+
+lg__via_yellow_400 : Html.Attribute msg
+lg__via_yellow_400 =
+    A.class "lg:via-yellow-400"
+
+
+lg__via_yellow_500 : Html.Attribute msg
+lg__via_yellow_500 =
+    A.class "lg:via-yellow-500"
+
+
+lg__via_yellow_600 : Html.Attribute msg
+lg__via_yellow_600 =
+    A.class "lg:via-yellow-600"
+
+
+lg__via_yellow_700 : Html.Attribute msg
+lg__via_yellow_700 =
+    A.class "lg:via-yellow-700"
+
+
+lg__via_yellow_800 : Html.Attribute msg
+lg__via_yellow_800 =
+    A.class "lg:via-yellow-800"
+
+
+lg__via_yellow_900 : Html.Attribute msg
+lg__via_yellow_900 =
+    A.class "lg:via-yellow-900"
+
+
+lg__via_green_100 : Html.Attribute msg
+lg__via_green_100 =
+    A.class "lg:via-green-100"
+
+
+lg__via_green_200 : Html.Attribute msg
+lg__via_green_200 =
+    A.class "lg:via-green-200"
+
+
+lg__via_green_300 : Html.Attribute msg
+lg__via_green_300 =
+    A.class "lg:via-green-300"
+
+
+lg__via_green_400 : Html.Attribute msg
+lg__via_green_400 =
+    A.class "lg:via-green-400"
+
+
+lg__via_green_500 : Html.Attribute msg
+lg__via_green_500 =
+    A.class "lg:via-green-500"
+
+
+lg__via_green_600 : Html.Attribute msg
+lg__via_green_600 =
+    A.class "lg:via-green-600"
+
+
+lg__via_green_700 : Html.Attribute msg
+lg__via_green_700 =
+    A.class "lg:via-green-700"
+
+
+lg__via_green_800 : Html.Attribute msg
+lg__via_green_800 =
+    A.class "lg:via-green-800"
+
+
+lg__via_green_900 : Html.Attribute msg
+lg__via_green_900 =
+    A.class "lg:via-green-900"
+
+
+lg__via_teal_100 : Html.Attribute msg
+lg__via_teal_100 =
+    A.class "lg:via-teal-100"
+
+
+lg__via_teal_200 : Html.Attribute msg
+lg__via_teal_200 =
+    A.class "lg:via-teal-200"
+
+
+lg__via_teal_300 : Html.Attribute msg
+lg__via_teal_300 =
+    A.class "lg:via-teal-300"
+
+
+lg__via_teal_400 : Html.Attribute msg
+lg__via_teal_400 =
+    A.class "lg:via-teal-400"
+
+
+lg__via_teal_500 : Html.Attribute msg
+lg__via_teal_500 =
+    A.class "lg:via-teal-500"
+
+
+lg__via_teal_600 : Html.Attribute msg
+lg__via_teal_600 =
+    A.class "lg:via-teal-600"
+
+
+lg__via_teal_700 : Html.Attribute msg
+lg__via_teal_700 =
+    A.class "lg:via-teal-700"
+
+
+lg__via_teal_800 : Html.Attribute msg
+lg__via_teal_800 =
+    A.class "lg:via-teal-800"
+
+
+lg__via_teal_900 : Html.Attribute msg
+lg__via_teal_900 =
+    A.class "lg:via-teal-900"
+
+
+lg__via_blue_100 : Html.Attribute msg
+lg__via_blue_100 =
+    A.class "lg:via-blue-100"
+
+
+lg__via_blue_200 : Html.Attribute msg
+lg__via_blue_200 =
+    A.class "lg:via-blue-200"
+
+
+lg__via_blue_300 : Html.Attribute msg
+lg__via_blue_300 =
+    A.class "lg:via-blue-300"
+
+
+lg__via_blue_400 : Html.Attribute msg
+lg__via_blue_400 =
+    A.class "lg:via-blue-400"
+
+
+lg__via_blue_500 : Html.Attribute msg
+lg__via_blue_500 =
+    A.class "lg:via-blue-500"
+
+
+lg__via_blue_600 : Html.Attribute msg
+lg__via_blue_600 =
+    A.class "lg:via-blue-600"
+
+
+lg__via_blue_700 : Html.Attribute msg
+lg__via_blue_700 =
+    A.class "lg:via-blue-700"
+
+
+lg__via_blue_800 : Html.Attribute msg
+lg__via_blue_800 =
+    A.class "lg:via-blue-800"
+
+
+lg__via_blue_900 : Html.Attribute msg
+lg__via_blue_900 =
+    A.class "lg:via-blue-900"
+
+
+lg__via_indigo_100 : Html.Attribute msg
+lg__via_indigo_100 =
+    A.class "lg:via-indigo-100"
+
+
+lg__via_indigo_200 : Html.Attribute msg
+lg__via_indigo_200 =
+    A.class "lg:via-indigo-200"
+
+
+lg__via_indigo_300 : Html.Attribute msg
+lg__via_indigo_300 =
+    A.class "lg:via-indigo-300"
+
+
+lg__via_indigo_400 : Html.Attribute msg
+lg__via_indigo_400 =
+    A.class "lg:via-indigo-400"
+
+
+lg__via_indigo_500 : Html.Attribute msg
+lg__via_indigo_500 =
+    A.class "lg:via-indigo-500"
+
+
+lg__via_indigo_600 : Html.Attribute msg
+lg__via_indigo_600 =
+    A.class "lg:via-indigo-600"
+
+
+lg__via_indigo_700 : Html.Attribute msg
+lg__via_indigo_700 =
+    A.class "lg:via-indigo-700"
+
+
+lg__via_indigo_800 : Html.Attribute msg
+lg__via_indigo_800 =
+    A.class "lg:via-indigo-800"
+
+
+lg__via_indigo_900 : Html.Attribute msg
+lg__via_indigo_900 =
+    A.class "lg:via-indigo-900"
+
+
+lg__via_purple_100 : Html.Attribute msg
+lg__via_purple_100 =
+    A.class "lg:via-purple-100"
+
+
+lg__via_purple_200 : Html.Attribute msg
+lg__via_purple_200 =
+    A.class "lg:via-purple-200"
+
+
+lg__via_purple_300 : Html.Attribute msg
+lg__via_purple_300 =
+    A.class "lg:via-purple-300"
+
+
+lg__via_purple_400 : Html.Attribute msg
+lg__via_purple_400 =
+    A.class "lg:via-purple-400"
+
+
+lg__via_purple_500 : Html.Attribute msg
+lg__via_purple_500 =
+    A.class "lg:via-purple-500"
+
+
+lg__via_purple_600 : Html.Attribute msg
+lg__via_purple_600 =
+    A.class "lg:via-purple-600"
+
+
+lg__via_purple_700 : Html.Attribute msg
+lg__via_purple_700 =
+    A.class "lg:via-purple-700"
+
+
+lg__via_purple_800 : Html.Attribute msg
+lg__via_purple_800 =
+    A.class "lg:via-purple-800"
+
+
+lg__via_purple_900 : Html.Attribute msg
+lg__via_purple_900 =
+    A.class "lg:via-purple-900"
+
+
+lg__via_pink_100 : Html.Attribute msg
+lg__via_pink_100 =
+    A.class "lg:via-pink-100"
+
+
+lg__via_pink_200 : Html.Attribute msg
+lg__via_pink_200 =
+    A.class "lg:via-pink-200"
+
+
+lg__via_pink_300 : Html.Attribute msg
+lg__via_pink_300 =
+    A.class "lg:via-pink-300"
+
+
+lg__via_pink_400 : Html.Attribute msg
+lg__via_pink_400 =
+    A.class "lg:via-pink-400"
+
+
+lg__via_pink_500 : Html.Attribute msg
+lg__via_pink_500 =
+    A.class "lg:via-pink-500"
+
+
+lg__via_pink_600 : Html.Attribute msg
+lg__via_pink_600 =
+    A.class "lg:via-pink-600"
+
+
+lg__via_pink_700 : Html.Attribute msg
+lg__via_pink_700 =
+    A.class "lg:via-pink-700"
+
+
+lg__via_pink_800 : Html.Attribute msg
+lg__via_pink_800 =
+    A.class "lg:via-pink-800"
+
+
+lg__via_pink_900 : Html.Attribute msg
+lg__via_pink_900 =
+    A.class "lg:via-pink-900"
+
+
+lg__to_transparent : Html.Attribute msg
+lg__to_transparent =
+    A.class "lg:to-transparent"
+
+
+lg__to_current : Html.Attribute msg
+lg__to_current =
+    A.class "lg:to-current"
+
+
+lg__to_black : Html.Attribute msg
+lg__to_black =
+    A.class "lg:to-black"
+
+
+lg__to_white : Html.Attribute msg
+lg__to_white =
+    A.class "lg:to-white"
+
+
+lg__to_gray_100 : Html.Attribute msg
+lg__to_gray_100 =
+    A.class "lg:to-gray-100"
+
+
+lg__to_gray_200 : Html.Attribute msg
+lg__to_gray_200 =
+    A.class "lg:to-gray-200"
+
+
+lg__to_gray_300 : Html.Attribute msg
+lg__to_gray_300 =
+    A.class "lg:to-gray-300"
+
+
+lg__to_gray_400 : Html.Attribute msg
+lg__to_gray_400 =
+    A.class "lg:to-gray-400"
+
+
+lg__to_gray_500 : Html.Attribute msg
+lg__to_gray_500 =
+    A.class "lg:to-gray-500"
+
+
+lg__to_gray_600 : Html.Attribute msg
+lg__to_gray_600 =
+    A.class "lg:to-gray-600"
+
+
+lg__to_gray_700 : Html.Attribute msg
+lg__to_gray_700 =
+    A.class "lg:to-gray-700"
+
+
+lg__to_gray_800 : Html.Attribute msg
+lg__to_gray_800 =
+    A.class "lg:to-gray-800"
+
+
+lg__to_gray_900 : Html.Attribute msg
+lg__to_gray_900 =
+    A.class "lg:to-gray-900"
+
+
+lg__to_red_100 : Html.Attribute msg
+lg__to_red_100 =
+    A.class "lg:to-red-100"
+
+
+lg__to_red_200 : Html.Attribute msg
+lg__to_red_200 =
+    A.class "lg:to-red-200"
+
+
+lg__to_red_300 : Html.Attribute msg
+lg__to_red_300 =
+    A.class "lg:to-red-300"
+
+
+lg__to_red_400 : Html.Attribute msg
+lg__to_red_400 =
+    A.class "lg:to-red-400"
+
+
+lg__to_red_500 : Html.Attribute msg
+lg__to_red_500 =
+    A.class "lg:to-red-500"
+
+
+lg__to_red_600 : Html.Attribute msg
+lg__to_red_600 =
+    A.class "lg:to-red-600"
+
+
+lg__to_red_700 : Html.Attribute msg
+lg__to_red_700 =
+    A.class "lg:to-red-700"
+
+
+lg__to_red_800 : Html.Attribute msg
+lg__to_red_800 =
+    A.class "lg:to-red-800"
+
+
+lg__to_red_900 : Html.Attribute msg
+lg__to_red_900 =
+    A.class "lg:to-red-900"
+
+
+lg__to_orange_100 : Html.Attribute msg
+lg__to_orange_100 =
+    A.class "lg:to-orange-100"
+
+
+lg__to_orange_200 : Html.Attribute msg
+lg__to_orange_200 =
+    A.class "lg:to-orange-200"
+
+
+lg__to_orange_300 : Html.Attribute msg
+lg__to_orange_300 =
+    A.class "lg:to-orange-300"
+
+
+lg__to_orange_400 : Html.Attribute msg
+lg__to_orange_400 =
+    A.class "lg:to-orange-400"
+
+
+lg__to_orange_500 : Html.Attribute msg
+lg__to_orange_500 =
+    A.class "lg:to-orange-500"
+
+
+lg__to_orange_600 : Html.Attribute msg
+lg__to_orange_600 =
+    A.class "lg:to-orange-600"
+
+
+lg__to_orange_700 : Html.Attribute msg
+lg__to_orange_700 =
+    A.class "lg:to-orange-700"
+
+
+lg__to_orange_800 : Html.Attribute msg
+lg__to_orange_800 =
+    A.class "lg:to-orange-800"
+
+
+lg__to_orange_900 : Html.Attribute msg
+lg__to_orange_900 =
+    A.class "lg:to-orange-900"
+
+
+lg__to_yellow_100 : Html.Attribute msg
+lg__to_yellow_100 =
+    A.class "lg:to-yellow-100"
+
+
+lg__to_yellow_200 : Html.Attribute msg
+lg__to_yellow_200 =
+    A.class "lg:to-yellow-200"
+
+
+lg__to_yellow_300 : Html.Attribute msg
+lg__to_yellow_300 =
+    A.class "lg:to-yellow-300"
+
+
+lg__to_yellow_400 : Html.Attribute msg
+lg__to_yellow_400 =
+    A.class "lg:to-yellow-400"
+
+
+lg__to_yellow_500 : Html.Attribute msg
+lg__to_yellow_500 =
+    A.class "lg:to-yellow-500"
+
+
+lg__to_yellow_600 : Html.Attribute msg
+lg__to_yellow_600 =
+    A.class "lg:to-yellow-600"
+
+
+lg__to_yellow_700 : Html.Attribute msg
+lg__to_yellow_700 =
+    A.class "lg:to-yellow-700"
+
+
+lg__to_yellow_800 : Html.Attribute msg
+lg__to_yellow_800 =
+    A.class "lg:to-yellow-800"
+
+
+lg__to_yellow_900 : Html.Attribute msg
+lg__to_yellow_900 =
+    A.class "lg:to-yellow-900"
+
+
+lg__to_green_100 : Html.Attribute msg
+lg__to_green_100 =
+    A.class "lg:to-green-100"
+
+
+lg__to_green_200 : Html.Attribute msg
+lg__to_green_200 =
+    A.class "lg:to-green-200"
+
+
+lg__to_green_300 : Html.Attribute msg
+lg__to_green_300 =
+    A.class "lg:to-green-300"
+
+
+lg__to_green_400 : Html.Attribute msg
+lg__to_green_400 =
+    A.class "lg:to-green-400"
+
+
+lg__to_green_500 : Html.Attribute msg
+lg__to_green_500 =
+    A.class "lg:to-green-500"
+
+
+lg__to_green_600 : Html.Attribute msg
+lg__to_green_600 =
+    A.class "lg:to-green-600"
+
+
+lg__to_green_700 : Html.Attribute msg
+lg__to_green_700 =
+    A.class "lg:to-green-700"
+
+
+lg__to_green_800 : Html.Attribute msg
+lg__to_green_800 =
+    A.class "lg:to-green-800"
+
+
+lg__to_green_900 : Html.Attribute msg
+lg__to_green_900 =
+    A.class "lg:to-green-900"
+
+
+lg__to_teal_100 : Html.Attribute msg
+lg__to_teal_100 =
+    A.class "lg:to-teal-100"
+
+
+lg__to_teal_200 : Html.Attribute msg
+lg__to_teal_200 =
+    A.class "lg:to-teal-200"
+
+
+lg__to_teal_300 : Html.Attribute msg
+lg__to_teal_300 =
+    A.class "lg:to-teal-300"
+
+
+lg__to_teal_400 : Html.Attribute msg
+lg__to_teal_400 =
+    A.class "lg:to-teal-400"
+
+
+lg__to_teal_500 : Html.Attribute msg
+lg__to_teal_500 =
+    A.class "lg:to-teal-500"
+
+
+lg__to_teal_600 : Html.Attribute msg
+lg__to_teal_600 =
+    A.class "lg:to-teal-600"
+
+
+lg__to_teal_700 : Html.Attribute msg
+lg__to_teal_700 =
+    A.class "lg:to-teal-700"
+
+
+lg__to_teal_800 : Html.Attribute msg
+lg__to_teal_800 =
+    A.class "lg:to-teal-800"
+
+
+lg__to_teal_900 : Html.Attribute msg
+lg__to_teal_900 =
+    A.class "lg:to-teal-900"
+
+
+lg__to_blue_100 : Html.Attribute msg
+lg__to_blue_100 =
+    A.class "lg:to-blue-100"
+
+
+lg__to_blue_200 : Html.Attribute msg
+lg__to_blue_200 =
+    A.class "lg:to-blue-200"
+
+
+lg__to_blue_300 : Html.Attribute msg
+lg__to_blue_300 =
+    A.class "lg:to-blue-300"
+
+
+lg__to_blue_400 : Html.Attribute msg
+lg__to_blue_400 =
+    A.class "lg:to-blue-400"
+
+
+lg__to_blue_500 : Html.Attribute msg
+lg__to_blue_500 =
+    A.class "lg:to-blue-500"
+
+
+lg__to_blue_600 : Html.Attribute msg
+lg__to_blue_600 =
+    A.class "lg:to-blue-600"
+
+
+lg__to_blue_700 : Html.Attribute msg
+lg__to_blue_700 =
+    A.class "lg:to-blue-700"
+
+
+lg__to_blue_800 : Html.Attribute msg
+lg__to_blue_800 =
+    A.class "lg:to-blue-800"
+
+
+lg__to_blue_900 : Html.Attribute msg
+lg__to_blue_900 =
+    A.class "lg:to-blue-900"
+
+
+lg__to_indigo_100 : Html.Attribute msg
+lg__to_indigo_100 =
+    A.class "lg:to-indigo-100"
+
+
+lg__to_indigo_200 : Html.Attribute msg
+lg__to_indigo_200 =
+    A.class "lg:to-indigo-200"
+
+
+lg__to_indigo_300 : Html.Attribute msg
+lg__to_indigo_300 =
+    A.class "lg:to-indigo-300"
+
+
+lg__to_indigo_400 : Html.Attribute msg
+lg__to_indigo_400 =
+    A.class "lg:to-indigo-400"
+
+
+lg__to_indigo_500 : Html.Attribute msg
+lg__to_indigo_500 =
+    A.class "lg:to-indigo-500"
+
+
+lg__to_indigo_600 : Html.Attribute msg
+lg__to_indigo_600 =
+    A.class "lg:to-indigo-600"
+
+
+lg__to_indigo_700 : Html.Attribute msg
+lg__to_indigo_700 =
+    A.class "lg:to-indigo-700"
+
+
+lg__to_indigo_800 : Html.Attribute msg
+lg__to_indigo_800 =
+    A.class "lg:to-indigo-800"
+
+
+lg__to_indigo_900 : Html.Attribute msg
+lg__to_indigo_900 =
+    A.class "lg:to-indigo-900"
+
+
+lg__to_purple_100 : Html.Attribute msg
+lg__to_purple_100 =
+    A.class "lg:to-purple-100"
+
+
+lg__to_purple_200 : Html.Attribute msg
+lg__to_purple_200 =
+    A.class "lg:to-purple-200"
+
+
+lg__to_purple_300 : Html.Attribute msg
+lg__to_purple_300 =
+    A.class "lg:to-purple-300"
+
+
+lg__to_purple_400 : Html.Attribute msg
+lg__to_purple_400 =
+    A.class "lg:to-purple-400"
+
+
+lg__to_purple_500 : Html.Attribute msg
+lg__to_purple_500 =
+    A.class "lg:to-purple-500"
+
+
+lg__to_purple_600 : Html.Attribute msg
+lg__to_purple_600 =
+    A.class "lg:to-purple-600"
+
+
+lg__to_purple_700 : Html.Attribute msg
+lg__to_purple_700 =
+    A.class "lg:to-purple-700"
+
+
+lg__to_purple_800 : Html.Attribute msg
+lg__to_purple_800 =
+    A.class "lg:to-purple-800"
+
+
+lg__to_purple_900 : Html.Attribute msg
+lg__to_purple_900 =
+    A.class "lg:to-purple-900"
+
+
+lg__to_pink_100 : Html.Attribute msg
+lg__to_pink_100 =
+    A.class "lg:to-pink-100"
+
+
+lg__to_pink_200 : Html.Attribute msg
+lg__to_pink_200 =
+    A.class "lg:to-pink-200"
+
+
+lg__to_pink_300 : Html.Attribute msg
+lg__to_pink_300 =
+    A.class "lg:to-pink-300"
+
+
+lg__to_pink_400 : Html.Attribute msg
+lg__to_pink_400 =
+    A.class "lg:to-pink-400"
+
+
+lg__to_pink_500 : Html.Attribute msg
+lg__to_pink_500 =
+    A.class "lg:to-pink-500"
+
+
+lg__to_pink_600 : Html.Attribute msg
+lg__to_pink_600 =
+    A.class "lg:to-pink-600"
+
+
+lg__to_pink_700 : Html.Attribute msg
+lg__to_pink_700 =
+    A.class "lg:to-pink-700"
+
+
+lg__to_pink_800 : Html.Attribute msg
+lg__to_pink_800 =
+    A.class "lg:to-pink-800"
+
+
+lg__to_pink_900 : Html.Attribute msg
+lg__to_pink_900 =
+    A.class "lg:to-pink-900"
+
+
+lg__hover__from_transparent : Html.Attribute msg
+lg__hover__from_transparent =
+    A.class "lg:hover:from-transparent"
+
+
+lg__hover__from_current : Html.Attribute msg
+lg__hover__from_current =
+    A.class "lg:hover:from-current"
+
+
+lg__hover__from_black : Html.Attribute msg
+lg__hover__from_black =
+    A.class "lg:hover:from-black"
+
+
+lg__hover__from_white : Html.Attribute msg
+lg__hover__from_white =
+    A.class "lg:hover:from-white"
+
+
+lg__hover__from_gray_100 : Html.Attribute msg
+lg__hover__from_gray_100 =
+    A.class "lg:hover:from-gray-100"
+
+
+lg__hover__from_gray_200 : Html.Attribute msg
+lg__hover__from_gray_200 =
+    A.class "lg:hover:from-gray-200"
+
+
+lg__hover__from_gray_300 : Html.Attribute msg
+lg__hover__from_gray_300 =
+    A.class "lg:hover:from-gray-300"
+
+
+lg__hover__from_gray_400 : Html.Attribute msg
+lg__hover__from_gray_400 =
+    A.class "lg:hover:from-gray-400"
+
+
+lg__hover__from_gray_500 : Html.Attribute msg
+lg__hover__from_gray_500 =
+    A.class "lg:hover:from-gray-500"
+
+
+lg__hover__from_gray_600 : Html.Attribute msg
+lg__hover__from_gray_600 =
+    A.class "lg:hover:from-gray-600"
+
+
+lg__hover__from_gray_700 : Html.Attribute msg
+lg__hover__from_gray_700 =
+    A.class "lg:hover:from-gray-700"
+
+
+lg__hover__from_gray_800 : Html.Attribute msg
+lg__hover__from_gray_800 =
+    A.class "lg:hover:from-gray-800"
+
+
+lg__hover__from_gray_900 : Html.Attribute msg
+lg__hover__from_gray_900 =
+    A.class "lg:hover:from-gray-900"
+
+
+lg__hover__from_red_100 : Html.Attribute msg
+lg__hover__from_red_100 =
+    A.class "lg:hover:from-red-100"
+
+
+lg__hover__from_red_200 : Html.Attribute msg
+lg__hover__from_red_200 =
+    A.class "lg:hover:from-red-200"
+
+
+lg__hover__from_red_300 : Html.Attribute msg
+lg__hover__from_red_300 =
+    A.class "lg:hover:from-red-300"
+
+
+lg__hover__from_red_400 : Html.Attribute msg
+lg__hover__from_red_400 =
+    A.class "lg:hover:from-red-400"
+
+
+lg__hover__from_red_500 : Html.Attribute msg
+lg__hover__from_red_500 =
+    A.class "lg:hover:from-red-500"
+
+
+lg__hover__from_red_600 : Html.Attribute msg
+lg__hover__from_red_600 =
+    A.class "lg:hover:from-red-600"
+
+
+lg__hover__from_red_700 : Html.Attribute msg
+lg__hover__from_red_700 =
+    A.class "lg:hover:from-red-700"
+
+
+lg__hover__from_red_800 : Html.Attribute msg
+lg__hover__from_red_800 =
+    A.class "lg:hover:from-red-800"
+
+
+lg__hover__from_red_900 : Html.Attribute msg
+lg__hover__from_red_900 =
+    A.class "lg:hover:from-red-900"
+
+
+lg__hover__from_orange_100 : Html.Attribute msg
+lg__hover__from_orange_100 =
+    A.class "lg:hover:from-orange-100"
+
+
+lg__hover__from_orange_200 : Html.Attribute msg
+lg__hover__from_orange_200 =
+    A.class "lg:hover:from-orange-200"
+
+
+lg__hover__from_orange_300 : Html.Attribute msg
+lg__hover__from_orange_300 =
+    A.class "lg:hover:from-orange-300"
+
+
+lg__hover__from_orange_400 : Html.Attribute msg
+lg__hover__from_orange_400 =
+    A.class "lg:hover:from-orange-400"
+
+
+lg__hover__from_orange_500 : Html.Attribute msg
+lg__hover__from_orange_500 =
+    A.class "lg:hover:from-orange-500"
+
+
+lg__hover__from_orange_600 : Html.Attribute msg
+lg__hover__from_orange_600 =
+    A.class "lg:hover:from-orange-600"
+
+
+lg__hover__from_orange_700 : Html.Attribute msg
+lg__hover__from_orange_700 =
+    A.class "lg:hover:from-orange-700"
+
+
+lg__hover__from_orange_800 : Html.Attribute msg
+lg__hover__from_orange_800 =
+    A.class "lg:hover:from-orange-800"
+
+
+lg__hover__from_orange_900 : Html.Attribute msg
+lg__hover__from_orange_900 =
+    A.class "lg:hover:from-orange-900"
+
+
+lg__hover__from_yellow_100 : Html.Attribute msg
+lg__hover__from_yellow_100 =
+    A.class "lg:hover:from-yellow-100"
+
+
+lg__hover__from_yellow_200 : Html.Attribute msg
+lg__hover__from_yellow_200 =
+    A.class "lg:hover:from-yellow-200"
+
+
+lg__hover__from_yellow_300 : Html.Attribute msg
+lg__hover__from_yellow_300 =
+    A.class "lg:hover:from-yellow-300"
+
+
+lg__hover__from_yellow_400 : Html.Attribute msg
+lg__hover__from_yellow_400 =
+    A.class "lg:hover:from-yellow-400"
+
+
+lg__hover__from_yellow_500 : Html.Attribute msg
+lg__hover__from_yellow_500 =
+    A.class "lg:hover:from-yellow-500"
+
+
+lg__hover__from_yellow_600 : Html.Attribute msg
+lg__hover__from_yellow_600 =
+    A.class "lg:hover:from-yellow-600"
+
+
+lg__hover__from_yellow_700 : Html.Attribute msg
+lg__hover__from_yellow_700 =
+    A.class "lg:hover:from-yellow-700"
+
+
+lg__hover__from_yellow_800 : Html.Attribute msg
+lg__hover__from_yellow_800 =
+    A.class "lg:hover:from-yellow-800"
+
+
+lg__hover__from_yellow_900 : Html.Attribute msg
+lg__hover__from_yellow_900 =
+    A.class "lg:hover:from-yellow-900"
+
+
+lg__hover__from_green_100 : Html.Attribute msg
+lg__hover__from_green_100 =
+    A.class "lg:hover:from-green-100"
+
+
+lg__hover__from_green_200 : Html.Attribute msg
+lg__hover__from_green_200 =
+    A.class "lg:hover:from-green-200"
+
+
+lg__hover__from_green_300 : Html.Attribute msg
+lg__hover__from_green_300 =
+    A.class "lg:hover:from-green-300"
+
+
+lg__hover__from_green_400 : Html.Attribute msg
+lg__hover__from_green_400 =
+    A.class "lg:hover:from-green-400"
+
+
+lg__hover__from_green_500 : Html.Attribute msg
+lg__hover__from_green_500 =
+    A.class "lg:hover:from-green-500"
+
+
+lg__hover__from_green_600 : Html.Attribute msg
+lg__hover__from_green_600 =
+    A.class "lg:hover:from-green-600"
+
+
+lg__hover__from_green_700 : Html.Attribute msg
+lg__hover__from_green_700 =
+    A.class "lg:hover:from-green-700"
+
+
+lg__hover__from_green_800 : Html.Attribute msg
+lg__hover__from_green_800 =
+    A.class "lg:hover:from-green-800"
+
+
+lg__hover__from_green_900 : Html.Attribute msg
+lg__hover__from_green_900 =
+    A.class "lg:hover:from-green-900"
+
+
+lg__hover__from_teal_100 : Html.Attribute msg
+lg__hover__from_teal_100 =
+    A.class "lg:hover:from-teal-100"
+
+
+lg__hover__from_teal_200 : Html.Attribute msg
+lg__hover__from_teal_200 =
+    A.class "lg:hover:from-teal-200"
+
+
+lg__hover__from_teal_300 : Html.Attribute msg
+lg__hover__from_teal_300 =
+    A.class "lg:hover:from-teal-300"
+
+
+lg__hover__from_teal_400 : Html.Attribute msg
+lg__hover__from_teal_400 =
+    A.class "lg:hover:from-teal-400"
+
+
+lg__hover__from_teal_500 : Html.Attribute msg
+lg__hover__from_teal_500 =
+    A.class "lg:hover:from-teal-500"
+
+
+lg__hover__from_teal_600 : Html.Attribute msg
+lg__hover__from_teal_600 =
+    A.class "lg:hover:from-teal-600"
+
+
+lg__hover__from_teal_700 : Html.Attribute msg
+lg__hover__from_teal_700 =
+    A.class "lg:hover:from-teal-700"
+
+
+lg__hover__from_teal_800 : Html.Attribute msg
+lg__hover__from_teal_800 =
+    A.class "lg:hover:from-teal-800"
+
+
+lg__hover__from_teal_900 : Html.Attribute msg
+lg__hover__from_teal_900 =
+    A.class "lg:hover:from-teal-900"
+
+
+lg__hover__from_blue_100 : Html.Attribute msg
+lg__hover__from_blue_100 =
+    A.class "lg:hover:from-blue-100"
+
+
+lg__hover__from_blue_200 : Html.Attribute msg
+lg__hover__from_blue_200 =
+    A.class "lg:hover:from-blue-200"
+
+
+lg__hover__from_blue_300 : Html.Attribute msg
+lg__hover__from_blue_300 =
+    A.class "lg:hover:from-blue-300"
+
+
+lg__hover__from_blue_400 : Html.Attribute msg
+lg__hover__from_blue_400 =
+    A.class "lg:hover:from-blue-400"
+
+
+lg__hover__from_blue_500 : Html.Attribute msg
+lg__hover__from_blue_500 =
+    A.class "lg:hover:from-blue-500"
+
+
+lg__hover__from_blue_600 : Html.Attribute msg
+lg__hover__from_blue_600 =
+    A.class "lg:hover:from-blue-600"
+
+
+lg__hover__from_blue_700 : Html.Attribute msg
+lg__hover__from_blue_700 =
+    A.class "lg:hover:from-blue-700"
+
+
+lg__hover__from_blue_800 : Html.Attribute msg
+lg__hover__from_blue_800 =
+    A.class "lg:hover:from-blue-800"
+
+
+lg__hover__from_blue_900 : Html.Attribute msg
+lg__hover__from_blue_900 =
+    A.class "lg:hover:from-blue-900"
+
+
+lg__hover__from_indigo_100 : Html.Attribute msg
+lg__hover__from_indigo_100 =
+    A.class "lg:hover:from-indigo-100"
+
+
+lg__hover__from_indigo_200 : Html.Attribute msg
+lg__hover__from_indigo_200 =
+    A.class "lg:hover:from-indigo-200"
+
+
+lg__hover__from_indigo_300 : Html.Attribute msg
+lg__hover__from_indigo_300 =
+    A.class "lg:hover:from-indigo-300"
+
+
+lg__hover__from_indigo_400 : Html.Attribute msg
+lg__hover__from_indigo_400 =
+    A.class "lg:hover:from-indigo-400"
+
+
+lg__hover__from_indigo_500 : Html.Attribute msg
+lg__hover__from_indigo_500 =
+    A.class "lg:hover:from-indigo-500"
+
+
+lg__hover__from_indigo_600 : Html.Attribute msg
+lg__hover__from_indigo_600 =
+    A.class "lg:hover:from-indigo-600"
+
+
+lg__hover__from_indigo_700 : Html.Attribute msg
+lg__hover__from_indigo_700 =
+    A.class "lg:hover:from-indigo-700"
+
+
+lg__hover__from_indigo_800 : Html.Attribute msg
+lg__hover__from_indigo_800 =
+    A.class "lg:hover:from-indigo-800"
+
+
+lg__hover__from_indigo_900 : Html.Attribute msg
+lg__hover__from_indigo_900 =
+    A.class "lg:hover:from-indigo-900"
+
+
+lg__hover__from_purple_100 : Html.Attribute msg
+lg__hover__from_purple_100 =
+    A.class "lg:hover:from-purple-100"
+
+
+lg__hover__from_purple_200 : Html.Attribute msg
+lg__hover__from_purple_200 =
+    A.class "lg:hover:from-purple-200"
+
+
+lg__hover__from_purple_300 : Html.Attribute msg
+lg__hover__from_purple_300 =
+    A.class "lg:hover:from-purple-300"
+
+
+lg__hover__from_purple_400 : Html.Attribute msg
+lg__hover__from_purple_400 =
+    A.class "lg:hover:from-purple-400"
+
+
+lg__hover__from_purple_500 : Html.Attribute msg
+lg__hover__from_purple_500 =
+    A.class "lg:hover:from-purple-500"
+
+
+lg__hover__from_purple_600 : Html.Attribute msg
+lg__hover__from_purple_600 =
+    A.class "lg:hover:from-purple-600"
+
+
+lg__hover__from_purple_700 : Html.Attribute msg
+lg__hover__from_purple_700 =
+    A.class "lg:hover:from-purple-700"
+
+
+lg__hover__from_purple_800 : Html.Attribute msg
+lg__hover__from_purple_800 =
+    A.class "lg:hover:from-purple-800"
+
+
+lg__hover__from_purple_900 : Html.Attribute msg
+lg__hover__from_purple_900 =
+    A.class "lg:hover:from-purple-900"
+
+
+lg__hover__from_pink_100 : Html.Attribute msg
+lg__hover__from_pink_100 =
+    A.class "lg:hover:from-pink-100"
+
+
+lg__hover__from_pink_200 : Html.Attribute msg
+lg__hover__from_pink_200 =
+    A.class "lg:hover:from-pink-200"
+
+
+lg__hover__from_pink_300 : Html.Attribute msg
+lg__hover__from_pink_300 =
+    A.class "lg:hover:from-pink-300"
+
+
+lg__hover__from_pink_400 : Html.Attribute msg
+lg__hover__from_pink_400 =
+    A.class "lg:hover:from-pink-400"
+
+
+lg__hover__from_pink_500 : Html.Attribute msg
+lg__hover__from_pink_500 =
+    A.class "lg:hover:from-pink-500"
+
+
+lg__hover__from_pink_600 : Html.Attribute msg
+lg__hover__from_pink_600 =
+    A.class "lg:hover:from-pink-600"
+
+
+lg__hover__from_pink_700 : Html.Attribute msg
+lg__hover__from_pink_700 =
+    A.class "lg:hover:from-pink-700"
+
+
+lg__hover__from_pink_800 : Html.Attribute msg
+lg__hover__from_pink_800 =
+    A.class "lg:hover:from-pink-800"
+
+
+lg__hover__from_pink_900 : Html.Attribute msg
+lg__hover__from_pink_900 =
+    A.class "lg:hover:from-pink-900"
+
+
+lg__hover__via_transparent : Html.Attribute msg
+lg__hover__via_transparent =
+    A.class "lg:hover:via-transparent"
+
+
+lg__hover__via_current : Html.Attribute msg
+lg__hover__via_current =
+    A.class "lg:hover:via-current"
+
+
+lg__hover__via_black : Html.Attribute msg
+lg__hover__via_black =
+    A.class "lg:hover:via-black"
+
+
+lg__hover__via_white : Html.Attribute msg
+lg__hover__via_white =
+    A.class "lg:hover:via-white"
+
+
+lg__hover__via_gray_100 : Html.Attribute msg
+lg__hover__via_gray_100 =
+    A.class "lg:hover:via-gray-100"
+
+
+lg__hover__via_gray_200 : Html.Attribute msg
+lg__hover__via_gray_200 =
+    A.class "lg:hover:via-gray-200"
+
+
+lg__hover__via_gray_300 : Html.Attribute msg
+lg__hover__via_gray_300 =
+    A.class "lg:hover:via-gray-300"
+
+
+lg__hover__via_gray_400 : Html.Attribute msg
+lg__hover__via_gray_400 =
+    A.class "lg:hover:via-gray-400"
+
+
+lg__hover__via_gray_500 : Html.Attribute msg
+lg__hover__via_gray_500 =
+    A.class "lg:hover:via-gray-500"
+
+
+lg__hover__via_gray_600 : Html.Attribute msg
+lg__hover__via_gray_600 =
+    A.class "lg:hover:via-gray-600"
+
+
+lg__hover__via_gray_700 : Html.Attribute msg
+lg__hover__via_gray_700 =
+    A.class "lg:hover:via-gray-700"
+
+
+lg__hover__via_gray_800 : Html.Attribute msg
+lg__hover__via_gray_800 =
+    A.class "lg:hover:via-gray-800"
+
+
+lg__hover__via_gray_900 : Html.Attribute msg
+lg__hover__via_gray_900 =
+    A.class "lg:hover:via-gray-900"
+
+
+lg__hover__via_red_100 : Html.Attribute msg
+lg__hover__via_red_100 =
+    A.class "lg:hover:via-red-100"
+
+
+lg__hover__via_red_200 : Html.Attribute msg
+lg__hover__via_red_200 =
+    A.class "lg:hover:via-red-200"
+
+
+lg__hover__via_red_300 : Html.Attribute msg
+lg__hover__via_red_300 =
+    A.class "lg:hover:via-red-300"
+
+
+lg__hover__via_red_400 : Html.Attribute msg
+lg__hover__via_red_400 =
+    A.class "lg:hover:via-red-400"
+
+
+lg__hover__via_red_500 : Html.Attribute msg
+lg__hover__via_red_500 =
+    A.class "lg:hover:via-red-500"
+
+
+lg__hover__via_red_600 : Html.Attribute msg
+lg__hover__via_red_600 =
+    A.class "lg:hover:via-red-600"
+
+
+lg__hover__via_red_700 : Html.Attribute msg
+lg__hover__via_red_700 =
+    A.class "lg:hover:via-red-700"
+
+
+lg__hover__via_red_800 : Html.Attribute msg
+lg__hover__via_red_800 =
+    A.class "lg:hover:via-red-800"
+
+
+lg__hover__via_red_900 : Html.Attribute msg
+lg__hover__via_red_900 =
+    A.class "lg:hover:via-red-900"
+
+
+lg__hover__via_orange_100 : Html.Attribute msg
+lg__hover__via_orange_100 =
+    A.class "lg:hover:via-orange-100"
+
+
+lg__hover__via_orange_200 : Html.Attribute msg
+lg__hover__via_orange_200 =
+    A.class "lg:hover:via-orange-200"
+
+
+lg__hover__via_orange_300 : Html.Attribute msg
+lg__hover__via_orange_300 =
+    A.class "lg:hover:via-orange-300"
+
+
+lg__hover__via_orange_400 : Html.Attribute msg
+lg__hover__via_orange_400 =
+    A.class "lg:hover:via-orange-400"
+
+
+lg__hover__via_orange_500 : Html.Attribute msg
+lg__hover__via_orange_500 =
+    A.class "lg:hover:via-orange-500"
+
+
+lg__hover__via_orange_600 : Html.Attribute msg
+lg__hover__via_orange_600 =
+    A.class "lg:hover:via-orange-600"
+
+
+lg__hover__via_orange_700 : Html.Attribute msg
+lg__hover__via_orange_700 =
+    A.class "lg:hover:via-orange-700"
+
+
+lg__hover__via_orange_800 : Html.Attribute msg
+lg__hover__via_orange_800 =
+    A.class "lg:hover:via-orange-800"
+
+
+lg__hover__via_orange_900 : Html.Attribute msg
+lg__hover__via_orange_900 =
+    A.class "lg:hover:via-orange-900"
+
+
+lg__hover__via_yellow_100 : Html.Attribute msg
+lg__hover__via_yellow_100 =
+    A.class "lg:hover:via-yellow-100"
+
+
+lg__hover__via_yellow_200 : Html.Attribute msg
+lg__hover__via_yellow_200 =
+    A.class "lg:hover:via-yellow-200"
+
+
+lg__hover__via_yellow_300 : Html.Attribute msg
+lg__hover__via_yellow_300 =
+    A.class "lg:hover:via-yellow-300"
+
+
+lg__hover__via_yellow_400 : Html.Attribute msg
+lg__hover__via_yellow_400 =
+    A.class "lg:hover:via-yellow-400"
+
+
+lg__hover__via_yellow_500 : Html.Attribute msg
+lg__hover__via_yellow_500 =
+    A.class "lg:hover:via-yellow-500"
+
+
+lg__hover__via_yellow_600 : Html.Attribute msg
+lg__hover__via_yellow_600 =
+    A.class "lg:hover:via-yellow-600"
+
+
+lg__hover__via_yellow_700 : Html.Attribute msg
+lg__hover__via_yellow_700 =
+    A.class "lg:hover:via-yellow-700"
+
+
+lg__hover__via_yellow_800 : Html.Attribute msg
+lg__hover__via_yellow_800 =
+    A.class "lg:hover:via-yellow-800"
+
+
+lg__hover__via_yellow_900 : Html.Attribute msg
+lg__hover__via_yellow_900 =
+    A.class "lg:hover:via-yellow-900"
+
+
+lg__hover__via_green_100 : Html.Attribute msg
+lg__hover__via_green_100 =
+    A.class "lg:hover:via-green-100"
+
+
+lg__hover__via_green_200 : Html.Attribute msg
+lg__hover__via_green_200 =
+    A.class "lg:hover:via-green-200"
+
+
+lg__hover__via_green_300 : Html.Attribute msg
+lg__hover__via_green_300 =
+    A.class "lg:hover:via-green-300"
+
+
+lg__hover__via_green_400 : Html.Attribute msg
+lg__hover__via_green_400 =
+    A.class "lg:hover:via-green-400"
+
+
+lg__hover__via_green_500 : Html.Attribute msg
+lg__hover__via_green_500 =
+    A.class "lg:hover:via-green-500"
+
+
+lg__hover__via_green_600 : Html.Attribute msg
+lg__hover__via_green_600 =
+    A.class "lg:hover:via-green-600"
+
+
+lg__hover__via_green_700 : Html.Attribute msg
+lg__hover__via_green_700 =
+    A.class "lg:hover:via-green-700"
+
+
+lg__hover__via_green_800 : Html.Attribute msg
+lg__hover__via_green_800 =
+    A.class "lg:hover:via-green-800"
+
+
+lg__hover__via_green_900 : Html.Attribute msg
+lg__hover__via_green_900 =
+    A.class "lg:hover:via-green-900"
+
+
+lg__hover__via_teal_100 : Html.Attribute msg
+lg__hover__via_teal_100 =
+    A.class "lg:hover:via-teal-100"
+
+
+lg__hover__via_teal_200 : Html.Attribute msg
+lg__hover__via_teal_200 =
+    A.class "lg:hover:via-teal-200"
+
+
+lg__hover__via_teal_300 : Html.Attribute msg
+lg__hover__via_teal_300 =
+    A.class "lg:hover:via-teal-300"
+
+
+lg__hover__via_teal_400 : Html.Attribute msg
+lg__hover__via_teal_400 =
+    A.class "lg:hover:via-teal-400"
+
+
+lg__hover__via_teal_500 : Html.Attribute msg
+lg__hover__via_teal_500 =
+    A.class "lg:hover:via-teal-500"
+
+
+lg__hover__via_teal_600 : Html.Attribute msg
+lg__hover__via_teal_600 =
+    A.class "lg:hover:via-teal-600"
+
+
+lg__hover__via_teal_700 : Html.Attribute msg
+lg__hover__via_teal_700 =
+    A.class "lg:hover:via-teal-700"
+
+
+lg__hover__via_teal_800 : Html.Attribute msg
+lg__hover__via_teal_800 =
+    A.class "lg:hover:via-teal-800"
+
+
+lg__hover__via_teal_900 : Html.Attribute msg
+lg__hover__via_teal_900 =
+    A.class "lg:hover:via-teal-900"
+
+
+lg__hover__via_blue_100 : Html.Attribute msg
+lg__hover__via_blue_100 =
+    A.class "lg:hover:via-blue-100"
+
+
+lg__hover__via_blue_200 : Html.Attribute msg
+lg__hover__via_blue_200 =
+    A.class "lg:hover:via-blue-200"
+
+
+lg__hover__via_blue_300 : Html.Attribute msg
+lg__hover__via_blue_300 =
+    A.class "lg:hover:via-blue-300"
+
+
+lg__hover__via_blue_400 : Html.Attribute msg
+lg__hover__via_blue_400 =
+    A.class "lg:hover:via-blue-400"
+
+
+lg__hover__via_blue_500 : Html.Attribute msg
+lg__hover__via_blue_500 =
+    A.class "lg:hover:via-blue-500"
+
+
+lg__hover__via_blue_600 : Html.Attribute msg
+lg__hover__via_blue_600 =
+    A.class "lg:hover:via-blue-600"
+
+
+lg__hover__via_blue_700 : Html.Attribute msg
+lg__hover__via_blue_700 =
+    A.class "lg:hover:via-blue-700"
+
+
+lg__hover__via_blue_800 : Html.Attribute msg
+lg__hover__via_blue_800 =
+    A.class "lg:hover:via-blue-800"
+
+
+lg__hover__via_blue_900 : Html.Attribute msg
+lg__hover__via_blue_900 =
+    A.class "lg:hover:via-blue-900"
+
+
+lg__hover__via_indigo_100 : Html.Attribute msg
+lg__hover__via_indigo_100 =
+    A.class "lg:hover:via-indigo-100"
+
+
+lg__hover__via_indigo_200 : Html.Attribute msg
+lg__hover__via_indigo_200 =
+    A.class "lg:hover:via-indigo-200"
+
+
+lg__hover__via_indigo_300 : Html.Attribute msg
+lg__hover__via_indigo_300 =
+    A.class "lg:hover:via-indigo-300"
+
+
+lg__hover__via_indigo_400 : Html.Attribute msg
+lg__hover__via_indigo_400 =
+    A.class "lg:hover:via-indigo-400"
+
+
+lg__hover__via_indigo_500 : Html.Attribute msg
+lg__hover__via_indigo_500 =
+    A.class "lg:hover:via-indigo-500"
+
+
+lg__hover__via_indigo_600 : Html.Attribute msg
+lg__hover__via_indigo_600 =
+    A.class "lg:hover:via-indigo-600"
+
+
+lg__hover__via_indigo_700 : Html.Attribute msg
+lg__hover__via_indigo_700 =
+    A.class "lg:hover:via-indigo-700"
+
+
+lg__hover__via_indigo_800 : Html.Attribute msg
+lg__hover__via_indigo_800 =
+    A.class "lg:hover:via-indigo-800"
+
+
+lg__hover__via_indigo_900 : Html.Attribute msg
+lg__hover__via_indigo_900 =
+    A.class "lg:hover:via-indigo-900"
+
+
+lg__hover__via_purple_100 : Html.Attribute msg
+lg__hover__via_purple_100 =
+    A.class "lg:hover:via-purple-100"
+
+
+lg__hover__via_purple_200 : Html.Attribute msg
+lg__hover__via_purple_200 =
+    A.class "lg:hover:via-purple-200"
+
+
+lg__hover__via_purple_300 : Html.Attribute msg
+lg__hover__via_purple_300 =
+    A.class "lg:hover:via-purple-300"
+
+
+lg__hover__via_purple_400 : Html.Attribute msg
+lg__hover__via_purple_400 =
+    A.class "lg:hover:via-purple-400"
+
+
+lg__hover__via_purple_500 : Html.Attribute msg
+lg__hover__via_purple_500 =
+    A.class "lg:hover:via-purple-500"
+
+
+lg__hover__via_purple_600 : Html.Attribute msg
+lg__hover__via_purple_600 =
+    A.class "lg:hover:via-purple-600"
+
+
+lg__hover__via_purple_700 : Html.Attribute msg
+lg__hover__via_purple_700 =
+    A.class "lg:hover:via-purple-700"
+
+
+lg__hover__via_purple_800 : Html.Attribute msg
+lg__hover__via_purple_800 =
+    A.class "lg:hover:via-purple-800"
+
+
+lg__hover__via_purple_900 : Html.Attribute msg
+lg__hover__via_purple_900 =
+    A.class "lg:hover:via-purple-900"
+
+
+lg__hover__via_pink_100 : Html.Attribute msg
+lg__hover__via_pink_100 =
+    A.class "lg:hover:via-pink-100"
+
+
+lg__hover__via_pink_200 : Html.Attribute msg
+lg__hover__via_pink_200 =
+    A.class "lg:hover:via-pink-200"
+
+
+lg__hover__via_pink_300 : Html.Attribute msg
+lg__hover__via_pink_300 =
+    A.class "lg:hover:via-pink-300"
+
+
+lg__hover__via_pink_400 : Html.Attribute msg
+lg__hover__via_pink_400 =
+    A.class "lg:hover:via-pink-400"
+
+
+lg__hover__via_pink_500 : Html.Attribute msg
+lg__hover__via_pink_500 =
+    A.class "lg:hover:via-pink-500"
+
+
+lg__hover__via_pink_600 : Html.Attribute msg
+lg__hover__via_pink_600 =
+    A.class "lg:hover:via-pink-600"
+
+
+lg__hover__via_pink_700 : Html.Attribute msg
+lg__hover__via_pink_700 =
+    A.class "lg:hover:via-pink-700"
+
+
+lg__hover__via_pink_800 : Html.Attribute msg
+lg__hover__via_pink_800 =
+    A.class "lg:hover:via-pink-800"
+
+
+lg__hover__via_pink_900 : Html.Attribute msg
+lg__hover__via_pink_900 =
+    A.class "lg:hover:via-pink-900"
+
+
+lg__hover__to_transparent : Html.Attribute msg
+lg__hover__to_transparent =
+    A.class "lg:hover:to-transparent"
+
+
+lg__hover__to_current : Html.Attribute msg
+lg__hover__to_current =
+    A.class "lg:hover:to-current"
+
+
+lg__hover__to_black : Html.Attribute msg
+lg__hover__to_black =
+    A.class "lg:hover:to-black"
+
+
+lg__hover__to_white : Html.Attribute msg
+lg__hover__to_white =
+    A.class "lg:hover:to-white"
+
+
+lg__hover__to_gray_100 : Html.Attribute msg
+lg__hover__to_gray_100 =
+    A.class "lg:hover:to-gray-100"
+
+
+lg__hover__to_gray_200 : Html.Attribute msg
+lg__hover__to_gray_200 =
+    A.class "lg:hover:to-gray-200"
+
+
+lg__hover__to_gray_300 : Html.Attribute msg
+lg__hover__to_gray_300 =
+    A.class "lg:hover:to-gray-300"
+
+
+lg__hover__to_gray_400 : Html.Attribute msg
+lg__hover__to_gray_400 =
+    A.class "lg:hover:to-gray-400"
+
+
+lg__hover__to_gray_500 : Html.Attribute msg
+lg__hover__to_gray_500 =
+    A.class "lg:hover:to-gray-500"
+
+
+lg__hover__to_gray_600 : Html.Attribute msg
+lg__hover__to_gray_600 =
+    A.class "lg:hover:to-gray-600"
+
+
+lg__hover__to_gray_700 : Html.Attribute msg
+lg__hover__to_gray_700 =
+    A.class "lg:hover:to-gray-700"
+
+
+lg__hover__to_gray_800 : Html.Attribute msg
+lg__hover__to_gray_800 =
+    A.class "lg:hover:to-gray-800"
+
+
+lg__hover__to_gray_900 : Html.Attribute msg
+lg__hover__to_gray_900 =
+    A.class "lg:hover:to-gray-900"
+
+
+lg__hover__to_red_100 : Html.Attribute msg
+lg__hover__to_red_100 =
+    A.class "lg:hover:to-red-100"
+
+
+lg__hover__to_red_200 : Html.Attribute msg
+lg__hover__to_red_200 =
+    A.class "lg:hover:to-red-200"
+
+
+lg__hover__to_red_300 : Html.Attribute msg
+lg__hover__to_red_300 =
+    A.class "lg:hover:to-red-300"
+
+
+lg__hover__to_red_400 : Html.Attribute msg
+lg__hover__to_red_400 =
+    A.class "lg:hover:to-red-400"
+
+
+lg__hover__to_red_500 : Html.Attribute msg
+lg__hover__to_red_500 =
+    A.class "lg:hover:to-red-500"
+
+
+lg__hover__to_red_600 : Html.Attribute msg
+lg__hover__to_red_600 =
+    A.class "lg:hover:to-red-600"
+
+
+lg__hover__to_red_700 : Html.Attribute msg
+lg__hover__to_red_700 =
+    A.class "lg:hover:to-red-700"
+
+
+lg__hover__to_red_800 : Html.Attribute msg
+lg__hover__to_red_800 =
+    A.class "lg:hover:to-red-800"
+
+
+lg__hover__to_red_900 : Html.Attribute msg
+lg__hover__to_red_900 =
+    A.class "lg:hover:to-red-900"
+
+
+lg__hover__to_orange_100 : Html.Attribute msg
+lg__hover__to_orange_100 =
+    A.class "lg:hover:to-orange-100"
+
+
+lg__hover__to_orange_200 : Html.Attribute msg
+lg__hover__to_orange_200 =
+    A.class "lg:hover:to-orange-200"
+
+
+lg__hover__to_orange_300 : Html.Attribute msg
+lg__hover__to_orange_300 =
+    A.class "lg:hover:to-orange-300"
+
+
+lg__hover__to_orange_400 : Html.Attribute msg
+lg__hover__to_orange_400 =
+    A.class "lg:hover:to-orange-400"
+
+
+lg__hover__to_orange_500 : Html.Attribute msg
+lg__hover__to_orange_500 =
+    A.class "lg:hover:to-orange-500"
+
+
+lg__hover__to_orange_600 : Html.Attribute msg
+lg__hover__to_orange_600 =
+    A.class "lg:hover:to-orange-600"
+
+
+lg__hover__to_orange_700 : Html.Attribute msg
+lg__hover__to_orange_700 =
+    A.class "lg:hover:to-orange-700"
+
+
+lg__hover__to_orange_800 : Html.Attribute msg
+lg__hover__to_orange_800 =
+    A.class "lg:hover:to-orange-800"
+
+
+lg__hover__to_orange_900 : Html.Attribute msg
+lg__hover__to_orange_900 =
+    A.class "lg:hover:to-orange-900"
+
+
+lg__hover__to_yellow_100 : Html.Attribute msg
+lg__hover__to_yellow_100 =
+    A.class "lg:hover:to-yellow-100"
+
+
+lg__hover__to_yellow_200 : Html.Attribute msg
+lg__hover__to_yellow_200 =
+    A.class "lg:hover:to-yellow-200"
+
+
+lg__hover__to_yellow_300 : Html.Attribute msg
+lg__hover__to_yellow_300 =
+    A.class "lg:hover:to-yellow-300"
+
+
+lg__hover__to_yellow_400 : Html.Attribute msg
+lg__hover__to_yellow_400 =
+    A.class "lg:hover:to-yellow-400"
+
+
+lg__hover__to_yellow_500 : Html.Attribute msg
+lg__hover__to_yellow_500 =
+    A.class "lg:hover:to-yellow-500"
+
+
+lg__hover__to_yellow_600 : Html.Attribute msg
+lg__hover__to_yellow_600 =
+    A.class "lg:hover:to-yellow-600"
+
+
+lg__hover__to_yellow_700 : Html.Attribute msg
+lg__hover__to_yellow_700 =
+    A.class "lg:hover:to-yellow-700"
+
+
+lg__hover__to_yellow_800 : Html.Attribute msg
+lg__hover__to_yellow_800 =
+    A.class "lg:hover:to-yellow-800"
+
+
+lg__hover__to_yellow_900 : Html.Attribute msg
+lg__hover__to_yellow_900 =
+    A.class "lg:hover:to-yellow-900"
+
+
+lg__hover__to_green_100 : Html.Attribute msg
+lg__hover__to_green_100 =
+    A.class "lg:hover:to-green-100"
+
+
+lg__hover__to_green_200 : Html.Attribute msg
+lg__hover__to_green_200 =
+    A.class "lg:hover:to-green-200"
+
+
+lg__hover__to_green_300 : Html.Attribute msg
+lg__hover__to_green_300 =
+    A.class "lg:hover:to-green-300"
+
+
+lg__hover__to_green_400 : Html.Attribute msg
+lg__hover__to_green_400 =
+    A.class "lg:hover:to-green-400"
+
+
+lg__hover__to_green_500 : Html.Attribute msg
+lg__hover__to_green_500 =
+    A.class "lg:hover:to-green-500"
+
+
+lg__hover__to_green_600 : Html.Attribute msg
+lg__hover__to_green_600 =
+    A.class "lg:hover:to-green-600"
+
+
+lg__hover__to_green_700 : Html.Attribute msg
+lg__hover__to_green_700 =
+    A.class "lg:hover:to-green-700"
+
+
+lg__hover__to_green_800 : Html.Attribute msg
+lg__hover__to_green_800 =
+    A.class "lg:hover:to-green-800"
+
+
+lg__hover__to_green_900 : Html.Attribute msg
+lg__hover__to_green_900 =
+    A.class "lg:hover:to-green-900"
+
+
+lg__hover__to_teal_100 : Html.Attribute msg
+lg__hover__to_teal_100 =
+    A.class "lg:hover:to-teal-100"
+
+
+lg__hover__to_teal_200 : Html.Attribute msg
+lg__hover__to_teal_200 =
+    A.class "lg:hover:to-teal-200"
+
+
+lg__hover__to_teal_300 : Html.Attribute msg
+lg__hover__to_teal_300 =
+    A.class "lg:hover:to-teal-300"
+
+
+lg__hover__to_teal_400 : Html.Attribute msg
+lg__hover__to_teal_400 =
+    A.class "lg:hover:to-teal-400"
+
+
+lg__hover__to_teal_500 : Html.Attribute msg
+lg__hover__to_teal_500 =
+    A.class "lg:hover:to-teal-500"
+
+
+lg__hover__to_teal_600 : Html.Attribute msg
+lg__hover__to_teal_600 =
+    A.class "lg:hover:to-teal-600"
+
+
+lg__hover__to_teal_700 : Html.Attribute msg
+lg__hover__to_teal_700 =
+    A.class "lg:hover:to-teal-700"
+
+
+lg__hover__to_teal_800 : Html.Attribute msg
+lg__hover__to_teal_800 =
+    A.class "lg:hover:to-teal-800"
+
+
+lg__hover__to_teal_900 : Html.Attribute msg
+lg__hover__to_teal_900 =
+    A.class "lg:hover:to-teal-900"
+
+
+lg__hover__to_blue_100 : Html.Attribute msg
+lg__hover__to_blue_100 =
+    A.class "lg:hover:to-blue-100"
+
+
+lg__hover__to_blue_200 : Html.Attribute msg
+lg__hover__to_blue_200 =
+    A.class "lg:hover:to-blue-200"
+
+
+lg__hover__to_blue_300 : Html.Attribute msg
+lg__hover__to_blue_300 =
+    A.class "lg:hover:to-blue-300"
+
+
+lg__hover__to_blue_400 : Html.Attribute msg
+lg__hover__to_blue_400 =
+    A.class "lg:hover:to-blue-400"
+
+
+lg__hover__to_blue_500 : Html.Attribute msg
+lg__hover__to_blue_500 =
+    A.class "lg:hover:to-blue-500"
+
+
+lg__hover__to_blue_600 : Html.Attribute msg
+lg__hover__to_blue_600 =
+    A.class "lg:hover:to-blue-600"
+
+
+lg__hover__to_blue_700 : Html.Attribute msg
+lg__hover__to_blue_700 =
+    A.class "lg:hover:to-blue-700"
+
+
+lg__hover__to_blue_800 : Html.Attribute msg
+lg__hover__to_blue_800 =
+    A.class "lg:hover:to-blue-800"
+
+
+lg__hover__to_blue_900 : Html.Attribute msg
+lg__hover__to_blue_900 =
+    A.class "lg:hover:to-blue-900"
+
+
+lg__hover__to_indigo_100 : Html.Attribute msg
+lg__hover__to_indigo_100 =
+    A.class "lg:hover:to-indigo-100"
+
+
+lg__hover__to_indigo_200 : Html.Attribute msg
+lg__hover__to_indigo_200 =
+    A.class "lg:hover:to-indigo-200"
+
+
+lg__hover__to_indigo_300 : Html.Attribute msg
+lg__hover__to_indigo_300 =
+    A.class "lg:hover:to-indigo-300"
+
+
+lg__hover__to_indigo_400 : Html.Attribute msg
+lg__hover__to_indigo_400 =
+    A.class "lg:hover:to-indigo-400"
+
+
+lg__hover__to_indigo_500 : Html.Attribute msg
+lg__hover__to_indigo_500 =
+    A.class "lg:hover:to-indigo-500"
+
+
+lg__hover__to_indigo_600 : Html.Attribute msg
+lg__hover__to_indigo_600 =
+    A.class "lg:hover:to-indigo-600"
+
+
+lg__hover__to_indigo_700 : Html.Attribute msg
+lg__hover__to_indigo_700 =
+    A.class "lg:hover:to-indigo-700"
+
+
+lg__hover__to_indigo_800 : Html.Attribute msg
+lg__hover__to_indigo_800 =
+    A.class "lg:hover:to-indigo-800"
+
+
+lg__hover__to_indigo_900 : Html.Attribute msg
+lg__hover__to_indigo_900 =
+    A.class "lg:hover:to-indigo-900"
+
+
+lg__hover__to_purple_100 : Html.Attribute msg
+lg__hover__to_purple_100 =
+    A.class "lg:hover:to-purple-100"
+
+
+lg__hover__to_purple_200 : Html.Attribute msg
+lg__hover__to_purple_200 =
+    A.class "lg:hover:to-purple-200"
+
+
+lg__hover__to_purple_300 : Html.Attribute msg
+lg__hover__to_purple_300 =
+    A.class "lg:hover:to-purple-300"
+
+
+lg__hover__to_purple_400 : Html.Attribute msg
+lg__hover__to_purple_400 =
+    A.class "lg:hover:to-purple-400"
+
+
+lg__hover__to_purple_500 : Html.Attribute msg
+lg__hover__to_purple_500 =
+    A.class "lg:hover:to-purple-500"
+
+
+lg__hover__to_purple_600 : Html.Attribute msg
+lg__hover__to_purple_600 =
+    A.class "lg:hover:to-purple-600"
+
+
+lg__hover__to_purple_700 : Html.Attribute msg
+lg__hover__to_purple_700 =
+    A.class "lg:hover:to-purple-700"
+
+
+lg__hover__to_purple_800 : Html.Attribute msg
+lg__hover__to_purple_800 =
+    A.class "lg:hover:to-purple-800"
+
+
+lg__hover__to_purple_900 : Html.Attribute msg
+lg__hover__to_purple_900 =
+    A.class "lg:hover:to-purple-900"
+
+
+lg__hover__to_pink_100 : Html.Attribute msg
+lg__hover__to_pink_100 =
+    A.class "lg:hover:to-pink-100"
+
+
+lg__hover__to_pink_200 : Html.Attribute msg
+lg__hover__to_pink_200 =
+    A.class "lg:hover:to-pink-200"
+
+
+lg__hover__to_pink_300 : Html.Attribute msg
+lg__hover__to_pink_300 =
+    A.class "lg:hover:to-pink-300"
+
+
+lg__hover__to_pink_400 : Html.Attribute msg
+lg__hover__to_pink_400 =
+    A.class "lg:hover:to-pink-400"
+
+
+lg__hover__to_pink_500 : Html.Attribute msg
+lg__hover__to_pink_500 =
+    A.class "lg:hover:to-pink-500"
+
+
+lg__hover__to_pink_600 : Html.Attribute msg
+lg__hover__to_pink_600 =
+    A.class "lg:hover:to-pink-600"
+
+
+lg__hover__to_pink_700 : Html.Attribute msg
+lg__hover__to_pink_700 =
+    A.class "lg:hover:to-pink-700"
+
+
+lg__hover__to_pink_800 : Html.Attribute msg
+lg__hover__to_pink_800 =
+    A.class "lg:hover:to-pink-800"
+
+
+lg__hover__to_pink_900 : Html.Attribute msg
+lg__hover__to_pink_900 =
+    A.class "lg:hover:to-pink-900"
+
+
+lg__focus__from_transparent : Html.Attribute msg
+lg__focus__from_transparent =
+    A.class "lg:focus:from-transparent"
+
+
+lg__focus__from_current : Html.Attribute msg
+lg__focus__from_current =
+    A.class "lg:focus:from-current"
+
+
+lg__focus__from_black : Html.Attribute msg
+lg__focus__from_black =
+    A.class "lg:focus:from-black"
+
+
+lg__focus__from_white : Html.Attribute msg
+lg__focus__from_white =
+    A.class "lg:focus:from-white"
+
+
+lg__focus__from_gray_100 : Html.Attribute msg
+lg__focus__from_gray_100 =
+    A.class "lg:focus:from-gray-100"
+
+
+lg__focus__from_gray_200 : Html.Attribute msg
+lg__focus__from_gray_200 =
+    A.class "lg:focus:from-gray-200"
+
+
+lg__focus__from_gray_300 : Html.Attribute msg
+lg__focus__from_gray_300 =
+    A.class "lg:focus:from-gray-300"
+
+
+lg__focus__from_gray_400 : Html.Attribute msg
+lg__focus__from_gray_400 =
+    A.class "lg:focus:from-gray-400"
+
+
+lg__focus__from_gray_500 : Html.Attribute msg
+lg__focus__from_gray_500 =
+    A.class "lg:focus:from-gray-500"
+
+
+lg__focus__from_gray_600 : Html.Attribute msg
+lg__focus__from_gray_600 =
+    A.class "lg:focus:from-gray-600"
+
+
+lg__focus__from_gray_700 : Html.Attribute msg
+lg__focus__from_gray_700 =
+    A.class "lg:focus:from-gray-700"
+
+
+lg__focus__from_gray_800 : Html.Attribute msg
+lg__focus__from_gray_800 =
+    A.class "lg:focus:from-gray-800"
+
+
+lg__focus__from_gray_900 : Html.Attribute msg
+lg__focus__from_gray_900 =
+    A.class "lg:focus:from-gray-900"
+
+
+lg__focus__from_red_100 : Html.Attribute msg
+lg__focus__from_red_100 =
+    A.class "lg:focus:from-red-100"
+
+
+lg__focus__from_red_200 : Html.Attribute msg
+lg__focus__from_red_200 =
+    A.class "lg:focus:from-red-200"
+
+
+lg__focus__from_red_300 : Html.Attribute msg
+lg__focus__from_red_300 =
+    A.class "lg:focus:from-red-300"
+
+
+lg__focus__from_red_400 : Html.Attribute msg
+lg__focus__from_red_400 =
+    A.class "lg:focus:from-red-400"
+
+
+lg__focus__from_red_500 : Html.Attribute msg
+lg__focus__from_red_500 =
+    A.class "lg:focus:from-red-500"
+
+
+lg__focus__from_red_600 : Html.Attribute msg
+lg__focus__from_red_600 =
+    A.class "lg:focus:from-red-600"
+
+
+lg__focus__from_red_700 : Html.Attribute msg
+lg__focus__from_red_700 =
+    A.class "lg:focus:from-red-700"
+
+
+lg__focus__from_red_800 : Html.Attribute msg
+lg__focus__from_red_800 =
+    A.class "lg:focus:from-red-800"
+
+
+lg__focus__from_red_900 : Html.Attribute msg
+lg__focus__from_red_900 =
+    A.class "lg:focus:from-red-900"
+
+
+lg__focus__from_orange_100 : Html.Attribute msg
+lg__focus__from_orange_100 =
+    A.class "lg:focus:from-orange-100"
+
+
+lg__focus__from_orange_200 : Html.Attribute msg
+lg__focus__from_orange_200 =
+    A.class "lg:focus:from-orange-200"
+
+
+lg__focus__from_orange_300 : Html.Attribute msg
+lg__focus__from_orange_300 =
+    A.class "lg:focus:from-orange-300"
+
+
+lg__focus__from_orange_400 : Html.Attribute msg
+lg__focus__from_orange_400 =
+    A.class "lg:focus:from-orange-400"
+
+
+lg__focus__from_orange_500 : Html.Attribute msg
+lg__focus__from_orange_500 =
+    A.class "lg:focus:from-orange-500"
+
+
+lg__focus__from_orange_600 : Html.Attribute msg
+lg__focus__from_orange_600 =
+    A.class "lg:focus:from-orange-600"
+
+
+lg__focus__from_orange_700 : Html.Attribute msg
+lg__focus__from_orange_700 =
+    A.class "lg:focus:from-orange-700"
+
+
+lg__focus__from_orange_800 : Html.Attribute msg
+lg__focus__from_orange_800 =
+    A.class "lg:focus:from-orange-800"
+
+
+lg__focus__from_orange_900 : Html.Attribute msg
+lg__focus__from_orange_900 =
+    A.class "lg:focus:from-orange-900"
+
+
+lg__focus__from_yellow_100 : Html.Attribute msg
+lg__focus__from_yellow_100 =
+    A.class "lg:focus:from-yellow-100"
+
+
+lg__focus__from_yellow_200 : Html.Attribute msg
+lg__focus__from_yellow_200 =
+    A.class "lg:focus:from-yellow-200"
+
+
+lg__focus__from_yellow_300 : Html.Attribute msg
+lg__focus__from_yellow_300 =
+    A.class "lg:focus:from-yellow-300"
+
+
+lg__focus__from_yellow_400 : Html.Attribute msg
+lg__focus__from_yellow_400 =
+    A.class "lg:focus:from-yellow-400"
+
+
+lg__focus__from_yellow_500 : Html.Attribute msg
+lg__focus__from_yellow_500 =
+    A.class "lg:focus:from-yellow-500"
+
+
+lg__focus__from_yellow_600 : Html.Attribute msg
+lg__focus__from_yellow_600 =
+    A.class "lg:focus:from-yellow-600"
+
+
+lg__focus__from_yellow_700 : Html.Attribute msg
+lg__focus__from_yellow_700 =
+    A.class "lg:focus:from-yellow-700"
+
+
+lg__focus__from_yellow_800 : Html.Attribute msg
+lg__focus__from_yellow_800 =
+    A.class "lg:focus:from-yellow-800"
+
+
+lg__focus__from_yellow_900 : Html.Attribute msg
+lg__focus__from_yellow_900 =
+    A.class "lg:focus:from-yellow-900"
+
+
+lg__focus__from_green_100 : Html.Attribute msg
+lg__focus__from_green_100 =
+    A.class "lg:focus:from-green-100"
+
+
+lg__focus__from_green_200 : Html.Attribute msg
+lg__focus__from_green_200 =
+    A.class "lg:focus:from-green-200"
+
+
+lg__focus__from_green_300 : Html.Attribute msg
+lg__focus__from_green_300 =
+    A.class "lg:focus:from-green-300"
+
+
+lg__focus__from_green_400 : Html.Attribute msg
+lg__focus__from_green_400 =
+    A.class "lg:focus:from-green-400"
+
+
+lg__focus__from_green_500 : Html.Attribute msg
+lg__focus__from_green_500 =
+    A.class "lg:focus:from-green-500"
+
+
+lg__focus__from_green_600 : Html.Attribute msg
+lg__focus__from_green_600 =
+    A.class "lg:focus:from-green-600"
+
+
+lg__focus__from_green_700 : Html.Attribute msg
+lg__focus__from_green_700 =
+    A.class "lg:focus:from-green-700"
+
+
+lg__focus__from_green_800 : Html.Attribute msg
+lg__focus__from_green_800 =
+    A.class "lg:focus:from-green-800"
+
+
+lg__focus__from_green_900 : Html.Attribute msg
+lg__focus__from_green_900 =
+    A.class "lg:focus:from-green-900"
+
+
+lg__focus__from_teal_100 : Html.Attribute msg
+lg__focus__from_teal_100 =
+    A.class "lg:focus:from-teal-100"
+
+
+lg__focus__from_teal_200 : Html.Attribute msg
+lg__focus__from_teal_200 =
+    A.class "lg:focus:from-teal-200"
+
+
+lg__focus__from_teal_300 : Html.Attribute msg
+lg__focus__from_teal_300 =
+    A.class "lg:focus:from-teal-300"
+
+
+lg__focus__from_teal_400 : Html.Attribute msg
+lg__focus__from_teal_400 =
+    A.class "lg:focus:from-teal-400"
+
+
+lg__focus__from_teal_500 : Html.Attribute msg
+lg__focus__from_teal_500 =
+    A.class "lg:focus:from-teal-500"
+
+
+lg__focus__from_teal_600 : Html.Attribute msg
+lg__focus__from_teal_600 =
+    A.class "lg:focus:from-teal-600"
+
+
+lg__focus__from_teal_700 : Html.Attribute msg
+lg__focus__from_teal_700 =
+    A.class "lg:focus:from-teal-700"
+
+
+lg__focus__from_teal_800 : Html.Attribute msg
+lg__focus__from_teal_800 =
+    A.class "lg:focus:from-teal-800"
+
+
+lg__focus__from_teal_900 : Html.Attribute msg
+lg__focus__from_teal_900 =
+    A.class "lg:focus:from-teal-900"
+
+
+lg__focus__from_blue_100 : Html.Attribute msg
+lg__focus__from_blue_100 =
+    A.class "lg:focus:from-blue-100"
+
+
+lg__focus__from_blue_200 : Html.Attribute msg
+lg__focus__from_blue_200 =
+    A.class "lg:focus:from-blue-200"
+
+
+lg__focus__from_blue_300 : Html.Attribute msg
+lg__focus__from_blue_300 =
+    A.class "lg:focus:from-blue-300"
+
+
+lg__focus__from_blue_400 : Html.Attribute msg
+lg__focus__from_blue_400 =
+    A.class "lg:focus:from-blue-400"
+
+
+lg__focus__from_blue_500 : Html.Attribute msg
+lg__focus__from_blue_500 =
+    A.class "lg:focus:from-blue-500"
+
+
+lg__focus__from_blue_600 : Html.Attribute msg
+lg__focus__from_blue_600 =
+    A.class "lg:focus:from-blue-600"
+
+
+lg__focus__from_blue_700 : Html.Attribute msg
+lg__focus__from_blue_700 =
+    A.class "lg:focus:from-blue-700"
+
+
+lg__focus__from_blue_800 : Html.Attribute msg
+lg__focus__from_blue_800 =
+    A.class "lg:focus:from-blue-800"
+
+
+lg__focus__from_blue_900 : Html.Attribute msg
+lg__focus__from_blue_900 =
+    A.class "lg:focus:from-blue-900"
+
+
+lg__focus__from_indigo_100 : Html.Attribute msg
+lg__focus__from_indigo_100 =
+    A.class "lg:focus:from-indigo-100"
+
+
+lg__focus__from_indigo_200 : Html.Attribute msg
+lg__focus__from_indigo_200 =
+    A.class "lg:focus:from-indigo-200"
+
+
+lg__focus__from_indigo_300 : Html.Attribute msg
+lg__focus__from_indigo_300 =
+    A.class "lg:focus:from-indigo-300"
+
+
+lg__focus__from_indigo_400 : Html.Attribute msg
+lg__focus__from_indigo_400 =
+    A.class "lg:focus:from-indigo-400"
+
+
+lg__focus__from_indigo_500 : Html.Attribute msg
+lg__focus__from_indigo_500 =
+    A.class "lg:focus:from-indigo-500"
+
+
+lg__focus__from_indigo_600 : Html.Attribute msg
+lg__focus__from_indigo_600 =
+    A.class "lg:focus:from-indigo-600"
+
+
+lg__focus__from_indigo_700 : Html.Attribute msg
+lg__focus__from_indigo_700 =
+    A.class "lg:focus:from-indigo-700"
+
+
+lg__focus__from_indigo_800 : Html.Attribute msg
+lg__focus__from_indigo_800 =
+    A.class "lg:focus:from-indigo-800"
+
+
+lg__focus__from_indigo_900 : Html.Attribute msg
+lg__focus__from_indigo_900 =
+    A.class "lg:focus:from-indigo-900"
+
+
+lg__focus__from_purple_100 : Html.Attribute msg
+lg__focus__from_purple_100 =
+    A.class "lg:focus:from-purple-100"
+
+
+lg__focus__from_purple_200 : Html.Attribute msg
+lg__focus__from_purple_200 =
+    A.class "lg:focus:from-purple-200"
+
+
+lg__focus__from_purple_300 : Html.Attribute msg
+lg__focus__from_purple_300 =
+    A.class "lg:focus:from-purple-300"
+
+
+lg__focus__from_purple_400 : Html.Attribute msg
+lg__focus__from_purple_400 =
+    A.class "lg:focus:from-purple-400"
+
+
+lg__focus__from_purple_500 : Html.Attribute msg
+lg__focus__from_purple_500 =
+    A.class "lg:focus:from-purple-500"
+
+
+lg__focus__from_purple_600 : Html.Attribute msg
+lg__focus__from_purple_600 =
+    A.class "lg:focus:from-purple-600"
+
+
+lg__focus__from_purple_700 : Html.Attribute msg
+lg__focus__from_purple_700 =
+    A.class "lg:focus:from-purple-700"
+
+
+lg__focus__from_purple_800 : Html.Attribute msg
+lg__focus__from_purple_800 =
+    A.class "lg:focus:from-purple-800"
+
+
+lg__focus__from_purple_900 : Html.Attribute msg
+lg__focus__from_purple_900 =
+    A.class "lg:focus:from-purple-900"
+
+
+lg__focus__from_pink_100 : Html.Attribute msg
+lg__focus__from_pink_100 =
+    A.class "lg:focus:from-pink-100"
+
+
+lg__focus__from_pink_200 : Html.Attribute msg
+lg__focus__from_pink_200 =
+    A.class "lg:focus:from-pink-200"
+
+
+lg__focus__from_pink_300 : Html.Attribute msg
+lg__focus__from_pink_300 =
+    A.class "lg:focus:from-pink-300"
+
+
+lg__focus__from_pink_400 : Html.Attribute msg
+lg__focus__from_pink_400 =
+    A.class "lg:focus:from-pink-400"
+
+
+lg__focus__from_pink_500 : Html.Attribute msg
+lg__focus__from_pink_500 =
+    A.class "lg:focus:from-pink-500"
+
+
+lg__focus__from_pink_600 : Html.Attribute msg
+lg__focus__from_pink_600 =
+    A.class "lg:focus:from-pink-600"
+
+
+lg__focus__from_pink_700 : Html.Attribute msg
+lg__focus__from_pink_700 =
+    A.class "lg:focus:from-pink-700"
+
+
+lg__focus__from_pink_800 : Html.Attribute msg
+lg__focus__from_pink_800 =
+    A.class "lg:focus:from-pink-800"
+
+
+lg__focus__from_pink_900 : Html.Attribute msg
+lg__focus__from_pink_900 =
+    A.class "lg:focus:from-pink-900"
+
+
+lg__focus__via_transparent : Html.Attribute msg
+lg__focus__via_transparent =
+    A.class "lg:focus:via-transparent"
+
+
+lg__focus__via_current : Html.Attribute msg
+lg__focus__via_current =
+    A.class "lg:focus:via-current"
+
+
+lg__focus__via_black : Html.Attribute msg
+lg__focus__via_black =
+    A.class "lg:focus:via-black"
+
+
+lg__focus__via_white : Html.Attribute msg
+lg__focus__via_white =
+    A.class "lg:focus:via-white"
+
+
+lg__focus__via_gray_100 : Html.Attribute msg
+lg__focus__via_gray_100 =
+    A.class "lg:focus:via-gray-100"
+
+
+lg__focus__via_gray_200 : Html.Attribute msg
+lg__focus__via_gray_200 =
+    A.class "lg:focus:via-gray-200"
+
+
+lg__focus__via_gray_300 : Html.Attribute msg
+lg__focus__via_gray_300 =
+    A.class "lg:focus:via-gray-300"
+
+
+lg__focus__via_gray_400 : Html.Attribute msg
+lg__focus__via_gray_400 =
+    A.class "lg:focus:via-gray-400"
+
+
+lg__focus__via_gray_500 : Html.Attribute msg
+lg__focus__via_gray_500 =
+    A.class "lg:focus:via-gray-500"
+
+
+lg__focus__via_gray_600 : Html.Attribute msg
+lg__focus__via_gray_600 =
+    A.class "lg:focus:via-gray-600"
+
+
+lg__focus__via_gray_700 : Html.Attribute msg
+lg__focus__via_gray_700 =
+    A.class "lg:focus:via-gray-700"
+
+
+lg__focus__via_gray_800 : Html.Attribute msg
+lg__focus__via_gray_800 =
+    A.class "lg:focus:via-gray-800"
+
+
+lg__focus__via_gray_900 : Html.Attribute msg
+lg__focus__via_gray_900 =
+    A.class "lg:focus:via-gray-900"
+
+
+lg__focus__via_red_100 : Html.Attribute msg
+lg__focus__via_red_100 =
+    A.class "lg:focus:via-red-100"
+
+
+lg__focus__via_red_200 : Html.Attribute msg
+lg__focus__via_red_200 =
+    A.class "lg:focus:via-red-200"
+
+
+lg__focus__via_red_300 : Html.Attribute msg
+lg__focus__via_red_300 =
+    A.class "lg:focus:via-red-300"
+
+
+lg__focus__via_red_400 : Html.Attribute msg
+lg__focus__via_red_400 =
+    A.class "lg:focus:via-red-400"
+
+
+lg__focus__via_red_500 : Html.Attribute msg
+lg__focus__via_red_500 =
+    A.class "lg:focus:via-red-500"
+
+
+lg__focus__via_red_600 : Html.Attribute msg
+lg__focus__via_red_600 =
+    A.class "lg:focus:via-red-600"
+
+
+lg__focus__via_red_700 : Html.Attribute msg
+lg__focus__via_red_700 =
+    A.class "lg:focus:via-red-700"
+
+
+lg__focus__via_red_800 : Html.Attribute msg
+lg__focus__via_red_800 =
+    A.class "lg:focus:via-red-800"
+
+
+lg__focus__via_red_900 : Html.Attribute msg
+lg__focus__via_red_900 =
+    A.class "lg:focus:via-red-900"
+
+
+lg__focus__via_orange_100 : Html.Attribute msg
+lg__focus__via_orange_100 =
+    A.class "lg:focus:via-orange-100"
+
+
+lg__focus__via_orange_200 : Html.Attribute msg
+lg__focus__via_orange_200 =
+    A.class "lg:focus:via-orange-200"
+
+
+lg__focus__via_orange_300 : Html.Attribute msg
+lg__focus__via_orange_300 =
+    A.class "lg:focus:via-orange-300"
+
+
+lg__focus__via_orange_400 : Html.Attribute msg
+lg__focus__via_orange_400 =
+    A.class "lg:focus:via-orange-400"
+
+
+lg__focus__via_orange_500 : Html.Attribute msg
+lg__focus__via_orange_500 =
+    A.class "lg:focus:via-orange-500"
+
+
+lg__focus__via_orange_600 : Html.Attribute msg
+lg__focus__via_orange_600 =
+    A.class "lg:focus:via-orange-600"
+
+
+lg__focus__via_orange_700 : Html.Attribute msg
+lg__focus__via_orange_700 =
+    A.class "lg:focus:via-orange-700"
+
+
+lg__focus__via_orange_800 : Html.Attribute msg
+lg__focus__via_orange_800 =
+    A.class "lg:focus:via-orange-800"
+
+
+lg__focus__via_orange_900 : Html.Attribute msg
+lg__focus__via_orange_900 =
+    A.class "lg:focus:via-orange-900"
+
+
+lg__focus__via_yellow_100 : Html.Attribute msg
+lg__focus__via_yellow_100 =
+    A.class "lg:focus:via-yellow-100"
+
+
+lg__focus__via_yellow_200 : Html.Attribute msg
+lg__focus__via_yellow_200 =
+    A.class "lg:focus:via-yellow-200"
+
+
+lg__focus__via_yellow_300 : Html.Attribute msg
+lg__focus__via_yellow_300 =
+    A.class "lg:focus:via-yellow-300"
+
+
+lg__focus__via_yellow_400 : Html.Attribute msg
+lg__focus__via_yellow_400 =
+    A.class "lg:focus:via-yellow-400"
+
+
+lg__focus__via_yellow_500 : Html.Attribute msg
+lg__focus__via_yellow_500 =
+    A.class "lg:focus:via-yellow-500"
+
+
+lg__focus__via_yellow_600 : Html.Attribute msg
+lg__focus__via_yellow_600 =
+    A.class "lg:focus:via-yellow-600"
+
+
+lg__focus__via_yellow_700 : Html.Attribute msg
+lg__focus__via_yellow_700 =
+    A.class "lg:focus:via-yellow-700"
+
+
+lg__focus__via_yellow_800 : Html.Attribute msg
+lg__focus__via_yellow_800 =
+    A.class "lg:focus:via-yellow-800"
+
+
+lg__focus__via_yellow_900 : Html.Attribute msg
+lg__focus__via_yellow_900 =
+    A.class "lg:focus:via-yellow-900"
+
+
+lg__focus__via_green_100 : Html.Attribute msg
+lg__focus__via_green_100 =
+    A.class "lg:focus:via-green-100"
+
+
+lg__focus__via_green_200 : Html.Attribute msg
+lg__focus__via_green_200 =
+    A.class "lg:focus:via-green-200"
+
+
+lg__focus__via_green_300 : Html.Attribute msg
+lg__focus__via_green_300 =
+    A.class "lg:focus:via-green-300"
+
+
+lg__focus__via_green_400 : Html.Attribute msg
+lg__focus__via_green_400 =
+    A.class "lg:focus:via-green-400"
+
+
+lg__focus__via_green_500 : Html.Attribute msg
+lg__focus__via_green_500 =
+    A.class "lg:focus:via-green-500"
+
+
+lg__focus__via_green_600 : Html.Attribute msg
+lg__focus__via_green_600 =
+    A.class "lg:focus:via-green-600"
+
+
+lg__focus__via_green_700 : Html.Attribute msg
+lg__focus__via_green_700 =
+    A.class "lg:focus:via-green-700"
+
+
+lg__focus__via_green_800 : Html.Attribute msg
+lg__focus__via_green_800 =
+    A.class "lg:focus:via-green-800"
+
+
+lg__focus__via_green_900 : Html.Attribute msg
+lg__focus__via_green_900 =
+    A.class "lg:focus:via-green-900"
+
+
+lg__focus__via_teal_100 : Html.Attribute msg
+lg__focus__via_teal_100 =
+    A.class "lg:focus:via-teal-100"
+
+
+lg__focus__via_teal_200 : Html.Attribute msg
+lg__focus__via_teal_200 =
+    A.class "lg:focus:via-teal-200"
+
+
+lg__focus__via_teal_300 : Html.Attribute msg
+lg__focus__via_teal_300 =
+    A.class "lg:focus:via-teal-300"
+
+
+lg__focus__via_teal_400 : Html.Attribute msg
+lg__focus__via_teal_400 =
+    A.class "lg:focus:via-teal-400"
+
+
+lg__focus__via_teal_500 : Html.Attribute msg
+lg__focus__via_teal_500 =
+    A.class "lg:focus:via-teal-500"
+
+
+lg__focus__via_teal_600 : Html.Attribute msg
+lg__focus__via_teal_600 =
+    A.class "lg:focus:via-teal-600"
+
+
+lg__focus__via_teal_700 : Html.Attribute msg
+lg__focus__via_teal_700 =
+    A.class "lg:focus:via-teal-700"
+
+
+lg__focus__via_teal_800 : Html.Attribute msg
+lg__focus__via_teal_800 =
+    A.class "lg:focus:via-teal-800"
+
+
+lg__focus__via_teal_900 : Html.Attribute msg
+lg__focus__via_teal_900 =
+    A.class "lg:focus:via-teal-900"
+
+
+lg__focus__via_blue_100 : Html.Attribute msg
+lg__focus__via_blue_100 =
+    A.class "lg:focus:via-blue-100"
+
+
+lg__focus__via_blue_200 : Html.Attribute msg
+lg__focus__via_blue_200 =
+    A.class "lg:focus:via-blue-200"
+
+
+lg__focus__via_blue_300 : Html.Attribute msg
+lg__focus__via_blue_300 =
+    A.class "lg:focus:via-blue-300"
+
+
+lg__focus__via_blue_400 : Html.Attribute msg
+lg__focus__via_blue_400 =
+    A.class "lg:focus:via-blue-400"
+
+
+lg__focus__via_blue_500 : Html.Attribute msg
+lg__focus__via_blue_500 =
+    A.class "lg:focus:via-blue-500"
+
+
+lg__focus__via_blue_600 : Html.Attribute msg
+lg__focus__via_blue_600 =
+    A.class "lg:focus:via-blue-600"
+
+
+lg__focus__via_blue_700 : Html.Attribute msg
+lg__focus__via_blue_700 =
+    A.class "lg:focus:via-blue-700"
+
+
+lg__focus__via_blue_800 : Html.Attribute msg
+lg__focus__via_blue_800 =
+    A.class "lg:focus:via-blue-800"
+
+
+lg__focus__via_blue_900 : Html.Attribute msg
+lg__focus__via_blue_900 =
+    A.class "lg:focus:via-blue-900"
+
+
+lg__focus__via_indigo_100 : Html.Attribute msg
+lg__focus__via_indigo_100 =
+    A.class "lg:focus:via-indigo-100"
+
+
+lg__focus__via_indigo_200 : Html.Attribute msg
+lg__focus__via_indigo_200 =
+    A.class "lg:focus:via-indigo-200"
+
+
+lg__focus__via_indigo_300 : Html.Attribute msg
+lg__focus__via_indigo_300 =
+    A.class "lg:focus:via-indigo-300"
+
+
+lg__focus__via_indigo_400 : Html.Attribute msg
+lg__focus__via_indigo_400 =
+    A.class "lg:focus:via-indigo-400"
+
+
+lg__focus__via_indigo_500 : Html.Attribute msg
+lg__focus__via_indigo_500 =
+    A.class "lg:focus:via-indigo-500"
+
+
+lg__focus__via_indigo_600 : Html.Attribute msg
+lg__focus__via_indigo_600 =
+    A.class "lg:focus:via-indigo-600"
+
+
+lg__focus__via_indigo_700 : Html.Attribute msg
+lg__focus__via_indigo_700 =
+    A.class "lg:focus:via-indigo-700"
+
+
+lg__focus__via_indigo_800 : Html.Attribute msg
+lg__focus__via_indigo_800 =
+    A.class "lg:focus:via-indigo-800"
+
+
+lg__focus__via_indigo_900 : Html.Attribute msg
+lg__focus__via_indigo_900 =
+    A.class "lg:focus:via-indigo-900"
+
+
+lg__focus__via_purple_100 : Html.Attribute msg
+lg__focus__via_purple_100 =
+    A.class "lg:focus:via-purple-100"
+
+
+lg__focus__via_purple_200 : Html.Attribute msg
+lg__focus__via_purple_200 =
+    A.class "lg:focus:via-purple-200"
+
+
+lg__focus__via_purple_300 : Html.Attribute msg
+lg__focus__via_purple_300 =
+    A.class "lg:focus:via-purple-300"
+
+
+lg__focus__via_purple_400 : Html.Attribute msg
+lg__focus__via_purple_400 =
+    A.class "lg:focus:via-purple-400"
+
+
+lg__focus__via_purple_500 : Html.Attribute msg
+lg__focus__via_purple_500 =
+    A.class "lg:focus:via-purple-500"
+
+
+lg__focus__via_purple_600 : Html.Attribute msg
+lg__focus__via_purple_600 =
+    A.class "lg:focus:via-purple-600"
+
+
+lg__focus__via_purple_700 : Html.Attribute msg
+lg__focus__via_purple_700 =
+    A.class "lg:focus:via-purple-700"
+
+
+lg__focus__via_purple_800 : Html.Attribute msg
+lg__focus__via_purple_800 =
+    A.class "lg:focus:via-purple-800"
+
+
+lg__focus__via_purple_900 : Html.Attribute msg
+lg__focus__via_purple_900 =
+    A.class "lg:focus:via-purple-900"
+
+
+lg__focus__via_pink_100 : Html.Attribute msg
+lg__focus__via_pink_100 =
+    A.class "lg:focus:via-pink-100"
+
+
+lg__focus__via_pink_200 : Html.Attribute msg
+lg__focus__via_pink_200 =
+    A.class "lg:focus:via-pink-200"
+
+
+lg__focus__via_pink_300 : Html.Attribute msg
+lg__focus__via_pink_300 =
+    A.class "lg:focus:via-pink-300"
+
+
+lg__focus__via_pink_400 : Html.Attribute msg
+lg__focus__via_pink_400 =
+    A.class "lg:focus:via-pink-400"
+
+
+lg__focus__via_pink_500 : Html.Attribute msg
+lg__focus__via_pink_500 =
+    A.class "lg:focus:via-pink-500"
+
+
+lg__focus__via_pink_600 : Html.Attribute msg
+lg__focus__via_pink_600 =
+    A.class "lg:focus:via-pink-600"
+
+
+lg__focus__via_pink_700 : Html.Attribute msg
+lg__focus__via_pink_700 =
+    A.class "lg:focus:via-pink-700"
+
+
+lg__focus__via_pink_800 : Html.Attribute msg
+lg__focus__via_pink_800 =
+    A.class "lg:focus:via-pink-800"
+
+
+lg__focus__via_pink_900 : Html.Attribute msg
+lg__focus__via_pink_900 =
+    A.class "lg:focus:via-pink-900"
+
+
+lg__focus__to_transparent : Html.Attribute msg
+lg__focus__to_transparent =
+    A.class "lg:focus:to-transparent"
+
+
+lg__focus__to_current : Html.Attribute msg
+lg__focus__to_current =
+    A.class "lg:focus:to-current"
+
+
+lg__focus__to_black : Html.Attribute msg
+lg__focus__to_black =
+    A.class "lg:focus:to-black"
+
+
+lg__focus__to_white : Html.Attribute msg
+lg__focus__to_white =
+    A.class "lg:focus:to-white"
+
+
+lg__focus__to_gray_100 : Html.Attribute msg
+lg__focus__to_gray_100 =
+    A.class "lg:focus:to-gray-100"
+
+
+lg__focus__to_gray_200 : Html.Attribute msg
+lg__focus__to_gray_200 =
+    A.class "lg:focus:to-gray-200"
+
+
+lg__focus__to_gray_300 : Html.Attribute msg
+lg__focus__to_gray_300 =
+    A.class "lg:focus:to-gray-300"
+
+
+lg__focus__to_gray_400 : Html.Attribute msg
+lg__focus__to_gray_400 =
+    A.class "lg:focus:to-gray-400"
+
+
+lg__focus__to_gray_500 : Html.Attribute msg
+lg__focus__to_gray_500 =
+    A.class "lg:focus:to-gray-500"
+
+
+lg__focus__to_gray_600 : Html.Attribute msg
+lg__focus__to_gray_600 =
+    A.class "lg:focus:to-gray-600"
+
+
+lg__focus__to_gray_700 : Html.Attribute msg
+lg__focus__to_gray_700 =
+    A.class "lg:focus:to-gray-700"
+
+
+lg__focus__to_gray_800 : Html.Attribute msg
+lg__focus__to_gray_800 =
+    A.class "lg:focus:to-gray-800"
+
+
+lg__focus__to_gray_900 : Html.Attribute msg
+lg__focus__to_gray_900 =
+    A.class "lg:focus:to-gray-900"
+
+
+lg__focus__to_red_100 : Html.Attribute msg
+lg__focus__to_red_100 =
+    A.class "lg:focus:to-red-100"
+
+
+lg__focus__to_red_200 : Html.Attribute msg
+lg__focus__to_red_200 =
+    A.class "lg:focus:to-red-200"
+
+
+lg__focus__to_red_300 : Html.Attribute msg
+lg__focus__to_red_300 =
+    A.class "lg:focus:to-red-300"
+
+
+lg__focus__to_red_400 : Html.Attribute msg
+lg__focus__to_red_400 =
+    A.class "lg:focus:to-red-400"
+
+
+lg__focus__to_red_500 : Html.Attribute msg
+lg__focus__to_red_500 =
+    A.class "lg:focus:to-red-500"
+
+
+lg__focus__to_red_600 : Html.Attribute msg
+lg__focus__to_red_600 =
+    A.class "lg:focus:to-red-600"
+
+
+lg__focus__to_red_700 : Html.Attribute msg
+lg__focus__to_red_700 =
+    A.class "lg:focus:to-red-700"
+
+
+lg__focus__to_red_800 : Html.Attribute msg
+lg__focus__to_red_800 =
+    A.class "lg:focus:to-red-800"
+
+
+lg__focus__to_red_900 : Html.Attribute msg
+lg__focus__to_red_900 =
+    A.class "lg:focus:to-red-900"
+
+
+lg__focus__to_orange_100 : Html.Attribute msg
+lg__focus__to_orange_100 =
+    A.class "lg:focus:to-orange-100"
+
+
+lg__focus__to_orange_200 : Html.Attribute msg
+lg__focus__to_orange_200 =
+    A.class "lg:focus:to-orange-200"
+
+
+lg__focus__to_orange_300 : Html.Attribute msg
+lg__focus__to_orange_300 =
+    A.class "lg:focus:to-orange-300"
+
+
+lg__focus__to_orange_400 : Html.Attribute msg
+lg__focus__to_orange_400 =
+    A.class "lg:focus:to-orange-400"
+
+
+lg__focus__to_orange_500 : Html.Attribute msg
+lg__focus__to_orange_500 =
+    A.class "lg:focus:to-orange-500"
+
+
+lg__focus__to_orange_600 : Html.Attribute msg
+lg__focus__to_orange_600 =
+    A.class "lg:focus:to-orange-600"
+
+
+lg__focus__to_orange_700 : Html.Attribute msg
+lg__focus__to_orange_700 =
+    A.class "lg:focus:to-orange-700"
+
+
+lg__focus__to_orange_800 : Html.Attribute msg
+lg__focus__to_orange_800 =
+    A.class "lg:focus:to-orange-800"
+
+
+lg__focus__to_orange_900 : Html.Attribute msg
+lg__focus__to_orange_900 =
+    A.class "lg:focus:to-orange-900"
+
+
+lg__focus__to_yellow_100 : Html.Attribute msg
+lg__focus__to_yellow_100 =
+    A.class "lg:focus:to-yellow-100"
+
+
+lg__focus__to_yellow_200 : Html.Attribute msg
+lg__focus__to_yellow_200 =
+    A.class "lg:focus:to-yellow-200"
+
+
+lg__focus__to_yellow_300 : Html.Attribute msg
+lg__focus__to_yellow_300 =
+    A.class "lg:focus:to-yellow-300"
+
+
+lg__focus__to_yellow_400 : Html.Attribute msg
+lg__focus__to_yellow_400 =
+    A.class "lg:focus:to-yellow-400"
+
+
+lg__focus__to_yellow_500 : Html.Attribute msg
+lg__focus__to_yellow_500 =
+    A.class "lg:focus:to-yellow-500"
+
+
+lg__focus__to_yellow_600 : Html.Attribute msg
+lg__focus__to_yellow_600 =
+    A.class "lg:focus:to-yellow-600"
+
+
+lg__focus__to_yellow_700 : Html.Attribute msg
+lg__focus__to_yellow_700 =
+    A.class "lg:focus:to-yellow-700"
+
+
+lg__focus__to_yellow_800 : Html.Attribute msg
+lg__focus__to_yellow_800 =
+    A.class "lg:focus:to-yellow-800"
+
+
+lg__focus__to_yellow_900 : Html.Attribute msg
+lg__focus__to_yellow_900 =
+    A.class "lg:focus:to-yellow-900"
+
+
+lg__focus__to_green_100 : Html.Attribute msg
+lg__focus__to_green_100 =
+    A.class "lg:focus:to-green-100"
+
+
+lg__focus__to_green_200 : Html.Attribute msg
+lg__focus__to_green_200 =
+    A.class "lg:focus:to-green-200"
+
+
+lg__focus__to_green_300 : Html.Attribute msg
+lg__focus__to_green_300 =
+    A.class "lg:focus:to-green-300"
+
+
+lg__focus__to_green_400 : Html.Attribute msg
+lg__focus__to_green_400 =
+    A.class "lg:focus:to-green-400"
+
+
+lg__focus__to_green_500 : Html.Attribute msg
+lg__focus__to_green_500 =
+    A.class "lg:focus:to-green-500"
+
+
+lg__focus__to_green_600 : Html.Attribute msg
+lg__focus__to_green_600 =
+    A.class "lg:focus:to-green-600"
+
+
+lg__focus__to_green_700 : Html.Attribute msg
+lg__focus__to_green_700 =
+    A.class "lg:focus:to-green-700"
+
+
+lg__focus__to_green_800 : Html.Attribute msg
+lg__focus__to_green_800 =
+    A.class "lg:focus:to-green-800"
+
+
+lg__focus__to_green_900 : Html.Attribute msg
+lg__focus__to_green_900 =
+    A.class "lg:focus:to-green-900"
+
+
+lg__focus__to_teal_100 : Html.Attribute msg
+lg__focus__to_teal_100 =
+    A.class "lg:focus:to-teal-100"
+
+
+lg__focus__to_teal_200 : Html.Attribute msg
+lg__focus__to_teal_200 =
+    A.class "lg:focus:to-teal-200"
+
+
+lg__focus__to_teal_300 : Html.Attribute msg
+lg__focus__to_teal_300 =
+    A.class "lg:focus:to-teal-300"
+
+
+lg__focus__to_teal_400 : Html.Attribute msg
+lg__focus__to_teal_400 =
+    A.class "lg:focus:to-teal-400"
+
+
+lg__focus__to_teal_500 : Html.Attribute msg
+lg__focus__to_teal_500 =
+    A.class "lg:focus:to-teal-500"
+
+
+lg__focus__to_teal_600 : Html.Attribute msg
+lg__focus__to_teal_600 =
+    A.class "lg:focus:to-teal-600"
+
+
+lg__focus__to_teal_700 : Html.Attribute msg
+lg__focus__to_teal_700 =
+    A.class "lg:focus:to-teal-700"
+
+
+lg__focus__to_teal_800 : Html.Attribute msg
+lg__focus__to_teal_800 =
+    A.class "lg:focus:to-teal-800"
+
+
+lg__focus__to_teal_900 : Html.Attribute msg
+lg__focus__to_teal_900 =
+    A.class "lg:focus:to-teal-900"
+
+
+lg__focus__to_blue_100 : Html.Attribute msg
+lg__focus__to_blue_100 =
+    A.class "lg:focus:to-blue-100"
+
+
+lg__focus__to_blue_200 : Html.Attribute msg
+lg__focus__to_blue_200 =
+    A.class "lg:focus:to-blue-200"
+
+
+lg__focus__to_blue_300 : Html.Attribute msg
+lg__focus__to_blue_300 =
+    A.class "lg:focus:to-blue-300"
+
+
+lg__focus__to_blue_400 : Html.Attribute msg
+lg__focus__to_blue_400 =
+    A.class "lg:focus:to-blue-400"
+
+
+lg__focus__to_blue_500 : Html.Attribute msg
+lg__focus__to_blue_500 =
+    A.class "lg:focus:to-blue-500"
+
+
+lg__focus__to_blue_600 : Html.Attribute msg
+lg__focus__to_blue_600 =
+    A.class "lg:focus:to-blue-600"
+
+
+lg__focus__to_blue_700 : Html.Attribute msg
+lg__focus__to_blue_700 =
+    A.class "lg:focus:to-blue-700"
+
+
+lg__focus__to_blue_800 : Html.Attribute msg
+lg__focus__to_blue_800 =
+    A.class "lg:focus:to-blue-800"
+
+
+lg__focus__to_blue_900 : Html.Attribute msg
+lg__focus__to_blue_900 =
+    A.class "lg:focus:to-blue-900"
+
+
+lg__focus__to_indigo_100 : Html.Attribute msg
+lg__focus__to_indigo_100 =
+    A.class "lg:focus:to-indigo-100"
+
+
+lg__focus__to_indigo_200 : Html.Attribute msg
+lg__focus__to_indigo_200 =
+    A.class "lg:focus:to-indigo-200"
+
+
+lg__focus__to_indigo_300 : Html.Attribute msg
+lg__focus__to_indigo_300 =
+    A.class "lg:focus:to-indigo-300"
+
+
+lg__focus__to_indigo_400 : Html.Attribute msg
+lg__focus__to_indigo_400 =
+    A.class "lg:focus:to-indigo-400"
+
+
+lg__focus__to_indigo_500 : Html.Attribute msg
+lg__focus__to_indigo_500 =
+    A.class "lg:focus:to-indigo-500"
+
+
+lg__focus__to_indigo_600 : Html.Attribute msg
+lg__focus__to_indigo_600 =
+    A.class "lg:focus:to-indigo-600"
+
+
+lg__focus__to_indigo_700 : Html.Attribute msg
+lg__focus__to_indigo_700 =
+    A.class "lg:focus:to-indigo-700"
+
+
+lg__focus__to_indigo_800 : Html.Attribute msg
+lg__focus__to_indigo_800 =
+    A.class "lg:focus:to-indigo-800"
+
+
+lg__focus__to_indigo_900 : Html.Attribute msg
+lg__focus__to_indigo_900 =
+    A.class "lg:focus:to-indigo-900"
+
+
+lg__focus__to_purple_100 : Html.Attribute msg
+lg__focus__to_purple_100 =
+    A.class "lg:focus:to-purple-100"
+
+
+lg__focus__to_purple_200 : Html.Attribute msg
+lg__focus__to_purple_200 =
+    A.class "lg:focus:to-purple-200"
+
+
+lg__focus__to_purple_300 : Html.Attribute msg
+lg__focus__to_purple_300 =
+    A.class "lg:focus:to-purple-300"
+
+
+lg__focus__to_purple_400 : Html.Attribute msg
+lg__focus__to_purple_400 =
+    A.class "lg:focus:to-purple-400"
+
+
+lg__focus__to_purple_500 : Html.Attribute msg
+lg__focus__to_purple_500 =
+    A.class "lg:focus:to-purple-500"
+
+
+lg__focus__to_purple_600 : Html.Attribute msg
+lg__focus__to_purple_600 =
+    A.class "lg:focus:to-purple-600"
+
+
+lg__focus__to_purple_700 : Html.Attribute msg
+lg__focus__to_purple_700 =
+    A.class "lg:focus:to-purple-700"
+
+
+lg__focus__to_purple_800 : Html.Attribute msg
+lg__focus__to_purple_800 =
+    A.class "lg:focus:to-purple-800"
+
+
+lg__focus__to_purple_900 : Html.Attribute msg
+lg__focus__to_purple_900 =
+    A.class "lg:focus:to-purple-900"
+
+
+lg__focus__to_pink_100 : Html.Attribute msg
+lg__focus__to_pink_100 =
+    A.class "lg:focus:to-pink-100"
+
+
+lg__focus__to_pink_200 : Html.Attribute msg
+lg__focus__to_pink_200 =
+    A.class "lg:focus:to-pink-200"
+
+
+lg__focus__to_pink_300 : Html.Attribute msg
+lg__focus__to_pink_300 =
+    A.class "lg:focus:to-pink-300"
+
+
+lg__focus__to_pink_400 : Html.Attribute msg
+lg__focus__to_pink_400 =
+    A.class "lg:focus:to-pink-400"
+
+
+lg__focus__to_pink_500 : Html.Attribute msg
+lg__focus__to_pink_500 =
+    A.class "lg:focus:to-pink-500"
+
+
+lg__focus__to_pink_600 : Html.Attribute msg
+lg__focus__to_pink_600 =
+    A.class "lg:focus:to-pink-600"
+
+
+lg__focus__to_pink_700 : Html.Attribute msg
+lg__focus__to_pink_700 =
+    A.class "lg:focus:to-pink-700"
+
+
+lg__focus__to_pink_800 : Html.Attribute msg
+lg__focus__to_pink_800 =
+    A.class "lg:focus:to-pink-800"
+
+
+lg__focus__to_pink_900 : Html.Attribute msg
+lg__focus__to_pink_900 =
+    A.class "lg:focus:to-pink-900"
 
 
 lg__bg_opacity_0 : Html.Attribute msg
@@ -59727,6 +84286,21 @@ lg__rounded_lg =
     A.class "lg:rounded-lg"
 
 
+lg__rounded_xl : Html.Attribute msg
+lg__rounded_xl =
+    A.class "lg:rounded-xl"
+
+
+lg__rounded_2xl : Html.Attribute msg
+lg__rounded_2xl =
+    A.class "lg:rounded-2xl"
+
+
+lg__rounded_3xl : Html.Attribute msg
+lg__rounded_3xl =
+    A.class "lg:rounded-3xl"
+
+
 lg__rounded_full : Html.Attribute msg
 lg__rounded_full =
     A.class "lg:rounded-full"
@@ -59830,6 +84404,66 @@ lg__rounded_b_lg =
 lg__rounded_l_lg : Html.Attribute msg
 lg__rounded_l_lg =
     A.class "lg:rounded-l-lg"
+
+
+lg__rounded_t_xl : Html.Attribute msg
+lg__rounded_t_xl =
+    A.class "lg:rounded-t-xl"
+
+
+lg__rounded_r_xl : Html.Attribute msg
+lg__rounded_r_xl =
+    A.class "lg:rounded-r-xl"
+
+
+lg__rounded_b_xl : Html.Attribute msg
+lg__rounded_b_xl =
+    A.class "lg:rounded-b-xl"
+
+
+lg__rounded_l_xl : Html.Attribute msg
+lg__rounded_l_xl =
+    A.class "lg:rounded-l-xl"
+
+
+lg__rounded_t_2xl : Html.Attribute msg
+lg__rounded_t_2xl =
+    A.class "lg:rounded-t-2xl"
+
+
+lg__rounded_r_2xl : Html.Attribute msg
+lg__rounded_r_2xl =
+    A.class "lg:rounded-r-2xl"
+
+
+lg__rounded_b_2xl : Html.Attribute msg
+lg__rounded_b_2xl =
+    A.class "lg:rounded-b-2xl"
+
+
+lg__rounded_l_2xl : Html.Attribute msg
+lg__rounded_l_2xl =
+    A.class "lg:rounded-l-2xl"
+
+
+lg__rounded_t_3xl : Html.Attribute msg
+lg__rounded_t_3xl =
+    A.class "lg:rounded-t-3xl"
+
+
+lg__rounded_r_3xl : Html.Attribute msg
+lg__rounded_r_3xl =
+    A.class "lg:rounded-r-3xl"
+
+
+lg__rounded_b_3xl : Html.Attribute msg
+lg__rounded_b_3xl =
+    A.class "lg:rounded-b-3xl"
+
+
+lg__rounded_l_3xl : Html.Attribute msg
+lg__rounded_l_3xl =
+    A.class "lg:rounded-l-3xl"
 
 
 lg__rounded_t_full : Html.Attribute msg
@@ -59950,6 +84584,66 @@ lg__rounded_br_lg =
 lg__rounded_bl_lg : Html.Attribute msg
 lg__rounded_bl_lg =
     A.class "lg:rounded-bl-lg"
+
+
+lg__rounded_tl_xl : Html.Attribute msg
+lg__rounded_tl_xl =
+    A.class "lg:rounded-tl-xl"
+
+
+lg__rounded_tr_xl : Html.Attribute msg
+lg__rounded_tr_xl =
+    A.class "lg:rounded-tr-xl"
+
+
+lg__rounded_br_xl : Html.Attribute msg
+lg__rounded_br_xl =
+    A.class "lg:rounded-br-xl"
+
+
+lg__rounded_bl_xl : Html.Attribute msg
+lg__rounded_bl_xl =
+    A.class "lg:rounded-bl-xl"
+
+
+lg__rounded_tl_2xl : Html.Attribute msg
+lg__rounded_tl_2xl =
+    A.class "lg:rounded-tl-2xl"
+
+
+lg__rounded_tr_2xl : Html.Attribute msg
+lg__rounded_tr_2xl =
+    A.class "lg:rounded-tr-2xl"
+
+
+lg__rounded_br_2xl : Html.Attribute msg
+lg__rounded_br_2xl =
+    A.class "lg:rounded-br-2xl"
+
+
+lg__rounded_bl_2xl : Html.Attribute msg
+lg__rounded_bl_2xl =
+    A.class "lg:rounded-bl-2xl"
+
+
+lg__rounded_tl_3xl : Html.Attribute msg
+lg__rounded_tl_3xl =
+    A.class "lg:rounded-tl-3xl"
+
+
+lg__rounded_tr_3xl : Html.Attribute msg
+lg__rounded_tr_3xl =
+    A.class "lg:rounded-tr-3xl"
+
+
+lg__rounded_br_3xl : Html.Attribute msg
+lg__rounded_br_3xl =
+    A.class "lg:rounded-br-3xl"
+
+
+lg__rounded_bl_3xl : Html.Attribute msg
+lg__rounded_bl_3xl =
+    A.class "lg:rounded-bl-3xl"
 
 
 lg__rounded_tl_full : Html.Attribute msg
@@ -60287,6 +84981,11 @@ lg__inline_grid =
     A.class "lg:inline-grid"
 
 
+lg__contents : Html.Attribute msg
+lg__contents =
+    A.class "lg:contents"
+
+
 lg__hidden : Html.Attribute msg
 lg__hidden =
     A.class "lg:hidden"
@@ -60327,6 +85026,91 @@ lg__flex_no_wrap =
     A.class "lg:flex-no-wrap"
 
 
+lg__place_items_auto : Html.Attribute msg
+lg__place_items_auto =
+    A.class "lg:place-items-auto"
+
+
+lg__place_items_start : Html.Attribute msg
+lg__place_items_start =
+    A.class "lg:place-items-start"
+
+
+lg__place_items_end : Html.Attribute msg
+lg__place_items_end =
+    A.class "lg:place-items-end"
+
+
+lg__place_items_center : Html.Attribute msg
+lg__place_items_center =
+    A.class "lg:place-items-center"
+
+
+lg__place_items_stretch : Html.Attribute msg
+lg__place_items_stretch =
+    A.class "lg:place-items-stretch"
+
+
+lg__place_content_center : Html.Attribute msg
+lg__place_content_center =
+    A.class "lg:place-content-center"
+
+
+lg__place_content_start : Html.Attribute msg
+lg__place_content_start =
+    A.class "lg:place-content-start"
+
+
+lg__place_content_end : Html.Attribute msg
+lg__place_content_end =
+    A.class "lg:place-content-end"
+
+
+lg__place_content_between : Html.Attribute msg
+lg__place_content_between =
+    A.class "lg:place-content-between"
+
+
+lg__place_content_around : Html.Attribute msg
+lg__place_content_around =
+    A.class "lg:place-content-around"
+
+
+lg__place_content_evenly : Html.Attribute msg
+lg__place_content_evenly =
+    A.class "lg:place-content-evenly"
+
+
+lg__place_content_stretch : Html.Attribute msg
+lg__place_content_stretch =
+    A.class "lg:place-content-stretch"
+
+
+lg__place_self_auto : Html.Attribute msg
+lg__place_self_auto =
+    A.class "lg:place-self-auto"
+
+
+lg__place_self_start : Html.Attribute msg
+lg__place_self_start =
+    A.class "lg:place-self-start"
+
+
+lg__place_self_end : Html.Attribute msg
+lg__place_self_end =
+    A.class "lg:place-self-end"
+
+
+lg__place_self_center : Html.Attribute msg
+lg__place_self_center =
+    A.class "lg:place-self-center"
+
+
+lg__place_self_stretch : Html.Attribute msg
+lg__place_self_stretch =
+    A.class "lg:place-self-stretch"
+
+
 lg__items_start : Html.Attribute msg
 lg__items_start =
     A.class "lg:items-start"
@@ -60352,6 +85136,36 @@ lg__items_stretch =
     A.class "lg:items-stretch"
 
 
+lg__content_center : Html.Attribute msg
+lg__content_center =
+    A.class "lg:content-center"
+
+
+lg__content_start : Html.Attribute msg
+lg__content_start =
+    A.class "lg:content-start"
+
+
+lg__content_end : Html.Attribute msg
+lg__content_end =
+    A.class "lg:content-end"
+
+
+lg__content_between : Html.Attribute msg
+lg__content_between =
+    A.class "lg:content-between"
+
+
+lg__content_around : Html.Attribute msg
+lg__content_around =
+    A.class "lg:content-around"
+
+
+lg__content_evenly : Html.Attribute msg
+lg__content_evenly =
+    A.class "lg:content-evenly"
+
+
 lg__self_auto : Html.Attribute msg
 lg__self_auto =
     A.class "lg:self-auto"
@@ -60375,6 +85189,31 @@ lg__self_center =
 lg__self_stretch : Html.Attribute msg
 lg__self_stretch =
     A.class "lg:self-stretch"
+
+
+lg__justify_items_auto : Html.Attribute msg
+lg__justify_items_auto =
+    A.class "lg:justify-items-auto"
+
+
+lg__justify_items_start : Html.Attribute msg
+lg__justify_items_start =
+    A.class "lg:justify-items-start"
+
+
+lg__justify_items_end : Html.Attribute msg
+lg__justify_items_end =
+    A.class "lg:justify-items-end"
+
+
+lg__justify_items_center : Html.Attribute msg
+lg__justify_items_center =
+    A.class "lg:justify-items-center"
+
+
+lg__justify_items_stretch : Html.Attribute msg
+lg__justify_items_stretch =
+    A.class "lg:justify-items-stretch"
 
 
 lg__justify_start : Html.Attribute msg
@@ -60407,29 +85246,29 @@ lg__justify_evenly =
     A.class "lg:justify-evenly"
 
 
-lg__content_center : Html.Attribute msg
-lg__content_center =
-    A.class "lg:content-center"
+lg__justify_self_auto : Html.Attribute msg
+lg__justify_self_auto =
+    A.class "lg:justify-self-auto"
 
 
-lg__content_start : Html.Attribute msg
-lg__content_start =
-    A.class "lg:content-start"
+lg__justify_self_start : Html.Attribute msg
+lg__justify_self_start =
+    A.class "lg:justify-self-start"
 
 
-lg__content_end : Html.Attribute msg
-lg__content_end =
-    A.class "lg:content-end"
+lg__justify_self_end : Html.Attribute msg
+lg__justify_self_end =
+    A.class "lg:justify-self-end"
 
 
-lg__content_between : Html.Attribute msg
-lg__content_between =
-    A.class "lg:content-between"
+lg__justify_self_center : Html.Attribute msg
+lg__justify_self_center =
+    A.class "lg:justify-self-center"
 
 
-lg__content_around : Html.Attribute msg
-lg__content_around =
-    A.class "lg:content-around"
+lg__justify_self_stretch : Html.Attribute msg
+lg__justify_self_stretch =
+    A.class "lg:justify-self-stretch"
 
 
 lg__flex_1 : Html.Attribute msg
@@ -62612,9 +87451,29 @@ lg__outline_none =
     A.class "lg:outline-none"
 
 
+lg__outline_white : Html.Attribute msg
+lg__outline_white =
+    A.class "lg:outline-white"
+
+
+lg__outline_black : Html.Attribute msg
+lg__outline_black =
+    A.class "lg:outline-black"
+
+
 lg__focus__outline_none : Html.Attribute msg
 lg__focus__outline_none =
     A.class "lg:focus:outline-none"
+
+
+lg__focus__outline_white : Html.Attribute msg
+lg__focus__outline_white =
+    A.class "lg:focus:outline-white"
+
+
+lg__focus__outline_black : Html.Attribute msg
+lg__focus__outline_black =
+    A.class "lg:focus:outline-black"
 
 
 lg__overflow_auto : Html.Attribute msg
@@ -62685,6 +87544,51 @@ lg__scrolling_touch =
 lg__scrolling_auto : Html.Attribute msg
 lg__scrolling_auto =
     A.class "lg:scrolling-auto"
+
+
+lg__overscroll_auto : Html.Attribute msg
+lg__overscroll_auto =
+    A.class "lg:overscroll-auto"
+
+
+lg__overscroll_contain : Html.Attribute msg
+lg__overscroll_contain =
+    A.class "lg:overscroll-contain"
+
+
+lg__overscroll_none : Html.Attribute msg
+lg__overscroll_none =
+    A.class "lg:overscroll-none"
+
+
+lg__overscroll_y_auto : Html.Attribute msg
+lg__overscroll_y_auto =
+    A.class "lg:overscroll-y-auto"
+
+
+lg__overscroll_y_contain : Html.Attribute msg
+lg__overscroll_y_contain =
+    A.class "lg:overscroll-y-contain"
+
+
+lg__overscroll_y_none : Html.Attribute msg
+lg__overscroll_y_none =
+    A.class "lg:overscroll-y-none"
+
+
+lg__overscroll_x_auto : Html.Attribute msg
+lg__overscroll_x_auto =
+    A.class "lg:overscroll-x-auto"
+
+
+lg__overscroll_x_contain : Html.Attribute msg
+lg__overscroll_x_contain =
+    A.class "lg:overscroll-x-contain"
+
+
+lg__overscroll_x_none : Html.Attribute msg
+lg__overscroll_x_none =
+    A.class "lg:overscroll-x-none"
 
 
 lg__p_0 : Html.Attribute msg
@@ -66242,6 +91146,51 @@ lg__subpixel_antialiased =
     A.class "lg:subpixel-antialiased"
 
 
+lg__ordinal : Html.Attribute msg
+lg__ordinal =
+    A.class "lg:ordinal"
+
+
+lg__slashed_zero : Html.Attribute msg
+lg__slashed_zero =
+    A.class "lg:slashed-zero"
+
+
+lg__lining_nums : Html.Attribute msg
+lg__lining_nums =
+    A.class "lg:lining-nums"
+
+
+lg__oldstyle_nums : Html.Attribute msg
+lg__oldstyle_nums =
+    A.class "lg:oldstyle-nums"
+
+
+lg__proportional_nums : Html.Attribute msg
+lg__proportional_nums =
+    A.class "lg:proportional-nums"
+
+
+lg__tabular_nums : Html.Attribute msg
+lg__tabular_nums =
+    A.class "lg:tabular-nums"
+
+
+lg__diagonal_fractions : Html.Attribute msg
+lg__diagonal_fractions =
+    A.class "lg:diagonal-fractions"
+
+
+lg__stacked_fractions : Html.Attribute msg
+lg__stacked_fractions =
+    A.class "lg:stacked-fractions"
+
+
+lg__normal_nums : Html.Attribute msg
+lg__normal_nums =
+    A.class "lg:normal-nums"
+
+
 lg__tracking_tighter : Html.Attribute msg
 lg__tracking_tighter =
     A.class "lg:tracking-tighter"
@@ -66747,194 +91696,194 @@ lg__gap_px =
     A.class "lg:gap-px"
 
 
-lg__col_gap_0 : Html.Attribute msg
-lg__col_gap_0 =
-    A.class "lg:col-gap-0"
+lg__gap_x_0 : Html.Attribute msg
+lg__gap_x_0 =
+    A.class "lg:gap-x-0"
 
 
-lg__col_gap_1 : Html.Attribute msg
-lg__col_gap_1 =
-    A.class "lg:col-gap-1"
+lg__gap_x_1 : Html.Attribute msg
+lg__gap_x_1 =
+    A.class "lg:gap-x-1"
 
 
-lg__col_gap_2 : Html.Attribute msg
-lg__col_gap_2 =
-    A.class "lg:col-gap-2"
+lg__gap_x_2 : Html.Attribute msg
+lg__gap_x_2 =
+    A.class "lg:gap-x-2"
 
 
-lg__col_gap_3 : Html.Attribute msg
-lg__col_gap_3 =
-    A.class "lg:col-gap-3"
+lg__gap_x_3 : Html.Attribute msg
+lg__gap_x_3 =
+    A.class "lg:gap-x-3"
 
 
-lg__col_gap_4 : Html.Attribute msg
-lg__col_gap_4 =
-    A.class "lg:col-gap-4"
+lg__gap_x_4 : Html.Attribute msg
+lg__gap_x_4 =
+    A.class "lg:gap-x-4"
 
 
-lg__col_gap_5 : Html.Attribute msg
-lg__col_gap_5 =
-    A.class "lg:col-gap-5"
+lg__gap_x_5 : Html.Attribute msg
+lg__gap_x_5 =
+    A.class "lg:gap-x-5"
 
 
-lg__col_gap_6 : Html.Attribute msg
-lg__col_gap_6 =
-    A.class "lg:col-gap-6"
+lg__gap_x_6 : Html.Attribute msg
+lg__gap_x_6 =
+    A.class "lg:gap-x-6"
 
 
-lg__col_gap_8 : Html.Attribute msg
-lg__col_gap_8 =
-    A.class "lg:col-gap-8"
+lg__gap_x_8 : Html.Attribute msg
+lg__gap_x_8 =
+    A.class "lg:gap-x-8"
 
 
-lg__col_gap_10 : Html.Attribute msg
-lg__col_gap_10 =
-    A.class "lg:col-gap-10"
+lg__gap_x_10 : Html.Attribute msg
+lg__gap_x_10 =
+    A.class "lg:gap-x-10"
 
 
-lg__col_gap_12 : Html.Attribute msg
-lg__col_gap_12 =
-    A.class "lg:col-gap-12"
+lg__gap_x_12 : Html.Attribute msg
+lg__gap_x_12 =
+    A.class "lg:gap-x-12"
 
 
-lg__col_gap_16 : Html.Attribute msg
-lg__col_gap_16 =
-    A.class "lg:col-gap-16"
+lg__gap_x_16 : Html.Attribute msg
+lg__gap_x_16 =
+    A.class "lg:gap-x-16"
 
 
-lg__col_gap_20 : Html.Attribute msg
-lg__col_gap_20 =
-    A.class "lg:col-gap-20"
+lg__gap_x_20 : Html.Attribute msg
+lg__gap_x_20 =
+    A.class "lg:gap-x-20"
 
 
-lg__col_gap_24 : Html.Attribute msg
-lg__col_gap_24 =
-    A.class "lg:col-gap-24"
+lg__gap_x_24 : Html.Attribute msg
+lg__gap_x_24 =
+    A.class "lg:gap-x-24"
 
 
-lg__col_gap_32 : Html.Attribute msg
-lg__col_gap_32 =
-    A.class "lg:col-gap-32"
+lg__gap_x_32 : Html.Attribute msg
+lg__gap_x_32 =
+    A.class "lg:gap-x-32"
 
 
-lg__col_gap_40 : Html.Attribute msg
-lg__col_gap_40 =
-    A.class "lg:col-gap-40"
+lg__gap_x_40 : Html.Attribute msg
+lg__gap_x_40 =
+    A.class "lg:gap-x-40"
 
 
-lg__col_gap_48 : Html.Attribute msg
-lg__col_gap_48 =
-    A.class "lg:col-gap-48"
+lg__gap_x_48 : Html.Attribute msg
+lg__gap_x_48 =
+    A.class "lg:gap-x-48"
 
 
-lg__col_gap_56 : Html.Attribute msg
-lg__col_gap_56 =
-    A.class "lg:col-gap-56"
+lg__gap_x_56 : Html.Attribute msg
+lg__gap_x_56 =
+    A.class "lg:gap-x-56"
 
 
-lg__col_gap_64 : Html.Attribute msg
-lg__col_gap_64 =
-    A.class "lg:col-gap-64"
+lg__gap_x_64 : Html.Attribute msg
+lg__gap_x_64 =
+    A.class "lg:gap-x-64"
 
 
-lg__col_gap_px : Html.Attribute msg
-lg__col_gap_px =
-    A.class "lg:col-gap-px"
+lg__gap_x_px : Html.Attribute msg
+lg__gap_x_px =
+    A.class "lg:gap-x-px"
 
 
-lg__row_gap_0 : Html.Attribute msg
-lg__row_gap_0 =
-    A.class "lg:row-gap-0"
+lg__gap_y_0 : Html.Attribute msg
+lg__gap_y_0 =
+    A.class "lg:gap-y-0"
 
 
-lg__row_gap_1 : Html.Attribute msg
-lg__row_gap_1 =
-    A.class "lg:row-gap-1"
+lg__gap_y_1 : Html.Attribute msg
+lg__gap_y_1 =
+    A.class "lg:gap-y-1"
 
 
-lg__row_gap_2 : Html.Attribute msg
-lg__row_gap_2 =
-    A.class "lg:row-gap-2"
+lg__gap_y_2 : Html.Attribute msg
+lg__gap_y_2 =
+    A.class "lg:gap-y-2"
 
 
-lg__row_gap_3 : Html.Attribute msg
-lg__row_gap_3 =
-    A.class "lg:row-gap-3"
+lg__gap_y_3 : Html.Attribute msg
+lg__gap_y_3 =
+    A.class "lg:gap-y-3"
 
 
-lg__row_gap_4 : Html.Attribute msg
-lg__row_gap_4 =
-    A.class "lg:row-gap-4"
+lg__gap_y_4 : Html.Attribute msg
+lg__gap_y_4 =
+    A.class "lg:gap-y-4"
 
 
-lg__row_gap_5 : Html.Attribute msg
-lg__row_gap_5 =
-    A.class "lg:row-gap-5"
+lg__gap_y_5 : Html.Attribute msg
+lg__gap_y_5 =
+    A.class "lg:gap-y-5"
 
 
-lg__row_gap_6 : Html.Attribute msg
-lg__row_gap_6 =
-    A.class "lg:row-gap-6"
+lg__gap_y_6 : Html.Attribute msg
+lg__gap_y_6 =
+    A.class "lg:gap-y-6"
 
 
-lg__row_gap_8 : Html.Attribute msg
-lg__row_gap_8 =
-    A.class "lg:row-gap-8"
+lg__gap_y_8 : Html.Attribute msg
+lg__gap_y_8 =
+    A.class "lg:gap-y-8"
 
 
-lg__row_gap_10 : Html.Attribute msg
-lg__row_gap_10 =
-    A.class "lg:row-gap-10"
+lg__gap_y_10 : Html.Attribute msg
+lg__gap_y_10 =
+    A.class "lg:gap-y-10"
 
 
-lg__row_gap_12 : Html.Attribute msg
-lg__row_gap_12 =
-    A.class "lg:row-gap-12"
+lg__gap_y_12 : Html.Attribute msg
+lg__gap_y_12 =
+    A.class "lg:gap-y-12"
 
 
-lg__row_gap_16 : Html.Attribute msg
-lg__row_gap_16 =
-    A.class "lg:row-gap-16"
+lg__gap_y_16 : Html.Attribute msg
+lg__gap_y_16 =
+    A.class "lg:gap-y-16"
 
 
-lg__row_gap_20 : Html.Attribute msg
-lg__row_gap_20 =
-    A.class "lg:row-gap-20"
+lg__gap_y_20 : Html.Attribute msg
+lg__gap_y_20 =
+    A.class "lg:gap-y-20"
 
 
-lg__row_gap_24 : Html.Attribute msg
-lg__row_gap_24 =
-    A.class "lg:row-gap-24"
+lg__gap_y_24 : Html.Attribute msg
+lg__gap_y_24 =
+    A.class "lg:gap-y-24"
 
 
-lg__row_gap_32 : Html.Attribute msg
-lg__row_gap_32 =
-    A.class "lg:row-gap-32"
+lg__gap_y_32 : Html.Attribute msg
+lg__gap_y_32 =
+    A.class "lg:gap-y-32"
 
 
-lg__row_gap_40 : Html.Attribute msg
-lg__row_gap_40 =
-    A.class "lg:row-gap-40"
+lg__gap_y_40 : Html.Attribute msg
+lg__gap_y_40 =
+    A.class "lg:gap-y-40"
 
 
-lg__row_gap_48 : Html.Attribute msg
-lg__row_gap_48 =
-    A.class "lg:row-gap-48"
+lg__gap_y_48 : Html.Attribute msg
+lg__gap_y_48 =
+    A.class "lg:gap-y-48"
 
 
-lg__row_gap_56 : Html.Attribute msg
-lg__row_gap_56 =
-    A.class "lg:row-gap-56"
+lg__gap_y_56 : Html.Attribute msg
+lg__gap_y_56 =
+    A.class "lg:gap-y-56"
 
 
-lg__row_gap_64 : Html.Attribute msg
-lg__row_gap_64 =
-    A.class "lg:row-gap-64"
+lg__gap_y_64 : Html.Attribute msg
+lg__gap_y_64 =
+    A.class "lg:gap-y-64"
 
 
-lg__row_gap_px : Html.Attribute msg
-lg__row_gap_px =
-    A.class "lg:row-gap-px"
+lg__gap_y_px : Html.Attribute msg
+lg__gap_y_px =
+    A.class "lg:gap-y-px"
 
 
 lg__grid_flow_row : Html.Attribute msg
@@ -67027,6 +91976,26 @@ lg__grid_cols_header =
     A.class "lg:grid-cols-header"
 
 
+lg__auto_cols_auto : Html.Attribute msg
+lg__auto_cols_auto =
+    A.class "lg:auto-cols-auto"
+
+
+lg__auto_cols_min : Html.Attribute msg
+lg__auto_cols_min =
+    A.class "lg:auto-cols-min"
+
+
+lg__auto_cols_max : Html.Attribute msg
+lg__auto_cols_max =
+    A.class "lg:auto-cols-max"
+
+
+lg__auto_cols_fr : Html.Attribute msg
+lg__auto_cols_fr =
+    A.class "lg:auto-cols-fr"
+
+
 lg__col_auto : Html.Attribute msg
 lg__col_auto =
     A.class "lg:col-auto"
@@ -67090,6 +92059,11 @@ lg__col_span_11 =
 lg__col_span_12 : Html.Attribute msg
 lg__col_span_12 =
     A.class "lg:col-span-12"
+
+
+lg__col_span_full : Html.Attribute msg
+lg__col_span_full =
+    A.class "lg:col-span-full"
 
 
 lg__col_start_1 : Html.Attribute msg
@@ -67267,6 +92241,26 @@ lg__grid_rows_none =
     A.class "lg:grid-rows-none"
 
 
+lg__auto_rows_auto : Html.Attribute msg
+lg__auto_rows_auto =
+    A.class "lg:auto-rows-auto"
+
+
+lg__auto_rows_min : Html.Attribute msg
+lg__auto_rows_min =
+    A.class "lg:auto-rows-min"
+
+
+lg__auto_rows_max : Html.Attribute msg
+lg__auto_rows_max =
+    A.class "lg:auto-rows-max"
+
+
+lg__auto_rows_fr : Html.Attribute msg
+lg__auto_rows_fr =
+    A.class "lg:auto-rows-fr"
+
+
 lg__row_auto : Html.Attribute msg
 lg__row_auto =
     A.class "lg:row-auto"
@@ -67300,6 +92294,11 @@ lg__row_span_5 =
 lg__row_span_6 : Html.Attribute msg
 lg__row_span_6 =
     A.class "lg:row-span-6"
+
+
+lg__row_span_full : Html.Attribute msg
+lg__row_span_full =
+    A.class "lg:row-span-full"
 
 
 lg__row_start_1 : Html.Attribute msg
@@ -67892,6 +92891,31 @@ lg__rotate_0 =
     A.class "lg:rotate-0"
 
 
+lg__rotate_1 : Html.Attribute msg
+lg__rotate_1 =
+    A.class "lg:rotate-1"
+
+
+lg__rotate_2 : Html.Attribute msg
+lg__rotate_2 =
+    A.class "lg:rotate-2"
+
+
+lg__rotate_3 : Html.Attribute msg
+lg__rotate_3 =
+    A.class "lg:rotate-3"
+
+
+lg__rotate_6 : Html.Attribute msg
+lg__rotate_6 =
+    A.class "lg:rotate-6"
+
+
+lg__rotate_12 : Html.Attribute msg
+lg__rotate_12 =
+    A.class "lg:rotate-12"
+
+
 lg__rotate_45 : Html.Attribute msg
 lg__rotate_45 =
     A.class "lg:rotate-45"
@@ -67922,9 +92946,59 @@ lg__neg_rotate_45 =
     A.class "lg:-rotate-45"
 
 
+lg__neg_rotate_12 : Html.Attribute msg
+lg__neg_rotate_12 =
+    A.class "lg:-rotate-12"
+
+
+lg__neg_rotate_6 : Html.Attribute msg
+lg__neg_rotate_6 =
+    A.class "lg:-rotate-6"
+
+
+lg__neg_rotate_3 : Html.Attribute msg
+lg__neg_rotate_3 =
+    A.class "lg:-rotate-3"
+
+
+lg__neg_rotate_2 : Html.Attribute msg
+lg__neg_rotate_2 =
+    A.class "lg:-rotate-2"
+
+
+lg__neg_rotate_1 : Html.Attribute msg
+lg__neg_rotate_1 =
+    A.class "lg:-rotate-1"
+
+
 lg__hover__rotate_0 : Html.Attribute msg
 lg__hover__rotate_0 =
     A.class "lg:hover:rotate-0"
+
+
+lg__hover__rotate_1 : Html.Attribute msg
+lg__hover__rotate_1 =
+    A.class "lg:hover:rotate-1"
+
+
+lg__hover__rotate_2 : Html.Attribute msg
+lg__hover__rotate_2 =
+    A.class "lg:hover:rotate-2"
+
+
+lg__hover__rotate_3 : Html.Attribute msg
+lg__hover__rotate_3 =
+    A.class "lg:hover:rotate-3"
+
+
+lg__hover__rotate_6 : Html.Attribute msg
+lg__hover__rotate_6 =
+    A.class "lg:hover:rotate-6"
+
+
+lg__hover__rotate_12 : Html.Attribute msg
+lg__hover__rotate_12 =
+    A.class "lg:hover:rotate-12"
 
 
 lg__hover__rotate_45 : Html.Attribute msg
@@ -67957,9 +93031,59 @@ lg__hover__neg_rotate_45 =
     A.class "lg:hover:-rotate-45"
 
 
+lg__hover__neg_rotate_12 : Html.Attribute msg
+lg__hover__neg_rotate_12 =
+    A.class "lg:hover:-rotate-12"
+
+
+lg__hover__neg_rotate_6 : Html.Attribute msg
+lg__hover__neg_rotate_6 =
+    A.class "lg:hover:-rotate-6"
+
+
+lg__hover__neg_rotate_3 : Html.Attribute msg
+lg__hover__neg_rotate_3 =
+    A.class "lg:hover:-rotate-3"
+
+
+lg__hover__neg_rotate_2 : Html.Attribute msg
+lg__hover__neg_rotate_2 =
+    A.class "lg:hover:-rotate-2"
+
+
+lg__hover__neg_rotate_1 : Html.Attribute msg
+lg__hover__neg_rotate_1 =
+    A.class "lg:hover:-rotate-1"
+
+
 lg__focus__rotate_0 : Html.Attribute msg
 lg__focus__rotate_0 =
     A.class "lg:focus:rotate-0"
+
+
+lg__focus__rotate_1 : Html.Attribute msg
+lg__focus__rotate_1 =
+    A.class "lg:focus:rotate-1"
+
+
+lg__focus__rotate_2 : Html.Attribute msg
+lg__focus__rotate_2 =
+    A.class "lg:focus:rotate-2"
+
+
+lg__focus__rotate_3 : Html.Attribute msg
+lg__focus__rotate_3 =
+    A.class "lg:focus:rotate-3"
+
+
+lg__focus__rotate_6 : Html.Attribute msg
+lg__focus__rotate_6 =
+    A.class "lg:focus:rotate-6"
+
+
+lg__focus__rotate_12 : Html.Attribute msg
+lg__focus__rotate_12 =
+    A.class "lg:focus:rotate-12"
 
 
 lg__focus__rotate_45 : Html.Attribute msg
@@ -67990,6 +93114,31 @@ lg__focus__neg_rotate_90 =
 lg__focus__neg_rotate_45 : Html.Attribute msg
 lg__focus__neg_rotate_45 =
     A.class "lg:focus:-rotate-45"
+
+
+lg__focus__neg_rotate_12 : Html.Attribute msg
+lg__focus__neg_rotate_12 =
+    A.class "lg:focus:-rotate-12"
+
+
+lg__focus__neg_rotate_6 : Html.Attribute msg
+lg__focus__neg_rotate_6 =
+    A.class "lg:focus:-rotate-6"
+
+
+lg__focus__neg_rotate_3 : Html.Attribute msg
+lg__focus__neg_rotate_3 =
+    A.class "lg:focus:-rotate-3"
+
+
+lg__focus__neg_rotate_2 : Html.Attribute msg
+lg__focus__neg_rotate_2 =
+    A.class "lg:focus:-rotate-2"
+
+
+lg__focus__neg_rotate_1 : Html.Attribute msg
+lg__focus__neg_rotate_1 =
+    A.class "lg:focus:-rotate-1"
 
 
 lg__translate_x_0 : Html.Attribute msg
@@ -69227,6 +94376,16 @@ lg__skew_x_0 =
     A.class "lg:skew-x-0"
 
 
+lg__skew_x_1 : Html.Attribute msg
+lg__skew_x_1 =
+    A.class "lg:skew-x-1"
+
+
+lg__skew_x_2 : Html.Attribute msg
+lg__skew_x_2 =
+    A.class "lg:skew-x-2"
+
+
 lg__skew_x_3 : Html.Attribute msg
 lg__skew_x_3 =
     A.class "lg:skew-x-3"
@@ -69257,9 +94416,29 @@ lg__neg_skew_x_3 =
     A.class "lg:-skew-x-3"
 
 
+lg__neg_skew_x_2 : Html.Attribute msg
+lg__neg_skew_x_2 =
+    A.class "lg:-skew-x-2"
+
+
+lg__neg_skew_x_1 : Html.Attribute msg
+lg__neg_skew_x_1 =
+    A.class "lg:-skew-x-1"
+
+
 lg__skew_y_0 : Html.Attribute msg
 lg__skew_y_0 =
     A.class "lg:skew-y-0"
+
+
+lg__skew_y_1 : Html.Attribute msg
+lg__skew_y_1 =
+    A.class "lg:skew-y-1"
+
+
+lg__skew_y_2 : Html.Attribute msg
+lg__skew_y_2 =
+    A.class "lg:skew-y-2"
 
 
 lg__skew_y_3 : Html.Attribute msg
@@ -69292,9 +94471,29 @@ lg__neg_skew_y_3 =
     A.class "lg:-skew-y-3"
 
 
+lg__neg_skew_y_2 : Html.Attribute msg
+lg__neg_skew_y_2 =
+    A.class "lg:-skew-y-2"
+
+
+lg__neg_skew_y_1 : Html.Attribute msg
+lg__neg_skew_y_1 =
+    A.class "lg:-skew-y-1"
+
+
 lg__hover__skew_x_0 : Html.Attribute msg
 lg__hover__skew_x_0 =
     A.class "lg:hover:skew-x-0"
+
+
+lg__hover__skew_x_1 : Html.Attribute msg
+lg__hover__skew_x_1 =
+    A.class "lg:hover:skew-x-1"
+
+
+lg__hover__skew_x_2 : Html.Attribute msg
+lg__hover__skew_x_2 =
+    A.class "lg:hover:skew-x-2"
 
 
 lg__hover__skew_x_3 : Html.Attribute msg
@@ -69327,9 +94526,29 @@ lg__hover__neg_skew_x_3 =
     A.class "lg:hover:-skew-x-3"
 
 
+lg__hover__neg_skew_x_2 : Html.Attribute msg
+lg__hover__neg_skew_x_2 =
+    A.class "lg:hover:-skew-x-2"
+
+
+lg__hover__neg_skew_x_1 : Html.Attribute msg
+lg__hover__neg_skew_x_1 =
+    A.class "lg:hover:-skew-x-1"
+
+
 lg__hover__skew_y_0 : Html.Attribute msg
 lg__hover__skew_y_0 =
     A.class "lg:hover:skew-y-0"
+
+
+lg__hover__skew_y_1 : Html.Attribute msg
+lg__hover__skew_y_1 =
+    A.class "lg:hover:skew-y-1"
+
+
+lg__hover__skew_y_2 : Html.Attribute msg
+lg__hover__skew_y_2 =
+    A.class "lg:hover:skew-y-2"
 
 
 lg__hover__skew_y_3 : Html.Attribute msg
@@ -69362,9 +94581,29 @@ lg__hover__neg_skew_y_3 =
     A.class "lg:hover:-skew-y-3"
 
 
+lg__hover__neg_skew_y_2 : Html.Attribute msg
+lg__hover__neg_skew_y_2 =
+    A.class "lg:hover:-skew-y-2"
+
+
+lg__hover__neg_skew_y_1 : Html.Attribute msg
+lg__hover__neg_skew_y_1 =
+    A.class "lg:hover:-skew-y-1"
+
+
 lg__focus__skew_x_0 : Html.Attribute msg
 lg__focus__skew_x_0 =
     A.class "lg:focus:skew-x-0"
+
+
+lg__focus__skew_x_1 : Html.Attribute msg
+lg__focus__skew_x_1 =
+    A.class "lg:focus:skew-x-1"
+
+
+lg__focus__skew_x_2 : Html.Attribute msg
+lg__focus__skew_x_2 =
+    A.class "lg:focus:skew-x-2"
 
 
 lg__focus__skew_x_3 : Html.Attribute msg
@@ -69397,9 +94636,29 @@ lg__focus__neg_skew_x_3 =
     A.class "lg:focus:-skew-x-3"
 
 
+lg__focus__neg_skew_x_2 : Html.Attribute msg
+lg__focus__neg_skew_x_2 =
+    A.class "lg:focus:-skew-x-2"
+
+
+lg__focus__neg_skew_x_1 : Html.Attribute msg
+lg__focus__neg_skew_x_1 =
+    A.class "lg:focus:-skew-x-1"
+
+
 lg__focus__skew_y_0 : Html.Attribute msg
 lg__focus__skew_y_0 =
     A.class "lg:focus:skew-y-0"
+
+
+lg__focus__skew_y_1 : Html.Attribute msg
+lg__focus__skew_y_1 =
+    A.class "lg:focus:skew-y-1"
+
+
+lg__focus__skew_y_2 : Html.Attribute msg
+lg__focus__skew_y_2 =
+    A.class "lg:focus:skew-y-2"
 
 
 lg__focus__skew_y_3 : Html.Attribute msg
@@ -69430,6 +94689,16 @@ lg__focus__neg_skew_y_6 =
 lg__focus__neg_skew_y_3 : Html.Attribute msg
 lg__focus__neg_skew_y_3 =
     A.class "lg:focus:-skew-y-3"
+
+
+lg__focus__neg_skew_y_2 : Html.Attribute msg
+lg__focus__neg_skew_y_2 =
+    A.class "lg:focus:-skew-y-2"
+
+
+lg__focus__neg_skew_y_1 : Html.Attribute msg
+lg__focus__neg_skew_y_1 =
+    A.class "lg:focus:-skew-y-1"
 
 
 lg__transition_none : Html.Attribute msg
@@ -69565,6 +94834,36 @@ lg__delay_700 =
 lg__delay_1000 : Html.Attribute msg
 lg__delay_1000 =
     A.class "lg:delay-1000"
+
+
+lg__animate_none : Html.Attribute msg
+lg__animate_none =
+    A.class "lg:animate-none"
+
+
+lg__animate_spin : Html.Attribute msg
+lg__animate_spin =
+    A.class "lg:animate-spin"
+
+
+lg__animate_ping : Html.Attribute msg
+lg__animate_ping =
+    A.class "lg:animate-ping"
+
+
+lg__animate_pulse : Html.Attribute msg
+lg__animate_pulse =
+    A.class "lg:animate-pulse"
+
+
+lg__animate_bounce : Html.Attribute msg
+lg__animate_bounce =
+    A.class "lg:animate-bounce"
+
+
+xl__container : Html.Attribute msg
+xl__container =
+    A.class "xl:container"
 
 
 xl__space_y_0 : Html.Attribute msg
@@ -70477,6 +95776,31 @@ xl__divide_pink_900 =
     A.class "xl:divide-pink-900"
 
 
+xl__divide_solid : Html.Attribute msg
+xl__divide_solid =
+    A.class "xl:divide-solid"
+
+
+xl__divide_dashed : Html.Attribute msg
+xl__divide_dashed =
+    A.class "xl:divide-dashed"
+
+
+xl__divide_dotted : Html.Attribute msg
+xl__divide_dotted =
+    A.class "xl:divide-dotted"
+
+
+xl__divide_double : Html.Attribute msg
+xl__divide_double =
+    A.class "xl:divide-double"
+
+
+xl__divide_none : Html.Attribute msg
+xl__divide_none =
+    A.class "xl:divide-none"
+
+
 xl__divide_opacity_0 : Html.Attribute msg
 xl__divide_opacity_0 =
     A.class "xl:divide-opacity-0"
@@ -70540,6 +95864,26 @@ xl__bg_local =
 xl__bg_scroll : Html.Attribute msg
 xl__bg_scroll =
     A.class "xl:bg-scroll"
+
+
+xl__bg_clip_border : Html.Attribute msg
+xl__bg_clip_border =
+    A.class "xl:bg-clip-border"
+
+
+xl__bg_clip_padding : Html.Attribute msg
+xl__bg_clip_padding =
+    A.class "xl:bg-clip-padding"
+
+
+xl__bg_clip_content : Html.Attribute msg
+xl__bg_clip_content =
+    A.class "xl:bg-clip-content"
+
+
+xl__bg_clip_text : Html.Attribute msg
+xl__bg_clip_text =
+    A.class "xl:bg-clip-text"
 
 
 xl__bg_transparent : Html.Attribute msg
@@ -71950,6 +97294,4281 @@ xl__focus__bg_pink_800 =
 xl__focus__bg_pink_900 : Html.Attribute msg
 xl__focus__bg_pink_900 =
     A.class "xl:focus:bg-pink-900"
+
+
+xl__bg_none : Html.Attribute msg
+xl__bg_none =
+    A.class "xl:bg-none"
+
+
+xl__bg_gradient_to_t : Html.Attribute msg
+xl__bg_gradient_to_t =
+    A.class "xl:bg-gradient-to-t"
+
+
+xl__bg_gradient_to_tr : Html.Attribute msg
+xl__bg_gradient_to_tr =
+    A.class "xl:bg-gradient-to-tr"
+
+
+xl__bg_gradient_to_r : Html.Attribute msg
+xl__bg_gradient_to_r =
+    A.class "xl:bg-gradient-to-r"
+
+
+xl__bg_gradient_to_br : Html.Attribute msg
+xl__bg_gradient_to_br =
+    A.class "xl:bg-gradient-to-br"
+
+
+xl__bg_gradient_to_b : Html.Attribute msg
+xl__bg_gradient_to_b =
+    A.class "xl:bg-gradient-to-b"
+
+
+xl__bg_gradient_to_bl : Html.Attribute msg
+xl__bg_gradient_to_bl =
+    A.class "xl:bg-gradient-to-bl"
+
+
+xl__bg_gradient_to_l : Html.Attribute msg
+xl__bg_gradient_to_l =
+    A.class "xl:bg-gradient-to-l"
+
+
+xl__bg_gradient_to_tl : Html.Attribute msg
+xl__bg_gradient_to_tl =
+    A.class "xl:bg-gradient-to-tl"
+
+
+xl__from_transparent : Html.Attribute msg
+xl__from_transparent =
+    A.class "xl:from-transparent"
+
+
+xl__from_current : Html.Attribute msg
+xl__from_current =
+    A.class "xl:from-current"
+
+
+xl__from_black : Html.Attribute msg
+xl__from_black =
+    A.class "xl:from-black"
+
+
+xl__from_white : Html.Attribute msg
+xl__from_white =
+    A.class "xl:from-white"
+
+
+xl__from_gray_100 : Html.Attribute msg
+xl__from_gray_100 =
+    A.class "xl:from-gray-100"
+
+
+xl__from_gray_200 : Html.Attribute msg
+xl__from_gray_200 =
+    A.class "xl:from-gray-200"
+
+
+xl__from_gray_300 : Html.Attribute msg
+xl__from_gray_300 =
+    A.class "xl:from-gray-300"
+
+
+xl__from_gray_400 : Html.Attribute msg
+xl__from_gray_400 =
+    A.class "xl:from-gray-400"
+
+
+xl__from_gray_500 : Html.Attribute msg
+xl__from_gray_500 =
+    A.class "xl:from-gray-500"
+
+
+xl__from_gray_600 : Html.Attribute msg
+xl__from_gray_600 =
+    A.class "xl:from-gray-600"
+
+
+xl__from_gray_700 : Html.Attribute msg
+xl__from_gray_700 =
+    A.class "xl:from-gray-700"
+
+
+xl__from_gray_800 : Html.Attribute msg
+xl__from_gray_800 =
+    A.class "xl:from-gray-800"
+
+
+xl__from_gray_900 : Html.Attribute msg
+xl__from_gray_900 =
+    A.class "xl:from-gray-900"
+
+
+xl__from_red_100 : Html.Attribute msg
+xl__from_red_100 =
+    A.class "xl:from-red-100"
+
+
+xl__from_red_200 : Html.Attribute msg
+xl__from_red_200 =
+    A.class "xl:from-red-200"
+
+
+xl__from_red_300 : Html.Attribute msg
+xl__from_red_300 =
+    A.class "xl:from-red-300"
+
+
+xl__from_red_400 : Html.Attribute msg
+xl__from_red_400 =
+    A.class "xl:from-red-400"
+
+
+xl__from_red_500 : Html.Attribute msg
+xl__from_red_500 =
+    A.class "xl:from-red-500"
+
+
+xl__from_red_600 : Html.Attribute msg
+xl__from_red_600 =
+    A.class "xl:from-red-600"
+
+
+xl__from_red_700 : Html.Attribute msg
+xl__from_red_700 =
+    A.class "xl:from-red-700"
+
+
+xl__from_red_800 : Html.Attribute msg
+xl__from_red_800 =
+    A.class "xl:from-red-800"
+
+
+xl__from_red_900 : Html.Attribute msg
+xl__from_red_900 =
+    A.class "xl:from-red-900"
+
+
+xl__from_orange_100 : Html.Attribute msg
+xl__from_orange_100 =
+    A.class "xl:from-orange-100"
+
+
+xl__from_orange_200 : Html.Attribute msg
+xl__from_orange_200 =
+    A.class "xl:from-orange-200"
+
+
+xl__from_orange_300 : Html.Attribute msg
+xl__from_orange_300 =
+    A.class "xl:from-orange-300"
+
+
+xl__from_orange_400 : Html.Attribute msg
+xl__from_orange_400 =
+    A.class "xl:from-orange-400"
+
+
+xl__from_orange_500 : Html.Attribute msg
+xl__from_orange_500 =
+    A.class "xl:from-orange-500"
+
+
+xl__from_orange_600 : Html.Attribute msg
+xl__from_orange_600 =
+    A.class "xl:from-orange-600"
+
+
+xl__from_orange_700 : Html.Attribute msg
+xl__from_orange_700 =
+    A.class "xl:from-orange-700"
+
+
+xl__from_orange_800 : Html.Attribute msg
+xl__from_orange_800 =
+    A.class "xl:from-orange-800"
+
+
+xl__from_orange_900 : Html.Attribute msg
+xl__from_orange_900 =
+    A.class "xl:from-orange-900"
+
+
+xl__from_yellow_100 : Html.Attribute msg
+xl__from_yellow_100 =
+    A.class "xl:from-yellow-100"
+
+
+xl__from_yellow_200 : Html.Attribute msg
+xl__from_yellow_200 =
+    A.class "xl:from-yellow-200"
+
+
+xl__from_yellow_300 : Html.Attribute msg
+xl__from_yellow_300 =
+    A.class "xl:from-yellow-300"
+
+
+xl__from_yellow_400 : Html.Attribute msg
+xl__from_yellow_400 =
+    A.class "xl:from-yellow-400"
+
+
+xl__from_yellow_500 : Html.Attribute msg
+xl__from_yellow_500 =
+    A.class "xl:from-yellow-500"
+
+
+xl__from_yellow_600 : Html.Attribute msg
+xl__from_yellow_600 =
+    A.class "xl:from-yellow-600"
+
+
+xl__from_yellow_700 : Html.Attribute msg
+xl__from_yellow_700 =
+    A.class "xl:from-yellow-700"
+
+
+xl__from_yellow_800 : Html.Attribute msg
+xl__from_yellow_800 =
+    A.class "xl:from-yellow-800"
+
+
+xl__from_yellow_900 : Html.Attribute msg
+xl__from_yellow_900 =
+    A.class "xl:from-yellow-900"
+
+
+xl__from_green_100 : Html.Attribute msg
+xl__from_green_100 =
+    A.class "xl:from-green-100"
+
+
+xl__from_green_200 : Html.Attribute msg
+xl__from_green_200 =
+    A.class "xl:from-green-200"
+
+
+xl__from_green_300 : Html.Attribute msg
+xl__from_green_300 =
+    A.class "xl:from-green-300"
+
+
+xl__from_green_400 : Html.Attribute msg
+xl__from_green_400 =
+    A.class "xl:from-green-400"
+
+
+xl__from_green_500 : Html.Attribute msg
+xl__from_green_500 =
+    A.class "xl:from-green-500"
+
+
+xl__from_green_600 : Html.Attribute msg
+xl__from_green_600 =
+    A.class "xl:from-green-600"
+
+
+xl__from_green_700 : Html.Attribute msg
+xl__from_green_700 =
+    A.class "xl:from-green-700"
+
+
+xl__from_green_800 : Html.Attribute msg
+xl__from_green_800 =
+    A.class "xl:from-green-800"
+
+
+xl__from_green_900 : Html.Attribute msg
+xl__from_green_900 =
+    A.class "xl:from-green-900"
+
+
+xl__from_teal_100 : Html.Attribute msg
+xl__from_teal_100 =
+    A.class "xl:from-teal-100"
+
+
+xl__from_teal_200 : Html.Attribute msg
+xl__from_teal_200 =
+    A.class "xl:from-teal-200"
+
+
+xl__from_teal_300 : Html.Attribute msg
+xl__from_teal_300 =
+    A.class "xl:from-teal-300"
+
+
+xl__from_teal_400 : Html.Attribute msg
+xl__from_teal_400 =
+    A.class "xl:from-teal-400"
+
+
+xl__from_teal_500 : Html.Attribute msg
+xl__from_teal_500 =
+    A.class "xl:from-teal-500"
+
+
+xl__from_teal_600 : Html.Attribute msg
+xl__from_teal_600 =
+    A.class "xl:from-teal-600"
+
+
+xl__from_teal_700 : Html.Attribute msg
+xl__from_teal_700 =
+    A.class "xl:from-teal-700"
+
+
+xl__from_teal_800 : Html.Attribute msg
+xl__from_teal_800 =
+    A.class "xl:from-teal-800"
+
+
+xl__from_teal_900 : Html.Attribute msg
+xl__from_teal_900 =
+    A.class "xl:from-teal-900"
+
+
+xl__from_blue_100 : Html.Attribute msg
+xl__from_blue_100 =
+    A.class "xl:from-blue-100"
+
+
+xl__from_blue_200 : Html.Attribute msg
+xl__from_blue_200 =
+    A.class "xl:from-blue-200"
+
+
+xl__from_blue_300 : Html.Attribute msg
+xl__from_blue_300 =
+    A.class "xl:from-blue-300"
+
+
+xl__from_blue_400 : Html.Attribute msg
+xl__from_blue_400 =
+    A.class "xl:from-blue-400"
+
+
+xl__from_blue_500 : Html.Attribute msg
+xl__from_blue_500 =
+    A.class "xl:from-blue-500"
+
+
+xl__from_blue_600 : Html.Attribute msg
+xl__from_blue_600 =
+    A.class "xl:from-blue-600"
+
+
+xl__from_blue_700 : Html.Attribute msg
+xl__from_blue_700 =
+    A.class "xl:from-blue-700"
+
+
+xl__from_blue_800 : Html.Attribute msg
+xl__from_blue_800 =
+    A.class "xl:from-blue-800"
+
+
+xl__from_blue_900 : Html.Attribute msg
+xl__from_blue_900 =
+    A.class "xl:from-blue-900"
+
+
+xl__from_indigo_100 : Html.Attribute msg
+xl__from_indigo_100 =
+    A.class "xl:from-indigo-100"
+
+
+xl__from_indigo_200 : Html.Attribute msg
+xl__from_indigo_200 =
+    A.class "xl:from-indigo-200"
+
+
+xl__from_indigo_300 : Html.Attribute msg
+xl__from_indigo_300 =
+    A.class "xl:from-indigo-300"
+
+
+xl__from_indigo_400 : Html.Attribute msg
+xl__from_indigo_400 =
+    A.class "xl:from-indigo-400"
+
+
+xl__from_indigo_500 : Html.Attribute msg
+xl__from_indigo_500 =
+    A.class "xl:from-indigo-500"
+
+
+xl__from_indigo_600 : Html.Attribute msg
+xl__from_indigo_600 =
+    A.class "xl:from-indigo-600"
+
+
+xl__from_indigo_700 : Html.Attribute msg
+xl__from_indigo_700 =
+    A.class "xl:from-indigo-700"
+
+
+xl__from_indigo_800 : Html.Attribute msg
+xl__from_indigo_800 =
+    A.class "xl:from-indigo-800"
+
+
+xl__from_indigo_900 : Html.Attribute msg
+xl__from_indigo_900 =
+    A.class "xl:from-indigo-900"
+
+
+xl__from_purple_100 : Html.Attribute msg
+xl__from_purple_100 =
+    A.class "xl:from-purple-100"
+
+
+xl__from_purple_200 : Html.Attribute msg
+xl__from_purple_200 =
+    A.class "xl:from-purple-200"
+
+
+xl__from_purple_300 : Html.Attribute msg
+xl__from_purple_300 =
+    A.class "xl:from-purple-300"
+
+
+xl__from_purple_400 : Html.Attribute msg
+xl__from_purple_400 =
+    A.class "xl:from-purple-400"
+
+
+xl__from_purple_500 : Html.Attribute msg
+xl__from_purple_500 =
+    A.class "xl:from-purple-500"
+
+
+xl__from_purple_600 : Html.Attribute msg
+xl__from_purple_600 =
+    A.class "xl:from-purple-600"
+
+
+xl__from_purple_700 : Html.Attribute msg
+xl__from_purple_700 =
+    A.class "xl:from-purple-700"
+
+
+xl__from_purple_800 : Html.Attribute msg
+xl__from_purple_800 =
+    A.class "xl:from-purple-800"
+
+
+xl__from_purple_900 : Html.Attribute msg
+xl__from_purple_900 =
+    A.class "xl:from-purple-900"
+
+
+xl__from_pink_100 : Html.Attribute msg
+xl__from_pink_100 =
+    A.class "xl:from-pink-100"
+
+
+xl__from_pink_200 : Html.Attribute msg
+xl__from_pink_200 =
+    A.class "xl:from-pink-200"
+
+
+xl__from_pink_300 : Html.Attribute msg
+xl__from_pink_300 =
+    A.class "xl:from-pink-300"
+
+
+xl__from_pink_400 : Html.Attribute msg
+xl__from_pink_400 =
+    A.class "xl:from-pink-400"
+
+
+xl__from_pink_500 : Html.Attribute msg
+xl__from_pink_500 =
+    A.class "xl:from-pink-500"
+
+
+xl__from_pink_600 : Html.Attribute msg
+xl__from_pink_600 =
+    A.class "xl:from-pink-600"
+
+
+xl__from_pink_700 : Html.Attribute msg
+xl__from_pink_700 =
+    A.class "xl:from-pink-700"
+
+
+xl__from_pink_800 : Html.Attribute msg
+xl__from_pink_800 =
+    A.class "xl:from-pink-800"
+
+
+xl__from_pink_900 : Html.Attribute msg
+xl__from_pink_900 =
+    A.class "xl:from-pink-900"
+
+
+xl__via_transparent : Html.Attribute msg
+xl__via_transparent =
+    A.class "xl:via-transparent"
+
+
+xl__via_current : Html.Attribute msg
+xl__via_current =
+    A.class "xl:via-current"
+
+
+xl__via_black : Html.Attribute msg
+xl__via_black =
+    A.class "xl:via-black"
+
+
+xl__via_white : Html.Attribute msg
+xl__via_white =
+    A.class "xl:via-white"
+
+
+xl__via_gray_100 : Html.Attribute msg
+xl__via_gray_100 =
+    A.class "xl:via-gray-100"
+
+
+xl__via_gray_200 : Html.Attribute msg
+xl__via_gray_200 =
+    A.class "xl:via-gray-200"
+
+
+xl__via_gray_300 : Html.Attribute msg
+xl__via_gray_300 =
+    A.class "xl:via-gray-300"
+
+
+xl__via_gray_400 : Html.Attribute msg
+xl__via_gray_400 =
+    A.class "xl:via-gray-400"
+
+
+xl__via_gray_500 : Html.Attribute msg
+xl__via_gray_500 =
+    A.class "xl:via-gray-500"
+
+
+xl__via_gray_600 : Html.Attribute msg
+xl__via_gray_600 =
+    A.class "xl:via-gray-600"
+
+
+xl__via_gray_700 : Html.Attribute msg
+xl__via_gray_700 =
+    A.class "xl:via-gray-700"
+
+
+xl__via_gray_800 : Html.Attribute msg
+xl__via_gray_800 =
+    A.class "xl:via-gray-800"
+
+
+xl__via_gray_900 : Html.Attribute msg
+xl__via_gray_900 =
+    A.class "xl:via-gray-900"
+
+
+xl__via_red_100 : Html.Attribute msg
+xl__via_red_100 =
+    A.class "xl:via-red-100"
+
+
+xl__via_red_200 : Html.Attribute msg
+xl__via_red_200 =
+    A.class "xl:via-red-200"
+
+
+xl__via_red_300 : Html.Attribute msg
+xl__via_red_300 =
+    A.class "xl:via-red-300"
+
+
+xl__via_red_400 : Html.Attribute msg
+xl__via_red_400 =
+    A.class "xl:via-red-400"
+
+
+xl__via_red_500 : Html.Attribute msg
+xl__via_red_500 =
+    A.class "xl:via-red-500"
+
+
+xl__via_red_600 : Html.Attribute msg
+xl__via_red_600 =
+    A.class "xl:via-red-600"
+
+
+xl__via_red_700 : Html.Attribute msg
+xl__via_red_700 =
+    A.class "xl:via-red-700"
+
+
+xl__via_red_800 : Html.Attribute msg
+xl__via_red_800 =
+    A.class "xl:via-red-800"
+
+
+xl__via_red_900 : Html.Attribute msg
+xl__via_red_900 =
+    A.class "xl:via-red-900"
+
+
+xl__via_orange_100 : Html.Attribute msg
+xl__via_orange_100 =
+    A.class "xl:via-orange-100"
+
+
+xl__via_orange_200 : Html.Attribute msg
+xl__via_orange_200 =
+    A.class "xl:via-orange-200"
+
+
+xl__via_orange_300 : Html.Attribute msg
+xl__via_orange_300 =
+    A.class "xl:via-orange-300"
+
+
+xl__via_orange_400 : Html.Attribute msg
+xl__via_orange_400 =
+    A.class "xl:via-orange-400"
+
+
+xl__via_orange_500 : Html.Attribute msg
+xl__via_orange_500 =
+    A.class "xl:via-orange-500"
+
+
+xl__via_orange_600 : Html.Attribute msg
+xl__via_orange_600 =
+    A.class "xl:via-orange-600"
+
+
+xl__via_orange_700 : Html.Attribute msg
+xl__via_orange_700 =
+    A.class "xl:via-orange-700"
+
+
+xl__via_orange_800 : Html.Attribute msg
+xl__via_orange_800 =
+    A.class "xl:via-orange-800"
+
+
+xl__via_orange_900 : Html.Attribute msg
+xl__via_orange_900 =
+    A.class "xl:via-orange-900"
+
+
+xl__via_yellow_100 : Html.Attribute msg
+xl__via_yellow_100 =
+    A.class "xl:via-yellow-100"
+
+
+xl__via_yellow_200 : Html.Attribute msg
+xl__via_yellow_200 =
+    A.class "xl:via-yellow-200"
+
+
+xl__via_yellow_300 : Html.Attribute msg
+xl__via_yellow_300 =
+    A.class "xl:via-yellow-300"
+
+
+xl__via_yellow_400 : Html.Attribute msg
+xl__via_yellow_400 =
+    A.class "xl:via-yellow-400"
+
+
+xl__via_yellow_500 : Html.Attribute msg
+xl__via_yellow_500 =
+    A.class "xl:via-yellow-500"
+
+
+xl__via_yellow_600 : Html.Attribute msg
+xl__via_yellow_600 =
+    A.class "xl:via-yellow-600"
+
+
+xl__via_yellow_700 : Html.Attribute msg
+xl__via_yellow_700 =
+    A.class "xl:via-yellow-700"
+
+
+xl__via_yellow_800 : Html.Attribute msg
+xl__via_yellow_800 =
+    A.class "xl:via-yellow-800"
+
+
+xl__via_yellow_900 : Html.Attribute msg
+xl__via_yellow_900 =
+    A.class "xl:via-yellow-900"
+
+
+xl__via_green_100 : Html.Attribute msg
+xl__via_green_100 =
+    A.class "xl:via-green-100"
+
+
+xl__via_green_200 : Html.Attribute msg
+xl__via_green_200 =
+    A.class "xl:via-green-200"
+
+
+xl__via_green_300 : Html.Attribute msg
+xl__via_green_300 =
+    A.class "xl:via-green-300"
+
+
+xl__via_green_400 : Html.Attribute msg
+xl__via_green_400 =
+    A.class "xl:via-green-400"
+
+
+xl__via_green_500 : Html.Attribute msg
+xl__via_green_500 =
+    A.class "xl:via-green-500"
+
+
+xl__via_green_600 : Html.Attribute msg
+xl__via_green_600 =
+    A.class "xl:via-green-600"
+
+
+xl__via_green_700 : Html.Attribute msg
+xl__via_green_700 =
+    A.class "xl:via-green-700"
+
+
+xl__via_green_800 : Html.Attribute msg
+xl__via_green_800 =
+    A.class "xl:via-green-800"
+
+
+xl__via_green_900 : Html.Attribute msg
+xl__via_green_900 =
+    A.class "xl:via-green-900"
+
+
+xl__via_teal_100 : Html.Attribute msg
+xl__via_teal_100 =
+    A.class "xl:via-teal-100"
+
+
+xl__via_teal_200 : Html.Attribute msg
+xl__via_teal_200 =
+    A.class "xl:via-teal-200"
+
+
+xl__via_teal_300 : Html.Attribute msg
+xl__via_teal_300 =
+    A.class "xl:via-teal-300"
+
+
+xl__via_teal_400 : Html.Attribute msg
+xl__via_teal_400 =
+    A.class "xl:via-teal-400"
+
+
+xl__via_teal_500 : Html.Attribute msg
+xl__via_teal_500 =
+    A.class "xl:via-teal-500"
+
+
+xl__via_teal_600 : Html.Attribute msg
+xl__via_teal_600 =
+    A.class "xl:via-teal-600"
+
+
+xl__via_teal_700 : Html.Attribute msg
+xl__via_teal_700 =
+    A.class "xl:via-teal-700"
+
+
+xl__via_teal_800 : Html.Attribute msg
+xl__via_teal_800 =
+    A.class "xl:via-teal-800"
+
+
+xl__via_teal_900 : Html.Attribute msg
+xl__via_teal_900 =
+    A.class "xl:via-teal-900"
+
+
+xl__via_blue_100 : Html.Attribute msg
+xl__via_blue_100 =
+    A.class "xl:via-blue-100"
+
+
+xl__via_blue_200 : Html.Attribute msg
+xl__via_blue_200 =
+    A.class "xl:via-blue-200"
+
+
+xl__via_blue_300 : Html.Attribute msg
+xl__via_blue_300 =
+    A.class "xl:via-blue-300"
+
+
+xl__via_blue_400 : Html.Attribute msg
+xl__via_blue_400 =
+    A.class "xl:via-blue-400"
+
+
+xl__via_blue_500 : Html.Attribute msg
+xl__via_blue_500 =
+    A.class "xl:via-blue-500"
+
+
+xl__via_blue_600 : Html.Attribute msg
+xl__via_blue_600 =
+    A.class "xl:via-blue-600"
+
+
+xl__via_blue_700 : Html.Attribute msg
+xl__via_blue_700 =
+    A.class "xl:via-blue-700"
+
+
+xl__via_blue_800 : Html.Attribute msg
+xl__via_blue_800 =
+    A.class "xl:via-blue-800"
+
+
+xl__via_blue_900 : Html.Attribute msg
+xl__via_blue_900 =
+    A.class "xl:via-blue-900"
+
+
+xl__via_indigo_100 : Html.Attribute msg
+xl__via_indigo_100 =
+    A.class "xl:via-indigo-100"
+
+
+xl__via_indigo_200 : Html.Attribute msg
+xl__via_indigo_200 =
+    A.class "xl:via-indigo-200"
+
+
+xl__via_indigo_300 : Html.Attribute msg
+xl__via_indigo_300 =
+    A.class "xl:via-indigo-300"
+
+
+xl__via_indigo_400 : Html.Attribute msg
+xl__via_indigo_400 =
+    A.class "xl:via-indigo-400"
+
+
+xl__via_indigo_500 : Html.Attribute msg
+xl__via_indigo_500 =
+    A.class "xl:via-indigo-500"
+
+
+xl__via_indigo_600 : Html.Attribute msg
+xl__via_indigo_600 =
+    A.class "xl:via-indigo-600"
+
+
+xl__via_indigo_700 : Html.Attribute msg
+xl__via_indigo_700 =
+    A.class "xl:via-indigo-700"
+
+
+xl__via_indigo_800 : Html.Attribute msg
+xl__via_indigo_800 =
+    A.class "xl:via-indigo-800"
+
+
+xl__via_indigo_900 : Html.Attribute msg
+xl__via_indigo_900 =
+    A.class "xl:via-indigo-900"
+
+
+xl__via_purple_100 : Html.Attribute msg
+xl__via_purple_100 =
+    A.class "xl:via-purple-100"
+
+
+xl__via_purple_200 : Html.Attribute msg
+xl__via_purple_200 =
+    A.class "xl:via-purple-200"
+
+
+xl__via_purple_300 : Html.Attribute msg
+xl__via_purple_300 =
+    A.class "xl:via-purple-300"
+
+
+xl__via_purple_400 : Html.Attribute msg
+xl__via_purple_400 =
+    A.class "xl:via-purple-400"
+
+
+xl__via_purple_500 : Html.Attribute msg
+xl__via_purple_500 =
+    A.class "xl:via-purple-500"
+
+
+xl__via_purple_600 : Html.Attribute msg
+xl__via_purple_600 =
+    A.class "xl:via-purple-600"
+
+
+xl__via_purple_700 : Html.Attribute msg
+xl__via_purple_700 =
+    A.class "xl:via-purple-700"
+
+
+xl__via_purple_800 : Html.Attribute msg
+xl__via_purple_800 =
+    A.class "xl:via-purple-800"
+
+
+xl__via_purple_900 : Html.Attribute msg
+xl__via_purple_900 =
+    A.class "xl:via-purple-900"
+
+
+xl__via_pink_100 : Html.Attribute msg
+xl__via_pink_100 =
+    A.class "xl:via-pink-100"
+
+
+xl__via_pink_200 : Html.Attribute msg
+xl__via_pink_200 =
+    A.class "xl:via-pink-200"
+
+
+xl__via_pink_300 : Html.Attribute msg
+xl__via_pink_300 =
+    A.class "xl:via-pink-300"
+
+
+xl__via_pink_400 : Html.Attribute msg
+xl__via_pink_400 =
+    A.class "xl:via-pink-400"
+
+
+xl__via_pink_500 : Html.Attribute msg
+xl__via_pink_500 =
+    A.class "xl:via-pink-500"
+
+
+xl__via_pink_600 : Html.Attribute msg
+xl__via_pink_600 =
+    A.class "xl:via-pink-600"
+
+
+xl__via_pink_700 : Html.Attribute msg
+xl__via_pink_700 =
+    A.class "xl:via-pink-700"
+
+
+xl__via_pink_800 : Html.Attribute msg
+xl__via_pink_800 =
+    A.class "xl:via-pink-800"
+
+
+xl__via_pink_900 : Html.Attribute msg
+xl__via_pink_900 =
+    A.class "xl:via-pink-900"
+
+
+xl__to_transparent : Html.Attribute msg
+xl__to_transparent =
+    A.class "xl:to-transparent"
+
+
+xl__to_current : Html.Attribute msg
+xl__to_current =
+    A.class "xl:to-current"
+
+
+xl__to_black : Html.Attribute msg
+xl__to_black =
+    A.class "xl:to-black"
+
+
+xl__to_white : Html.Attribute msg
+xl__to_white =
+    A.class "xl:to-white"
+
+
+xl__to_gray_100 : Html.Attribute msg
+xl__to_gray_100 =
+    A.class "xl:to-gray-100"
+
+
+xl__to_gray_200 : Html.Attribute msg
+xl__to_gray_200 =
+    A.class "xl:to-gray-200"
+
+
+xl__to_gray_300 : Html.Attribute msg
+xl__to_gray_300 =
+    A.class "xl:to-gray-300"
+
+
+xl__to_gray_400 : Html.Attribute msg
+xl__to_gray_400 =
+    A.class "xl:to-gray-400"
+
+
+xl__to_gray_500 : Html.Attribute msg
+xl__to_gray_500 =
+    A.class "xl:to-gray-500"
+
+
+xl__to_gray_600 : Html.Attribute msg
+xl__to_gray_600 =
+    A.class "xl:to-gray-600"
+
+
+xl__to_gray_700 : Html.Attribute msg
+xl__to_gray_700 =
+    A.class "xl:to-gray-700"
+
+
+xl__to_gray_800 : Html.Attribute msg
+xl__to_gray_800 =
+    A.class "xl:to-gray-800"
+
+
+xl__to_gray_900 : Html.Attribute msg
+xl__to_gray_900 =
+    A.class "xl:to-gray-900"
+
+
+xl__to_red_100 : Html.Attribute msg
+xl__to_red_100 =
+    A.class "xl:to-red-100"
+
+
+xl__to_red_200 : Html.Attribute msg
+xl__to_red_200 =
+    A.class "xl:to-red-200"
+
+
+xl__to_red_300 : Html.Attribute msg
+xl__to_red_300 =
+    A.class "xl:to-red-300"
+
+
+xl__to_red_400 : Html.Attribute msg
+xl__to_red_400 =
+    A.class "xl:to-red-400"
+
+
+xl__to_red_500 : Html.Attribute msg
+xl__to_red_500 =
+    A.class "xl:to-red-500"
+
+
+xl__to_red_600 : Html.Attribute msg
+xl__to_red_600 =
+    A.class "xl:to-red-600"
+
+
+xl__to_red_700 : Html.Attribute msg
+xl__to_red_700 =
+    A.class "xl:to-red-700"
+
+
+xl__to_red_800 : Html.Attribute msg
+xl__to_red_800 =
+    A.class "xl:to-red-800"
+
+
+xl__to_red_900 : Html.Attribute msg
+xl__to_red_900 =
+    A.class "xl:to-red-900"
+
+
+xl__to_orange_100 : Html.Attribute msg
+xl__to_orange_100 =
+    A.class "xl:to-orange-100"
+
+
+xl__to_orange_200 : Html.Attribute msg
+xl__to_orange_200 =
+    A.class "xl:to-orange-200"
+
+
+xl__to_orange_300 : Html.Attribute msg
+xl__to_orange_300 =
+    A.class "xl:to-orange-300"
+
+
+xl__to_orange_400 : Html.Attribute msg
+xl__to_orange_400 =
+    A.class "xl:to-orange-400"
+
+
+xl__to_orange_500 : Html.Attribute msg
+xl__to_orange_500 =
+    A.class "xl:to-orange-500"
+
+
+xl__to_orange_600 : Html.Attribute msg
+xl__to_orange_600 =
+    A.class "xl:to-orange-600"
+
+
+xl__to_orange_700 : Html.Attribute msg
+xl__to_orange_700 =
+    A.class "xl:to-orange-700"
+
+
+xl__to_orange_800 : Html.Attribute msg
+xl__to_orange_800 =
+    A.class "xl:to-orange-800"
+
+
+xl__to_orange_900 : Html.Attribute msg
+xl__to_orange_900 =
+    A.class "xl:to-orange-900"
+
+
+xl__to_yellow_100 : Html.Attribute msg
+xl__to_yellow_100 =
+    A.class "xl:to-yellow-100"
+
+
+xl__to_yellow_200 : Html.Attribute msg
+xl__to_yellow_200 =
+    A.class "xl:to-yellow-200"
+
+
+xl__to_yellow_300 : Html.Attribute msg
+xl__to_yellow_300 =
+    A.class "xl:to-yellow-300"
+
+
+xl__to_yellow_400 : Html.Attribute msg
+xl__to_yellow_400 =
+    A.class "xl:to-yellow-400"
+
+
+xl__to_yellow_500 : Html.Attribute msg
+xl__to_yellow_500 =
+    A.class "xl:to-yellow-500"
+
+
+xl__to_yellow_600 : Html.Attribute msg
+xl__to_yellow_600 =
+    A.class "xl:to-yellow-600"
+
+
+xl__to_yellow_700 : Html.Attribute msg
+xl__to_yellow_700 =
+    A.class "xl:to-yellow-700"
+
+
+xl__to_yellow_800 : Html.Attribute msg
+xl__to_yellow_800 =
+    A.class "xl:to-yellow-800"
+
+
+xl__to_yellow_900 : Html.Attribute msg
+xl__to_yellow_900 =
+    A.class "xl:to-yellow-900"
+
+
+xl__to_green_100 : Html.Attribute msg
+xl__to_green_100 =
+    A.class "xl:to-green-100"
+
+
+xl__to_green_200 : Html.Attribute msg
+xl__to_green_200 =
+    A.class "xl:to-green-200"
+
+
+xl__to_green_300 : Html.Attribute msg
+xl__to_green_300 =
+    A.class "xl:to-green-300"
+
+
+xl__to_green_400 : Html.Attribute msg
+xl__to_green_400 =
+    A.class "xl:to-green-400"
+
+
+xl__to_green_500 : Html.Attribute msg
+xl__to_green_500 =
+    A.class "xl:to-green-500"
+
+
+xl__to_green_600 : Html.Attribute msg
+xl__to_green_600 =
+    A.class "xl:to-green-600"
+
+
+xl__to_green_700 : Html.Attribute msg
+xl__to_green_700 =
+    A.class "xl:to-green-700"
+
+
+xl__to_green_800 : Html.Attribute msg
+xl__to_green_800 =
+    A.class "xl:to-green-800"
+
+
+xl__to_green_900 : Html.Attribute msg
+xl__to_green_900 =
+    A.class "xl:to-green-900"
+
+
+xl__to_teal_100 : Html.Attribute msg
+xl__to_teal_100 =
+    A.class "xl:to-teal-100"
+
+
+xl__to_teal_200 : Html.Attribute msg
+xl__to_teal_200 =
+    A.class "xl:to-teal-200"
+
+
+xl__to_teal_300 : Html.Attribute msg
+xl__to_teal_300 =
+    A.class "xl:to-teal-300"
+
+
+xl__to_teal_400 : Html.Attribute msg
+xl__to_teal_400 =
+    A.class "xl:to-teal-400"
+
+
+xl__to_teal_500 : Html.Attribute msg
+xl__to_teal_500 =
+    A.class "xl:to-teal-500"
+
+
+xl__to_teal_600 : Html.Attribute msg
+xl__to_teal_600 =
+    A.class "xl:to-teal-600"
+
+
+xl__to_teal_700 : Html.Attribute msg
+xl__to_teal_700 =
+    A.class "xl:to-teal-700"
+
+
+xl__to_teal_800 : Html.Attribute msg
+xl__to_teal_800 =
+    A.class "xl:to-teal-800"
+
+
+xl__to_teal_900 : Html.Attribute msg
+xl__to_teal_900 =
+    A.class "xl:to-teal-900"
+
+
+xl__to_blue_100 : Html.Attribute msg
+xl__to_blue_100 =
+    A.class "xl:to-blue-100"
+
+
+xl__to_blue_200 : Html.Attribute msg
+xl__to_blue_200 =
+    A.class "xl:to-blue-200"
+
+
+xl__to_blue_300 : Html.Attribute msg
+xl__to_blue_300 =
+    A.class "xl:to-blue-300"
+
+
+xl__to_blue_400 : Html.Attribute msg
+xl__to_blue_400 =
+    A.class "xl:to-blue-400"
+
+
+xl__to_blue_500 : Html.Attribute msg
+xl__to_blue_500 =
+    A.class "xl:to-blue-500"
+
+
+xl__to_blue_600 : Html.Attribute msg
+xl__to_blue_600 =
+    A.class "xl:to-blue-600"
+
+
+xl__to_blue_700 : Html.Attribute msg
+xl__to_blue_700 =
+    A.class "xl:to-blue-700"
+
+
+xl__to_blue_800 : Html.Attribute msg
+xl__to_blue_800 =
+    A.class "xl:to-blue-800"
+
+
+xl__to_blue_900 : Html.Attribute msg
+xl__to_blue_900 =
+    A.class "xl:to-blue-900"
+
+
+xl__to_indigo_100 : Html.Attribute msg
+xl__to_indigo_100 =
+    A.class "xl:to-indigo-100"
+
+
+xl__to_indigo_200 : Html.Attribute msg
+xl__to_indigo_200 =
+    A.class "xl:to-indigo-200"
+
+
+xl__to_indigo_300 : Html.Attribute msg
+xl__to_indigo_300 =
+    A.class "xl:to-indigo-300"
+
+
+xl__to_indigo_400 : Html.Attribute msg
+xl__to_indigo_400 =
+    A.class "xl:to-indigo-400"
+
+
+xl__to_indigo_500 : Html.Attribute msg
+xl__to_indigo_500 =
+    A.class "xl:to-indigo-500"
+
+
+xl__to_indigo_600 : Html.Attribute msg
+xl__to_indigo_600 =
+    A.class "xl:to-indigo-600"
+
+
+xl__to_indigo_700 : Html.Attribute msg
+xl__to_indigo_700 =
+    A.class "xl:to-indigo-700"
+
+
+xl__to_indigo_800 : Html.Attribute msg
+xl__to_indigo_800 =
+    A.class "xl:to-indigo-800"
+
+
+xl__to_indigo_900 : Html.Attribute msg
+xl__to_indigo_900 =
+    A.class "xl:to-indigo-900"
+
+
+xl__to_purple_100 : Html.Attribute msg
+xl__to_purple_100 =
+    A.class "xl:to-purple-100"
+
+
+xl__to_purple_200 : Html.Attribute msg
+xl__to_purple_200 =
+    A.class "xl:to-purple-200"
+
+
+xl__to_purple_300 : Html.Attribute msg
+xl__to_purple_300 =
+    A.class "xl:to-purple-300"
+
+
+xl__to_purple_400 : Html.Attribute msg
+xl__to_purple_400 =
+    A.class "xl:to-purple-400"
+
+
+xl__to_purple_500 : Html.Attribute msg
+xl__to_purple_500 =
+    A.class "xl:to-purple-500"
+
+
+xl__to_purple_600 : Html.Attribute msg
+xl__to_purple_600 =
+    A.class "xl:to-purple-600"
+
+
+xl__to_purple_700 : Html.Attribute msg
+xl__to_purple_700 =
+    A.class "xl:to-purple-700"
+
+
+xl__to_purple_800 : Html.Attribute msg
+xl__to_purple_800 =
+    A.class "xl:to-purple-800"
+
+
+xl__to_purple_900 : Html.Attribute msg
+xl__to_purple_900 =
+    A.class "xl:to-purple-900"
+
+
+xl__to_pink_100 : Html.Attribute msg
+xl__to_pink_100 =
+    A.class "xl:to-pink-100"
+
+
+xl__to_pink_200 : Html.Attribute msg
+xl__to_pink_200 =
+    A.class "xl:to-pink-200"
+
+
+xl__to_pink_300 : Html.Attribute msg
+xl__to_pink_300 =
+    A.class "xl:to-pink-300"
+
+
+xl__to_pink_400 : Html.Attribute msg
+xl__to_pink_400 =
+    A.class "xl:to-pink-400"
+
+
+xl__to_pink_500 : Html.Attribute msg
+xl__to_pink_500 =
+    A.class "xl:to-pink-500"
+
+
+xl__to_pink_600 : Html.Attribute msg
+xl__to_pink_600 =
+    A.class "xl:to-pink-600"
+
+
+xl__to_pink_700 : Html.Attribute msg
+xl__to_pink_700 =
+    A.class "xl:to-pink-700"
+
+
+xl__to_pink_800 : Html.Attribute msg
+xl__to_pink_800 =
+    A.class "xl:to-pink-800"
+
+
+xl__to_pink_900 : Html.Attribute msg
+xl__to_pink_900 =
+    A.class "xl:to-pink-900"
+
+
+xl__hover__from_transparent : Html.Attribute msg
+xl__hover__from_transparent =
+    A.class "xl:hover:from-transparent"
+
+
+xl__hover__from_current : Html.Attribute msg
+xl__hover__from_current =
+    A.class "xl:hover:from-current"
+
+
+xl__hover__from_black : Html.Attribute msg
+xl__hover__from_black =
+    A.class "xl:hover:from-black"
+
+
+xl__hover__from_white : Html.Attribute msg
+xl__hover__from_white =
+    A.class "xl:hover:from-white"
+
+
+xl__hover__from_gray_100 : Html.Attribute msg
+xl__hover__from_gray_100 =
+    A.class "xl:hover:from-gray-100"
+
+
+xl__hover__from_gray_200 : Html.Attribute msg
+xl__hover__from_gray_200 =
+    A.class "xl:hover:from-gray-200"
+
+
+xl__hover__from_gray_300 : Html.Attribute msg
+xl__hover__from_gray_300 =
+    A.class "xl:hover:from-gray-300"
+
+
+xl__hover__from_gray_400 : Html.Attribute msg
+xl__hover__from_gray_400 =
+    A.class "xl:hover:from-gray-400"
+
+
+xl__hover__from_gray_500 : Html.Attribute msg
+xl__hover__from_gray_500 =
+    A.class "xl:hover:from-gray-500"
+
+
+xl__hover__from_gray_600 : Html.Attribute msg
+xl__hover__from_gray_600 =
+    A.class "xl:hover:from-gray-600"
+
+
+xl__hover__from_gray_700 : Html.Attribute msg
+xl__hover__from_gray_700 =
+    A.class "xl:hover:from-gray-700"
+
+
+xl__hover__from_gray_800 : Html.Attribute msg
+xl__hover__from_gray_800 =
+    A.class "xl:hover:from-gray-800"
+
+
+xl__hover__from_gray_900 : Html.Attribute msg
+xl__hover__from_gray_900 =
+    A.class "xl:hover:from-gray-900"
+
+
+xl__hover__from_red_100 : Html.Attribute msg
+xl__hover__from_red_100 =
+    A.class "xl:hover:from-red-100"
+
+
+xl__hover__from_red_200 : Html.Attribute msg
+xl__hover__from_red_200 =
+    A.class "xl:hover:from-red-200"
+
+
+xl__hover__from_red_300 : Html.Attribute msg
+xl__hover__from_red_300 =
+    A.class "xl:hover:from-red-300"
+
+
+xl__hover__from_red_400 : Html.Attribute msg
+xl__hover__from_red_400 =
+    A.class "xl:hover:from-red-400"
+
+
+xl__hover__from_red_500 : Html.Attribute msg
+xl__hover__from_red_500 =
+    A.class "xl:hover:from-red-500"
+
+
+xl__hover__from_red_600 : Html.Attribute msg
+xl__hover__from_red_600 =
+    A.class "xl:hover:from-red-600"
+
+
+xl__hover__from_red_700 : Html.Attribute msg
+xl__hover__from_red_700 =
+    A.class "xl:hover:from-red-700"
+
+
+xl__hover__from_red_800 : Html.Attribute msg
+xl__hover__from_red_800 =
+    A.class "xl:hover:from-red-800"
+
+
+xl__hover__from_red_900 : Html.Attribute msg
+xl__hover__from_red_900 =
+    A.class "xl:hover:from-red-900"
+
+
+xl__hover__from_orange_100 : Html.Attribute msg
+xl__hover__from_orange_100 =
+    A.class "xl:hover:from-orange-100"
+
+
+xl__hover__from_orange_200 : Html.Attribute msg
+xl__hover__from_orange_200 =
+    A.class "xl:hover:from-orange-200"
+
+
+xl__hover__from_orange_300 : Html.Attribute msg
+xl__hover__from_orange_300 =
+    A.class "xl:hover:from-orange-300"
+
+
+xl__hover__from_orange_400 : Html.Attribute msg
+xl__hover__from_orange_400 =
+    A.class "xl:hover:from-orange-400"
+
+
+xl__hover__from_orange_500 : Html.Attribute msg
+xl__hover__from_orange_500 =
+    A.class "xl:hover:from-orange-500"
+
+
+xl__hover__from_orange_600 : Html.Attribute msg
+xl__hover__from_orange_600 =
+    A.class "xl:hover:from-orange-600"
+
+
+xl__hover__from_orange_700 : Html.Attribute msg
+xl__hover__from_orange_700 =
+    A.class "xl:hover:from-orange-700"
+
+
+xl__hover__from_orange_800 : Html.Attribute msg
+xl__hover__from_orange_800 =
+    A.class "xl:hover:from-orange-800"
+
+
+xl__hover__from_orange_900 : Html.Attribute msg
+xl__hover__from_orange_900 =
+    A.class "xl:hover:from-orange-900"
+
+
+xl__hover__from_yellow_100 : Html.Attribute msg
+xl__hover__from_yellow_100 =
+    A.class "xl:hover:from-yellow-100"
+
+
+xl__hover__from_yellow_200 : Html.Attribute msg
+xl__hover__from_yellow_200 =
+    A.class "xl:hover:from-yellow-200"
+
+
+xl__hover__from_yellow_300 : Html.Attribute msg
+xl__hover__from_yellow_300 =
+    A.class "xl:hover:from-yellow-300"
+
+
+xl__hover__from_yellow_400 : Html.Attribute msg
+xl__hover__from_yellow_400 =
+    A.class "xl:hover:from-yellow-400"
+
+
+xl__hover__from_yellow_500 : Html.Attribute msg
+xl__hover__from_yellow_500 =
+    A.class "xl:hover:from-yellow-500"
+
+
+xl__hover__from_yellow_600 : Html.Attribute msg
+xl__hover__from_yellow_600 =
+    A.class "xl:hover:from-yellow-600"
+
+
+xl__hover__from_yellow_700 : Html.Attribute msg
+xl__hover__from_yellow_700 =
+    A.class "xl:hover:from-yellow-700"
+
+
+xl__hover__from_yellow_800 : Html.Attribute msg
+xl__hover__from_yellow_800 =
+    A.class "xl:hover:from-yellow-800"
+
+
+xl__hover__from_yellow_900 : Html.Attribute msg
+xl__hover__from_yellow_900 =
+    A.class "xl:hover:from-yellow-900"
+
+
+xl__hover__from_green_100 : Html.Attribute msg
+xl__hover__from_green_100 =
+    A.class "xl:hover:from-green-100"
+
+
+xl__hover__from_green_200 : Html.Attribute msg
+xl__hover__from_green_200 =
+    A.class "xl:hover:from-green-200"
+
+
+xl__hover__from_green_300 : Html.Attribute msg
+xl__hover__from_green_300 =
+    A.class "xl:hover:from-green-300"
+
+
+xl__hover__from_green_400 : Html.Attribute msg
+xl__hover__from_green_400 =
+    A.class "xl:hover:from-green-400"
+
+
+xl__hover__from_green_500 : Html.Attribute msg
+xl__hover__from_green_500 =
+    A.class "xl:hover:from-green-500"
+
+
+xl__hover__from_green_600 : Html.Attribute msg
+xl__hover__from_green_600 =
+    A.class "xl:hover:from-green-600"
+
+
+xl__hover__from_green_700 : Html.Attribute msg
+xl__hover__from_green_700 =
+    A.class "xl:hover:from-green-700"
+
+
+xl__hover__from_green_800 : Html.Attribute msg
+xl__hover__from_green_800 =
+    A.class "xl:hover:from-green-800"
+
+
+xl__hover__from_green_900 : Html.Attribute msg
+xl__hover__from_green_900 =
+    A.class "xl:hover:from-green-900"
+
+
+xl__hover__from_teal_100 : Html.Attribute msg
+xl__hover__from_teal_100 =
+    A.class "xl:hover:from-teal-100"
+
+
+xl__hover__from_teal_200 : Html.Attribute msg
+xl__hover__from_teal_200 =
+    A.class "xl:hover:from-teal-200"
+
+
+xl__hover__from_teal_300 : Html.Attribute msg
+xl__hover__from_teal_300 =
+    A.class "xl:hover:from-teal-300"
+
+
+xl__hover__from_teal_400 : Html.Attribute msg
+xl__hover__from_teal_400 =
+    A.class "xl:hover:from-teal-400"
+
+
+xl__hover__from_teal_500 : Html.Attribute msg
+xl__hover__from_teal_500 =
+    A.class "xl:hover:from-teal-500"
+
+
+xl__hover__from_teal_600 : Html.Attribute msg
+xl__hover__from_teal_600 =
+    A.class "xl:hover:from-teal-600"
+
+
+xl__hover__from_teal_700 : Html.Attribute msg
+xl__hover__from_teal_700 =
+    A.class "xl:hover:from-teal-700"
+
+
+xl__hover__from_teal_800 : Html.Attribute msg
+xl__hover__from_teal_800 =
+    A.class "xl:hover:from-teal-800"
+
+
+xl__hover__from_teal_900 : Html.Attribute msg
+xl__hover__from_teal_900 =
+    A.class "xl:hover:from-teal-900"
+
+
+xl__hover__from_blue_100 : Html.Attribute msg
+xl__hover__from_blue_100 =
+    A.class "xl:hover:from-blue-100"
+
+
+xl__hover__from_blue_200 : Html.Attribute msg
+xl__hover__from_blue_200 =
+    A.class "xl:hover:from-blue-200"
+
+
+xl__hover__from_blue_300 : Html.Attribute msg
+xl__hover__from_blue_300 =
+    A.class "xl:hover:from-blue-300"
+
+
+xl__hover__from_blue_400 : Html.Attribute msg
+xl__hover__from_blue_400 =
+    A.class "xl:hover:from-blue-400"
+
+
+xl__hover__from_blue_500 : Html.Attribute msg
+xl__hover__from_blue_500 =
+    A.class "xl:hover:from-blue-500"
+
+
+xl__hover__from_blue_600 : Html.Attribute msg
+xl__hover__from_blue_600 =
+    A.class "xl:hover:from-blue-600"
+
+
+xl__hover__from_blue_700 : Html.Attribute msg
+xl__hover__from_blue_700 =
+    A.class "xl:hover:from-blue-700"
+
+
+xl__hover__from_blue_800 : Html.Attribute msg
+xl__hover__from_blue_800 =
+    A.class "xl:hover:from-blue-800"
+
+
+xl__hover__from_blue_900 : Html.Attribute msg
+xl__hover__from_blue_900 =
+    A.class "xl:hover:from-blue-900"
+
+
+xl__hover__from_indigo_100 : Html.Attribute msg
+xl__hover__from_indigo_100 =
+    A.class "xl:hover:from-indigo-100"
+
+
+xl__hover__from_indigo_200 : Html.Attribute msg
+xl__hover__from_indigo_200 =
+    A.class "xl:hover:from-indigo-200"
+
+
+xl__hover__from_indigo_300 : Html.Attribute msg
+xl__hover__from_indigo_300 =
+    A.class "xl:hover:from-indigo-300"
+
+
+xl__hover__from_indigo_400 : Html.Attribute msg
+xl__hover__from_indigo_400 =
+    A.class "xl:hover:from-indigo-400"
+
+
+xl__hover__from_indigo_500 : Html.Attribute msg
+xl__hover__from_indigo_500 =
+    A.class "xl:hover:from-indigo-500"
+
+
+xl__hover__from_indigo_600 : Html.Attribute msg
+xl__hover__from_indigo_600 =
+    A.class "xl:hover:from-indigo-600"
+
+
+xl__hover__from_indigo_700 : Html.Attribute msg
+xl__hover__from_indigo_700 =
+    A.class "xl:hover:from-indigo-700"
+
+
+xl__hover__from_indigo_800 : Html.Attribute msg
+xl__hover__from_indigo_800 =
+    A.class "xl:hover:from-indigo-800"
+
+
+xl__hover__from_indigo_900 : Html.Attribute msg
+xl__hover__from_indigo_900 =
+    A.class "xl:hover:from-indigo-900"
+
+
+xl__hover__from_purple_100 : Html.Attribute msg
+xl__hover__from_purple_100 =
+    A.class "xl:hover:from-purple-100"
+
+
+xl__hover__from_purple_200 : Html.Attribute msg
+xl__hover__from_purple_200 =
+    A.class "xl:hover:from-purple-200"
+
+
+xl__hover__from_purple_300 : Html.Attribute msg
+xl__hover__from_purple_300 =
+    A.class "xl:hover:from-purple-300"
+
+
+xl__hover__from_purple_400 : Html.Attribute msg
+xl__hover__from_purple_400 =
+    A.class "xl:hover:from-purple-400"
+
+
+xl__hover__from_purple_500 : Html.Attribute msg
+xl__hover__from_purple_500 =
+    A.class "xl:hover:from-purple-500"
+
+
+xl__hover__from_purple_600 : Html.Attribute msg
+xl__hover__from_purple_600 =
+    A.class "xl:hover:from-purple-600"
+
+
+xl__hover__from_purple_700 : Html.Attribute msg
+xl__hover__from_purple_700 =
+    A.class "xl:hover:from-purple-700"
+
+
+xl__hover__from_purple_800 : Html.Attribute msg
+xl__hover__from_purple_800 =
+    A.class "xl:hover:from-purple-800"
+
+
+xl__hover__from_purple_900 : Html.Attribute msg
+xl__hover__from_purple_900 =
+    A.class "xl:hover:from-purple-900"
+
+
+xl__hover__from_pink_100 : Html.Attribute msg
+xl__hover__from_pink_100 =
+    A.class "xl:hover:from-pink-100"
+
+
+xl__hover__from_pink_200 : Html.Attribute msg
+xl__hover__from_pink_200 =
+    A.class "xl:hover:from-pink-200"
+
+
+xl__hover__from_pink_300 : Html.Attribute msg
+xl__hover__from_pink_300 =
+    A.class "xl:hover:from-pink-300"
+
+
+xl__hover__from_pink_400 : Html.Attribute msg
+xl__hover__from_pink_400 =
+    A.class "xl:hover:from-pink-400"
+
+
+xl__hover__from_pink_500 : Html.Attribute msg
+xl__hover__from_pink_500 =
+    A.class "xl:hover:from-pink-500"
+
+
+xl__hover__from_pink_600 : Html.Attribute msg
+xl__hover__from_pink_600 =
+    A.class "xl:hover:from-pink-600"
+
+
+xl__hover__from_pink_700 : Html.Attribute msg
+xl__hover__from_pink_700 =
+    A.class "xl:hover:from-pink-700"
+
+
+xl__hover__from_pink_800 : Html.Attribute msg
+xl__hover__from_pink_800 =
+    A.class "xl:hover:from-pink-800"
+
+
+xl__hover__from_pink_900 : Html.Attribute msg
+xl__hover__from_pink_900 =
+    A.class "xl:hover:from-pink-900"
+
+
+xl__hover__via_transparent : Html.Attribute msg
+xl__hover__via_transparent =
+    A.class "xl:hover:via-transparent"
+
+
+xl__hover__via_current : Html.Attribute msg
+xl__hover__via_current =
+    A.class "xl:hover:via-current"
+
+
+xl__hover__via_black : Html.Attribute msg
+xl__hover__via_black =
+    A.class "xl:hover:via-black"
+
+
+xl__hover__via_white : Html.Attribute msg
+xl__hover__via_white =
+    A.class "xl:hover:via-white"
+
+
+xl__hover__via_gray_100 : Html.Attribute msg
+xl__hover__via_gray_100 =
+    A.class "xl:hover:via-gray-100"
+
+
+xl__hover__via_gray_200 : Html.Attribute msg
+xl__hover__via_gray_200 =
+    A.class "xl:hover:via-gray-200"
+
+
+xl__hover__via_gray_300 : Html.Attribute msg
+xl__hover__via_gray_300 =
+    A.class "xl:hover:via-gray-300"
+
+
+xl__hover__via_gray_400 : Html.Attribute msg
+xl__hover__via_gray_400 =
+    A.class "xl:hover:via-gray-400"
+
+
+xl__hover__via_gray_500 : Html.Attribute msg
+xl__hover__via_gray_500 =
+    A.class "xl:hover:via-gray-500"
+
+
+xl__hover__via_gray_600 : Html.Attribute msg
+xl__hover__via_gray_600 =
+    A.class "xl:hover:via-gray-600"
+
+
+xl__hover__via_gray_700 : Html.Attribute msg
+xl__hover__via_gray_700 =
+    A.class "xl:hover:via-gray-700"
+
+
+xl__hover__via_gray_800 : Html.Attribute msg
+xl__hover__via_gray_800 =
+    A.class "xl:hover:via-gray-800"
+
+
+xl__hover__via_gray_900 : Html.Attribute msg
+xl__hover__via_gray_900 =
+    A.class "xl:hover:via-gray-900"
+
+
+xl__hover__via_red_100 : Html.Attribute msg
+xl__hover__via_red_100 =
+    A.class "xl:hover:via-red-100"
+
+
+xl__hover__via_red_200 : Html.Attribute msg
+xl__hover__via_red_200 =
+    A.class "xl:hover:via-red-200"
+
+
+xl__hover__via_red_300 : Html.Attribute msg
+xl__hover__via_red_300 =
+    A.class "xl:hover:via-red-300"
+
+
+xl__hover__via_red_400 : Html.Attribute msg
+xl__hover__via_red_400 =
+    A.class "xl:hover:via-red-400"
+
+
+xl__hover__via_red_500 : Html.Attribute msg
+xl__hover__via_red_500 =
+    A.class "xl:hover:via-red-500"
+
+
+xl__hover__via_red_600 : Html.Attribute msg
+xl__hover__via_red_600 =
+    A.class "xl:hover:via-red-600"
+
+
+xl__hover__via_red_700 : Html.Attribute msg
+xl__hover__via_red_700 =
+    A.class "xl:hover:via-red-700"
+
+
+xl__hover__via_red_800 : Html.Attribute msg
+xl__hover__via_red_800 =
+    A.class "xl:hover:via-red-800"
+
+
+xl__hover__via_red_900 : Html.Attribute msg
+xl__hover__via_red_900 =
+    A.class "xl:hover:via-red-900"
+
+
+xl__hover__via_orange_100 : Html.Attribute msg
+xl__hover__via_orange_100 =
+    A.class "xl:hover:via-orange-100"
+
+
+xl__hover__via_orange_200 : Html.Attribute msg
+xl__hover__via_orange_200 =
+    A.class "xl:hover:via-orange-200"
+
+
+xl__hover__via_orange_300 : Html.Attribute msg
+xl__hover__via_orange_300 =
+    A.class "xl:hover:via-orange-300"
+
+
+xl__hover__via_orange_400 : Html.Attribute msg
+xl__hover__via_orange_400 =
+    A.class "xl:hover:via-orange-400"
+
+
+xl__hover__via_orange_500 : Html.Attribute msg
+xl__hover__via_orange_500 =
+    A.class "xl:hover:via-orange-500"
+
+
+xl__hover__via_orange_600 : Html.Attribute msg
+xl__hover__via_orange_600 =
+    A.class "xl:hover:via-orange-600"
+
+
+xl__hover__via_orange_700 : Html.Attribute msg
+xl__hover__via_orange_700 =
+    A.class "xl:hover:via-orange-700"
+
+
+xl__hover__via_orange_800 : Html.Attribute msg
+xl__hover__via_orange_800 =
+    A.class "xl:hover:via-orange-800"
+
+
+xl__hover__via_orange_900 : Html.Attribute msg
+xl__hover__via_orange_900 =
+    A.class "xl:hover:via-orange-900"
+
+
+xl__hover__via_yellow_100 : Html.Attribute msg
+xl__hover__via_yellow_100 =
+    A.class "xl:hover:via-yellow-100"
+
+
+xl__hover__via_yellow_200 : Html.Attribute msg
+xl__hover__via_yellow_200 =
+    A.class "xl:hover:via-yellow-200"
+
+
+xl__hover__via_yellow_300 : Html.Attribute msg
+xl__hover__via_yellow_300 =
+    A.class "xl:hover:via-yellow-300"
+
+
+xl__hover__via_yellow_400 : Html.Attribute msg
+xl__hover__via_yellow_400 =
+    A.class "xl:hover:via-yellow-400"
+
+
+xl__hover__via_yellow_500 : Html.Attribute msg
+xl__hover__via_yellow_500 =
+    A.class "xl:hover:via-yellow-500"
+
+
+xl__hover__via_yellow_600 : Html.Attribute msg
+xl__hover__via_yellow_600 =
+    A.class "xl:hover:via-yellow-600"
+
+
+xl__hover__via_yellow_700 : Html.Attribute msg
+xl__hover__via_yellow_700 =
+    A.class "xl:hover:via-yellow-700"
+
+
+xl__hover__via_yellow_800 : Html.Attribute msg
+xl__hover__via_yellow_800 =
+    A.class "xl:hover:via-yellow-800"
+
+
+xl__hover__via_yellow_900 : Html.Attribute msg
+xl__hover__via_yellow_900 =
+    A.class "xl:hover:via-yellow-900"
+
+
+xl__hover__via_green_100 : Html.Attribute msg
+xl__hover__via_green_100 =
+    A.class "xl:hover:via-green-100"
+
+
+xl__hover__via_green_200 : Html.Attribute msg
+xl__hover__via_green_200 =
+    A.class "xl:hover:via-green-200"
+
+
+xl__hover__via_green_300 : Html.Attribute msg
+xl__hover__via_green_300 =
+    A.class "xl:hover:via-green-300"
+
+
+xl__hover__via_green_400 : Html.Attribute msg
+xl__hover__via_green_400 =
+    A.class "xl:hover:via-green-400"
+
+
+xl__hover__via_green_500 : Html.Attribute msg
+xl__hover__via_green_500 =
+    A.class "xl:hover:via-green-500"
+
+
+xl__hover__via_green_600 : Html.Attribute msg
+xl__hover__via_green_600 =
+    A.class "xl:hover:via-green-600"
+
+
+xl__hover__via_green_700 : Html.Attribute msg
+xl__hover__via_green_700 =
+    A.class "xl:hover:via-green-700"
+
+
+xl__hover__via_green_800 : Html.Attribute msg
+xl__hover__via_green_800 =
+    A.class "xl:hover:via-green-800"
+
+
+xl__hover__via_green_900 : Html.Attribute msg
+xl__hover__via_green_900 =
+    A.class "xl:hover:via-green-900"
+
+
+xl__hover__via_teal_100 : Html.Attribute msg
+xl__hover__via_teal_100 =
+    A.class "xl:hover:via-teal-100"
+
+
+xl__hover__via_teal_200 : Html.Attribute msg
+xl__hover__via_teal_200 =
+    A.class "xl:hover:via-teal-200"
+
+
+xl__hover__via_teal_300 : Html.Attribute msg
+xl__hover__via_teal_300 =
+    A.class "xl:hover:via-teal-300"
+
+
+xl__hover__via_teal_400 : Html.Attribute msg
+xl__hover__via_teal_400 =
+    A.class "xl:hover:via-teal-400"
+
+
+xl__hover__via_teal_500 : Html.Attribute msg
+xl__hover__via_teal_500 =
+    A.class "xl:hover:via-teal-500"
+
+
+xl__hover__via_teal_600 : Html.Attribute msg
+xl__hover__via_teal_600 =
+    A.class "xl:hover:via-teal-600"
+
+
+xl__hover__via_teal_700 : Html.Attribute msg
+xl__hover__via_teal_700 =
+    A.class "xl:hover:via-teal-700"
+
+
+xl__hover__via_teal_800 : Html.Attribute msg
+xl__hover__via_teal_800 =
+    A.class "xl:hover:via-teal-800"
+
+
+xl__hover__via_teal_900 : Html.Attribute msg
+xl__hover__via_teal_900 =
+    A.class "xl:hover:via-teal-900"
+
+
+xl__hover__via_blue_100 : Html.Attribute msg
+xl__hover__via_blue_100 =
+    A.class "xl:hover:via-blue-100"
+
+
+xl__hover__via_blue_200 : Html.Attribute msg
+xl__hover__via_blue_200 =
+    A.class "xl:hover:via-blue-200"
+
+
+xl__hover__via_blue_300 : Html.Attribute msg
+xl__hover__via_blue_300 =
+    A.class "xl:hover:via-blue-300"
+
+
+xl__hover__via_blue_400 : Html.Attribute msg
+xl__hover__via_blue_400 =
+    A.class "xl:hover:via-blue-400"
+
+
+xl__hover__via_blue_500 : Html.Attribute msg
+xl__hover__via_blue_500 =
+    A.class "xl:hover:via-blue-500"
+
+
+xl__hover__via_blue_600 : Html.Attribute msg
+xl__hover__via_blue_600 =
+    A.class "xl:hover:via-blue-600"
+
+
+xl__hover__via_blue_700 : Html.Attribute msg
+xl__hover__via_blue_700 =
+    A.class "xl:hover:via-blue-700"
+
+
+xl__hover__via_blue_800 : Html.Attribute msg
+xl__hover__via_blue_800 =
+    A.class "xl:hover:via-blue-800"
+
+
+xl__hover__via_blue_900 : Html.Attribute msg
+xl__hover__via_blue_900 =
+    A.class "xl:hover:via-blue-900"
+
+
+xl__hover__via_indigo_100 : Html.Attribute msg
+xl__hover__via_indigo_100 =
+    A.class "xl:hover:via-indigo-100"
+
+
+xl__hover__via_indigo_200 : Html.Attribute msg
+xl__hover__via_indigo_200 =
+    A.class "xl:hover:via-indigo-200"
+
+
+xl__hover__via_indigo_300 : Html.Attribute msg
+xl__hover__via_indigo_300 =
+    A.class "xl:hover:via-indigo-300"
+
+
+xl__hover__via_indigo_400 : Html.Attribute msg
+xl__hover__via_indigo_400 =
+    A.class "xl:hover:via-indigo-400"
+
+
+xl__hover__via_indigo_500 : Html.Attribute msg
+xl__hover__via_indigo_500 =
+    A.class "xl:hover:via-indigo-500"
+
+
+xl__hover__via_indigo_600 : Html.Attribute msg
+xl__hover__via_indigo_600 =
+    A.class "xl:hover:via-indigo-600"
+
+
+xl__hover__via_indigo_700 : Html.Attribute msg
+xl__hover__via_indigo_700 =
+    A.class "xl:hover:via-indigo-700"
+
+
+xl__hover__via_indigo_800 : Html.Attribute msg
+xl__hover__via_indigo_800 =
+    A.class "xl:hover:via-indigo-800"
+
+
+xl__hover__via_indigo_900 : Html.Attribute msg
+xl__hover__via_indigo_900 =
+    A.class "xl:hover:via-indigo-900"
+
+
+xl__hover__via_purple_100 : Html.Attribute msg
+xl__hover__via_purple_100 =
+    A.class "xl:hover:via-purple-100"
+
+
+xl__hover__via_purple_200 : Html.Attribute msg
+xl__hover__via_purple_200 =
+    A.class "xl:hover:via-purple-200"
+
+
+xl__hover__via_purple_300 : Html.Attribute msg
+xl__hover__via_purple_300 =
+    A.class "xl:hover:via-purple-300"
+
+
+xl__hover__via_purple_400 : Html.Attribute msg
+xl__hover__via_purple_400 =
+    A.class "xl:hover:via-purple-400"
+
+
+xl__hover__via_purple_500 : Html.Attribute msg
+xl__hover__via_purple_500 =
+    A.class "xl:hover:via-purple-500"
+
+
+xl__hover__via_purple_600 : Html.Attribute msg
+xl__hover__via_purple_600 =
+    A.class "xl:hover:via-purple-600"
+
+
+xl__hover__via_purple_700 : Html.Attribute msg
+xl__hover__via_purple_700 =
+    A.class "xl:hover:via-purple-700"
+
+
+xl__hover__via_purple_800 : Html.Attribute msg
+xl__hover__via_purple_800 =
+    A.class "xl:hover:via-purple-800"
+
+
+xl__hover__via_purple_900 : Html.Attribute msg
+xl__hover__via_purple_900 =
+    A.class "xl:hover:via-purple-900"
+
+
+xl__hover__via_pink_100 : Html.Attribute msg
+xl__hover__via_pink_100 =
+    A.class "xl:hover:via-pink-100"
+
+
+xl__hover__via_pink_200 : Html.Attribute msg
+xl__hover__via_pink_200 =
+    A.class "xl:hover:via-pink-200"
+
+
+xl__hover__via_pink_300 : Html.Attribute msg
+xl__hover__via_pink_300 =
+    A.class "xl:hover:via-pink-300"
+
+
+xl__hover__via_pink_400 : Html.Attribute msg
+xl__hover__via_pink_400 =
+    A.class "xl:hover:via-pink-400"
+
+
+xl__hover__via_pink_500 : Html.Attribute msg
+xl__hover__via_pink_500 =
+    A.class "xl:hover:via-pink-500"
+
+
+xl__hover__via_pink_600 : Html.Attribute msg
+xl__hover__via_pink_600 =
+    A.class "xl:hover:via-pink-600"
+
+
+xl__hover__via_pink_700 : Html.Attribute msg
+xl__hover__via_pink_700 =
+    A.class "xl:hover:via-pink-700"
+
+
+xl__hover__via_pink_800 : Html.Attribute msg
+xl__hover__via_pink_800 =
+    A.class "xl:hover:via-pink-800"
+
+
+xl__hover__via_pink_900 : Html.Attribute msg
+xl__hover__via_pink_900 =
+    A.class "xl:hover:via-pink-900"
+
+
+xl__hover__to_transparent : Html.Attribute msg
+xl__hover__to_transparent =
+    A.class "xl:hover:to-transparent"
+
+
+xl__hover__to_current : Html.Attribute msg
+xl__hover__to_current =
+    A.class "xl:hover:to-current"
+
+
+xl__hover__to_black : Html.Attribute msg
+xl__hover__to_black =
+    A.class "xl:hover:to-black"
+
+
+xl__hover__to_white : Html.Attribute msg
+xl__hover__to_white =
+    A.class "xl:hover:to-white"
+
+
+xl__hover__to_gray_100 : Html.Attribute msg
+xl__hover__to_gray_100 =
+    A.class "xl:hover:to-gray-100"
+
+
+xl__hover__to_gray_200 : Html.Attribute msg
+xl__hover__to_gray_200 =
+    A.class "xl:hover:to-gray-200"
+
+
+xl__hover__to_gray_300 : Html.Attribute msg
+xl__hover__to_gray_300 =
+    A.class "xl:hover:to-gray-300"
+
+
+xl__hover__to_gray_400 : Html.Attribute msg
+xl__hover__to_gray_400 =
+    A.class "xl:hover:to-gray-400"
+
+
+xl__hover__to_gray_500 : Html.Attribute msg
+xl__hover__to_gray_500 =
+    A.class "xl:hover:to-gray-500"
+
+
+xl__hover__to_gray_600 : Html.Attribute msg
+xl__hover__to_gray_600 =
+    A.class "xl:hover:to-gray-600"
+
+
+xl__hover__to_gray_700 : Html.Attribute msg
+xl__hover__to_gray_700 =
+    A.class "xl:hover:to-gray-700"
+
+
+xl__hover__to_gray_800 : Html.Attribute msg
+xl__hover__to_gray_800 =
+    A.class "xl:hover:to-gray-800"
+
+
+xl__hover__to_gray_900 : Html.Attribute msg
+xl__hover__to_gray_900 =
+    A.class "xl:hover:to-gray-900"
+
+
+xl__hover__to_red_100 : Html.Attribute msg
+xl__hover__to_red_100 =
+    A.class "xl:hover:to-red-100"
+
+
+xl__hover__to_red_200 : Html.Attribute msg
+xl__hover__to_red_200 =
+    A.class "xl:hover:to-red-200"
+
+
+xl__hover__to_red_300 : Html.Attribute msg
+xl__hover__to_red_300 =
+    A.class "xl:hover:to-red-300"
+
+
+xl__hover__to_red_400 : Html.Attribute msg
+xl__hover__to_red_400 =
+    A.class "xl:hover:to-red-400"
+
+
+xl__hover__to_red_500 : Html.Attribute msg
+xl__hover__to_red_500 =
+    A.class "xl:hover:to-red-500"
+
+
+xl__hover__to_red_600 : Html.Attribute msg
+xl__hover__to_red_600 =
+    A.class "xl:hover:to-red-600"
+
+
+xl__hover__to_red_700 : Html.Attribute msg
+xl__hover__to_red_700 =
+    A.class "xl:hover:to-red-700"
+
+
+xl__hover__to_red_800 : Html.Attribute msg
+xl__hover__to_red_800 =
+    A.class "xl:hover:to-red-800"
+
+
+xl__hover__to_red_900 : Html.Attribute msg
+xl__hover__to_red_900 =
+    A.class "xl:hover:to-red-900"
+
+
+xl__hover__to_orange_100 : Html.Attribute msg
+xl__hover__to_orange_100 =
+    A.class "xl:hover:to-orange-100"
+
+
+xl__hover__to_orange_200 : Html.Attribute msg
+xl__hover__to_orange_200 =
+    A.class "xl:hover:to-orange-200"
+
+
+xl__hover__to_orange_300 : Html.Attribute msg
+xl__hover__to_orange_300 =
+    A.class "xl:hover:to-orange-300"
+
+
+xl__hover__to_orange_400 : Html.Attribute msg
+xl__hover__to_orange_400 =
+    A.class "xl:hover:to-orange-400"
+
+
+xl__hover__to_orange_500 : Html.Attribute msg
+xl__hover__to_orange_500 =
+    A.class "xl:hover:to-orange-500"
+
+
+xl__hover__to_orange_600 : Html.Attribute msg
+xl__hover__to_orange_600 =
+    A.class "xl:hover:to-orange-600"
+
+
+xl__hover__to_orange_700 : Html.Attribute msg
+xl__hover__to_orange_700 =
+    A.class "xl:hover:to-orange-700"
+
+
+xl__hover__to_orange_800 : Html.Attribute msg
+xl__hover__to_orange_800 =
+    A.class "xl:hover:to-orange-800"
+
+
+xl__hover__to_orange_900 : Html.Attribute msg
+xl__hover__to_orange_900 =
+    A.class "xl:hover:to-orange-900"
+
+
+xl__hover__to_yellow_100 : Html.Attribute msg
+xl__hover__to_yellow_100 =
+    A.class "xl:hover:to-yellow-100"
+
+
+xl__hover__to_yellow_200 : Html.Attribute msg
+xl__hover__to_yellow_200 =
+    A.class "xl:hover:to-yellow-200"
+
+
+xl__hover__to_yellow_300 : Html.Attribute msg
+xl__hover__to_yellow_300 =
+    A.class "xl:hover:to-yellow-300"
+
+
+xl__hover__to_yellow_400 : Html.Attribute msg
+xl__hover__to_yellow_400 =
+    A.class "xl:hover:to-yellow-400"
+
+
+xl__hover__to_yellow_500 : Html.Attribute msg
+xl__hover__to_yellow_500 =
+    A.class "xl:hover:to-yellow-500"
+
+
+xl__hover__to_yellow_600 : Html.Attribute msg
+xl__hover__to_yellow_600 =
+    A.class "xl:hover:to-yellow-600"
+
+
+xl__hover__to_yellow_700 : Html.Attribute msg
+xl__hover__to_yellow_700 =
+    A.class "xl:hover:to-yellow-700"
+
+
+xl__hover__to_yellow_800 : Html.Attribute msg
+xl__hover__to_yellow_800 =
+    A.class "xl:hover:to-yellow-800"
+
+
+xl__hover__to_yellow_900 : Html.Attribute msg
+xl__hover__to_yellow_900 =
+    A.class "xl:hover:to-yellow-900"
+
+
+xl__hover__to_green_100 : Html.Attribute msg
+xl__hover__to_green_100 =
+    A.class "xl:hover:to-green-100"
+
+
+xl__hover__to_green_200 : Html.Attribute msg
+xl__hover__to_green_200 =
+    A.class "xl:hover:to-green-200"
+
+
+xl__hover__to_green_300 : Html.Attribute msg
+xl__hover__to_green_300 =
+    A.class "xl:hover:to-green-300"
+
+
+xl__hover__to_green_400 : Html.Attribute msg
+xl__hover__to_green_400 =
+    A.class "xl:hover:to-green-400"
+
+
+xl__hover__to_green_500 : Html.Attribute msg
+xl__hover__to_green_500 =
+    A.class "xl:hover:to-green-500"
+
+
+xl__hover__to_green_600 : Html.Attribute msg
+xl__hover__to_green_600 =
+    A.class "xl:hover:to-green-600"
+
+
+xl__hover__to_green_700 : Html.Attribute msg
+xl__hover__to_green_700 =
+    A.class "xl:hover:to-green-700"
+
+
+xl__hover__to_green_800 : Html.Attribute msg
+xl__hover__to_green_800 =
+    A.class "xl:hover:to-green-800"
+
+
+xl__hover__to_green_900 : Html.Attribute msg
+xl__hover__to_green_900 =
+    A.class "xl:hover:to-green-900"
+
+
+xl__hover__to_teal_100 : Html.Attribute msg
+xl__hover__to_teal_100 =
+    A.class "xl:hover:to-teal-100"
+
+
+xl__hover__to_teal_200 : Html.Attribute msg
+xl__hover__to_teal_200 =
+    A.class "xl:hover:to-teal-200"
+
+
+xl__hover__to_teal_300 : Html.Attribute msg
+xl__hover__to_teal_300 =
+    A.class "xl:hover:to-teal-300"
+
+
+xl__hover__to_teal_400 : Html.Attribute msg
+xl__hover__to_teal_400 =
+    A.class "xl:hover:to-teal-400"
+
+
+xl__hover__to_teal_500 : Html.Attribute msg
+xl__hover__to_teal_500 =
+    A.class "xl:hover:to-teal-500"
+
+
+xl__hover__to_teal_600 : Html.Attribute msg
+xl__hover__to_teal_600 =
+    A.class "xl:hover:to-teal-600"
+
+
+xl__hover__to_teal_700 : Html.Attribute msg
+xl__hover__to_teal_700 =
+    A.class "xl:hover:to-teal-700"
+
+
+xl__hover__to_teal_800 : Html.Attribute msg
+xl__hover__to_teal_800 =
+    A.class "xl:hover:to-teal-800"
+
+
+xl__hover__to_teal_900 : Html.Attribute msg
+xl__hover__to_teal_900 =
+    A.class "xl:hover:to-teal-900"
+
+
+xl__hover__to_blue_100 : Html.Attribute msg
+xl__hover__to_blue_100 =
+    A.class "xl:hover:to-blue-100"
+
+
+xl__hover__to_blue_200 : Html.Attribute msg
+xl__hover__to_blue_200 =
+    A.class "xl:hover:to-blue-200"
+
+
+xl__hover__to_blue_300 : Html.Attribute msg
+xl__hover__to_blue_300 =
+    A.class "xl:hover:to-blue-300"
+
+
+xl__hover__to_blue_400 : Html.Attribute msg
+xl__hover__to_blue_400 =
+    A.class "xl:hover:to-blue-400"
+
+
+xl__hover__to_blue_500 : Html.Attribute msg
+xl__hover__to_blue_500 =
+    A.class "xl:hover:to-blue-500"
+
+
+xl__hover__to_blue_600 : Html.Attribute msg
+xl__hover__to_blue_600 =
+    A.class "xl:hover:to-blue-600"
+
+
+xl__hover__to_blue_700 : Html.Attribute msg
+xl__hover__to_blue_700 =
+    A.class "xl:hover:to-blue-700"
+
+
+xl__hover__to_blue_800 : Html.Attribute msg
+xl__hover__to_blue_800 =
+    A.class "xl:hover:to-blue-800"
+
+
+xl__hover__to_blue_900 : Html.Attribute msg
+xl__hover__to_blue_900 =
+    A.class "xl:hover:to-blue-900"
+
+
+xl__hover__to_indigo_100 : Html.Attribute msg
+xl__hover__to_indigo_100 =
+    A.class "xl:hover:to-indigo-100"
+
+
+xl__hover__to_indigo_200 : Html.Attribute msg
+xl__hover__to_indigo_200 =
+    A.class "xl:hover:to-indigo-200"
+
+
+xl__hover__to_indigo_300 : Html.Attribute msg
+xl__hover__to_indigo_300 =
+    A.class "xl:hover:to-indigo-300"
+
+
+xl__hover__to_indigo_400 : Html.Attribute msg
+xl__hover__to_indigo_400 =
+    A.class "xl:hover:to-indigo-400"
+
+
+xl__hover__to_indigo_500 : Html.Attribute msg
+xl__hover__to_indigo_500 =
+    A.class "xl:hover:to-indigo-500"
+
+
+xl__hover__to_indigo_600 : Html.Attribute msg
+xl__hover__to_indigo_600 =
+    A.class "xl:hover:to-indigo-600"
+
+
+xl__hover__to_indigo_700 : Html.Attribute msg
+xl__hover__to_indigo_700 =
+    A.class "xl:hover:to-indigo-700"
+
+
+xl__hover__to_indigo_800 : Html.Attribute msg
+xl__hover__to_indigo_800 =
+    A.class "xl:hover:to-indigo-800"
+
+
+xl__hover__to_indigo_900 : Html.Attribute msg
+xl__hover__to_indigo_900 =
+    A.class "xl:hover:to-indigo-900"
+
+
+xl__hover__to_purple_100 : Html.Attribute msg
+xl__hover__to_purple_100 =
+    A.class "xl:hover:to-purple-100"
+
+
+xl__hover__to_purple_200 : Html.Attribute msg
+xl__hover__to_purple_200 =
+    A.class "xl:hover:to-purple-200"
+
+
+xl__hover__to_purple_300 : Html.Attribute msg
+xl__hover__to_purple_300 =
+    A.class "xl:hover:to-purple-300"
+
+
+xl__hover__to_purple_400 : Html.Attribute msg
+xl__hover__to_purple_400 =
+    A.class "xl:hover:to-purple-400"
+
+
+xl__hover__to_purple_500 : Html.Attribute msg
+xl__hover__to_purple_500 =
+    A.class "xl:hover:to-purple-500"
+
+
+xl__hover__to_purple_600 : Html.Attribute msg
+xl__hover__to_purple_600 =
+    A.class "xl:hover:to-purple-600"
+
+
+xl__hover__to_purple_700 : Html.Attribute msg
+xl__hover__to_purple_700 =
+    A.class "xl:hover:to-purple-700"
+
+
+xl__hover__to_purple_800 : Html.Attribute msg
+xl__hover__to_purple_800 =
+    A.class "xl:hover:to-purple-800"
+
+
+xl__hover__to_purple_900 : Html.Attribute msg
+xl__hover__to_purple_900 =
+    A.class "xl:hover:to-purple-900"
+
+
+xl__hover__to_pink_100 : Html.Attribute msg
+xl__hover__to_pink_100 =
+    A.class "xl:hover:to-pink-100"
+
+
+xl__hover__to_pink_200 : Html.Attribute msg
+xl__hover__to_pink_200 =
+    A.class "xl:hover:to-pink-200"
+
+
+xl__hover__to_pink_300 : Html.Attribute msg
+xl__hover__to_pink_300 =
+    A.class "xl:hover:to-pink-300"
+
+
+xl__hover__to_pink_400 : Html.Attribute msg
+xl__hover__to_pink_400 =
+    A.class "xl:hover:to-pink-400"
+
+
+xl__hover__to_pink_500 : Html.Attribute msg
+xl__hover__to_pink_500 =
+    A.class "xl:hover:to-pink-500"
+
+
+xl__hover__to_pink_600 : Html.Attribute msg
+xl__hover__to_pink_600 =
+    A.class "xl:hover:to-pink-600"
+
+
+xl__hover__to_pink_700 : Html.Attribute msg
+xl__hover__to_pink_700 =
+    A.class "xl:hover:to-pink-700"
+
+
+xl__hover__to_pink_800 : Html.Attribute msg
+xl__hover__to_pink_800 =
+    A.class "xl:hover:to-pink-800"
+
+
+xl__hover__to_pink_900 : Html.Attribute msg
+xl__hover__to_pink_900 =
+    A.class "xl:hover:to-pink-900"
+
+
+xl__focus__from_transparent : Html.Attribute msg
+xl__focus__from_transparent =
+    A.class "xl:focus:from-transparent"
+
+
+xl__focus__from_current : Html.Attribute msg
+xl__focus__from_current =
+    A.class "xl:focus:from-current"
+
+
+xl__focus__from_black : Html.Attribute msg
+xl__focus__from_black =
+    A.class "xl:focus:from-black"
+
+
+xl__focus__from_white : Html.Attribute msg
+xl__focus__from_white =
+    A.class "xl:focus:from-white"
+
+
+xl__focus__from_gray_100 : Html.Attribute msg
+xl__focus__from_gray_100 =
+    A.class "xl:focus:from-gray-100"
+
+
+xl__focus__from_gray_200 : Html.Attribute msg
+xl__focus__from_gray_200 =
+    A.class "xl:focus:from-gray-200"
+
+
+xl__focus__from_gray_300 : Html.Attribute msg
+xl__focus__from_gray_300 =
+    A.class "xl:focus:from-gray-300"
+
+
+xl__focus__from_gray_400 : Html.Attribute msg
+xl__focus__from_gray_400 =
+    A.class "xl:focus:from-gray-400"
+
+
+xl__focus__from_gray_500 : Html.Attribute msg
+xl__focus__from_gray_500 =
+    A.class "xl:focus:from-gray-500"
+
+
+xl__focus__from_gray_600 : Html.Attribute msg
+xl__focus__from_gray_600 =
+    A.class "xl:focus:from-gray-600"
+
+
+xl__focus__from_gray_700 : Html.Attribute msg
+xl__focus__from_gray_700 =
+    A.class "xl:focus:from-gray-700"
+
+
+xl__focus__from_gray_800 : Html.Attribute msg
+xl__focus__from_gray_800 =
+    A.class "xl:focus:from-gray-800"
+
+
+xl__focus__from_gray_900 : Html.Attribute msg
+xl__focus__from_gray_900 =
+    A.class "xl:focus:from-gray-900"
+
+
+xl__focus__from_red_100 : Html.Attribute msg
+xl__focus__from_red_100 =
+    A.class "xl:focus:from-red-100"
+
+
+xl__focus__from_red_200 : Html.Attribute msg
+xl__focus__from_red_200 =
+    A.class "xl:focus:from-red-200"
+
+
+xl__focus__from_red_300 : Html.Attribute msg
+xl__focus__from_red_300 =
+    A.class "xl:focus:from-red-300"
+
+
+xl__focus__from_red_400 : Html.Attribute msg
+xl__focus__from_red_400 =
+    A.class "xl:focus:from-red-400"
+
+
+xl__focus__from_red_500 : Html.Attribute msg
+xl__focus__from_red_500 =
+    A.class "xl:focus:from-red-500"
+
+
+xl__focus__from_red_600 : Html.Attribute msg
+xl__focus__from_red_600 =
+    A.class "xl:focus:from-red-600"
+
+
+xl__focus__from_red_700 : Html.Attribute msg
+xl__focus__from_red_700 =
+    A.class "xl:focus:from-red-700"
+
+
+xl__focus__from_red_800 : Html.Attribute msg
+xl__focus__from_red_800 =
+    A.class "xl:focus:from-red-800"
+
+
+xl__focus__from_red_900 : Html.Attribute msg
+xl__focus__from_red_900 =
+    A.class "xl:focus:from-red-900"
+
+
+xl__focus__from_orange_100 : Html.Attribute msg
+xl__focus__from_orange_100 =
+    A.class "xl:focus:from-orange-100"
+
+
+xl__focus__from_orange_200 : Html.Attribute msg
+xl__focus__from_orange_200 =
+    A.class "xl:focus:from-orange-200"
+
+
+xl__focus__from_orange_300 : Html.Attribute msg
+xl__focus__from_orange_300 =
+    A.class "xl:focus:from-orange-300"
+
+
+xl__focus__from_orange_400 : Html.Attribute msg
+xl__focus__from_orange_400 =
+    A.class "xl:focus:from-orange-400"
+
+
+xl__focus__from_orange_500 : Html.Attribute msg
+xl__focus__from_orange_500 =
+    A.class "xl:focus:from-orange-500"
+
+
+xl__focus__from_orange_600 : Html.Attribute msg
+xl__focus__from_orange_600 =
+    A.class "xl:focus:from-orange-600"
+
+
+xl__focus__from_orange_700 : Html.Attribute msg
+xl__focus__from_orange_700 =
+    A.class "xl:focus:from-orange-700"
+
+
+xl__focus__from_orange_800 : Html.Attribute msg
+xl__focus__from_orange_800 =
+    A.class "xl:focus:from-orange-800"
+
+
+xl__focus__from_orange_900 : Html.Attribute msg
+xl__focus__from_orange_900 =
+    A.class "xl:focus:from-orange-900"
+
+
+xl__focus__from_yellow_100 : Html.Attribute msg
+xl__focus__from_yellow_100 =
+    A.class "xl:focus:from-yellow-100"
+
+
+xl__focus__from_yellow_200 : Html.Attribute msg
+xl__focus__from_yellow_200 =
+    A.class "xl:focus:from-yellow-200"
+
+
+xl__focus__from_yellow_300 : Html.Attribute msg
+xl__focus__from_yellow_300 =
+    A.class "xl:focus:from-yellow-300"
+
+
+xl__focus__from_yellow_400 : Html.Attribute msg
+xl__focus__from_yellow_400 =
+    A.class "xl:focus:from-yellow-400"
+
+
+xl__focus__from_yellow_500 : Html.Attribute msg
+xl__focus__from_yellow_500 =
+    A.class "xl:focus:from-yellow-500"
+
+
+xl__focus__from_yellow_600 : Html.Attribute msg
+xl__focus__from_yellow_600 =
+    A.class "xl:focus:from-yellow-600"
+
+
+xl__focus__from_yellow_700 : Html.Attribute msg
+xl__focus__from_yellow_700 =
+    A.class "xl:focus:from-yellow-700"
+
+
+xl__focus__from_yellow_800 : Html.Attribute msg
+xl__focus__from_yellow_800 =
+    A.class "xl:focus:from-yellow-800"
+
+
+xl__focus__from_yellow_900 : Html.Attribute msg
+xl__focus__from_yellow_900 =
+    A.class "xl:focus:from-yellow-900"
+
+
+xl__focus__from_green_100 : Html.Attribute msg
+xl__focus__from_green_100 =
+    A.class "xl:focus:from-green-100"
+
+
+xl__focus__from_green_200 : Html.Attribute msg
+xl__focus__from_green_200 =
+    A.class "xl:focus:from-green-200"
+
+
+xl__focus__from_green_300 : Html.Attribute msg
+xl__focus__from_green_300 =
+    A.class "xl:focus:from-green-300"
+
+
+xl__focus__from_green_400 : Html.Attribute msg
+xl__focus__from_green_400 =
+    A.class "xl:focus:from-green-400"
+
+
+xl__focus__from_green_500 : Html.Attribute msg
+xl__focus__from_green_500 =
+    A.class "xl:focus:from-green-500"
+
+
+xl__focus__from_green_600 : Html.Attribute msg
+xl__focus__from_green_600 =
+    A.class "xl:focus:from-green-600"
+
+
+xl__focus__from_green_700 : Html.Attribute msg
+xl__focus__from_green_700 =
+    A.class "xl:focus:from-green-700"
+
+
+xl__focus__from_green_800 : Html.Attribute msg
+xl__focus__from_green_800 =
+    A.class "xl:focus:from-green-800"
+
+
+xl__focus__from_green_900 : Html.Attribute msg
+xl__focus__from_green_900 =
+    A.class "xl:focus:from-green-900"
+
+
+xl__focus__from_teal_100 : Html.Attribute msg
+xl__focus__from_teal_100 =
+    A.class "xl:focus:from-teal-100"
+
+
+xl__focus__from_teal_200 : Html.Attribute msg
+xl__focus__from_teal_200 =
+    A.class "xl:focus:from-teal-200"
+
+
+xl__focus__from_teal_300 : Html.Attribute msg
+xl__focus__from_teal_300 =
+    A.class "xl:focus:from-teal-300"
+
+
+xl__focus__from_teal_400 : Html.Attribute msg
+xl__focus__from_teal_400 =
+    A.class "xl:focus:from-teal-400"
+
+
+xl__focus__from_teal_500 : Html.Attribute msg
+xl__focus__from_teal_500 =
+    A.class "xl:focus:from-teal-500"
+
+
+xl__focus__from_teal_600 : Html.Attribute msg
+xl__focus__from_teal_600 =
+    A.class "xl:focus:from-teal-600"
+
+
+xl__focus__from_teal_700 : Html.Attribute msg
+xl__focus__from_teal_700 =
+    A.class "xl:focus:from-teal-700"
+
+
+xl__focus__from_teal_800 : Html.Attribute msg
+xl__focus__from_teal_800 =
+    A.class "xl:focus:from-teal-800"
+
+
+xl__focus__from_teal_900 : Html.Attribute msg
+xl__focus__from_teal_900 =
+    A.class "xl:focus:from-teal-900"
+
+
+xl__focus__from_blue_100 : Html.Attribute msg
+xl__focus__from_blue_100 =
+    A.class "xl:focus:from-blue-100"
+
+
+xl__focus__from_blue_200 : Html.Attribute msg
+xl__focus__from_blue_200 =
+    A.class "xl:focus:from-blue-200"
+
+
+xl__focus__from_blue_300 : Html.Attribute msg
+xl__focus__from_blue_300 =
+    A.class "xl:focus:from-blue-300"
+
+
+xl__focus__from_blue_400 : Html.Attribute msg
+xl__focus__from_blue_400 =
+    A.class "xl:focus:from-blue-400"
+
+
+xl__focus__from_blue_500 : Html.Attribute msg
+xl__focus__from_blue_500 =
+    A.class "xl:focus:from-blue-500"
+
+
+xl__focus__from_blue_600 : Html.Attribute msg
+xl__focus__from_blue_600 =
+    A.class "xl:focus:from-blue-600"
+
+
+xl__focus__from_blue_700 : Html.Attribute msg
+xl__focus__from_blue_700 =
+    A.class "xl:focus:from-blue-700"
+
+
+xl__focus__from_blue_800 : Html.Attribute msg
+xl__focus__from_blue_800 =
+    A.class "xl:focus:from-blue-800"
+
+
+xl__focus__from_blue_900 : Html.Attribute msg
+xl__focus__from_blue_900 =
+    A.class "xl:focus:from-blue-900"
+
+
+xl__focus__from_indigo_100 : Html.Attribute msg
+xl__focus__from_indigo_100 =
+    A.class "xl:focus:from-indigo-100"
+
+
+xl__focus__from_indigo_200 : Html.Attribute msg
+xl__focus__from_indigo_200 =
+    A.class "xl:focus:from-indigo-200"
+
+
+xl__focus__from_indigo_300 : Html.Attribute msg
+xl__focus__from_indigo_300 =
+    A.class "xl:focus:from-indigo-300"
+
+
+xl__focus__from_indigo_400 : Html.Attribute msg
+xl__focus__from_indigo_400 =
+    A.class "xl:focus:from-indigo-400"
+
+
+xl__focus__from_indigo_500 : Html.Attribute msg
+xl__focus__from_indigo_500 =
+    A.class "xl:focus:from-indigo-500"
+
+
+xl__focus__from_indigo_600 : Html.Attribute msg
+xl__focus__from_indigo_600 =
+    A.class "xl:focus:from-indigo-600"
+
+
+xl__focus__from_indigo_700 : Html.Attribute msg
+xl__focus__from_indigo_700 =
+    A.class "xl:focus:from-indigo-700"
+
+
+xl__focus__from_indigo_800 : Html.Attribute msg
+xl__focus__from_indigo_800 =
+    A.class "xl:focus:from-indigo-800"
+
+
+xl__focus__from_indigo_900 : Html.Attribute msg
+xl__focus__from_indigo_900 =
+    A.class "xl:focus:from-indigo-900"
+
+
+xl__focus__from_purple_100 : Html.Attribute msg
+xl__focus__from_purple_100 =
+    A.class "xl:focus:from-purple-100"
+
+
+xl__focus__from_purple_200 : Html.Attribute msg
+xl__focus__from_purple_200 =
+    A.class "xl:focus:from-purple-200"
+
+
+xl__focus__from_purple_300 : Html.Attribute msg
+xl__focus__from_purple_300 =
+    A.class "xl:focus:from-purple-300"
+
+
+xl__focus__from_purple_400 : Html.Attribute msg
+xl__focus__from_purple_400 =
+    A.class "xl:focus:from-purple-400"
+
+
+xl__focus__from_purple_500 : Html.Attribute msg
+xl__focus__from_purple_500 =
+    A.class "xl:focus:from-purple-500"
+
+
+xl__focus__from_purple_600 : Html.Attribute msg
+xl__focus__from_purple_600 =
+    A.class "xl:focus:from-purple-600"
+
+
+xl__focus__from_purple_700 : Html.Attribute msg
+xl__focus__from_purple_700 =
+    A.class "xl:focus:from-purple-700"
+
+
+xl__focus__from_purple_800 : Html.Attribute msg
+xl__focus__from_purple_800 =
+    A.class "xl:focus:from-purple-800"
+
+
+xl__focus__from_purple_900 : Html.Attribute msg
+xl__focus__from_purple_900 =
+    A.class "xl:focus:from-purple-900"
+
+
+xl__focus__from_pink_100 : Html.Attribute msg
+xl__focus__from_pink_100 =
+    A.class "xl:focus:from-pink-100"
+
+
+xl__focus__from_pink_200 : Html.Attribute msg
+xl__focus__from_pink_200 =
+    A.class "xl:focus:from-pink-200"
+
+
+xl__focus__from_pink_300 : Html.Attribute msg
+xl__focus__from_pink_300 =
+    A.class "xl:focus:from-pink-300"
+
+
+xl__focus__from_pink_400 : Html.Attribute msg
+xl__focus__from_pink_400 =
+    A.class "xl:focus:from-pink-400"
+
+
+xl__focus__from_pink_500 : Html.Attribute msg
+xl__focus__from_pink_500 =
+    A.class "xl:focus:from-pink-500"
+
+
+xl__focus__from_pink_600 : Html.Attribute msg
+xl__focus__from_pink_600 =
+    A.class "xl:focus:from-pink-600"
+
+
+xl__focus__from_pink_700 : Html.Attribute msg
+xl__focus__from_pink_700 =
+    A.class "xl:focus:from-pink-700"
+
+
+xl__focus__from_pink_800 : Html.Attribute msg
+xl__focus__from_pink_800 =
+    A.class "xl:focus:from-pink-800"
+
+
+xl__focus__from_pink_900 : Html.Attribute msg
+xl__focus__from_pink_900 =
+    A.class "xl:focus:from-pink-900"
+
+
+xl__focus__via_transparent : Html.Attribute msg
+xl__focus__via_transparent =
+    A.class "xl:focus:via-transparent"
+
+
+xl__focus__via_current : Html.Attribute msg
+xl__focus__via_current =
+    A.class "xl:focus:via-current"
+
+
+xl__focus__via_black : Html.Attribute msg
+xl__focus__via_black =
+    A.class "xl:focus:via-black"
+
+
+xl__focus__via_white : Html.Attribute msg
+xl__focus__via_white =
+    A.class "xl:focus:via-white"
+
+
+xl__focus__via_gray_100 : Html.Attribute msg
+xl__focus__via_gray_100 =
+    A.class "xl:focus:via-gray-100"
+
+
+xl__focus__via_gray_200 : Html.Attribute msg
+xl__focus__via_gray_200 =
+    A.class "xl:focus:via-gray-200"
+
+
+xl__focus__via_gray_300 : Html.Attribute msg
+xl__focus__via_gray_300 =
+    A.class "xl:focus:via-gray-300"
+
+
+xl__focus__via_gray_400 : Html.Attribute msg
+xl__focus__via_gray_400 =
+    A.class "xl:focus:via-gray-400"
+
+
+xl__focus__via_gray_500 : Html.Attribute msg
+xl__focus__via_gray_500 =
+    A.class "xl:focus:via-gray-500"
+
+
+xl__focus__via_gray_600 : Html.Attribute msg
+xl__focus__via_gray_600 =
+    A.class "xl:focus:via-gray-600"
+
+
+xl__focus__via_gray_700 : Html.Attribute msg
+xl__focus__via_gray_700 =
+    A.class "xl:focus:via-gray-700"
+
+
+xl__focus__via_gray_800 : Html.Attribute msg
+xl__focus__via_gray_800 =
+    A.class "xl:focus:via-gray-800"
+
+
+xl__focus__via_gray_900 : Html.Attribute msg
+xl__focus__via_gray_900 =
+    A.class "xl:focus:via-gray-900"
+
+
+xl__focus__via_red_100 : Html.Attribute msg
+xl__focus__via_red_100 =
+    A.class "xl:focus:via-red-100"
+
+
+xl__focus__via_red_200 : Html.Attribute msg
+xl__focus__via_red_200 =
+    A.class "xl:focus:via-red-200"
+
+
+xl__focus__via_red_300 : Html.Attribute msg
+xl__focus__via_red_300 =
+    A.class "xl:focus:via-red-300"
+
+
+xl__focus__via_red_400 : Html.Attribute msg
+xl__focus__via_red_400 =
+    A.class "xl:focus:via-red-400"
+
+
+xl__focus__via_red_500 : Html.Attribute msg
+xl__focus__via_red_500 =
+    A.class "xl:focus:via-red-500"
+
+
+xl__focus__via_red_600 : Html.Attribute msg
+xl__focus__via_red_600 =
+    A.class "xl:focus:via-red-600"
+
+
+xl__focus__via_red_700 : Html.Attribute msg
+xl__focus__via_red_700 =
+    A.class "xl:focus:via-red-700"
+
+
+xl__focus__via_red_800 : Html.Attribute msg
+xl__focus__via_red_800 =
+    A.class "xl:focus:via-red-800"
+
+
+xl__focus__via_red_900 : Html.Attribute msg
+xl__focus__via_red_900 =
+    A.class "xl:focus:via-red-900"
+
+
+xl__focus__via_orange_100 : Html.Attribute msg
+xl__focus__via_orange_100 =
+    A.class "xl:focus:via-orange-100"
+
+
+xl__focus__via_orange_200 : Html.Attribute msg
+xl__focus__via_orange_200 =
+    A.class "xl:focus:via-orange-200"
+
+
+xl__focus__via_orange_300 : Html.Attribute msg
+xl__focus__via_orange_300 =
+    A.class "xl:focus:via-orange-300"
+
+
+xl__focus__via_orange_400 : Html.Attribute msg
+xl__focus__via_orange_400 =
+    A.class "xl:focus:via-orange-400"
+
+
+xl__focus__via_orange_500 : Html.Attribute msg
+xl__focus__via_orange_500 =
+    A.class "xl:focus:via-orange-500"
+
+
+xl__focus__via_orange_600 : Html.Attribute msg
+xl__focus__via_orange_600 =
+    A.class "xl:focus:via-orange-600"
+
+
+xl__focus__via_orange_700 : Html.Attribute msg
+xl__focus__via_orange_700 =
+    A.class "xl:focus:via-orange-700"
+
+
+xl__focus__via_orange_800 : Html.Attribute msg
+xl__focus__via_orange_800 =
+    A.class "xl:focus:via-orange-800"
+
+
+xl__focus__via_orange_900 : Html.Attribute msg
+xl__focus__via_orange_900 =
+    A.class "xl:focus:via-orange-900"
+
+
+xl__focus__via_yellow_100 : Html.Attribute msg
+xl__focus__via_yellow_100 =
+    A.class "xl:focus:via-yellow-100"
+
+
+xl__focus__via_yellow_200 : Html.Attribute msg
+xl__focus__via_yellow_200 =
+    A.class "xl:focus:via-yellow-200"
+
+
+xl__focus__via_yellow_300 : Html.Attribute msg
+xl__focus__via_yellow_300 =
+    A.class "xl:focus:via-yellow-300"
+
+
+xl__focus__via_yellow_400 : Html.Attribute msg
+xl__focus__via_yellow_400 =
+    A.class "xl:focus:via-yellow-400"
+
+
+xl__focus__via_yellow_500 : Html.Attribute msg
+xl__focus__via_yellow_500 =
+    A.class "xl:focus:via-yellow-500"
+
+
+xl__focus__via_yellow_600 : Html.Attribute msg
+xl__focus__via_yellow_600 =
+    A.class "xl:focus:via-yellow-600"
+
+
+xl__focus__via_yellow_700 : Html.Attribute msg
+xl__focus__via_yellow_700 =
+    A.class "xl:focus:via-yellow-700"
+
+
+xl__focus__via_yellow_800 : Html.Attribute msg
+xl__focus__via_yellow_800 =
+    A.class "xl:focus:via-yellow-800"
+
+
+xl__focus__via_yellow_900 : Html.Attribute msg
+xl__focus__via_yellow_900 =
+    A.class "xl:focus:via-yellow-900"
+
+
+xl__focus__via_green_100 : Html.Attribute msg
+xl__focus__via_green_100 =
+    A.class "xl:focus:via-green-100"
+
+
+xl__focus__via_green_200 : Html.Attribute msg
+xl__focus__via_green_200 =
+    A.class "xl:focus:via-green-200"
+
+
+xl__focus__via_green_300 : Html.Attribute msg
+xl__focus__via_green_300 =
+    A.class "xl:focus:via-green-300"
+
+
+xl__focus__via_green_400 : Html.Attribute msg
+xl__focus__via_green_400 =
+    A.class "xl:focus:via-green-400"
+
+
+xl__focus__via_green_500 : Html.Attribute msg
+xl__focus__via_green_500 =
+    A.class "xl:focus:via-green-500"
+
+
+xl__focus__via_green_600 : Html.Attribute msg
+xl__focus__via_green_600 =
+    A.class "xl:focus:via-green-600"
+
+
+xl__focus__via_green_700 : Html.Attribute msg
+xl__focus__via_green_700 =
+    A.class "xl:focus:via-green-700"
+
+
+xl__focus__via_green_800 : Html.Attribute msg
+xl__focus__via_green_800 =
+    A.class "xl:focus:via-green-800"
+
+
+xl__focus__via_green_900 : Html.Attribute msg
+xl__focus__via_green_900 =
+    A.class "xl:focus:via-green-900"
+
+
+xl__focus__via_teal_100 : Html.Attribute msg
+xl__focus__via_teal_100 =
+    A.class "xl:focus:via-teal-100"
+
+
+xl__focus__via_teal_200 : Html.Attribute msg
+xl__focus__via_teal_200 =
+    A.class "xl:focus:via-teal-200"
+
+
+xl__focus__via_teal_300 : Html.Attribute msg
+xl__focus__via_teal_300 =
+    A.class "xl:focus:via-teal-300"
+
+
+xl__focus__via_teal_400 : Html.Attribute msg
+xl__focus__via_teal_400 =
+    A.class "xl:focus:via-teal-400"
+
+
+xl__focus__via_teal_500 : Html.Attribute msg
+xl__focus__via_teal_500 =
+    A.class "xl:focus:via-teal-500"
+
+
+xl__focus__via_teal_600 : Html.Attribute msg
+xl__focus__via_teal_600 =
+    A.class "xl:focus:via-teal-600"
+
+
+xl__focus__via_teal_700 : Html.Attribute msg
+xl__focus__via_teal_700 =
+    A.class "xl:focus:via-teal-700"
+
+
+xl__focus__via_teal_800 : Html.Attribute msg
+xl__focus__via_teal_800 =
+    A.class "xl:focus:via-teal-800"
+
+
+xl__focus__via_teal_900 : Html.Attribute msg
+xl__focus__via_teal_900 =
+    A.class "xl:focus:via-teal-900"
+
+
+xl__focus__via_blue_100 : Html.Attribute msg
+xl__focus__via_blue_100 =
+    A.class "xl:focus:via-blue-100"
+
+
+xl__focus__via_blue_200 : Html.Attribute msg
+xl__focus__via_blue_200 =
+    A.class "xl:focus:via-blue-200"
+
+
+xl__focus__via_blue_300 : Html.Attribute msg
+xl__focus__via_blue_300 =
+    A.class "xl:focus:via-blue-300"
+
+
+xl__focus__via_blue_400 : Html.Attribute msg
+xl__focus__via_blue_400 =
+    A.class "xl:focus:via-blue-400"
+
+
+xl__focus__via_blue_500 : Html.Attribute msg
+xl__focus__via_blue_500 =
+    A.class "xl:focus:via-blue-500"
+
+
+xl__focus__via_blue_600 : Html.Attribute msg
+xl__focus__via_blue_600 =
+    A.class "xl:focus:via-blue-600"
+
+
+xl__focus__via_blue_700 : Html.Attribute msg
+xl__focus__via_blue_700 =
+    A.class "xl:focus:via-blue-700"
+
+
+xl__focus__via_blue_800 : Html.Attribute msg
+xl__focus__via_blue_800 =
+    A.class "xl:focus:via-blue-800"
+
+
+xl__focus__via_blue_900 : Html.Attribute msg
+xl__focus__via_blue_900 =
+    A.class "xl:focus:via-blue-900"
+
+
+xl__focus__via_indigo_100 : Html.Attribute msg
+xl__focus__via_indigo_100 =
+    A.class "xl:focus:via-indigo-100"
+
+
+xl__focus__via_indigo_200 : Html.Attribute msg
+xl__focus__via_indigo_200 =
+    A.class "xl:focus:via-indigo-200"
+
+
+xl__focus__via_indigo_300 : Html.Attribute msg
+xl__focus__via_indigo_300 =
+    A.class "xl:focus:via-indigo-300"
+
+
+xl__focus__via_indigo_400 : Html.Attribute msg
+xl__focus__via_indigo_400 =
+    A.class "xl:focus:via-indigo-400"
+
+
+xl__focus__via_indigo_500 : Html.Attribute msg
+xl__focus__via_indigo_500 =
+    A.class "xl:focus:via-indigo-500"
+
+
+xl__focus__via_indigo_600 : Html.Attribute msg
+xl__focus__via_indigo_600 =
+    A.class "xl:focus:via-indigo-600"
+
+
+xl__focus__via_indigo_700 : Html.Attribute msg
+xl__focus__via_indigo_700 =
+    A.class "xl:focus:via-indigo-700"
+
+
+xl__focus__via_indigo_800 : Html.Attribute msg
+xl__focus__via_indigo_800 =
+    A.class "xl:focus:via-indigo-800"
+
+
+xl__focus__via_indigo_900 : Html.Attribute msg
+xl__focus__via_indigo_900 =
+    A.class "xl:focus:via-indigo-900"
+
+
+xl__focus__via_purple_100 : Html.Attribute msg
+xl__focus__via_purple_100 =
+    A.class "xl:focus:via-purple-100"
+
+
+xl__focus__via_purple_200 : Html.Attribute msg
+xl__focus__via_purple_200 =
+    A.class "xl:focus:via-purple-200"
+
+
+xl__focus__via_purple_300 : Html.Attribute msg
+xl__focus__via_purple_300 =
+    A.class "xl:focus:via-purple-300"
+
+
+xl__focus__via_purple_400 : Html.Attribute msg
+xl__focus__via_purple_400 =
+    A.class "xl:focus:via-purple-400"
+
+
+xl__focus__via_purple_500 : Html.Attribute msg
+xl__focus__via_purple_500 =
+    A.class "xl:focus:via-purple-500"
+
+
+xl__focus__via_purple_600 : Html.Attribute msg
+xl__focus__via_purple_600 =
+    A.class "xl:focus:via-purple-600"
+
+
+xl__focus__via_purple_700 : Html.Attribute msg
+xl__focus__via_purple_700 =
+    A.class "xl:focus:via-purple-700"
+
+
+xl__focus__via_purple_800 : Html.Attribute msg
+xl__focus__via_purple_800 =
+    A.class "xl:focus:via-purple-800"
+
+
+xl__focus__via_purple_900 : Html.Attribute msg
+xl__focus__via_purple_900 =
+    A.class "xl:focus:via-purple-900"
+
+
+xl__focus__via_pink_100 : Html.Attribute msg
+xl__focus__via_pink_100 =
+    A.class "xl:focus:via-pink-100"
+
+
+xl__focus__via_pink_200 : Html.Attribute msg
+xl__focus__via_pink_200 =
+    A.class "xl:focus:via-pink-200"
+
+
+xl__focus__via_pink_300 : Html.Attribute msg
+xl__focus__via_pink_300 =
+    A.class "xl:focus:via-pink-300"
+
+
+xl__focus__via_pink_400 : Html.Attribute msg
+xl__focus__via_pink_400 =
+    A.class "xl:focus:via-pink-400"
+
+
+xl__focus__via_pink_500 : Html.Attribute msg
+xl__focus__via_pink_500 =
+    A.class "xl:focus:via-pink-500"
+
+
+xl__focus__via_pink_600 : Html.Attribute msg
+xl__focus__via_pink_600 =
+    A.class "xl:focus:via-pink-600"
+
+
+xl__focus__via_pink_700 : Html.Attribute msg
+xl__focus__via_pink_700 =
+    A.class "xl:focus:via-pink-700"
+
+
+xl__focus__via_pink_800 : Html.Attribute msg
+xl__focus__via_pink_800 =
+    A.class "xl:focus:via-pink-800"
+
+
+xl__focus__via_pink_900 : Html.Attribute msg
+xl__focus__via_pink_900 =
+    A.class "xl:focus:via-pink-900"
+
+
+xl__focus__to_transparent : Html.Attribute msg
+xl__focus__to_transparent =
+    A.class "xl:focus:to-transparent"
+
+
+xl__focus__to_current : Html.Attribute msg
+xl__focus__to_current =
+    A.class "xl:focus:to-current"
+
+
+xl__focus__to_black : Html.Attribute msg
+xl__focus__to_black =
+    A.class "xl:focus:to-black"
+
+
+xl__focus__to_white : Html.Attribute msg
+xl__focus__to_white =
+    A.class "xl:focus:to-white"
+
+
+xl__focus__to_gray_100 : Html.Attribute msg
+xl__focus__to_gray_100 =
+    A.class "xl:focus:to-gray-100"
+
+
+xl__focus__to_gray_200 : Html.Attribute msg
+xl__focus__to_gray_200 =
+    A.class "xl:focus:to-gray-200"
+
+
+xl__focus__to_gray_300 : Html.Attribute msg
+xl__focus__to_gray_300 =
+    A.class "xl:focus:to-gray-300"
+
+
+xl__focus__to_gray_400 : Html.Attribute msg
+xl__focus__to_gray_400 =
+    A.class "xl:focus:to-gray-400"
+
+
+xl__focus__to_gray_500 : Html.Attribute msg
+xl__focus__to_gray_500 =
+    A.class "xl:focus:to-gray-500"
+
+
+xl__focus__to_gray_600 : Html.Attribute msg
+xl__focus__to_gray_600 =
+    A.class "xl:focus:to-gray-600"
+
+
+xl__focus__to_gray_700 : Html.Attribute msg
+xl__focus__to_gray_700 =
+    A.class "xl:focus:to-gray-700"
+
+
+xl__focus__to_gray_800 : Html.Attribute msg
+xl__focus__to_gray_800 =
+    A.class "xl:focus:to-gray-800"
+
+
+xl__focus__to_gray_900 : Html.Attribute msg
+xl__focus__to_gray_900 =
+    A.class "xl:focus:to-gray-900"
+
+
+xl__focus__to_red_100 : Html.Attribute msg
+xl__focus__to_red_100 =
+    A.class "xl:focus:to-red-100"
+
+
+xl__focus__to_red_200 : Html.Attribute msg
+xl__focus__to_red_200 =
+    A.class "xl:focus:to-red-200"
+
+
+xl__focus__to_red_300 : Html.Attribute msg
+xl__focus__to_red_300 =
+    A.class "xl:focus:to-red-300"
+
+
+xl__focus__to_red_400 : Html.Attribute msg
+xl__focus__to_red_400 =
+    A.class "xl:focus:to-red-400"
+
+
+xl__focus__to_red_500 : Html.Attribute msg
+xl__focus__to_red_500 =
+    A.class "xl:focus:to-red-500"
+
+
+xl__focus__to_red_600 : Html.Attribute msg
+xl__focus__to_red_600 =
+    A.class "xl:focus:to-red-600"
+
+
+xl__focus__to_red_700 : Html.Attribute msg
+xl__focus__to_red_700 =
+    A.class "xl:focus:to-red-700"
+
+
+xl__focus__to_red_800 : Html.Attribute msg
+xl__focus__to_red_800 =
+    A.class "xl:focus:to-red-800"
+
+
+xl__focus__to_red_900 : Html.Attribute msg
+xl__focus__to_red_900 =
+    A.class "xl:focus:to-red-900"
+
+
+xl__focus__to_orange_100 : Html.Attribute msg
+xl__focus__to_orange_100 =
+    A.class "xl:focus:to-orange-100"
+
+
+xl__focus__to_orange_200 : Html.Attribute msg
+xl__focus__to_orange_200 =
+    A.class "xl:focus:to-orange-200"
+
+
+xl__focus__to_orange_300 : Html.Attribute msg
+xl__focus__to_orange_300 =
+    A.class "xl:focus:to-orange-300"
+
+
+xl__focus__to_orange_400 : Html.Attribute msg
+xl__focus__to_orange_400 =
+    A.class "xl:focus:to-orange-400"
+
+
+xl__focus__to_orange_500 : Html.Attribute msg
+xl__focus__to_orange_500 =
+    A.class "xl:focus:to-orange-500"
+
+
+xl__focus__to_orange_600 : Html.Attribute msg
+xl__focus__to_orange_600 =
+    A.class "xl:focus:to-orange-600"
+
+
+xl__focus__to_orange_700 : Html.Attribute msg
+xl__focus__to_orange_700 =
+    A.class "xl:focus:to-orange-700"
+
+
+xl__focus__to_orange_800 : Html.Attribute msg
+xl__focus__to_orange_800 =
+    A.class "xl:focus:to-orange-800"
+
+
+xl__focus__to_orange_900 : Html.Attribute msg
+xl__focus__to_orange_900 =
+    A.class "xl:focus:to-orange-900"
+
+
+xl__focus__to_yellow_100 : Html.Attribute msg
+xl__focus__to_yellow_100 =
+    A.class "xl:focus:to-yellow-100"
+
+
+xl__focus__to_yellow_200 : Html.Attribute msg
+xl__focus__to_yellow_200 =
+    A.class "xl:focus:to-yellow-200"
+
+
+xl__focus__to_yellow_300 : Html.Attribute msg
+xl__focus__to_yellow_300 =
+    A.class "xl:focus:to-yellow-300"
+
+
+xl__focus__to_yellow_400 : Html.Attribute msg
+xl__focus__to_yellow_400 =
+    A.class "xl:focus:to-yellow-400"
+
+
+xl__focus__to_yellow_500 : Html.Attribute msg
+xl__focus__to_yellow_500 =
+    A.class "xl:focus:to-yellow-500"
+
+
+xl__focus__to_yellow_600 : Html.Attribute msg
+xl__focus__to_yellow_600 =
+    A.class "xl:focus:to-yellow-600"
+
+
+xl__focus__to_yellow_700 : Html.Attribute msg
+xl__focus__to_yellow_700 =
+    A.class "xl:focus:to-yellow-700"
+
+
+xl__focus__to_yellow_800 : Html.Attribute msg
+xl__focus__to_yellow_800 =
+    A.class "xl:focus:to-yellow-800"
+
+
+xl__focus__to_yellow_900 : Html.Attribute msg
+xl__focus__to_yellow_900 =
+    A.class "xl:focus:to-yellow-900"
+
+
+xl__focus__to_green_100 : Html.Attribute msg
+xl__focus__to_green_100 =
+    A.class "xl:focus:to-green-100"
+
+
+xl__focus__to_green_200 : Html.Attribute msg
+xl__focus__to_green_200 =
+    A.class "xl:focus:to-green-200"
+
+
+xl__focus__to_green_300 : Html.Attribute msg
+xl__focus__to_green_300 =
+    A.class "xl:focus:to-green-300"
+
+
+xl__focus__to_green_400 : Html.Attribute msg
+xl__focus__to_green_400 =
+    A.class "xl:focus:to-green-400"
+
+
+xl__focus__to_green_500 : Html.Attribute msg
+xl__focus__to_green_500 =
+    A.class "xl:focus:to-green-500"
+
+
+xl__focus__to_green_600 : Html.Attribute msg
+xl__focus__to_green_600 =
+    A.class "xl:focus:to-green-600"
+
+
+xl__focus__to_green_700 : Html.Attribute msg
+xl__focus__to_green_700 =
+    A.class "xl:focus:to-green-700"
+
+
+xl__focus__to_green_800 : Html.Attribute msg
+xl__focus__to_green_800 =
+    A.class "xl:focus:to-green-800"
+
+
+xl__focus__to_green_900 : Html.Attribute msg
+xl__focus__to_green_900 =
+    A.class "xl:focus:to-green-900"
+
+
+xl__focus__to_teal_100 : Html.Attribute msg
+xl__focus__to_teal_100 =
+    A.class "xl:focus:to-teal-100"
+
+
+xl__focus__to_teal_200 : Html.Attribute msg
+xl__focus__to_teal_200 =
+    A.class "xl:focus:to-teal-200"
+
+
+xl__focus__to_teal_300 : Html.Attribute msg
+xl__focus__to_teal_300 =
+    A.class "xl:focus:to-teal-300"
+
+
+xl__focus__to_teal_400 : Html.Attribute msg
+xl__focus__to_teal_400 =
+    A.class "xl:focus:to-teal-400"
+
+
+xl__focus__to_teal_500 : Html.Attribute msg
+xl__focus__to_teal_500 =
+    A.class "xl:focus:to-teal-500"
+
+
+xl__focus__to_teal_600 : Html.Attribute msg
+xl__focus__to_teal_600 =
+    A.class "xl:focus:to-teal-600"
+
+
+xl__focus__to_teal_700 : Html.Attribute msg
+xl__focus__to_teal_700 =
+    A.class "xl:focus:to-teal-700"
+
+
+xl__focus__to_teal_800 : Html.Attribute msg
+xl__focus__to_teal_800 =
+    A.class "xl:focus:to-teal-800"
+
+
+xl__focus__to_teal_900 : Html.Attribute msg
+xl__focus__to_teal_900 =
+    A.class "xl:focus:to-teal-900"
+
+
+xl__focus__to_blue_100 : Html.Attribute msg
+xl__focus__to_blue_100 =
+    A.class "xl:focus:to-blue-100"
+
+
+xl__focus__to_blue_200 : Html.Attribute msg
+xl__focus__to_blue_200 =
+    A.class "xl:focus:to-blue-200"
+
+
+xl__focus__to_blue_300 : Html.Attribute msg
+xl__focus__to_blue_300 =
+    A.class "xl:focus:to-blue-300"
+
+
+xl__focus__to_blue_400 : Html.Attribute msg
+xl__focus__to_blue_400 =
+    A.class "xl:focus:to-blue-400"
+
+
+xl__focus__to_blue_500 : Html.Attribute msg
+xl__focus__to_blue_500 =
+    A.class "xl:focus:to-blue-500"
+
+
+xl__focus__to_blue_600 : Html.Attribute msg
+xl__focus__to_blue_600 =
+    A.class "xl:focus:to-blue-600"
+
+
+xl__focus__to_blue_700 : Html.Attribute msg
+xl__focus__to_blue_700 =
+    A.class "xl:focus:to-blue-700"
+
+
+xl__focus__to_blue_800 : Html.Attribute msg
+xl__focus__to_blue_800 =
+    A.class "xl:focus:to-blue-800"
+
+
+xl__focus__to_blue_900 : Html.Attribute msg
+xl__focus__to_blue_900 =
+    A.class "xl:focus:to-blue-900"
+
+
+xl__focus__to_indigo_100 : Html.Attribute msg
+xl__focus__to_indigo_100 =
+    A.class "xl:focus:to-indigo-100"
+
+
+xl__focus__to_indigo_200 : Html.Attribute msg
+xl__focus__to_indigo_200 =
+    A.class "xl:focus:to-indigo-200"
+
+
+xl__focus__to_indigo_300 : Html.Attribute msg
+xl__focus__to_indigo_300 =
+    A.class "xl:focus:to-indigo-300"
+
+
+xl__focus__to_indigo_400 : Html.Attribute msg
+xl__focus__to_indigo_400 =
+    A.class "xl:focus:to-indigo-400"
+
+
+xl__focus__to_indigo_500 : Html.Attribute msg
+xl__focus__to_indigo_500 =
+    A.class "xl:focus:to-indigo-500"
+
+
+xl__focus__to_indigo_600 : Html.Attribute msg
+xl__focus__to_indigo_600 =
+    A.class "xl:focus:to-indigo-600"
+
+
+xl__focus__to_indigo_700 : Html.Attribute msg
+xl__focus__to_indigo_700 =
+    A.class "xl:focus:to-indigo-700"
+
+
+xl__focus__to_indigo_800 : Html.Attribute msg
+xl__focus__to_indigo_800 =
+    A.class "xl:focus:to-indigo-800"
+
+
+xl__focus__to_indigo_900 : Html.Attribute msg
+xl__focus__to_indigo_900 =
+    A.class "xl:focus:to-indigo-900"
+
+
+xl__focus__to_purple_100 : Html.Attribute msg
+xl__focus__to_purple_100 =
+    A.class "xl:focus:to-purple-100"
+
+
+xl__focus__to_purple_200 : Html.Attribute msg
+xl__focus__to_purple_200 =
+    A.class "xl:focus:to-purple-200"
+
+
+xl__focus__to_purple_300 : Html.Attribute msg
+xl__focus__to_purple_300 =
+    A.class "xl:focus:to-purple-300"
+
+
+xl__focus__to_purple_400 : Html.Attribute msg
+xl__focus__to_purple_400 =
+    A.class "xl:focus:to-purple-400"
+
+
+xl__focus__to_purple_500 : Html.Attribute msg
+xl__focus__to_purple_500 =
+    A.class "xl:focus:to-purple-500"
+
+
+xl__focus__to_purple_600 : Html.Attribute msg
+xl__focus__to_purple_600 =
+    A.class "xl:focus:to-purple-600"
+
+
+xl__focus__to_purple_700 : Html.Attribute msg
+xl__focus__to_purple_700 =
+    A.class "xl:focus:to-purple-700"
+
+
+xl__focus__to_purple_800 : Html.Attribute msg
+xl__focus__to_purple_800 =
+    A.class "xl:focus:to-purple-800"
+
+
+xl__focus__to_purple_900 : Html.Attribute msg
+xl__focus__to_purple_900 =
+    A.class "xl:focus:to-purple-900"
+
+
+xl__focus__to_pink_100 : Html.Attribute msg
+xl__focus__to_pink_100 =
+    A.class "xl:focus:to-pink-100"
+
+
+xl__focus__to_pink_200 : Html.Attribute msg
+xl__focus__to_pink_200 =
+    A.class "xl:focus:to-pink-200"
+
+
+xl__focus__to_pink_300 : Html.Attribute msg
+xl__focus__to_pink_300 =
+    A.class "xl:focus:to-pink-300"
+
+
+xl__focus__to_pink_400 : Html.Attribute msg
+xl__focus__to_pink_400 =
+    A.class "xl:focus:to-pink-400"
+
+
+xl__focus__to_pink_500 : Html.Attribute msg
+xl__focus__to_pink_500 =
+    A.class "xl:focus:to-pink-500"
+
+
+xl__focus__to_pink_600 : Html.Attribute msg
+xl__focus__to_pink_600 =
+    A.class "xl:focus:to-pink-600"
+
+
+xl__focus__to_pink_700 : Html.Attribute msg
+xl__focus__to_pink_700 =
+    A.class "xl:focus:to-pink-700"
+
+
+xl__focus__to_pink_800 : Html.Attribute msg
+xl__focus__to_pink_800 =
+    A.class "xl:focus:to-pink-800"
+
+
+xl__focus__to_pink_900 : Html.Attribute msg
+xl__focus__to_pink_900 =
+    A.class "xl:focus:to-pink-900"
 
 
 xl__bg_opacity_0 : Html.Attribute msg
@@ -73637,6 +103256,21 @@ xl__rounded_lg =
     A.class "xl:rounded-lg"
 
 
+xl__rounded_xl : Html.Attribute msg
+xl__rounded_xl =
+    A.class "xl:rounded-xl"
+
+
+xl__rounded_2xl : Html.Attribute msg
+xl__rounded_2xl =
+    A.class "xl:rounded-2xl"
+
+
+xl__rounded_3xl : Html.Attribute msg
+xl__rounded_3xl =
+    A.class "xl:rounded-3xl"
+
+
 xl__rounded_full : Html.Attribute msg
 xl__rounded_full =
     A.class "xl:rounded-full"
@@ -73740,6 +103374,66 @@ xl__rounded_b_lg =
 xl__rounded_l_lg : Html.Attribute msg
 xl__rounded_l_lg =
     A.class "xl:rounded-l-lg"
+
+
+xl__rounded_t_xl : Html.Attribute msg
+xl__rounded_t_xl =
+    A.class "xl:rounded-t-xl"
+
+
+xl__rounded_r_xl : Html.Attribute msg
+xl__rounded_r_xl =
+    A.class "xl:rounded-r-xl"
+
+
+xl__rounded_b_xl : Html.Attribute msg
+xl__rounded_b_xl =
+    A.class "xl:rounded-b-xl"
+
+
+xl__rounded_l_xl : Html.Attribute msg
+xl__rounded_l_xl =
+    A.class "xl:rounded-l-xl"
+
+
+xl__rounded_t_2xl : Html.Attribute msg
+xl__rounded_t_2xl =
+    A.class "xl:rounded-t-2xl"
+
+
+xl__rounded_r_2xl : Html.Attribute msg
+xl__rounded_r_2xl =
+    A.class "xl:rounded-r-2xl"
+
+
+xl__rounded_b_2xl : Html.Attribute msg
+xl__rounded_b_2xl =
+    A.class "xl:rounded-b-2xl"
+
+
+xl__rounded_l_2xl : Html.Attribute msg
+xl__rounded_l_2xl =
+    A.class "xl:rounded-l-2xl"
+
+
+xl__rounded_t_3xl : Html.Attribute msg
+xl__rounded_t_3xl =
+    A.class "xl:rounded-t-3xl"
+
+
+xl__rounded_r_3xl : Html.Attribute msg
+xl__rounded_r_3xl =
+    A.class "xl:rounded-r-3xl"
+
+
+xl__rounded_b_3xl : Html.Attribute msg
+xl__rounded_b_3xl =
+    A.class "xl:rounded-b-3xl"
+
+
+xl__rounded_l_3xl : Html.Attribute msg
+xl__rounded_l_3xl =
+    A.class "xl:rounded-l-3xl"
 
 
 xl__rounded_t_full : Html.Attribute msg
@@ -73860,6 +103554,66 @@ xl__rounded_br_lg =
 xl__rounded_bl_lg : Html.Attribute msg
 xl__rounded_bl_lg =
     A.class "xl:rounded-bl-lg"
+
+
+xl__rounded_tl_xl : Html.Attribute msg
+xl__rounded_tl_xl =
+    A.class "xl:rounded-tl-xl"
+
+
+xl__rounded_tr_xl : Html.Attribute msg
+xl__rounded_tr_xl =
+    A.class "xl:rounded-tr-xl"
+
+
+xl__rounded_br_xl : Html.Attribute msg
+xl__rounded_br_xl =
+    A.class "xl:rounded-br-xl"
+
+
+xl__rounded_bl_xl : Html.Attribute msg
+xl__rounded_bl_xl =
+    A.class "xl:rounded-bl-xl"
+
+
+xl__rounded_tl_2xl : Html.Attribute msg
+xl__rounded_tl_2xl =
+    A.class "xl:rounded-tl-2xl"
+
+
+xl__rounded_tr_2xl : Html.Attribute msg
+xl__rounded_tr_2xl =
+    A.class "xl:rounded-tr-2xl"
+
+
+xl__rounded_br_2xl : Html.Attribute msg
+xl__rounded_br_2xl =
+    A.class "xl:rounded-br-2xl"
+
+
+xl__rounded_bl_2xl : Html.Attribute msg
+xl__rounded_bl_2xl =
+    A.class "xl:rounded-bl-2xl"
+
+
+xl__rounded_tl_3xl : Html.Attribute msg
+xl__rounded_tl_3xl =
+    A.class "xl:rounded-tl-3xl"
+
+
+xl__rounded_tr_3xl : Html.Attribute msg
+xl__rounded_tr_3xl =
+    A.class "xl:rounded-tr-3xl"
+
+
+xl__rounded_br_3xl : Html.Attribute msg
+xl__rounded_br_3xl =
+    A.class "xl:rounded-br-3xl"
+
+
+xl__rounded_bl_3xl : Html.Attribute msg
+xl__rounded_bl_3xl =
+    A.class "xl:rounded-bl-3xl"
 
 
 xl__rounded_tl_full : Html.Attribute msg
@@ -74197,6 +103951,11 @@ xl__inline_grid =
     A.class "xl:inline-grid"
 
 
+xl__contents : Html.Attribute msg
+xl__contents =
+    A.class "xl:contents"
+
+
 xl__hidden : Html.Attribute msg
 xl__hidden =
     A.class "xl:hidden"
@@ -74237,6 +103996,91 @@ xl__flex_no_wrap =
     A.class "xl:flex-no-wrap"
 
 
+xl__place_items_auto : Html.Attribute msg
+xl__place_items_auto =
+    A.class "xl:place-items-auto"
+
+
+xl__place_items_start : Html.Attribute msg
+xl__place_items_start =
+    A.class "xl:place-items-start"
+
+
+xl__place_items_end : Html.Attribute msg
+xl__place_items_end =
+    A.class "xl:place-items-end"
+
+
+xl__place_items_center : Html.Attribute msg
+xl__place_items_center =
+    A.class "xl:place-items-center"
+
+
+xl__place_items_stretch : Html.Attribute msg
+xl__place_items_stretch =
+    A.class "xl:place-items-stretch"
+
+
+xl__place_content_center : Html.Attribute msg
+xl__place_content_center =
+    A.class "xl:place-content-center"
+
+
+xl__place_content_start : Html.Attribute msg
+xl__place_content_start =
+    A.class "xl:place-content-start"
+
+
+xl__place_content_end : Html.Attribute msg
+xl__place_content_end =
+    A.class "xl:place-content-end"
+
+
+xl__place_content_between : Html.Attribute msg
+xl__place_content_between =
+    A.class "xl:place-content-between"
+
+
+xl__place_content_around : Html.Attribute msg
+xl__place_content_around =
+    A.class "xl:place-content-around"
+
+
+xl__place_content_evenly : Html.Attribute msg
+xl__place_content_evenly =
+    A.class "xl:place-content-evenly"
+
+
+xl__place_content_stretch : Html.Attribute msg
+xl__place_content_stretch =
+    A.class "xl:place-content-stretch"
+
+
+xl__place_self_auto : Html.Attribute msg
+xl__place_self_auto =
+    A.class "xl:place-self-auto"
+
+
+xl__place_self_start : Html.Attribute msg
+xl__place_self_start =
+    A.class "xl:place-self-start"
+
+
+xl__place_self_end : Html.Attribute msg
+xl__place_self_end =
+    A.class "xl:place-self-end"
+
+
+xl__place_self_center : Html.Attribute msg
+xl__place_self_center =
+    A.class "xl:place-self-center"
+
+
+xl__place_self_stretch : Html.Attribute msg
+xl__place_self_stretch =
+    A.class "xl:place-self-stretch"
+
+
 xl__items_start : Html.Attribute msg
 xl__items_start =
     A.class "xl:items-start"
@@ -74262,6 +104106,36 @@ xl__items_stretch =
     A.class "xl:items-stretch"
 
 
+xl__content_center : Html.Attribute msg
+xl__content_center =
+    A.class "xl:content-center"
+
+
+xl__content_start : Html.Attribute msg
+xl__content_start =
+    A.class "xl:content-start"
+
+
+xl__content_end : Html.Attribute msg
+xl__content_end =
+    A.class "xl:content-end"
+
+
+xl__content_between : Html.Attribute msg
+xl__content_between =
+    A.class "xl:content-between"
+
+
+xl__content_around : Html.Attribute msg
+xl__content_around =
+    A.class "xl:content-around"
+
+
+xl__content_evenly : Html.Attribute msg
+xl__content_evenly =
+    A.class "xl:content-evenly"
+
+
 xl__self_auto : Html.Attribute msg
 xl__self_auto =
     A.class "xl:self-auto"
@@ -74285,6 +104159,31 @@ xl__self_center =
 xl__self_stretch : Html.Attribute msg
 xl__self_stretch =
     A.class "xl:self-stretch"
+
+
+xl__justify_items_auto : Html.Attribute msg
+xl__justify_items_auto =
+    A.class "xl:justify-items-auto"
+
+
+xl__justify_items_start : Html.Attribute msg
+xl__justify_items_start =
+    A.class "xl:justify-items-start"
+
+
+xl__justify_items_end : Html.Attribute msg
+xl__justify_items_end =
+    A.class "xl:justify-items-end"
+
+
+xl__justify_items_center : Html.Attribute msg
+xl__justify_items_center =
+    A.class "xl:justify-items-center"
+
+
+xl__justify_items_stretch : Html.Attribute msg
+xl__justify_items_stretch =
+    A.class "xl:justify-items-stretch"
 
 
 xl__justify_start : Html.Attribute msg
@@ -74317,29 +104216,29 @@ xl__justify_evenly =
     A.class "xl:justify-evenly"
 
 
-xl__content_center : Html.Attribute msg
-xl__content_center =
-    A.class "xl:content-center"
+xl__justify_self_auto : Html.Attribute msg
+xl__justify_self_auto =
+    A.class "xl:justify-self-auto"
 
 
-xl__content_start : Html.Attribute msg
-xl__content_start =
-    A.class "xl:content-start"
+xl__justify_self_start : Html.Attribute msg
+xl__justify_self_start =
+    A.class "xl:justify-self-start"
 
 
-xl__content_end : Html.Attribute msg
-xl__content_end =
-    A.class "xl:content-end"
+xl__justify_self_end : Html.Attribute msg
+xl__justify_self_end =
+    A.class "xl:justify-self-end"
 
 
-xl__content_between : Html.Attribute msg
-xl__content_between =
-    A.class "xl:content-between"
+xl__justify_self_center : Html.Attribute msg
+xl__justify_self_center =
+    A.class "xl:justify-self-center"
 
 
-xl__content_around : Html.Attribute msg
-xl__content_around =
-    A.class "xl:content-around"
+xl__justify_self_stretch : Html.Attribute msg
+xl__justify_self_stretch =
+    A.class "xl:justify-self-stretch"
 
 
 xl__flex_1 : Html.Attribute msg
@@ -76522,9 +106421,29 @@ xl__outline_none =
     A.class "xl:outline-none"
 
 
+xl__outline_white : Html.Attribute msg
+xl__outline_white =
+    A.class "xl:outline-white"
+
+
+xl__outline_black : Html.Attribute msg
+xl__outline_black =
+    A.class "xl:outline-black"
+
+
 xl__focus__outline_none : Html.Attribute msg
 xl__focus__outline_none =
     A.class "xl:focus:outline-none"
+
+
+xl__focus__outline_white : Html.Attribute msg
+xl__focus__outline_white =
+    A.class "xl:focus:outline-white"
+
+
+xl__focus__outline_black : Html.Attribute msg
+xl__focus__outline_black =
+    A.class "xl:focus:outline-black"
 
 
 xl__overflow_auto : Html.Attribute msg
@@ -76595,6 +106514,51 @@ xl__scrolling_touch =
 xl__scrolling_auto : Html.Attribute msg
 xl__scrolling_auto =
     A.class "xl:scrolling-auto"
+
+
+xl__overscroll_auto : Html.Attribute msg
+xl__overscroll_auto =
+    A.class "xl:overscroll-auto"
+
+
+xl__overscroll_contain : Html.Attribute msg
+xl__overscroll_contain =
+    A.class "xl:overscroll-contain"
+
+
+xl__overscroll_none : Html.Attribute msg
+xl__overscroll_none =
+    A.class "xl:overscroll-none"
+
+
+xl__overscroll_y_auto : Html.Attribute msg
+xl__overscroll_y_auto =
+    A.class "xl:overscroll-y-auto"
+
+
+xl__overscroll_y_contain : Html.Attribute msg
+xl__overscroll_y_contain =
+    A.class "xl:overscroll-y-contain"
+
+
+xl__overscroll_y_none : Html.Attribute msg
+xl__overscroll_y_none =
+    A.class "xl:overscroll-y-none"
+
+
+xl__overscroll_x_auto : Html.Attribute msg
+xl__overscroll_x_auto =
+    A.class "xl:overscroll-x-auto"
+
+
+xl__overscroll_x_contain : Html.Attribute msg
+xl__overscroll_x_contain =
+    A.class "xl:overscroll-x-contain"
+
+
+xl__overscroll_x_none : Html.Attribute msg
+xl__overscroll_x_none =
+    A.class "xl:overscroll-x-none"
 
 
 xl__p_0 : Html.Attribute msg
@@ -80152,6 +110116,51 @@ xl__subpixel_antialiased =
     A.class "xl:subpixel-antialiased"
 
 
+xl__ordinal : Html.Attribute msg
+xl__ordinal =
+    A.class "xl:ordinal"
+
+
+xl__slashed_zero : Html.Attribute msg
+xl__slashed_zero =
+    A.class "xl:slashed-zero"
+
+
+xl__lining_nums : Html.Attribute msg
+xl__lining_nums =
+    A.class "xl:lining-nums"
+
+
+xl__oldstyle_nums : Html.Attribute msg
+xl__oldstyle_nums =
+    A.class "xl:oldstyle-nums"
+
+
+xl__proportional_nums : Html.Attribute msg
+xl__proportional_nums =
+    A.class "xl:proportional-nums"
+
+
+xl__tabular_nums : Html.Attribute msg
+xl__tabular_nums =
+    A.class "xl:tabular-nums"
+
+
+xl__diagonal_fractions : Html.Attribute msg
+xl__diagonal_fractions =
+    A.class "xl:diagonal-fractions"
+
+
+xl__stacked_fractions : Html.Attribute msg
+xl__stacked_fractions =
+    A.class "xl:stacked-fractions"
+
+
+xl__normal_nums : Html.Attribute msg
+xl__normal_nums =
+    A.class "xl:normal-nums"
+
+
 xl__tracking_tighter : Html.Attribute msg
 xl__tracking_tighter =
     A.class "xl:tracking-tighter"
@@ -80657,194 +110666,194 @@ xl__gap_px =
     A.class "xl:gap-px"
 
 
-xl__col_gap_0 : Html.Attribute msg
-xl__col_gap_0 =
-    A.class "xl:col-gap-0"
+xl__gap_x_0 : Html.Attribute msg
+xl__gap_x_0 =
+    A.class "xl:gap-x-0"
 
 
-xl__col_gap_1 : Html.Attribute msg
-xl__col_gap_1 =
-    A.class "xl:col-gap-1"
+xl__gap_x_1 : Html.Attribute msg
+xl__gap_x_1 =
+    A.class "xl:gap-x-1"
 
 
-xl__col_gap_2 : Html.Attribute msg
-xl__col_gap_2 =
-    A.class "xl:col-gap-2"
+xl__gap_x_2 : Html.Attribute msg
+xl__gap_x_2 =
+    A.class "xl:gap-x-2"
 
 
-xl__col_gap_3 : Html.Attribute msg
-xl__col_gap_3 =
-    A.class "xl:col-gap-3"
+xl__gap_x_3 : Html.Attribute msg
+xl__gap_x_3 =
+    A.class "xl:gap-x-3"
 
 
-xl__col_gap_4 : Html.Attribute msg
-xl__col_gap_4 =
-    A.class "xl:col-gap-4"
+xl__gap_x_4 : Html.Attribute msg
+xl__gap_x_4 =
+    A.class "xl:gap-x-4"
 
 
-xl__col_gap_5 : Html.Attribute msg
-xl__col_gap_5 =
-    A.class "xl:col-gap-5"
+xl__gap_x_5 : Html.Attribute msg
+xl__gap_x_5 =
+    A.class "xl:gap-x-5"
 
 
-xl__col_gap_6 : Html.Attribute msg
-xl__col_gap_6 =
-    A.class "xl:col-gap-6"
+xl__gap_x_6 : Html.Attribute msg
+xl__gap_x_6 =
+    A.class "xl:gap-x-6"
 
 
-xl__col_gap_8 : Html.Attribute msg
-xl__col_gap_8 =
-    A.class "xl:col-gap-8"
+xl__gap_x_8 : Html.Attribute msg
+xl__gap_x_8 =
+    A.class "xl:gap-x-8"
 
 
-xl__col_gap_10 : Html.Attribute msg
-xl__col_gap_10 =
-    A.class "xl:col-gap-10"
+xl__gap_x_10 : Html.Attribute msg
+xl__gap_x_10 =
+    A.class "xl:gap-x-10"
 
 
-xl__col_gap_12 : Html.Attribute msg
-xl__col_gap_12 =
-    A.class "xl:col-gap-12"
+xl__gap_x_12 : Html.Attribute msg
+xl__gap_x_12 =
+    A.class "xl:gap-x-12"
 
 
-xl__col_gap_16 : Html.Attribute msg
-xl__col_gap_16 =
-    A.class "xl:col-gap-16"
+xl__gap_x_16 : Html.Attribute msg
+xl__gap_x_16 =
+    A.class "xl:gap-x-16"
 
 
-xl__col_gap_20 : Html.Attribute msg
-xl__col_gap_20 =
-    A.class "xl:col-gap-20"
+xl__gap_x_20 : Html.Attribute msg
+xl__gap_x_20 =
+    A.class "xl:gap-x-20"
 
 
-xl__col_gap_24 : Html.Attribute msg
-xl__col_gap_24 =
-    A.class "xl:col-gap-24"
+xl__gap_x_24 : Html.Attribute msg
+xl__gap_x_24 =
+    A.class "xl:gap-x-24"
 
 
-xl__col_gap_32 : Html.Attribute msg
-xl__col_gap_32 =
-    A.class "xl:col-gap-32"
+xl__gap_x_32 : Html.Attribute msg
+xl__gap_x_32 =
+    A.class "xl:gap-x-32"
 
 
-xl__col_gap_40 : Html.Attribute msg
-xl__col_gap_40 =
-    A.class "xl:col-gap-40"
+xl__gap_x_40 : Html.Attribute msg
+xl__gap_x_40 =
+    A.class "xl:gap-x-40"
 
 
-xl__col_gap_48 : Html.Attribute msg
-xl__col_gap_48 =
-    A.class "xl:col-gap-48"
+xl__gap_x_48 : Html.Attribute msg
+xl__gap_x_48 =
+    A.class "xl:gap-x-48"
 
 
-xl__col_gap_56 : Html.Attribute msg
-xl__col_gap_56 =
-    A.class "xl:col-gap-56"
+xl__gap_x_56 : Html.Attribute msg
+xl__gap_x_56 =
+    A.class "xl:gap-x-56"
 
 
-xl__col_gap_64 : Html.Attribute msg
-xl__col_gap_64 =
-    A.class "xl:col-gap-64"
+xl__gap_x_64 : Html.Attribute msg
+xl__gap_x_64 =
+    A.class "xl:gap-x-64"
 
 
-xl__col_gap_px : Html.Attribute msg
-xl__col_gap_px =
-    A.class "xl:col-gap-px"
+xl__gap_x_px : Html.Attribute msg
+xl__gap_x_px =
+    A.class "xl:gap-x-px"
 
 
-xl__row_gap_0 : Html.Attribute msg
-xl__row_gap_0 =
-    A.class "xl:row-gap-0"
+xl__gap_y_0 : Html.Attribute msg
+xl__gap_y_0 =
+    A.class "xl:gap-y-0"
 
 
-xl__row_gap_1 : Html.Attribute msg
-xl__row_gap_1 =
-    A.class "xl:row-gap-1"
+xl__gap_y_1 : Html.Attribute msg
+xl__gap_y_1 =
+    A.class "xl:gap-y-1"
 
 
-xl__row_gap_2 : Html.Attribute msg
-xl__row_gap_2 =
-    A.class "xl:row-gap-2"
+xl__gap_y_2 : Html.Attribute msg
+xl__gap_y_2 =
+    A.class "xl:gap-y-2"
 
 
-xl__row_gap_3 : Html.Attribute msg
-xl__row_gap_3 =
-    A.class "xl:row-gap-3"
+xl__gap_y_3 : Html.Attribute msg
+xl__gap_y_3 =
+    A.class "xl:gap-y-3"
 
 
-xl__row_gap_4 : Html.Attribute msg
-xl__row_gap_4 =
-    A.class "xl:row-gap-4"
+xl__gap_y_4 : Html.Attribute msg
+xl__gap_y_4 =
+    A.class "xl:gap-y-4"
 
 
-xl__row_gap_5 : Html.Attribute msg
-xl__row_gap_5 =
-    A.class "xl:row-gap-5"
+xl__gap_y_5 : Html.Attribute msg
+xl__gap_y_5 =
+    A.class "xl:gap-y-5"
 
 
-xl__row_gap_6 : Html.Attribute msg
-xl__row_gap_6 =
-    A.class "xl:row-gap-6"
+xl__gap_y_6 : Html.Attribute msg
+xl__gap_y_6 =
+    A.class "xl:gap-y-6"
 
 
-xl__row_gap_8 : Html.Attribute msg
-xl__row_gap_8 =
-    A.class "xl:row-gap-8"
+xl__gap_y_8 : Html.Attribute msg
+xl__gap_y_8 =
+    A.class "xl:gap-y-8"
 
 
-xl__row_gap_10 : Html.Attribute msg
-xl__row_gap_10 =
-    A.class "xl:row-gap-10"
+xl__gap_y_10 : Html.Attribute msg
+xl__gap_y_10 =
+    A.class "xl:gap-y-10"
 
 
-xl__row_gap_12 : Html.Attribute msg
-xl__row_gap_12 =
-    A.class "xl:row-gap-12"
+xl__gap_y_12 : Html.Attribute msg
+xl__gap_y_12 =
+    A.class "xl:gap-y-12"
 
 
-xl__row_gap_16 : Html.Attribute msg
-xl__row_gap_16 =
-    A.class "xl:row-gap-16"
+xl__gap_y_16 : Html.Attribute msg
+xl__gap_y_16 =
+    A.class "xl:gap-y-16"
 
 
-xl__row_gap_20 : Html.Attribute msg
-xl__row_gap_20 =
-    A.class "xl:row-gap-20"
+xl__gap_y_20 : Html.Attribute msg
+xl__gap_y_20 =
+    A.class "xl:gap-y-20"
 
 
-xl__row_gap_24 : Html.Attribute msg
-xl__row_gap_24 =
-    A.class "xl:row-gap-24"
+xl__gap_y_24 : Html.Attribute msg
+xl__gap_y_24 =
+    A.class "xl:gap-y-24"
 
 
-xl__row_gap_32 : Html.Attribute msg
-xl__row_gap_32 =
-    A.class "xl:row-gap-32"
+xl__gap_y_32 : Html.Attribute msg
+xl__gap_y_32 =
+    A.class "xl:gap-y-32"
 
 
-xl__row_gap_40 : Html.Attribute msg
-xl__row_gap_40 =
-    A.class "xl:row-gap-40"
+xl__gap_y_40 : Html.Attribute msg
+xl__gap_y_40 =
+    A.class "xl:gap-y-40"
 
 
-xl__row_gap_48 : Html.Attribute msg
-xl__row_gap_48 =
-    A.class "xl:row-gap-48"
+xl__gap_y_48 : Html.Attribute msg
+xl__gap_y_48 =
+    A.class "xl:gap-y-48"
 
 
-xl__row_gap_56 : Html.Attribute msg
-xl__row_gap_56 =
-    A.class "xl:row-gap-56"
+xl__gap_y_56 : Html.Attribute msg
+xl__gap_y_56 =
+    A.class "xl:gap-y-56"
 
 
-xl__row_gap_64 : Html.Attribute msg
-xl__row_gap_64 =
-    A.class "xl:row-gap-64"
+xl__gap_y_64 : Html.Attribute msg
+xl__gap_y_64 =
+    A.class "xl:gap-y-64"
 
 
-xl__row_gap_px : Html.Attribute msg
-xl__row_gap_px =
-    A.class "xl:row-gap-px"
+xl__gap_y_px : Html.Attribute msg
+xl__gap_y_px =
+    A.class "xl:gap-y-px"
 
 
 xl__grid_flow_row : Html.Attribute msg
@@ -80937,6 +110946,26 @@ xl__grid_cols_header =
     A.class "xl:grid-cols-header"
 
 
+xl__auto_cols_auto : Html.Attribute msg
+xl__auto_cols_auto =
+    A.class "xl:auto-cols-auto"
+
+
+xl__auto_cols_min : Html.Attribute msg
+xl__auto_cols_min =
+    A.class "xl:auto-cols-min"
+
+
+xl__auto_cols_max : Html.Attribute msg
+xl__auto_cols_max =
+    A.class "xl:auto-cols-max"
+
+
+xl__auto_cols_fr : Html.Attribute msg
+xl__auto_cols_fr =
+    A.class "xl:auto-cols-fr"
+
+
 xl__col_auto : Html.Attribute msg
 xl__col_auto =
     A.class "xl:col-auto"
@@ -81000,6 +111029,11 @@ xl__col_span_11 =
 xl__col_span_12 : Html.Attribute msg
 xl__col_span_12 =
     A.class "xl:col-span-12"
+
+
+xl__col_span_full : Html.Attribute msg
+xl__col_span_full =
+    A.class "xl:col-span-full"
 
 
 xl__col_start_1 : Html.Attribute msg
@@ -81177,6 +111211,26 @@ xl__grid_rows_none =
     A.class "xl:grid-rows-none"
 
 
+xl__auto_rows_auto : Html.Attribute msg
+xl__auto_rows_auto =
+    A.class "xl:auto-rows-auto"
+
+
+xl__auto_rows_min : Html.Attribute msg
+xl__auto_rows_min =
+    A.class "xl:auto-rows-min"
+
+
+xl__auto_rows_max : Html.Attribute msg
+xl__auto_rows_max =
+    A.class "xl:auto-rows-max"
+
+
+xl__auto_rows_fr : Html.Attribute msg
+xl__auto_rows_fr =
+    A.class "xl:auto-rows-fr"
+
+
 xl__row_auto : Html.Attribute msg
 xl__row_auto =
     A.class "xl:row-auto"
@@ -81210,6 +111264,11 @@ xl__row_span_5 =
 xl__row_span_6 : Html.Attribute msg
 xl__row_span_6 =
     A.class "xl:row-span-6"
+
+
+xl__row_span_full : Html.Attribute msg
+xl__row_span_full =
+    A.class "xl:row-span-full"
 
 
 xl__row_start_1 : Html.Attribute msg
@@ -81802,6 +111861,31 @@ xl__rotate_0 =
     A.class "xl:rotate-0"
 
 
+xl__rotate_1 : Html.Attribute msg
+xl__rotate_1 =
+    A.class "xl:rotate-1"
+
+
+xl__rotate_2 : Html.Attribute msg
+xl__rotate_2 =
+    A.class "xl:rotate-2"
+
+
+xl__rotate_3 : Html.Attribute msg
+xl__rotate_3 =
+    A.class "xl:rotate-3"
+
+
+xl__rotate_6 : Html.Attribute msg
+xl__rotate_6 =
+    A.class "xl:rotate-6"
+
+
+xl__rotate_12 : Html.Attribute msg
+xl__rotate_12 =
+    A.class "xl:rotate-12"
+
+
 xl__rotate_45 : Html.Attribute msg
 xl__rotate_45 =
     A.class "xl:rotate-45"
@@ -81832,9 +111916,59 @@ xl__neg_rotate_45 =
     A.class "xl:-rotate-45"
 
 
+xl__neg_rotate_12 : Html.Attribute msg
+xl__neg_rotate_12 =
+    A.class "xl:-rotate-12"
+
+
+xl__neg_rotate_6 : Html.Attribute msg
+xl__neg_rotate_6 =
+    A.class "xl:-rotate-6"
+
+
+xl__neg_rotate_3 : Html.Attribute msg
+xl__neg_rotate_3 =
+    A.class "xl:-rotate-3"
+
+
+xl__neg_rotate_2 : Html.Attribute msg
+xl__neg_rotate_2 =
+    A.class "xl:-rotate-2"
+
+
+xl__neg_rotate_1 : Html.Attribute msg
+xl__neg_rotate_1 =
+    A.class "xl:-rotate-1"
+
+
 xl__hover__rotate_0 : Html.Attribute msg
 xl__hover__rotate_0 =
     A.class "xl:hover:rotate-0"
+
+
+xl__hover__rotate_1 : Html.Attribute msg
+xl__hover__rotate_1 =
+    A.class "xl:hover:rotate-1"
+
+
+xl__hover__rotate_2 : Html.Attribute msg
+xl__hover__rotate_2 =
+    A.class "xl:hover:rotate-2"
+
+
+xl__hover__rotate_3 : Html.Attribute msg
+xl__hover__rotate_3 =
+    A.class "xl:hover:rotate-3"
+
+
+xl__hover__rotate_6 : Html.Attribute msg
+xl__hover__rotate_6 =
+    A.class "xl:hover:rotate-6"
+
+
+xl__hover__rotate_12 : Html.Attribute msg
+xl__hover__rotate_12 =
+    A.class "xl:hover:rotate-12"
 
 
 xl__hover__rotate_45 : Html.Attribute msg
@@ -81867,9 +112001,59 @@ xl__hover__neg_rotate_45 =
     A.class "xl:hover:-rotate-45"
 
 
+xl__hover__neg_rotate_12 : Html.Attribute msg
+xl__hover__neg_rotate_12 =
+    A.class "xl:hover:-rotate-12"
+
+
+xl__hover__neg_rotate_6 : Html.Attribute msg
+xl__hover__neg_rotate_6 =
+    A.class "xl:hover:-rotate-6"
+
+
+xl__hover__neg_rotate_3 : Html.Attribute msg
+xl__hover__neg_rotate_3 =
+    A.class "xl:hover:-rotate-3"
+
+
+xl__hover__neg_rotate_2 : Html.Attribute msg
+xl__hover__neg_rotate_2 =
+    A.class "xl:hover:-rotate-2"
+
+
+xl__hover__neg_rotate_1 : Html.Attribute msg
+xl__hover__neg_rotate_1 =
+    A.class "xl:hover:-rotate-1"
+
+
 xl__focus__rotate_0 : Html.Attribute msg
 xl__focus__rotate_0 =
     A.class "xl:focus:rotate-0"
+
+
+xl__focus__rotate_1 : Html.Attribute msg
+xl__focus__rotate_1 =
+    A.class "xl:focus:rotate-1"
+
+
+xl__focus__rotate_2 : Html.Attribute msg
+xl__focus__rotate_2 =
+    A.class "xl:focus:rotate-2"
+
+
+xl__focus__rotate_3 : Html.Attribute msg
+xl__focus__rotate_3 =
+    A.class "xl:focus:rotate-3"
+
+
+xl__focus__rotate_6 : Html.Attribute msg
+xl__focus__rotate_6 =
+    A.class "xl:focus:rotate-6"
+
+
+xl__focus__rotate_12 : Html.Attribute msg
+xl__focus__rotate_12 =
+    A.class "xl:focus:rotate-12"
 
 
 xl__focus__rotate_45 : Html.Attribute msg
@@ -81900,6 +112084,31 @@ xl__focus__neg_rotate_90 =
 xl__focus__neg_rotate_45 : Html.Attribute msg
 xl__focus__neg_rotate_45 =
     A.class "xl:focus:-rotate-45"
+
+
+xl__focus__neg_rotate_12 : Html.Attribute msg
+xl__focus__neg_rotate_12 =
+    A.class "xl:focus:-rotate-12"
+
+
+xl__focus__neg_rotate_6 : Html.Attribute msg
+xl__focus__neg_rotate_6 =
+    A.class "xl:focus:-rotate-6"
+
+
+xl__focus__neg_rotate_3 : Html.Attribute msg
+xl__focus__neg_rotate_3 =
+    A.class "xl:focus:-rotate-3"
+
+
+xl__focus__neg_rotate_2 : Html.Attribute msg
+xl__focus__neg_rotate_2 =
+    A.class "xl:focus:-rotate-2"
+
+
+xl__focus__neg_rotate_1 : Html.Attribute msg
+xl__focus__neg_rotate_1 =
+    A.class "xl:focus:-rotate-1"
 
 
 xl__translate_x_0 : Html.Attribute msg
@@ -83137,6 +113346,16 @@ xl__skew_x_0 =
     A.class "xl:skew-x-0"
 
 
+xl__skew_x_1 : Html.Attribute msg
+xl__skew_x_1 =
+    A.class "xl:skew-x-1"
+
+
+xl__skew_x_2 : Html.Attribute msg
+xl__skew_x_2 =
+    A.class "xl:skew-x-2"
+
+
 xl__skew_x_3 : Html.Attribute msg
 xl__skew_x_3 =
     A.class "xl:skew-x-3"
@@ -83167,9 +113386,29 @@ xl__neg_skew_x_3 =
     A.class "xl:-skew-x-3"
 
 
+xl__neg_skew_x_2 : Html.Attribute msg
+xl__neg_skew_x_2 =
+    A.class "xl:-skew-x-2"
+
+
+xl__neg_skew_x_1 : Html.Attribute msg
+xl__neg_skew_x_1 =
+    A.class "xl:-skew-x-1"
+
+
 xl__skew_y_0 : Html.Attribute msg
 xl__skew_y_0 =
     A.class "xl:skew-y-0"
+
+
+xl__skew_y_1 : Html.Attribute msg
+xl__skew_y_1 =
+    A.class "xl:skew-y-1"
+
+
+xl__skew_y_2 : Html.Attribute msg
+xl__skew_y_2 =
+    A.class "xl:skew-y-2"
 
 
 xl__skew_y_3 : Html.Attribute msg
@@ -83202,9 +113441,29 @@ xl__neg_skew_y_3 =
     A.class "xl:-skew-y-3"
 
 
+xl__neg_skew_y_2 : Html.Attribute msg
+xl__neg_skew_y_2 =
+    A.class "xl:-skew-y-2"
+
+
+xl__neg_skew_y_1 : Html.Attribute msg
+xl__neg_skew_y_1 =
+    A.class "xl:-skew-y-1"
+
+
 xl__hover__skew_x_0 : Html.Attribute msg
 xl__hover__skew_x_0 =
     A.class "xl:hover:skew-x-0"
+
+
+xl__hover__skew_x_1 : Html.Attribute msg
+xl__hover__skew_x_1 =
+    A.class "xl:hover:skew-x-1"
+
+
+xl__hover__skew_x_2 : Html.Attribute msg
+xl__hover__skew_x_2 =
+    A.class "xl:hover:skew-x-2"
 
 
 xl__hover__skew_x_3 : Html.Attribute msg
@@ -83237,9 +113496,29 @@ xl__hover__neg_skew_x_3 =
     A.class "xl:hover:-skew-x-3"
 
 
+xl__hover__neg_skew_x_2 : Html.Attribute msg
+xl__hover__neg_skew_x_2 =
+    A.class "xl:hover:-skew-x-2"
+
+
+xl__hover__neg_skew_x_1 : Html.Attribute msg
+xl__hover__neg_skew_x_1 =
+    A.class "xl:hover:-skew-x-1"
+
+
 xl__hover__skew_y_0 : Html.Attribute msg
 xl__hover__skew_y_0 =
     A.class "xl:hover:skew-y-0"
+
+
+xl__hover__skew_y_1 : Html.Attribute msg
+xl__hover__skew_y_1 =
+    A.class "xl:hover:skew-y-1"
+
+
+xl__hover__skew_y_2 : Html.Attribute msg
+xl__hover__skew_y_2 =
+    A.class "xl:hover:skew-y-2"
 
 
 xl__hover__skew_y_3 : Html.Attribute msg
@@ -83272,9 +113551,29 @@ xl__hover__neg_skew_y_3 =
     A.class "xl:hover:-skew-y-3"
 
 
+xl__hover__neg_skew_y_2 : Html.Attribute msg
+xl__hover__neg_skew_y_2 =
+    A.class "xl:hover:-skew-y-2"
+
+
+xl__hover__neg_skew_y_1 : Html.Attribute msg
+xl__hover__neg_skew_y_1 =
+    A.class "xl:hover:-skew-y-1"
+
+
 xl__focus__skew_x_0 : Html.Attribute msg
 xl__focus__skew_x_0 =
     A.class "xl:focus:skew-x-0"
+
+
+xl__focus__skew_x_1 : Html.Attribute msg
+xl__focus__skew_x_1 =
+    A.class "xl:focus:skew-x-1"
+
+
+xl__focus__skew_x_2 : Html.Attribute msg
+xl__focus__skew_x_2 =
+    A.class "xl:focus:skew-x-2"
 
 
 xl__focus__skew_x_3 : Html.Attribute msg
@@ -83307,9 +113606,29 @@ xl__focus__neg_skew_x_3 =
     A.class "xl:focus:-skew-x-3"
 
 
+xl__focus__neg_skew_x_2 : Html.Attribute msg
+xl__focus__neg_skew_x_2 =
+    A.class "xl:focus:-skew-x-2"
+
+
+xl__focus__neg_skew_x_1 : Html.Attribute msg
+xl__focus__neg_skew_x_1 =
+    A.class "xl:focus:-skew-x-1"
+
+
 xl__focus__skew_y_0 : Html.Attribute msg
 xl__focus__skew_y_0 =
     A.class "xl:focus:skew-y-0"
+
+
+xl__focus__skew_y_1 : Html.Attribute msg
+xl__focus__skew_y_1 =
+    A.class "xl:focus:skew-y-1"
+
+
+xl__focus__skew_y_2 : Html.Attribute msg
+xl__focus__skew_y_2 =
+    A.class "xl:focus:skew-y-2"
 
 
 xl__focus__skew_y_3 : Html.Attribute msg
@@ -83340,6 +113659,16 @@ xl__focus__neg_skew_y_6 =
 xl__focus__neg_skew_y_3 : Html.Attribute msg
 xl__focus__neg_skew_y_3 =
     A.class "xl:focus:-skew-y-3"
+
+
+xl__focus__neg_skew_y_2 : Html.Attribute msg
+xl__focus__neg_skew_y_2 =
+    A.class "xl:focus:-skew-y-2"
+
+
+xl__focus__neg_skew_y_1 : Html.Attribute msg
+xl__focus__neg_skew_y_1 =
+    A.class "xl:focus:-skew-y-1"
 
 
 xl__transition_none : Html.Attribute msg
@@ -83475,3 +113804,28 @@ xl__delay_700 =
 xl__delay_1000 : Html.Attribute msg
 xl__delay_1000 =
     A.class "xl:delay-1000"
+
+
+xl__animate_none : Html.Attribute msg
+xl__animate_none =
+    A.class "xl:animate-none"
+
+
+xl__animate_spin : Html.Attribute msg
+xl__animate_spin =
+    A.class "xl:animate-spin"
+
+
+xl__animate_ping : Html.Attribute msg
+xl__animate_ping =
+    A.class "xl:animate-ping"
+
+
+xl__animate_pulse : Html.Attribute msg
+xl__animate_pulse =
+    A.class "xl:animate-pulse"
+
+
+xl__animate_bounce : Html.Attribute msg
+xl__animate_bounce =
+    A.class "xl:animate-bounce"

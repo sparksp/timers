@@ -111,9 +111,11 @@ updateStageMsg msg rest stage =
 
         ( Rest, Running (( _, end ) as timer) ) ->
             let
+                period : Period
                 period =
                     Period.fromTimer timer
 
+                target : Timer
                 target =
                     timerShiftEnd rest end timer
             in
@@ -121,9 +123,11 @@ updateStageMsg msg rest stage =
 
         ( Rest, PausedRunning (( _, end ) as timer) ) ->
             let
+                period : Period
                 period =
                     Period.fromTimer timer
 
+                target : Timer
                 target =
                     timerShiftEnd rest end timer
             in
@@ -131,6 +135,7 @@ updateStageMsg msg rest stage =
 
         ( Rest, ResumeRunning timer ) ->
             let
+                period : Period
                 period =
                     Period.fromTimer timer
             in
@@ -205,9 +210,11 @@ getStageWithNewRest rests stage =
 getNewTargetWithNewRest : ( Percent, Percent ) -> (Period -> Timer -> Stage) -> Period -> Timer -> Stage
 getNewTargetWithNewRest ( oldRest, newRest ) stage period ( now, target ) =
     let
+        start : Float
         start =
             toFloat (Time.posixToMillis target) - (Percent.toFloat oldRest * Period.toMillisFloat period)
 
+        newTarget : Time.Posix
         newTarget =
             Time.millisToPosix (round (start + (Period.toMillisFloat period * Percent.toFloat newRest)))
     in
@@ -222,9 +229,11 @@ timerShiftStart now ( start, end ) =
 timerShiftEnd : Percent -> Time.Posix -> Timer -> Timer
 timerShiftEnd rest now ( start, end ) =
     let
+        elapsed : Time.Posix
         elapsed =
             Time.Extra.sub end start
 
+        resting : Time.Posix
         resting =
             Time.Extra.mul (Percent.toFloat rest) elapsed
     in
@@ -275,7 +284,7 @@ viewBody model =
         [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
             [ Html.div [ fadeRunningAttr model.stage, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
                 [ Html.p [ TW.text_left ] [ Html.text "Activity" ]
-                , Html.p [ TW.text_4xl, TW.font_mono, TW.select_all ] [ showRunningTime model ]
+                , Html.p [ TW.text_4xl, TW.leading_normal, TW.font_mono, TW.select_all ] [ showRunningTime model ]
                 ]
             , Html.div [ fadeRestingAttr model.stage, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
                 [ Html.button [ Events.onClick (ShowRest (Menu.toggle model.showRest)) ]
@@ -285,14 +294,14 @@ viewBody model =
                             ]
                         , Icons.cog [ SvgTW.w_4, SvgTW.h_4, SvgTW.ml_2 ]
                         ]
-                    , Html.p [ TW.text_4xl, TW.font_mono ] [ showRestingTime model ]
+                    , Html.p [ TW.text_4xl, TW.leading_normal, TW.font_mono ] [ showRestingTime model ]
                     ]
                 , viewRestMenu model
                 ]
             ]
         , viewProgress model
         ]
-    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.py_2 ]
+    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.leading_normal, TW.py_2 ]
         [ viewStartRestButton model.stage
         , viewResetButton model.stage
         ]
@@ -330,7 +339,7 @@ viewOpenRestMenu rest =
                 else
                     Html.button [ TW.w_full, TW.py_1, TW.bg_white, TW.hover__bg_gray_200, Events.onClick (SetRest (percent pc)) ] [ Html.text (String.fromInt pc ++ "%") ]
             )
-        |> Html.div [ TW.w_full, TW.absolute, TW.z_10, TW.text_xl, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border, TW.divide_y, TW.shadow_lg ]
+        |> Html.div [ TW.w_full, TW.absolute, TW.z_10, TW.text_xl, TW.leading_normal, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border, TW.divide_y, TW.shadow_lg ]
 
 
 viewProgress : { a | rest : Percent, stage : Stage } -> Html Msg
@@ -455,6 +464,7 @@ showRestingTime =
 fadeRunningAttr : Stage -> Html.Attribute Msg
 fadeRunningAttr =
     let
+        stages : StageMaps (Html.Attribute msg)
         stages =
             allStages (A.class "")
     in
