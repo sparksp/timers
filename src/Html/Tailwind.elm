@@ -13,6 +13,14 @@ module Html.Tailwind exposing
     , animate_spin
     , antialiased
     , appearance_none
+    , auto_cols_auto
+    , auto_cols_fr
+    , auto_cols_max
+    , auto_cols_min
+    , auto_rows_auto
+    , auto_rows_fr
+    , auto_rows_max
+    , auto_rows_min
     , bg_auto
     , bg_black
     , bg_blue_100
@@ -319,6 +327,7 @@ module Html.Tailwind exposing
     , col_span_7
     , col_span_8
     , col_span_9
+    , col_span_full
     , col_start_1
     , col_start_10
     , col_start_11
@@ -338,6 +347,7 @@ module Html.Tailwind exposing
     , content_between
     , content_center
     , content_end
+    , content_evenly
     , content_start
     , contents
     , cursor_auto
@@ -355,6 +365,7 @@ module Html.Tailwind exposing
     , delay_500
     , delay_700
     , delay_75
+    , diagonal_fractions
     , disabled__cursor_auto
     , disabled__cursor_default
     , disabled__cursor_move
@@ -819,13 +830,22 @@ module Html.Tailwind exposing
     , focus__from_yellow_800
     , focus__from_yellow_900
     , focus__line_through
+    , focus__neg_rotate_1
+    , focus__neg_rotate_12
     , focus__neg_rotate_180
+    , focus__neg_rotate_2
+    , focus__neg_rotate_3
     , focus__neg_rotate_45
+    , focus__neg_rotate_6
     , focus__neg_rotate_90
+    , focus__neg_skew_x_1
     , focus__neg_skew_x_12
+    , focus__neg_skew_x_2
     , focus__neg_skew_x_3
     , focus__neg_skew_x_6
+    , focus__neg_skew_y_1
     , focus__neg_skew_y_12
+    , focus__neg_skew_y_2
     , focus__neg_skew_y_3
     , focus__neg_skew_y_6
     , focus__neg_translate_x_1
@@ -875,7 +895,9 @@ module Html.Tailwind exposing
     , focus__opacity_25
     , focus__opacity_50
     , focus__opacity_75
+    , focus__outline_black
     , focus__outline_none
+    , focus__outline_white
     , focus__placeholder_black__focus
     , focus__placeholder_blue_100__focus
     , focus__placeholder_blue_200__focus
@@ -976,8 +998,13 @@ module Html.Tailwind exposing
     , focus__placeholder_yellow_800__focus
     , focus__placeholder_yellow_900__focus
     , focus__rotate_0
+    , focus__rotate_1
+    , focus__rotate_12
     , focus__rotate_180
+    , focus__rotate_2
+    , focus__rotate_3
     , focus__rotate_45
+    , focus__rotate_6
     , focus__rotate_90
     , focus__scale_0
     , focus__scale_100
@@ -1020,11 +1047,15 @@ module Html.Tailwind exposing
     , focus__shadow_xl
     , focus__shadow_xs
     , focus__skew_x_0
+    , focus__skew_x_1
     , focus__skew_x_12
+    , focus__skew_x_2
     , focus__skew_x_3
     , focus__skew_x_6
     , focus__skew_y_0
+    , focus__skew_y_1
     , focus__skew_y_12
+    , focus__skew_y_2
     , focus__skew_y_3
     , focus__skew_y_6
     , focus__sr_only
@@ -1872,13 +1903,22 @@ module Html.Tailwind exposing
     , hover__from_yellow_800
     , hover__from_yellow_900
     , hover__line_through
+    , hover__neg_rotate_1
+    , hover__neg_rotate_12
     , hover__neg_rotate_180
+    , hover__neg_rotate_2
+    , hover__neg_rotate_3
     , hover__neg_rotate_45
+    , hover__neg_rotate_6
     , hover__neg_rotate_90
+    , hover__neg_skew_x_1
     , hover__neg_skew_x_12
+    , hover__neg_skew_x_2
     , hover__neg_skew_x_3
     , hover__neg_skew_x_6
+    , hover__neg_skew_y_1
     , hover__neg_skew_y_12
+    , hover__neg_skew_y_2
     , hover__neg_skew_y_3
     , hover__neg_skew_y_6
     , hover__neg_translate_x_1
@@ -1928,8 +1968,13 @@ module Html.Tailwind exposing
     , hover__opacity_50
     , hover__opacity_75
     , hover__rotate_0
+    , hover__rotate_1
+    , hover__rotate_12
     , hover__rotate_180
+    , hover__rotate_2
+    , hover__rotate_3
     , hover__rotate_45
+    , hover__rotate_6
     , hover__rotate_90
     , hover__scale_0
     , hover__scale_100
@@ -1972,11 +2017,15 @@ module Html.Tailwind exposing
     , hover__shadow_xl
     , hover__shadow_xs
     , hover__skew_x_0
+    , hover__skew_x_1
     , hover__skew_x_12
+    , hover__skew_x_2
     , hover__skew_x_3
     , hover__skew_x_6
     , hover__skew_y_0
+    , hover__skew_y_1
     , hover__skew_y_12
+    , hover__skew_y_2
     , hover__skew_y_3
     , hover__skew_y_6
     , hover__text_black
@@ -2331,6 +2380,16 @@ module Html.Tailwind exposing
     , justify_center
     , justify_end
     , justify_evenly
+    , justify_items_auto
+    , justify_items_center
+    , justify_items_end
+    , justify_items_start
+    , justify_items_stretch
+    , justify_self_auto
+    , justify_self_center
+    , justify_self_end
+    , justify_self_start
+    , justify_self_stretch
     , justify_start
     , leading_10
     , leading_3
@@ -2362,6 +2421,14 @@ module Html.Tailwind exposing
     , lg__animate_spin
     , lg__antialiased
     , lg__appearance_none
+    , lg__auto_cols_auto
+    , lg__auto_cols_fr
+    , lg__auto_cols_max
+    , lg__auto_cols_min
+    , lg__auto_rows_auto
+    , lg__auto_rows_fr
+    , lg__auto_rows_max
+    , lg__auto_rows_min
     , lg__bg_auto
     , lg__bg_black
     , lg__bg_blue_100
@@ -2667,6 +2734,7 @@ module Html.Tailwind exposing
     , lg__col_span_7
     , lg__col_span_8
     , lg__col_span_9
+    , lg__col_span_full
     , lg__col_start_1
     , lg__col_start_10
     , lg__col_start_11
@@ -2686,6 +2754,7 @@ module Html.Tailwind exposing
     , lg__content_between
     , lg__content_center
     , lg__content_end
+    , lg__content_evenly
     , lg__content_start
     , lg__contents
     , lg__cursor_auto
@@ -2703,6 +2772,7 @@ module Html.Tailwind exposing
     , lg__delay_500
     , lg__delay_700
     , lg__delay_75
+    , lg__diagonal_fractions
     , lg__disabled__cursor_auto
     , lg__disabled__cursor_default
     , lg__disabled__cursor_move
@@ -3167,13 +3237,22 @@ module Html.Tailwind exposing
     , lg__focus__from_yellow_800
     , lg__focus__from_yellow_900
     , lg__focus__line_through
+    , lg__focus__neg_rotate_1
+    , lg__focus__neg_rotate_12
     , lg__focus__neg_rotate_180
+    , lg__focus__neg_rotate_2
+    , lg__focus__neg_rotate_3
     , lg__focus__neg_rotate_45
+    , lg__focus__neg_rotate_6
     , lg__focus__neg_rotate_90
+    , lg__focus__neg_skew_x_1
     , lg__focus__neg_skew_x_12
+    , lg__focus__neg_skew_x_2
     , lg__focus__neg_skew_x_3
     , lg__focus__neg_skew_x_6
+    , lg__focus__neg_skew_y_1
     , lg__focus__neg_skew_y_12
+    , lg__focus__neg_skew_y_2
     , lg__focus__neg_skew_y_3
     , lg__focus__neg_skew_y_6
     , lg__focus__neg_translate_x_1
@@ -3223,7 +3302,9 @@ module Html.Tailwind exposing
     , lg__focus__opacity_25
     , lg__focus__opacity_50
     , lg__focus__opacity_75
+    , lg__focus__outline_black
     , lg__focus__outline_none
+    , lg__focus__outline_white
     , lg__focus__placeholder_black__focus
     , lg__focus__placeholder_blue_100__focus
     , lg__focus__placeholder_blue_200__focus
@@ -3324,8 +3405,13 @@ module Html.Tailwind exposing
     , lg__focus__placeholder_yellow_800__focus
     , lg__focus__placeholder_yellow_900__focus
     , lg__focus__rotate_0
+    , lg__focus__rotate_1
+    , lg__focus__rotate_12
     , lg__focus__rotate_180
+    , lg__focus__rotate_2
+    , lg__focus__rotate_3
     , lg__focus__rotate_45
+    , lg__focus__rotate_6
     , lg__focus__rotate_90
     , lg__focus__scale_0
     , lg__focus__scale_100
@@ -3368,11 +3454,15 @@ module Html.Tailwind exposing
     , lg__focus__shadow_xl
     , lg__focus__shadow_xs
     , lg__focus__skew_x_0
+    , lg__focus__skew_x_1
     , lg__focus__skew_x_12
+    , lg__focus__skew_x_2
     , lg__focus__skew_x_3
     , lg__focus__skew_x_6
     , lg__focus__skew_y_0
+    , lg__focus__skew_y_1
     , lg__focus__skew_y_12
+    , lg__focus__skew_y_2
     , lg__focus__skew_y_3
     , lg__focus__skew_y_6
     , lg__focus__sr_only
@@ -4220,13 +4310,22 @@ module Html.Tailwind exposing
     , lg__hover__from_yellow_800
     , lg__hover__from_yellow_900
     , lg__hover__line_through
+    , lg__hover__neg_rotate_1
+    , lg__hover__neg_rotate_12
     , lg__hover__neg_rotate_180
+    , lg__hover__neg_rotate_2
+    , lg__hover__neg_rotate_3
     , lg__hover__neg_rotate_45
+    , lg__hover__neg_rotate_6
     , lg__hover__neg_rotate_90
+    , lg__hover__neg_skew_x_1
     , lg__hover__neg_skew_x_12
+    , lg__hover__neg_skew_x_2
     , lg__hover__neg_skew_x_3
     , lg__hover__neg_skew_x_6
+    , lg__hover__neg_skew_y_1
     , lg__hover__neg_skew_y_12
+    , lg__hover__neg_skew_y_2
     , lg__hover__neg_skew_y_3
     , lg__hover__neg_skew_y_6
     , lg__hover__neg_translate_x_1
@@ -4276,8 +4375,13 @@ module Html.Tailwind exposing
     , lg__hover__opacity_50
     , lg__hover__opacity_75
     , lg__hover__rotate_0
+    , lg__hover__rotate_1
+    , lg__hover__rotate_12
     , lg__hover__rotate_180
+    , lg__hover__rotate_2
+    , lg__hover__rotate_3
     , lg__hover__rotate_45
+    , lg__hover__rotate_6
     , lg__hover__rotate_90
     , lg__hover__scale_0
     , lg__hover__scale_100
@@ -4320,11 +4424,15 @@ module Html.Tailwind exposing
     , lg__hover__shadow_xl
     , lg__hover__shadow_xs
     , lg__hover__skew_x_0
+    , lg__hover__skew_x_1
     , lg__hover__skew_x_12
+    , lg__hover__skew_x_2
     , lg__hover__skew_x_3
     , lg__hover__skew_x_6
     , lg__hover__skew_y_0
+    , lg__hover__skew_y_1
     , lg__hover__skew_y_12
+    , lg__hover__skew_y_2
     , lg__hover__skew_y_3
     , lg__hover__skew_y_6
     , lg__hover__text_black
@@ -4679,6 +4787,16 @@ module Html.Tailwind exposing
     , lg__justify_center
     , lg__justify_end
     , lg__justify_evenly
+    , lg__justify_items_auto
+    , lg__justify_items_center
+    , lg__justify_items_end
+    , lg__justify_items_start
+    , lg__justify_items_stretch
+    , lg__justify_self_auto
+    , lg__justify_self_center
+    , lg__justify_self_end
+    , lg__justify_self_start
+    , lg__justify_self_stretch
     , lg__justify_start
     , lg__leading_10
     , lg__leading_3
@@ -4697,6 +4815,7 @@ module Html.Tailwind exposing
     , lg__left_0
     , lg__left_auto
     , lg__line_through
+    , lg__lining_nums
     , lg__list_decimal
     , lg__list_disc
     , lg__list_inside
@@ -4992,13 +5111,22 @@ module Html.Tailwind exposing
     , lg__neg_my_64
     , lg__neg_my_8
     , lg__neg_my_px
+    , lg__neg_rotate_1
+    , lg__neg_rotate_12
     , lg__neg_rotate_180
+    , lg__neg_rotate_2
+    , lg__neg_rotate_3
     , lg__neg_rotate_45
+    , lg__neg_rotate_6
     , lg__neg_rotate_90
+    , lg__neg_skew_x_1
     , lg__neg_skew_x_12
+    , lg__neg_skew_x_2
     , lg__neg_skew_x_3
     , lg__neg_skew_x_6
+    , lg__neg_skew_y_1
     , lg__neg_skew_y_12
+    , lg__neg_skew_y_2
     , lg__neg_skew_y_3
     , lg__neg_skew_y_6
     , lg__neg_space_x_1
@@ -5079,6 +5207,7 @@ module Html.Tailwind exposing
     , lg__neg_translate_y_px
     , lg__no_underline
     , lg__normal_case
+    , lg__normal_nums
     , lg__not_italic
     , lg__not_sr_only
     , lg__object_bottom
@@ -5095,6 +5224,7 @@ module Html.Tailwind exposing
     , lg__object_right_top
     , lg__object_scale_down
     , lg__object_top
+    , lg__oldstyle_nums
     , lg__opacity_0
     , lg__opacity_100
     , lg__opacity_25
@@ -5115,6 +5245,7 @@ module Html.Tailwind exposing
     , lg__order_first
     , lg__order_last
     , lg__order_none
+    , lg__ordinal
     , lg__origin_bottom
     , lg__origin_bottom_left
     , lg__origin_bottom_right
@@ -5124,7 +5255,9 @@ module Html.Tailwind exposing
     , lg__origin_top
     , lg__origin_top_left
     , lg__origin_top_right
+    , lg__outline_black
     , lg__outline_none
+    , lg__outline_white
     , lg__overflow_auto
     , lg__overflow_hidden
     , lg__overflow_scroll
@@ -5203,6 +5336,23 @@ module Html.Tailwind exposing
     , lg__pl_64
     , lg__pl_8
     , lg__pl_px
+    , lg__place_content_around
+    , lg__place_content_between
+    , lg__place_content_center
+    , lg__place_content_end
+    , lg__place_content_evenly
+    , lg__place_content_start
+    , lg__place_content_stretch
+    , lg__place_items_auto
+    , lg__place_items_center
+    , lg__place_items_end
+    , lg__place_items_start
+    , lg__place_items_stretch
+    , lg__place_self_auto
+    , lg__place_self_center
+    , lg__place_self_end
+    , lg__place_self_start
+    , lg__place_self_stretch
     , lg__placeholder_black
     , lg__placeholder_blue_100
     , lg__placeholder_blue_200
@@ -5323,6 +5473,7 @@ module Html.Tailwind exposing
     , lg__pr_64
     , lg__pr_8
     , lg__pr_px
+    , lg__proportional_nums
     , lg__pt_0
     , lg__pt_1
     , lg__pt_10
@@ -5388,63 +5539,95 @@ module Html.Tailwind exposing
     , lg__right_0
     , lg__right_auto
     , lg__rotate_0
+    , lg__rotate_1
+    , lg__rotate_12
     , lg__rotate_180
+    , lg__rotate_2
+    , lg__rotate_3
     , lg__rotate_45
+    , lg__rotate_6
     , lg__rotate_90
     , lg__rounded
+    , lg__rounded_2xl
+    , lg__rounded_3xl
     , lg__rounded_b
+    , lg__rounded_b_2xl
+    , lg__rounded_b_3xl
     , lg__rounded_b_full
     , lg__rounded_b_lg
     , lg__rounded_b_md
     , lg__rounded_b_none
     , lg__rounded_b_sm
+    , lg__rounded_b_xl
     , lg__rounded_bl
+    , lg__rounded_bl_2xl
+    , lg__rounded_bl_3xl
     , lg__rounded_bl_full
     , lg__rounded_bl_lg
     , lg__rounded_bl_md
     , lg__rounded_bl_none
     , lg__rounded_bl_sm
+    , lg__rounded_bl_xl
     , lg__rounded_br
+    , lg__rounded_br_2xl
+    , lg__rounded_br_3xl
     , lg__rounded_br_full
     , lg__rounded_br_lg
     , lg__rounded_br_md
     , lg__rounded_br_none
     , lg__rounded_br_sm
+    , lg__rounded_br_xl
     , lg__rounded_full
     , lg__rounded_l
+    , lg__rounded_l_2xl
+    , lg__rounded_l_3xl
     , lg__rounded_l_full
     , lg__rounded_l_lg
     , lg__rounded_l_md
     , lg__rounded_l_none
     , lg__rounded_l_sm
+    , lg__rounded_l_xl
     , lg__rounded_lg
     , lg__rounded_md
     , lg__rounded_none
     , lg__rounded_r
+    , lg__rounded_r_2xl
+    , lg__rounded_r_3xl
     , lg__rounded_r_full
     , lg__rounded_r_lg
     , lg__rounded_r_md
     , lg__rounded_r_none
     , lg__rounded_r_sm
+    , lg__rounded_r_xl
     , lg__rounded_sm
     , lg__rounded_t
+    , lg__rounded_t_2xl
+    , lg__rounded_t_3xl
     , lg__rounded_t_full
     , lg__rounded_t_lg
     , lg__rounded_t_md
     , lg__rounded_t_none
     , lg__rounded_t_sm
+    , lg__rounded_t_xl
     , lg__rounded_tl
+    , lg__rounded_tl_2xl
+    , lg__rounded_tl_3xl
     , lg__rounded_tl_full
     , lg__rounded_tl_lg
     , lg__rounded_tl_md
     , lg__rounded_tl_none
     , lg__rounded_tl_sm
+    , lg__rounded_tl_xl
     , lg__rounded_tr
+    , lg__rounded_tr_2xl
+    , lg__rounded_tr_3xl
     , lg__rounded_tr_full
     , lg__rounded_tr_lg
     , lg__rounded_tr_md
     , lg__rounded_tr_none
     , lg__rounded_tr_sm
+    , lg__rounded_tr_xl
+    , lg__rounded_xl
     , lg__row_auto
     , lg__row_end_1
     , lg__row_end_2
@@ -5460,6 +5643,7 @@ module Html.Tailwind exposing
     , lg__row_span_4
     , lg__row_span_5
     , lg__row_span_6
+    , lg__row_span_full
     , lg__row_start_1
     , lg__row_start_2
     , lg__row_start_3
@@ -5520,13 +5704,18 @@ module Html.Tailwind exposing
     , lg__shadow_xl
     , lg__shadow_xs
     , lg__skew_x_0
+    , lg__skew_x_1
     , lg__skew_x_12
+    , lg__skew_x_2
     , lg__skew_x_3
     , lg__skew_x_6
     , lg__skew_y_0
+    , lg__skew_y_1
     , lg__skew_y_12
+    , lg__skew_y_2
     , lg__skew_y_3
     , lg__skew_y_6
+    , lg__slashed_zero
     , lg__space_x_0
     , lg__space_x_1
     , lg__space_x_10
@@ -5568,6 +5757,7 @@ module Html.Tailwind exposing
     , lg__space_y_px
     , lg__space_y_reverse
     , lg__sr_only
+    , lg__stacked_fractions
     , lg__static
     , lg__sticky
     , lg__stroke_0
@@ -5586,6 +5776,7 @@ module Html.Tailwind exposing
     , lg__table_header_group
     , lg__table_row
     , lg__table_row_group
+    , lg__tabular_nums
     , lg__text_2xl
     , lg__text_3xl
     , lg__text_4xl
@@ -6011,6 +6202,7 @@ module Html.Tailwind exposing
     , lg__z_50
     , lg__z_auto
     , line_through
+    , lining_nums
     , list_decimal
     , list_disc
     , list_inside
@@ -6089,6 +6281,14 @@ module Html.Tailwind exposing
     , md__animate_spin
     , md__antialiased
     , md__appearance_none
+    , md__auto_cols_auto
+    , md__auto_cols_fr
+    , md__auto_cols_max
+    , md__auto_cols_min
+    , md__auto_rows_auto
+    , md__auto_rows_fr
+    , md__auto_rows_max
+    , md__auto_rows_min
     , md__bg_auto
     , md__bg_black
     , md__bg_blue_100
@@ -6394,6 +6594,7 @@ module Html.Tailwind exposing
     , md__col_span_7
     , md__col_span_8
     , md__col_span_9
+    , md__col_span_full
     , md__col_start_1
     , md__col_start_10
     , md__col_start_11
@@ -6413,6 +6614,7 @@ module Html.Tailwind exposing
     , md__content_between
     , md__content_center
     , md__content_end
+    , md__content_evenly
     , md__content_start
     , md__contents
     , md__cursor_auto
@@ -6430,6 +6632,7 @@ module Html.Tailwind exposing
     , md__delay_500
     , md__delay_700
     , md__delay_75
+    , md__diagonal_fractions
     , md__disabled__cursor_auto
     , md__disabled__cursor_default
     , md__disabled__cursor_move
@@ -6894,13 +7097,22 @@ module Html.Tailwind exposing
     , md__focus__from_yellow_800
     , md__focus__from_yellow_900
     , md__focus__line_through
+    , md__focus__neg_rotate_1
+    , md__focus__neg_rotate_12
     , md__focus__neg_rotate_180
+    , md__focus__neg_rotate_2
+    , md__focus__neg_rotate_3
     , md__focus__neg_rotate_45
+    , md__focus__neg_rotate_6
     , md__focus__neg_rotate_90
+    , md__focus__neg_skew_x_1
     , md__focus__neg_skew_x_12
+    , md__focus__neg_skew_x_2
     , md__focus__neg_skew_x_3
     , md__focus__neg_skew_x_6
+    , md__focus__neg_skew_y_1
     , md__focus__neg_skew_y_12
+    , md__focus__neg_skew_y_2
     , md__focus__neg_skew_y_3
     , md__focus__neg_skew_y_6
     , md__focus__neg_translate_x_1
@@ -6950,7 +7162,9 @@ module Html.Tailwind exposing
     , md__focus__opacity_25
     , md__focus__opacity_50
     , md__focus__opacity_75
+    , md__focus__outline_black
     , md__focus__outline_none
+    , md__focus__outline_white
     , md__focus__placeholder_black__focus
     , md__focus__placeholder_blue_100__focus
     , md__focus__placeholder_blue_200__focus
@@ -7051,8 +7265,13 @@ module Html.Tailwind exposing
     , md__focus__placeholder_yellow_800__focus
     , md__focus__placeholder_yellow_900__focus
     , md__focus__rotate_0
+    , md__focus__rotate_1
+    , md__focus__rotate_12
     , md__focus__rotate_180
+    , md__focus__rotate_2
+    , md__focus__rotate_3
     , md__focus__rotate_45
+    , md__focus__rotate_6
     , md__focus__rotate_90
     , md__focus__scale_0
     , md__focus__scale_100
@@ -7095,11 +7314,15 @@ module Html.Tailwind exposing
     , md__focus__shadow_xl
     , md__focus__shadow_xs
     , md__focus__skew_x_0
+    , md__focus__skew_x_1
     , md__focus__skew_x_12
+    , md__focus__skew_x_2
     , md__focus__skew_x_3
     , md__focus__skew_x_6
     , md__focus__skew_y_0
+    , md__focus__skew_y_1
     , md__focus__skew_y_12
+    , md__focus__skew_y_2
     , md__focus__skew_y_3
     , md__focus__skew_y_6
     , md__focus__sr_only
@@ -7947,13 +8170,22 @@ module Html.Tailwind exposing
     , md__hover__from_yellow_800
     , md__hover__from_yellow_900
     , md__hover__line_through
+    , md__hover__neg_rotate_1
+    , md__hover__neg_rotate_12
     , md__hover__neg_rotate_180
+    , md__hover__neg_rotate_2
+    , md__hover__neg_rotate_3
     , md__hover__neg_rotate_45
+    , md__hover__neg_rotate_6
     , md__hover__neg_rotate_90
+    , md__hover__neg_skew_x_1
     , md__hover__neg_skew_x_12
+    , md__hover__neg_skew_x_2
     , md__hover__neg_skew_x_3
     , md__hover__neg_skew_x_6
+    , md__hover__neg_skew_y_1
     , md__hover__neg_skew_y_12
+    , md__hover__neg_skew_y_2
     , md__hover__neg_skew_y_3
     , md__hover__neg_skew_y_6
     , md__hover__neg_translate_x_1
@@ -8003,8 +8235,13 @@ module Html.Tailwind exposing
     , md__hover__opacity_50
     , md__hover__opacity_75
     , md__hover__rotate_0
+    , md__hover__rotate_1
+    , md__hover__rotate_12
     , md__hover__rotate_180
+    , md__hover__rotate_2
+    , md__hover__rotate_3
     , md__hover__rotate_45
+    , md__hover__rotate_6
     , md__hover__rotate_90
     , md__hover__scale_0
     , md__hover__scale_100
@@ -8047,11 +8284,15 @@ module Html.Tailwind exposing
     , md__hover__shadow_xl
     , md__hover__shadow_xs
     , md__hover__skew_x_0
+    , md__hover__skew_x_1
     , md__hover__skew_x_12
+    , md__hover__skew_x_2
     , md__hover__skew_x_3
     , md__hover__skew_x_6
     , md__hover__skew_y_0
+    , md__hover__skew_y_1
     , md__hover__skew_y_12
+    , md__hover__skew_y_2
     , md__hover__skew_y_3
     , md__hover__skew_y_6
     , md__hover__text_black
@@ -8406,6 +8647,16 @@ module Html.Tailwind exposing
     , md__justify_center
     , md__justify_end
     , md__justify_evenly
+    , md__justify_items_auto
+    , md__justify_items_center
+    , md__justify_items_end
+    , md__justify_items_start
+    , md__justify_items_stretch
+    , md__justify_self_auto
+    , md__justify_self_center
+    , md__justify_self_end
+    , md__justify_self_start
+    , md__justify_self_stretch
     , md__justify_start
     , md__leading_10
     , md__leading_3
@@ -8424,6 +8675,7 @@ module Html.Tailwind exposing
     , md__left_0
     , md__left_auto
     , md__line_through
+    , md__lining_nums
     , md__list_decimal
     , md__list_disc
     , md__list_inside
@@ -8719,13 +8971,22 @@ module Html.Tailwind exposing
     , md__neg_my_64
     , md__neg_my_8
     , md__neg_my_px
+    , md__neg_rotate_1
+    , md__neg_rotate_12
     , md__neg_rotate_180
+    , md__neg_rotate_2
+    , md__neg_rotate_3
     , md__neg_rotate_45
+    , md__neg_rotate_6
     , md__neg_rotate_90
+    , md__neg_skew_x_1
     , md__neg_skew_x_12
+    , md__neg_skew_x_2
     , md__neg_skew_x_3
     , md__neg_skew_x_6
+    , md__neg_skew_y_1
     , md__neg_skew_y_12
+    , md__neg_skew_y_2
     , md__neg_skew_y_3
     , md__neg_skew_y_6
     , md__neg_space_x_1
@@ -8806,6 +9067,7 @@ module Html.Tailwind exposing
     , md__neg_translate_y_px
     , md__no_underline
     , md__normal_case
+    , md__normal_nums
     , md__not_italic
     , md__not_sr_only
     , md__object_bottom
@@ -8822,6 +9084,7 @@ module Html.Tailwind exposing
     , md__object_right_top
     , md__object_scale_down
     , md__object_top
+    , md__oldstyle_nums
     , md__opacity_0
     , md__opacity_100
     , md__opacity_25
@@ -8842,6 +9105,7 @@ module Html.Tailwind exposing
     , md__order_first
     , md__order_last
     , md__order_none
+    , md__ordinal
     , md__origin_bottom
     , md__origin_bottom_left
     , md__origin_bottom_right
@@ -8851,7 +9115,9 @@ module Html.Tailwind exposing
     , md__origin_top
     , md__origin_top_left
     , md__origin_top_right
+    , md__outline_black
     , md__outline_none
+    , md__outline_white
     , md__overflow_auto
     , md__overflow_hidden
     , md__overflow_scroll
@@ -8930,6 +9196,23 @@ module Html.Tailwind exposing
     , md__pl_64
     , md__pl_8
     , md__pl_px
+    , md__place_content_around
+    , md__place_content_between
+    , md__place_content_center
+    , md__place_content_end
+    , md__place_content_evenly
+    , md__place_content_start
+    , md__place_content_stretch
+    , md__place_items_auto
+    , md__place_items_center
+    , md__place_items_end
+    , md__place_items_start
+    , md__place_items_stretch
+    , md__place_self_auto
+    , md__place_self_center
+    , md__place_self_end
+    , md__place_self_start
+    , md__place_self_stretch
     , md__placeholder_black
     , md__placeholder_blue_100
     , md__placeholder_blue_200
@@ -9050,6 +9333,7 @@ module Html.Tailwind exposing
     , md__pr_64
     , md__pr_8
     , md__pr_px
+    , md__proportional_nums
     , md__pt_0
     , md__pt_1
     , md__pt_10
@@ -9115,63 +9399,95 @@ module Html.Tailwind exposing
     , md__right_0
     , md__right_auto
     , md__rotate_0
+    , md__rotate_1
+    , md__rotate_12
     , md__rotate_180
+    , md__rotate_2
+    , md__rotate_3
     , md__rotate_45
+    , md__rotate_6
     , md__rotate_90
     , md__rounded
+    , md__rounded_2xl
+    , md__rounded_3xl
     , md__rounded_b
+    , md__rounded_b_2xl
+    , md__rounded_b_3xl
     , md__rounded_b_full
     , md__rounded_b_lg
     , md__rounded_b_md
     , md__rounded_b_none
     , md__rounded_b_sm
+    , md__rounded_b_xl
     , md__rounded_bl
+    , md__rounded_bl_2xl
+    , md__rounded_bl_3xl
     , md__rounded_bl_full
     , md__rounded_bl_lg
     , md__rounded_bl_md
     , md__rounded_bl_none
     , md__rounded_bl_sm
+    , md__rounded_bl_xl
     , md__rounded_br
+    , md__rounded_br_2xl
+    , md__rounded_br_3xl
     , md__rounded_br_full
     , md__rounded_br_lg
     , md__rounded_br_md
     , md__rounded_br_none
     , md__rounded_br_sm
+    , md__rounded_br_xl
     , md__rounded_full
     , md__rounded_l
+    , md__rounded_l_2xl
+    , md__rounded_l_3xl
     , md__rounded_l_full
     , md__rounded_l_lg
     , md__rounded_l_md
     , md__rounded_l_none
     , md__rounded_l_sm
+    , md__rounded_l_xl
     , md__rounded_lg
     , md__rounded_md
     , md__rounded_none
     , md__rounded_r
+    , md__rounded_r_2xl
+    , md__rounded_r_3xl
     , md__rounded_r_full
     , md__rounded_r_lg
     , md__rounded_r_md
     , md__rounded_r_none
     , md__rounded_r_sm
+    , md__rounded_r_xl
     , md__rounded_sm
     , md__rounded_t
+    , md__rounded_t_2xl
+    , md__rounded_t_3xl
     , md__rounded_t_full
     , md__rounded_t_lg
     , md__rounded_t_md
     , md__rounded_t_none
     , md__rounded_t_sm
+    , md__rounded_t_xl
     , md__rounded_tl
+    , md__rounded_tl_2xl
+    , md__rounded_tl_3xl
     , md__rounded_tl_full
     , md__rounded_tl_lg
     , md__rounded_tl_md
     , md__rounded_tl_none
     , md__rounded_tl_sm
+    , md__rounded_tl_xl
     , md__rounded_tr
+    , md__rounded_tr_2xl
+    , md__rounded_tr_3xl
     , md__rounded_tr_full
     , md__rounded_tr_lg
     , md__rounded_tr_md
     , md__rounded_tr_none
     , md__rounded_tr_sm
+    , md__rounded_tr_xl
+    , md__rounded_xl
     , md__row_auto
     , md__row_end_1
     , md__row_end_2
@@ -9187,6 +9503,7 @@ module Html.Tailwind exposing
     , md__row_span_4
     , md__row_span_5
     , md__row_span_6
+    , md__row_span_full
     , md__row_start_1
     , md__row_start_2
     , md__row_start_3
@@ -9247,13 +9564,18 @@ module Html.Tailwind exposing
     , md__shadow_xl
     , md__shadow_xs
     , md__skew_x_0
+    , md__skew_x_1
     , md__skew_x_12
+    , md__skew_x_2
     , md__skew_x_3
     , md__skew_x_6
     , md__skew_y_0
+    , md__skew_y_1
     , md__skew_y_12
+    , md__skew_y_2
     , md__skew_y_3
     , md__skew_y_6
+    , md__slashed_zero
     , md__space_x_0
     , md__space_x_1
     , md__space_x_10
@@ -9295,6 +9617,7 @@ module Html.Tailwind exposing
     , md__space_y_px
     , md__space_y_reverse
     , md__sr_only
+    , md__stacked_fractions
     , md__static
     , md__sticky
     , md__stroke_0
@@ -9313,6 +9636,7 @@ module Html.Tailwind exposing
     , md__table_header_group
     , md__table_row
     , md__table_row_group
+    , md__tabular_nums
     , md__text_2xl
     , md__text_3xl
     , md__text_4xl
@@ -9968,13 +10292,22 @@ module Html.Tailwind exposing
     , neg_my_64
     , neg_my_8
     , neg_my_px
+    , neg_rotate_1
+    , neg_rotate_12
     , neg_rotate_180
+    , neg_rotate_2
+    , neg_rotate_3
     , neg_rotate_45
+    , neg_rotate_6
     , neg_rotate_90
+    , neg_skew_x_1
     , neg_skew_x_12
+    , neg_skew_x_2
     , neg_skew_x_3
     , neg_skew_x_6
+    , neg_skew_y_1
     , neg_skew_y_12
+    , neg_skew_y_2
     , neg_skew_y_3
     , neg_skew_y_6
     , neg_space_x_1
@@ -10055,6 +10388,7 @@ module Html.Tailwind exposing
     , neg_translate_y_px
     , no_underline
     , normal_case
+    , normal_nums
     , not_italic
     , not_sr_only
     , object_bottom
@@ -10071,6 +10405,7 @@ module Html.Tailwind exposing
     , object_right_top
     , object_scale_down
     , object_top
+    , oldstyle_nums
     , opacity_0
     , opacity_100
     , opacity_25
@@ -10091,6 +10426,7 @@ module Html.Tailwind exposing
     , order_first
     , order_last
     , order_none
+    , ordinal
     , origin_bottom
     , origin_bottom_left
     , origin_bottom_right
@@ -10100,7 +10436,9 @@ module Html.Tailwind exposing
     , origin_top
     , origin_top_left
     , origin_top_right
+    , outline_black
     , outline_none
+    , outline_white
     , overflow_auto
     , overflow_hidden
     , overflow_scroll
@@ -10179,6 +10517,23 @@ module Html.Tailwind exposing
     , pl_64
     , pl_8
     , pl_px
+    , place_content_around
+    , place_content_between
+    , place_content_center
+    , place_content_end
+    , place_content_evenly
+    , place_content_start
+    , place_content_stretch
+    , place_items_auto
+    , place_items_center
+    , place_items_end
+    , place_items_start
+    , place_items_stretch
+    , place_self_auto
+    , place_self_center
+    , place_self_end
+    , place_self_start
+    , place_self_stretch
     , placeholder_black
     , placeholder_blue_100
     , placeholder_blue_200
@@ -10299,6 +10654,7 @@ module Html.Tailwind exposing
     , pr_64
     , pr_8
     , pr_px
+    , proportional_nums
     , pt_0
     , pt_1
     , pt_10
@@ -10364,63 +10720,95 @@ module Html.Tailwind exposing
     , right_0
     , right_auto
     , rotate_0
+    , rotate_1
+    , rotate_12
     , rotate_180
+    , rotate_2
+    , rotate_3
     , rotate_45
+    , rotate_6
     , rotate_90
     , rounded
+    , rounded_2xl
+    , rounded_3xl
     , rounded_b
+    , rounded_b_2xl
+    , rounded_b_3xl
     , rounded_b_full
     , rounded_b_lg
     , rounded_b_md
     , rounded_b_none
     , rounded_b_sm
+    , rounded_b_xl
     , rounded_bl
+    , rounded_bl_2xl
+    , rounded_bl_3xl
     , rounded_bl_full
     , rounded_bl_lg
     , rounded_bl_md
     , rounded_bl_none
     , rounded_bl_sm
+    , rounded_bl_xl
     , rounded_br
+    , rounded_br_2xl
+    , rounded_br_3xl
     , rounded_br_full
     , rounded_br_lg
     , rounded_br_md
     , rounded_br_none
     , rounded_br_sm
+    , rounded_br_xl
     , rounded_full
     , rounded_l
+    , rounded_l_2xl
+    , rounded_l_3xl
     , rounded_l_full
     , rounded_l_lg
     , rounded_l_md
     , rounded_l_none
     , rounded_l_sm
+    , rounded_l_xl
     , rounded_lg
     , rounded_md
     , rounded_none
     , rounded_r
+    , rounded_r_2xl
+    , rounded_r_3xl
     , rounded_r_full
     , rounded_r_lg
     , rounded_r_md
     , rounded_r_none
     , rounded_r_sm
+    , rounded_r_xl
     , rounded_sm
     , rounded_t
+    , rounded_t_2xl
+    , rounded_t_3xl
     , rounded_t_full
     , rounded_t_lg
     , rounded_t_md
     , rounded_t_none
     , rounded_t_sm
+    , rounded_t_xl
     , rounded_tl
+    , rounded_tl_2xl
+    , rounded_tl_3xl
     , rounded_tl_full
     , rounded_tl_lg
     , rounded_tl_md
     , rounded_tl_none
     , rounded_tl_sm
+    , rounded_tl_xl
     , rounded_tr
+    , rounded_tr_2xl
+    , rounded_tr_3xl
     , rounded_tr_full
     , rounded_tr_lg
     , rounded_tr_md
     , rounded_tr_none
     , rounded_tr_sm
+    , rounded_tr_xl
+    , rounded_xl
     , row_auto
     , row_end_1
     , row_end_2
@@ -10436,6 +10824,7 @@ module Html.Tailwind exposing
     , row_span_4
     , row_span_5
     , row_span_6
+    , row_span_full
     , row_start_1
     , row_start_2
     , row_start_3
@@ -10496,13 +10885,18 @@ module Html.Tailwind exposing
     , shadow_xl
     , shadow_xs
     , skew_x_0
+    , skew_x_1
     , skew_x_12
+    , skew_x_2
     , skew_x_3
     , skew_x_6
     , skew_y_0
+    , skew_y_1
     , skew_y_12
+    , skew_y_2
     , skew_y_3
     , skew_y_6
+    , slashed_zero
     , sm__absolute
     , sm__align_baseline
     , sm__align_bottom
@@ -10517,6 +10911,14 @@ module Html.Tailwind exposing
     , sm__animate_spin
     , sm__antialiased
     , sm__appearance_none
+    , sm__auto_cols_auto
+    , sm__auto_cols_fr
+    , sm__auto_cols_max
+    , sm__auto_cols_min
+    , sm__auto_rows_auto
+    , sm__auto_rows_fr
+    , sm__auto_rows_max
+    , sm__auto_rows_min
     , sm__bg_auto
     , sm__bg_black
     , sm__bg_blue_100
@@ -10822,6 +11224,7 @@ module Html.Tailwind exposing
     , sm__col_span_7
     , sm__col_span_8
     , sm__col_span_9
+    , sm__col_span_full
     , sm__col_start_1
     , sm__col_start_10
     , sm__col_start_11
@@ -10841,6 +11244,7 @@ module Html.Tailwind exposing
     , sm__content_between
     , sm__content_center
     , sm__content_end
+    , sm__content_evenly
     , sm__content_start
     , sm__contents
     , sm__cursor_auto
@@ -10858,6 +11262,7 @@ module Html.Tailwind exposing
     , sm__delay_500
     , sm__delay_700
     , sm__delay_75
+    , sm__diagonal_fractions
     , sm__disabled__cursor_auto
     , sm__disabled__cursor_default
     , sm__disabled__cursor_move
@@ -11322,13 +11727,22 @@ module Html.Tailwind exposing
     , sm__focus__from_yellow_800
     , sm__focus__from_yellow_900
     , sm__focus__line_through
+    , sm__focus__neg_rotate_1
+    , sm__focus__neg_rotate_12
     , sm__focus__neg_rotate_180
+    , sm__focus__neg_rotate_2
+    , sm__focus__neg_rotate_3
     , sm__focus__neg_rotate_45
+    , sm__focus__neg_rotate_6
     , sm__focus__neg_rotate_90
+    , sm__focus__neg_skew_x_1
     , sm__focus__neg_skew_x_12
+    , sm__focus__neg_skew_x_2
     , sm__focus__neg_skew_x_3
     , sm__focus__neg_skew_x_6
+    , sm__focus__neg_skew_y_1
     , sm__focus__neg_skew_y_12
+    , sm__focus__neg_skew_y_2
     , sm__focus__neg_skew_y_3
     , sm__focus__neg_skew_y_6
     , sm__focus__neg_translate_x_1
@@ -11378,7 +11792,9 @@ module Html.Tailwind exposing
     , sm__focus__opacity_25
     , sm__focus__opacity_50
     , sm__focus__opacity_75
+    , sm__focus__outline_black
     , sm__focus__outline_none
+    , sm__focus__outline_white
     , sm__focus__placeholder_black__focus
     , sm__focus__placeholder_blue_100__focus
     , sm__focus__placeholder_blue_200__focus
@@ -11479,8 +11895,13 @@ module Html.Tailwind exposing
     , sm__focus__placeholder_yellow_800__focus
     , sm__focus__placeholder_yellow_900__focus
     , sm__focus__rotate_0
+    , sm__focus__rotate_1
+    , sm__focus__rotate_12
     , sm__focus__rotate_180
+    , sm__focus__rotate_2
+    , sm__focus__rotate_3
     , sm__focus__rotate_45
+    , sm__focus__rotate_6
     , sm__focus__rotate_90
     , sm__focus__scale_0
     , sm__focus__scale_100
@@ -11523,11 +11944,15 @@ module Html.Tailwind exposing
     , sm__focus__shadow_xl
     , sm__focus__shadow_xs
     , sm__focus__skew_x_0
+    , sm__focus__skew_x_1
     , sm__focus__skew_x_12
+    , sm__focus__skew_x_2
     , sm__focus__skew_x_3
     , sm__focus__skew_x_6
     , sm__focus__skew_y_0
+    , sm__focus__skew_y_1
     , sm__focus__skew_y_12
+    , sm__focus__skew_y_2
     , sm__focus__skew_y_3
     , sm__focus__skew_y_6
     , sm__focus__sr_only
@@ -12375,13 +12800,22 @@ module Html.Tailwind exposing
     , sm__hover__from_yellow_800
     , sm__hover__from_yellow_900
     , sm__hover__line_through
+    , sm__hover__neg_rotate_1
+    , sm__hover__neg_rotate_12
     , sm__hover__neg_rotate_180
+    , sm__hover__neg_rotate_2
+    , sm__hover__neg_rotate_3
     , sm__hover__neg_rotate_45
+    , sm__hover__neg_rotate_6
     , sm__hover__neg_rotate_90
+    , sm__hover__neg_skew_x_1
     , sm__hover__neg_skew_x_12
+    , sm__hover__neg_skew_x_2
     , sm__hover__neg_skew_x_3
     , sm__hover__neg_skew_x_6
+    , sm__hover__neg_skew_y_1
     , sm__hover__neg_skew_y_12
+    , sm__hover__neg_skew_y_2
     , sm__hover__neg_skew_y_3
     , sm__hover__neg_skew_y_6
     , sm__hover__neg_translate_x_1
@@ -12431,8 +12865,13 @@ module Html.Tailwind exposing
     , sm__hover__opacity_50
     , sm__hover__opacity_75
     , sm__hover__rotate_0
+    , sm__hover__rotate_1
+    , sm__hover__rotate_12
     , sm__hover__rotate_180
+    , sm__hover__rotate_2
+    , sm__hover__rotate_3
     , sm__hover__rotate_45
+    , sm__hover__rotate_6
     , sm__hover__rotate_90
     , sm__hover__scale_0
     , sm__hover__scale_100
@@ -12475,11 +12914,15 @@ module Html.Tailwind exposing
     , sm__hover__shadow_xl
     , sm__hover__shadow_xs
     , sm__hover__skew_x_0
+    , sm__hover__skew_x_1
     , sm__hover__skew_x_12
+    , sm__hover__skew_x_2
     , sm__hover__skew_x_3
     , sm__hover__skew_x_6
     , sm__hover__skew_y_0
+    , sm__hover__skew_y_1
     , sm__hover__skew_y_12
+    , sm__hover__skew_y_2
     , sm__hover__skew_y_3
     , sm__hover__skew_y_6
     , sm__hover__text_black
@@ -12834,6 +13277,16 @@ module Html.Tailwind exposing
     , sm__justify_center
     , sm__justify_end
     , sm__justify_evenly
+    , sm__justify_items_auto
+    , sm__justify_items_center
+    , sm__justify_items_end
+    , sm__justify_items_start
+    , sm__justify_items_stretch
+    , sm__justify_self_auto
+    , sm__justify_self_center
+    , sm__justify_self_end
+    , sm__justify_self_start
+    , sm__justify_self_stretch
     , sm__justify_start
     , sm__leading_10
     , sm__leading_3
@@ -12852,6 +13305,7 @@ module Html.Tailwind exposing
     , sm__left_0
     , sm__left_auto
     , sm__line_through
+    , sm__lining_nums
     , sm__list_decimal
     , sm__list_disc
     , sm__list_inside
@@ -13147,13 +13601,22 @@ module Html.Tailwind exposing
     , sm__neg_my_64
     , sm__neg_my_8
     , sm__neg_my_px
+    , sm__neg_rotate_1
+    , sm__neg_rotate_12
     , sm__neg_rotate_180
+    , sm__neg_rotate_2
+    , sm__neg_rotate_3
     , sm__neg_rotate_45
+    , sm__neg_rotate_6
     , sm__neg_rotate_90
+    , sm__neg_skew_x_1
     , sm__neg_skew_x_12
+    , sm__neg_skew_x_2
     , sm__neg_skew_x_3
     , sm__neg_skew_x_6
+    , sm__neg_skew_y_1
     , sm__neg_skew_y_12
+    , sm__neg_skew_y_2
     , sm__neg_skew_y_3
     , sm__neg_skew_y_6
     , sm__neg_space_x_1
@@ -13234,6 +13697,7 @@ module Html.Tailwind exposing
     , sm__neg_translate_y_px
     , sm__no_underline
     , sm__normal_case
+    , sm__normal_nums
     , sm__not_italic
     , sm__not_sr_only
     , sm__object_bottom
@@ -13250,6 +13714,7 @@ module Html.Tailwind exposing
     , sm__object_right_top
     , sm__object_scale_down
     , sm__object_top
+    , sm__oldstyle_nums
     , sm__opacity_0
     , sm__opacity_100
     , sm__opacity_25
@@ -13270,6 +13735,7 @@ module Html.Tailwind exposing
     , sm__order_first
     , sm__order_last
     , sm__order_none
+    , sm__ordinal
     , sm__origin_bottom
     , sm__origin_bottom_left
     , sm__origin_bottom_right
@@ -13279,7 +13745,9 @@ module Html.Tailwind exposing
     , sm__origin_top
     , sm__origin_top_left
     , sm__origin_top_right
+    , sm__outline_black
     , sm__outline_none
+    , sm__outline_white
     , sm__overflow_auto
     , sm__overflow_hidden
     , sm__overflow_scroll
@@ -13358,6 +13826,23 @@ module Html.Tailwind exposing
     , sm__pl_64
     , sm__pl_8
     , sm__pl_px
+    , sm__place_content_around
+    , sm__place_content_between
+    , sm__place_content_center
+    , sm__place_content_end
+    , sm__place_content_evenly
+    , sm__place_content_start
+    , sm__place_content_stretch
+    , sm__place_items_auto
+    , sm__place_items_center
+    , sm__place_items_end
+    , sm__place_items_start
+    , sm__place_items_stretch
+    , sm__place_self_auto
+    , sm__place_self_center
+    , sm__place_self_end
+    , sm__place_self_start
+    , sm__place_self_stretch
     , sm__placeholder_black
     , sm__placeholder_blue_100
     , sm__placeholder_blue_200
@@ -13478,6 +13963,7 @@ module Html.Tailwind exposing
     , sm__pr_64
     , sm__pr_8
     , sm__pr_px
+    , sm__proportional_nums
     , sm__pt_0
     , sm__pt_1
     , sm__pt_10
@@ -13543,63 +14029,95 @@ module Html.Tailwind exposing
     , sm__right_0
     , sm__right_auto
     , sm__rotate_0
+    , sm__rotate_1
+    , sm__rotate_12
     , sm__rotate_180
+    , sm__rotate_2
+    , sm__rotate_3
     , sm__rotate_45
+    , sm__rotate_6
     , sm__rotate_90
     , sm__rounded
+    , sm__rounded_2xl
+    , sm__rounded_3xl
     , sm__rounded_b
+    , sm__rounded_b_2xl
+    , sm__rounded_b_3xl
     , sm__rounded_b_full
     , sm__rounded_b_lg
     , sm__rounded_b_md
     , sm__rounded_b_none
     , sm__rounded_b_sm
+    , sm__rounded_b_xl
     , sm__rounded_bl
+    , sm__rounded_bl_2xl
+    , sm__rounded_bl_3xl
     , sm__rounded_bl_full
     , sm__rounded_bl_lg
     , sm__rounded_bl_md
     , sm__rounded_bl_none
     , sm__rounded_bl_sm
+    , sm__rounded_bl_xl
     , sm__rounded_br
+    , sm__rounded_br_2xl
+    , sm__rounded_br_3xl
     , sm__rounded_br_full
     , sm__rounded_br_lg
     , sm__rounded_br_md
     , sm__rounded_br_none
     , sm__rounded_br_sm
+    , sm__rounded_br_xl
     , sm__rounded_full
     , sm__rounded_l
+    , sm__rounded_l_2xl
+    , sm__rounded_l_3xl
     , sm__rounded_l_full
     , sm__rounded_l_lg
     , sm__rounded_l_md
     , sm__rounded_l_none
     , sm__rounded_l_sm
+    , sm__rounded_l_xl
     , sm__rounded_lg
     , sm__rounded_md
     , sm__rounded_none
     , sm__rounded_r
+    , sm__rounded_r_2xl
+    , sm__rounded_r_3xl
     , sm__rounded_r_full
     , sm__rounded_r_lg
     , sm__rounded_r_md
     , sm__rounded_r_none
     , sm__rounded_r_sm
+    , sm__rounded_r_xl
     , sm__rounded_sm
     , sm__rounded_t
+    , sm__rounded_t_2xl
+    , sm__rounded_t_3xl
     , sm__rounded_t_full
     , sm__rounded_t_lg
     , sm__rounded_t_md
     , sm__rounded_t_none
     , sm__rounded_t_sm
+    , sm__rounded_t_xl
     , sm__rounded_tl
+    , sm__rounded_tl_2xl
+    , sm__rounded_tl_3xl
     , sm__rounded_tl_full
     , sm__rounded_tl_lg
     , sm__rounded_tl_md
     , sm__rounded_tl_none
     , sm__rounded_tl_sm
+    , sm__rounded_tl_xl
     , sm__rounded_tr
+    , sm__rounded_tr_2xl
+    , sm__rounded_tr_3xl
     , sm__rounded_tr_full
     , sm__rounded_tr_lg
     , sm__rounded_tr_md
     , sm__rounded_tr_none
     , sm__rounded_tr_sm
+    , sm__rounded_tr_xl
+    , sm__rounded_xl
     , sm__row_auto
     , sm__row_end_1
     , sm__row_end_2
@@ -13615,6 +14133,7 @@ module Html.Tailwind exposing
     , sm__row_span_4
     , sm__row_span_5
     , sm__row_span_6
+    , sm__row_span_full
     , sm__row_start_1
     , sm__row_start_2
     , sm__row_start_3
@@ -13675,13 +14194,18 @@ module Html.Tailwind exposing
     , sm__shadow_xl
     , sm__shadow_xs
     , sm__skew_x_0
+    , sm__skew_x_1
     , sm__skew_x_12
+    , sm__skew_x_2
     , sm__skew_x_3
     , sm__skew_x_6
     , sm__skew_y_0
+    , sm__skew_y_1
     , sm__skew_y_12
+    , sm__skew_y_2
     , sm__skew_y_3
     , sm__skew_y_6
+    , sm__slashed_zero
     , sm__space_x_0
     , sm__space_x_1
     , sm__space_x_10
@@ -13723,6 +14247,7 @@ module Html.Tailwind exposing
     , sm__space_y_px
     , sm__space_y_reverse
     , sm__sr_only
+    , sm__stacked_fractions
     , sm__static
     , sm__sticky
     , sm__stroke_0
@@ -13741,6 +14266,7 @@ module Html.Tailwind exposing
     , sm__table_header_group
     , sm__table_row
     , sm__table_row_group
+    , sm__tabular_nums
     , sm__text_2xl
     , sm__text_3xl
     , sm__text_4xl
@@ -14206,6 +14732,7 @@ module Html.Tailwind exposing
     , space_y_px
     , space_y_reverse
     , sr_only
+    , stacked_fractions
     , static
     , sticky
     , stroke_0
@@ -14224,6 +14751,7 @@ module Html.Tailwind exposing
     , table_header_group
     , table_row
     , table_row_group
+    , tabular_nums
     , text_2xl
     , text_3xl
     , text_4xl
@@ -14655,6 +15183,14 @@ module Html.Tailwind exposing
     , xl__animate_spin
     , xl__antialiased
     , xl__appearance_none
+    , xl__auto_cols_auto
+    , xl__auto_cols_fr
+    , xl__auto_cols_max
+    , xl__auto_cols_min
+    , xl__auto_rows_auto
+    , xl__auto_rows_fr
+    , xl__auto_rows_max
+    , xl__auto_rows_min
     , xl__bg_auto
     , xl__bg_black
     , xl__bg_blue_100
@@ -14960,6 +15496,7 @@ module Html.Tailwind exposing
     , xl__col_span_7
     , xl__col_span_8
     , xl__col_span_9
+    , xl__col_span_full
     , xl__col_start_1
     , xl__col_start_10
     , xl__col_start_11
@@ -14979,6 +15516,7 @@ module Html.Tailwind exposing
     , xl__content_between
     , xl__content_center
     , xl__content_end
+    , xl__content_evenly
     , xl__content_start
     , xl__contents
     , xl__cursor_auto
@@ -14996,6 +15534,7 @@ module Html.Tailwind exposing
     , xl__delay_500
     , xl__delay_700
     , xl__delay_75
+    , xl__diagonal_fractions
     , xl__disabled__cursor_auto
     , xl__disabled__cursor_default
     , xl__disabled__cursor_move
@@ -15460,13 +15999,22 @@ module Html.Tailwind exposing
     , xl__focus__from_yellow_800
     , xl__focus__from_yellow_900
     , xl__focus__line_through
+    , xl__focus__neg_rotate_1
+    , xl__focus__neg_rotate_12
     , xl__focus__neg_rotate_180
+    , xl__focus__neg_rotate_2
+    , xl__focus__neg_rotate_3
     , xl__focus__neg_rotate_45
+    , xl__focus__neg_rotate_6
     , xl__focus__neg_rotate_90
+    , xl__focus__neg_skew_x_1
     , xl__focus__neg_skew_x_12
+    , xl__focus__neg_skew_x_2
     , xl__focus__neg_skew_x_3
     , xl__focus__neg_skew_x_6
+    , xl__focus__neg_skew_y_1
     , xl__focus__neg_skew_y_12
+    , xl__focus__neg_skew_y_2
     , xl__focus__neg_skew_y_3
     , xl__focus__neg_skew_y_6
     , xl__focus__neg_translate_x_1
@@ -15516,7 +16064,9 @@ module Html.Tailwind exposing
     , xl__focus__opacity_25
     , xl__focus__opacity_50
     , xl__focus__opacity_75
+    , xl__focus__outline_black
     , xl__focus__outline_none
+    , xl__focus__outline_white
     , xl__focus__placeholder_black__focus
     , xl__focus__placeholder_blue_100__focus
     , xl__focus__placeholder_blue_200__focus
@@ -15617,8 +16167,13 @@ module Html.Tailwind exposing
     , xl__focus__placeholder_yellow_800__focus
     , xl__focus__placeholder_yellow_900__focus
     , xl__focus__rotate_0
+    , xl__focus__rotate_1
+    , xl__focus__rotate_12
     , xl__focus__rotate_180
+    , xl__focus__rotate_2
+    , xl__focus__rotate_3
     , xl__focus__rotate_45
+    , xl__focus__rotate_6
     , xl__focus__rotate_90
     , xl__focus__scale_0
     , xl__focus__scale_100
@@ -15661,11 +16216,15 @@ module Html.Tailwind exposing
     , xl__focus__shadow_xl
     , xl__focus__shadow_xs
     , xl__focus__skew_x_0
+    , xl__focus__skew_x_1
     , xl__focus__skew_x_12
+    , xl__focus__skew_x_2
     , xl__focus__skew_x_3
     , xl__focus__skew_x_6
     , xl__focus__skew_y_0
+    , xl__focus__skew_y_1
     , xl__focus__skew_y_12
+    , xl__focus__skew_y_2
     , xl__focus__skew_y_3
     , xl__focus__skew_y_6
     , xl__focus__sr_only
@@ -16513,13 +17072,22 @@ module Html.Tailwind exposing
     , xl__hover__from_yellow_800
     , xl__hover__from_yellow_900
     , xl__hover__line_through
+    , xl__hover__neg_rotate_1
+    , xl__hover__neg_rotate_12
     , xl__hover__neg_rotate_180
+    , xl__hover__neg_rotate_2
+    , xl__hover__neg_rotate_3
     , xl__hover__neg_rotate_45
+    , xl__hover__neg_rotate_6
     , xl__hover__neg_rotate_90
+    , xl__hover__neg_skew_x_1
     , xl__hover__neg_skew_x_12
+    , xl__hover__neg_skew_x_2
     , xl__hover__neg_skew_x_3
     , xl__hover__neg_skew_x_6
+    , xl__hover__neg_skew_y_1
     , xl__hover__neg_skew_y_12
+    , xl__hover__neg_skew_y_2
     , xl__hover__neg_skew_y_3
     , xl__hover__neg_skew_y_6
     , xl__hover__neg_translate_x_1
@@ -16569,8 +17137,13 @@ module Html.Tailwind exposing
     , xl__hover__opacity_50
     , xl__hover__opacity_75
     , xl__hover__rotate_0
+    , xl__hover__rotate_1
+    , xl__hover__rotate_12
     , xl__hover__rotate_180
+    , xl__hover__rotate_2
+    , xl__hover__rotate_3
     , xl__hover__rotate_45
+    , xl__hover__rotate_6
     , xl__hover__rotate_90
     , xl__hover__scale_0
     , xl__hover__scale_100
@@ -16613,11 +17186,15 @@ module Html.Tailwind exposing
     , xl__hover__shadow_xl
     , xl__hover__shadow_xs
     , xl__hover__skew_x_0
+    , xl__hover__skew_x_1
     , xl__hover__skew_x_12
+    , xl__hover__skew_x_2
     , xl__hover__skew_x_3
     , xl__hover__skew_x_6
     , xl__hover__skew_y_0
+    , xl__hover__skew_y_1
     , xl__hover__skew_y_12
+    , xl__hover__skew_y_2
     , xl__hover__skew_y_3
     , xl__hover__skew_y_6
     , xl__hover__text_black
@@ -16972,6 +17549,16 @@ module Html.Tailwind exposing
     , xl__justify_center
     , xl__justify_end
     , xl__justify_evenly
+    , xl__justify_items_auto
+    , xl__justify_items_center
+    , xl__justify_items_end
+    , xl__justify_items_start
+    , xl__justify_items_stretch
+    , xl__justify_self_auto
+    , xl__justify_self_center
+    , xl__justify_self_end
+    , xl__justify_self_start
+    , xl__justify_self_stretch
     , xl__justify_start
     , xl__leading_10
     , xl__leading_3
@@ -16990,6 +17577,7 @@ module Html.Tailwind exposing
     , xl__left_0
     , xl__left_auto
     , xl__line_through
+    , xl__lining_nums
     , xl__list_decimal
     , xl__list_disc
     , xl__list_inside
@@ -17285,13 +17873,22 @@ module Html.Tailwind exposing
     , xl__neg_my_64
     , xl__neg_my_8
     , xl__neg_my_px
+    , xl__neg_rotate_1
+    , xl__neg_rotate_12
     , xl__neg_rotate_180
+    , xl__neg_rotate_2
+    , xl__neg_rotate_3
     , xl__neg_rotate_45
+    , xl__neg_rotate_6
     , xl__neg_rotate_90
+    , xl__neg_skew_x_1
     , xl__neg_skew_x_12
+    , xl__neg_skew_x_2
     , xl__neg_skew_x_3
     , xl__neg_skew_x_6
+    , xl__neg_skew_y_1
     , xl__neg_skew_y_12
+    , xl__neg_skew_y_2
     , xl__neg_skew_y_3
     , xl__neg_skew_y_6
     , xl__neg_space_x_1
@@ -17372,6 +17969,7 @@ module Html.Tailwind exposing
     , xl__neg_translate_y_px
     , xl__no_underline
     , xl__normal_case
+    , xl__normal_nums
     , xl__not_italic
     , xl__not_sr_only
     , xl__object_bottom
@@ -17388,6 +17986,7 @@ module Html.Tailwind exposing
     , xl__object_right_top
     , xl__object_scale_down
     , xl__object_top
+    , xl__oldstyle_nums
     , xl__opacity_0
     , xl__opacity_100
     , xl__opacity_25
@@ -17408,6 +18007,7 @@ module Html.Tailwind exposing
     , xl__order_first
     , xl__order_last
     , xl__order_none
+    , xl__ordinal
     , xl__origin_bottom
     , xl__origin_bottom_left
     , xl__origin_bottom_right
@@ -17417,7 +18017,9 @@ module Html.Tailwind exposing
     , xl__origin_top
     , xl__origin_top_left
     , xl__origin_top_right
+    , xl__outline_black
     , xl__outline_none
+    , xl__outline_white
     , xl__overflow_auto
     , xl__overflow_hidden
     , xl__overflow_scroll
@@ -17496,6 +18098,23 @@ module Html.Tailwind exposing
     , xl__pl_64
     , xl__pl_8
     , xl__pl_px
+    , xl__place_content_around
+    , xl__place_content_between
+    , xl__place_content_center
+    , xl__place_content_end
+    , xl__place_content_evenly
+    , xl__place_content_start
+    , xl__place_content_stretch
+    , xl__place_items_auto
+    , xl__place_items_center
+    , xl__place_items_end
+    , xl__place_items_start
+    , xl__place_items_stretch
+    , xl__place_self_auto
+    , xl__place_self_center
+    , xl__place_self_end
+    , xl__place_self_start
+    , xl__place_self_stretch
     , xl__placeholder_black
     , xl__placeholder_blue_100
     , xl__placeholder_blue_200
@@ -17616,6 +18235,7 @@ module Html.Tailwind exposing
     , xl__pr_64
     , xl__pr_8
     , xl__pr_px
+    , xl__proportional_nums
     , xl__pt_0
     , xl__pt_1
     , xl__pt_10
@@ -17681,63 +18301,95 @@ module Html.Tailwind exposing
     , xl__right_0
     , xl__right_auto
     , xl__rotate_0
+    , xl__rotate_1
+    , xl__rotate_12
     , xl__rotate_180
+    , xl__rotate_2
+    , xl__rotate_3
     , xl__rotate_45
+    , xl__rotate_6
     , xl__rotate_90
     , xl__rounded
+    , xl__rounded_2xl
+    , xl__rounded_3xl
     , xl__rounded_b
+    , xl__rounded_b_2xl
+    , xl__rounded_b_3xl
     , xl__rounded_b_full
     , xl__rounded_b_lg
     , xl__rounded_b_md
     , xl__rounded_b_none
     , xl__rounded_b_sm
+    , xl__rounded_b_xl
     , xl__rounded_bl
+    , xl__rounded_bl_2xl
+    , xl__rounded_bl_3xl
     , xl__rounded_bl_full
     , xl__rounded_bl_lg
     , xl__rounded_bl_md
     , xl__rounded_bl_none
     , xl__rounded_bl_sm
+    , xl__rounded_bl_xl
     , xl__rounded_br
+    , xl__rounded_br_2xl
+    , xl__rounded_br_3xl
     , xl__rounded_br_full
     , xl__rounded_br_lg
     , xl__rounded_br_md
     , xl__rounded_br_none
     , xl__rounded_br_sm
+    , xl__rounded_br_xl
     , xl__rounded_full
     , xl__rounded_l
+    , xl__rounded_l_2xl
+    , xl__rounded_l_3xl
     , xl__rounded_l_full
     , xl__rounded_l_lg
     , xl__rounded_l_md
     , xl__rounded_l_none
     , xl__rounded_l_sm
+    , xl__rounded_l_xl
     , xl__rounded_lg
     , xl__rounded_md
     , xl__rounded_none
     , xl__rounded_r
+    , xl__rounded_r_2xl
+    , xl__rounded_r_3xl
     , xl__rounded_r_full
     , xl__rounded_r_lg
     , xl__rounded_r_md
     , xl__rounded_r_none
     , xl__rounded_r_sm
+    , xl__rounded_r_xl
     , xl__rounded_sm
     , xl__rounded_t
+    , xl__rounded_t_2xl
+    , xl__rounded_t_3xl
     , xl__rounded_t_full
     , xl__rounded_t_lg
     , xl__rounded_t_md
     , xl__rounded_t_none
     , xl__rounded_t_sm
+    , xl__rounded_t_xl
     , xl__rounded_tl
+    , xl__rounded_tl_2xl
+    , xl__rounded_tl_3xl
     , xl__rounded_tl_full
     , xl__rounded_tl_lg
     , xl__rounded_tl_md
     , xl__rounded_tl_none
     , xl__rounded_tl_sm
+    , xl__rounded_tl_xl
     , xl__rounded_tr
+    , xl__rounded_tr_2xl
+    , xl__rounded_tr_3xl
     , xl__rounded_tr_full
     , xl__rounded_tr_lg
     , xl__rounded_tr_md
     , xl__rounded_tr_none
     , xl__rounded_tr_sm
+    , xl__rounded_tr_xl
+    , xl__rounded_xl
     , xl__row_auto
     , xl__row_end_1
     , xl__row_end_2
@@ -17753,6 +18405,7 @@ module Html.Tailwind exposing
     , xl__row_span_4
     , xl__row_span_5
     , xl__row_span_6
+    , xl__row_span_full
     , xl__row_start_1
     , xl__row_start_2
     , xl__row_start_3
@@ -17813,13 +18466,18 @@ module Html.Tailwind exposing
     , xl__shadow_xl
     , xl__shadow_xs
     , xl__skew_x_0
+    , xl__skew_x_1
     , xl__skew_x_12
+    , xl__skew_x_2
     , xl__skew_x_3
     , xl__skew_x_6
     , xl__skew_y_0
+    , xl__skew_y_1
     , xl__skew_y_12
+    , xl__skew_y_2
     , xl__skew_y_3
     , xl__skew_y_6
+    , xl__slashed_zero
     , xl__space_x_0
     , xl__space_x_1
     , xl__space_x_10
@@ -17861,6 +18519,7 @@ module Html.Tailwind exposing
     , xl__space_y_px
     , xl__space_y_reverse
     , xl__sr_only
+    , xl__stacked_fractions
     , xl__static
     , xl__sticky
     , xl__stroke_0
@@ -17879,6 +18538,7 @@ module Html.Tailwind exposing
     , xl__table_header_group
     , xl__table_row
     , xl__table_row_group
+    , xl__tabular_nums
     , xl__text_2xl
     , xl__text_3xl
     , xl__text_4xl
@@ -26716,6 +27376,21 @@ rounded_lg =
     A.class "rounded-lg"
 
 
+rounded_xl : Html.Attribute msg
+rounded_xl =
+    A.class "rounded-xl"
+
+
+rounded_2xl : Html.Attribute msg
+rounded_2xl =
+    A.class "rounded-2xl"
+
+
+rounded_3xl : Html.Attribute msg
+rounded_3xl =
+    A.class "rounded-3xl"
+
+
 rounded_full : Html.Attribute msg
 rounded_full =
     A.class "rounded-full"
@@ -26819,6 +27494,66 @@ rounded_b_lg =
 rounded_l_lg : Html.Attribute msg
 rounded_l_lg =
     A.class "rounded-l-lg"
+
+
+rounded_t_xl : Html.Attribute msg
+rounded_t_xl =
+    A.class "rounded-t-xl"
+
+
+rounded_r_xl : Html.Attribute msg
+rounded_r_xl =
+    A.class "rounded-r-xl"
+
+
+rounded_b_xl : Html.Attribute msg
+rounded_b_xl =
+    A.class "rounded-b-xl"
+
+
+rounded_l_xl : Html.Attribute msg
+rounded_l_xl =
+    A.class "rounded-l-xl"
+
+
+rounded_t_2xl : Html.Attribute msg
+rounded_t_2xl =
+    A.class "rounded-t-2xl"
+
+
+rounded_r_2xl : Html.Attribute msg
+rounded_r_2xl =
+    A.class "rounded-r-2xl"
+
+
+rounded_b_2xl : Html.Attribute msg
+rounded_b_2xl =
+    A.class "rounded-b-2xl"
+
+
+rounded_l_2xl : Html.Attribute msg
+rounded_l_2xl =
+    A.class "rounded-l-2xl"
+
+
+rounded_t_3xl : Html.Attribute msg
+rounded_t_3xl =
+    A.class "rounded-t-3xl"
+
+
+rounded_r_3xl : Html.Attribute msg
+rounded_r_3xl =
+    A.class "rounded-r-3xl"
+
+
+rounded_b_3xl : Html.Attribute msg
+rounded_b_3xl =
+    A.class "rounded-b-3xl"
+
+
+rounded_l_3xl : Html.Attribute msg
+rounded_l_3xl =
+    A.class "rounded-l-3xl"
 
 
 rounded_t_full : Html.Attribute msg
@@ -26939,6 +27674,66 @@ rounded_br_lg =
 rounded_bl_lg : Html.Attribute msg
 rounded_bl_lg =
     A.class "rounded-bl-lg"
+
+
+rounded_tl_xl : Html.Attribute msg
+rounded_tl_xl =
+    A.class "rounded-tl-xl"
+
+
+rounded_tr_xl : Html.Attribute msg
+rounded_tr_xl =
+    A.class "rounded-tr-xl"
+
+
+rounded_br_xl : Html.Attribute msg
+rounded_br_xl =
+    A.class "rounded-br-xl"
+
+
+rounded_bl_xl : Html.Attribute msg
+rounded_bl_xl =
+    A.class "rounded-bl-xl"
+
+
+rounded_tl_2xl : Html.Attribute msg
+rounded_tl_2xl =
+    A.class "rounded-tl-2xl"
+
+
+rounded_tr_2xl : Html.Attribute msg
+rounded_tr_2xl =
+    A.class "rounded-tr-2xl"
+
+
+rounded_br_2xl : Html.Attribute msg
+rounded_br_2xl =
+    A.class "rounded-br-2xl"
+
+
+rounded_bl_2xl : Html.Attribute msg
+rounded_bl_2xl =
+    A.class "rounded-bl-2xl"
+
+
+rounded_tl_3xl : Html.Attribute msg
+rounded_tl_3xl =
+    A.class "rounded-tl-3xl"
+
+
+rounded_tr_3xl : Html.Attribute msg
+rounded_tr_3xl =
+    A.class "rounded-tr-3xl"
+
+
+rounded_br_3xl : Html.Attribute msg
+rounded_br_3xl =
+    A.class "rounded-br-3xl"
+
+
+rounded_bl_3xl : Html.Attribute msg
+rounded_bl_3xl =
+    A.class "rounded-bl-3xl"
 
 
 rounded_tl_full : Html.Attribute msg
@@ -27321,6 +28116,91 @@ flex_no_wrap =
     A.class "flex-no-wrap"
 
 
+place_items_auto : Html.Attribute msg
+place_items_auto =
+    A.class "place-items-auto"
+
+
+place_items_start : Html.Attribute msg
+place_items_start =
+    A.class "place-items-start"
+
+
+place_items_end : Html.Attribute msg
+place_items_end =
+    A.class "place-items-end"
+
+
+place_items_center : Html.Attribute msg
+place_items_center =
+    A.class "place-items-center"
+
+
+place_items_stretch : Html.Attribute msg
+place_items_stretch =
+    A.class "place-items-stretch"
+
+
+place_content_center : Html.Attribute msg
+place_content_center =
+    A.class "place-content-center"
+
+
+place_content_start : Html.Attribute msg
+place_content_start =
+    A.class "place-content-start"
+
+
+place_content_end : Html.Attribute msg
+place_content_end =
+    A.class "place-content-end"
+
+
+place_content_between : Html.Attribute msg
+place_content_between =
+    A.class "place-content-between"
+
+
+place_content_around : Html.Attribute msg
+place_content_around =
+    A.class "place-content-around"
+
+
+place_content_evenly : Html.Attribute msg
+place_content_evenly =
+    A.class "place-content-evenly"
+
+
+place_content_stretch : Html.Attribute msg
+place_content_stretch =
+    A.class "place-content-stretch"
+
+
+place_self_auto : Html.Attribute msg
+place_self_auto =
+    A.class "place-self-auto"
+
+
+place_self_start : Html.Attribute msg
+place_self_start =
+    A.class "place-self-start"
+
+
+place_self_end : Html.Attribute msg
+place_self_end =
+    A.class "place-self-end"
+
+
+place_self_center : Html.Attribute msg
+place_self_center =
+    A.class "place-self-center"
+
+
+place_self_stretch : Html.Attribute msg
+place_self_stretch =
+    A.class "place-self-stretch"
+
+
 items_start : Html.Attribute msg
 items_start =
     A.class "items-start"
@@ -27346,6 +28226,36 @@ items_stretch =
     A.class "items-stretch"
 
 
+content_center : Html.Attribute msg
+content_center =
+    A.class "content-center"
+
+
+content_start : Html.Attribute msg
+content_start =
+    A.class "content-start"
+
+
+content_end : Html.Attribute msg
+content_end =
+    A.class "content-end"
+
+
+content_between : Html.Attribute msg
+content_between =
+    A.class "content-between"
+
+
+content_around : Html.Attribute msg
+content_around =
+    A.class "content-around"
+
+
+content_evenly : Html.Attribute msg
+content_evenly =
+    A.class "content-evenly"
+
+
 self_auto : Html.Attribute msg
 self_auto =
     A.class "self-auto"
@@ -27369,6 +28279,31 @@ self_center =
 self_stretch : Html.Attribute msg
 self_stretch =
     A.class "self-stretch"
+
+
+justify_items_auto : Html.Attribute msg
+justify_items_auto =
+    A.class "justify-items-auto"
+
+
+justify_items_start : Html.Attribute msg
+justify_items_start =
+    A.class "justify-items-start"
+
+
+justify_items_end : Html.Attribute msg
+justify_items_end =
+    A.class "justify-items-end"
+
+
+justify_items_center : Html.Attribute msg
+justify_items_center =
+    A.class "justify-items-center"
+
+
+justify_items_stretch : Html.Attribute msg
+justify_items_stretch =
+    A.class "justify-items-stretch"
 
 
 justify_start : Html.Attribute msg
@@ -27401,29 +28336,29 @@ justify_evenly =
     A.class "justify-evenly"
 
 
-content_center : Html.Attribute msg
-content_center =
-    A.class "content-center"
+justify_self_auto : Html.Attribute msg
+justify_self_auto =
+    A.class "justify-self-auto"
 
 
-content_start : Html.Attribute msg
-content_start =
-    A.class "content-start"
+justify_self_start : Html.Attribute msg
+justify_self_start =
+    A.class "justify-self-start"
 
 
-content_end : Html.Attribute msg
-content_end =
-    A.class "content-end"
+justify_self_end : Html.Attribute msg
+justify_self_end =
+    A.class "justify-self-end"
 
 
-content_between : Html.Attribute msg
-content_between =
-    A.class "content-between"
+justify_self_center : Html.Attribute msg
+justify_self_center =
+    A.class "justify-self-center"
 
 
-content_around : Html.Attribute msg
-content_around =
-    A.class "content-around"
+justify_self_stretch : Html.Attribute msg
+justify_self_stretch =
+    A.class "justify-self-stretch"
 
 
 flex_1 : Html.Attribute msg
@@ -29606,9 +30541,29 @@ outline_none =
     A.class "outline-none"
 
 
+outline_white : Html.Attribute msg
+outline_white =
+    A.class "outline-white"
+
+
+outline_black : Html.Attribute msg
+outline_black =
+    A.class "outline-black"
+
+
 focus__outline_none : Html.Attribute msg
 focus__outline_none =
     A.class "focus:outline-none"
+
+
+focus__outline_white : Html.Attribute msg
+focus__outline_white =
+    A.class "focus:outline-white"
+
+
+focus__outline_black : Html.Attribute msg
+focus__outline_black =
+    A.class "focus:outline-black"
 
 
 overflow_auto : Html.Attribute msg
@@ -33281,6 +34236,51 @@ subpixel_antialiased =
     A.class "subpixel-antialiased"
 
 
+ordinal : Html.Attribute msg
+ordinal =
+    A.class "ordinal"
+
+
+slashed_zero : Html.Attribute msg
+slashed_zero =
+    A.class "slashed-zero"
+
+
+lining_nums : Html.Attribute msg
+lining_nums =
+    A.class "lining-nums"
+
+
+oldstyle_nums : Html.Attribute msg
+oldstyle_nums =
+    A.class "oldstyle-nums"
+
+
+proportional_nums : Html.Attribute msg
+proportional_nums =
+    A.class "proportional-nums"
+
+
+tabular_nums : Html.Attribute msg
+tabular_nums =
+    A.class "tabular-nums"
+
+
+diagonal_fractions : Html.Attribute msg
+diagonal_fractions =
+    A.class "diagonal-fractions"
+
+
+stacked_fractions : Html.Attribute msg
+stacked_fractions =
+    A.class "stacked-fractions"
+
+
+normal_nums : Html.Attribute msg
+normal_nums =
+    A.class "normal-nums"
+
+
 tracking_tighter : Html.Attribute msg
 tracking_tighter =
     A.class "tracking-tighter"
@@ -34066,6 +35066,26 @@ grid_cols_header =
     A.class "grid-cols-header"
 
 
+auto_cols_auto : Html.Attribute msg
+auto_cols_auto =
+    A.class "auto-cols-auto"
+
+
+auto_cols_min : Html.Attribute msg
+auto_cols_min =
+    A.class "auto-cols-min"
+
+
+auto_cols_max : Html.Attribute msg
+auto_cols_max =
+    A.class "auto-cols-max"
+
+
+auto_cols_fr : Html.Attribute msg
+auto_cols_fr =
+    A.class "auto-cols-fr"
+
+
 col_auto : Html.Attribute msg
 col_auto =
     A.class "col-auto"
@@ -34129,6 +35149,11 @@ col_span_11 =
 col_span_12 : Html.Attribute msg
 col_span_12 =
     A.class "col-span-12"
+
+
+col_span_full : Html.Attribute msg
+col_span_full =
+    A.class "col-span-full"
 
 
 col_start_1 : Html.Attribute msg
@@ -34306,6 +35331,26 @@ grid_rows_none =
     A.class "grid-rows-none"
 
 
+auto_rows_auto : Html.Attribute msg
+auto_rows_auto =
+    A.class "auto-rows-auto"
+
+
+auto_rows_min : Html.Attribute msg
+auto_rows_min =
+    A.class "auto-rows-min"
+
+
+auto_rows_max : Html.Attribute msg
+auto_rows_max =
+    A.class "auto-rows-max"
+
+
+auto_rows_fr : Html.Attribute msg
+auto_rows_fr =
+    A.class "auto-rows-fr"
+
+
 row_auto : Html.Attribute msg
 row_auto =
     A.class "row-auto"
@@ -34339,6 +35384,11 @@ row_span_5 =
 row_span_6 : Html.Attribute msg
 row_span_6 =
     A.class "row-span-6"
+
+
+row_span_full : Html.Attribute msg
+row_span_full =
+    A.class "row-span-full"
 
 
 row_start_1 : Html.Attribute msg
@@ -34931,6 +35981,31 @@ rotate_0 =
     A.class "rotate-0"
 
 
+rotate_1 : Html.Attribute msg
+rotate_1 =
+    A.class "rotate-1"
+
+
+rotate_2 : Html.Attribute msg
+rotate_2 =
+    A.class "rotate-2"
+
+
+rotate_3 : Html.Attribute msg
+rotate_3 =
+    A.class "rotate-3"
+
+
+rotate_6 : Html.Attribute msg
+rotate_6 =
+    A.class "rotate-6"
+
+
+rotate_12 : Html.Attribute msg
+rotate_12 =
+    A.class "rotate-12"
+
+
 rotate_45 : Html.Attribute msg
 rotate_45 =
     A.class "rotate-45"
@@ -34961,9 +36036,59 @@ neg_rotate_45 =
     A.class "-rotate-45"
 
 
+neg_rotate_12 : Html.Attribute msg
+neg_rotate_12 =
+    A.class "-rotate-12"
+
+
+neg_rotate_6 : Html.Attribute msg
+neg_rotate_6 =
+    A.class "-rotate-6"
+
+
+neg_rotate_3 : Html.Attribute msg
+neg_rotate_3 =
+    A.class "-rotate-3"
+
+
+neg_rotate_2 : Html.Attribute msg
+neg_rotate_2 =
+    A.class "-rotate-2"
+
+
+neg_rotate_1 : Html.Attribute msg
+neg_rotate_1 =
+    A.class "-rotate-1"
+
+
 hover__rotate_0 : Html.Attribute msg
 hover__rotate_0 =
     A.class "hover:rotate-0"
+
+
+hover__rotate_1 : Html.Attribute msg
+hover__rotate_1 =
+    A.class "hover:rotate-1"
+
+
+hover__rotate_2 : Html.Attribute msg
+hover__rotate_2 =
+    A.class "hover:rotate-2"
+
+
+hover__rotate_3 : Html.Attribute msg
+hover__rotate_3 =
+    A.class "hover:rotate-3"
+
+
+hover__rotate_6 : Html.Attribute msg
+hover__rotate_6 =
+    A.class "hover:rotate-6"
+
+
+hover__rotate_12 : Html.Attribute msg
+hover__rotate_12 =
+    A.class "hover:rotate-12"
 
 
 hover__rotate_45 : Html.Attribute msg
@@ -34996,9 +36121,59 @@ hover__neg_rotate_45 =
     A.class "hover:-rotate-45"
 
 
+hover__neg_rotate_12 : Html.Attribute msg
+hover__neg_rotate_12 =
+    A.class "hover:-rotate-12"
+
+
+hover__neg_rotate_6 : Html.Attribute msg
+hover__neg_rotate_6 =
+    A.class "hover:-rotate-6"
+
+
+hover__neg_rotate_3 : Html.Attribute msg
+hover__neg_rotate_3 =
+    A.class "hover:-rotate-3"
+
+
+hover__neg_rotate_2 : Html.Attribute msg
+hover__neg_rotate_2 =
+    A.class "hover:-rotate-2"
+
+
+hover__neg_rotate_1 : Html.Attribute msg
+hover__neg_rotate_1 =
+    A.class "hover:-rotate-1"
+
+
 focus__rotate_0 : Html.Attribute msg
 focus__rotate_0 =
     A.class "focus:rotate-0"
+
+
+focus__rotate_1 : Html.Attribute msg
+focus__rotate_1 =
+    A.class "focus:rotate-1"
+
+
+focus__rotate_2 : Html.Attribute msg
+focus__rotate_2 =
+    A.class "focus:rotate-2"
+
+
+focus__rotate_3 : Html.Attribute msg
+focus__rotate_3 =
+    A.class "focus:rotate-3"
+
+
+focus__rotate_6 : Html.Attribute msg
+focus__rotate_6 =
+    A.class "focus:rotate-6"
+
+
+focus__rotate_12 : Html.Attribute msg
+focus__rotate_12 =
+    A.class "focus:rotate-12"
 
 
 focus__rotate_45 : Html.Attribute msg
@@ -35029,6 +36204,31 @@ focus__neg_rotate_90 =
 focus__neg_rotate_45 : Html.Attribute msg
 focus__neg_rotate_45 =
     A.class "focus:-rotate-45"
+
+
+focus__neg_rotate_12 : Html.Attribute msg
+focus__neg_rotate_12 =
+    A.class "focus:-rotate-12"
+
+
+focus__neg_rotate_6 : Html.Attribute msg
+focus__neg_rotate_6 =
+    A.class "focus:-rotate-6"
+
+
+focus__neg_rotate_3 : Html.Attribute msg
+focus__neg_rotate_3 =
+    A.class "focus:-rotate-3"
+
+
+focus__neg_rotate_2 : Html.Attribute msg
+focus__neg_rotate_2 =
+    A.class "focus:-rotate-2"
+
+
+focus__neg_rotate_1 : Html.Attribute msg
+focus__neg_rotate_1 =
+    A.class "focus:-rotate-1"
 
 
 translate_x_0 : Html.Attribute msg
@@ -36266,6 +37466,16 @@ skew_x_0 =
     A.class "skew-x-0"
 
 
+skew_x_1 : Html.Attribute msg
+skew_x_1 =
+    A.class "skew-x-1"
+
+
+skew_x_2 : Html.Attribute msg
+skew_x_2 =
+    A.class "skew-x-2"
+
+
 skew_x_3 : Html.Attribute msg
 skew_x_3 =
     A.class "skew-x-3"
@@ -36296,9 +37506,29 @@ neg_skew_x_3 =
     A.class "-skew-x-3"
 
 
+neg_skew_x_2 : Html.Attribute msg
+neg_skew_x_2 =
+    A.class "-skew-x-2"
+
+
+neg_skew_x_1 : Html.Attribute msg
+neg_skew_x_1 =
+    A.class "-skew-x-1"
+
+
 skew_y_0 : Html.Attribute msg
 skew_y_0 =
     A.class "skew-y-0"
+
+
+skew_y_1 : Html.Attribute msg
+skew_y_1 =
+    A.class "skew-y-1"
+
+
+skew_y_2 : Html.Attribute msg
+skew_y_2 =
+    A.class "skew-y-2"
 
 
 skew_y_3 : Html.Attribute msg
@@ -36331,9 +37561,29 @@ neg_skew_y_3 =
     A.class "-skew-y-3"
 
 
+neg_skew_y_2 : Html.Attribute msg
+neg_skew_y_2 =
+    A.class "-skew-y-2"
+
+
+neg_skew_y_1 : Html.Attribute msg
+neg_skew_y_1 =
+    A.class "-skew-y-1"
+
+
 hover__skew_x_0 : Html.Attribute msg
 hover__skew_x_0 =
     A.class "hover:skew-x-0"
+
+
+hover__skew_x_1 : Html.Attribute msg
+hover__skew_x_1 =
+    A.class "hover:skew-x-1"
+
+
+hover__skew_x_2 : Html.Attribute msg
+hover__skew_x_2 =
+    A.class "hover:skew-x-2"
 
 
 hover__skew_x_3 : Html.Attribute msg
@@ -36366,9 +37616,29 @@ hover__neg_skew_x_3 =
     A.class "hover:-skew-x-3"
 
 
+hover__neg_skew_x_2 : Html.Attribute msg
+hover__neg_skew_x_2 =
+    A.class "hover:-skew-x-2"
+
+
+hover__neg_skew_x_1 : Html.Attribute msg
+hover__neg_skew_x_1 =
+    A.class "hover:-skew-x-1"
+
+
 hover__skew_y_0 : Html.Attribute msg
 hover__skew_y_0 =
     A.class "hover:skew-y-0"
+
+
+hover__skew_y_1 : Html.Attribute msg
+hover__skew_y_1 =
+    A.class "hover:skew-y-1"
+
+
+hover__skew_y_2 : Html.Attribute msg
+hover__skew_y_2 =
+    A.class "hover:skew-y-2"
 
 
 hover__skew_y_3 : Html.Attribute msg
@@ -36401,9 +37671,29 @@ hover__neg_skew_y_3 =
     A.class "hover:-skew-y-3"
 
 
+hover__neg_skew_y_2 : Html.Attribute msg
+hover__neg_skew_y_2 =
+    A.class "hover:-skew-y-2"
+
+
+hover__neg_skew_y_1 : Html.Attribute msg
+hover__neg_skew_y_1 =
+    A.class "hover:-skew-y-1"
+
+
 focus__skew_x_0 : Html.Attribute msg
 focus__skew_x_0 =
     A.class "focus:skew-x-0"
+
+
+focus__skew_x_1 : Html.Attribute msg
+focus__skew_x_1 =
+    A.class "focus:skew-x-1"
+
+
+focus__skew_x_2 : Html.Attribute msg
+focus__skew_x_2 =
+    A.class "focus:skew-x-2"
 
 
 focus__skew_x_3 : Html.Attribute msg
@@ -36436,9 +37726,29 @@ focus__neg_skew_x_3 =
     A.class "focus:-skew-x-3"
 
 
+focus__neg_skew_x_2 : Html.Attribute msg
+focus__neg_skew_x_2 =
+    A.class "focus:-skew-x-2"
+
+
+focus__neg_skew_x_1 : Html.Attribute msg
+focus__neg_skew_x_1 =
+    A.class "focus:-skew-x-1"
+
+
 focus__skew_y_0 : Html.Attribute msg
 focus__skew_y_0 =
     A.class "focus:skew-y-0"
+
+
+focus__skew_y_1 : Html.Attribute msg
+focus__skew_y_1 =
+    A.class "focus:skew-y-1"
+
+
+focus__skew_y_2 : Html.Attribute msg
+focus__skew_y_2 =
+    A.class "focus:skew-y-2"
 
 
 focus__skew_y_3 : Html.Attribute msg
@@ -36469,6 +37779,16 @@ focus__neg_skew_y_6 =
 focus__neg_skew_y_3 : Html.Attribute msg
 focus__neg_skew_y_3 =
     A.class "focus:-skew-y-3"
+
+
+focus__neg_skew_y_2 : Html.Attribute msg
+focus__neg_skew_y_2 =
+    A.class "focus:-skew-y-2"
+
+
+focus__neg_skew_y_1 : Html.Attribute msg
+focus__neg_skew_y_1 =
+    A.class "focus:-skew-y-1"
 
 
 transition_none : Html.Attribute msg
@@ -45026,6 +46346,21 @@ sm__rounded_lg =
     A.class "sm:rounded-lg"
 
 
+sm__rounded_xl : Html.Attribute msg
+sm__rounded_xl =
+    A.class "sm:rounded-xl"
+
+
+sm__rounded_2xl : Html.Attribute msg
+sm__rounded_2xl =
+    A.class "sm:rounded-2xl"
+
+
+sm__rounded_3xl : Html.Attribute msg
+sm__rounded_3xl =
+    A.class "sm:rounded-3xl"
+
+
 sm__rounded_full : Html.Attribute msg
 sm__rounded_full =
     A.class "sm:rounded-full"
@@ -45129,6 +46464,66 @@ sm__rounded_b_lg =
 sm__rounded_l_lg : Html.Attribute msg
 sm__rounded_l_lg =
     A.class "sm:rounded-l-lg"
+
+
+sm__rounded_t_xl : Html.Attribute msg
+sm__rounded_t_xl =
+    A.class "sm:rounded-t-xl"
+
+
+sm__rounded_r_xl : Html.Attribute msg
+sm__rounded_r_xl =
+    A.class "sm:rounded-r-xl"
+
+
+sm__rounded_b_xl : Html.Attribute msg
+sm__rounded_b_xl =
+    A.class "sm:rounded-b-xl"
+
+
+sm__rounded_l_xl : Html.Attribute msg
+sm__rounded_l_xl =
+    A.class "sm:rounded-l-xl"
+
+
+sm__rounded_t_2xl : Html.Attribute msg
+sm__rounded_t_2xl =
+    A.class "sm:rounded-t-2xl"
+
+
+sm__rounded_r_2xl : Html.Attribute msg
+sm__rounded_r_2xl =
+    A.class "sm:rounded-r-2xl"
+
+
+sm__rounded_b_2xl : Html.Attribute msg
+sm__rounded_b_2xl =
+    A.class "sm:rounded-b-2xl"
+
+
+sm__rounded_l_2xl : Html.Attribute msg
+sm__rounded_l_2xl =
+    A.class "sm:rounded-l-2xl"
+
+
+sm__rounded_t_3xl : Html.Attribute msg
+sm__rounded_t_3xl =
+    A.class "sm:rounded-t-3xl"
+
+
+sm__rounded_r_3xl : Html.Attribute msg
+sm__rounded_r_3xl =
+    A.class "sm:rounded-r-3xl"
+
+
+sm__rounded_b_3xl : Html.Attribute msg
+sm__rounded_b_3xl =
+    A.class "sm:rounded-b-3xl"
+
+
+sm__rounded_l_3xl : Html.Attribute msg
+sm__rounded_l_3xl =
+    A.class "sm:rounded-l-3xl"
 
 
 sm__rounded_t_full : Html.Attribute msg
@@ -45249,6 +46644,66 @@ sm__rounded_br_lg =
 sm__rounded_bl_lg : Html.Attribute msg
 sm__rounded_bl_lg =
     A.class "sm:rounded-bl-lg"
+
+
+sm__rounded_tl_xl : Html.Attribute msg
+sm__rounded_tl_xl =
+    A.class "sm:rounded-tl-xl"
+
+
+sm__rounded_tr_xl : Html.Attribute msg
+sm__rounded_tr_xl =
+    A.class "sm:rounded-tr-xl"
+
+
+sm__rounded_br_xl : Html.Attribute msg
+sm__rounded_br_xl =
+    A.class "sm:rounded-br-xl"
+
+
+sm__rounded_bl_xl : Html.Attribute msg
+sm__rounded_bl_xl =
+    A.class "sm:rounded-bl-xl"
+
+
+sm__rounded_tl_2xl : Html.Attribute msg
+sm__rounded_tl_2xl =
+    A.class "sm:rounded-tl-2xl"
+
+
+sm__rounded_tr_2xl : Html.Attribute msg
+sm__rounded_tr_2xl =
+    A.class "sm:rounded-tr-2xl"
+
+
+sm__rounded_br_2xl : Html.Attribute msg
+sm__rounded_br_2xl =
+    A.class "sm:rounded-br-2xl"
+
+
+sm__rounded_bl_2xl : Html.Attribute msg
+sm__rounded_bl_2xl =
+    A.class "sm:rounded-bl-2xl"
+
+
+sm__rounded_tl_3xl : Html.Attribute msg
+sm__rounded_tl_3xl =
+    A.class "sm:rounded-tl-3xl"
+
+
+sm__rounded_tr_3xl : Html.Attribute msg
+sm__rounded_tr_3xl =
+    A.class "sm:rounded-tr-3xl"
+
+
+sm__rounded_br_3xl : Html.Attribute msg
+sm__rounded_br_3xl =
+    A.class "sm:rounded-br-3xl"
+
+
+sm__rounded_bl_3xl : Html.Attribute msg
+sm__rounded_bl_3xl =
+    A.class "sm:rounded-bl-3xl"
 
 
 sm__rounded_tl_full : Html.Attribute msg
@@ -45631,6 +47086,91 @@ sm__flex_no_wrap =
     A.class "sm:flex-no-wrap"
 
 
+sm__place_items_auto : Html.Attribute msg
+sm__place_items_auto =
+    A.class "sm:place-items-auto"
+
+
+sm__place_items_start : Html.Attribute msg
+sm__place_items_start =
+    A.class "sm:place-items-start"
+
+
+sm__place_items_end : Html.Attribute msg
+sm__place_items_end =
+    A.class "sm:place-items-end"
+
+
+sm__place_items_center : Html.Attribute msg
+sm__place_items_center =
+    A.class "sm:place-items-center"
+
+
+sm__place_items_stretch : Html.Attribute msg
+sm__place_items_stretch =
+    A.class "sm:place-items-stretch"
+
+
+sm__place_content_center : Html.Attribute msg
+sm__place_content_center =
+    A.class "sm:place-content-center"
+
+
+sm__place_content_start : Html.Attribute msg
+sm__place_content_start =
+    A.class "sm:place-content-start"
+
+
+sm__place_content_end : Html.Attribute msg
+sm__place_content_end =
+    A.class "sm:place-content-end"
+
+
+sm__place_content_between : Html.Attribute msg
+sm__place_content_between =
+    A.class "sm:place-content-between"
+
+
+sm__place_content_around : Html.Attribute msg
+sm__place_content_around =
+    A.class "sm:place-content-around"
+
+
+sm__place_content_evenly : Html.Attribute msg
+sm__place_content_evenly =
+    A.class "sm:place-content-evenly"
+
+
+sm__place_content_stretch : Html.Attribute msg
+sm__place_content_stretch =
+    A.class "sm:place-content-stretch"
+
+
+sm__place_self_auto : Html.Attribute msg
+sm__place_self_auto =
+    A.class "sm:place-self-auto"
+
+
+sm__place_self_start : Html.Attribute msg
+sm__place_self_start =
+    A.class "sm:place-self-start"
+
+
+sm__place_self_end : Html.Attribute msg
+sm__place_self_end =
+    A.class "sm:place-self-end"
+
+
+sm__place_self_center : Html.Attribute msg
+sm__place_self_center =
+    A.class "sm:place-self-center"
+
+
+sm__place_self_stretch : Html.Attribute msg
+sm__place_self_stretch =
+    A.class "sm:place-self-stretch"
+
+
 sm__items_start : Html.Attribute msg
 sm__items_start =
     A.class "sm:items-start"
@@ -45656,6 +47196,36 @@ sm__items_stretch =
     A.class "sm:items-stretch"
 
 
+sm__content_center : Html.Attribute msg
+sm__content_center =
+    A.class "sm:content-center"
+
+
+sm__content_start : Html.Attribute msg
+sm__content_start =
+    A.class "sm:content-start"
+
+
+sm__content_end : Html.Attribute msg
+sm__content_end =
+    A.class "sm:content-end"
+
+
+sm__content_between : Html.Attribute msg
+sm__content_between =
+    A.class "sm:content-between"
+
+
+sm__content_around : Html.Attribute msg
+sm__content_around =
+    A.class "sm:content-around"
+
+
+sm__content_evenly : Html.Attribute msg
+sm__content_evenly =
+    A.class "sm:content-evenly"
+
+
 sm__self_auto : Html.Attribute msg
 sm__self_auto =
     A.class "sm:self-auto"
@@ -45679,6 +47249,31 @@ sm__self_center =
 sm__self_stretch : Html.Attribute msg
 sm__self_stretch =
     A.class "sm:self-stretch"
+
+
+sm__justify_items_auto : Html.Attribute msg
+sm__justify_items_auto =
+    A.class "sm:justify-items-auto"
+
+
+sm__justify_items_start : Html.Attribute msg
+sm__justify_items_start =
+    A.class "sm:justify-items-start"
+
+
+sm__justify_items_end : Html.Attribute msg
+sm__justify_items_end =
+    A.class "sm:justify-items-end"
+
+
+sm__justify_items_center : Html.Attribute msg
+sm__justify_items_center =
+    A.class "sm:justify-items-center"
+
+
+sm__justify_items_stretch : Html.Attribute msg
+sm__justify_items_stretch =
+    A.class "sm:justify-items-stretch"
 
 
 sm__justify_start : Html.Attribute msg
@@ -45711,29 +47306,29 @@ sm__justify_evenly =
     A.class "sm:justify-evenly"
 
 
-sm__content_center : Html.Attribute msg
-sm__content_center =
-    A.class "sm:content-center"
+sm__justify_self_auto : Html.Attribute msg
+sm__justify_self_auto =
+    A.class "sm:justify-self-auto"
 
 
-sm__content_start : Html.Attribute msg
-sm__content_start =
-    A.class "sm:content-start"
+sm__justify_self_start : Html.Attribute msg
+sm__justify_self_start =
+    A.class "sm:justify-self-start"
 
 
-sm__content_end : Html.Attribute msg
-sm__content_end =
-    A.class "sm:content-end"
+sm__justify_self_end : Html.Attribute msg
+sm__justify_self_end =
+    A.class "sm:justify-self-end"
 
 
-sm__content_between : Html.Attribute msg
-sm__content_between =
-    A.class "sm:content-between"
+sm__justify_self_center : Html.Attribute msg
+sm__justify_self_center =
+    A.class "sm:justify-self-center"
 
 
-sm__content_around : Html.Attribute msg
-sm__content_around =
-    A.class "sm:content-around"
+sm__justify_self_stretch : Html.Attribute msg
+sm__justify_self_stretch =
+    A.class "sm:justify-self-stretch"
 
 
 sm__flex_1 : Html.Attribute msg
@@ -47916,9 +49511,29 @@ sm__outline_none =
     A.class "sm:outline-none"
 
 
+sm__outline_white : Html.Attribute msg
+sm__outline_white =
+    A.class "sm:outline-white"
+
+
+sm__outline_black : Html.Attribute msg
+sm__outline_black =
+    A.class "sm:outline-black"
+
+
 sm__focus__outline_none : Html.Attribute msg
 sm__focus__outline_none =
     A.class "sm:focus:outline-none"
+
+
+sm__focus__outline_white : Html.Attribute msg
+sm__focus__outline_white =
+    A.class "sm:focus:outline-white"
+
+
+sm__focus__outline_black : Html.Attribute msg
+sm__focus__outline_black =
+    A.class "sm:focus:outline-black"
 
 
 sm__overflow_auto : Html.Attribute msg
@@ -51591,6 +53206,51 @@ sm__subpixel_antialiased =
     A.class "sm:subpixel-antialiased"
 
 
+sm__ordinal : Html.Attribute msg
+sm__ordinal =
+    A.class "sm:ordinal"
+
+
+sm__slashed_zero : Html.Attribute msg
+sm__slashed_zero =
+    A.class "sm:slashed-zero"
+
+
+sm__lining_nums : Html.Attribute msg
+sm__lining_nums =
+    A.class "sm:lining-nums"
+
+
+sm__oldstyle_nums : Html.Attribute msg
+sm__oldstyle_nums =
+    A.class "sm:oldstyle-nums"
+
+
+sm__proportional_nums : Html.Attribute msg
+sm__proportional_nums =
+    A.class "sm:proportional-nums"
+
+
+sm__tabular_nums : Html.Attribute msg
+sm__tabular_nums =
+    A.class "sm:tabular-nums"
+
+
+sm__diagonal_fractions : Html.Attribute msg
+sm__diagonal_fractions =
+    A.class "sm:diagonal-fractions"
+
+
+sm__stacked_fractions : Html.Attribute msg
+sm__stacked_fractions =
+    A.class "sm:stacked-fractions"
+
+
+sm__normal_nums : Html.Attribute msg
+sm__normal_nums =
+    A.class "sm:normal-nums"
+
+
 sm__tracking_tighter : Html.Attribute msg
 sm__tracking_tighter =
     A.class "sm:tracking-tighter"
@@ -52376,6 +54036,26 @@ sm__grid_cols_header =
     A.class "sm:grid-cols-header"
 
 
+sm__auto_cols_auto : Html.Attribute msg
+sm__auto_cols_auto =
+    A.class "sm:auto-cols-auto"
+
+
+sm__auto_cols_min : Html.Attribute msg
+sm__auto_cols_min =
+    A.class "sm:auto-cols-min"
+
+
+sm__auto_cols_max : Html.Attribute msg
+sm__auto_cols_max =
+    A.class "sm:auto-cols-max"
+
+
+sm__auto_cols_fr : Html.Attribute msg
+sm__auto_cols_fr =
+    A.class "sm:auto-cols-fr"
+
+
 sm__col_auto : Html.Attribute msg
 sm__col_auto =
     A.class "sm:col-auto"
@@ -52439,6 +54119,11 @@ sm__col_span_11 =
 sm__col_span_12 : Html.Attribute msg
 sm__col_span_12 =
     A.class "sm:col-span-12"
+
+
+sm__col_span_full : Html.Attribute msg
+sm__col_span_full =
+    A.class "sm:col-span-full"
 
 
 sm__col_start_1 : Html.Attribute msg
@@ -52616,6 +54301,26 @@ sm__grid_rows_none =
     A.class "sm:grid-rows-none"
 
 
+sm__auto_rows_auto : Html.Attribute msg
+sm__auto_rows_auto =
+    A.class "sm:auto-rows-auto"
+
+
+sm__auto_rows_min : Html.Attribute msg
+sm__auto_rows_min =
+    A.class "sm:auto-rows-min"
+
+
+sm__auto_rows_max : Html.Attribute msg
+sm__auto_rows_max =
+    A.class "sm:auto-rows-max"
+
+
+sm__auto_rows_fr : Html.Attribute msg
+sm__auto_rows_fr =
+    A.class "sm:auto-rows-fr"
+
+
 sm__row_auto : Html.Attribute msg
 sm__row_auto =
     A.class "sm:row-auto"
@@ -52649,6 +54354,11 @@ sm__row_span_5 =
 sm__row_span_6 : Html.Attribute msg
 sm__row_span_6 =
     A.class "sm:row-span-6"
+
+
+sm__row_span_full : Html.Attribute msg
+sm__row_span_full =
+    A.class "sm:row-span-full"
 
 
 sm__row_start_1 : Html.Attribute msg
@@ -53241,6 +54951,31 @@ sm__rotate_0 =
     A.class "sm:rotate-0"
 
 
+sm__rotate_1 : Html.Attribute msg
+sm__rotate_1 =
+    A.class "sm:rotate-1"
+
+
+sm__rotate_2 : Html.Attribute msg
+sm__rotate_2 =
+    A.class "sm:rotate-2"
+
+
+sm__rotate_3 : Html.Attribute msg
+sm__rotate_3 =
+    A.class "sm:rotate-3"
+
+
+sm__rotate_6 : Html.Attribute msg
+sm__rotate_6 =
+    A.class "sm:rotate-6"
+
+
+sm__rotate_12 : Html.Attribute msg
+sm__rotate_12 =
+    A.class "sm:rotate-12"
+
+
 sm__rotate_45 : Html.Attribute msg
 sm__rotate_45 =
     A.class "sm:rotate-45"
@@ -53271,9 +55006,59 @@ sm__neg_rotate_45 =
     A.class "sm:-rotate-45"
 
 
+sm__neg_rotate_12 : Html.Attribute msg
+sm__neg_rotate_12 =
+    A.class "sm:-rotate-12"
+
+
+sm__neg_rotate_6 : Html.Attribute msg
+sm__neg_rotate_6 =
+    A.class "sm:-rotate-6"
+
+
+sm__neg_rotate_3 : Html.Attribute msg
+sm__neg_rotate_3 =
+    A.class "sm:-rotate-3"
+
+
+sm__neg_rotate_2 : Html.Attribute msg
+sm__neg_rotate_2 =
+    A.class "sm:-rotate-2"
+
+
+sm__neg_rotate_1 : Html.Attribute msg
+sm__neg_rotate_1 =
+    A.class "sm:-rotate-1"
+
+
 sm__hover__rotate_0 : Html.Attribute msg
 sm__hover__rotate_0 =
     A.class "sm:hover:rotate-0"
+
+
+sm__hover__rotate_1 : Html.Attribute msg
+sm__hover__rotate_1 =
+    A.class "sm:hover:rotate-1"
+
+
+sm__hover__rotate_2 : Html.Attribute msg
+sm__hover__rotate_2 =
+    A.class "sm:hover:rotate-2"
+
+
+sm__hover__rotate_3 : Html.Attribute msg
+sm__hover__rotate_3 =
+    A.class "sm:hover:rotate-3"
+
+
+sm__hover__rotate_6 : Html.Attribute msg
+sm__hover__rotate_6 =
+    A.class "sm:hover:rotate-6"
+
+
+sm__hover__rotate_12 : Html.Attribute msg
+sm__hover__rotate_12 =
+    A.class "sm:hover:rotate-12"
 
 
 sm__hover__rotate_45 : Html.Attribute msg
@@ -53306,9 +55091,59 @@ sm__hover__neg_rotate_45 =
     A.class "sm:hover:-rotate-45"
 
 
+sm__hover__neg_rotate_12 : Html.Attribute msg
+sm__hover__neg_rotate_12 =
+    A.class "sm:hover:-rotate-12"
+
+
+sm__hover__neg_rotate_6 : Html.Attribute msg
+sm__hover__neg_rotate_6 =
+    A.class "sm:hover:-rotate-6"
+
+
+sm__hover__neg_rotate_3 : Html.Attribute msg
+sm__hover__neg_rotate_3 =
+    A.class "sm:hover:-rotate-3"
+
+
+sm__hover__neg_rotate_2 : Html.Attribute msg
+sm__hover__neg_rotate_2 =
+    A.class "sm:hover:-rotate-2"
+
+
+sm__hover__neg_rotate_1 : Html.Attribute msg
+sm__hover__neg_rotate_1 =
+    A.class "sm:hover:-rotate-1"
+
+
 sm__focus__rotate_0 : Html.Attribute msg
 sm__focus__rotate_0 =
     A.class "sm:focus:rotate-0"
+
+
+sm__focus__rotate_1 : Html.Attribute msg
+sm__focus__rotate_1 =
+    A.class "sm:focus:rotate-1"
+
+
+sm__focus__rotate_2 : Html.Attribute msg
+sm__focus__rotate_2 =
+    A.class "sm:focus:rotate-2"
+
+
+sm__focus__rotate_3 : Html.Attribute msg
+sm__focus__rotate_3 =
+    A.class "sm:focus:rotate-3"
+
+
+sm__focus__rotate_6 : Html.Attribute msg
+sm__focus__rotate_6 =
+    A.class "sm:focus:rotate-6"
+
+
+sm__focus__rotate_12 : Html.Attribute msg
+sm__focus__rotate_12 =
+    A.class "sm:focus:rotate-12"
 
 
 sm__focus__rotate_45 : Html.Attribute msg
@@ -53339,6 +55174,31 @@ sm__focus__neg_rotate_90 =
 sm__focus__neg_rotate_45 : Html.Attribute msg
 sm__focus__neg_rotate_45 =
     A.class "sm:focus:-rotate-45"
+
+
+sm__focus__neg_rotate_12 : Html.Attribute msg
+sm__focus__neg_rotate_12 =
+    A.class "sm:focus:-rotate-12"
+
+
+sm__focus__neg_rotate_6 : Html.Attribute msg
+sm__focus__neg_rotate_6 =
+    A.class "sm:focus:-rotate-6"
+
+
+sm__focus__neg_rotate_3 : Html.Attribute msg
+sm__focus__neg_rotate_3 =
+    A.class "sm:focus:-rotate-3"
+
+
+sm__focus__neg_rotate_2 : Html.Attribute msg
+sm__focus__neg_rotate_2 =
+    A.class "sm:focus:-rotate-2"
+
+
+sm__focus__neg_rotate_1 : Html.Attribute msg
+sm__focus__neg_rotate_1 =
+    A.class "sm:focus:-rotate-1"
 
 
 sm__translate_x_0 : Html.Attribute msg
@@ -54576,6 +56436,16 @@ sm__skew_x_0 =
     A.class "sm:skew-x-0"
 
 
+sm__skew_x_1 : Html.Attribute msg
+sm__skew_x_1 =
+    A.class "sm:skew-x-1"
+
+
+sm__skew_x_2 : Html.Attribute msg
+sm__skew_x_2 =
+    A.class "sm:skew-x-2"
+
+
 sm__skew_x_3 : Html.Attribute msg
 sm__skew_x_3 =
     A.class "sm:skew-x-3"
@@ -54606,9 +56476,29 @@ sm__neg_skew_x_3 =
     A.class "sm:-skew-x-3"
 
 
+sm__neg_skew_x_2 : Html.Attribute msg
+sm__neg_skew_x_2 =
+    A.class "sm:-skew-x-2"
+
+
+sm__neg_skew_x_1 : Html.Attribute msg
+sm__neg_skew_x_1 =
+    A.class "sm:-skew-x-1"
+
+
 sm__skew_y_0 : Html.Attribute msg
 sm__skew_y_0 =
     A.class "sm:skew-y-0"
+
+
+sm__skew_y_1 : Html.Attribute msg
+sm__skew_y_1 =
+    A.class "sm:skew-y-1"
+
+
+sm__skew_y_2 : Html.Attribute msg
+sm__skew_y_2 =
+    A.class "sm:skew-y-2"
 
 
 sm__skew_y_3 : Html.Attribute msg
@@ -54641,9 +56531,29 @@ sm__neg_skew_y_3 =
     A.class "sm:-skew-y-3"
 
 
+sm__neg_skew_y_2 : Html.Attribute msg
+sm__neg_skew_y_2 =
+    A.class "sm:-skew-y-2"
+
+
+sm__neg_skew_y_1 : Html.Attribute msg
+sm__neg_skew_y_1 =
+    A.class "sm:-skew-y-1"
+
+
 sm__hover__skew_x_0 : Html.Attribute msg
 sm__hover__skew_x_0 =
     A.class "sm:hover:skew-x-0"
+
+
+sm__hover__skew_x_1 : Html.Attribute msg
+sm__hover__skew_x_1 =
+    A.class "sm:hover:skew-x-1"
+
+
+sm__hover__skew_x_2 : Html.Attribute msg
+sm__hover__skew_x_2 =
+    A.class "sm:hover:skew-x-2"
 
 
 sm__hover__skew_x_3 : Html.Attribute msg
@@ -54676,9 +56586,29 @@ sm__hover__neg_skew_x_3 =
     A.class "sm:hover:-skew-x-3"
 
 
+sm__hover__neg_skew_x_2 : Html.Attribute msg
+sm__hover__neg_skew_x_2 =
+    A.class "sm:hover:-skew-x-2"
+
+
+sm__hover__neg_skew_x_1 : Html.Attribute msg
+sm__hover__neg_skew_x_1 =
+    A.class "sm:hover:-skew-x-1"
+
+
 sm__hover__skew_y_0 : Html.Attribute msg
 sm__hover__skew_y_0 =
     A.class "sm:hover:skew-y-0"
+
+
+sm__hover__skew_y_1 : Html.Attribute msg
+sm__hover__skew_y_1 =
+    A.class "sm:hover:skew-y-1"
+
+
+sm__hover__skew_y_2 : Html.Attribute msg
+sm__hover__skew_y_2 =
+    A.class "sm:hover:skew-y-2"
 
 
 sm__hover__skew_y_3 : Html.Attribute msg
@@ -54711,9 +56641,29 @@ sm__hover__neg_skew_y_3 =
     A.class "sm:hover:-skew-y-3"
 
 
+sm__hover__neg_skew_y_2 : Html.Attribute msg
+sm__hover__neg_skew_y_2 =
+    A.class "sm:hover:-skew-y-2"
+
+
+sm__hover__neg_skew_y_1 : Html.Attribute msg
+sm__hover__neg_skew_y_1 =
+    A.class "sm:hover:-skew-y-1"
+
+
 sm__focus__skew_x_0 : Html.Attribute msg
 sm__focus__skew_x_0 =
     A.class "sm:focus:skew-x-0"
+
+
+sm__focus__skew_x_1 : Html.Attribute msg
+sm__focus__skew_x_1 =
+    A.class "sm:focus:skew-x-1"
+
+
+sm__focus__skew_x_2 : Html.Attribute msg
+sm__focus__skew_x_2 =
+    A.class "sm:focus:skew-x-2"
 
 
 sm__focus__skew_x_3 : Html.Attribute msg
@@ -54746,9 +56696,29 @@ sm__focus__neg_skew_x_3 =
     A.class "sm:focus:-skew-x-3"
 
 
+sm__focus__neg_skew_x_2 : Html.Attribute msg
+sm__focus__neg_skew_x_2 =
+    A.class "sm:focus:-skew-x-2"
+
+
+sm__focus__neg_skew_x_1 : Html.Attribute msg
+sm__focus__neg_skew_x_1 =
+    A.class "sm:focus:-skew-x-1"
+
+
 sm__focus__skew_y_0 : Html.Attribute msg
 sm__focus__skew_y_0 =
     A.class "sm:focus:skew-y-0"
+
+
+sm__focus__skew_y_1 : Html.Attribute msg
+sm__focus__skew_y_1 =
+    A.class "sm:focus:skew-y-1"
+
+
+sm__focus__skew_y_2 : Html.Attribute msg
+sm__focus__skew_y_2 =
+    A.class "sm:focus:skew-y-2"
 
 
 sm__focus__skew_y_3 : Html.Attribute msg
@@ -54779,6 +56749,16 @@ sm__focus__neg_skew_y_6 =
 sm__focus__neg_skew_y_3 : Html.Attribute msg
 sm__focus__neg_skew_y_3 =
     A.class "sm:focus:-skew-y-3"
+
+
+sm__focus__neg_skew_y_2 : Html.Attribute msg
+sm__focus__neg_skew_y_2 =
+    A.class "sm:focus:-skew-y-2"
+
+
+sm__focus__neg_skew_y_1 : Html.Attribute msg
+sm__focus__neg_skew_y_1 =
+    A.class "sm:focus:-skew-y-1"
 
 
 sm__transition_none : Html.Attribute msg
@@ -63336,6 +65316,21 @@ md__rounded_lg =
     A.class "md:rounded-lg"
 
 
+md__rounded_xl : Html.Attribute msg
+md__rounded_xl =
+    A.class "md:rounded-xl"
+
+
+md__rounded_2xl : Html.Attribute msg
+md__rounded_2xl =
+    A.class "md:rounded-2xl"
+
+
+md__rounded_3xl : Html.Attribute msg
+md__rounded_3xl =
+    A.class "md:rounded-3xl"
+
+
 md__rounded_full : Html.Attribute msg
 md__rounded_full =
     A.class "md:rounded-full"
@@ -63439,6 +65434,66 @@ md__rounded_b_lg =
 md__rounded_l_lg : Html.Attribute msg
 md__rounded_l_lg =
     A.class "md:rounded-l-lg"
+
+
+md__rounded_t_xl : Html.Attribute msg
+md__rounded_t_xl =
+    A.class "md:rounded-t-xl"
+
+
+md__rounded_r_xl : Html.Attribute msg
+md__rounded_r_xl =
+    A.class "md:rounded-r-xl"
+
+
+md__rounded_b_xl : Html.Attribute msg
+md__rounded_b_xl =
+    A.class "md:rounded-b-xl"
+
+
+md__rounded_l_xl : Html.Attribute msg
+md__rounded_l_xl =
+    A.class "md:rounded-l-xl"
+
+
+md__rounded_t_2xl : Html.Attribute msg
+md__rounded_t_2xl =
+    A.class "md:rounded-t-2xl"
+
+
+md__rounded_r_2xl : Html.Attribute msg
+md__rounded_r_2xl =
+    A.class "md:rounded-r-2xl"
+
+
+md__rounded_b_2xl : Html.Attribute msg
+md__rounded_b_2xl =
+    A.class "md:rounded-b-2xl"
+
+
+md__rounded_l_2xl : Html.Attribute msg
+md__rounded_l_2xl =
+    A.class "md:rounded-l-2xl"
+
+
+md__rounded_t_3xl : Html.Attribute msg
+md__rounded_t_3xl =
+    A.class "md:rounded-t-3xl"
+
+
+md__rounded_r_3xl : Html.Attribute msg
+md__rounded_r_3xl =
+    A.class "md:rounded-r-3xl"
+
+
+md__rounded_b_3xl : Html.Attribute msg
+md__rounded_b_3xl =
+    A.class "md:rounded-b-3xl"
+
+
+md__rounded_l_3xl : Html.Attribute msg
+md__rounded_l_3xl =
+    A.class "md:rounded-l-3xl"
 
 
 md__rounded_t_full : Html.Attribute msg
@@ -63559,6 +65614,66 @@ md__rounded_br_lg =
 md__rounded_bl_lg : Html.Attribute msg
 md__rounded_bl_lg =
     A.class "md:rounded-bl-lg"
+
+
+md__rounded_tl_xl : Html.Attribute msg
+md__rounded_tl_xl =
+    A.class "md:rounded-tl-xl"
+
+
+md__rounded_tr_xl : Html.Attribute msg
+md__rounded_tr_xl =
+    A.class "md:rounded-tr-xl"
+
+
+md__rounded_br_xl : Html.Attribute msg
+md__rounded_br_xl =
+    A.class "md:rounded-br-xl"
+
+
+md__rounded_bl_xl : Html.Attribute msg
+md__rounded_bl_xl =
+    A.class "md:rounded-bl-xl"
+
+
+md__rounded_tl_2xl : Html.Attribute msg
+md__rounded_tl_2xl =
+    A.class "md:rounded-tl-2xl"
+
+
+md__rounded_tr_2xl : Html.Attribute msg
+md__rounded_tr_2xl =
+    A.class "md:rounded-tr-2xl"
+
+
+md__rounded_br_2xl : Html.Attribute msg
+md__rounded_br_2xl =
+    A.class "md:rounded-br-2xl"
+
+
+md__rounded_bl_2xl : Html.Attribute msg
+md__rounded_bl_2xl =
+    A.class "md:rounded-bl-2xl"
+
+
+md__rounded_tl_3xl : Html.Attribute msg
+md__rounded_tl_3xl =
+    A.class "md:rounded-tl-3xl"
+
+
+md__rounded_tr_3xl : Html.Attribute msg
+md__rounded_tr_3xl =
+    A.class "md:rounded-tr-3xl"
+
+
+md__rounded_br_3xl : Html.Attribute msg
+md__rounded_br_3xl =
+    A.class "md:rounded-br-3xl"
+
+
+md__rounded_bl_3xl : Html.Attribute msg
+md__rounded_bl_3xl =
+    A.class "md:rounded-bl-3xl"
 
 
 md__rounded_tl_full : Html.Attribute msg
@@ -63941,6 +66056,91 @@ md__flex_no_wrap =
     A.class "md:flex-no-wrap"
 
 
+md__place_items_auto : Html.Attribute msg
+md__place_items_auto =
+    A.class "md:place-items-auto"
+
+
+md__place_items_start : Html.Attribute msg
+md__place_items_start =
+    A.class "md:place-items-start"
+
+
+md__place_items_end : Html.Attribute msg
+md__place_items_end =
+    A.class "md:place-items-end"
+
+
+md__place_items_center : Html.Attribute msg
+md__place_items_center =
+    A.class "md:place-items-center"
+
+
+md__place_items_stretch : Html.Attribute msg
+md__place_items_stretch =
+    A.class "md:place-items-stretch"
+
+
+md__place_content_center : Html.Attribute msg
+md__place_content_center =
+    A.class "md:place-content-center"
+
+
+md__place_content_start : Html.Attribute msg
+md__place_content_start =
+    A.class "md:place-content-start"
+
+
+md__place_content_end : Html.Attribute msg
+md__place_content_end =
+    A.class "md:place-content-end"
+
+
+md__place_content_between : Html.Attribute msg
+md__place_content_between =
+    A.class "md:place-content-between"
+
+
+md__place_content_around : Html.Attribute msg
+md__place_content_around =
+    A.class "md:place-content-around"
+
+
+md__place_content_evenly : Html.Attribute msg
+md__place_content_evenly =
+    A.class "md:place-content-evenly"
+
+
+md__place_content_stretch : Html.Attribute msg
+md__place_content_stretch =
+    A.class "md:place-content-stretch"
+
+
+md__place_self_auto : Html.Attribute msg
+md__place_self_auto =
+    A.class "md:place-self-auto"
+
+
+md__place_self_start : Html.Attribute msg
+md__place_self_start =
+    A.class "md:place-self-start"
+
+
+md__place_self_end : Html.Attribute msg
+md__place_self_end =
+    A.class "md:place-self-end"
+
+
+md__place_self_center : Html.Attribute msg
+md__place_self_center =
+    A.class "md:place-self-center"
+
+
+md__place_self_stretch : Html.Attribute msg
+md__place_self_stretch =
+    A.class "md:place-self-stretch"
+
+
 md__items_start : Html.Attribute msg
 md__items_start =
     A.class "md:items-start"
@@ -63966,6 +66166,36 @@ md__items_stretch =
     A.class "md:items-stretch"
 
 
+md__content_center : Html.Attribute msg
+md__content_center =
+    A.class "md:content-center"
+
+
+md__content_start : Html.Attribute msg
+md__content_start =
+    A.class "md:content-start"
+
+
+md__content_end : Html.Attribute msg
+md__content_end =
+    A.class "md:content-end"
+
+
+md__content_between : Html.Attribute msg
+md__content_between =
+    A.class "md:content-between"
+
+
+md__content_around : Html.Attribute msg
+md__content_around =
+    A.class "md:content-around"
+
+
+md__content_evenly : Html.Attribute msg
+md__content_evenly =
+    A.class "md:content-evenly"
+
+
 md__self_auto : Html.Attribute msg
 md__self_auto =
     A.class "md:self-auto"
@@ -63989,6 +66219,31 @@ md__self_center =
 md__self_stretch : Html.Attribute msg
 md__self_stretch =
     A.class "md:self-stretch"
+
+
+md__justify_items_auto : Html.Attribute msg
+md__justify_items_auto =
+    A.class "md:justify-items-auto"
+
+
+md__justify_items_start : Html.Attribute msg
+md__justify_items_start =
+    A.class "md:justify-items-start"
+
+
+md__justify_items_end : Html.Attribute msg
+md__justify_items_end =
+    A.class "md:justify-items-end"
+
+
+md__justify_items_center : Html.Attribute msg
+md__justify_items_center =
+    A.class "md:justify-items-center"
+
+
+md__justify_items_stretch : Html.Attribute msg
+md__justify_items_stretch =
+    A.class "md:justify-items-stretch"
 
 
 md__justify_start : Html.Attribute msg
@@ -64021,29 +66276,29 @@ md__justify_evenly =
     A.class "md:justify-evenly"
 
 
-md__content_center : Html.Attribute msg
-md__content_center =
-    A.class "md:content-center"
+md__justify_self_auto : Html.Attribute msg
+md__justify_self_auto =
+    A.class "md:justify-self-auto"
 
 
-md__content_start : Html.Attribute msg
-md__content_start =
-    A.class "md:content-start"
+md__justify_self_start : Html.Attribute msg
+md__justify_self_start =
+    A.class "md:justify-self-start"
 
 
-md__content_end : Html.Attribute msg
-md__content_end =
-    A.class "md:content-end"
+md__justify_self_end : Html.Attribute msg
+md__justify_self_end =
+    A.class "md:justify-self-end"
 
 
-md__content_between : Html.Attribute msg
-md__content_between =
-    A.class "md:content-between"
+md__justify_self_center : Html.Attribute msg
+md__justify_self_center =
+    A.class "md:justify-self-center"
 
 
-md__content_around : Html.Attribute msg
-md__content_around =
-    A.class "md:content-around"
+md__justify_self_stretch : Html.Attribute msg
+md__justify_self_stretch =
+    A.class "md:justify-self-stretch"
 
 
 md__flex_1 : Html.Attribute msg
@@ -66226,9 +68481,29 @@ md__outline_none =
     A.class "md:outline-none"
 
 
+md__outline_white : Html.Attribute msg
+md__outline_white =
+    A.class "md:outline-white"
+
+
+md__outline_black : Html.Attribute msg
+md__outline_black =
+    A.class "md:outline-black"
+
+
 md__focus__outline_none : Html.Attribute msg
 md__focus__outline_none =
     A.class "md:focus:outline-none"
+
+
+md__focus__outline_white : Html.Attribute msg
+md__focus__outline_white =
+    A.class "md:focus:outline-white"
+
+
+md__focus__outline_black : Html.Attribute msg
+md__focus__outline_black =
+    A.class "md:focus:outline-black"
 
 
 md__overflow_auto : Html.Attribute msg
@@ -69901,6 +72176,51 @@ md__subpixel_antialiased =
     A.class "md:subpixel-antialiased"
 
 
+md__ordinal : Html.Attribute msg
+md__ordinal =
+    A.class "md:ordinal"
+
+
+md__slashed_zero : Html.Attribute msg
+md__slashed_zero =
+    A.class "md:slashed-zero"
+
+
+md__lining_nums : Html.Attribute msg
+md__lining_nums =
+    A.class "md:lining-nums"
+
+
+md__oldstyle_nums : Html.Attribute msg
+md__oldstyle_nums =
+    A.class "md:oldstyle-nums"
+
+
+md__proportional_nums : Html.Attribute msg
+md__proportional_nums =
+    A.class "md:proportional-nums"
+
+
+md__tabular_nums : Html.Attribute msg
+md__tabular_nums =
+    A.class "md:tabular-nums"
+
+
+md__diagonal_fractions : Html.Attribute msg
+md__diagonal_fractions =
+    A.class "md:diagonal-fractions"
+
+
+md__stacked_fractions : Html.Attribute msg
+md__stacked_fractions =
+    A.class "md:stacked-fractions"
+
+
+md__normal_nums : Html.Attribute msg
+md__normal_nums =
+    A.class "md:normal-nums"
+
+
 md__tracking_tighter : Html.Attribute msg
 md__tracking_tighter =
     A.class "md:tracking-tighter"
@@ -70686,6 +73006,26 @@ md__grid_cols_header =
     A.class "md:grid-cols-header"
 
 
+md__auto_cols_auto : Html.Attribute msg
+md__auto_cols_auto =
+    A.class "md:auto-cols-auto"
+
+
+md__auto_cols_min : Html.Attribute msg
+md__auto_cols_min =
+    A.class "md:auto-cols-min"
+
+
+md__auto_cols_max : Html.Attribute msg
+md__auto_cols_max =
+    A.class "md:auto-cols-max"
+
+
+md__auto_cols_fr : Html.Attribute msg
+md__auto_cols_fr =
+    A.class "md:auto-cols-fr"
+
+
 md__col_auto : Html.Attribute msg
 md__col_auto =
     A.class "md:col-auto"
@@ -70749,6 +73089,11 @@ md__col_span_11 =
 md__col_span_12 : Html.Attribute msg
 md__col_span_12 =
     A.class "md:col-span-12"
+
+
+md__col_span_full : Html.Attribute msg
+md__col_span_full =
+    A.class "md:col-span-full"
 
 
 md__col_start_1 : Html.Attribute msg
@@ -70926,6 +73271,26 @@ md__grid_rows_none =
     A.class "md:grid-rows-none"
 
 
+md__auto_rows_auto : Html.Attribute msg
+md__auto_rows_auto =
+    A.class "md:auto-rows-auto"
+
+
+md__auto_rows_min : Html.Attribute msg
+md__auto_rows_min =
+    A.class "md:auto-rows-min"
+
+
+md__auto_rows_max : Html.Attribute msg
+md__auto_rows_max =
+    A.class "md:auto-rows-max"
+
+
+md__auto_rows_fr : Html.Attribute msg
+md__auto_rows_fr =
+    A.class "md:auto-rows-fr"
+
+
 md__row_auto : Html.Attribute msg
 md__row_auto =
     A.class "md:row-auto"
@@ -70959,6 +73324,11 @@ md__row_span_5 =
 md__row_span_6 : Html.Attribute msg
 md__row_span_6 =
     A.class "md:row-span-6"
+
+
+md__row_span_full : Html.Attribute msg
+md__row_span_full =
+    A.class "md:row-span-full"
 
 
 md__row_start_1 : Html.Attribute msg
@@ -71551,6 +73921,31 @@ md__rotate_0 =
     A.class "md:rotate-0"
 
 
+md__rotate_1 : Html.Attribute msg
+md__rotate_1 =
+    A.class "md:rotate-1"
+
+
+md__rotate_2 : Html.Attribute msg
+md__rotate_2 =
+    A.class "md:rotate-2"
+
+
+md__rotate_3 : Html.Attribute msg
+md__rotate_3 =
+    A.class "md:rotate-3"
+
+
+md__rotate_6 : Html.Attribute msg
+md__rotate_6 =
+    A.class "md:rotate-6"
+
+
+md__rotate_12 : Html.Attribute msg
+md__rotate_12 =
+    A.class "md:rotate-12"
+
+
 md__rotate_45 : Html.Attribute msg
 md__rotate_45 =
     A.class "md:rotate-45"
@@ -71581,9 +73976,59 @@ md__neg_rotate_45 =
     A.class "md:-rotate-45"
 
 
+md__neg_rotate_12 : Html.Attribute msg
+md__neg_rotate_12 =
+    A.class "md:-rotate-12"
+
+
+md__neg_rotate_6 : Html.Attribute msg
+md__neg_rotate_6 =
+    A.class "md:-rotate-6"
+
+
+md__neg_rotate_3 : Html.Attribute msg
+md__neg_rotate_3 =
+    A.class "md:-rotate-3"
+
+
+md__neg_rotate_2 : Html.Attribute msg
+md__neg_rotate_2 =
+    A.class "md:-rotate-2"
+
+
+md__neg_rotate_1 : Html.Attribute msg
+md__neg_rotate_1 =
+    A.class "md:-rotate-1"
+
+
 md__hover__rotate_0 : Html.Attribute msg
 md__hover__rotate_0 =
     A.class "md:hover:rotate-0"
+
+
+md__hover__rotate_1 : Html.Attribute msg
+md__hover__rotate_1 =
+    A.class "md:hover:rotate-1"
+
+
+md__hover__rotate_2 : Html.Attribute msg
+md__hover__rotate_2 =
+    A.class "md:hover:rotate-2"
+
+
+md__hover__rotate_3 : Html.Attribute msg
+md__hover__rotate_3 =
+    A.class "md:hover:rotate-3"
+
+
+md__hover__rotate_6 : Html.Attribute msg
+md__hover__rotate_6 =
+    A.class "md:hover:rotate-6"
+
+
+md__hover__rotate_12 : Html.Attribute msg
+md__hover__rotate_12 =
+    A.class "md:hover:rotate-12"
 
 
 md__hover__rotate_45 : Html.Attribute msg
@@ -71616,9 +74061,59 @@ md__hover__neg_rotate_45 =
     A.class "md:hover:-rotate-45"
 
 
+md__hover__neg_rotate_12 : Html.Attribute msg
+md__hover__neg_rotate_12 =
+    A.class "md:hover:-rotate-12"
+
+
+md__hover__neg_rotate_6 : Html.Attribute msg
+md__hover__neg_rotate_6 =
+    A.class "md:hover:-rotate-6"
+
+
+md__hover__neg_rotate_3 : Html.Attribute msg
+md__hover__neg_rotate_3 =
+    A.class "md:hover:-rotate-3"
+
+
+md__hover__neg_rotate_2 : Html.Attribute msg
+md__hover__neg_rotate_2 =
+    A.class "md:hover:-rotate-2"
+
+
+md__hover__neg_rotate_1 : Html.Attribute msg
+md__hover__neg_rotate_1 =
+    A.class "md:hover:-rotate-1"
+
+
 md__focus__rotate_0 : Html.Attribute msg
 md__focus__rotate_0 =
     A.class "md:focus:rotate-0"
+
+
+md__focus__rotate_1 : Html.Attribute msg
+md__focus__rotate_1 =
+    A.class "md:focus:rotate-1"
+
+
+md__focus__rotate_2 : Html.Attribute msg
+md__focus__rotate_2 =
+    A.class "md:focus:rotate-2"
+
+
+md__focus__rotate_3 : Html.Attribute msg
+md__focus__rotate_3 =
+    A.class "md:focus:rotate-3"
+
+
+md__focus__rotate_6 : Html.Attribute msg
+md__focus__rotate_6 =
+    A.class "md:focus:rotate-6"
+
+
+md__focus__rotate_12 : Html.Attribute msg
+md__focus__rotate_12 =
+    A.class "md:focus:rotate-12"
 
 
 md__focus__rotate_45 : Html.Attribute msg
@@ -71649,6 +74144,31 @@ md__focus__neg_rotate_90 =
 md__focus__neg_rotate_45 : Html.Attribute msg
 md__focus__neg_rotate_45 =
     A.class "md:focus:-rotate-45"
+
+
+md__focus__neg_rotate_12 : Html.Attribute msg
+md__focus__neg_rotate_12 =
+    A.class "md:focus:-rotate-12"
+
+
+md__focus__neg_rotate_6 : Html.Attribute msg
+md__focus__neg_rotate_6 =
+    A.class "md:focus:-rotate-6"
+
+
+md__focus__neg_rotate_3 : Html.Attribute msg
+md__focus__neg_rotate_3 =
+    A.class "md:focus:-rotate-3"
+
+
+md__focus__neg_rotate_2 : Html.Attribute msg
+md__focus__neg_rotate_2 =
+    A.class "md:focus:-rotate-2"
+
+
+md__focus__neg_rotate_1 : Html.Attribute msg
+md__focus__neg_rotate_1 =
+    A.class "md:focus:-rotate-1"
 
 
 md__translate_x_0 : Html.Attribute msg
@@ -72886,6 +75406,16 @@ md__skew_x_0 =
     A.class "md:skew-x-0"
 
 
+md__skew_x_1 : Html.Attribute msg
+md__skew_x_1 =
+    A.class "md:skew-x-1"
+
+
+md__skew_x_2 : Html.Attribute msg
+md__skew_x_2 =
+    A.class "md:skew-x-2"
+
+
 md__skew_x_3 : Html.Attribute msg
 md__skew_x_3 =
     A.class "md:skew-x-3"
@@ -72916,9 +75446,29 @@ md__neg_skew_x_3 =
     A.class "md:-skew-x-3"
 
 
+md__neg_skew_x_2 : Html.Attribute msg
+md__neg_skew_x_2 =
+    A.class "md:-skew-x-2"
+
+
+md__neg_skew_x_1 : Html.Attribute msg
+md__neg_skew_x_1 =
+    A.class "md:-skew-x-1"
+
+
 md__skew_y_0 : Html.Attribute msg
 md__skew_y_0 =
     A.class "md:skew-y-0"
+
+
+md__skew_y_1 : Html.Attribute msg
+md__skew_y_1 =
+    A.class "md:skew-y-1"
+
+
+md__skew_y_2 : Html.Attribute msg
+md__skew_y_2 =
+    A.class "md:skew-y-2"
 
 
 md__skew_y_3 : Html.Attribute msg
@@ -72951,9 +75501,29 @@ md__neg_skew_y_3 =
     A.class "md:-skew-y-3"
 
 
+md__neg_skew_y_2 : Html.Attribute msg
+md__neg_skew_y_2 =
+    A.class "md:-skew-y-2"
+
+
+md__neg_skew_y_1 : Html.Attribute msg
+md__neg_skew_y_1 =
+    A.class "md:-skew-y-1"
+
+
 md__hover__skew_x_0 : Html.Attribute msg
 md__hover__skew_x_0 =
     A.class "md:hover:skew-x-0"
+
+
+md__hover__skew_x_1 : Html.Attribute msg
+md__hover__skew_x_1 =
+    A.class "md:hover:skew-x-1"
+
+
+md__hover__skew_x_2 : Html.Attribute msg
+md__hover__skew_x_2 =
+    A.class "md:hover:skew-x-2"
 
 
 md__hover__skew_x_3 : Html.Attribute msg
@@ -72986,9 +75556,29 @@ md__hover__neg_skew_x_3 =
     A.class "md:hover:-skew-x-3"
 
 
+md__hover__neg_skew_x_2 : Html.Attribute msg
+md__hover__neg_skew_x_2 =
+    A.class "md:hover:-skew-x-2"
+
+
+md__hover__neg_skew_x_1 : Html.Attribute msg
+md__hover__neg_skew_x_1 =
+    A.class "md:hover:-skew-x-1"
+
+
 md__hover__skew_y_0 : Html.Attribute msg
 md__hover__skew_y_0 =
     A.class "md:hover:skew-y-0"
+
+
+md__hover__skew_y_1 : Html.Attribute msg
+md__hover__skew_y_1 =
+    A.class "md:hover:skew-y-1"
+
+
+md__hover__skew_y_2 : Html.Attribute msg
+md__hover__skew_y_2 =
+    A.class "md:hover:skew-y-2"
 
 
 md__hover__skew_y_3 : Html.Attribute msg
@@ -73021,9 +75611,29 @@ md__hover__neg_skew_y_3 =
     A.class "md:hover:-skew-y-3"
 
 
+md__hover__neg_skew_y_2 : Html.Attribute msg
+md__hover__neg_skew_y_2 =
+    A.class "md:hover:-skew-y-2"
+
+
+md__hover__neg_skew_y_1 : Html.Attribute msg
+md__hover__neg_skew_y_1 =
+    A.class "md:hover:-skew-y-1"
+
+
 md__focus__skew_x_0 : Html.Attribute msg
 md__focus__skew_x_0 =
     A.class "md:focus:skew-x-0"
+
+
+md__focus__skew_x_1 : Html.Attribute msg
+md__focus__skew_x_1 =
+    A.class "md:focus:skew-x-1"
+
+
+md__focus__skew_x_2 : Html.Attribute msg
+md__focus__skew_x_2 =
+    A.class "md:focus:skew-x-2"
 
 
 md__focus__skew_x_3 : Html.Attribute msg
@@ -73056,9 +75666,29 @@ md__focus__neg_skew_x_3 =
     A.class "md:focus:-skew-x-3"
 
 
+md__focus__neg_skew_x_2 : Html.Attribute msg
+md__focus__neg_skew_x_2 =
+    A.class "md:focus:-skew-x-2"
+
+
+md__focus__neg_skew_x_1 : Html.Attribute msg
+md__focus__neg_skew_x_1 =
+    A.class "md:focus:-skew-x-1"
+
+
 md__focus__skew_y_0 : Html.Attribute msg
 md__focus__skew_y_0 =
     A.class "md:focus:skew-y-0"
+
+
+md__focus__skew_y_1 : Html.Attribute msg
+md__focus__skew_y_1 =
+    A.class "md:focus:skew-y-1"
+
+
+md__focus__skew_y_2 : Html.Attribute msg
+md__focus__skew_y_2 =
+    A.class "md:focus:skew-y-2"
 
 
 md__focus__skew_y_3 : Html.Attribute msg
@@ -73089,6 +75719,16 @@ md__focus__neg_skew_y_6 =
 md__focus__neg_skew_y_3 : Html.Attribute msg
 md__focus__neg_skew_y_3 =
     A.class "md:focus:-skew-y-3"
+
+
+md__focus__neg_skew_y_2 : Html.Attribute msg
+md__focus__neg_skew_y_2 =
+    A.class "md:focus:-skew-y-2"
+
+
+md__focus__neg_skew_y_1 : Html.Attribute msg
+md__focus__neg_skew_y_1 =
+    A.class "md:focus:-skew-y-1"
 
 
 md__transition_none : Html.Attribute msg
@@ -81646,6 +84286,21 @@ lg__rounded_lg =
     A.class "lg:rounded-lg"
 
 
+lg__rounded_xl : Html.Attribute msg
+lg__rounded_xl =
+    A.class "lg:rounded-xl"
+
+
+lg__rounded_2xl : Html.Attribute msg
+lg__rounded_2xl =
+    A.class "lg:rounded-2xl"
+
+
+lg__rounded_3xl : Html.Attribute msg
+lg__rounded_3xl =
+    A.class "lg:rounded-3xl"
+
+
 lg__rounded_full : Html.Attribute msg
 lg__rounded_full =
     A.class "lg:rounded-full"
@@ -81749,6 +84404,66 @@ lg__rounded_b_lg =
 lg__rounded_l_lg : Html.Attribute msg
 lg__rounded_l_lg =
     A.class "lg:rounded-l-lg"
+
+
+lg__rounded_t_xl : Html.Attribute msg
+lg__rounded_t_xl =
+    A.class "lg:rounded-t-xl"
+
+
+lg__rounded_r_xl : Html.Attribute msg
+lg__rounded_r_xl =
+    A.class "lg:rounded-r-xl"
+
+
+lg__rounded_b_xl : Html.Attribute msg
+lg__rounded_b_xl =
+    A.class "lg:rounded-b-xl"
+
+
+lg__rounded_l_xl : Html.Attribute msg
+lg__rounded_l_xl =
+    A.class "lg:rounded-l-xl"
+
+
+lg__rounded_t_2xl : Html.Attribute msg
+lg__rounded_t_2xl =
+    A.class "lg:rounded-t-2xl"
+
+
+lg__rounded_r_2xl : Html.Attribute msg
+lg__rounded_r_2xl =
+    A.class "lg:rounded-r-2xl"
+
+
+lg__rounded_b_2xl : Html.Attribute msg
+lg__rounded_b_2xl =
+    A.class "lg:rounded-b-2xl"
+
+
+lg__rounded_l_2xl : Html.Attribute msg
+lg__rounded_l_2xl =
+    A.class "lg:rounded-l-2xl"
+
+
+lg__rounded_t_3xl : Html.Attribute msg
+lg__rounded_t_3xl =
+    A.class "lg:rounded-t-3xl"
+
+
+lg__rounded_r_3xl : Html.Attribute msg
+lg__rounded_r_3xl =
+    A.class "lg:rounded-r-3xl"
+
+
+lg__rounded_b_3xl : Html.Attribute msg
+lg__rounded_b_3xl =
+    A.class "lg:rounded-b-3xl"
+
+
+lg__rounded_l_3xl : Html.Attribute msg
+lg__rounded_l_3xl =
+    A.class "lg:rounded-l-3xl"
 
 
 lg__rounded_t_full : Html.Attribute msg
@@ -81869,6 +84584,66 @@ lg__rounded_br_lg =
 lg__rounded_bl_lg : Html.Attribute msg
 lg__rounded_bl_lg =
     A.class "lg:rounded-bl-lg"
+
+
+lg__rounded_tl_xl : Html.Attribute msg
+lg__rounded_tl_xl =
+    A.class "lg:rounded-tl-xl"
+
+
+lg__rounded_tr_xl : Html.Attribute msg
+lg__rounded_tr_xl =
+    A.class "lg:rounded-tr-xl"
+
+
+lg__rounded_br_xl : Html.Attribute msg
+lg__rounded_br_xl =
+    A.class "lg:rounded-br-xl"
+
+
+lg__rounded_bl_xl : Html.Attribute msg
+lg__rounded_bl_xl =
+    A.class "lg:rounded-bl-xl"
+
+
+lg__rounded_tl_2xl : Html.Attribute msg
+lg__rounded_tl_2xl =
+    A.class "lg:rounded-tl-2xl"
+
+
+lg__rounded_tr_2xl : Html.Attribute msg
+lg__rounded_tr_2xl =
+    A.class "lg:rounded-tr-2xl"
+
+
+lg__rounded_br_2xl : Html.Attribute msg
+lg__rounded_br_2xl =
+    A.class "lg:rounded-br-2xl"
+
+
+lg__rounded_bl_2xl : Html.Attribute msg
+lg__rounded_bl_2xl =
+    A.class "lg:rounded-bl-2xl"
+
+
+lg__rounded_tl_3xl : Html.Attribute msg
+lg__rounded_tl_3xl =
+    A.class "lg:rounded-tl-3xl"
+
+
+lg__rounded_tr_3xl : Html.Attribute msg
+lg__rounded_tr_3xl =
+    A.class "lg:rounded-tr-3xl"
+
+
+lg__rounded_br_3xl : Html.Attribute msg
+lg__rounded_br_3xl =
+    A.class "lg:rounded-br-3xl"
+
+
+lg__rounded_bl_3xl : Html.Attribute msg
+lg__rounded_bl_3xl =
+    A.class "lg:rounded-bl-3xl"
 
 
 lg__rounded_tl_full : Html.Attribute msg
@@ -82251,6 +85026,91 @@ lg__flex_no_wrap =
     A.class "lg:flex-no-wrap"
 
 
+lg__place_items_auto : Html.Attribute msg
+lg__place_items_auto =
+    A.class "lg:place-items-auto"
+
+
+lg__place_items_start : Html.Attribute msg
+lg__place_items_start =
+    A.class "lg:place-items-start"
+
+
+lg__place_items_end : Html.Attribute msg
+lg__place_items_end =
+    A.class "lg:place-items-end"
+
+
+lg__place_items_center : Html.Attribute msg
+lg__place_items_center =
+    A.class "lg:place-items-center"
+
+
+lg__place_items_stretch : Html.Attribute msg
+lg__place_items_stretch =
+    A.class "lg:place-items-stretch"
+
+
+lg__place_content_center : Html.Attribute msg
+lg__place_content_center =
+    A.class "lg:place-content-center"
+
+
+lg__place_content_start : Html.Attribute msg
+lg__place_content_start =
+    A.class "lg:place-content-start"
+
+
+lg__place_content_end : Html.Attribute msg
+lg__place_content_end =
+    A.class "lg:place-content-end"
+
+
+lg__place_content_between : Html.Attribute msg
+lg__place_content_between =
+    A.class "lg:place-content-between"
+
+
+lg__place_content_around : Html.Attribute msg
+lg__place_content_around =
+    A.class "lg:place-content-around"
+
+
+lg__place_content_evenly : Html.Attribute msg
+lg__place_content_evenly =
+    A.class "lg:place-content-evenly"
+
+
+lg__place_content_stretch : Html.Attribute msg
+lg__place_content_stretch =
+    A.class "lg:place-content-stretch"
+
+
+lg__place_self_auto : Html.Attribute msg
+lg__place_self_auto =
+    A.class "lg:place-self-auto"
+
+
+lg__place_self_start : Html.Attribute msg
+lg__place_self_start =
+    A.class "lg:place-self-start"
+
+
+lg__place_self_end : Html.Attribute msg
+lg__place_self_end =
+    A.class "lg:place-self-end"
+
+
+lg__place_self_center : Html.Attribute msg
+lg__place_self_center =
+    A.class "lg:place-self-center"
+
+
+lg__place_self_stretch : Html.Attribute msg
+lg__place_self_stretch =
+    A.class "lg:place-self-stretch"
+
+
 lg__items_start : Html.Attribute msg
 lg__items_start =
     A.class "lg:items-start"
@@ -82276,6 +85136,36 @@ lg__items_stretch =
     A.class "lg:items-stretch"
 
 
+lg__content_center : Html.Attribute msg
+lg__content_center =
+    A.class "lg:content-center"
+
+
+lg__content_start : Html.Attribute msg
+lg__content_start =
+    A.class "lg:content-start"
+
+
+lg__content_end : Html.Attribute msg
+lg__content_end =
+    A.class "lg:content-end"
+
+
+lg__content_between : Html.Attribute msg
+lg__content_between =
+    A.class "lg:content-between"
+
+
+lg__content_around : Html.Attribute msg
+lg__content_around =
+    A.class "lg:content-around"
+
+
+lg__content_evenly : Html.Attribute msg
+lg__content_evenly =
+    A.class "lg:content-evenly"
+
+
 lg__self_auto : Html.Attribute msg
 lg__self_auto =
     A.class "lg:self-auto"
@@ -82299,6 +85189,31 @@ lg__self_center =
 lg__self_stretch : Html.Attribute msg
 lg__self_stretch =
     A.class "lg:self-stretch"
+
+
+lg__justify_items_auto : Html.Attribute msg
+lg__justify_items_auto =
+    A.class "lg:justify-items-auto"
+
+
+lg__justify_items_start : Html.Attribute msg
+lg__justify_items_start =
+    A.class "lg:justify-items-start"
+
+
+lg__justify_items_end : Html.Attribute msg
+lg__justify_items_end =
+    A.class "lg:justify-items-end"
+
+
+lg__justify_items_center : Html.Attribute msg
+lg__justify_items_center =
+    A.class "lg:justify-items-center"
+
+
+lg__justify_items_stretch : Html.Attribute msg
+lg__justify_items_stretch =
+    A.class "lg:justify-items-stretch"
 
 
 lg__justify_start : Html.Attribute msg
@@ -82331,29 +85246,29 @@ lg__justify_evenly =
     A.class "lg:justify-evenly"
 
 
-lg__content_center : Html.Attribute msg
-lg__content_center =
-    A.class "lg:content-center"
+lg__justify_self_auto : Html.Attribute msg
+lg__justify_self_auto =
+    A.class "lg:justify-self-auto"
 
 
-lg__content_start : Html.Attribute msg
-lg__content_start =
-    A.class "lg:content-start"
+lg__justify_self_start : Html.Attribute msg
+lg__justify_self_start =
+    A.class "lg:justify-self-start"
 
 
-lg__content_end : Html.Attribute msg
-lg__content_end =
-    A.class "lg:content-end"
+lg__justify_self_end : Html.Attribute msg
+lg__justify_self_end =
+    A.class "lg:justify-self-end"
 
 
-lg__content_between : Html.Attribute msg
-lg__content_between =
-    A.class "lg:content-between"
+lg__justify_self_center : Html.Attribute msg
+lg__justify_self_center =
+    A.class "lg:justify-self-center"
 
 
-lg__content_around : Html.Attribute msg
-lg__content_around =
-    A.class "lg:content-around"
+lg__justify_self_stretch : Html.Attribute msg
+lg__justify_self_stretch =
+    A.class "lg:justify-self-stretch"
 
 
 lg__flex_1 : Html.Attribute msg
@@ -84536,9 +87451,29 @@ lg__outline_none =
     A.class "lg:outline-none"
 
 
+lg__outline_white : Html.Attribute msg
+lg__outline_white =
+    A.class "lg:outline-white"
+
+
+lg__outline_black : Html.Attribute msg
+lg__outline_black =
+    A.class "lg:outline-black"
+
+
 lg__focus__outline_none : Html.Attribute msg
 lg__focus__outline_none =
     A.class "lg:focus:outline-none"
+
+
+lg__focus__outline_white : Html.Attribute msg
+lg__focus__outline_white =
+    A.class "lg:focus:outline-white"
+
+
+lg__focus__outline_black : Html.Attribute msg
+lg__focus__outline_black =
+    A.class "lg:focus:outline-black"
 
 
 lg__overflow_auto : Html.Attribute msg
@@ -88211,6 +91146,51 @@ lg__subpixel_antialiased =
     A.class "lg:subpixel-antialiased"
 
 
+lg__ordinal : Html.Attribute msg
+lg__ordinal =
+    A.class "lg:ordinal"
+
+
+lg__slashed_zero : Html.Attribute msg
+lg__slashed_zero =
+    A.class "lg:slashed-zero"
+
+
+lg__lining_nums : Html.Attribute msg
+lg__lining_nums =
+    A.class "lg:lining-nums"
+
+
+lg__oldstyle_nums : Html.Attribute msg
+lg__oldstyle_nums =
+    A.class "lg:oldstyle-nums"
+
+
+lg__proportional_nums : Html.Attribute msg
+lg__proportional_nums =
+    A.class "lg:proportional-nums"
+
+
+lg__tabular_nums : Html.Attribute msg
+lg__tabular_nums =
+    A.class "lg:tabular-nums"
+
+
+lg__diagonal_fractions : Html.Attribute msg
+lg__diagonal_fractions =
+    A.class "lg:diagonal-fractions"
+
+
+lg__stacked_fractions : Html.Attribute msg
+lg__stacked_fractions =
+    A.class "lg:stacked-fractions"
+
+
+lg__normal_nums : Html.Attribute msg
+lg__normal_nums =
+    A.class "lg:normal-nums"
+
+
 lg__tracking_tighter : Html.Attribute msg
 lg__tracking_tighter =
     A.class "lg:tracking-tighter"
@@ -88996,6 +91976,26 @@ lg__grid_cols_header =
     A.class "lg:grid-cols-header"
 
 
+lg__auto_cols_auto : Html.Attribute msg
+lg__auto_cols_auto =
+    A.class "lg:auto-cols-auto"
+
+
+lg__auto_cols_min : Html.Attribute msg
+lg__auto_cols_min =
+    A.class "lg:auto-cols-min"
+
+
+lg__auto_cols_max : Html.Attribute msg
+lg__auto_cols_max =
+    A.class "lg:auto-cols-max"
+
+
+lg__auto_cols_fr : Html.Attribute msg
+lg__auto_cols_fr =
+    A.class "lg:auto-cols-fr"
+
+
 lg__col_auto : Html.Attribute msg
 lg__col_auto =
     A.class "lg:col-auto"
@@ -89059,6 +92059,11 @@ lg__col_span_11 =
 lg__col_span_12 : Html.Attribute msg
 lg__col_span_12 =
     A.class "lg:col-span-12"
+
+
+lg__col_span_full : Html.Attribute msg
+lg__col_span_full =
+    A.class "lg:col-span-full"
 
 
 lg__col_start_1 : Html.Attribute msg
@@ -89236,6 +92241,26 @@ lg__grid_rows_none =
     A.class "lg:grid-rows-none"
 
 
+lg__auto_rows_auto : Html.Attribute msg
+lg__auto_rows_auto =
+    A.class "lg:auto-rows-auto"
+
+
+lg__auto_rows_min : Html.Attribute msg
+lg__auto_rows_min =
+    A.class "lg:auto-rows-min"
+
+
+lg__auto_rows_max : Html.Attribute msg
+lg__auto_rows_max =
+    A.class "lg:auto-rows-max"
+
+
+lg__auto_rows_fr : Html.Attribute msg
+lg__auto_rows_fr =
+    A.class "lg:auto-rows-fr"
+
+
 lg__row_auto : Html.Attribute msg
 lg__row_auto =
     A.class "lg:row-auto"
@@ -89269,6 +92294,11 @@ lg__row_span_5 =
 lg__row_span_6 : Html.Attribute msg
 lg__row_span_6 =
     A.class "lg:row-span-6"
+
+
+lg__row_span_full : Html.Attribute msg
+lg__row_span_full =
+    A.class "lg:row-span-full"
 
 
 lg__row_start_1 : Html.Attribute msg
@@ -89861,6 +92891,31 @@ lg__rotate_0 =
     A.class "lg:rotate-0"
 
 
+lg__rotate_1 : Html.Attribute msg
+lg__rotate_1 =
+    A.class "lg:rotate-1"
+
+
+lg__rotate_2 : Html.Attribute msg
+lg__rotate_2 =
+    A.class "lg:rotate-2"
+
+
+lg__rotate_3 : Html.Attribute msg
+lg__rotate_3 =
+    A.class "lg:rotate-3"
+
+
+lg__rotate_6 : Html.Attribute msg
+lg__rotate_6 =
+    A.class "lg:rotate-6"
+
+
+lg__rotate_12 : Html.Attribute msg
+lg__rotate_12 =
+    A.class "lg:rotate-12"
+
+
 lg__rotate_45 : Html.Attribute msg
 lg__rotate_45 =
     A.class "lg:rotate-45"
@@ -89891,9 +92946,59 @@ lg__neg_rotate_45 =
     A.class "lg:-rotate-45"
 
 
+lg__neg_rotate_12 : Html.Attribute msg
+lg__neg_rotate_12 =
+    A.class "lg:-rotate-12"
+
+
+lg__neg_rotate_6 : Html.Attribute msg
+lg__neg_rotate_6 =
+    A.class "lg:-rotate-6"
+
+
+lg__neg_rotate_3 : Html.Attribute msg
+lg__neg_rotate_3 =
+    A.class "lg:-rotate-3"
+
+
+lg__neg_rotate_2 : Html.Attribute msg
+lg__neg_rotate_2 =
+    A.class "lg:-rotate-2"
+
+
+lg__neg_rotate_1 : Html.Attribute msg
+lg__neg_rotate_1 =
+    A.class "lg:-rotate-1"
+
+
 lg__hover__rotate_0 : Html.Attribute msg
 lg__hover__rotate_0 =
     A.class "lg:hover:rotate-0"
+
+
+lg__hover__rotate_1 : Html.Attribute msg
+lg__hover__rotate_1 =
+    A.class "lg:hover:rotate-1"
+
+
+lg__hover__rotate_2 : Html.Attribute msg
+lg__hover__rotate_2 =
+    A.class "lg:hover:rotate-2"
+
+
+lg__hover__rotate_3 : Html.Attribute msg
+lg__hover__rotate_3 =
+    A.class "lg:hover:rotate-3"
+
+
+lg__hover__rotate_6 : Html.Attribute msg
+lg__hover__rotate_6 =
+    A.class "lg:hover:rotate-6"
+
+
+lg__hover__rotate_12 : Html.Attribute msg
+lg__hover__rotate_12 =
+    A.class "lg:hover:rotate-12"
 
 
 lg__hover__rotate_45 : Html.Attribute msg
@@ -89926,9 +93031,59 @@ lg__hover__neg_rotate_45 =
     A.class "lg:hover:-rotate-45"
 
 
+lg__hover__neg_rotate_12 : Html.Attribute msg
+lg__hover__neg_rotate_12 =
+    A.class "lg:hover:-rotate-12"
+
+
+lg__hover__neg_rotate_6 : Html.Attribute msg
+lg__hover__neg_rotate_6 =
+    A.class "lg:hover:-rotate-6"
+
+
+lg__hover__neg_rotate_3 : Html.Attribute msg
+lg__hover__neg_rotate_3 =
+    A.class "lg:hover:-rotate-3"
+
+
+lg__hover__neg_rotate_2 : Html.Attribute msg
+lg__hover__neg_rotate_2 =
+    A.class "lg:hover:-rotate-2"
+
+
+lg__hover__neg_rotate_1 : Html.Attribute msg
+lg__hover__neg_rotate_1 =
+    A.class "lg:hover:-rotate-1"
+
+
 lg__focus__rotate_0 : Html.Attribute msg
 lg__focus__rotate_0 =
     A.class "lg:focus:rotate-0"
+
+
+lg__focus__rotate_1 : Html.Attribute msg
+lg__focus__rotate_1 =
+    A.class "lg:focus:rotate-1"
+
+
+lg__focus__rotate_2 : Html.Attribute msg
+lg__focus__rotate_2 =
+    A.class "lg:focus:rotate-2"
+
+
+lg__focus__rotate_3 : Html.Attribute msg
+lg__focus__rotate_3 =
+    A.class "lg:focus:rotate-3"
+
+
+lg__focus__rotate_6 : Html.Attribute msg
+lg__focus__rotate_6 =
+    A.class "lg:focus:rotate-6"
+
+
+lg__focus__rotate_12 : Html.Attribute msg
+lg__focus__rotate_12 =
+    A.class "lg:focus:rotate-12"
 
 
 lg__focus__rotate_45 : Html.Attribute msg
@@ -89959,6 +93114,31 @@ lg__focus__neg_rotate_90 =
 lg__focus__neg_rotate_45 : Html.Attribute msg
 lg__focus__neg_rotate_45 =
     A.class "lg:focus:-rotate-45"
+
+
+lg__focus__neg_rotate_12 : Html.Attribute msg
+lg__focus__neg_rotate_12 =
+    A.class "lg:focus:-rotate-12"
+
+
+lg__focus__neg_rotate_6 : Html.Attribute msg
+lg__focus__neg_rotate_6 =
+    A.class "lg:focus:-rotate-6"
+
+
+lg__focus__neg_rotate_3 : Html.Attribute msg
+lg__focus__neg_rotate_3 =
+    A.class "lg:focus:-rotate-3"
+
+
+lg__focus__neg_rotate_2 : Html.Attribute msg
+lg__focus__neg_rotate_2 =
+    A.class "lg:focus:-rotate-2"
+
+
+lg__focus__neg_rotate_1 : Html.Attribute msg
+lg__focus__neg_rotate_1 =
+    A.class "lg:focus:-rotate-1"
 
 
 lg__translate_x_0 : Html.Attribute msg
@@ -91196,6 +94376,16 @@ lg__skew_x_0 =
     A.class "lg:skew-x-0"
 
 
+lg__skew_x_1 : Html.Attribute msg
+lg__skew_x_1 =
+    A.class "lg:skew-x-1"
+
+
+lg__skew_x_2 : Html.Attribute msg
+lg__skew_x_2 =
+    A.class "lg:skew-x-2"
+
+
 lg__skew_x_3 : Html.Attribute msg
 lg__skew_x_3 =
     A.class "lg:skew-x-3"
@@ -91226,9 +94416,29 @@ lg__neg_skew_x_3 =
     A.class "lg:-skew-x-3"
 
 
+lg__neg_skew_x_2 : Html.Attribute msg
+lg__neg_skew_x_2 =
+    A.class "lg:-skew-x-2"
+
+
+lg__neg_skew_x_1 : Html.Attribute msg
+lg__neg_skew_x_1 =
+    A.class "lg:-skew-x-1"
+
+
 lg__skew_y_0 : Html.Attribute msg
 lg__skew_y_0 =
     A.class "lg:skew-y-0"
+
+
+lg__skew_y_1 : Html.Attribute msg
+lg__skew_y_1 =
+    A.class "lg:skew-y-1"
+
+
+lg__skew_y_2 : Html.Attribute msg
+lg__skew_y_2 =
+    A.class "lg:skew-y-2"
 
 
 lg__skew_y_3 : Html.Attribute msg
@@ -91261,9 +94471,29 @@ lg__neg_skew_y_3 =
     A.class "lg:-skew-y-3"
 
 
+lg__neg_skew_y_2 : Html.Attribute msg
+lg__neg_skew_y_2 =
+    A.class "lg:-skew-y-2"
+
+
+lg__neg_skew_y_1 : Html.Attribute msg
+lg__neg_skew_y_1 =
+    A.class "lg:-skew-y-1"
+
+
 lg__hover__skew_x_0 : Html.Attribute msg
 lg__hover__skew_x_0 =
     A.class "lg:hover:skew-x-0"
+
+
+lg__hover__skew_x_1 : Html.Attribute msg
+lg__hover__skew_x_1 =
+    A.class "lg:hover:skew-x-1"
+
+
+lg__hover__skew_x_2 : Html.Attribute msg
+lg__hover__skew_x_2 =
+    A.class "lg:hover:skew-x-2"
 
 
 lg__hover__skew_x_3 : Html.Attribute msg
@@ -91296,9 +94526,29 @@ lg__hover__neg_skew_x_3 =
     A.class "lg:hover:-skew-x-3"
 
 
+lg__hover__neg_skew_x_2 : Html.Attribute msg
+lg__hover__neg_skew_x_2 =
+    A.class "lg:hover:-skew-x-2"
+
+
+lg__hover__neg_skew_x_1 : Html.Attribute msg
+lg__hover__neg_skew_x_1 =
+    A.class "lg:hover:-skew-x-1"
+
+
 lg__hover__skew_y_0 : Html.Attribute msg
 lg__hover__skew_y_0 =
     A.class "lg:hover:skew-y-0"
+
+
+lg__hover__skew_y_1 : Html.Attribute msg
+lg__hover__skew_y_1 =
+    A.class "lg:hover:skew-y-1"
+
+
+lg__hover__skew_y_2 : Html.Attribute msg
+lg__hover__skew_y_2 =
+    A.class "lg:hover:skew-y-2"
 
 
 lg__hover__skew_y_3 : Html.Attribute msg
@@ -91331,9 +94581,29 @@ lg__hover__neg_skew_y_3 =
     A.class "lg:hover:-skew-y-3"
 
 
+lg__hover__neg_skew_y_2 : Html.Attribute msg
+lg__hover__neg_skew_y_2 =
+    A.class "lg:hover:-skew-y-2"
+
+
+lg__hover__neg_skew_y_1 : Html.Attribute msg
+lg__hover__neg_skew_y_1 =
+    A.class "lg:hover:-skew-y-1"
+
+
 lg__focus__skew_x_0 : Html.Attribute msg
 lg__focus__skew_x_0 =
     A.class "lg:focus:skew-x-0"
+
+
+lg__focus__skew_x_1 : Html.Attribute msg
+lg__focus__skew_x_1 =
+    A.class "lg:focus:skew-x-1"
+
+
+lg__focus__skew_x_2 : Html.Attribute msg
+lg__focus__skew_x_2 =
+    A.class "lg:focus:skew-x-2"
 
 
 lg__focus__skew_x_3 : Html.Attribute msg
@@ -91366,9 +94636,29 @@ lg__focus__neg_skew_x_3 =
     A.class "lg:focus:-skew-x-3"
 
 
+lg__focus__neg_skew_x_2 : Html.Attribute msg
+lg__focus__neg_skew_x_2 =
+    A.class "lg:focus:-skew-x-2"
+
+
+lg__focus__neg_skew_x_1 : Html.Attribute msg
+lg__focus__neg_skew_x_1 =
+    A.class "lg:focus:-skew-x-1"
+
+
 lg__focus__skew_y_0 : Html.Attribute msg
 lg__focus__skew_y_0 =
     A.class "lg:focus:skew-y-0"
+
+
+lg__focus__skew_y_1 : Html.Attribute msg
+lg__focus__skew_y_1 =
+    A.class "lg:focus:skew-y-1"
+
+
+lg__focus__skew_y_2 : Html.Attribute msg
+lg__focus__skew_y_2 =
+    A.class "lg:focus:skew-y-2"
 
 
 lg__focus__skew_y_3 : Html.Attribute msg
@@ -91399,6 +94689,16 @@ lg__focus__neg_skew_y_6 =
 lg__focus__neg_skew_y_3 : Html.Attribute msg
 lg__focus__neg_skew_y_3 =
     A.class "lg:focus:-skew-y-3"
+
+
+lg__focus__neg_skew_y_2 : Html.Attribute msg
+lg__focus__neg_skew_y_2 =
+    A.class "lg:focus:-skew-y-2"
+
+
+lg__focus__neg_skew_y_1 : Html.Attribute msg
+lg__focus__neg_skew_y_1 =
+    A.class "lg:focus:-skew-y-1"
 
 
 lg__transition_none : Html.Attribute msg
@@ -99956,6 +103256,21 @@ xl__rounded_lg =
     A.class "xl:rounded-lg"
 
 
+xl__rounded_xl : Html.Attribute msg
+xl__rounded_xl =
+    A.class "xl:rounded-xl"
+
+
+xl__rounded_2xl : Html.Attribute msg
+xl__rounded_2xl =
+    A.class "xl:rounded-2xl"
+
+
+xl__rounded_3xl : Html.Attribute msg
+xl__rounded_3xl =
+    A.class "xl:rounded-3xl"
+
+
 xl__rounded_full : Html.Attribute msg
 xl__rounded_full =
     A.class "xl:rounded-full"
@@ -100059,6 +103374,66 @@ xl__rounded_b_lg =
 xl__rounded_l_lg : Html.Attribute msg
 xl__rounded_l_lg =
     A.class "xl:rounded-l-lg"
+
+
+xl__rounded_t_xl : Html.Attribute msg
+xl__rounded_t_xl =
+    A.class "xl:rounded-t-xl"
+
+
+xl__rounded_r_xl : Html.Attribute msg
+xl__rounded_r_xl =
+    A.class "xl:rounded-r-xl"
+
+
+xl__rounded_b_xl : Html.Attribute msg
+xl__rounded_b_xl =
+    A.class "xl:rounded-b-xl"
+
+
+xl__rounded_l_xl : Html.Attribute msg
+xl__rounded_l_xl =
+    A.class "xl:rounded-l-xl"
+
+
+xl__rounded_t_2xl : Html.Attribute msg
+xl__rounded_t_2xl =
+    A.class "xl:rounded-t-2xl"
+
+
+xl__rounded_r_2xl : Html.Attribute msg
+xl__rounded_r_2xl =
+    A.class "xl:rounded-r-2xl"
+
+
+xl__rounded_b_2xl : Html.Attribute msg
+xl__rounded_b_2xl =
+    A.class "xl:rounded-b-2xl"
+
+
+xl__rounded_l_2xl : Html.Attribute msg
+xl__rounded_l_2xl =
+    A.class "xl:rounded-l-2xl"
+
+
+xl__rounded_t_3xl : Html.Attribute msg
+xl__rounded_t_3xl =
+    A.class "xl:rounded-t-3xl"
+
+
+xl__rounded_r_3xl : Html.Attribute msg
+xl__rounded_r_3xl =
+    A.class "xl:rounded-r-3xl"
+
+
+xl__rounded_b_3xl : Html.Attribute msg
+xl__rounded_b_3xl =
+    A.class "xl:rounded-b-3xl"
+
+
+xl__rounded_l_3xl : Html.Attribute msg
+xl__rounded_l_3xl =
+    A.class "xl:rounded-l-3xl"
 
 
 xl__rounded_t_full : Html.Attribute msg
@@ -100179,6 +103554,66 @@ xl__rounded_br_lg =
 xl__rounded_bl_lg : Html.Attribute msg
 xl__rounded_bl_lg =
     A.class "xl:rounded-bl-lg"
+
+
+xl__rounded_tl_xl : Html.Attribute msg
+xl__rounded_tl_xl =
+    A.class "xl:rounded-tl-xl"
+
+
+xl__rounded_tr_xl : Html.Attribute msg
+xl__rounded_tr_xl =
+    A.class "xl:rounded-tr-xl"
+
+
+xl__rounded_br_xl : Html.Attribute msg
+xl__rounded_br_xl =
+    A.class "xl:rounded-br-xl"
+
+
+xl__rounded_bl_xl : Html.Attribute msg
+xl__rounded_bl_xl =
+    A.class "xl:rounded-bl-xl"
+
+
+xl__rounded_tl_2xl : Html.Attribute msg
+xl__rounded_tl_2xl =
+    A.class "xl:rounded-tl-2xl"
+
+
+xl__rounded_tr_2xl : Html.Attribute msg
+xl__rounded_tr_2xl =
+    A.class "xl:rounded-tr-2xl"
+
+
+xl__rounded_br_2xl : Html.Attribute msg
+xl__rounded_br_2xl =
+    A.class "xl:rounded-br-2xl"
+
+
+xl__rounded_bl_2xl : Html.Attribute msg
+xl__rounded_bl_2xl =
+    A.class "xl:rounded-bl-2xl"
+
+
+xl__rounded_tl_3xl : Html.Attribute msg
+xl__rounded_tl_3xl =
+    A.class "xl:rounded-tl-3xl"
+
+
+xl__rounded_tr_3xl : Html.Attribute msg
+xl__rounded_tr_3xl =
+    A.class "xl:rounded-tr-3xl"
+
+
+xl__rounded_br_3xl : Html.Attribute msg
+xl__rounded_br_3xl =
+    A.class "xl:rounded-br-3xl"
+
+
+xl__rounded_bl_3xl : Html.Attribute msg
+xl__rounded_bl_3xl =
+    A.class "xl:rounded-bl-3xl"
 
 
 xl__rounded_tl_full : Html.Attribute msg
@@ -100561,6 +103996,91 @@ xl__flex_no_wrap =
     A.class "xl:flex-no-wrap"
 
 
+xl__place_items_auto : Html.Attribute msg
+xl__place_items_auto =
+    A.class "xl:place-items-auto"
+
+
+xl__place_items_start : Html.Attribute msg
+xl__place_items_start =
+    A.class "xl:place-items-start"
+
+
+xl__place_items_end : Html.Attribute msg
+xl__place_items_end =
+    A.class "xl:place-items-end"
+
+
+xl__place_items_center : Html.Attribute msg
+xl__place_items_center =
+    A.class "xl:place-items-center"
+
+
+xl__place_items_stretch : Html.Attribute msg
+xl__place_items_stretch =
+    A.class "xl:place-items-stretch"
+
+
+xl__place_content_center : Html.Attribute msg
+xl__place_content_center =
+    A.class "xl:place-content-center"
+
+
+xl__place_content_start : Html.Attribute msg
+xl__place_content_start =
+    A.class "xl:place-content-start"
+
+
+xl__place_content_end : Html.Attribute msg
+xl__place_content_end =
+    A.class "xl:place-content-end"
+
+
+xl__place_content_between : Html.Attribute msg
+xl__place_content_between =
+    A.class "xl:place-content-between"
+
+
+xl__place_content_around : Html.Attribute msg
+xl__place_content_around =
+    A.class "xl:place-content-around"
+
+
+xl__place_content_evenly : Html.Attribute msg
+xl__place_content_evenly =
+    A.class "xl:place-content-evenly"
+
+
+xl__place_content_stretch : Html.Attribute msg
+xl__place_content_stretch =
+    A.class "xl:place-content-stretch"
+
+
+xl__place_self_auto : Html.Attribute msg
+xl__place_self_auto =
+    A.class "xl:place-self-auto"
+
+
+xl__place_self_start : Html.Attribute msg
+xl__place_self_start =
+    A.class "xl:place-self-start"
+
+
+xl__place_self_end : Html.Attribute msg
+xl__place_self_end =
+    A.class "xl:place-self-end"
+
+
+xl__place_self_center : Html.Attribute msg
+xl__place_self_center =
+    A.class "xl:place-self-center"
+
+
+xl__place_self_stretch : Html.Attribute msg
+xl__place_self_stretch =
+    A.class "xl:place-self-stretch"
+
+
 xl__items_start : Html.Attribute msg
 xl__items_start =
     A.class "xl:items-start"
@@ -100586,6 +104106,36 @@ xl__items_stretch =
     A.class "xl:items-stretch"
 
 
+xl__content_center : Html.Attribute msg
+xl__content_center =
+    A.class "xl:content-center"
+
+
+xl__content_start : Html.Attribute msg
+xl__content_start =
+    A.class "xl:content-start"
+
+
+xl__content_end : Html.Attribute msg
+xl__content_end =
+    A.class "xl:content-end"
+
+
+xl__content_between : Html.Attribute msg
+xl__content_between =
+    A.class "xl:content-between"
+
+
+xl__content_around : Html.Attribute msg
+xl__content_around =
+    A.class "xl:content-around"
+
+
+xl__content_evenly : Html.Attribute msg
+xl__content_evenly =
+    A.class "xl:content-evenly"
+
+
 xl__self_auto : Html.Attribute msg
 xl__self_auto =
     A.class "xl:self-auto"
@@ -100609,6 +104159,31 @@ xl__self_center =
 xl__self_stretch : Html.Attribute msg
 xl__self_stretch =
     A.class "xl:self-stretch"
+
+
+xl__justify_items_auto : Html.Attribute msg
+xl__justify_items_auto =
+    A.class "xl:justify-items-auto"
+
+
+xl__justify_items_start : Html.Attribute msg
+xl__justify_items_start =
+    A.class "xl:justify-items-start"
+
+
+xl__justify_items_end : Html.Attribute msg
+xl__justify_items_end =
+    A.class "xl:justify-items-end"
+
+
+xl__justify_items_center : Html.Attribute msg
+xl__justify_items_center =
+    A.class "xl:justify-items-center"
+
+
+xl__justify_items_stretch : Html.Attribute msg
+xl__justify_items_stretch =
+    A.class "xl:justify-items-stretch"
 
 
 xl__justify_start : Html.Attribute msg
@@ -100641,29 +104216,29 @@ xl__justify_evenly =
     A.class "xl:justify-evenly"
 
 
-xl__content_center : Html.Attribute msg
-xl__content_center =
-    A.class "xl:content-center"
+xl__justify_self_auto : Html.Attribute msg
+xl__justify_self_auto =
+    A.class "xl:justify-self-auto"
 
 
-xl__content_start : Html.Attribute msg
-xl__content_start =
-    A.class "xl:content-start"
+xl__justify_self_start : Html.Attribute msg
+xl__justify_self_start =
+    A.class "xl:justify-self-start"
 
 
-xl__content_end : Html.Attribute msg
-xl__content_end =
-    A.class "xl:content-end"
+xl__justify_self_end : Html.Attribute msg
+xl__justify_self_end =
+    A.class "xl:justify-self-end"
 
 
-xl__content_between : Html.Attribute msg
-xl__content_between =
-    A.class "xl:content-between"
+xl__justify_self_center : Html.Attribute msg
+xl__justify_self_center =
+    A.class "xl:justify-self-center"
 
 
-xl__content_around : Html.Attribute msg
-xl__content_around =
-    A.class "xl:content-around"
+xl__justify_self_stretch : Html.Attribute msg
+xl__justify_self_stretch =
+    A.class "xl:justify-self-stretch"
 
 
 xl__flex_1 : Html.Attribute msg
@@ -102846,9 +106421,29 @@ xl__outline_none =
     A.class "xl:outline-none"
 
 
+xl__outline_white : Html.Attribute msg
+xl__outline_white =
+    A.class "xl:outline-white"
+
+
+xl__outline_black : Html.Attribute msg
+xl__outline_black =
+    A.class "xl:outline-black"
+
+
 xl__focus__outline_none : Html.Attribute msg
 xl__focus__outline_none =
     A.class "xl:focus:outline-none"
+
+
+xl__focus__outline_white : Html.Attribute msg
+xl__focus__outline_white =
+    A.class "xl:focus:outline-white"
+
+
+xl__focus__outline_black : Html.Attribute msg
+xl__focus__outline_black =
+    A.class "xl:focus:outline-black"
 
 
 xl__overflow_auto : Html.Attribute msg
@@ -106521,6 +110116,51 @@ xl__subpixel_antialiased =
     A.class "xl:subpixel-antialiased"
 
 
+xl__ordinal : Html.Attribute msg
+xl__ordinal =
+    A.class "xl:ordinal"
+
+
+xl__slashed_zero : Html.Attribute msg
+xl__slashed_zero =
+    A.class "xl:slashed-zero"
+
+
+xl__lining_nums : Html.Attribute msg
+xl__lining_nums =
+    A.class "xl:lining-nums"
+
+
+xl__oldstyle_nums : Html.Attribute msg
+xl__oldstyle_nums =
+    A.class "xl:oldstyle-nums"
+
+
+xl__proportional_nums : Html.Attribute msg
+xl__proportional_nums =
+    A.class "xl:proportional-nums"
+
+
+xl__tabular_nums : Html.Attribute msg
+xl__tabular_nums =
+    A.class "xl:tabular-nums"
+
+
+xl__diagonal_fractions : Html.Attribute msg
+xl__diagonal_fractions =
+    A.class "xl:diagonal-fractions"
+
+
+xl__stacked_fractions : Html.Attribute msg
+xl__stacked_fractions =
+    A.class "xl:stacked-fractions"
+
+
+xl__normal_nums : Html.Attribute msg
+xl__normal_nums =
+    A.class "xl:normal-nums"
+
+
 xl__tracking_tighter : Html.Attribute msg
 xl__tracking_tighter =
     A.class "xl:tracking-tighter"
@@ -107306,6 +110946,26 @@ xl__grid_cols_header =
     A.class "xl:grid-cols-header"
 
 
+xl__auto_cols_auto : Html.Attribute msg
+xl__auto_cols_auto =
+    A.class "xl:auto-cols-auto"
+
+
+xl__auto_cols_min : Html.Attribute msg
+xl__auto_cols_min =
+    A.class "xl:auto-cols-min"
+
+
+xl__auto_cols_max : Html.Attribute msg
+xl__auto_cols_max =
+    A.class "xl:auto-cols-max"
+
+
+xl__auto_cols_fr : Html.Attribute msg
+xl__auto_cols_fr =
+    A.class "xl:auto-cols-fr"
+
+
 xl__col_auto : Html.Attribute msg
 xl__col_auto =
     A.class "xl:col-auto"
@@ -107369,6 +111029,11 @@ xl__col_span_11 =
 xl__col_span_12 : Html.Attribute msg
 xl__col_span_12 =
     A.class "xl:col-span-12"
+
+
+xl__col_span_full : Html.Attribute msg
+xl__col_span_full =
+    A.class "xl:col-span-full"
 
 
 xl__col_start_1 : Html.Attribute msg
@@ -107546,6 +111211,26 @@ xl__grid_rows_none =
     A.class "xl:grid-rows-none"
 
 
+xl__auto_rows_auto : Html.Attribute msg
+xl__auto_rows_auto =
+    A.class "xl:auto-rows-auto"
+
+
+xl__auto_rows_min : Html.Attribute msg
+xl__auto_rows_min =
+    A.class "xl:auto-rows-min"
+
+
+xl__auto_rows_max : Html.Attribute msg
+xl__auto_rows_max =
+    A.class "xl:auto-rows-max"
+
+
+xl__auto_rows_fr : Html.Attribute msg
+xl__auto_rows_fr =
+    A.class "xl:auto-rows-fr"
+
+
 xl__row_auto : Html.Attribute msg
 xl__row_auto =
     A.class "xl:row-auto"
@@ -107579,6 +111264,11 @@ xl__row_span_5 =
 xl__row_span_6 : Html.Attribute msg
 xl__row_span_6 =
     A.class "xl:row-span-6"
+
+
+xl__row_span_full : Html.Attribute msg
+xl__row_span_full =
+    A.class "xl:row-span-full"
 
 
 xl__row_start_1 : Html.Attribute msg
@@ -108171,6 +111861,31 @@ xl__rotate_0 =
     A.class "xl:rotate-0"
 
 
+xl__rotate_1 : Html.Attribute msg
+xl__rotate_1 =
+    A.class "xl:rotate-1"
+
+
+xl__rotate_2 : Html.Attribute msg
+xl__rotate_2 =
+    A.class "xl:rotate-2"
+
+
+xl__rotate_3 : Html.Attribute msg
+xl__rotate_3 =
+    A.class "xl:rotate-3"
+
+
+xl__rotate_6 : Html.Attribute msg
+xl__rotate_6 =
+    A.class "xl:rotate-6"
+
+
+xl__rotate_12 : Html.Attribute msg
+xl__rotate_12 =
+    A.class "xl:rotate-12"
+
+
 xl__rotate_45 : Html.Attribute msg
 xl__rotate_45 =
     A.class "xl:rotate-45"
@@ -108201,9 +111916,59 @@ xl__neg_rotate_45 =
     A.class "xl:-rotate-45"
 
 
+xl__neg_rotate_12 : Html.Attribute msg
+xl__neg_rotate_12 =
+    A.class "xl:-rotate-12"
+
+
+xl__neg_rotate_6 : Html.Attribute msg
+xl__neg_rotate_6 =
+    A.class "xl:-rotate-6"
+
+
+xl__neg_rotate_3 : Html.Attribute msg
+xl__neg_rotate_3 =
+    A.class "xl:-rotate-3"
+
+
+xl__neg_rotate_2 : Html.Attribute msg
+xl__neg_rotate_2 =
+    A.class "xl:-rotate-2"
+
+
+xl__neg_rotate_1 : Html.Attribute msg
+xl__neg_rotate_1 =
+    A.class "xl:-rotate-1"
+
+
 xl__hover__rotate_0 : Html.Attribute msg
 xl__hover__rotate_0 =
     A.class "xl:hover:rotate-0"
+
+
+xl__hover__rotate_1 : Html.Attribute msg
+xl__hover__rotate_1 =
+    A.class "xl:hover:rotate-1"
+
+
+xl__hover__rotate_2 : Html.Attribute msg
+xl__hover__rotate_2 =
+    A.class "xl:hover:rotate-2"
+
+
+xl__hover__rotate_3 : Html.Attribute msg
+xl__hover__rotate_3 =
+    A.class "xl:hover:rotate-3"
+
+
+xl__hover__rotate_6 : Html.Attribute msg
+xl__hover__rotate_6 =
+    A.class "xl:hover:rotate-6"
+
+
+xl__hover__rotate_12 : Html.Attribute msg
+xl__hover__rotate_12 =
+    A.class "xl:hover:rotate-12"
 
 
 xl__hover__rotate_45 : Html.Attribute msg
@@ -108236,9 +112001,59 @@ xl__hover__neg_rotate_45 =
     A.class "xl:hover:-rotate-45"
 
 
+xl__hover__neg_rotate_12 : Html.Attribute msg
+xl__hover__neg_rotate_12 =
+    A.class "xl:hover:-rotate-12"
+
+
+xl__hover__neg_rotate_6 : Html.Attribute msg
+xl__hover__neg_rotate_6 =
+    A.class "xl:hover:-rotate-6"
+
+
+xl__hover__neg_rotate_3 : Html.Attribute msg
+xl__hover__neg_rotate_3 =
+    A.class "xl:hover:-rotate-3"
+
+
+xl__hover__neg_rotate_2 : Html.Attribute msg
+xl__hover__neg_rotate_2 =
+    A.class "xl:hover:-rotate-2"
+
+
+xl__hover__neg_rotate_1 : Html.Attribute msg
+xl__hover__neg_rotate_1 =
+    A.class "xl:hover:-rotate-1"
+
+
 xl__focus__rotate_0 : Html.Attribute msg
 xl__focus__rotate_0 =
     A.class "xl:focus:rotate-0"
+
+
+xl__focus__rotate_1 : Html.Attribute msg
+xl__focus__rotate_1 =
+    A.class "xl:focus:rotate-1"
+
+
+xl__focus__rotate_2 : Html.Attribute msg
+xl__focus__rotate_2 =
+    A.class "xl:focus:rotate-2"
+
+
+xl__focus__rotate_3 : Html.Attribute msg
+xl__focus__rotate_3 =
+    A.class "xl:focus:rotate-3"
+
+
+xl__focus__rotate_6 : Html.Attribute msg
+xl__focus__rotate_6 =
+    A.class "xl:focus:rotate-6"
+
+
+xl__focus__rotate_12 : Html.Attribute msg
+xl__focus__rotate_12 =
+    A.class "xl:focus:rotate-12"
 
 
 xl__focus__rotate_45 : Html.Attribute msg
@@ -108269,6 +112084,31 @@ xl__focus__neg_rotate_90 =
 xl__focus__neg_rotate_45 : Html.Attribute msg
 xl__focus__neg_rotate_45 =
     A.class "xl:focus:-rotate-45"
+
+
+xl__focus__neg_rotate_12 : Html.Attribute msg
+xl__focus__neg_rotate_12 =
+    A.class "xl:focus:-rotate-12"
+
+
+xl__focus__neg_rotate_6 : Html.Attribute msg
+xl__focus__neg_rotate_6 =
+    A.class "xl:focus:-rotate-6"
+
+
+xl__focus__neg_rotate_3 : Html.Attribute msg
+xl__focus__neg_rotate_3 =
+    A.class "xl:focus:-rotate-3"
+
+
+xl__focus__neg_rotate_2 : Html.Attribute msg
+xl__focus__neg_rotate_2 =
+    A.class "xl:focus:-rotate-2"
+
+
+xl__focus__neg_rotate_1 : Html.Attribute msg
+xl__focus__neg_rotate_1 =
+    A.class "xl:focus:-rotate-1"
 
 
 xl__translate_x_0 : Html.Attribute msg
@@ -109506,6 +113346,16 @@ xl__skew_x_0 =
     A.class "xl:skew-x-0"
 
 
+xl__skew_x_1 : Html.Attribute msg
+xl__skew_x_1 =
+    A.class "xl:skew-x-1"
+
+
+xl__skew_x_2 : Html.Attribute msg
+xl__skew_x_2 =
+    A.class "xl:skew-x-2"
+
+
 xl__skew_x_3 : Html.Attribute msg
 xl__skew_x_3 =
     A.class "xl:skew-x-3"
@@ -109536,9 +113386,29 @@ xl__neg_skew_x_3 =
     A.class "xl:-skew-x-3"
 
 
+xl__neg_skew_x_2 : Html.Attribute msg
+xl__neg_skew_x_2 =
+    A.class "xl:-skew-x-2"
+
+
+xl__neg_skew_x_1 : Html.Attribute msg
+xl__neg_skew_x_1 =
+    A.class "xl:-skew-x-1"
+
+
 xl__skew_y_0 : Html.Attribute msg
 xl__skew_y_0 =
     A.class "xl:skew-y-0"
+
+
+xl__skew_y_1 : Html.Attribute msg
+xl__skew_y_1 =
+    A.class "xl:skew-y-1"
+
+
+xl__skew_y_2 : Html.Attribute msg
+xl__skew_y_2 =
+    A.class "xl:skew-y-2"
 
 
 xl__skew_y_3 : Html.Attribute msg
@@ -109571,9 +113441,29 @@ xl__neg_skew_y_3 =
     A.class "xl:-skew-y-3"
 
 
+xl__neg_skew_y_2 : Html.Attribute msg
+xl__neg_skew_y_2 =
+    A.class "xl:-skew-y-2"
+
+
+xl__neg_skew_y_1 : Html.Attribute msg
+xl__neg_skew_y_1 =
+    A.class "xl:-skew-y-1"
+
+
 xl__hover__skew_x_0 : Html.Attribute msg
 xl__hover__skew_x_0 =
     A.class "xl:hover:skew-x-0"
+
+
+xl__hover__skew_x_1 : Html.Attribute msg
+xl__hover__skew_x_1 =
+    A.class "xl:hover:skew-x-1"
+
+
+xl__hover__skew_x_2 : Html.Attribute msg
+xl__hover__skew_x_2 =
+    A.class "xl:hover:skew-x-2"
 
 
 xl__hover__skew_x_3 : Html.Attribute msg
@@ -109606,9 +113496,29 @@ xl__hover__neg_skew_x_3 =
     A.class "xl:hover:-skew-x-3"
 
 
+xl__hover__neg_skew_x_2 : Html.Attribute msg
+xl__hover__neg_skew_x_2 =
+    A.class "xl:hover:-skew-x-2"
+
+
+xl__hover__neg_skew_x_1 : Html.Attribute msg
+xl__hover__neg_skew_x_1 =
+    A.class "xl:hover:-skew-x-1"
+
+
 xl__hover__skew_y_0 : Html.Attribute msg
 xl__hover__skew_y_0 =
     A.class "xl:hover:skew-y-0"
+
+
+xl__hover__skew_y_1 : Html.Attribute msg
+xl__hover__skew_y_1 =
+    A.class "xl:hover:skew-y-1"
+
+
+xl__hover__skew_y_2 : Html.Attribute msg
+xl__hover__skew_y_2 =
+    A.class "xl:hover:skew-y-2"
 
 
 xl__hover__skew_y_3 : Html.Attribute msg
@@ -109641,9 +113551,29 @@ xl__hover__neg_skew_y_3 =
     A.class "xl:hover:-skew-y-3"
 
 
+xl__hover__neg_skew_y_2 : Html.Attribute msg
+xl__hover__neg_skew_y_2 =
+    A.class "xl:hover:-skew-y-2"
+
+
+xl__hover__neg_skew_y_1 : Html.Attribute msg
+xl__hover__neg_skew_y_1 =
+    A.class "xl:hover:-skew-y-1"
+
+
 xl__focus__skew_x_0 : Html.Attribute msg
 xl__focus__skew_x_0 =
     A.class "xl:focus:skew-x-0"
+
+
+xl__focus__skew_x_1 : Html.Attribute msg
+xl__focus__skew_x_1 =
+    A.class "xl:focus:skew-x-1"
+
+
+xl__focus__skew_x_2 : Html.Attribute msg
+xl__focus__skew_x_2 =
+    A.class "xl:focus:skew-x-2"
 
 
 xl__focus__skew_x_3 : Html.Attribute msg
@@ -109676,9 +113606,29 @@ xl__focus__neg_skew_x_3 =
     A.class "xl:focus:-skew-x-3"
 
 
+xl__focus__neg_skew_x_2 : Html.Attribute msg
+xl__focus__neg_skew_x_2 =
+    A.class "xl:focus:-skew-x-2"
+
+
+xl__focus__neg_skew_x_1 : Html.Attribute msg
+xl__focus__neg_skew_x_1 =
+    A.class "xl:focus:-skew-x-1"
+
+
 xl__focus__skew_y_0 : Html.Attribute msg
 xl__focus__skew_y_0 =
     A.class "xl:focus:skew-y-0"
+
+
+xl__focus__skew_y_1 : Html.Attribute msg
+xl__focus__skew_y_1 =
+    A.class "xl:focus:skew-y-1"
+
+
+xl__focus__skew_y_2 : Html.Attribute msg
+xl__focus__skew_y_2 =
+    A.class "xl:focus:skew-y-2"
 
 
 xl__focus__skew_y_3 : Html.Attribute msg
@@ -109709,6 +113659,16 @@ xl__focus__neg_skew_y_6 =
 xl__focus__neg_skew_y_3 : Html.Attribute msg
 xl__focus__neg_skew_y_3 =
     A.class "xl:focus:-skew-y-3"
+
+
+xl__focus__neg_skew_y_2 : Html.Attribute msg
+xl__focus__neg_skew_y_2 =
+    A.class "xl:focus:-skew-y-2"
+
+
+xl__focus__neg_skew_y_1 : Html.Attribute msg
+xl__focus__neg_skew_y_1 =
+    A.class "xl:focus:-skew-y-1"
 
 
 xl__transition_none : Html.Attribute msg
