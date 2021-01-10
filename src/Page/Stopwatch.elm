@@ -3,7 +3,7 @@ module Page.Stopwatch exposing (Model, Msg, init, subscriptions, toSession, upda
 import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
-import Html.Attributes as A
+import Html.Attributes as Attr
 import Html.Tailwind as TW
 import Period exposing (Period, millis)
 import Session exposing (Session)
@@ -217,4 +217,4 @@ stageToElapsed stage =
 
 showPeriod : Period -> Html Msg
 showPeriod period =
-    Html.time [ A.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (Period.toHuman period) ]
+    Html.time [ Attr.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (Period.toHuman period) ]

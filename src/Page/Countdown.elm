@@ -4,7 +4,7 @@ import Alarm
 import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
-import Html.Attributes as A
+import Html.Attributes as Attr
 import Html.Events as Events
 import Html.Tailwind as TW
 import Period exposing (Period)
@@ -241,13 +241,13 @@ viewEditTimePart : Int -> (Int -> msg) -> Html msg
 viewEditTimePart unit msg =
     Html.div [ TW.flex, TW.flex_col ]
         [ Html.div [ TW.text_base ]
-            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg (unit + 1)), A.style "touch-action" "manipulation" ]
+            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg (unit + 1)), Attr.style "touch-action" "manipulation" ]
                 [ Icons.chevronUp [ SvgTW.h_4, SvgTW.w_4 ] ]
             ]
         , Html.div []
             [ Html.text (pad00 unit) ]
         , Html.div [ TW.text_base ]
-            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg (unit - 1)), A.style "touch-action" "manipulation" ]
+            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg (unit - 1)), Attr.style "touch-action" "manipulation" ]
                 [ Icons.chevronDown [ SvgTW.h_4, SvgTW.w_4 ] ]
             ]
         ]
@@ -446,7 +446,7 @@ showPeriodHuman =
 
 showPeriod : (Period -> String) -> Period -> Html Msg
 showPeriod toString period =
-    Html.time [ A.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (toString period) ]
+    Html.time [ Attr.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (toString period) ]
 
 
 
