@@ -11,11 +11,11 @@ port module Alarm exposing
 -}
 
 import Html exposing (Html)
-import Html.Attributes as A
-import Json.Encode as E
+import Html.Attributes as Attr
+import Json.Encode as Encode
 
 
-port alarm : E.Value -> Cmd msg
+port alarm : Encode.Value -> Cmd msg
 
 
 {-| Load the alarm sound
@@ -25,21 +25,21 @@ Mobile devices (especially iOS) will only play audio when triggered by a user ac
 -}
 load : Cmd msg
 load =
-    alarm (E.string "load")
+    alarm (Encode.string "load")
 
 
 {-| Play the alarm
 -}
 play : Cmd msg
 play =
-    alarm (E.string "play")
+    alarm (Encode.string "play")
 
 
 {-| Stop the alarm
 -}
 stop : Cmd msg
 stop =
-    alarm (E.string "stop")
+    alarm (Encode.string "stop")
 
 
 {-| The alarm Html
@@ -49,7 +49,7 @@ You need to include this in your view somewhere, otherwise there is no audio to 
 -}
 view : Html msg
 view =
-    Html.audio [ A.id "alarm", A.controls False ]
-        [ Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.mp3" ] []
-        , Html.source [ A.src "/audio/analog-watch-alarm_daniel-simion.wav" ] []
+    Html.audio [ Attr.id "alarm", Attr.controls False ]
+        [ Html.source [ Attr.src "/audio/analog-watch-alarm_daniel-simion.mp3" ] []
+        , Html.source [ Attr.src "/audio/analog-watch-alarm_daniel-simion.wav" ] []
         ]

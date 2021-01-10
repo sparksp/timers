@@ -1,7 +1,7 @@
 module Theme.Progress exposing (view)
 
 import Html exposing (Html)
-import Html.Attributes as A
+import Html.Attributes as Attr
 import Html.Tailwind as TW
 
 
@@ -24,4 +24,4 @@ view attributes label percent =
 
 progress : Float -> Html.Attribute msg
 progress percent =
-    A.style "width" (String.fromFloat percent ++ "%")
+    Attr.style "width" (String.fromFloat percent ++ "%")

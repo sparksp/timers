@@ -64,7 +64,7 @@ viewPage page toMsg doc =
 
 type Msg
     = ClickedLink UrlRequest
-    | ChangedUrl Url.Url
+    | ChangedUrl Url
     | GotCountdownMsg Countdown.Msg
     | GotRestwatchMsg Restwatch.Msg
     | GotStopwatchMsg Stopwatch.Msg

@@ -1,7 +1,7 @@
 module Theme.Button exposing (attr)
 
 import Html
-import Html.Attributes as A
+import Html.Attributes as Attr
 import Html.Events as Events
 import Html.Tailwind as TW
 
@@ -16,7 +16,7 @@ attr { color, onClick } =
                     Events.onClick m
 
                 Nothing ->
-                    A.disabled True
+                    Attr.disabled True
     in
     [ color
     , TW.text_white
@@ -26,6 +26,6 @@ attr { color, onClick } =
     , TW.rounded
     , TW.disabled__opacity_75
     , TW.disabled__cursor_not_allowed
-    , A.style "touch-action" "manipulation"
+    , Attr.style "touch-action" "manipulation"
     , onClickAttr
     ]

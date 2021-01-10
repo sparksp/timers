@@ -4,7 +4,7 @@ import Alarm
 import Browser exposing (Document)
 import Browser.Events
 import Html exposing (Html)
-import Html.Attributes as A
+import Html.Attributes as Attr
 import Html.Events as Events
 import Html.Tailwind as TW
 import Menu
@@ -466,7 +466,7 @@ fadeRunningAttr =
     let
         stages : StageMaps (Html.Attribute msg)
         stages =
-            allStages (A.class "")
+            allStages (Attr.class "")
     in
     mapStage { stages | onResting = TW.text_gray_600 }
 
@@ -476,8 +476,8 @@ fadeRestingAttr =
     mapStage
         { onWaiting = TW.text_gray_600
         , onRunning = TW.text_gray_600
-        , onResting = A.class ""
-        , onFinished = A.class ""
+        , onResting = Attr.class ""
+        , onFinished = Attr.class ""
         }
 
 
@@ -617,4 +617,4 @@ periodPercent rest period =
 
 showPeriod : Period -> Html Msg
 showPeriod period =
-    Html.time [ A.datetime (Period.toIso8601 period) ] [ Html.text (Period.toHuman period) ]
+    Html.time [ Attr.datetime (Period.toIso8601 period) ] [ Html.text (Period.toHuman period) ]
