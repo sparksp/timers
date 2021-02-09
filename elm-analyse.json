@@ -1,6 +1,0 @@
-{
-  "checks": {},
-  "excludedPaths": [
-    "review/elm-stuff"
-  ]
-}
