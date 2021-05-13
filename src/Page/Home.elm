@@ -1,8 +1,8 @@
 module Page.Home exposing (view)
 
-import Browser exposing (Document)
-import Html exposing (Html)
-import Html.Attributes as Attr
+import Browser.Styled exposing (Document)
+import Html.Styled as Html exposing (Html)
+import Html.Styled.Attributes as Attr
 import Route
 import Tailwind as Tw
 

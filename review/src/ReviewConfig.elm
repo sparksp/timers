@@ -99,6 +99,7 @@ config =
             (Rule.ignoreErrorsForFiles
                 [ "src/Html/Tailwind.elm"
                 , "src/Svg/Tailwind.elm"
+                , "src/Tailwind.elm"
                 ]
             )
         |> List.map

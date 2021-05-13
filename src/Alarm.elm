@@ -10,8 +10,8 @@ port module Alarm exposing
 
 -}
 
-import Html exposing (Html)
-import Html.Attributes as Attr
+import Html.Styled as Html exposing (Html)
+import Html.Styled.Attributes as Attr
 import Json.Encode as Encode
 
 

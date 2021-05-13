@@ -1,9 +1,9 @@
 module Page.Stopwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
-import Browser exposing (Document)
 import Browser.Events
-import Html exposing (Html)
-import Html.Attributes as Attr
+import Browser.Styled exposing (Document)
+import Html.Styled as Html exposing (Html)
+import Html.Styled.Attributes as Attr
 import Period exposing (Period, millis)
 import Session exposing (Session)
 import Tailwind as Tw

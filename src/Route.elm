@@ -4,8 +4,8 @@ module Route exposing
     , href
     )
 
-import Html exposing (Attribute)
-import Html.Attributes as Attr
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr
 import Url exposing (Url)
 import Url.Parser as Parser exposing ((<?>), Parser, oneOf, s)
 import Url.Parser.Query as Query
@@ -22,7 +22,7 @@ type Route
 -- HELPERS
 
 
-href : Route -> Attribute msg
+href : Route -> Html.Attribute msg
 href targetRoute =
     Attr.href (routeToString targetRoute)
 

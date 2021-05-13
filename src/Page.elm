@@ -1,11 +1,11 @@
 module Page exposing (Page(..), view)
 
-import Browser exposing (Document)
-import Html exposing (Html)
-import Html.Attributes as Attr
+import Browser.Styled exposing (Document)
+import Html.Styled as Html exposing (Html)
+import Html.Styled.Attributes as Attr
 import Route
-import Svg.Attributes as SvgAttr
 import Svg.Icons as Icons
+import Svg.Styled.Attributes as SvgAttr
 import Tailwind as Tw
 
 

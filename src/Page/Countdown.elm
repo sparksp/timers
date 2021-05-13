@@ -1,15 +1,15 @@
 module Page.Countdown exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
 import Alarm
-import Browser exposing (Document)
 import Browser.Events
-import Html exposing (Html)
-import Html.Attributes as Attr
-import Html.Events as Events
+import Browser.Styled exposing (Document)
+import Html.Styled as Html exposing (Html)
+import Html.Styled.Attributes as Attr
+import Html.Styled.Events as Events
 import Period exposing (Period)
 import Session exposing (Session)
-import Svg.Attributes as SvgAttr
 import Svg.Icons as Icons
+import Svg.Styled.Attributes as SvgAttr
 import Tailwind as Tw
 import Theme.Button as Button
 import Theme.Progress as Progress

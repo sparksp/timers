@@ -1,8 +1,8 @@
 module Theme.Button exposing (attr)
 
-import Html
-import Html.Attributes as Attr
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr
+import Html.Styled.Events as Events
 import Tailwind as Tw
 
 
