@@ -56,9 +56,12 @@ config =
     , NoFullyAppliedPrefixOperator.rule
     , NoImportingEverything.rule []
     , NoInconsistentAliases.config
-        [ ( "Html.Attributes", "Attr" )
+        [ ( "Html.Styled.Attributes", "Attr" )
+        , ( "Svg.Styled.Attributes", "SvgAttr" )
         , ( "Json.Decode", "Decode" )
         , ( "Json.Encode", "Encode" )
+        , ( "Tailwind.Utilities", "Tw" )
+        , ( "Tailwind.Breakpoints", "Breakpoints" )
         ]
         |> NoInconsistentAliases.noMissingAliases
         |> NoInconsistentAliases.rule
@@ -95,13 +98,6 @@ config =
     , NoUselessSubscriptions.rule
     , UseCamelCase.rule UseCamelCase.default
     ]
-        |> List.map
-            (Rule.ignoreErrorsForFiles
-                [ "src/Html/Tailwind.elm"
-                , "src/Svg/Tailwind.elm"
-                , "src/Tailwind.elm"
-                ]
-            )
         |> List.map
             (Rule.ignoreErrorsForDirectories
                 [ "gen"

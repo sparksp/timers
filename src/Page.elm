@@ -1,12 +1,13 @@
 module Page exposing (Page(..), view)
 
 import Browser.Styled exposing (Document)
+import Css.Global
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr
 import Route
 import Svg.Icons as Icons
 import Svg.Styled.Attributes as SvgAttr
-import Tailwind as Tw
+import Tailwind.Utilities as Tw
 
 
 {-| Current active menu item
@@ -27,10 +28,13 @@ view : Page -> Document msg -> Document msg
 view page { title, body } =
     { title = title ++ " - Timers"
     , body =
-        [ Html.div
-            [ Attr.class Tw.min_h_screen
-            , Attr.class Tw.flex
-            , Attr.class Tw.flex_col
+        [ Css.Global.global Tw.globalStyles
+        , Html.div
+            [ Attr.css
+                [ Tw.min_h_screen
+                , Tw.flex
+                , Tw.flex_col
+                ]
             ]
             (viewHeader (Title title) page :: body)
         ]
@@ -40,28 +44,36 @@ view page { title, body } =
 viewHeader : Title -> Page -> Html msg
 viewHeader (Title title) page =
     Html.nav
-        [ Attr.class Tw.grid
-        , Attr.class Tw.grid_cols_header
-        , Attr.class Tw.p_2
-        , Attr.class Tw.bg_orange_500
-        , Attr.class Tw.text_white
-        , Attr.class Tw.border_b
-        , Attr.class Tw.border_orange_400
-        , Attr.class Tw.shadow
-        , Attr.class Tw.sticky
-        , Attr.class Tw.top_0
+        [ Attr.css
+            [ Tw.grid
+            , Tw.grid_cols_header
+            , Tw.p_2
+            , Tw.bg_orange_500
+            , Tw.text_white
+            , Tw.border_b
+            , Tw.border_orange_400
+            , Tw.shadow
+            , Tw.sticky
+            , Tw.top_0
+            ]
         ]
         [ Html.div
-            [ Attr.class Tw.mr_auto
+            [ Attr.css
+                [ Tw.mr_auto
+                ]
             ]
             [ homeLink page ]
         , Html.h1
-            [ Attr.class Tw.col_start_2
-            , Attr.class Tw.text_center
+            [ Attr.css
+                [ Tw.col_start_2
+                , Tw.text_center
+                ]
             ]
             [ Html.text title ]
         , Html.div
-            [ Attr.class Tw.ml_auto
+            [ Attr.css
+                [ Tw.ml_auto
+                ]
             ]
             []
         ]
@@ -75,12 +87,16 @@ homeLink page =
 
         _ ->
             Html.a
-                [ Attr.class Tw.flex
-                , Attr.class Tw.items_center
+                [ Attr.css
+                    [ Tw.flex
+                    , Tw.items_center
+                    ]
                 , Route.href Route.Home
                 ]
                 [ Icons.back
-                    [ SvgAttr.class Tw.h_6
-                    , SvgAttr.class Tw.w_6
+                    [ SvgAttr.css
+                        [ Tw.h_6
+                        , Tw.w_6
+                        ]
                     ]
                 ]

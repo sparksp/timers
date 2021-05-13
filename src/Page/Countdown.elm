@@ -3,6 +3,7 @@ module Page.Countdown exposing (Model, Msg, init, subscriptions, toSession, upda
 import Alarm
 import Browser.Events
 import Browser.Styled exposing (Document)
+import Css
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr
 import Html.Styled.Events as Events
@@ -10,7 +11,7 @@ import Period exposing (Period)
 import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Styled.Attributes as SvgAttr
-import Tailwind as Tw
+import Tailwind.Utilities as Tw
 import Theme.Button as Button
 import Theme.Progress as Progress
 import Time
@@ -204,28 +205,32 @@ view (Model _ stage) =
 viewBody : Stage -> List (Html Msg)
 viewBody stage =
     [ Html.main_
-        [ Attr.class Tw.flex_grow
+        [ Attr.css [ Tw.flex_grow ]
         ]
         [ Html.div
-            [ Attr.class Tw.container
-            , Attr.class Tw.mx_auto
-            , Attr.class Tw.p_3
-            , Attr.class Tw.flex
-            , Attr.class Tw.flex_col
+            [ Attr.css
+                [ Tw.container
+                , Tw.mx_auto
+                , Tw.p_3
+                , Tw.flex
+                , Tw.flex_col
+                ]
             ]
             [ viewEditableTime stage
             , viewProgress stage
             ]
         ]
     , Html.footer
-        [ Attr.class Tw.container
-        , Attr.class Tw.mx_auto
-        , Attr.class Tw.grid
-        , Attr.class Tw.grid_cols_2
-        , Attr.class Tw.gap_2
-        , Attr.class Tw.text_xl
-        , Attr.class Tw.leading_normal
-        , Attr.class Tw.py_2
+        [ Attr.css
+            [ Tw.container
+            , Tw.mx_auto
+            , Tw.grid
+            , Tw.grid_cols_2
+            , Tw.gap_2
+            , Tw.text_xl
+            , Tw.leading_normal
+            , Tw.py_2
+            ]
         ]
         [ viewStartStopButton stage
         , viewResetButton stage
@@ -242,27 +247,31 @@ viewEditableTime stage =
                     periodToTime duration
             in
             Html.div
-                [ Attr.class Tw.text_4xl
-                , Attr.class Tw.font_mono
-                , Attr.class Tw.self_center
-                , Attr.class Tw.flex
-                , Attr.class Tw.flex_row
-                , Attr.class Tw.leading_none
+                [ Attr.css
+                    [ Tw.text_4xl
+                    , Tw.font_mono
+                    , Tw.self_center
+                    , Tw.flex
+                    , Tw.flex_row
+                    , Tw.leading_none
+                    ]
                 ]
                 [ viewEditTimePart hours (GotEditMsg << SetHours)
-                , Html.div [ Attr.class Tw.self_center ] [ Html.text ":" ]
+                , Html.div [ Attr.css [ Tw.self_center ] ] [ Html.text ":" ]
                 , viewEditTimePart minutes (GotEditMsg << SetMinutes)
-                , Html.div [ Attr.class Tw.self_center ] [ Html.text ":" ]
+                , Html.div [ Attr.css [ Tw.self_center ] ] [ Html.text ":" ]
                 , viewEditTimePart seconds (GotEditMsg << SetSeconds)
                 ]
 
         _ ->
             Html.p
-                [ Attr.class Tw.text_4xl
-                , Attr.class Tw.font_mono
-                , Attr.class Tw.self_center
-                , Attr.class Tw.leading_none
-                , Attr.class Tw.py_4
+                [ Attr.css
+                    [ Tw.text_4xl
+                    , Tw.font_mono
+                    , Tw.self_center
+                    , Tw.leading_none
+                    , Tw.py_4
+                    ]
                 ]
                 [ showRemainingTime stage ]
 
@@ -270,34 +279,52 @@ viewEditableTime stage =
 viewEditTimePart : Int -> (Int -> msg) -> Html msg
 viewEditTimePart unit msg =
     Html.div
-        [ Attr.class Tw.flex
-        , Attr.class Tw.flex_col
+        [ Attr.css
+            [ Tw.flex
+            , Tw.flex_col
+            ]
         ]
         [ Html.div
-            [ Attr.class Tw.text_base
+            [ Attr.css [ Tw.text_base ]
             ]
             [ Html.button
-                [ Attr.class Tw.w_full
-                , Attr.class Tw.flex
-                , Attr.class Tw.justify_center
+                [ Attr.css
+                    [ Tw.w_full
+                    , Tw.flex
+                    , Tw.justify_center
+                    ]
                 , Events.onClick (msg (unit + 1))
                 , Attr.style "touch-action" "manipulation"
                 ]
-                [ Icons.chevronUp [ SvgAttr.class Tw.h_4, SvgAttr.class Tw.w_4 ] ]
+                [ Icons.chevronUp
+                    [ SvgAttr.css
+                        [ Tw.h_4
+                        , Tw.w_4
+                        ]
+                    ]
+                ]
             ]
         , Html.div []
             [ Html.text (pad00 unit) ]
         , Html.div
-            [ Attr.class Tw.text_base
+            [ Attr.css [ Tw.text_base ]
             ]
             [ Html.button
-                [ Attr.class Tw.w_full
-                , Attr.class Tw.flex
-                , Attr.class Tw.justify_center
+                [ Attr.css
+                    [ Tw.w_full
+                    , Tw.flex
+                    , Tw.justify_center
+                    ]
                 , Events.onClick (msg (unit - 1))
                 , Attr.style "touch-action" "manipulation"
                 ]
-                [ Icons.chevronDown [ SvgAttr.class Tw.h_4, SvgAttr.class Tw.w_4 ] ]
+                [ Icons.chevronDown
+                    [ SvgAttr.css
+                        [ Tw.h_4
+                        , Tw.w_4
+                        ]
+                    ]
+                ]
             ]
         ]
 
@@ -307,10 +334,10 @@ viewProgress stage =
     let
         ( label, bgColor ) =
             mapStage
-                { onWaiting = ( "Ready", Attr.class Tw.bg_gray_500 )
-                , onRunning = ( "Go!", Attr.class Tw.bg_green_500 )
-                , onPaused = ( "Paused", Attr.class Tw.bg_gray_500 )
-                , onFinished = ( "Finished", Attr.class Tw.bg_red_500 )
+                { onWaiting = ( "Ready", Attr.css [ Tw.bg_gray_500 ] )
+                , onRunning = ( "Go!", Attr.css [ Tw.bg_green_500 ] )
+                , onPaused = ( "Paused", Attr.css [ Tw.bg_gray_500 ] )
+                , onFinished = ( "Finished", Attr.css [ Tw.bg_red_500 ] )
                 }
                 stage
     in
@@ -343,9 +370,9 @@ viewStartStopButton stage =
 viewStartButton : Html Msg
 viewStartButton =
     Html.button
-        (Attr.class Tw.hover__bg_green_600
+        (Attr.css [ Css.hover [ Tw.bg_green_600 ] ]
             :: Button.attr
-                { color = Attr.class Tw.bg_green_500
+                { color = Tw.bg_green_500
                 , onClick = Just (GotStageMsg Start)
                 }
         )
@@ -356,7 +383,7 @@ viewDisabledStartButton : Html Msg
 viewDisabledStartButton =
     Html.button
         (Button.attr
-            { color = Attr.class Tw.bg_green_500
+            { color = Tw.bg_green_500
             , onClick = Nothing
             }
         )
@@ -366,9 +393,9 @@ viewDisabledStartButton =
 viewStopButton : Html Msg
 viewStopButton =
     Html.button
-        (Attr.class Tw.hover__bg_blue_600
+        (Attr.css [ Css.hover [ Tw.bg_blue_600 ] ]
             :: Button.attr
-                { color = Attr.class Tw.bg_blue_500
+                { color = Tw.bg_blue_500
                 , onClick = Just (GotStageMsg Stop)
                 }
         )
@@ -392,7 +419,7 @@ viewDisabledResetButton : Html Msg
 viewDisabledResetButton =
     Html.button
         (Button.attr
-            { color = Attr.class Tw.bg_gray_500
+            { color = Tw.bg_gray_500
             , onClick = Nothing
             }
         )
@@ -402,9 +429,9 @@ viewDisabledResetButton =
 viewGrayResetButton : Html Msg
 viewGrayResetButton =
     Html.button
-        (Attr.class Tw.hover__bg_red_600
+        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
             :: Button.attr
-                { color = Attr.class Tw.bg_gray_500
+                { color = Tw.bg_gray_500
                 , onClick = Just (GotStageMsg Reset)
                 }
         )
@@ -414,9 +441,9 @@ viewGrayResetButton =
 viewRedResetButton : Html Msg
 viewRedResetButton =
     Html.button
-        (Attr.class Tw.hover__bg_red_600
+        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
             :: Button.attr
-                { color = Attr.class Tw.bg_red_500
+                { color = Tw.bg_red_500
                 , onClick = Just (GotStageMsg Reset)
                 }
         )
@@ -537,7 +564,7 @@ showPeriod : (Period -> String) -> Period -> Html Msg
 showPeriod toString period =
     Html.time
         [ Attr.datetime (Period.toIso8601 period)
-        , Attr.class Tw.select_all
+        , Attr.css [ Tw.select_all ]
         ]
         [ Html.text (toString period) ]
 

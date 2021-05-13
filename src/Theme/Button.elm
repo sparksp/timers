@@ -1,12 +1,13 @@
 module Theme.Button exposing (attr)
 
+import Css
 import Html.Styled as Html
 import Html.Styled.Attributes as Attr
 import Html.Styled.Events as Events
-import Tailwind as Tw
+import Tailwind.Utilities as Tw
 
 
-attr : { color : Html.Attribute msg, onClick : Maybe msg } -> List (Html.Attribute msg)
+attr : { color : Css.Style, onClick : Maybe msg } -> List (Html.Attribute msg)
 attr { color, onClick } =
     let
         onClickAttr : Html.Attribute msg
@@ -18,14 +19,18 @@ attr { color, onClick } =
                 Nothing ->
                     Attr.disabled True
     in
-    [ color
-    , Attr.class Tw.text_white
-    , Attr.class Tw.font_bold
-    , Attr.class Tw.p_2
-    , Attr.class Tw.m_2
-    , Attr.class Tw.rounded
-    , Attr.class Tw.disabled__opacity_75
-    , Attr.class Tw.disabled__cursor_not_allowed
+    [ Attr.css
+        [ color
+        , Tw.text_white
+        , Tw.font_bold
+        , Tw.p_2
+        , Tw.m_2
+        , Tw.rounded
+        , Css.disabled
+            [ Tw.opacity_75
+            , Tw.cursor_not_allowed
+            ]
+        ]
     , Attr.style "touch-action" "manipulation"
     , onClickAttr
     ]

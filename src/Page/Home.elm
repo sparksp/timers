@@ -1,10 +1,11 @@
 module Page.Home exposing (view)
 
 import Browser.Styled exposing (Document)
+import Css
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr
 import Route
-import Tailwind as Tw
+import Tailwind.Utilities as Tw
 
 
 view : Document msg
@@ -17,24 +18,30 @@ view =
 viewBody : List (Html msg)
 viewBody =
     [ Html.main_
-        [ Attr.class Tw.flex_grow
+        [ Attr.css
+            [ Tw.flex_grow
+            ]
         ]
         [ Html.div
-            [ Attr.class Tw.container
-            , Attr.class Tw.mx_auto
-            , Attr.class Tw.p_3
-            , Attr.class Tw.flex
-            , Attr.class Tw.flex_col
+            [ Attr.css
+                [ Tw.container
+                , Tw.mx_auto
+                , Tw.p_3
+                , Tw.flex
+                , Tw.flex_col
+                ]
             ]
             [ Html.div
-                [ Attr.class Tw.text_center
-                , Attr.class Tw.mt_4
-                , Attr.class Tw.grid
-                , Attr.class Tw.grid_cols_1
-                , Attr.class Tw.divide_y
-                , Attr.class Tw.border
-                , Attr.class Tw.border_blue_500
-                , Attr.class Tw.rounded
+                [ Attr.css
+                    [ Tw.text_center
+                    , Tw.mt_4
+                    , Tw.grid
+                    , Tw.grid_cols_1
+                    , Tw.divide_y
+                    , Tw.border
+                    , Tw.border_blue_500
+                    , Tw.rounded
+                    ]
                 ]
                 [ button "Countdown" (Route.Countdown Nothing)
                 , button "Restwatch" Route.Restwatch
@@ -49,13 +56,17 @@ button : String -> Route.Route -> Html msg
 button label route =
     Html.a
         [ Route.href route
-        , Attr.class Tw.hover__bg_blue_500
-        , Attr.class Tw.hover__text_white
-        , Attr.class Tw.bg_transparent
-        , Attr.class Tw.text_blue_700
-        , Attr.class Tw.border_blue_200
-        , Attr.class Tw.font_semibold
-        , Attr.class Tw.p_2
+        , Attr.css
+            [ Css.hover
+                [ Tw.bg_blue_500
+                , Tw.text_white
+                ]
+            , Tw.bg_transparent
+            , Tw.text_blue_700
+            , Tw.border_blue_200
+            , Tw.font_semibold
+            , Tw.p_2
+            ]
         ]
         [ Html.text label
         ]

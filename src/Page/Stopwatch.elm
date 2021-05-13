@@ -2,11 +2,12 @@ module Page.Stopwatch exposing (Model, Msg, init, subscriptions, toSession, upda
 
 import Browser.Events
 import Browser.Styled exposing (Document)
+import Css
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr
 import Period exposing (Period, millis)
 import Session exposing (Session)
-import Tailwind as Tw
+import Tailwind.Utilities as Tw
 import Theme.Button as Button
 import Time
 import Time.Extra
@@ -120,39 +121,49 @@ view (Model _ stage) =
 viewBody : Stage -> List (Html Msg)
 viewBody stage =
     [ Html.main_
-        [ Attr.class Tw.flex_grow
+        [ Attr.css
+            [ Tw.flex_grow
+            ]
         ]
         [ Html.div
-            [ Attr.class Tw.container
-            , Attr.class Tw.mx_auto
-            , Attr.class Tw.p_3
-            , Attr.class Tw.flex
-            , Attr.class Tw.flex_col
+            [ Attr.css
+                [ Tw.container
+                , Tw.mx_auto
+                , Tw.p_3
+                , Tw.flex
+                , Tw.flex_col
+                ]
             ]
             [ Html.div
-                [ Attr.class Tw.mt_4
-                , Attr.class Tw.flex
-                , Attr.class Tw.flex_col
+                [ Attr.css
+                    [ Tw.mt_4
+                    , Tw.flex
+                    , Tw.flex_col
+                    ]
                 ]
                 [ Html.p
-                    [ Attr.class Tw.self_center
-                    , Attr.class Tw.text_4xl
-                    , Attr.class Tw.leading_normal
-                    , Attr.class Tw.font_mono
+                    [ Attr.css
+                        [ Tw.self_center
+                        , Tw.text_4xl
+                        , Tw.leading_normal
+                        , Tw.font_mono
+                        ]
                     ]
                     [ showTime stage ]
                 ]
             ]
         ]
     , Html.footer
-        [ Attr.class Tw.container
-        , Attr.class Tw.mx_auto
-        , Attr.class Tw.grid
-        , Attr.class Tw.grid_cols_2
-        , Attr.class Tw.gap_2
-        , Attr.class Tw.text_xl
-        , Attr.class Tw.leading_normal
-        , Attr.class Tw.py_2
+        [ Attr.css
+            [ Tw.container
+            , Tw.mx_auto
+            , Tw.grid
+            , Tw.grid_cols_2
+            , Tw.gap_2
+            , Tw.text_xl
+            , Tw.leading_normal
+            , Tw.py_2
+            ]
         ]
         [ viewStartStopButton stage
         , viewResetButton stage
@@ -172,10 +183,9 @@ viewStartStopButton stage =
 viewStartButton : Html Msg
 viewStartButton =
     Html.button
-        (Attr.class Tw.hover__bg_green_600
+        (Attr.css [ Css.hover [ Tw.bg_green_600 ] ]
             :: Button.attr
-                { color =
-                    Attr.class Tw.bg_green_500
+                { color = Tw.bg_green_500
                 , onClick = Just Start
                 }
         )
@@ -185,10 +195,9 @@ viewStartButton =
 viewStopButton : Html Msg
 viewStopButton =
     Html.button
-        (Attr.class Tw.hover__bg_blue_600
+        (Attr.css [ Css.hover [ Tw.bg_blue_600 ] ]
             :: Button.attr
-                { color =
-                    Attr.class Tw.bg_blue_500
+                { color = Tw.bg_blue_500
                 , onClick = Just Stop
                 }
         )
@@ -209,8 +218,7 @@ viewDisabledResetButton : Html Msg
 viewDisabledResetButton =
     Html.button
         (Button.attr
-            { color =
-                Attr.class Tw.bg_gray_500
+            { color = Tw.bg_gray_500
             , onClick = Nothing
             }
         )
@@ -220,10 +228,9 @@ viewDisabledResetButton =
 viewResetButton_ : Html Msg
 viewResetButton_ =
     Html.button
-        (Attr.class Tw.hover__bg_red_600
+        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
             :: Button.attr
-                { color =
-                    Attr.class Tw.bg_gray_500
+                { color = Tw.bg_gray_500
                 , onClick = Just Reset
                 }
         )
@@ -277,6 +284,6 @@ showPeriod : Period -> Html Msg
 showPeriod period =
     Html.time
         [ Attr.datetime (Period.toIso8601 period)
-        , Attr.class Tw.select_all
+        , Attr.css [ Tw.select_all ]
         ]
         [ Html.text (Period.toHuman period) ]

@@ -3,6 +3,7 @@ module Page.Restwatch exposing (Model, Msg, init, subscriptions, toSession, upda
 import Alarm
 import Browser.Events
 import Browser.Styled exposing (Document)
+import Css
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr
 import Html.Styled.Events as Events
@@ -12,7 +13,7 @@ import Period exposing (Period, millis)
 import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Styled.Attributes as SvgAttr
-import Tailwind as Tw
+import Tailwind.Utilities as Tw
 import Theme.Button as Button
 import Theme.Progress as Progress
 import Time
@@ -281,61 +282,85 @@ view (Model _ model) =
 viewBody : Internals -> List (Html Msg)
 viewBody model =
     [ Html.main_
-        [ Attr.class Tw.flex_grow
-        , Attr.class Tw.container
-        , Attr.class Tw.mx_auto
-        , Attr.class Tw.p_3
-        , Attr.class Tw.flex
-        , Attr.class Tw.flex_col
+        [ Attr.css
+            [ Tw.flex_grow
+            , Tw.container
+            , Tw.mx_auto
+            , Tw.p_3
+            , Tw.flex
+            , Tw.flex_col
+            ]
         ]
         [ Html.div
-            [ Attr.class Tw.mt_4
-            , Attr.class Tw.flex
-            , Attr.class Tw.flex_col
+            [ Attr.css
+                [ Tw.mt_4
+                , Tw.flex
+                , Tw.flex_col
+                ]
             ]
             [ Html.div
                 [ fadeRunningAttr model.stage
-                , Attr.class Tw.transition_colors
-                , Attr.class Tw.duration_1000
-                , Attr.class Tw.ease_out
-                , Attr.class Tw.self_center
+                , Attr.css
+                    [ Tw.transition_colors
+                    , Tw.duration_1000
+                    , Tw.ease_out
+                    , Tw.self_center
+                    ]
                 ]
                 [ Html.p
-                    [ Attr.class Tw.text_left
+                    [ Attr.css
+                        [ Tw.text_left
+                        ]
                     ]
                     [ Html.text "Activity" ]
                 , Html.p
-                    [ Attr.class Tw.text_4xl
-                    , Attr.class Tw.leading_normal
-                    , Attr.class Tw.font_mono
-                    , Attr.class Tw.select_all
+                    [ Attr.css
+                        [ Tw.text_4xl
+                        , Tw.leading_normal
+                        , Tw.font_mono
+                        , Tw.select_all
+                        ]
                     ]
                     [ showRunningTime model ]
                 ]
             , Html.div
                 [ fadeRestingAttr model.stage
-                , Attr.class Tw.transition_colors
-                , Attr.class Tw.duration_1000
-                , Attr.class Tw.ease_out
-                , Attr.class Tw.self_center
-                , Attr.class Tw.relative
+                , Attr.css
+                    [ Tw.transition_colors
+                    , Tw.duration_1000
+                    , Tw.ease_out
+                    , Tw.self_center
+                    , Tw.relative
+                    ]
                 ]
                 [ Html.button [ Events.onClick (ShowRest (Menu.toggle model.showRest)) ]
                     [ Html.div
-                        [ Attr.class Tw.flex
-                        , Attr.class Tw.items_center
+                        [ Attr.css
+                            [ Tw.flex
+                            , Tw.items_center
+                            ]
                         ]
                         [ Html.p
-                            [ Attr.class Tw.text_left
+                            [ Attr.css
+                                [ Tw.text_left
+                                ]
                             ]
                             [ Html.text ("Rest (" ++ Percent.toString model.rest ++ ")")
                             ]
-                        , Icons.cog [ SvgAttr.class Tw.w_4, SvgAttr.class Tw.h_4, SvgAttr.class Tw.ml_2 ]
+                        , Icons.cog
+                            [ SvgAttr.css
+                                [ Tw.w_4
+                                , Tw.h_4
+                                , Tw.ml_2
+                                ]
+                            ]
                         ]
                     , Html.p
-                        [ Attr.class Tw.text_4xl
-                        , Attr.class Tw.leading_normal
-                        , Attr.class Tw.font_mono
+                        [ Attr.css
+                            [ Tw.text_4xl
+                            , Tw.leading_normal
+                            , Tw.font_mono
+                            ]
                         ]
                         [ showRestingTime model ]
                     ]
@@ -345,14 +370,16 @@ viewBody model =
         , viewProgress model
         ]
     , Html.footer
-        [ Attr.class Tw.container
-        , Attr.class Tw.mx_auto
-        , Attr.class Tw.grid
-        , Attr.class Tw.grid_cols_2
-        , Attr.class Tw.gap_2
-        , Attr.class Tw.text_xl
-        , Attr.class Tw.leading_normal
-        , Attr.class Tw.py_2
+        [ Attr.css
+            [ Tw.container
+            , Tw.mx_auto
+            , Tw.grid
+            , Tw.grid_cols_2
+            , Tw.gap_2
+            , Tw.text_xl
+            , Tw.leading_normal
+            , Tw.py_2
+            ]
         ]
         [ viewStartRestButton model.stage
         , viewResetButton model.stage
@@ -365,9 +392,11 @@ viewRestMenuOverlay showRest =
     case showRest of
         Menu.Opened ->
             Html.div
-                [ Attr.class Tw.z_10
-                , Attr.class Tw.fixed
-                , Attr.class Tw.inset_0
+                [ Attr.css
+                    [ Tw.z_10
+                    , Tw.fixed
+                    , Tw.inset_0
+                    ]
                 , Events.onClick (ShowRest Menu.Closed)
                 ]
                 []
@@ -393,35 +422,41 @@ viewOpenRestMenu rest =
             (\pc ->
                 if pc == Percent.toInt rest then
                     Html.button
-                        [ Attr.class Tw.w_full
-                        , Attr.class Tw.py_1
-                        , Attr.class Tw.bg_orange_500
-                        , Attr.class Tw.text_white
+                        [ Attr.css
+                            [ Tw.w_full
+                            , Tw.py_1
+                            , Tw.bg_orange_500
+                            , Tw.text_white
+                            ]
                         ]
                         [ Html.text (String.fromInt pc ++ "%") ]
 
                 else
                     Html.button
-                        [ Attr.class Tw.w_full
-                        , Attr.class Tw.py_1
-                        , Attr.class Tw.bg_white
-                        , Attr.class Tw.hover__bg_gray_200
+                        [ Attr.css
+                            [ Tw.w_full
+                            , Tw.py_1
+                            , Tw.bg_white
+                            , Css.hover [ Tw.bg_gray_200 ]
+                            ]
                         , Events.onClick (SetRest (percent pc))
                         ]
                         [ Html.text (String.fromInt pc ++ "%") ]
             )
         |> Html.div
-            [ Attr.class Tw.w_full
-            , Attr.class Tw.absolute
-            , Attr.class Tw.z_10
-            , Attr.class Tw.text_xl
-            , Attr.class Tw.leading_normal
-            , Attr.class Tw.text_black
-            , Attr.class Tw.bg_gray_400
-            , Attr.class Tw.border_gray_700
-            , Attr.class Tw.border
-            , Attr.class Tw.divide_y
-            , Attr.class Tw.shadow_lg
+            [ Attr.css
+                [ Tw.w_full
+                , Tw.absolute
+                , Tw.z_10
+                , Tw.text_xl
+                , Tw.leading_normal
+                , Tw.text_black
+                , Tw.bg_gray_400
+                , Tw.border_gray_700
+                , Tw.border
+                , Tw.divide_y
+                , Tw.shadow_lg
+                ]
             ]
 
 
@@ -431,18 +466,18 @@ viewProgress state =
         ( label, bgColor ) =
             mapStage
                 { onWaiting =
-                    ( "Get Ready!", Attr.class Tw.bg_gray_500 )
+                    ( "Get Ready!", Tw.bg_gray_500 )
                 , onRunning =
-                    ( "Go!", Attr.class Tw.bg_green_600 )
+                    ( "Go!", Tw.bg_green_600 )
                 , onResting =
-                    ( "Rest...", Attr.class Tw.bg_orange_600 )
+                    ( "Rest...", Tw.bg_orange_600 )
                 , onFinished =
-                    ( "Finished", Attr.class Tw.bg_red_600 )
+                    ( "Finished", Tw.bg_red_600 )
                 }
                 state.stage
     in
     calculateProgress state
-        |> Progress.view [ bgColor ] [ Html.text label ]
+        |> Progress.view [ Attr.css [ bgColor ] ] [ Html.text label ]
 
 
 calculateProgress : { a | rest : Percent, stage : Stage } -> Float
@@ -511,9 +546,9 @@ viewResetButton stage =
 viewStartButton : Html Msg
 viewStartButton =
     Html.button
-        (Attr.class Tw.hover__bg_green_600
+        (Attr.css [ Css.hover [ Tw.bg_green_600 ] ]
             :: Button.attr
-                { color = Attr.class Tw.bg_green_500
+                { color = Tw.bg_green_500
                 , onClick = Just (StageMsg Start)
                 }
         )
@@ -523,9 +558,9 @@ viewStartButton =
 viewRestButton : Html Msg
 viewRestButton =
     Html.button
-        (Attr.class Tw.hover__bg_orange_600
+        (Attr.css [ Css.hover [ Tw.bg_orange_600 ] ]
             :: Button.attr
-                { color = Attr.class Tw.bg_orange_500
+                { color = Tw.bg_orange_500
                 , onClick = Just (StageMsg Rest)
                 }
         )
@@ -535,9 +570,9 @@ viewRestButton =
 viewPauseButton : Html Msg
 viewPauseButton =
     Html.button
-        (Attr.class Tw.hover__bg_blue_600
+        (Attr.css [ Css.hover [ Tw.bg_blue_600 ] ]
             :: Button.attr
-                { color = Attr.class Tw.bg_blue_500
+                { color = Tw.bg_blue_500
                 , onClick = Just (StageMsg Pause)
                 }
         )
@@ -548,7 +583,7 @@ viewDisabledResetButton : Html Msg
 viewDisabledResetButton =
     Html.button
         (Button.attr
-            { color = Attr.class Tw.bg_gray_500
+            { color = Tw.bg_gray_500
             , onClick = Nothing
             }
         )
@@ -558,9 +593,9 @@ viewDisabledResetButton =
 viewRedResetButton : Html Msg
 viewRedResetButton =
     Html.button
-        (Attr.class Tw.hover__bg_red_600
+        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
             :: Button.attr
-                { color = Attr.class Tw.bg_red_500
+                { color = Tw.bg_red_500
                 , onClick = Just (StageMsg Reset)
                 }
         )
@@ -570,9 +605,9 @@ viewRedResetButton =
 viewGrayResetButton : Html Msg
 viewGrayResetButton =
     Html.button
-        (Attr.class Tw.hover__bg_red_600
+        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
             :: Button.attr
-                { color = Attr.class Tw.bg_gray_500
+                { color = Tw.bg_gray_500
                 , onClick = Just (StageMsg Reset)
                 }
         )
@@ -594,21 +629,21 @@ fadeRunningAttr =
     let
         stages : StageMaps (Html.Attribute msg)
         stages =
-            allStages (Attr.class "")
+            allStages (Attr.css [])
     in
     mapStage
         { stages
-            | onResting = Attr.class Tw.text_gray_600
+            | onResting = Attr.css [ Tw.text_gray_600 ]
         }
 
 
 fadeRestingAttr : Stage -> Html.Attribute Msg
 fadeRestingAttr =
     mapStage
-        { onWaiting = Attr.class Tw.text_gray_600
-        , onRunning = Attr.class Tw.text_gray_600
-        , onResting = Attr.class ""
-        , onFinished = Attr.class ""
+        { onWaiting = Attr.css [ Tw.text_gray_600 ]
+        , onRunning = Attr.css [ Tw.text_gray_600 ]
+        , onResting = Attr.css []
+        , onFinished = Attr.css []
         }
 
 
