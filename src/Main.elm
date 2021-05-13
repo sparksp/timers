@@ -1,6 +1,6 @@
 module Main exposing (Model, Msg, main)
 
-import Browser exposing (Document, UrlRequest(..))
+import Browser exposing (Document, UrlRequest)
 import Browser.Navigation as Nav
 import Html
 import Page exposing (Page)
