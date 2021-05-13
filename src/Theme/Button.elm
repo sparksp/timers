@@ -3,7 +3,7 @@ module Theme.Button exposing (attr)
 import Html
 import Html.Attributes as Attr
 import Html.Events as Events
-import Html.Tailwind as TW
+import Tailwind as Tw
 
 
 attr : { color : Html.Attribute msg, onClick : Maybe msg } -> List (Html.Attribute msg)
@@ -19,13 +19,13 @@ attr { color, onClick } =
                     Attr.disabled True
     in
     [ color
-    , TW.text_white
-    , TW.font_bold
-    , TW.p_2
-    , TW.m_2
-    , TW.rounded
-    , TW.disabled__opacity_75
-    , TW.disabled__cursor_not_allowed
+    , Attr.class Tw.text_white
+    , Attr.class Tw.font_bold
+    , Attr.class Tw.p_2
+    , Attr.class Tw.m_2
+    , Attr.class Tw.rounded
+    , Attr.class Tw.disabled__opacity_75
+    , Attr.class Tw.disabled__cursor_not_allowed
     , Attr.style "touch-action" "manipulation"
     , onClickAttr
     ]

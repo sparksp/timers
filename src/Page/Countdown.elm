@@ -6,11 +6,11 @@ import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as Attr
 import Html.Events as Events
-import Html.Tailwind as TW
 import Period exposing (Period)
 import Session exposing (Session)
+import Svg.Attributes as SvgAttr
 import Svg.Icons as Icons
-import Svg.Tailwind as SvgTW
+import Tailwind as Tw
 import Theme.Button as Button
 import Theme.Progress as Progress
 import Time
@@ -203,13 +203,30 @@ view (Model _ stage) =
 
 viewBody : Stage -> List (Html Msg)
 viewBody stage =
-    [ Html.main_ [ TW.flex_grow ]
-        [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
+    [ Html.main_
+        [ Attr.class Tw.flex_grow
+        ]
+        [ Html.div
+            [ Attr.class Tw.container
+            , Attr.class Tw.mx_auto
+            , Attr.class Tw.p_3
+            , Attr.class Tw.flex
+            , Attr.class Tw.flex_col
+            ]
             [ viewEditableTime stage
             , viewProgress stage
             ]
         ]
-    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.leading_normal, TW.py_2 ]
+    , Html.footer
+        [ Attr.class Tw.container
+        , Attr.class Tw.mx_auto
+        , Attr.class Tw.grid
+        , Attr.class Tw.grid_cols_2
+        , Attr.class Tw.gap_2
+        , Attr.class Tw.text_xl
+        , Attr.class Tw.leading_normal
+        , Attr.class Tw.py_2
+        ]
         [ viewStartStopButton stage
         , viewResetButton stage
         ]
@@ -224,31 +241,63 @@ viewEditableTime stage =
                 { hours, minutes, seconds } =
                     periodToTime duration
             in
-            Html.div [ TW.text_4xl, TW.font_mono, TW.self_center, TW.flex, TW.flex_row, TW.leading_none ]
+            Html.div
+                [ Attr.class Tw.text_4xl
+                , Attr.class Tw.font_mono
+                , Attr.class Tw.self_center
+                , Attr.class Tw.flex
+                , Attr.class Tw.flex_row
+                , Attr.class Tw.leading_none
+                ]
                 [ viewEditTimePart hours (GotEditMsg << SetHours)
-                , Html.div [ TW.self_center ] [ Html.text ":" ]
+                , Html.div [ Attr.class Tw.self_center ] [ Html.text ":" ]
                 , viewEditTimePart minutes (GotEditMsg << SetMinutes)
-                , Html.div [ TW.self_center ] [ Html.text ":" ]
+                , Html.div [ Attr.class Tw.self_center ] [ Html.text ":" ]
                 , viewEditTimePart seconds (GotEditMsg << SetSeconds)
                 ]
 
         _ ->
-            Html.p [ TW.text_4xl, TW.font_mono, TW.self_center, TW.leading_none, TW.py_4 ]
+            Html.p
+                [ Attr.class Tw.text_4xl
+                , Attr.class Tw.font_mono
+                , Attr.class Tw.self_center
+                , Attr.class Tw.leading_none
+                , Attr.class Tw.py_4
+                ]
                 [ showRemainingTime stage ]
 
 
 viewEditTimePart : Int -> (Int -> msg) -> Html msg
 viewEditTimePart unit msg =
-    Html.div [ TW.flex, TW.flex_col ]
-        [ Html.div [ TW.text_base ]
-            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg (unit + 1)), Attr.style "touch-action" "manipulation" ]
-                [ Icons.chevronUp [ SvgTW.h_4, SvgTW.w_4 ] ]
+    Html.div
+        [ Attr.class Tw.flex
+        , Attr.class Tw.flex_col
+        ]
+        [ Html.div
+            [ Attr.class Tw.text_base
+            ]
+            [ Html.button
+                [ Attr.class Tw.w_full
+                , Attr.class Tw.flex
+                , Attr.class Tw.justify_center
+                , Events.onClick (msg (unit + 1))
+                , Attr.style "touch-action" "manipulation"
+                ]
+                [ Icons.chevronUp [ SvgAttr.class Tw.h_4, SvgAttr.class Tw.w_4 ] ]
             ]
         , Html.div []
             [ Html.text (pad00 unit) ]
-        , Html.div [ TW.text_base ]
-            [ Html.button [ TW.w_full, TW.flex, TW.justify_center, Events.onClick (msg (unit - 1)), Attr.style "touch-action" "manipulation" ]
-                [ Icons.chevronDown [ SvgTW.h_4, SvgTW.w_4 ] ]
+        , Html.div
+            [ Attr.class Tw.text_base
+            ]
+            [ Html.button
+                [ Attr.class Tw.w_full
+                , Attr.class Tw.flex
+                , Attr.class Tw.justify_center
+                , Events.onClick (msg (unit - 1))
+                , Attr.style "touch-action" "manipulation"
+                ]
+                [ Icons.chevronDown [ SvgAttr.class Tw.h_4, SvgAttr.class Tw.w_4 ] ]
             ]
         ]
 
@@ -258,10 +307,10 @@ viewProgress stage =
     let
         ( label, bgColor ) =
             mapStage
-                { onWaiting = ( "Ready", TW.bg_gray_500 )
-                , onRunning = ( "Go!", TW.bg_green_500 )
-                , onPaused = ( "Paused", TW.bg_gray_500 )
-                , onFinished = ( "Finished", TW.bg_red_500 )
+                { onWaiting = ( "Ready", Attr.class Tw.bg_gray_500 )
+                , onRunning = ( "Go!", Attr.class Tw.bg_green_500 )
+                , onPaused = ( "Paused", Attr.class Tw.bg_gray_500 )
+                , onFinished = ( "Finished", Attr.class Tw.bg_red_500 )
                 }
                 stage
     in
@@ -293,17 +342,37 @@ viewStartStopButton stage =
 
 viewStartButton : Html Msg
 viewStartButton =
-    Html.button (TW.hover__bg_green_600 :: Button.attr { color = TW.bg_green_500, onClick = Just (GotStageMsg Start) }) [ Html.text "Start" ]
+    Html.button
+        (Attr.class Tw.hover__bg_green_600
+            :: Button.attr
+                { color = Attr.class Tw.bg_green_500
+                , onClick = Just (GotStageMsg Start)
+                }
+        )
+        [ Html.text "Start" ]
 
 
 viewDisabledStartButton : Html Msg
 viewDisabledStartButton =
-    Html.button (Button.attr { color = TW.bg_green_500, onClick = Nothing }) [ Html.text "Start" ]
+    Html.button
+        (Button.attr
+            { color = Attr.class Tw.bg_green_500
+            , onClick = Nothing
+            }
+        )
+        [ Html.text "Start" ]
 
 
 viewStopButton : Html Msg
 viewStopButton =
-    Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just (GotStageMsg Stop) }) [ Html.text "Stop" ]
+    Html.button
+        (Attr.class Tw.hover__bg_blue_600
+            :: Button.attr
+                { color = Attr.class Tw.bg_blue_500
+                , onClick = Just (GotStageMsg Stop)
+                }
+        )
+        [ Html.text "Stop" ]
 
 
 viewResetButton : Stage -> Html Msg
@@ -321,17 +390,37 @@ viewResetButton stage =
 
 viewDisabledResetButton : Html Msg
 viewDisabledResetButton =
-    Html.button (Button.attr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Reset" ]
+    Html.button
+        (Button.attr
+            { color = Attr.class Tw.bg_gray_500
+            , onClick = Nothing
+            }
+        )
+        [ Html.text "Reset" ]
 
 
 viewGrayResetButton : Html Msg
 viewGrayResetButton =
-    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_gray_500, onClick = Just (GotStageMsg Reset) }) [ Html.text "Reset" ]
+    Html.button
+        (Attr.class Tw.hover__bg_red_600
+            :: Button.attr
+                { color = Attr.class Tw.bg_gray_500
+                , onClick = Just (GotStageMsg Reset)
+                }
+        )
+        [ Html.text "Reset" ]
 
 
 viewRedResetButton : Html Msg
 viewRedResetButton =
-    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just (GotStageMsg Reset) }) [ Html.text "Reset" ]
+    Html.button
+        (Attr.class Tw.hover__bg_red_600
+            :: Button.attr
+                { color = Attr.class Tw.bg_red_500
+                , onClick = Just (GotStageMsg Reset)
+                }
+        )
+        [ Html.text "Reset" ]
 
 
 isRunning : Stage -> Bool
@@ -446,7 +535,11 @@ showPeriodHuman =
 
 showPeriod : (Period -> String) -> Period -> Html Msg
 showPeriod toString period =
-    Html.time [ Attr.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (toString period) ]
+    Html.time
+        [ Attr.datetime (Period.toIso8601 period)
+        , Attr.class Tw.select_all
+        ]
+        [ Html.text (toString period) ]
 
 
 

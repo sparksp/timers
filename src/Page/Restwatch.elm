@@ -6,13 +6,13 @@ import Browser.Events
 import Html exposing (Html)
 import Html.Attributes as Attr
 import Html.Events as Events
-import Html.Tailwind as TW
 import Menu
 import Percent exposing (Percent, percent)
 import Period exposing (Period, millis)
 import Session exposing (Session)
+import Svg.Attributes as SvgAttr
 import Svg.Icons as Icons
-import Svg.Tailwind as SvgTW
+import Tailwind as Tw
 import Theme.Button as Button
 import Theme.Progress as Progress
 import Time
@@ -280,28 +280,80 @@ view (Model _ model) =
 
 viewBody : Internals -> List (Html Msg)
 viewBody model =
-    [ Html.main_ [ TW.flex_grow, TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
-        [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
-            [ Html.div [ fadeRunningAttr model.stage, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center ]
-                [ Html.p [ TW.text_left ] [ Html.text "Activity" ]
-                , Html.p [ TW.text_4xl, TW.leading_normal, TW.font_mono, TW.select_all ] [ showRunningTime model ]
+    [ Html.main_
+        [ Attr.class Tw.flex_grow
+        , Attr.class Tw.container
+        , Attr.class Tw.mx_auto
+        , Attr.class Tw.p_3
+        , Attr.class Tw.flex
+        , Attr.class Tw.flex_col
+        ]
+        [ Html.div
+            [ Attr.class Tw.mt_4
+            , Attr.class Tw.flex
+            , Attr.class Tw.flex_col
+            ]
+            [ Html.div
+                [ fadeRunningAttr model.stage
+                , Attr.class Tw.transition_colors
+                , Attr.class Tw.duration_1000
+                , Attr.class Tw.ease_out
+                , Attr.class Tw.self_center
                 ]
-            , Html.div [ fadeRestingAttr model.stage, TW.transition_colors, TW.duration_1000, TW.ease_out, TW.self_center, TW.relative ]
+                [ Html.p
+                    [ Attr.class Tw.text_left
+                    ]
+                    [ Html.text "Activity" ]
+                , Html.p
+                    [ Attr.class Tw.text_4xl
+                    , Attr.class Tw.leading_normal
+                    , Attr.class Tw.font_mono
+                    , Attr.class Tw.select_all
+                    ]
+                    [ showRunningTime model ]
+                ]
+            , Html.div
+                [ fadeRestingAttr model.stage
+                , Attr.class Tw.transition_colors
+                , Attr.class Tw.duration_1000
+                , Attr.class Tw.ease_out
+                , Attr.class Tw.self_center
+                , Attr.class Tw.relative
+                ]
                 [ Html.button [ Events.onClick (ShowRest (Menu.toggle model.showRest)) ]
-                    [ Html.div [ TW.flex, TW.items_center ]
-                        [ Html.p [ TW.text_left ]
+                    [ Html.div
+                        [ Attr.class Tw.flex
+                        , Attr.class Tw.items_center
+                        ]
+                        [ Html.p
+                            [ Attr.class Tw.text_left
+                            ]
                             [ Html.text ("Rest (" ++ Percent.toString model.rest ++ ")")
                             ]
-                        , Icons.cog [ SvgTW.w_4, SvgTW.h_4, SvgTW.ml_2 ]
+                        , Icons.cog [ SvgAttr.class Tw.w_4, SvgAttr.class Tw.h_4, SvgAttr.class Tw.ml_2 ]
                         ]
-                    , Html.p [ TW.text_4xl, TW.leading_normal, TW.font_mono ] [ showRestingTime model ]
+                    , Html.p
+                        [ Attr.class Tw.text_4xl
+                        , Attr.class Tw.leading_normal
+                        , Attr.class Tw.font_mono
+                        ]
+                        [ showRestingTime model ]
                     ]
                 , viewRestMenu model
                 ]
             ]
         , viewProgress model
         ]
-    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.leading_normal, TW.py_2 ]
+    , Html.footer
+        [ Attr.class Tw.container
+        , Attr.class Tw.mx_auto
+        , Attr.class Tw.grid
+        , Attr.class Tw.grid_cols_2
+        , Attr.class Tw.gap_2
+        , Attr.class Tw.text_xl
+        , Attr.class Tw.leading_normal
+        , Attr.class Tw.py_2
+        ]
         [ viewStartRestButton model.stage
         , viewResetButton model.stage
         ]
@@ -312,7 +364,13 @@ viewRestMenuOverlay : Menu.State -> Html Msg
 viewRestMenuOverlay showRest =
     case showRest of
         Menu.Opened ->
-            Html.div [ TW.z_10, TW.fixed, TW.inset_0, Events.onClick (ShowRest Menu.Closed) ] []
+            Html.div
+                [ Attr.class Tw.z_10
+                , Attr.class Tw.fixed
+                , Attr.class Tw.inset_0
+                , Events.onClick (ShowRest Menu.Closed)
+                ]
+                []
 
         Menu.Closed ->
             Html.text ""
@@ -334,12 +392,37 @@ viewOpenRestMenu rest =
         |> List.map
             (\pc ->
                 if pc == Percent.toInt rest then
-                    Html.button [ TW.w_full, TW.py_1, TW.bg_orange_500, TW.text_white ] [ Html.text (String.fromInt pc ++ "%") ]
+                    Html.button
+                        [ Attr.class Tw.w_full
+                        , Attr.class Tw.py_1
+                        , Attr.class Tw.bg_orange_500
+                        , Attr.class Tw.text_white
+                        ]
+                        [ Html.text (String.fromInt pc ++ "%") ]
 
                 else
-                    Html.button [ TW.w_full, TW.py_1, TW.bg_white, TW.hover__bg_gray_200, Events.onClick (SetRest (percent pc)) ] [ Html.text (String.fromInt pc ++ "%") ]
+                    Html.button
+                        [ Attr.class Tw.w_full
+                        , Attr.class Tw.py_1
+                        , Attr.class Tw.bg_white
+                        , Attr.class Tw.hover__bg_gray_200
+                        , Events.onClick (SetRest (percent pc))
+                        ]
+                        [ Html.text (String.fromInt pc ++ "%") ]
             )
-        |> Html.div [ TW.w_full, TW.absolute, TW.z_10, TW.text_xl, TW.leading_normal, TW.text_black, TW.bg_gray_400, TW.border_gray_700, TW.border, TW.divide_y, TW.shadow_lg ]
+        |> Html.div
+            [ Attr.class Tw.w_full
+            , Attr.class Tw.absolute
+            , Attr.class Tw.z_10
+            , Attr.class Tw.text_xl
+            , Attr.class Tw.leading_normal
+            , Attr.class Tw.text_black
+            , Attr.class Tw.bg_gray_400
+            , Attr.class Tw.border_gray_700
+            , Attr.class Tw.border
+            , Attr.class Tw.divide_y
+            , Attr.class Tw.shadow_lg
+            ]
 
 
 viewProgress : { a | rest : Percent, stage : Stage } -> Html Msg
@@ -347,10 +430,14 @@ viewProgress state =
     let
         ( label, bgColor ) =
             mapStage
-                { onWaiting = ( "Get Ready!", TW.bg_gray_500 )
-                , onRunning = ( "Go!", TW.bg_green_600 )
-                , onResting = ( "Rest...", TW.bg_orange_600 )
-                , onFinished = ( "Finished", TW.bg_red_600 )
+                { onWaiting =
+                    ( "Get Ready!", Attr.class Tw.bg_gray_500 )
+                , onRunning =
+                    ( "Go!", Attr.class Tw.bg_green_600 )
+                , onResting =
+                    ( "Rest...", Attr.class Tw.bg_orange_600 )
+                , onFinished =
+                    ( "Finished", Attr.class Tw.bg_red_600 )
                 }
                 state.stage
     in
@@ -423,32 +510,73 @@ viewResetButton stage =
 
 viewStartButton : Html Msg
 viewStartButton =
-    Html.button (TW.hover__bg_green_600 :: Button.attr { color = TW.bg_green_500, onClick = Just (StageMsg Start) }) [ Html.text "Start" ]
+    Html.button
+        (Attr.class Tw.hover__bg_green_600
+            :: Button.attr
+                { color = Attr.class Tw.bg_green_500
+                , onClick = Just (StageMsg Start)
+                }
+        )
+        [ Html.text "Start" ]
 
 
 viewRestButton : Html Msg
 viewRestButton =
-    Html.button (TW.hover__bg_orange_600 :: Button.attr { color = TW.bg_orange_500, onClick = Just (StageMsg Rest) }) [ Html.text "Rest" ]
+    Html.button
+        (Attr.class Tw.hover__bg_orange_600
+            :: Button.attr
+                { color = Attr.class Tw.bg_orange_500
+                , onClick = Just (StageMsg Rest)
+                }
+        )
+        [ Html.text "Rest" ]
 
 
 viewPauseButton : Html Msg
 viewPauseButton =
-    Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just (StageMsg Pause) }) [ Html.text "Pause" ]
+    Html.button
+        (Attr.class Tw.hover__bg_blue_600
+            :: Button.attr
+                { color = Attr.class Tw.bg_blue_500
+                , onClick = Just (StageMsg Pause)
+                }
+        )
+        [ Html.text "Pause" ]
 
 
 viewDisabledResetButton : Html Msg
 viewDisabledResetButton =
-    Html.button (Button.attr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Reset" ]
+    Html.button
+        (Button.attr
+            { color = Attr.class Tw.bg_gray_500
+            , onClick = Nothing
+            }
+        )
+        [ Html.text "Reset" ]
 
 
 viewRedResetButton : Html Msg
 viewRedResetButton =
-    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_red_500, onClick = Just (StageMsg Reset) }) [ Html.text "Reset" ]
+    Html.button
+        (Attr.class Tw.hover__bg_red_600
+            :: Button.attr
+                { color = Attr.class Tw.bg_red_500
+                , onClick = Just (StageMsg Reset)
+                }
+        )
+        [ Html.text "Reset" ]
 
 
 viewGrayResetButton : Html Msg
 viewGrayResetButton =
-    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_gray_500, onClick = Just (StageMsg Reset) }) [ Html.text "Reset" ]
+    Html.button
+        (Attr.class Tw.hover__bg_red_600
+            :: Button.attr
+                { color = Attr.class Tw.bg_gray_500
+                , onClick = Just (StageMsg Reset)
+                }
+        )
+        [ Html.text "Reset" ]
 
 
 showRunningTime : { a | stage : Stage } -> Html Msg
@@ -468,14 +596,17 @@ fadeRunningAttr =
         stages =
             allStages (Attr.class "")
     in
-    mapStage { stages | onResting = TW.text_gray_600 }
+    mapStage
+        { stages
+            | onResting = Attr.class Tw.text_gray_600
+        }
 
 
 fadeRestingAttr : Stage -> Html.Attribute Msg
 fadeRestingAttr =
     mapStage
-        { onWaiting = TW.text_gray_600
-        , onRunning = TW.text_gray_600
+        { onWaiting = Attr.class Tw.text_gray_600
+        , onRunning = Attr.class Tw.text_gray_600
         , onResting = Attr.class ""
         , onFinished = Attr.class ""
         }

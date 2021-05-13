@@ -2,10 +2,11 @@ module Page exposing (Page(..), view)
 
 import Browser exposing (Document)
 import Html exposing (Html)
-import Html.Tailwind as TW
+import Html.Attributes as Attr
 import Route
+import Svg.Attributes as SvgAttr
 import Svg.Icons as Icons
-import Svg.Tailwind as STW
+import Tailwind as Tw
 
 
 {-| Current active menu item
@@ -26,7 +27,11 @@ view : Page -> Document msg -> Document msg
 view page { title, body } =
     { title = title ++ " - Timers"
     , body =
-        [ Html.div [ TW.min_h_screen, TW.flex, TW.flex_col ]
+        [ Html.div
+            [ Attr.class Tw.min_h_screen
+            , Attr.class Tw.flex
+            , Attr.class Tw.flex_col
+            ]
             (viewHeader (Title title) page :: body)
         ]
     }
@@ -34,10 +39,31 @@ view page { title, body } =
 
 viewHeader : Title -> Page -> Html msg
 viewHeader (Title title) page =
-    Html.nav [ TW.grid, TW.grid_cols_header, TW.p_2, TW.bg_orange_500, TW.text_white, TW.border_b, TW.border_orange_400, TW.shadow, TW.sticky, TW.top_0 ]
-        [ Html.div [ TW.mr_auto ] [ homeLink page ]
-        , Html.h1 [ TW.col_start_2, TW.text_center ] [ Html.text title ]
-        , Html.div [ TW.ml_auto ] [ menuButton page ]
+    Html.nav
+        [ Attr.class Tw.grid
+        , Attr.class Tw.grid_cols_header
+        , Attr.class Tw.p_2
+        , Attr.class Tw.bg_orange_500
+        , Attr.class Tw.text_white
+        , Attr.class Tw.border_b
+        , Attr.class Tw.border_orange_400
+        , Attr.class Tw.shadow
+        , Attr.class Tw.sticky
+        , Attr.class Tw.top_0
+        ]
+        [ Html.div
+            [ Attr.class Tw.mr_auto
+            ]
+            [ homeLink page ]
+        , Html.h1
+            [ Attr.class Tw.col_start_2
+            , Attr.class Tw.text_center
+            ]
+            [ Html.text title ]
+        , Html.div
+            [ Attr.class Tw.ml_auto
+            ]
+            []
         ]
 
 
@@ -48,14 +74,13 @@ homeLink page =
             Html.text ""
 
         _ ->
-            Html.a [ TW.flex, TW.items_center, Route.href Route.Home ]
-                [ Icons.back [ STW.h_6, STW.w_6 ]
+            Html.a
+                [ Attr.class Tw.flex
+                , Attr.class Tw.items_center
+                , Route.href Route.Home
                 ]
-
-
-menuButton : Page -> Html msg
-menuButton _ =
-    -- Html.button [ TW.flex, TW.items_center, TW.text_orange_200, TW.hover__text_white, TW.hover__border_white ]
-    --     [ Icons.menu [ STW.h_6, STW.w_6 ]
-    --     ]
-    Html.text ""
+                [ Icons.back
+                    [ SvgAttr.class Tw.h_6
+                    , SvgAttr.class Tw.w_6
+                    ]
+                ]

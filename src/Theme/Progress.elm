@@ -2,17 +2,28 @@ module Theme.Progress exposing (view)
 
 import Html exposing (Html)
 import Html.Attributes as Attr
-import Html.Tailwind as TW
+import Tailwind as Tw
 
 
 view : List (Html.Attribute msg) -> List (Html msg) -> Float -> Html msg
 view attributes label percent =
     Html.div
-        [ TW.w_full, TW.my_2, TW.bg_gray_300, TW.text_center, TW.text_white, TW.text_lg, TW.leading_none ]
+        [ Attr.class Tw.w_full
+        , Attr.class Tw.my_2
+        , Attr.class Tw.bg_gray_300
+        , Attr.class Tw.text_center
+        , Attr.class Tw.text_white
+        , Attr.class Tw.text_lg
+        , Attr.class Tw.leading_none
+        ]
         [ Html.div
             (progress percent
                 :: attributes
-                ++ [ TW.transition_colors, TW.duration_500, TW.ease_out, TW.py_2 ]
+                ++ [ Attr.class Tw.transition_colors
+                   , Attr.class Tw.duration_500
+                   , Attr.class Tw.ease_out
+                   , Attr.class Tw.py_2
+                   ]
             )
             label
         ]

@@ -2,8 +2,9 @@ module Page.Home exposing (view)
 
 import Browser exposing (Document)
 import Html exposing (Html)
-import Html.Tailwind as TW
+import Html.Attributes as Attr
 import Route
+import Tailwind as Tw
 
 
 view : Document msg
@@ -15,9 +16,26 @@ view =
 
 viewBody : List (Html msg)
 viewBody =
-    [ Html.main_ [ TW.flex_grow ]
-        [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
-            [ Html.div [ TW.text_center, TW.mt_4, TW.grid, TW.grid_cols_1, TW.divide_y, TW.border, TW.border_blue_500, TW.rounded ]
+    [ Html.main_
+        [ Attr.class Tw.flex_grow
+        ]
+        [ Html.div
+            [ Attr.class Tw.container
+            , Attr.class Tw.mx_auto
+            , Attr.class Tw.p_3
+            , Attr.class Tw.flex
+            , Attr.class Tw.flex_col
+            ]
+            [ Html.div
+                [ Attr.class Tw.text_center
+                , Attr.class Tw.mt_4
+                , Attr.class Tw.grid
+                , Attr.class Tw.grid_cols_1
+                , Attr.class Tw.divide_y
+                , Attr.class Tw.border
+                , Attr.class Tw.border_blue_500
+                , Attr.class Tw.rounded
+                ]
                 [ button "Countdown" (Route.Countdown Nothing)
                 , button "Restwatch" Route.Restwatch
                 , button "Stopwatch" Route.Stopwatch
@@ -31,13 +49,13 @@ button : String -> Route.Route -> Html msg
 button label route =
     Html.a
         [ Route.href route
-        , TW.hover__bg_blue_500
-        , TW.hover__text_white
-        , TW.bg_transparent
-        , TW.text_blue_700
-        , TW.border_blue_200
-        , TW.font_semibold
-        , TW.p_2
+        , Attr.class Tw.hover__bg_blue_500
+        , Attr.class Tw.hover__text_white
+        , Attr.class Tw.bg_transparent
+        , Attr.class Tw.text_blue_700
+        , Attr.class Tw.border_blue_200
+        , Attr.class Tw.font_semibold
+        , Attr.class Tw.p_2
         ]
         [ Html.text label
         ]
