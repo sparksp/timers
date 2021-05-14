@@ -334,15 +334,15 @@ viewProgress stage =
     let
         ( label, bgColor ) =
             mapStage
-                { onWaiting = ( "Ready", Attr.css [ Tw.bg_gray_500 ] )
-                , onRunning = ( "Go!", Attr.css [ Tw.bg_green_500 ] )
-                , onPaused = ( "Paused", Attr.css [ Tw.bg_gray_500 ] )
-                , onFinished = ( "Finished", Attr.css [ Tw.bg_red_500 ] )
+                { onWaiting = ( "Ready", Tw.bg_gray_500 )
+                , onRunning = ( "Go!", Tw.bg_green_500 )
+                , onPaused = ( "Paused", Tw.bg_gray_500 )
+                , onFinished = ( "Finished", Tw.bg_red_500 )
                 }
                 stage
     in
     calculateProgress stage
-        |> Progress.view [ bgColor ] [ Html.text label ]
+        |> Progress.view [ Attr.css [ bgColor ] ] [ Html.text label ]
 
 
 calculateProgress : Stage -> Float
@@ -411,7 +411,16 @@ viewResetButton stage =
         Finished _ ->
             viewRedResetButton
 
-        _ ->
+        Starting _ ->
+            viewGrayResetButton
+
+        Running _ _ ->
+            viewGrayResetButton
+
+        Paused _ _ ->
+            viewGrayResetButton
+
+        Resuming _ _ ->
             viewGrayResetButton
 
 
@@ -460,7 +469,7 @@ isRunning stage =
     mapStage { stages | onRunning = True } stage
 
 
-showRemainingTime : Stage -> Html Msg
+showRemainingTime : Stage -> Html msg
 showRemainingTime stage =
     stage
         |> stageToRemaining
@@ -555,12 +564,12 @@ mapRemainingTime { onWaiting, onRunning, onPaused, onFinished } stage =
             onFinished (Period.millis 0)
 
 
-showPeriodHuman : Period -> Html Msg
+showPeriodHuman : Period -> Html msg
 showPeriodHuman =
     showPeriod Period.toHuman
 
 
-showPeriod : (Period -> String) -> Period -> Html Msg
+showPeriod : (Period -> String) -> Period -> Html msg
 showPeriod toString period =
     Html.time
         [ Attr.datetime (Period.toIso8601 period)

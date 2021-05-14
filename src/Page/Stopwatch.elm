@@ -256,7 +256,7 @@ isRunning stage =
             True
 
 
-showTime : Stage -> Html Msg
+showTime : Stage -> Html msg
 showTime stage =
     showPeriod (stageToElapsed stage)
 
@@ -280,7 +280,7 @@ stageToElapsed stage =
             elapsed
 
 
-showPeriod : Period -> Html Msg
+showPeriod : Period -> Html msg
 showPeriod period =
     Html.time
         [ Attr.datetime (Period.toIso8601 period)

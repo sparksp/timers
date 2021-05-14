@@ -299,13 +299,14 @@ viewBody model =
                 ]
             ]
             [ Html.div
-                [ fadeRunningAttr model.stage
-                , Attr.css
-                    [ Tw.transition_colors
-                    , Tw.duration_1000
-                    , Tw.ease_out
-                    , Tw.self_center
-                    ]
+                [ Attr.css
+                    (fadeRunningAttr model.stage
+                        ++ [ Tw.transition_colors
+                           , Tw.duration_1000
+                           , Tw.ease_out
+                           , Tw.self_center
+                           ]
+                    )
                 ]
                 [ Html.p
                     [ Attr.css
@@ -324,14 +325,15 @@ viewBody model =
                     [ showRunningTime model ]
                 ]
             , Html.div
-                [ fadeRestingAttr model.stage
-                , Attr.css
-                    [ Tw.transition_colors
-                    , Tw.duration_1000
-                    , Tw.ease_out
-                    , Tw.self_center
-                    , Tw.relative
-                    ]
+                [ Attr.css
+                    (fadeRestingAttr model.stage
+                        ++ [ Tw.transition_colors
+                           , Tw.duration_1000
+                           , Tw.ease_out
+                           , Tw.self_center
+                           , Tw.relative
+                           ]
+                    )
                 ]
                 [ Html.button [ Events.onClick (ShowRest (Menu.toggle model.showRest)) ]
                     [ Html.div
@@ -465,14 +467,10 @@ viewProgress state =
     let
         ( label, bgColor ) =
             mapStage
-                { onWaiting =
-                    ( "Get Ready!", Tw.bg_gray_500 )
-                , onRunning =
-                    ( "Go!", Tw.bg_green_600 )
-                , onResting =
-                    ( "Rest...", Tw.bg_orange_600 )
-                , onFinished =
-                    ( "Finished", Tw.bg_red_600 )
+                { onWaiting = ( "Get Ready!", Tw.bg_gray_500 )
+                , onRunning = ( "Go!", Tw.bg_green_600 )
+                , onResting = ( "Rest...", Tw.bg_orange_600 )
+                , onFinished = ( "Finished", Tw.bg_red_600 )
                 }
                 state.stage
     in
@@ -624,26 +622,26 @@ showRestingTime =
     mapRestingTime (allStages showPeriod)
 
 
-fadeRunningAttr : Stage -> Html.Attribute Msg
+fadeRunningAttr : Stage -> List Css.Style
 fadeRunningAttr =
     let
-        stages : StageMaps (Html.Attribute msg)
+        stages : StageMaps (List Css.Style)
         stages =
-            allStages (Attr.css [])
+            allStages []
     in
     mapStage
         { stages
-            | onResting = Attr.css [ Tw.text_gray_600 ]
+            | onResting = [ Tw.text_gray_600 ]
         }
 
 
-fadeRestingAttr : Stage -> Html.Attribute Msg
+fadeRestingAttr : Stage -> List Css.Style
 fadeRestingAttr =
     mapStage
-        { onWaiting = Attr.css [ Tw.text_gray_600 ]
-        , onRunning = Attr.css [ Tw.text_gray_600 ]
-        , onResting = Attr.css []
-        , onFinished = Attr.css []
+        { onWaiting = [ Tw.text_gray_600 ]
+        , onRunning = [ Tw.text_gray_600 ]
+        , onResting = []
+        , onFinished = []
         }
 
 
@@ -781,6 +779,6 @@ periodPercent rest period =
     Period.mul (Percent.toFloat rest) period
 
 
-showPeriod : Period -> Html Msg
+showPeriod : Period -> Html msg
 showPeriod period =
     Html.time [ Attr.datetime (Period.toIso8601 period) ] [ Html.text (Period.toHuman period) ]
