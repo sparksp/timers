@@ -1,7 +1,7 @@
 module Page.NotFound exposing (view)
 
-import Browser exposing (Document)
-import Html
+import Browser.Styled exposing (Document)
+import Html.Styled as Html
 
 
 view : Document msg

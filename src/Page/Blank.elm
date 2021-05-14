@@ -1,6 +1,6 @@
 module Page.Blank exposing (view)
 
-import Browser exposing (Document)
+import Browser.Styled exposing (Document)
 
 
 view : Document msg

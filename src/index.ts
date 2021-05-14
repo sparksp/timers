@@ -1,6 +1,5 @@
 import "regenerator-runtime";
 import { Elm } from "./Main.elm";
-import "./assets/css/main.pcss";
 
 
 const checkElement = async selector => {

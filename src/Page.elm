@@ -1,11 +1,13 @@
 module Page exposing (Page(..), view)
 
-import Browser exposing (Document)
-import Html exposing (Html)
-import Html.Tailwind as TW
+import Browser.Styled exposing (Document)
+import Css.Global
+import Html.Styled as Html exposing (Html)
+import Html.Styled.Attributes as Attr
 import Route
 import Svg.Icons as Icons
-import Svg.Tailwind as STW
+import Svg.Styled.Attributes as SvgAttr
+import Tailwind.Utilities as Tw
 
 
 {-| Current active menu item
@@ -26,7 +28,14 @@ view : Page -> Document msg -> Document msg
 view page { title, body } =
     { title = title ++ " - Timers"
     , body =
-        [ Html.div [ TW.min_h_screen, TW.flex, TW.flex_col ]
+        [ Css.Global.global Tw.globalStyles
+        , Html.div
+            [ Attr.css
+                [ Tw.min_h_screen
+                , Tw.flex
+                , Tw.flex_col
+                ]
+            ]
             (viewHeader (Title title) page :: body)
         ]
     }
@@ -34,10 +43,39 @@ view page { title, body } =
 
 viewHeader : Title -> Page -> Html msg
 viewHeader (Title title) page =
-    Html.nav [ TW.grid, TW.grid_cols_header, TW.p_2, TW.bg_orange_500, TW.text_white, TW.border_b, TW.border_orange_400, TW.shadow, TW.sticky, TW.top_0 ]
-        [ Html.div [ TW.mr_auto ] [ homeLink page ]
-        , Html.h1 [ TW.col_start_2, TW.text_center ] [ Html.text title ]
-        , Html.div [ TW.ml_auto ] [ menuButton page ]
+    Html.nav
+        [ Attr.css
+            [ Tw.grid
+            , Tw.grid_cols_header
+            , Tw.p_2
+            , Tw.bg_orange_500
+            , Tw.text_white
+            , Tw.border_b
+            , Tw.border_orange_400
+            , Tw.shadow
+            , Tw.sticky
+            , Tw.top_0
+            ]
+        ]
+        [ Html.div
+            [ Attr.css
+                [ Tw.mr_auto
+                ]
+            ]
+            [ homeLink page ]
+        , Html.h1
+            [ Attr.css
+                [ Tw.col_start_2
+                , Tw.text_center
+                ]
+            ]
+            [ Html.text title ]
+        , Html.div
+            [ Attr.css
+                [ Tw.ml_auto
+                ]
+            ]
+            []
         ]
 
 
@@ -48,14 +86,17 @@ homeLink page =
             Html.text ""
 
         _ ->
-            Html.a [ TW.flex, TW.items_center, Route.href Route.Home ]
-                [ Icons.back [ STW.h_6, STW.w_6 ]
+            Html.a
+                [ Attr.css
+                    [ Tw.flex
+                    , Tw.items_center
+                    ]
+                , Route.href Route.Home
                 ]
-
-
-menuButton : Page -> Html msg
-menuButton _ =
-    -- Html.button [ TW.flex, TW.items_center, TW.text_orange_200, TW.hover__text_white, TW.hover__border_white ]
-    --     [ Icons.menu [ STW.h_6, STW.w_6 ]
-    --     ]
-    Html.text ""
+                [ Icons.back
+                    [ SvgAttr.css
+                        [ Tw.h_6
+                        , Tw.w_6
+                        ]
+                    ]
+                ]

@@ -1,12 +1,13 @@
 module Page.Stopwatch exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
-import Browser exposing (Document)
 import Browser.Events
-import Html exposing (Html)
-import Html.Attributes as Attr
-import Html.Tailwind as TW
+import Browser.Styled exposing (Document)
+import Css
+import Html.Styled as Html exposing (Html)
+import Html.Styled.Attributes as Attr
 import Period exposing (Period, millis)
 import Session exposing (Session)
+import Tailwind.Utilities as Tw
 import Theme.Button as Button
 import Time
 import Time.Extra
@@ -119,14 +120,51 @@ view (Model _ stage) =
 
 viewBody : Stage -> List (Html Msg)
 viewBody stage =
-    [ Html.main_ [ TW.flex_grow ]
-        [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
-            [ Html.div [ TW.mt_4, TW.flex, TW.flex_col ]
-                [ Html.p [ TW.self_center, TW.text_4xl, TW.leading_normal, TW.font_mono ] [ showTime stage ]
+    [ Html.main_
+        [ Attr.css
+            [ Tw.flex_grow
+            ]
+        ]
+        [ Html.div
+            [ Attr.css
+                [ Tw.container
+                , Tw.mx_auto
+                , Tw.p_3
+                , Tw.flex
+                , Tw.flex_col
+                ]
+            ]
+            [ Html.div
+                [ Attr.css
+                    [ Tw.mt_4
+                    , Tw.flex
+                    , Tw.flex_col
+                    ]
+                ]
+                [ Html.p
+                    [ Attr.css
+                        [ Tw.self_center
+                        , Tw.text_4xl
+                        , Tw.leading_normal
+                        , Tw.font_mono
+                        ]
+                    ]
+                    [ showTime stage ]
                 ]
             ]
         ]
-    , Html.footer [ TW.container, TW.mx_auto, TW.grid, TW.grid_cols_2, TW.gap_2, TW.text_xl, TW.leading_normal, TW.py_2 ]
+    , Html.footer
+        [ Attr.css
+            [ Tw.container
+            , Tw.mx_auto
+            , Tw.grid
+            , Tw.grid_cols_2
+            , Tw.gap_2
+            , Tw.text_xl
+            , Tw.leading_normal
+            , Tw.py_2
+            ]
+        ]
         [ viewStartStopButton stage
         , viewResetButton stage
         ]
@@ -144,12 +182,26 @@ viewStartStopButton stage =
 
 viewStartButton : Html Msg
 viewStartButton =
-    Html.button (TW.hover__bg_green_600 :: Button.attr { color = TW.bg_green_500, onClick = Just Start }) [ Html.text "Start" ]
+    Html.button
+        (Attr.css [ Css.hover [ Tw.bg_green_600 ] ]
+            :: Button.attr
+                { color = Tw.bg_green_500
+                , onClick = Just Start
+                }
+        )
+        [ Html.text "Start" ]
 
 
 viewStopButton : Html Msg
 viewStopButton =
-    Html.button (TW.hover__bg_blue_600 :: Button.attr { color = TW.bg_blue_500, onClick = Just Stop }) [ Html.text "Stop" ]
+    Html.button
+        (Attr.css [ Css.hover [ Tw.bg_blue_600 ] ]
+            :: Button.attr
+                { color = Tw.bg_blue_500
+                , onClick = Just Stop
+                }
+        )
+        [ Html.text "Stop" ]
 
 
 viewResetButton : Stage -> Html Msg
@@ -164,12 +216,25 @@ viewResetButton stage =
 
 viewDisabledResetButton : Html Msg
 viewDisabledResetButton =
-    Html.button (Button.attr { color = TW.bg_gray_500, onClick = Nothing }) [ Html.text "Reset" ]
+    Html.button
+        (Button.attr
+            { color = Tw.bg_gray_500
+            , onClick = Nothing
+            }
+        )
+        [ Html.text "Reset" ]
 
 
 viewResetButton_ : Html Msg
 viewResetButton_ =
-    Html.button (TW.hover__bg_red_600 :: Button.attr { color = TW.bg_gray_500, onClick = Just Reset }) [ Html.text "Reset" ]
+    Html.button
+        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
+            :: Button.attr
+                { color = Tw.bg_gray_500
+                , onClick = Just Reset
+                }
+        )
+        [ Html.text "Reset" ]
 
 
 isRunning : Stage -> Bool
@@ -191,7 +256,7 @@ isRunning stage =
             True
 
 
-showTime : Stage -> Html Msg
+showTime : Stage -> Html msg
 showTime stage =
     showPeriod (stageToElapsed stage)
 
@@ -215,6 +280,10 @@ stageToElapsed stage =
             elapsed
 
 
-showPeriod : Period -> Html Msg
+showPeriod : Period -> Html msg
 showPeriod period =
-    Html.time [ Attr.datetime (Period.toIso8601 period), TW.select_all ] [ Html.text (Period.toHuman period) ]
+    Html.time
+        [ Attr.datetime (Period.toIso8601 period)
+        , Attr.css [ Tw.select_all ]
+        ]
+        [ Html.text (Period.toHuman period) ]

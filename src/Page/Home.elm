@@ -1,9 +1,11 @@
 module Page.Home exposing (view)
 
-import Browser exposing (Document)
-import Html exposing (Html)
-import Html.Tailwind as TW
+import Browser.Styled exposing (Document)
+import Css
+import Html.Styled as Html exposing (Html)
+import Html.Styled.Attributes as Attr
 import Route
+import Tailwind.Utilities as Tw
 
 
 view : Document msg
@@ -15,9 +17,32 @@ view =
 
 viewBody : List (Html msg)
 viewBody =
-    [ Html.main_ [ TW.flex_grow ]
-        [ Html.div [ TW.container, TW.mx_auto, TW.p_3, TW.flex, TW.flex_col ]
-            [ Html.div [ TW.text_center, TW.mt_4, TW.grid, TW.grid_cols_1, TW.divide_y, TW.border, TW.border_blue_500, TW.rounded ]
+    [ Html.main_
+        [ Attr.css
+            [ Tw.flex_grow
+            ]
+        ]
+        [ Html.div
+            [ Attr.css
+                [ Tw.container
+                , Tw.mx_auto
+                , Tw.p_3
+                , Tw.flex
+                , Tw.flex_col
+                ]
+            ]
+            [ Html.div
+                [ Attr.css
+                    [ Tw.text_center
+                    , Tw.mt_4
+                    , Tw.grid
+                    , Tw.grid_cols_1
+                    , Tw.divide_y
+                    , Tw.border
+                    , Tw.border_blue_500
+                    , Tw.rounded
+                    ]
+                ]
                 [ button "Countdown" (Route.Countdown Nothing)
                 , button "Restwatch" Route.Restwatch
                 , button "Stopwatch" Route.Stopwatch
@@ -31,13 +56,17 @@ button : String -> Route.Route -> Html msg
 button label route =
     Html.a
         [ Route.href route
-        , TW.hover__bg_blue_500
-        , TW.hover__text_white
-        , TW.bg_transparent
-        , TW.text_blue_700
-        , TW.border_blue_200
-        , TW.font_semibold
-        , TW.p_2
+        , Attr.css
+            [ Css.hover
+                [ Tw.bg_blue_500
+                , Tw.text_white
+                ]
+            , Tw.bg_transparent
+            , Tw.text_blue_700
+            , Tw.border_blue_200
+            , Tw.font_semibold
+            , Tw.p_2
+            ]
         ]
         [ Html.text label
         ]

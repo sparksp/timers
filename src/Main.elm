@@ -1,8 +1,9 @@
 module Main exposing (Model, Msg, main)
 
-import Browser exposing (Document, UrlRequest)
+import Browser exposing (UrlRequest)
 import Browser.Navigation as Nav
-import Html
+import Browser.Styled as Browser exposing (Document)
+import Html.Styled as Html
 import Page exposing (Page)
 import Page.Blank as Blank
 import Page.Countdown as Countdown
@@ -185,7 +186,7 @@ main : Program () Model Msg
 main =
     Browser.application
         { init = init
-        , view = view
+        , view = view >> Browser.toUnstyled
         , update = update
         , subscriptions = subscriptions
         , onUrlRequest = ClickedLink
