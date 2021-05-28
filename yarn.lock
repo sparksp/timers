@@ -2415,10 +2415,10 @@ elm-hot@^1.1.6:
   resolved "https://registry.yarnpkg.com/elm-hot/-/elm-hot-1.1.6.tgz#93e3962b40670e65f0a3640951b3add2702bfd0e"
   integrity sha512-zYZJlfs7Gt4BdjA+D+857K+XAWzwwySJmXCgFpHW1dIEfaHSZCIPYPf7/jinZBLfKRkOAlKzI32AA84DY50g7Q==
 
-elm-review@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/elm-review/-/elm-review-2.5.1.tgz#267ad8d55cb25306b30b8a2d2c3dee97f48f1a34"
-  integrity sha512-LUIUy7yX0MBtQIhhsAqX4PmB7xpMGysN4oPWa/dnNvnqAkkIJcMQJBd6vudt2rNqPCE0KLupPbvUiSQCulxmDQ==
+elm-review@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/elm-review/-/elm-review-2.5.2.tgz#e24ec5aa3204d046410605092fc77e94f1bf90ef"
+  integrity sha512-AfDzGCgnP9Qm/bR0E8Tc/RXeDfCCwhtTu7Jn2i9kld2FAZh8Xwhws31Qb31VuFZSRj5LYPyGAk5GrH/VXew90g==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.0"
@@ -2904,17 +2904,7 @@ fresh@0.5.2:
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
   integrity sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
 
-fs-extra@^9.0.0:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.0.1.tgz#910da0062437ba4c39fedd863f1675ccfefcb9fc"
-  integrity sha512-h2iAoN838FqAFJY2/qVpzFXy+EBxfVE220PalAqQLDVsFOHLJrZvut5puAbCdNv6WJk+B8ihI+k0c7JK5erwqQ==
-  dependencies:
-    at-least-node "^1.0.0"
-    graceful-fs "^4.2.0"
-    jsonfile "^6.0.1"
-    universalify "^1.0.0"
-
-fs-extra@^9.1.0:
+fs-extra@^9.0.0, fs-extra@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
   integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
@@ -6454,11 +6444,6 @@ uniqs@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/uniqs/-/uniqs-2.0.0.tgz#ffede4b36b25290696e6e165d4a59edb998e6b02"
   integrity sha1-/+3ks2slKQaW5uFl1KWe25mOawI=
-
-universalify@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/universalify/-/universalify-1.0.0.tgz#b61a1da173e8435b2fe3c67d29b9adf8594bd16d"
-  integrity sha512-rb6X1W158d7pRQBg5gkR8uPaSfiids68LTJQYOtEUhoJUWBdaQHsuT/EUduxXYxcrt4r5PJ4fuHW1MHT6p0qug==
 
 universalify@^2.0.0:
   version "2.0.0"
