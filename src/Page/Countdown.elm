@@ -8,6 +8,7 @@ import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr
 import Html.Styled.Events as Events
 import Period exposing (Period)
+import Route
 import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Styled.Attributes as SvgAttr
@@ -54,12 +55,22 @@ init : Session -> Maybe Int -> ( Model, Cmd Msg )
 init session maybeTime =
     ( Model session
         (maybeTime
+            |> Maybe.andThen ensurePositive
             |> Maybe.map (Period.millis << (*) 1000)
             |> Maybe.withDefault (Period.millis 0)
             |> Waiting
         )
     , Cmd.none
     )
+
+
+ensurePositive : Int -> Maybe Int
+ensurePositive number =
+    if number < 0 then
+        Nothing
+
+    else
+        Just number
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -70,9 +81,8 @@ update msg (Model session stage) =
                 |> Tuple.mapFirst (Model session)
 
         ( GotEditMsg editMsg, _ ) ->
-            ( Model session (updateEditMsg editMsg stage)
-            , Cmd.none
-            )
+            updateEditMsg editMsg stage
+                |> replaceUrlWithTargetTime session
 
 
 updateStageMsg : StageMsg -> Stage -> ( Stage, Cmd Msg )
@@ -162,6 +172,26 @@ updateEditMsg msg stage =
 
         _ ->
             stage
+
+
+replaceUrlWithTargetTime : Session -> Stage -> ( Model, Cmd Msg )
+replaceUrlWithTargetTime session stage =
+    ( Model session stage
+    , case stage of
+        Waiting target ->
+            targetRouteUrl target
+                |> Session.replaceUrl session
+
+        _ ->
+            Cmd.none
+    )
+
+
+targetRouteUrl : Period -> String
+targetRouteUrl target =
+    Just (Period.toMillis target // 1000)
+        |> Route.Countdown
+        |> Route.toUrl
 
 
 subscriptions : Model -> Sub Msg

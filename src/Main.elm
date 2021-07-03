@@ -127,7 +127,7 @@ update msg model =
             case urlRequest of
                 Browser.Internal url ->
                     ( model
-                    , Session.pushUrl (toSession model) url
+                    , Session.pushUrl (toSession model) (Url.toString url)
                     )
 
                 Browser.External href ->
