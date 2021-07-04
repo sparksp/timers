@@ -27,7 +27,7 @@ type Model
 
 init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init _ url navKey =
-    changeRouteTo (Route.fromUrl url) (Redirect (Session.guest navKey))
+    changeRouteTo (Route.fromUrl url) (Redirect (Session.session navKey))
 
 
 view : Model -> Document Msg
@@ -127,7 +127,7 @@ update msg model =
             case urlRequest of
                 Browser.Internal url ->
                     ( model
-                    , Nav.pushUrl (Session.navKey (toSession model)) (Url.toString url)
+                    , Session.pushUrl (toSession model) (Url.toString url)
                     )
 
                 Browser.External href ->

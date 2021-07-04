@@ -2,11 +2,13 @@ module Route exposing
     ( Route(..)
     , fromUrl
     , href
+    , toUrl
     )
 
 import Html.Styled as Html
 import Html.Styled.Attributes as Attr
 import Url exposing (Url)
+import Url.Builder
 import Url.Parser as Parser exposing ((<?>), Parser, oneOf, s)
 import Url.Parser.Query as Query
 
@@ -24,7 +26,7 @@ type Route
 
 href : Route -> Html.Attribute msg
 href targetRoute =
-    Attr.href (routeToString targetRoute)
+    Attr.href (toUrl targetRoute)
 
 
 fromUrl : Url -> Maybe Route
@@ -33,32 +35,34 @@ fromUrl url =
         |> Parser.parse parser
 
 
-
--- INTERNAL
-
-
-routeToString : Route -> String
-routeToString page =
-    "/" ++ String.join "/" (routeToPieces page)
-
-
-routeToPieces : Route -> List String
-routeToPieces page =
+toUrl : Route -> String
+toUrl page =
     case page of
         Home ->
-            []
+            Url.Builder.absolute [] []
 
         Countdown Nothing ->
-            [ "countdown" ]
+            Url.Builder.absolute [ "countdown" ] []
 
         Countdown (Just time) ->
-            [ "countdown", String.fromInt time ]
+            if time > 0 then
+                Url.Builder.absolute [ "countdown" ] [ Url.Builder.string "t" (String.fromInt time) ]
+
+            else
+                -- This covers two possibilities:
+                -- 1. When no time has been set (t=0)
+                -- 2. Impossible times (t<0)
+                toUrl (Countdown Nothing)
 
         Restwatch ->
-            [ "restwatch" ]
+            Url.Builder.absolute [ "restwatch" ] []
 
         Stopwatch ->
-            [ "stopwatch" ]
+            Url.Builder.absolute [ "stopwatch" ] []
+
+
+
+-- INTERNAL
 
 
 parser : Parser (Route -> a) a

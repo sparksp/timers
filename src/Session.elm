@@ -1,17 +1,22 @@
-module Session exposing (Session, guest, navKey)
+module Session exposing (Session, pushUrl, replaceUrl, session)
 
 import Browser.Navigation as Nav
 
 
 type Session
-    = Guest Nav.Key
+    = Session Nav.Key
 
 
-guest : Nav.Key -> Session
-guest key =
-    Guest key
+session : Nav.Key -> Session
+session key =
+    Session key
 
 
-navKey : Session -> Nav.Key
-navKey (Guest key) =
-    key
+pushUrl : Session -> String -> Cmd msg
+pushUrl (Session key) =
+    Nav.pushUrl key
+
+
+replaceUrl : Session -> String -> Cmd msg
+replaceUrl (Session key) =
+    Nav.replaceUrl key
