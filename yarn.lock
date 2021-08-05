@@ -2466,10 +2466,10 @@ elm-hot@^1.1.5, elm-hot@^1.1.6:
   resolved "https://registry.yarnpkg.com/elm-hot/-/elm-hot-1.1.6.tgz#93e3962b40670e65f0a3640951b3add2702bfd0e"
   integrity sha512-zYZJlfs7Gt4BdjA+D+857K+XAWzwwySJmXCgFpHW1dIEfaHSZCIPYPf7/jinZBLfKRkOAlKzI32AA84DY50g7Q==
 
-elm-review@^2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/elm-review/-/elm-review-2.5.3.tgz#9b3bcb35c94defc6c1d018c157f6a36bf6a1c7c4"
-  integrity sha512-IshEsmfS/3Ho3c6f5VEyulHY7Hzs4Fz1yXX2Rgl6Y0pWX/61vxybWG8UIs3KOo4RsEcHzHAWmUYShpJzH1utNQ==
+elm-review@^2.5.5:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/elm-review/-/elm-review-2.5.5.tgz#d451e03a792491b2f749d4622a8e23d0c9dbe278"
+  integrity sha512-VOPeOgeE16RjLich8Gt1qJlXyASG2qS5Or4Q3vO1OlAYLPxEAlzUlEiloa7RFtm6dnEYk38axnpx8WexKy7VjA==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.0"
@@ -4588,25 +4588,10 @@ optionator@^0.8.1:
     type-check "~0.3.2"
     word-wrap "~1.2.3"
 
-ora@^5.2.0:
+ora@^5.2.0, ora@^5.4.0:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/ora/-/ora-5.4.1.tgz#1b2678426af4ac4a509008e5e4ac9e9959db9e18"
   integrity sha512-5b6Y85tPxZZ7QytO+BQzysW31HJku27cRIlkbAXaNx+BdcVi+LlRFmVXzeF6a7JCwJpyw5c4b+YSVImQIrBpuQ==
-  dependencies:
-    bl "^4.1.0"
-    chalk "^4.1.0"
-    cli-cursor "^3.1.0"
-    cli-spinners "^2.5.0"
-    is-interactive "^1.0.0"
-    is-unicode-supported "^0.1.0"
-    log-symbols "^4.1.0"
-    strip-ansi "^6.0.0"
-    wcwidth "^1.0.1"
-
-ora@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/ora/-/ora-5.4.0.tgz#42eda4855835b9cd14d33864c97a3c95a3f56bf4"
-  integrity sha512-1StwyXQGoU6gdjYkyVcqOLnVlbKj+6yPNNOxJVgpt9t4eksKjiriiHuxktLYkgllwk+D6MbC4ihH84L1udRXPg==
   dependencies:
     bl "^4.1.0"
     chalk "^4.1.0"
