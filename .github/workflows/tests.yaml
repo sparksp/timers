@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/cache@v2.1.7
+      - uses: actions/cache@v3
         id: yarn-cache
         with:
           path: node_modules
@@ -19,7 +19,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
-      - uses: actions/cache@v2.1.7
+      - uses: actions/cache@v3
         with:
           path: ~/.elm
           key: ${{ runner.os }}-elm--home-${{ hashFiles('**/elm.json', 'elm-tooling.json') }}
@@ -47,7 +47,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/cache@v2.1.7
+      - uses: actions/cache@v3
         id: yarn-cache
         with:
           path: node_modules
@@ -55,7 +55,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
-      - uses: actions/cache@v2.1.7
+      - uses: actions/cache@v3
         with:
           path: ~/.elm
           key: ${{ runner.os }}-elm--home-${{ hashFiles('**/elm.json', 'elm-tooling.json') }}
