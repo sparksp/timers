@@ -237,7 +237,7 @@
     "@parcel/transformer-react-refresh-wrap" "2.8.0"
     "@parcel/transformer-svg" "2.8.0"
 
-"@parcel/core@2.8.0", "@parcel/core@^2.5.0":
+"@parcel/core@2.8.0", "@parcel/core@^2.8.0":
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/@parcel/core/-/core-2.8.0.tgz#fe97ea2d0eb4504f149ecc7fbb0dcfe2d66a20b9"
   integrity sha512-udzbe3jjbpfKlRE9pdlROAa+lvAjS1L/AzN6r2j1y/Fsn7ze/NfvnCFw6o2YNIrXg002aQ7M1St/x1fdGfmVKA==
@@ -452,7 +452,7 @@
     globals "^13.2.0"
     nullthrows "^1.1.1"
 
-"@parcel/packager-raw-url@^2.5.0":
+"@parcel/packager-raw-url@^2.8.0":
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/@parcel/packager-raw-url/-/packager-raw-url-2.8.0.tgz#a54a8f23b1023f9f1483d5d2e83aeb3287394ab7"
   integrity sha512-6NM1Ib9BLEEQo7v6P/VWVYGhPbwuq5IGYb1de4lBCtsrrw1chHg3cEucLdHf9+c3zgsiALK2M8wjTpoz5LN0JA==
@@ -701,7 +701,7 @@
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
-"@parcel/transformer-webmanifest@^2.5.0":
+"@parcel/transformer-webmanifest@^2.8.0":
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/@parcel/transformer-webmanifest/-/transformer-webmanifest-2.8.0.tgz#0e39641dce41746c9afeb16487071d3202a4bbf9"
   integrity sha512-80+LAlSOaibvD/yh60G4UquXH3wU306p2M46qTGyu1G9CyNZaKJDzHcohlPfu768fbvAvaePLY2RO1w221fg5w==
@@ -2750,7 +2750,7 @@ parcel-reporter-static-files-copy@^1.4.0:
   dependencies:
     "@parcel/plugin" "^2.0.0-beta.1"
 
-parcel@^2.5.0:
+parcel@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/parcel/-/parcel-2.8.0.tgz#93461bb6c42c9b8979a933dec17626e6bc3b5eb9"
   integrity sha512-p7Fo75CeMw5HC1luovYpBjzPbAJv/Gn7lxcs4f0LxcwBCWbkQ73zHgJXJQqnM38qQABEYEiQq6000+j+k5U/Mw==
