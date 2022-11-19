@@ -47,7 +47,7 @@
     "parcel-reporter-static-files-copy": "^1.4.0",
     "postcss": "^8.4.19",
     "postcss-elm-tailwind": "^0.11.0",
-    "regenerator-runtime": "^0.13.10",
+    "regenerator-runtime": "^0.13.11",
     "rimraf": "^3.0.2",
     "tailwindcss": "^2.2.19",
     "typescript": "^4.9.3"
