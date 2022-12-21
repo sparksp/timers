@@ -1,8 +1,6 @@
 module Percent exposing
     ( Percent, percent
-    , toInt
-    , toFloat
-    , toString
+    , toInt, toFloat, toString
     )
 
 {-| A Percent
@@ -10,18 +8,9 @@ module Percent exposing
 @docs Percent, percent
 
 
-# Int
+# Formatting
 
-Int: 100 = 100%
-
-@docs toInt
-
-
-# Float
-
-Float: 1.0 = 100%
-
-@docs toFloat
+@docs toInt, toFloat, toString
 
 -}
 
@@ -58,6 +47,8 @@ toFloat (Percent int) =
     Basics.toFloat int / 100
 
 
+{-| Return a String representation of a Percent, where 100 is 100%
+-}
 toString : Percent -> String
 toString (Percent int) =
     String.fromInt int ++ "%"

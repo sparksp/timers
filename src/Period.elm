@@ -1,8 +1,7 @@
 module Period exposing
     ( Period, fromTimer, millis
-    , toHuman, toIso8601, toMillis, toMillisFloat
+    , toHuman, toIso8601, toMillis, toMillisFloat, toPosix
     , mul
-    , toPosix
     )
 
 {-| Tools to format a period of time.
@@ -15,7 +14,7 @@ module Period exposing
 
 # Formatting
 
-@docs toHuman, toIso8601, toMillis, toMillisFloat
+@docs toHuman, toIso8601, toMillis, toMillisFloat, toPosix
 
 
 # Mapping
