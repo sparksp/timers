@@ -15,11 +15,6 @@ module Time.Extra exposing
 
 @docs lt, min
 
-
-# Mapping
-
-@docs map, map2
-
 -}
 
 import Time
