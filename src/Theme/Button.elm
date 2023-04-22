@@ -4,6 +4,7 @@ import Css
 import Html.Styled as Html
 import Html.Styled.Attributes as Attr
 import Html.Styled.Events as Events
+import Tailwind.Theme as TwTheme
 import Tailwind.Utilities as Tw
 
 
@@ -21,7 +22,7 @@ attr { color, onClick } =
     in
     [ Attr.css
         [ color
-        , Tw.text_white
+        , Tw.text_color TwTheme.white
         , Tw.font_bold
         , Tw.p_2
         , Tw.m_2

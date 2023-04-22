@@ -13,6 +13,7 @@ import Period exposing (Period, millis)
 import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Styled.Attributes as SvgAttr
+import Tailwind.Theme as TwTheme
 import Tailwind.Utilities as Tw
 import Theme.Button as Button
 import Theme.Progress as Progress
@@ -427,8 +428,8 @@ viewOpenRestMenu rest =
                         [ Attr.css
                             [ Tw.w_full
                             , Tw.py_1
-                            , Tw.bg_orange_500
-                            , Tw.text_white
+                            , Tw.bg_color TwTheme.orange_500
+                            , Tw.text_color TwTheme.white
                             ]
                         ]
                         [ Html.text (String.fromInt pc ++ "%") ]
@@ -438,8 +439,8 @@ viewOpenRestMenu rest =
                         [ Attr.css
                             [ Tw.w_full
                             , Tw.py_1
-                            , Tw.bg_white
-                            , Css.hover [ Tw.bg_gray_200 ]
+                            , Tw.bg_color TwTheme.white
+                            , Css.hover [ Tw.bg_color TwTheme.gray_200 ]
                             ]
                         , Events.onClick (SetRest (percent pc))
                         ]
@@ -452,9 +453,9 @@ viewOpenRestMenu rest =
                 , Tw.z_10
                 , Tw.text_xl
                 , Tw.leading_normal
-                , Tw.text_black
-                , Tw.bg_gray_400
-                , Tw.border_gray_700
+                , Tw.text_color TwTheme.black
+                , Tw.bg_color TwTheme.gray_400
+                , Tw.border_color TwTheme.gray_700
                 , Tw.border
                 , Tw.divide_y
                 , Tw.shadow_lg
@@ -467,10 +468,10 @@ viewProgress state =
     let
         ( label, bgColor ) =
             mapStage
-                { onWaiting = ( "Get Ready!", Tw.bg_gray_500 )
-                , onRunning = ( "Go!", Tw.bg_green_600 )
-                , onResting = ( "Rest...", Tw.bg_orange_600 )
-                , onFinished = ( "Finished", Tw.bg_red_600 )
+                { onWaiting = ( "Get Ready!", Tw.bg_color TwTheme.gray_500 )
+                , onRunning = ( "Go!", Tw.bg_color TwTheme.green_600 )
+                , onResting = ( "Rest...", Tw.bg_color TwTheme.orange_600 )
+                , onFinished = ( "Finished", Tw.bg_color TwTheme.red_600 )
                 }
                 state.stage
     in
@@ -544,9 +545,9 @@ viewResetButton stage =
 viewStartButton : Html Msg
 viewStartButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_green_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.green_600 ] ]
             :: Button.attr
-                { color = Tw.bg_green_500
+                { color = Tw.bg_color TwTheme.green_500
                 , onClick = Just (StageMsg Start)
                 }
         )
@@ -556,9 +557,9 @@ viewStartButton =
 viewRestButton : Html Msg
 viewRestButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_orange_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.orange_600 ] ]
             :: Button.attr
-                { color = Tw.bg_orange_500
+                { color = Tw.bg_color TwTheme.orange_500
                 , onClick = Just (StageMsg Rest)
                 }
         )
@@ -568,9 +569,9 @@ viewRestButton =
 viewPauseButton : Html Msg
 viewPauseButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_blue_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.blue_600 ] ]
             :: Button.attr
-                { color = Tw.bg_blue_500
+                { color = Tw.bg_color TwTheme.blue_500
                 , onClick = Just (StageMsg Pause)
                 }
         )
@@ -581,7 +582,7 @@ viewDisabledResetButton : Html Msg
 viewDisabledResetButton =
     Html.button
         (Button.attr
-            { color = Tw.bg_gray_500
+            { color = Tw.bg_color TwTheme.gray_500
             , onClick = Nothing
             }
         )
@@ -591,9 +592,9 @@ viewDisabledResetButton =
 viewRedResetButton : Html Msg
 viewRedResetButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.red_600 ] ]
             :: Button.attr
-                { color = Tw.bg_red_500
+                { color = Tw.bg_color TwTheme.red_500
                 , onClick = Just (StageMsg Reset)
                 }
         )
@@ -603,9 +604,9 @@ viewRedResetButton =
 viewGrayResetButton : Html Msg
 viewGrayResetButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.red_600 ] ]
             :: Button.attr
-                { color = Tw.bg_gray_500
+                { color = Tw.bg_color TwTheme.gray_500
                 , onClick = Just (StageMsg Reset)
                 }
         )
@@ -631,15 +632,15 @@ fadeRunningAttr =
     in
     mapStage
         { stages
-            | onResting = [ Tw.text_gray_600 ]
+            | onResting = [ Tw.text_color TwTheme.gray_600 ]
         }
 
 
 fadeRestingAttr : Stage -> List Css.Style
 fadeRestingAttr =
     mapStage
-        { onWaiting = [ Tw.text_gray_600 ]
-        , onRunning = [ Tw.text_gray_600 ]
+        { onWaiting = [ Tw.text_color TwTheme.gray_600 ]
+        , onRunning = [ Tw.text_color TwTheme.gray_600 ]
         , onResting = []
         , onFinished = []
         }

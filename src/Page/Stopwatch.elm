@@ -7,6 +7,7 @@ import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr
 import Period exposing (Period, millis)
 import Session exposing (Session)
+import Tailwind.Theme as TwTheme
 import Tailwind.Utilities as Tw
 import Theme.Button as Button
 import Time
@@ -183,9 +184,9 @@ viewStartStopButton stage =
 viewStartButton : Html Msg
 viewStartButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_green_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.green_600 ] ]
             :: Button.attr
-                { color = Tw.bg_green_500
+                { color = Tw.bg_color TwTheme.green_500
                 , onClick = Just Start
                 }
         )
@@ -195,9 +196,9 @@ viewStartButton =
 viewStopButton : Html Msg
 viewStopButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_blue_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.blue_600 ] ]
             :: Button.attr
-                { color = Tw.bg_blue_500
+                { color = Tw.bg_color TwTheme.blue_500
                 , onClick = Just Stop
                 }
         )
@@ -218,7 +219,7 @@ viewDisabledResetButton : Html Msg
 viewDisabledResetButton =
     Html.button
         (Button.attr
-            { color = Tw.bg_gray_500
+            { color = Tw.bg_color TwTheme.gray_500
             , onClick = Nothing
             }
         )
@@ -228,9 +229,9 @@ viewDisabledResetButton =
 viewResetButton_ : Html Msg
 viewResetButton_ =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.red_600 ] ]
             :: Button.attr
-                { color = Tw.bg_gray_500
+                { color = Tw.bg_color TwTheme.gray_500
                 , onClick = Just Reset
                 }
         )

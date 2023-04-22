@@ -5,6 +5,7 @@ import Css
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr
 import Route
+import Tailwind.Theme as TwTheme
 import Tailwind.Utilities as Tw
 
 
@@ -39,7 +40,7 @@ viewBody =
                     , Tw.grid_cols_1
                     , Tw.divide_y
                     , Tw.border
-                    , Tw.border_blue_500
+                    , Tw.border_color TwTheme.blue_500
                     , Tw.rounded
                     ]
                 ]
@@ -58,12 +59,12 @@ button label route =
         [ Route.href route
         , Attr.css
             [ Css.hover
-                [ Tw.bg_blue_500
-                , Tw.text_white
+                [ Tw.bg_color TwTheme.blue_500
+                , Tw.text_color TwTheme.white
                 ]
-            , Tw.bg_transparent
-            , Tw.text_blue_700
-            , Tw.border_blue_200
+            , Tw.bg_color TwTheme.transparent
+            , Tw.text_color TwTheme.blue_700
+            , Tw.border_color TwTheme.blue_200
             , Tw.font_semibold
             , Tw.p_2
             ]

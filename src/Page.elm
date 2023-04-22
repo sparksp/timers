@@ -7,6 +7,7 @@ import Html.Styled.Attributes as Attr
 import Route
 import Svg.Icons as Icons
 import Svg.Styled.Attributes as SvgAttr
+import Tailwind.Theme as TwTheme
 import Tailwind.Utilities as Tw
 
 
@@ -48,10 +49,10 @@ viewHeader (Title title) page =
             [ Tw.grid
             , Tw.grid_cols_header
             , Tw.p_2
-            , Tw.bg_orange_500
-            , Tw.text_white
+            , Tw.bg_color TwTheme.orange_500
+            , Tw.text_color TwTheme.white
             , Tw.border_b
-            , Tw.border_orange_400
+            , Tw.border_color TwTheme.orange_400
             , Tw.shadow
             , Tw.sticky
             , Tw.top_0
