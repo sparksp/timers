@@ -2,6 +2,7 @@ module Theme.Progress exposing (view)
 
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr
+import Tailwind.Theme as TwTheme
 import Tailwind.Utilities as Tw
 
 
@@ -11,9 +12,9 @@ view attributes label percent =
         [ Attr.css
             [ Tw.w_full
             , Tw.my_2
-            , Tw.bg_gray_300
+            , Tw.bg_color TwTheme.gray_300
             , Tw.text_center
-            , Tw.text_white
+            , Tw.text_color TwTheme.white
             , Tw.text_lg
             , Tw.leading_none
             ]

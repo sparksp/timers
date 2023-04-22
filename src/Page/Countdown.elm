@@ -12,6 +12,7 @@ import Route
 import Session exposing (Session)
 import Svg.Icons as Icons
 import Svg.Styled.Attributes as SvgAttr
+import Tailwind.Theme as TwTheme
 import Tailwind.Utilities as Tw
 import Theme.Button as Button
 import Theme.Progress as Progress
@@ -364,10 +365,10 @@ viewProgress stage =
     let
         ( label, bgColor ) =
             mapStage
-                { onWaiting = ( "Ready", Tw.bg_gray_500 )
-                , onRunning = ( "Go!", Tw.bg_green_500 )
-                , onPaused = ( "Paused", Tw.bg_gray_500 )
-                , onFinished = ( "Finished", Tw.bg_red_500 )
+                { onWaiting = ( "Ready", Tw.bg_color TwTheme.gray_500 )
+                , onRunning = ( "Go!", Tw.bg_color TwTheme.green_500 )
+                , onPaused = ( "Paused", Tw.bg_color TwTheme.gray_500 )
+                , onFinished = ( "Finished", Tw.bg_color TwTheme.red_500 )
                 }
                 stage
     in
@@ -400,9 +401,9 @@ viewStartStopButton stage =
 viewStartButton : Html Msg
 viewStartButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_green_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.green_600 ] ]
             :: Button.attr
-                { color = Tw.bg_green_500
+                { color = Tw.bg_color TwTheme.green_500
                 , onClick = Just (GotStageMsg Start)
                 }
         )
@@ -413,7 +414,7 @@ viewDisabledStartButton : Html Msg
 viewDisabledStartButton =
     Html.button
         (Button.attr
-            { color = Tw.bg_green_500
+            { color = Tw.bg_color TwTheme.green_500
             , onClick = Nothing
             }
         )
@@ -423,9 +424,9 @@ viewDisabledStartButton =
 viewStopButton : Html Msg
 viewStopButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_blue_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.blue_600 ] ]
             :: Button.attr
-                { color = Tw.bg_blue_500
+                { color = Tw.bg_color TwTheme.blue_500
                 , onClick = Just (GotStageMsg Stop)
                 }
         )
@@ -458,7 +459,7 @@ viewDisabledResetButton : Html Msg
 viewDisabledResetButton =
     Html.button
         (Button.attr
-            { color = Tw.bg_gray_500
+            { color = Tw.bg_color TwTheme.gray_500
             , onClick = Nothing
             }
         )
@@ -468,9 +469,9 @@ viewDisabledResetButton =
 viewGrayResetButton : Html Msg
 viewGrayResetButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.red_600 ] ]
             :: Button.attr
-                { color = Tw.bg_gray_500
+                { color = Tw.bg_color TwTheme.gray_500
                 , onClick = Just (GotStageMsg Reset)
                 }
         )
@@ -480,9 +481,9 @@ viewGrayResetButton =
 viewRedResetButton : Html Msg
 viewRedResetButton =
     Html.button
-        (Attr.css [ Css.hover [ Tw.bg_red_600 ] ]
+        (Attr.css [ Css.hover [ Tw.bg_color TwTheme.red_600 ] ]
             :: Button.attr
-                { color = Tw.bg_red_500
+                { color = Tw.bg_color TwTheme.red_500
                 , onClick = Just (GotStageMsg Reset)
                 }
         )
