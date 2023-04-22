@@ -46,7 +46,6 @@
     "parcel": "^2.8.0",
     "parcel-reporter-static-files-copy": "^1.5.0",
     "postcss": "^8.4.21",
-    "postcss-elm-tailwind": "^0.11.0",
     "regenerator-runtime": "^0.13.11",
     "rimraf": "^5.0.0",
     "tailwindcss": "^2.2.19",
