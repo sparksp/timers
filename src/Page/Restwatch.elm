@@ -632,15 +632,15 @@ fadeRunningAttr =
     in
     mapStage
         { stages
-            | onResting = [ Tw.text_color TwTheme.gray_600 ]
+            | onResting = [ Tw.text_color TwTheme.gray_500 ]
         }
 
 
 fadeRestingAttr : Stage -> List Css.Style
 fadeRestingAttr =
     mapStage
-        { onWaiting = [ Tw.text_color TwTheme.gray_600 ]
-        , onRunning = [ Tw.text_color TwTheme.gray_600 ]
+        { onWaiting = [ Tw.text_color TwTheme.gray_500 ]
+        , onRunning = [ Tw.text_color TwTheme.gray_500 ]
         , onResting = []
         , onFinished = []
         }
