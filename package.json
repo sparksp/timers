@@ -34,7 +34,7 @@
     "@parcel/packager-raw-url": "^2.10.3",
     "@parcel/transformer-elm": "^2.10.3",
     "@parcel/transformer-webmanifest": "^2.10.3",
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.18",
     "elm": "^0.19.1-6",
     "elm-hot": "^1.1.6",
     "elm-review": "^2.10.3",
