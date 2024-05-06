@@ -29,6 +29,10 @@
     "url": "https://github.com/sparksp/timer/issues"
   },
   "homepage": "https://github.com/sparksp/timer#readme",
+  "engines": {
+    "node": ">= 18"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
     "@parcel/core": "^2.10.3",
     "@parcel/packager-raw-url": "^2.10.3",
@@ -37,7 +41,7 @@
     "autoprefixer": "^10.4.19",
     "elm": "^0.19.1-6",
     "elm-hot": "^1.1.6",
-    "elm-review": "^2.11.1",
+    "elm-review": "^2.11.2",
     "elm-tailwind-modules": "^0.5.0",
     "elm-tooling": "^1.15.1",
     "elm-types": "^0.0.2",
