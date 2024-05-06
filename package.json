@@ -29,6 +29,10 @@
     "url": "https://github.com/sparksp/timer/issues"
   },
   "homepage": "https://github.com/sparksp/timer#readme",
+  "engines": {
+    "node": ">= 18"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
     "@parcel/core": "^2.10.3",
     "@parcel/packager-raw-url": "^2.10.3",
